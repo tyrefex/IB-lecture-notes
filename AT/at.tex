@@ -54,6 +54,7 @@
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}[section]
 
 \theoremstyle{remark}
 \newtheorem*{remark}{Remark}
@@ -206,6 +207,138 @@ It is easy to show a convergent sequence in $\mathbb{R}^2$ is Cauchy.
 	\textbf{Proof:} Let $(z_n)$ be a Cauchy sequence in $\mathbb{R}^2$. Write $z_n = (x_n, y_n)$. For all $m, n$, $|x_m - x_n| \leq \|z_m - z_n\|$, so $(x_n)$ is a Cauchy sequence in $\mathbb{R}$, thus it converges in $\mathbb{R}$. Similarly, $(y_n)$ converges in $\mathbb{R}$, so $(z_n)$ converges.
 \end{adjustbox}
 
+\subsection{Convergence of Functions}%
+\label{sub:convergence_of_functions}
+
+Let $X \subset \mathbb{R}$. Let $f_n : X \to \mathbb{R}$, and let $f : X \to \mathbb{R}$. What does it mean for $(f_n)$ to converge to $f$?
+
+\begin{definition}\index{pointwise convergence}
+	Say $(f_n)$ \textbf{converges pointwise} to $f$, and we write $f_n \to f$ pointwise, if for all $x \in X$, $f_n(x) \to f(x)$ as $n \to \infty$.
+\end{definition}
+
+Although this is simple and easy to check, it doesn't preserve some `nice' properties that we want.
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	In all three examples, $X = [0,1]$, and $f_n \to f$ pointwise.
+	\begin{enumerate}[1.]
+		\item We will construct $f_n$ continuous, but $f$ not. Take
+			\[
+				f_n(x) =
+				\begin{cases}
+					nx & x \leq \frac{1}{n}, \\
+					1 & x \geq \frac{1}{n}.
+				\end{cases},
+				f =
+				\begin{cases}
+					0 & x = 0, \\
+					1 & x > 0.
+				\end{cases}
+			\]
+			Then $(f_n) \to f$ pointwise, but $f$ is not continuous.
+		\item We will construct $f_n$ Riemann integrable, but $f$ not. Take the function
+			\[
+				f(x) =
+				\begin{cases}
+					1 & x \in \mathbb{Q}, \\
+					0 & x \not \in \mathbb{Q}.
+				\end{cases}
+			\]
+			Enumerate the rationals in $[0,1]$ as $q_1, q_2, \ldots$. For $n \geq 1$, set
+			\[
+				f_n(x) =
+				\begin{cases}
+					1 & x = q_1, \ldots, q_n, \\
+					0 & \text{otherwise}.
+				\end{cases}	
+			\]
+		\item We will construct $f_n$ Riemann integrable, $f$ Riemann integrable, but the integrals do not converge. Take $f(x) = 0$ for all $x$. We construct $f_n$ with integral 1, such as
+			\[
+				f_n(x) =
+				\begin{cases}
+					n & 0 < x < \frac{1}{n}, \\
+					0 & \text{otherwise}.
+				\end{cases}
+			\]
+	\end{enumerate}
+	
+\end{example}
+
+\end{adjustbox}
+
+We consider another definition of convergence.
+
+\begin{definition}[Uniform Convergence]\index{uniform convergence}
+	Let $X \subset \mathbb{R}$, $f_n : X \to \mathbb{R}$, $f : X \to \mathbb{R}$. We say $(f_n)$ \textbf{converges uniformly} to $f$, and write $f_n \to f$ uniformly, if for all $\varepsilon > 0$, there exists $N$, such that for all $x \in X$ and all $n \geq N$, $|f_n(x) - f(x)| < \varepsilon$.
+\end{definition}
+
+In particular, $f_n \to f$ uniformly implies $f_n \to f$ pointwise.
+
+Equivalently, $f_n \to f$ uniformly if for sufficiently large $n$, $f_n - f$ is bounded, and
+\[
+	\sup_{x \in X} |f_n(x) - f(x)| \to 0
+.\]
+
+\begin{theorem}
+	Let $X \subset \mathbb{R}$, $f_n : X \to \mathbb{R}$ be continuous, and let $f_n \to f : X \to \mathbb{R}$ uniformly. Then $f$ is continuous.
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} Let $x \in X$, and pick $\varepsilon > 0$. As $f_n \to f$ uniformly, we can find $N$ such that for all $n \geq N$ and $ \in X$,
+	\[
+		|f_n(y) - f(y)| < \varepsilon
+	.\]
+	In particular, we may take $n = N$. As $f_N$ is continuous, we can find $\delta > 0$ such that for all $y \in X$, 
+	\[
+		|y - x| < \delta \implies |f_N(y) - f_N(x)| < \varepsilon
+	.\]
+	Now let $y \in X$ with $|y - x| < \delta$. Then
+	\begin{align*}
+		|f(y) - f(x)| \leq |f(y) - f_N(y)| + |f_N(y) - f_N(x)| + |f_N(x) - f(x)| < \varepsilon + \varepsilon + \varepsilon = 3 \varepsilon.
+	\end{align*}
+	But $3\varepsilon$ can be made arbitrarily small, so $f$ is continuous.
+\end{adjustbox}
+
+\begin{remark}
+	This is often called a `$3\varepsilon$ proof' (or a `$\varepsilon/3$ proof').
+\end{remark}
+
+\begin{theorem} 
+	Let $f_n : [a, b] \to \mathbb{R}$ be integrable and let $f_n \to f : [a, b] \to \mathbb{R}$ uniformly. Then $f$ is integrable and
+	\[
+	\int_{a}^{b} f_n \to \int_{a}^{b} f
+	\]
+	as $n \to \infty$.
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} As $f_n \to f$ uniformly, we can pick $n$ sufficiently large such that $f_n - f$ is bounded. Also $f_n$ is bounded, so by the triangle inequality $f = (f - f_n) + f_n$ is bounded.
+
+	Let $\varepsilon > 0$. As $f_n \to f$ uniformly, there is some $N$ such that for all $n \geq N$ and $x \in [a, b]$, we have $|f_n(x) - f(x)| < \varepsilon$. By Riemann's criterion, there is some dissection $\mathcal{D}$ of $[a, b]$ for which
+	\[
+		S(f_N, \mathcal{D}) - s(f_N, \mathcal{D}) < \varepsilon
+	.\]
+	Let $\mathcal{D} = \{x_0, x_1, \ldots, x_k\}$, where $a = x_0 < x_1 < \cdots < x_k = b$. Now,
+	\begin{align*}
+		S(f, \mathcal{D}) &= \sum_{i = 1}^{k}(x_{i} - x_{i-1}) \sup_{x \in [x_{i-1}, x_{i}]} f(x) \\
+				  &\leq \sum_{i = 1}^{k}(x_{i} - x_{i-1}) \sup_{x \in [x_{i-1}, x_i]} (f_N(x) + \varepsilon) \\
+				  &= \sum_{i = 1}^{k}(x_{i} - x_{i-1})\sup_{x \in [x_{i-1}, x_i]}f_N(x) + \sum_{i = 1}^{k}(x_{i} - x_{i-1}) \varepsilon \\
+				  &= S(f_N, \mathcal{D}) + (b - a) \varepsilon.
+	\end{align*}
+	Similarly, $s(f, \mathcal{D}) \geq s(f_N, \mathcal{D} - (b - a) \varepsilon$, so
+	\[
+		S(f, \mathcal{D}) - s(f, \mathcal{D}) \leq S(f_N, \mathcal{D}) - s(f_N, \mathcal{D}) + 2(b - a)\varepsilon < (2(b - a) + 1)\varepsilon.
+	.\]
+	But this can be made arbitrarily small, so by Riemann's criterion, $f$ is integrable over $[a, b]$.
+
+	Now for any $n$ sufficiently large such that $f_n - f$ is bounded,
+	\begin{align*}
+		\left| \int_{a}^{b} f_n - \int_{a}^{b}f \right| &= \left| \int_{a}^{b} (f_n - f) \right| \\
+								&\leq \int_{a}^{b} |f_n - f| \\
+								&\leq (b - a) \sup_{x \in [a, b]}|f_n(x) - f(x)| \to 0
+	\end{align*}
+	as $n \to \infty$ since $f_n \to f$ uniformly.
+\end{adjustbox}
 
 \newpage
 
