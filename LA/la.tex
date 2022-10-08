@@ -1,0 +1,270 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage[a4paper]{geometry}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsthm}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{adjustbox}
+\usepackage[shortlabels]{enumitem}
+\usepackage{parskip}
+\makeatletter
+\newcommand{\@minipagerestore}{\setlength{\parskip}{\medskipamount}}
+\makeatother
+\usepackage{imakeidx}
+
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Img}{Im}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\nullity}{null}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\adj}{adj}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\Stab}{Stab}
+\DeclareMathOperator{\ccl}{ccl}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Syl}{Syl}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Fit}{Fit}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\epi}{epi}
+
+
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+
+\setlength\parindent{0pt}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{proposition}{Proposition}[section]
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\leftmark}
+\lhead{Page \thepage}
+\setlength{\headheight}{15pt}
+
+\makeindex[intoc]
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+\newcommand{\mapsfrom}{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}
+
+\begin{document}
+
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+	\begin{center}
+		\vspace*{1em}
+		\Huge
+		\textbf{IB Linear Algebra}
+
+		\vspace{1em}
+		\large
+		Ishan Nath, Michaelmas 2022
+
+		\vspace{1.5em}
+
+		\Large
+
+		Based on Lectures by Prof. Pierre Raphael
+
+		\vspace{1em}
+
+		\large
+		\today
+	\end{center}
+	
+\end{titlepage}
+\hypersetup{pageanchor=true}
+
+\tableofcontents
+
+\newpage
+
+\section{Vector Spaces and Subspaces}%
+\label{sec:vector_spaces_and_subspaces}
+
+Let $F$ be an arbitrary field.
+
+\begin{definition}[$F$ vector space]\index{vector space}
+	A $F$ vector space is an abelian group $(V, +)$ equipped with a function
+	\begin{align*}
+		F \times V &\to V \\
+		(\lambda, v) &\mapsto \lambda v
+	\end{align*}
+	such that
+	\begin{itemize}
+		\item $\lambda(v_1 + v_2) = \lambda v_1 + \lambda v_2$, 
+		\item $(\lambda_1 + \lambda_2)v = \lambda_1 v + \lambda_2 v$,
+		\item $\lambda(\mu v) = (\lambda \mu) v$,
+		\item $1 \cdot v = v$.
+	\end{itemize}
+\end{definition}
+We know how to
+\begin{itemize}
+	\item Sum two vectors
+	\item Multiply a vector $v \in V$ by a scalar $\lambda \in F$.
+\end{itemize}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	\begin{enumerate}[(i)]
+		\item[]
+		\item Take $n \in \mathbb{N}$, then $F^{n}$ is the set of column vectors of length $n$ with elements in $F$. We have
+			\[
+			v \in F^{n}, v =
+			\begin{pmatrix}
+				x_1 \\
+				\vdots \\
+				x_n
+			\end{pmatrix}
+			, x_i \in F
+			,\]
+			\[
+			v + w =
+			\begin{pmatrix}
+				v_1 \\
+				\vdots \\
+				v_n
+			\end{pmatrix}
+			+
+			\begin{pmatrix}
+				w_1 \\
+				\vdots \\
+				w_n
+			\end{pmatrix}
+			=
+			\begin{pmatrix}
+				v_1 + w_1 \\
+				\vdots \\
+				v_n + w_n
+			\end{pmatrix}
+			,\]
+			\[
+			\lambda v =
+			\begin{pmatrix}
+				\lambda v_1 \\
+				\vdots \\
+				\lambda v_n
+			\end{pmatrix}
+			.\]
+			Then $F^{n}$ is a $F$ vector space.
+	\end{enumerate}
+	
+\end{example}
+
+\end{adjustbox}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\begin{enumerate}[(i)]
+		\item For any set $X$, take
+			\[
+				\mathbb{R}^{X} = \{f : X \to \mathbb{R}\}
+			.\]
+			Then $\mathbb{R}^{X}$ is an $\mathbb{R}$ vector space.
+		\item Take $M_{n, m}(F)$, the set of $n \times m$ $F$ valued matrices. Then $M_{n, m}(F)$ is a $F$ vector space.
+\end{enumerate}
+
+\end{adjustbox}
+
+\begin{remark}
+	The axiom of scalar multiplication implies that for all $v \in V$, $0 \cdot v = \mathbf{0}$.
+\end{remark}
+
+\begin{definition}[Subspace]\index{subspace}
+	Let $V$ be a vector space over $F$. A subset $U$ of $V$ is a vector subspace of $V$ (denoted $U \leq V$) if
+	\begin{itemize}
+		\item $0 \in U$,
+		\item $(u_1, u_2) \in U \times U$ implies $u_1 + u_2 \in U$,
+		\item $(\lambda, u) \in F \times U$ implies $\lambda u \in U$.
+	\end{itemize}
+\end{definition}
+Note if $V$ is an $F$ vector space, and $U \leq V$, then $U$ is an $F$ vector space.
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	\begin{enumerate}[(i)]
+		\item[]
+		\item Take $V = \mathbb{R}^{\mathbb{R}}$, the space of functions $f : \mathbb{R} \to \mathbb{R}$. Let $\mathcal{C}(\mathbb{R})$ be the space of continuous function $f : \mathbb{R} \to \mathbb{R}$. Then $\mathcal{C}(\mathbb{R}) \leq \mathbb{R}^{\mathbb{R}}$.
+		\item Take the elements of $\mathbb{R}^3$ which sum up to $t$. This is a subspace if and only if $t = 0$.
+	\end{enumerate}	
+\end{example}
+
+\end{adjustbox}
+
+Note that the union of two subspaces is generally not a subspace, as it is usually not closed under addition.
+
+\begin{proposition}
+	Let $V$ be an $F$ vector space, and $U, W \leq V$. Then $U \cap W \leq V$.
+\end{proposition}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} Since $0 \in U, 0 \in W$, $0 \in U \cap W$. Now consider $(\lambda, \mu) \in F^2$, and $(v_1, v_2) \in (U \cap W)^2$. Take $\lambda_1 v_1 + \lambda_2 v_2$. Since $u_1,v_1 \in U$, this is in $U$. Similarly, it is in $W$. So it is in $U \cap W$, and $U \cap W \leq V$.
+\end{adjustbox}
+
+\begin{definition}[Sum of subspaces]\index{subspace sum}
+	Let $V$ be an $F$ vector space. Let $U, W \leq V$. Then the \textbf{sum} of $U$ and $W$ is the set
+	\[
+		U + W = \left\{ u + w \mid (u, w) \in U \times W \right\}
+	.\]
+\end{definition}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} Note $0 = 0 + 0 \in U + W$. Take $\lambda_1 f + \lambda_2 g$, where $f, g \in U + W$. Then we can write $f = f_1 + f_2, g = g_1 + g_2$, where $f_1, g_1 \in U$, $f_2, g_2 \in W$. Then 
+\[
+	\lambda_1 f + \lambda_2 g = \lambda_1 (f_1 + f_2) + \lambda_2(g_1 + g_2) = (\lambda_1 f_1 + \lambda_2 g_1) + (\lambda_1 f_2 + \lambda_2 g_2) \in U + W
+.\]
+\end{adjustbox}
+
+\begin{remark}
+	$U + W$ is the smallest subspace of $V$ which contains both $U$ and $W$.
+\end{remark}
+
+\subsection{Subspaces and Quotients}%
+\label{sub:subspaces_and_quotients}
+
+\begin{definition}[Quotient]\index{quotient}
+	Let $V$ be an $F$ vector space. Let $U \leq V$. The quotient space $V / U$ is the abelian group $V/U$ equipped with the scalar product multiplication
+	\begin{align*}
+		F \times V/U &\to V/U \\
+		(\lambda, v + U) &\mapsto \lambda v + U
+	\end{align*}
+\end{definition}
+
+\begin{proposition}
+	$V/U$ is an $F$ vector space.
+\end{proposition}
+
+\newpage
+
+\printindex
+
+\end{document}

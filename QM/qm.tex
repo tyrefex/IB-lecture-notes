@@ -1,0 +1,189 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage[a4paper]{geometry}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsthm}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{adjustbox}
+\usepackage[shortlabels]{enumitem}
+\usepackage{parskip}
+\makeatletter
+\newcommand{\@minipagerestore}{\setlength{\parskip}{\medskipamount}}
+\makeatother
+\usepackage{imakeidx}
+
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Img}{Im}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\nullity}{null}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\adj}{adj}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\Stab}{Stab}
+\DeclareMathOperator{\ccl}{ccl}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Syl}{Syl}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Fit}{Fit}
+\DeclareMathOperator{\Ann}{Ann}
+
+
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+
+\setlength\parindent{0pt}
+
+\newcommand{\course}{QM }
+\newcommand{\lecnum}{}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{proposition}{Proposition}[section]
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\leftmark}
+\lhead{Page \thepage}
+\setlength{\headheight}{15pt}
+
+\newcommand{\mapsfrom}{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}
+
+\makeindex[intoc]
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+    pdfauthor={Ishan Nath}
+}
+
+\begin{document}
+
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+	\begin{center}
+		\vspace*{1em}
+		\Huge
+		\textbf{IB Quantum Mechanics}
+
+		\vspace{1em}
+		\large
+		Ishan Nath, Michaelmas 2022
+
+		\vspace{1.5em}
+
+		\Large
+
+		Based on Lectures by Prof. Maria Ubiali
+
+		\vspace{1em}
+
+		\large
+		\today
+	\end{center}
+	
+\end{titlepage}
+\hypersetup{pageanchor=true}
+
+\tableofcontents
+
+\newpage
+
+\section{Historical Introduction}%
+\label{sec:historical_introduction}
+
+\subsection{Particles and Waves in Classical Mechanics}%
+\label{sub:particles_and_waves_in_classical_mechanics}
+
+These are the basic concepts of particle mechanics. We begin by looking at particles.
+
+\begin{definition}
+	A point particle\index{point particle} is an object carrying energy $E$ and momentum $p$ in an infinitesimally small point of space.
+\end{definition}
+
+A particle is defined by its position $\mathbf{x}$ and velocity $\mathbf{v} = \mathbf{\dot v} = \frac{d}{dt} \mathbf{x}$. From Newton's second law, we have
+\[
+	\mathbf{F}(\mathbf{x}(t), \mathbf{\dot x}(t)) = m \mathbf{\ddot x}(t)
+.\]
+Solving this determines $\mathbf{x}(t), \mathbf{\dot x}(t)$ for all $t$ once the initial conditions $\mathbf{x}(t_0), \mathbf{\dot x}(t_0)$ are known.
+
+\begin{definition}
+	A wave\index{wave} is any real or complex-valued function with periodicity in time or space.
+\end{definition}
+
+If we take a function of time $t$, such that $f(t + T) = f(t)$, where $T$ is the period, then $\nu = 1/T$ is the frequency, and the angular frequency is $\omega = 2 \pi \nu = 2 \pi/T$. Examples of such functions are $f(t) = \sin \omega t, \cos \omega t, e^{i \omega t}$.
+
+If we take a function of space $x$, such that $f(x + \lambda) = f(x)$, where $\lambda$ is the wave length, then $k = 2 \pi/\lambda$ is the wave number. Some examples are $f(x) = \cos \omega x, \sin \omega x, e^{i \omega x}$.
+
+In one dimension, an EM wave obeys the equation\index{wave equation}
+\[
+	\frac{\partial^2 f(x, t)}{\partial t^2} - c^2 \frac{\partial^2 f(x, t)}{\partial x^2} = 0
+,\]
+where $c \in \mathbb{R}$. This has solutions
+\[
+	f_{\pm}(x, t) = A_{\pm} \exp(\pm ikx - i\omega t)
+,\]
+provided that the wavelength and frequency are related by $\omega = ck$ or $\lambda \nu = c$. Here $A_{\pm}$ is the amplitude of the wave, and $\omega = ck$ is the dispersion relation\index{dispersion relation}.
+
+In three dimensions, an EM wave obeys the equation
+\[
+	\frac{\partial^2 f(\mathbf{x}, t)}{\partial t^2} - c^2 \nabla^2 f(\mathbf{x}, t) = 0
+.\]
+Here we need $f(x, t_0)$ and $\frac{df}{dt} (x, t_0)$ to determine a unique solution. The periodic solutions are
+\[
+	f(\mathbf{x}, t) = A \exp(i \mathbf{k} \cdot \mathbf{x} - i \omega t)
+,\]
+where $\omega = c |\mathbf{k}|$.
+
+\begin{remark}
+	\begin{itemize}[(i)]
+		\item[]
+		\item Other kind of waves arise as solution of other governing equations provided a different dispersion relation.
+		\item If the governing equation is linear, the superposition principle holds, stating if $f_1, f_2$ are solutions, then $f = f_1 + f_2$ is a solution.
+	\end{itemize}
+	
+\end{remark}
+
+\subsection{Particle-like behaviour of waves}%
+\label{sub:particle_like_behaviour_of_waves}
+
+\subsubsection{Black-body radiation}%
+\label{subsub:black_body_radiation}
+
+When a body is heated at temperature $T$, it radiates light at different frequencies. The classical prediction is that $E = k_B T$, where $E$ is the energy of the wave and $k_B$ is the Boltzmann constant. This gives
+\[
+	I(\omega) \propto k_B T \frac{\omega^2}{\pi^2 c^3}
+.\]
+This diverges as $\omega \to \infty$. Planck's model stated
+\[
+	I(\omega) \propto \frac{\omega^2}{\pi^2 c^3} \frac{\hbar \omega}{\exp(\hbar \omega / k_B T) - 1}
+.\]
+Here $\hbar - h/2\pi$ is the reduced Planck constant, with $h \approx 6.6 \cdot 10^{-34} \text{Joule} \times \text{sec}$. This only makes sense if $E = \hbar \omega$.
+
+
+\newpage
+
+\printindex
+
+\end{document}

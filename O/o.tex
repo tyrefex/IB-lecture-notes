@@ -1,0 +1,1733 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage[a4paper]{geometry}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsthm}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{adjustbox}
+\usepackage[shortlabels]{enumitem}
+\usepackage{parskip}
+\makeatletter
+\newcommand{\@minipagerestore}{\setlength{\parskip}{\medskipamount}}
+\makeatother
+\usepackage{imakeidx}
+
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Img}{Im}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\nullity}{null}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\adj}{adj}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\Stab}{Stab}
+\DeclareMathOperator{\ccl}{ccl}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Syl}{Syl}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Fit}{Fit}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\epi}{epi}
+
+
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+
+\setlength\parindent{0pt}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{proposition}{Proposition}[section]
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\leftmark}
+\lhead{Page \thepage}
+\setlength{\headheight}{15pt}
+
+\makeindex[intoc]
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+\newcommand{\mapsfrom}{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}
+
+\begin{document}
+
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+	\begin{center}
+		\vspace*{1em}
+		\Huge
+		\textbf{IB Optimization}
+
+		\vspace{1em}
+		\large
+		Ishan Nath, Easter 2022
+
+		\vspace{1.5em}
+
+		\Large
+
+		Based on Lectures by Prof. Richard Weber
+
+		\vspace{1em}
+
+		\large
+		\today
+	\end{center}
+	
+\end{titlepage}
+\hypersetup{pageanchor=true}
+
+\tableofcontents
+
+\newpage
+
+\section{Convexity}%
+\label{sec:convexity}
+
+\subsection{Generic optimization problem}%
+\label{sub:generic_optimization_problem}
+
+All the problems we are looking to solve are of the form
+\begin{center}
+	minimise $f(x)$ such that $g(x) = b$, for all $x \in X$.
+\end{center}
+Note maximising $f$ is equivalent to minimising $-f$. Here $f$ is our \textbf{objective function}\index{objective function}, and $x \in \mathbb{R}^{n}$ is the \textbf{decision variable(s)}\index{decision variables}. Our subset $X \subseteq \mathbb{R}^{n}$ is the \textbf{regional constraints}\index{regional constraints} (for example $x \geq 0$), and $g : \mathbb{R}^{n} \to \mathbb{R}^{m}$ is the \textbf{functional constraints}\index{functional constraints}. We can also define the \textbf{feasible set}\index{feasible set}
+\[
+	X(b) = \{x \in X \mid g(x) = b\}
+.\]
+The problem is \textbf{feasible}\index{feasible} if $X(b)$ is non-empty, and \textbf{bounded} if $f$ is bounded on $X(b)$. $x^{\ast}$ is an \textbf{optimal solution}\index{optimal solution} if it minimises $f$ over $X(b)$.
+
+A condition of the form $g(x) \leq b$ can be turned into an equality constraint by using a \textbf{slack variable}\index{slack variable} $z$, and have functional constraint
+\[
+	g(x) + z = b, \quad z \geq 0
+.\]
+
+\subsection{Gradient Descent}%
+\label{sub:gradient_descent}
+
+Consider a problem whose only constraint is minimising $f(x)$ over $x \in \mathbb{R}^{n}$. An intuitive idea is to start at some point $x_0$ and make a sequence of small steps, each downhill. To see which direction to take these steps, we Taylor expand:
+\[
+	f(x_0 + tu) = f(x_0) + t \nabla f(x_0)^{T} u + O(t^2)
+.\]
+If we say $u$ is a unit vector, i.e. $u^{T}u = 1$, then $\nabla f(x_0)^{T}u$ is minimized by
+\[
+	u = - \frac{\nabla f(x_0)}{\|\nabla f(x_0)\|}
+.\]
+From this, we can define the gradient descent algorithm:\index{gradient descent}
+\begin{enumerate}[1)]
+	\item Start with an initial $x_0$.
+	\item Pick a step size $t$.
+	\item For $k = 0, 1, \ldots$, define $x_{k+1} = x_k - t \nabla f(x_k)$.
+\end{enumerate}
+This will work if $t$ is small: for example, if $t > 1$, then consider $f(x) = x^2$. We have $x_{k+1} = x_k - 2tx_k = (1 - 2t)x_k$, which grows in size.
+
+\subsection{Convexity}%
+\label{sub:convexity}
+
+\begin{definition}
+	A set $S \in \mathbb{R}^{n}$ is \textbf{convex}\index{convex} if, for all $x, y \in S$ and $0 \leq \lambda \leq 1$, the point $\lambda x + (1 - \lambda)y \in S$.
+\end{definition}
+
+\begin{definition}
+	$f : S \to \mathbb{R}$ is a convex function if
+	\[
+		f(\lambda x + (1 - \lambda)y) \leq \lambda f(x) + (1 - \lambda) f(y)
+	,\]
+	for all $x, y \in S$.
+\end{definition}
+
+\begin{definition}
+	$f$ is strictly convex\index{strictly convex} if it is convex and equality never holds, and is strongly convex\index{strongly convex} if there exists $\alpha > 0$ such that
+	\[
+		f(x) - \frac{\alpha}{2} \| x \|^2 \text{ is convex}
+	.\]
+	Moreover $f$ is concave\index{concave}\index{strictly concave}\index{strongly concave} if $-f$ is convex.
+\end{definition}
+
+For example, $f(x) = x^2$ is convex, and $f(x) = \log x$ is concave.
+
+An equivalent definition is given by the \textbf{epigraph}\index{epigraph}:
+\[
+	\epi(f) = \{(x, t) \mid f(x) \leq t\}
+.\]
+Then $f$ is convex if and only if $\epi(f)$ is a convex set.
+
+\begin{theorem}[Supporting hyperplane theorem]\index{supporting hyperplane theorem}
+\label{thm:SHT}
+	Let $f : S \to \mathbb{R}$, with $S$ a convex set. Then $f$ is convex if and only if for every $x \in S$, there exists $\lambda(x) \in \mathbb{R}^{n}$ such that for all $y$,
+	\[
+		f(y) \geq f(x) + \lambda(x)^{T} (y - x)
+	.\]
+	If $f$ is differentiable, then $\lambda(x) = \nabla f(x)$.
+\end{theorem}
+
+This theorem essentially says a function is convex if and only if at every point, there exists a plane tangent to the curve at that point, such that the curve lies on one side of the plane.
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} First, suppose a supporting hyperplane exists for every point. Consider $y, z \in S$, and an interior point $x = py + qz$, where $p + q = 1$ and $0 < p < 1$. Then,
+\[
+	pf(y) + qf(z) \geq p[f(x) + \lambda(x)^{T}(y - x)] + q[f(x) + \lambda(x)^{T}(z - x)] = f(x)
+.\]
+\end{adjustbox}
+\newpage
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+We will prove a supporting hyperplane exists for differentiable $f$. The condition that $f$ is convex is equivalent to
+\[
+	\frac{f(x + p(y - x)) - f(x)}{p} \leq f(y) - f(x)
+.\]
+Letting $p \to 0$, we get that
+\[
+	\nabla f(x)^{T}(y - x) \leq f(y) - f(x)
+.\]
+\end{adjustbox}
+
+\begin{corollary}
+	If $f$ is convex and differentiable, $x^{\ast}$ is feasible, and $\nabla f(x^{\ast}) = 0$, then $x^{\ast}$ is the global minimum of $f$.
+\end{corollary}
+This follows from letting $x = x^{\ast}$ in the supporting hyperplane theorem.
+
+\begin{theorem}
+	Let $f : S \to \mathbb{R}$, with $S$ a convex set. Then,
+	\begin{enumerate}[\normalfont(a)]
+		\item $f$ is convex $\implies$ every local minimum is a global minimum.
+		\item $f$ is strictly convex $\implies$ the global minimum is unique.
+		\item $f$ is continuous and strongly convex, and $S \subseteq \mathbb{R}^{n}$ is closed $\implies$ there exists an optimal solution to the problem of minimising $f$ over $S$.
+	\end{enumerate}
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:}
+\begin{enumerate}[(a)]
+	\item Let $x^{\ast}$ be a local minimum, and $y$ be any other point. Then if $z = (1 - \lambda)x^{\ast} + \lambda y$, we have $f(x^{\ast}) \leq f(z)$ for sufficiently small $\lambda$. However, we know by convexity that
+		\[
+			f(z) \leq (1 - \lambda) f(x^{\ast}) + \lambda f(y)
+		,\]
+		\[
+			\implies f(x^{\ast}) \leq f(y)
+		.\]
+	\item Suppose $x, y$ are both global minima. Then
+		\[
+			f \left( \frac{1}{2} x + \frac{1}{2} y \right) < \frac{1}{2} f(x) + \frac{1}{2} f(y)
+		.\]
+		This contradicts the fact $x$ and $y$ are both minima.
+\end{enumerate}
+
+\end{adjustbox}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+
+	\begin{enumerate}[(a), start = 3]
+	\item Since $f$ is strongly convex, $f(x) - \alpha\|x\|^2/2$ is convex. Using the supporting hyperplane theorem,
+		\[
+			f(x) - \alpha \|x\|^2/2 \geq f(0) + \lambda(0)^{T} x
+		,\]
+		where $\lambda = \lambda(0)$. By Cauchy-Schwartz, $\lambda^{T}x \geq -\|\lambda\|\|x\|$, so if $\|x\| > R = 2\|\lambda\|/\alpha$,
+		\[
+			f(x) \geq f(0) - \|\lambda\|\|x\| + \alpha\|x\|^2/2 > f(0)
+		.\]
+		Thus we may restrict to a bounded region, but a continuous function attains a minimum on a compact set.
+
+\end{enumerate}
+
+\end{adjustbox}
+
+\begin{theorem}[Lower bound on the gradient]
+\label{thm:LBG}
+	Suppose $f : S \to \mathbb{R}$ is differentiable and strongly convex with constant $\alpha > 0$. Then for any $x, y \in S$,
+	\[
+		\|\nabla f(x)\|^2 \geq 2 \alpha(f(x) - f(y))
+	.\]
+	In particular, if $y = x^{\ast}$ is the minimizer of $f$, then
+	\[
+		f(x^{\ast}) \geq f(x) - \frac{1}{2\alpha} \|\nabla f(x)\|^2
+	.\]
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} Again, we will apply the SHT on $f(x) - \alpha \|x\|^2 / 2$. Then we get that
+	\begin{align*}
+		f(y) - \alpha \|y\|^2 &\geq f(x) - \alpha \|x\|^2 + (\nabla f(x) - \alpha x)^{T}(y - x) \\
+		\iff f(y) - f(x) &\geq \nabla f(x)^{T}(y - x) + \alpha \|y - x\|^2/2 \\
+				 &= \frac{\alpha}{2} \left\|(y - x) + \frac{1}{\alpha} \nabla f(x) \right\|^2 - \frac{1}{2 \alpha} \|\nabla f(x) \|^2 \\
+				 &\geq - \frac{1}{2 \alpha} \|\nabla f(x) \|^2.
+	\end{align*}
+\end{adjustbox}
+
+\newpage
+
+\section{Gradient Descent and Newton's method}%
+\label{sec:gradient_descent_and_newton_s_method}
+
+\subsection{Second-order conditions}%
+\label{sub:second_order_conditions}
+
+\begin{definition}
+	A $n \times n$ symmetric matrix $A$ is said to be \textbf{non-negative definite}\index{non-negative definite} if $x^{T}Ax \geq 0$ for all $x$.
+\end{definition}
+
+The \textbf{Hessian}\index{Hessian}, $\nabla^2 f(x)$, is an $n \times n$ matrix such that
+\[
+H_{ij} = \frac{\partial^2 f}{\partial x_i \partial x_j}
+.\]
+
+\begin{theorem}
+\label{thm:hess-convex}
+	If $\nabla^2 f(x)$ is non-negative definite for all $x$ then $f$ is convex.
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} For $x, y \in S$, by multivariate Taylor's theorem, we can write
+\[
+	f(y) = f(x) + \nabla f(x)^{T} (y - x) + \frac{1}{2} (y - x)^{T} \nabla^2 (\xi) (y - x)
+,\]
+for some $\xi = px + (1 - p)y$, $p \in (0, 1)$. Since $\nabla^2 f$ is non-negative definite, we get that
+\[
+	f(y) \geq f(x) + \nabla f(x)^{T} (y - x)
+.\]
+We are then done by SHT.
+\end{adjustbox}
+
+In fact, the converse of theorem~\ref{thm:hess-convex} also holds.
+
+Recall $f$ is strongly convex if there exists $\alpha > 0$ such that $f(x) - \alpha \|x\|^2/2$ is convex. If $f$ is differentiable, this is equivalent to
+\[
+	f(y) \geq f(x) + \nabla f(x)^{T} (y - x) + \frac{\alpha}{2} \|y - x\|^2
+,\]
+and if $f$ is twice differentiable, this is equivalent to $\nabla^2f(x) - \alpha I$ is non-negative definite. We write this as $\nabla^2 f(x) - \alpha I \succeq 0$, or
+\[
+	\alpha I \preceq \nabla^2 f(x)
+.\]
+
+\begin{definition}
+	For any symmetric matrices $A$ and $B$, we write $A \preceq B$ to mean $B - A$ is non-negative definite.
+\end{definition}
+
+\subsection{Convergence of gradient descent}%
+\label{sub:convergence_of_gradient_descent}
+
+Recall that in gradient descent, we set
+\[
+	x_{k + 1} = x_k - t \nabla f(x_k)
+.\]
+Here $t$ is called the \textbf{learning rate}\index{learning rate} in machine learning.
+
+\begin{definition}\index{$\beta$-smooth}
+	$f$ is said to be $\beta$-smooth if
+	\[
+		\| \nabla f(x) - \nabla f(y) \| \leq \beta \|x - y \|
+	.\]
+\end{definition}
+
+\begin{theorem}
+\label{thm:b-smooth}
+	If $f$ is $\beta$-smooth, then
+	\[
+		f(y) \leq f(x) + \nabla f(x)^{T}(y - x) + \frac{\beta}{2} \|x - y\|^2
+	.\]
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:}
+\begin{align*}
+	f(y) - f(x) - \nabla f(x)^{T}(y - x) &= \int_{0}^{1} [\nabla f(x + t(y - x)) - \nabla f(x) ]^{T} (y - x) \, dt \\
+					     &\leq \int_{0}^{1} \| \nabla f(x + t(y - x)) - \nabla f(x) \| \cdot \|y - x \| \, dt \\
+					     &\leq \beta \|x - y\|^2 \int_{0}^{1} t \, dt = \frac{\beta}{2} \|x - y\|^2.
+\end{align*}
+
+\end{adjustbox}
+
+In theorem~\ref{thm:b-smooth}, the right hand side is minimized when
+\[
+	y = x - \frac{1}{\beta} \nabla f(x)
+.\]
+This suggest $t = 1/\beta$ is a good learning rate.
+
+\begin{theorem}
+\label{thm:grad-desc-bound}
+	Suppose $f$ is twice differentiable and there are positive constants $\alpha$ and $\beta$ such that
+	\[
+		\alpha I \preceq \nabla^2 f(x) \preceq \beta I
+	\]
+	for all $x$. Then applying the gradient descent algorithm with $t = 1/\beta$, we have
+	\[
+		f(x_k) - f(x^{\ast}) \leq \left(1 - \frac{\alpha}{\beta} \right)^{k} (f(x_0) - f(x^{\ast}))
+	.\]
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} We take $x_{k+1} = x_{k} - \nabla f(x_k)/\beta$. From theorem~\ref{thm:LBG}, we get that
+	\[
+		\| \nabla f(x_k) \|^2 \geq 2 \alpha (f(x_k) - f(x^{\ast}))
+	.\]
+	Using Taylor's theorem, we get that
+	\begin{align*}
+		f(x_{k+1}) - f(x_k) &= \nabla f(x_k)^{T} (x_{k+1} - x_k) + \frac{1}{2} (x_{k+1} - x_k)^{T} \nabla^2 f(\xi) (x_{k+1} - x_k) \\
+				    &\leq \nabla f(x_k)^{T} (x_{k+1} - x_k) + \frac{\beta}{2} \|x_{k+1} - x_k \|^2 \\
+				    &= - \frac{1}{2 \beta} \| \nabla f(x_k) \|^2 \leq - \frac{\alpha}{\beta} (f(x_k) - f(x^{\ast})), \\
+		\implies& f(x_{k+1}) - f(x^{\ast}) \leq \left(1 - \frac{\alpha}{\beta} \right) (f(x_k) - f(x^{\ast})).
+	\end{align*}
+	The result then follows by induction.
+\end{adjustbox}
+
+In fact, the theorem holds without the assumption of a second derivative. The ratio $\beta/\alpha$ is called the \textbf{condition number}.\index{condition number}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	Let $f(x) = (x_1^2 + 100x_2^2)/2$. Then
+	\[
+		\nabla^2 f(x) =
+		\begin{pmatrix}
+			1 & 0 \\
+			0 & 100
+		\end{pmatrix}
+	.\]
+	Therefore $\alpha = 1$, $\beta = 100$, so the condition number is 100. Applying gradient descent,
+	\[
+	\begin{pmatrix}
+		x_1' \\
+		x_2'
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		x_1 \\
+		x_2
+	\end{pmatrix}
+	- \frac{1}{100}
+	\begin{pmatrix}
+		x_1 \\
+		100 x_2
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		0.99x_1 \\
+		0
+	\end{pmatrix}
+	.\] 
+	Here, $(x_n)$ goes to 0 very slowly. We can change this by setting $y = 10x_2$, then letting $f(x, y) = (x_1^2 + y^2)/2$, gradient descent gets to the minimum in one step.
+\end{example}
+
+\end{adjustbox}
+
+\subsection{Newton's method}%
+\label{sub:newton_s_method}
+
+From Taylor expansion, we have
+\[
+	f(x) \approx f(x_0) + \nabla f(x_0)^{T} (x - x_0) + \frac{1}{2} (x - x_0)^{T} \nabla^2 f(x_0) (x - x_0)
+.\]
+The right side is minimised at
+\[
+	x = x_0 - (\nabla^2 f(x_0))^{-1} \nabla f(x_0)
+.\]
+We can define a new algorithm, \textbf{Newton's method}, as follows:\index{Newton's method}
+\begin{enumerate}[1)]
+	\item Start with a guess $x_0$.
+	\item For $k = 0, 1, \ldots$, define $x_{k+1} = x_k - (\nabla^2 f(x_k))^{-1} \nabla f(x_k)$.
+\end{enumerate}
+
+\begin{definition}
+	Suppose $A$ is $n \times n$. Let $\|A\|$ be the smallest $a$ such that $\|Az\| \leq a \|z\|$ for all $z \in \mathbb{R}^{n}$. If $A$ is non-negative definite, then $\|A\|$ is the largest eigenvalue of $A$.
+\end{definition}
+
+\begin{theorem}
+	Suppose $f$ is twice differentiable and there are constant $\alpha, L > 0$ such that
+	\[
+		\alpha I \preceq \nabla^2 f(x),
+	\]
+	\[
+		\|\nabla^2 f(x) - \nabla^2 f(y) \| \leq L\|x - y\|
+	,\]
+	for all $x, y \in \mathbb{R}^{n}$. Then with Newton's method,
+	\[
+		f(x_k) - f(x^{\ast}) \leq \frac{2 \alpha^3}{L^2} \left( \frac{L}{2 \alpha^2} \| \nabla f(x_0) \| \right)^{2^{k+1}}
+	.\]
+\end{theorem}
+
+This is much faster than gradient descent due to the power of $2^{k+1}$ present. Note that in order to work, we need $\|\nabla f(x_0) \|$ to be less than $2\alpha^2/L$, which we can do by running gradient descent for a small amount of steps.
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	Take the same example $f(x) = (x_1^2 + 100x_2^2)/2$. Then
+	\[
+	\begin{pmatrix}
+		x_1' \\
+		x_2'
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		x_1 \\
+		x_2
+	\end{pmatrix}
+	-
+	\begin{pmatrix}
+		1 & 0 \\
+		0 & 100
+	\end{pmatrix}
+	^{-1}
+	\begin{pmatrix}
+		x_1 \\
+		100x_2
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		0 \\
+		0
+	\end{pmatrix}
+	.\]
+	So Newton's method converges in one step.
+\end{example}
+
+\end{adjustbox}
+
+\subsection{Neural networks}%
+\label{sub:neural_networks}
+
+Consider the task of machine learning\index{machine learning}. Start off with an input $x[0]$, and expected output $y$, and construct a neural network as follows.\index{neural network} We compute $y[0]$ as a linear function of the components of $x[0]$, so that
+\[
+	y_i[0] = w_i[0]^{T} x[0] - b_i[0]
+,\]
+where the $w_i$ are weights and $b_i[0]$ are a bias\index{weights}\index{bias}. We can then define $x_i[1] = \phi(y_i[0])$, and inductively define
+ \[
+	 y_i[1] = w_i[1]^{T}x_[1] - b_i[1]
+,\]
+and so on. If $\phi$ is linear, then each of the $y[i]$ are simply a linear combination of $x[0]$. However, with some other function, such as the sigmoid function, we can get some interesting results. Stopping at $y[1]$, we get that
+\[
+	y_1[1](x[0]) = \sum_{j = 1}^{d[1]} w_j[1] \phi(w_j[0]^{T} x[0] - b_j[0])
+.\]
+We can then define the \textbf{cost}\index{cost}
+\[
+	\sum_{i = 1}^{m} (y_i - y_1[1](x_i) )^2
+,\]
+which we seek to minimise. This can be done by the techniques we have seen before.
+
+\newpage
+
+\section{Lagrangian Methods}%
+\label{sec:lagrangian_methods}
+
+\subsection{The Lagrangian Sufficiency Theorem}%
+\label{sub:the_lagrangian_sufficiency_theorem}
+
+Remember our problem is to solve the following problem:
+\[
+	\text{minimise } f(x) \text{ such that } g(x) = b, \text{ for all } x \in X \tag{P}\label{problem}
+,\] 
+
+for $X \subseteq \mathbb{R}^{n}$, $b \in \mathbb{R}^{m}$. We will look at Lagrange's method at solving such problems.
+
+\begin{definition}
+	The \textbf{Lagrangian}\index{Lagrangian} is defined as
+	\[
+		L(x, \lambda) = f(x) + \lambda^{T}(b - g(x))
+	,\]
+	with $\lambda \in \mathbb{R}^{m}$.
+\end{definition}
+
+\begin{theorem}[Lagrangian sufficiency theorem]\index{Lagrangian sufficiency theorem}\index{LST}
+	Let $x^{\ast}$ be feasible. Suppose there exists $\lambda^{\ast} \in \mathbb{R}^{m}$ such that
+	\[
+		L(x^{\ast}, \lambda^{\ast}) \leq L(x, \lambda^{\ast}) \; \text{for all } x \in X
+	.\]
+	Then $x^{\ast}$ is optimal for~\eqref{problem}.
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} For any feasible $x$ and any $\lambda$, we have
+\[
+L(x, \lambda) = f(x) + \lambda^{T}(b - g(x)) = f(x)
+,\]
+since being feasible implies $g(x) = b$. This implies that
+\[
+	f(x^{\ast}) = L(x^{\ast}, \lambda^{\ast}) \leq L(x, \lambda^{\ast}) = f(x)
+\]
+for all feasible $x$, as required.
+\end{adjustbox}
+
+\begin{remark}
+	\begin{enumerate}[1.]
+		\item[]
+		\item There is no guarantee we can find such a $\lambda^{\ast}$.
+		\item At first sight, we have a method of testing if $x^{\ast}$ is optimal (given a $\lambda^{\ast}$). But how do we find a $\lambda^{\ast}$?
+	\end{enumerate}
+\end{remark}
+
+\subsection{Using LST}%
+\label{sub:using_lst}
+
+There is some strategy to solving problems with LST:
+
+\begin{enumerate}[1)]
+	\item Minimise $L(x, \lambda)$ subject to $x \in X$, and identify those $\lambda$ such that the minimum is greater than $-\infty$. Define
+		\[
+			\Lambda = \{ \lambda \mid \min_{x \in X} L(x, \lambda) > - \infty \}
+		.\]
+	\item For $\lambda \in \Lambda$, the minimum will occur at some $x(\lambda)$.
+	\item Vary $\lambda$ until it reaches a value such that $g(x(\lambda)) = b$.
+\end{enumerate}
+
+\subsection{Examples of LST}%
+\label{sub:examples_of_lst}
+
+We will see how LST can be used in the following examples:
+
+\begin{example}
+\label{ex:3.1}
+	Minimise $x_1^2 + 3x_2^2$, such that $2x_1 + 3x_2 = b$, for all $x \in \mathbb{R}^2$.
+\end{example}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} To start with, notice the Lagrangian is $L = x_1^2 + 3x_2^2 + \lambda(b - 2x_1 - 3x_2)$. Then,
+\[
+\frac{\partial L}{\partial x_1} = 2x_1 - 2 \lambda = 0, \quad \frac{\partial L}{\partial x_2} = 6x_2 - 3\lambda = 0
+.\]
+Thus we must have $x_1 = \lambda$, $x_2 = \lambda/2$, and moreover
+\[
+2x_1 + 3x_2 = 2\lambda + 3 \frac{\lambda}{2} = b
+.\]
+Therefore, we can set $\lambda^{\ast} = 2b/7$, which gives
+\[
+	(x_1, x_2) = \left( \frac{2b}{7} , \frac{b}{7} \right) \quad \phi(b) = \frac{b^2}{7}
+.\]
+\end{adjustbox}
+
+\begin{example}
+	Minimise $\displaystyle \frac{1}{1 + x_1} + \frac{2}{2 + x_2}$, such that $x_1 + x_2 \leq b$, for $x_1, x_2 \geq 0$.
+\end{example}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} We will write $x_1 + x_2 + x_3 = b$, for $x_3 \geq 0$ (a slack variable). Then
+	\begin{align*}
+		L(x, \lambda) &= \frac{1}{1 + x_1} + \frac{1}{2 + x_2} + \lambda(b - x_1 - x_2 - x_3) \\
+			      &= \left( \frac{1}{1 + x_1} - \lambda x_1 \right) + \left( \frac{1}{2 + x_2} - \lambda x_2 \right) - \lambda x_3 + \lambda b.
+	\end{align*}
+	If $\lambda > 0$, then this is minimized when $x_3 \to \infty$, which is spurious. Similarly, if $\lambda = 0$, this is minimized as $x_1$ and $x_2$ go to infinity. Thus $\lambda < 0$, so the function is minimized when $x_3 = 0$.
+\end{adjustbox}
+
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+Now we are interested in minimising the function
+\[
+\frac{1}{a + x} - \lambda x, \quad x \geq 0
+.\]
+This has optimal solution
+\[
+	x(\lambda) = \left( - a + \sqrt{\frac{-1}{\lambda}} \right)^{+}
+,\]
+where $c^{+} = \max(0, c)$. Therefore, we can find that
+\[
+	x_1(\lambda) + x_2(\lambda) = \left( -1 + \sqrt{ \frac{-1}{\lambda} } \right)^{+} + \left( -2 + \sqrt{ \frac{-1}{\lambda} } \right)^{+} = b
+.\]
+The function on the right is continuous, and goes from $0$ to $\infty$ as $\lambda$ goes from $-\infty$ to $0$. So by the intermediate value theorem, there exists $\lambda^{\ast}$ such that $x_1(\lambda^{\ast}) + x_2(\lambda^{\ast}) = b$, for all positive $b$. We get that
+\[
+	x_1(\lambda^{\ast}) + x_2(\lambda^{\ast}) =
+	\begin{dcases}
+		0 & \lambda \leq -1, \\
+		-1 + 1/\sqrt{-\lambda} & \lambda \in [-1, -1/4], \\
+			-3 + 2/\sqrt{-\lambda} & \lambda \in [-1/4, 0).
+	\end{dcases}
+\]
+If we solve, we get that
+\[
+x^{\ast} =
+\begin{dcases}
+	(b, 0) & b \leq 1, \\
+	\frac{1}{2} (b + 1, b - 1) & b \geq 1.
+\end{dcases}
+\]
+\end{adjustbox}
+
+\subsection{Inequality constraints and complementary slackness}%
+\label{sub:inequality_constraints_and_complementary_slackness}
+
+We return to a variation of our problem~\eqref{problem};
+\[
+	\text{minimise } f(x) \text{ such that } g(x) \leq b, \text{ for all } x \in \mathbb{R}^{n} \tag{$\text{P}'$}\label{problem'}
+.\]
+Writing $g(x) + z = b$, for some $z \geq 0, z \in \mathbb{R}^{m}$, then
+\[
+	L(x, \lambda) = f(x) + \lambda^{T}(b - g(x) - z)
+.\]
+Think about the term $-\lambda^{T}z$:
+\begin{itemize}
+	\item If $\lambda_i > 0$ for some $i$, then by letting $z_i \to \infty$, $L \to -\infty$, a contradiction.
+	\item If $\lambda_i = 0$, then $\lambda_iz_i = 0$.
+	\item If $\lambda_i < 0$, then $z_i = 0$, so $\lambda_i z_i = 0$.
+\end{itemize}
+Therefore, $\lambda^{T}z^{\ast} = 0$. This is called \textbf{complementary slackness}\index{complementary slackness} of $\lambda^{\ast}$ and $z^{\ast}$.
+
+\subsection{Failure of Lagrangian methods}%
+\label{sub:failure_of_lagrangian_methods}
+
+Consider the following example:
+
+\begin{example}
+	Minimise $f(x)$ such that $x = b$, for $x \geq 0$.
+\end{example}
+Clearly the minimum is given by $f(b)$. What if we use LST? The Lagrangian is
+\[
+	L(x, \lambda) = f(x) + \lambda(b - x)
+.\]
+If we use $f(x) = \sqrt{x}$, then we get
+\[
+	L(x, \lambda) = \sqrt{x} + \lambda(b - x)
+.\]
+This has minimum either at $x = 0$ or $x \to \infty$, so here Lagrangian methods don't work.
+
+We can try the same problem, but with $f(x) = x^2$. Then
+\[
+	L(x, \lambda) = x^2 + \lambda(b - x)
+.\]
+This has a minimum at $x(\lambda) = \lambda/2$, so we can take $\lambda = 2b$, which works.
+
+To see why this work, take the \textbf{value function}\index{value function}
+\[
+	\phi(b) = \min_{\substack{x \in X \\ g(x) = b}} f(x)
+.\]
+Then Lagrangian methods did not work for $\phi(b) = \sqrt{b}$, but not for $\phi(b) = b^2$. The key reason why is because $\phi(b) = b^2$ is convex, whereas $\phi(b) = \sqrt{b}$ is not.
+
+\subsection{Large deviations}%
+\label{sub:large_deviations}\index{large deviations}
+
+Consider rolling a dice $n$ times. The expected sum to see is $3.5n$, but suppose we have instead rolled them in such a way that the sum is $5n$. This could have been done by rolling all 5's, but this seems unlikely. So what is the most likely distribution of rolls?
+
+The problem is then to maximise the multinomial
+\[
+	\frac{n!}{n_1! \cdots n_6!} \left( \frac{1}{6} \right)^{n} = f(x)
+,\] 
+subject to the constraints
+\[
+\sum_{i = 1}^{6} i n_i = 5n, \quad \sum_{i = 1}^{6} n_i = n
+.\]
+
+Using Stirling's approximation on the objective function, we can reduce it to finding the minimum of
+\[
+\prod p_i^{p_i + 1/2n}
+,\]
+where $p_i = n_i/n$ is the proportion of rolls of $i$. If we take the log of this, this is equivalent to minimising the sum
+\[
+\sum_{i = 1}^{6} p_i \log p_i
+.\]
+Then we wish to minimise the Lagrangian
+\[
+	L(f, \lambda) = \sum_{i = 1}^{6} p_i \log p_i + \lambda\left(5 - \sum_{i = 1}^{6} i p_i \right) + \mu \left( 1 - \sum_{i = 1}^{6} p_i \right)
+.\]
+Taking the partial derivatives,
+\[
+	\frac{\partial L}{\partial p_i} = \log p_i + 1 - \lambda i - \mu = 0 \implies p_i = e^{(\mu - 1) + \lambda i}
+.\]
+From here, we may find satisfactory $\lambda, \mu$ such that the $p_i$ satisfy the functional constraints.
+
+\newpage
+
+\section{The Lagrangian Dual}%
+\label{sec:the_lagrangian_dual}
+
+\subsection{Lagrangian necessity}%
+\label{sub:lagrangian_necessity}
+
+Recall the value function
+\[
+	\phi(b) = \inf_{\substack{x \in X \\ g(x) = b}} f(x)
+.\]
+
+We have seen examples where Lagrangian methods have and have not worked. The following theorem explains why.
+
+\begin{theorem}[Lagrangian necessity]\index{Lagrangian necessity}
+	If the value function $\phi$ is convex and finite, then there exists $\lambda$ such that
+	\[
+		\phi(b)=  \inf_{x \in X} L(x, \lambda)
+	.\]
+	Furthermore, if $\phi$ is differentiable, then $\lambda = \nabla \phi(b)$.
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} If $\phi$ is convex, by SHT there exists $\lambda$ such that $\phi(c) \geq \phi(b) + \lambda^{T}(c - b)$, for all $c$. Thus,
+	\begin{align*}
+		\phi(b) &= \inf_{c} \{\phi(c) + \lambda^{T}(b - c) \} \\
+			&= \inf_{c} \inf_{\substack{x \in X \\ g(x) = c}} \{f(x) + \lambda^{T}(b - c)\} \\
+			&= \inf_{c} \inf_{\substack{x \in X \\ g(x) = c}} \{f(x) + \lambda^{T}(b - g(x))\} \\
+			&= \inf_{x \in X} L(x, \lambda).
+	\end{align*}
+	If $\phi(b)$ is differentiable, then $\lambda = \nabla \phi(b)$.
+\end{adjustbox}
+
+Therefore, we know Lagrangian methods work if $\phi$ is convex. Thus it would be nice to know when $\phi$ is convex. Thankfully, we have the following theorem:
+
+\begin{theorem}[Sufficiency conditions for convexity of the value function]
+	Suppose
+	\begin{enumerate}[\normalfont 1.]
+		\item $X$ is convex.
+		\item The objective function $f$ is convex.
+		\item The functional constraint is of the form $g(x) \leq b$.
+		\item $g_i$ is convex for all $1 \leq j \leq m$.
+	\end{enumerate}
+	Then $\phi$ is convex.
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} We prove that, given $b_1$, $b_2$ and $\lambda \in (0, 1)$, that
+\[
+	\phi(\lambda b_1 + (1 - \lambda)b_2) \leq \lambda \phi(b_1) + (1 - \lambda) \phi(b_2)
+.\]
+Assume $\phi(b_1) = f(x_1)$, $\phi(b_2) = f(x_2)$. Then consider $x = \lambda x_1 + (1 - \lambda) x_2$.
+\begin{itemize}
+	\item Since $X$ is convex, $x \in X$.
+	\item Since the objective function $f$ is convex, $f(x) \leq \lambda f(x_1) + (1 - \lambda) f(x_2)$.
+	\item Since the $g_i$ are convex,
+		\[
+			g(x) \leq \lambda g(x_1) + (1 - \lambda)g(x_2) \leq \lambda b_1 + (1 - \lambda) b_2 = b
+		.\]
+	
+\end{itemize}
+Thus,
+\[
+	\phi(\lambda b_1 + (1 - \lambda)b_2) \leq f(x) \leq \lambda \phi(b_1) + (1 - \lambda)\phi(b_2)
+,\]
+as required.
+\end{adjustbox}
+
+\subsection{Shadow prices}%
+\label{sub:shadow_prices}\index{shadow prices}
+
+Suppose $\phi$ is differentiable: then $\nabla \phi(b) = \lambda$. Now consider a constraint of the form
+\[
+	g(x) \leq b \iff g(x) + z = b
+.\]
+Suppose we increase $b$: how much can we decrease $\phi$ by? We get that
+\[
+	\phi(b + \varepsilon) - \phi(b) = \nabla \phi(b) \cdot \varepsilon + \mathcal{O}(\varepsilon^2) \approx \lambda^{T} \varepsilon
+.\]
+By complementary slackness, since $z \geq 0$, we must have $\lambda \leq 0$. Therefore increasing $b_i$ by $\varepsilon_i$ allows the minimal value to decrease by $\lambda_i \varepsilon_i$.
+
+For this reason, we call the Lagrange multipliers are called \textbf{shadow prices}.
+
+\subsection{The Lagrangian dual problem}%
+\label{sub:the_lagrangian_dual_problem}
+
+Recall that
+\[
+	\Lambda = \{ \lambda \mid \min_{x \in X} L(x, \lambda) > -\infty\}
+.\]
+For $\lambda \in \Lambda$, we define
+\[
+	L(\lambda) = \min_{x \in X} L(x, \lambda)
+.\]
+We can also write
+\[
+	X_b = \{x \mid g(x) = b, x \in X\}
+.\]
+
+\begin{theorem}[Weak duality theorem]\index{weak duality theorem}
+	For any feasible $x \in X_b$ and $\lambda \in \Lambda$,
+	\[
+		f(x) \geq L(\lambda)
+	.\] 
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} For $x \in X_b$, $\lambda \in \Lambda$,
+\[
+	f(x) = L(x, \lambda) \geq \min_{x \in X_b}L(x, \lambda) \geq \min_{x \in X}L(x, \lambda) = L(\lambda)
+.\]
+\end{adjustbox}
+
+As a corollary, $\phi(b) \geq L(\lambda)$. Therefore, we can make progress on minimizing $\phi(b)$ by maximizing $L(\lambda)$. This is another problem
+\[
+	\text{maximize }  L(\lambda) \text{ subject to } \lambda \in \Lambda \tag{D}\label{dproblem}
+.\] 
+This is known as the \textbf{Lagrangian dual problem}\index{Lagrangian dual problem}, and the original problem is the \textbf{primal problem}\index{primal problem}. By the weak duality theorem, the optimal value of the dual is no more than the optimal value of the primal. Moreover, if they are equal, we call it \textbf{strong duality}\index{strong duality}.
+
+There is also an economic interpretation hiding in here: consider an agent producing goods in quantities $(x_1, \ldots, x_n)$, which they sell for $f(x_1, \ldots, x_n)$. Initially they have $m$ resources, say $(b_1, \ldots, b_m)$, and to produce the goods, they require $g(x_1, \ldots, x_n)$ resources.
+
+If $g_i(x) > b_i$, then they have a \textbf{shortfall}\index{shorfall}, and if $g_i(x) < b_i$, they have a \textbf{surplus}\index{surplus}. Hence we can consider a profit function of
+\[
+	f(x) + \sum_{i = 1}^{m} \lambda_i (b_i - g_i(x))
+,\]
+where the price of resource $i$ is $\lambda_i$. In fact, this resource is simply the Lagrangian
+\[
+	f(x) + \lambda^{T}(b - g(x))
+.\]
+In a competitive market, $\lambda$ will be such that the profit is minimized. Hence the market is solving the problem
+\[
+	\min_{\lambda} \max_{x} \{ f(x) + \lambda^{T}(b - g(x))\}
+.\]
+Typically, $f$ is concave, since as supply increase, demand will likely decrease. Similarly $g$ is concave, so this problem can be solved by Lagrangian methods.
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	Recall example~\eqref{ex:3.1}: minimizing $x_1^2 + 3x_2^2$, such that $2x_1 + 3x_2 = b$. In this case $L$ is minimized at $x = \lambda(1, 1/2)$. This gives
+	\[
+		L(\lambda) = L(x^{\ast}, \lambda) = \lambda^2 + \frac{3}{4} \lambda^2 + \lambda \left( b - 2\lambda - 3 \frac{\lambda}{2} \right) = \lambda b - \frac{7}{4} b^2
+	.\]
+	This is minimized at $\lambda = 2b/7$, and $\phi(b) = b^2/7 = L(\lambda^{\ast})$, so we have strong duality.
+\end{example}
+
+\end{adjustbox}
+
+\subsection{Barrier methods}%
+\label{sub:barrier_methods}\index{barrier methods}
+
+Consider our slack problem~\eqref{problem'}, on all of $\mathbb{R}^{n}$. We can define a new problem
+\[
+	\text{minimize } \left[f(x) - \varepsilon \sum_{j = 1}^{m} \log (b_j - g_j(x)) \right] \text{ subject to } x \in \mathbb{R}^{n} \tag{$\text{P}_{\varepsilon}$}\label{probleme}
+.\]
+
+Since $\log x \to -\infty$ as $x \to 0$, this ensure that the minimum of $\text{P}_{\varepsilon}$ is away from the boundary, and thus it is a stationary point.
+
+\begin{theorem}
+	Suppose $x^{\ast}$ and $x_{\varepsilon}$ are optimal for $P'$ and $\text{P}_{\varepsilon}$, respectively. Then
+	\[
+		0 \leq f(x_{\varepsilon}) - f(x^{\ast}) \leq m \varepsilon
+	,\]
+	where $m$ is the number of constraints.
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} The optimum of $\text{P}_{\varepsilon}$ occurs at a stationary point, thus where
+	\[
+		\nabla f(x_{\varepsilon}) + \varepsilon \sum_{j = 1}^{m} \frac{\nabla g_j(x_{\varepsilon})}{b_j - g_j(x_{\varepsilon})} = 0
+	.\]
+	Let $\bar \lambda$ be such that
+	\[
+		\bar \lambda_i = \frac{-\varepsilon}{b_i - g_i(x_{\varepsilon})}
+	.\]
+	Then,
+	\[
+		\nabla \left[ f(x) + \bar \lambda^{T}(b - g(x))\right] = \nabla f(x) - \bar \lambda^{T} \nabla g(x) = 0
+	,\]
+	at $x = x_{\varepsilon}$. Therefore,
+	\[
+		f(x^{\ast}) \geq L(\bar \lambda) \geq \inf_{x} \left[f(x) + \bar \lambda^{T}(b - g(x))\right] = f(x_{\varepsilon}) + \bar \lambda^{T}(b - g(x_{\varepsilon})) = f(x_{\varepsilon}) - m \varepsilon
+	.\]
+
+\end{adjustbox}
+
+\newpage
+
+\section{Linear Programming}%
+\label{sec:linear_programming}
+
+\subsection{Extreme points and optimality}%
+\label{sub:extreme_points_and_optimality}
+
+We look at a special case of our problem~\eqref{problem'}: consider when $f$ and $g_i$ are all linear. Then we have a \textbf{linear programming problem}\index{linear programming problem}. These tend to be much easier to solve than the general problem.
+
+\begin{definition}\index{extreme point}
+	We say $x$ is an \textbf{extreme point} of a convex set $S$ if whenever $x = \lambda y + (1 - \lambda z)$, for $y, z \in S$ and $\lambda \in (0, 1)$, then $y = z = x$.
+\end{definition}
+
+Extreme points are useful in linear programming, due to the following theorem:
+
+\begin{theorem}[Fundamental Theorem of Linear Progamming]\index{fundamental theorem of linear programming}
+	If a linear programming problem is feasible and bounded, then it has an optimum at an extreme point of the feasible set.
+\end{theorem}
+
+From this, we can define a very rudimentary algorithm to solve linear programming problems:
+\begin{enumerate}[1)]
+	\item Find all the vertices of the feasible set.
+	\item Pick the best one.
+\end{enumerate}
+
+However, this is computationally expensive: if $X \subset \mathbb{R}^{n}$, and there are $m$ constraints, then we have $\binom{n+m}{m}$ vertices.
+
+\subsection{Basic solutions}%
+\label{sub:basic_solutions}
+
+Consider the following problem:
+\begin{align*}
+	\text{maximize } & x_1 + x_2, \\
+	\text{subject to } & x_1 + 2x_2 + x_1 = 6, \\
+			  & x_1 - x_2 + z_2 = 3, \\
+			  & x_1, x_2, z_1, z_2 \geq 0.
+\end{align*}
+We can write the constraints as
+\[
+\begin{pmatrix}
+	1 & 2 & 1 & 0 \\
+	1 & -1 & 0 & 1
+\end{pmatrix}
+\begin{pmatrix}
+	x_1 \\
+	x_2 \\
+	z_1 \\
+	z_2
+\end{pmatrix}
+=
+\begin{pmatrix}
+	6 \\
+	3
+\end{pmatrix}
+.\]
+
+This is of the form $Ax + z = b$, where $x, z \geq 0$.
+
+To find a point on the simplex, we find the values when $x_1, x_4$ are non-zero and $x_2, x_3$ are both 0. Then we get
+\[
+\begin{pmatrix}
+	1 & 0 \\
+	1 & 1
+\end{pmatrix}
+\begin{pmatrix}
+	x_1 \\
+	x_2
+\end{pmatrix}
+=
+\begin{pmatrix}
+	6 \\
+	1
+\end{pmatrix}
+.\]
+Thus $x_1 = 6, z_2 = -3$. However this is not feasible as $z_2 < 0$. We can do this again, considering two variables to be $0$ and finding the value of the others. We generalise this approach as follows:
+
+\begin{definition}
+	\begin{itemize}
+		\item[]
+		\item The \textbf{support}\index{support} of a vector $x$ is the set of indices for which $x$ is non-zero:
+			\[
+				S(x) = \{i \mid x_i \neq 0\}
+			.\]
+		\item A \textbf{basic solution}\index{basic solution} to $Ax = b$, where $A$ is $m \times n$ with $m \leq n$, is one for which $|S(x)| \leq m$.
+		\item Set $B$ is called the \textbf{basis}\index{basis} if
+			\[
+			\begin{dcases}
+				x_i = 0 & i \not \in B, \\
+				x_i = 1 & i \in B.
+			\end{dcases}
+			\]
+			$x_i$ is called \textbf{basic} if $x_i \in B$, and \textbf{non-basic} if $x_i \not \in B$.
+		\item A basic solution is \textbf{non-degenerate} if it contains exactly $n - m$ vector components which are $0$, so $|S(x)| = m$.\index{non-degenerate solution}
+	\end{itemize}
+	
+\end{definition}
+
+In this course, we deal with only non-degenerate basic solutions. This is equivalent to matrix $A$ having rank $m$.
+
+For a basis $B$, let $A_{B}$ denote the $m \times m$ matrix whose columns are those with indices in $B$. Then by the above assumption, $A_{B}$ is invertible, so there exists $x_B$ such that
+\[
+A_Bx_B = b \iff x_B = A_B^{-1}b
+.\]
+
+\begin{theorem}
+	A vector is a basic feasible solution of $Ax = b$ if and only if it is an extreme point of the set $X(b) = \{x \mid Ax = b, x \geq 0\}$.
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} Suppose first that $x$ is not a basic feasible solution, so $|S(x)| > m$. Then there exists $y$ such that $S(y) \subseteq S(x)$ and $Ay = 0$. But then, for small enough $\varepsilon$, $x$ is the midpoint of $x + \varepsilon y$ and $x - \varepsilon y$, so $x$ is not an extreme point.
+
+\end{adjustbox}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	Now suppose $x$ is not an extreme point. Then $x = \delta y + (1 - \delta z)$, for some $y, z \in X(b)$, with $y \neq z$. But since
+	\[
+		Az = b = Ax = A(\delta y + (1 - \delta) z) = Az + \delta A(y - z)
+	,\]
+	this implies $A(y - z) = 0$, so since $S(y - z) \subseteq S(x)$, we must have $|S(x)| > m$, so $x$ is not a basic feasible solution.
+\end{adjustbox}
+
+\begin{theorem}
+	If a linear program is feasible and bounded, then it has an optimal solution that is a basic feasible solution.
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} Suppose $x$ is optimal but is not a basic feasible solution. Then there exists $y$ such that $S(y) \subseteq S(x)$ and $Ay = 0$. Consider $x(\varepsilon) = x + \varepsilon y$. For small $\varepsilon$, this is feasible, and $Ax(\varepsilon) = b$.
+
+	Now say $c^{T}y \geq 0$, by perhaps changing $y$ to $-y$. Then
+	\[
+		c^{T}x(\varepsilon) = c^{T}x + \varepsilon c^{T}y \geq c^{T}x
+	.\]
+	Increase $\varepsilon$ until some $i \in S(x)$ becomes $0$. Thus we have found $x(\varepsilon)$ such that $|S(x(\varepsilon))| < |S(x)|$.
+\end{adjustbox}
+
+This proves the fundamental theorem of linear programming. With this, we can find another algorithm:
+
+\begin{enumerate}[1)]
+	\item Find all basic solutions.
+	\item Test to see which are feasible.
+	\item Choose the best solution.
+\end{enumerate}
+
+Again, this is slow, as there are $\binom{n+m}{m}$ basic solutions.
+
+\subsection{Preview of the Simplex Method}%
+\label{sub:preview_of_the_simplex_method}
+
+The simplex algorithm is as follows:\index{simplex method}\index{simplex algorithm}
+
+\begin{enumerate}[1)]
+	\item Start with a basic feasible solution.
+	\item Test if it is optimal.
+	\item If it is not, then move to a better basic feasible solution are repeat.
+\end{enumerate}
+
+To see what this means, write a solution as $x_B + x_N$, where $B$ is a basis, and $N$ are the other elements. Then we get
+\begin{align*}
+	A_{B}x_B + A_Nx_N &= b, \\
+	x_B &= A_B^{-1}b - A_B^{-1}A_Nx_N \geq 0.
+\end{align*}
+Then, the objective function is
+\[
+	c^{T}x = c^{T}_Bx_B + c_N^{T}x_N = c^{T}_BA_B^{-1}b + (c_N^{T} - c_B^{T}A_B^{-1}A_N)x_N
+.\]
+Hence, if $c_N^{T} - c_B^{T}A_B^{-1}A_N$ has every component less than or equal to $0$, then we are at the optimum.
+
+On the other hand, if the $i$'th component is positive, for $i \in N$, then by increasing $x_i$, $c^{T}x$ will increase. However to maintain $Ax = b$, other variables will need to change, and in particular we need $x_B \geq 0$.
+
+Therefore we increase $x_i$ until some $x_j$, for $j \in B$, becomes $0$. Then we can repeat our algorithm, as we have a new basic feasible solution.
+
+\newpage
+
+\section{The Simplex Method}%
+\label{sec:the_simplex_method}
+
+\subsection{The simplex algorithm}%
+\label{sub:the_simplex_algorithm}
+\index{simplex method}\index{simplex algorithm}
+We write down a simplex tableau as
+\[
+\begin{array}{cccc|c}
+	x_1 & x_2 & z_1 & z_2 & \\
+	1 & 2 & 1 & 0 & 6 \\
+	1 & -1 & 0 & 1 & 3 \\
+	\hline
+	1 & 1 & 0 & 0 & 0
+\end{array}
+\]
+We can also write this as
+\begin{center}
+	\renewcommand{\arraystretch}{2}
+\begin{tabular}{ccc}
+$x_B$                                                & $x_N$                                           &                                        \\ \hline
+\multicolumn{1}{|c|}{$A_B^{-1}A_B = I$}              & \multicolumn{1}{c|}{$A_B^{-1}A_N$}              & \multicolumn{1}{c|}{$A_B^{-1}b$}       \\ \hline
+\multicolumn{1}{|c|}{$c^T_B - c^T_BA^{-1}_BA_B = 0$} & \multicolumn{1}{c|}{$c^T_N - c^T_BA^{-1}_BA_N$} & \multicolumn{1}{c|}{$-c^T_BA^{-1}_Bb$} \\ \hline
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+\end{center}
+
+We also index the table by $a_{ij}$, where we zero-index, with $a_{i0}$ being the rightmost column and $a_{0j}$ being the bottom row.
+
+The simplex algorithm is as follows:
+
+\begin{enumerate}[1.]
+	\item \textbf{Choose a pivot column.} Pick an element at the bottom for which $a_{0j} > 0$. This is the same as picking a $j$ such that $c^{T}_N - c^{T}_BA^{-1}_BA_n$ is positive. If no such $j$ exists, then we are at an optimum.\index{pivot column}
+	\item \textbf{Find the pivot row.} Suppose $a_{ij} > 0$. As $x_j$ increases, $x_i$ will have to decrease. We can only increase $x_j$ by an amount
+		\[
+			\min \left( \frac{a_{i0}}{a_{ij}} \mid a_{ij > 0} \right)
+		.\]
+		If $i$ minimizes $a_{i0}/a_{ij}$, then $i$ is the pivot row. If the problem is non-degenerate, then the pivot row is unique. The pivot is the intersection of the pivot row and column.\index{pivot row}\index{pivot}
+	\item \textbf{Perform a pivot.} To perform a pivot, we do the following:
+		\begin{enumerate}[(a)]
+			\item multiply the pivot row by $1/a_{ij}$,
+			\item add $-a_{kj}/a_{ij}$ times the pivot row to each row $k \neq i$, including the bottom row.
+		\end{enumerate}
+\end{enumerate}
+
+\begin{remark}
+	\begin{enumerate}[1.]
+		\item[]
+		\item At every step, we have two things in mind:
+			\begin{enumerate}[(a)]
+				\item a particular choice of basis,
+				\item a convenient way of writing the problem.
+			\end{enumerate}
+		\item In general, there is no way to efficiently choose pivot column. However in practice the running time is about linear in $m$ and $n$.
+		\item The tableau contains redundant information, such as the identity matrix and the zeroes in the bottom row.
+	\end{enumerate}
+	
+\end{remark}
+
+\newpage
+
+\section{The Dual Linear Program}%
+\label{sec:the_dual_linear_program}
+
+\subsection{The dual problem for LP}%
+\label{sub:the_dual_problem_for_lp}
+
+Recall our problem \eqref{problem'}. In linear programming, our problem is
+\[
+	\text{maximize } c^{T}x \text{ such that } Ax \leq b, x \geq 0. \tag{LP}\label{lproblem}
+\]
+The Lagrangian is then
+\[
+	L(x, z, \lambda) = c^Tx - \lambda^{T}(Ax + z - b) = (c^{T} - \lambda^{T}A)x - \lambda^{T}z + \lambda^{T}b
+.\]
+Then
+\[
+	\Lambda = \{\lambda \mid \sup_{z, x \geq 0} L(x, z, \lambda) < \infty\} = \{ \lambda \mid \lambda \geq 0, c^{T} - \lambda^{T}A \leq 0\}
+.\]
+Hence
+\[
+	L(\lambda) = \sup_{z, x \geq 0} L(x, z, \lambda) = \lambda^{T}b
+.\]
+This has an optimum when $(c^{T} - \lambda^{T}A)x = 0$ and $\lambda^{T}z = 0$. Hence the dual problem, which is to minimize $L(\lambda)$, for $\lambda \in \Lambda$, becomes
+\[
+	\text{minimize } \lambda^{T}b \text{ such that } \lambda \geq 0, \lambda^{T}A \geq c^{T}.
+\]
+But this is the same as
+\[
+	\text{maximize } (-b)^{T}\lambda \text{ such that } (-A)^{T}\lambda \leq -c, \lambda \geq 0 \tag{LD}\label{ldual}\index{dual linear problem}
+.\]
+This implies the following:
+
+\begin{lemma}
+	In linear programming, the dual of the dual is the primal.
+\end{lemma}
+
+We also get the weak duality theorem:\index{weak duality theorem for LP}
+
+\begin{theorem}[Weak duality theorem for LP]
+	If $x$ is feasible for LP and $\lambda$ is feasible for LD, then $c^{T}x \leq \lambda^{T}b$.
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} Note that $L(x, z, \lambda) = c^{T}x - \lambda^{T}(Ax + z - b)$. Since $x, z, \lambda$ are feasible,
+	\[
+		c^{T}x = L(x, z, \lambda) = (c^{T} = \lambda^{T}A)x - \lambda^{T}z + \lambda^{T}b \leq \lambda^{T}b
+	.\]
+\end{adjustbox}
+
+\subsection{Conditions for Optimality}%
+\label{sub:conditions_for_optimality}
+
+\begin{theorem}[Sufficient conditions for optimality in LP]
+	If $x^{\ast}$, $z^{\ast}$ is feasible for LP and $\lambda^{\ast}$ is feasible for LD, and $(c^{T} - \lambda^{\ast T}A)x^{\ast} = \lambda^{\ast T}z^{\ast} = 0$, then $x^{\ast}$ and $\lambda^{\ast}$ are optimal for P and D. Furthermore, $c^{T}x^{\ast} = \lambda^{\ast T}b$.
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} We have
+\[
+	c^{T}x^{\ast} = L(x^{\ast}, z^{\ast}, \lambda^{\ast}) = (c^{T} - \lambda^{\ast T}A)x^{\ast} - \lambda^{\ast T}z^{\ast} + \lambda^{\ast T} b = \lambda^{\ast T}b
+.\]
+But for all $x$ feasible for P, $c^{T}x \leq \lambda^{\ast T}b$, so $x^{\ast}$ is optimal.
+\end{adjustbox}
+
+\begin{theorem}[Strong duality in LP]
+	If both LP and LD are feasible, then there exists $x, \lambda$ satisfying the sufficiency conditions.
+\end{theorem}
+
+This follows since LP and LD can be solved by Lagrangian methods.
+
+\subsection{The utility of primal dual theory}%
+\label{sub:the_utility_of_primal_dual_theory}
+
+The usefulness of the duals are as follows:
+\begin{enumerate}[1.]
+	\item LD may be easier to solve than LP. For example, if LP has three variables and two constraints, LD has two variables and three constraints.
+	\item Having found solutions to LD we can find solutions to LP by using complementary slackness.
+	\item Sometimes it is best to solve both LP and LD simultaneously.
+	\item We seek LP and LD feasibility and complementary slackness.
+\end{enumerate}
+
+\subsection{Primal-dual relationships}%
+\label{sub:primal_dual_relationships}
+
+We can look at the lists of basic solutions for LP and LD, and observe the following:
+
+\begin{enumerate}[1.]
+	\item For each basic solution for LP, there is a corresponding basic solution for LD. Moreover, each pair has the same value of the objective function, and satisfies complementary slackness.
+	\item There is only one pair that is feasible for both LP and LD, and that solution has same optimum.
+	\item For any $x$ feasible for LP and $\lambda$ feasible for LD, we have $c^{T}x \leq b^{T}\lambda$, with equality if and only if $x$, $\lambda$ are optima for LP and LD.
+	\item LP and LD are related thus:
+		\begin{itemize}
+			\item If LP has a finite optimum, then LD has a finite optimum.
+			\item If LP is feasible, then LD is bounded.
+			\item If LP is infeasible, then LD is infeasible of unbounded.
+		\end{itemize}
+		
+\end{enumerate}
+
+\newpage
+
+\section{Shadow prices}%
+\label{sec:shadow_prices}
+
+\subsection{Dual problem and the final tableau}%
+\label{sub:dual_problem_and_the_final_tableau}
+
+Consider the initial tableau
+\begin{center}
+	\begin{tabular}{cc|c}
+		$A_N$ & $A_N$ & $b$ \\
+		\hline
+		$c^{T}_N$ & $c^T_B$ & $0$
+	\end{tabular}
+\end{center}
+Suppose the bottom row of the final tableau comes from subtracting $\lambda_i$ times the $i$'th row from the initial bottom row. Then we get $c^T_N - \lambda^TA_N \leq 0$ and $c^T_B - \lambda^{T}A_B \leq 0$. However, the final part is $-\lambda^T$, so we can read off $\lambda$ from the final tableau.
+
+\subsection{Shadow prices and sensitivity analysis}%
+\label{sub:shadow_prices_and_sensitivity_analysis}
+
+We will look at how the solution changes for small changes in $b$ or $c$. Consider an initial tableau
+\begin{center}
+	\begin{tabular}{|cccc|c|}
+		\hline
+		1 & 2 & 1 & 0 & 6 \\
+		1 & -1 & 0 & 1 & 3 \\
+		\hline
+		1 & 1 & 0 & 0 & 0 \\
+		\hline
+	\end{tabular}
+\end{center}
+and a final tableau
+\[
+\renewcommand{\arraystretch}{1.5}
+\begin{array}{|cccc|c|}
+	\hline
+	0 & 1 & \frac{1}{3} & -\frac{1}{3} & 1 \\
+	1 & 0 & \frac{1}{3} & \frac{2}{3} & 4 \\
+	\hline
+	0 & 0 & -\frac{2}{3} & -\frac{1}{3} & -5 \\
+	\hline
+\end{array}
+\renewcommand{\arraystretch}{1}
+\] 
+If we change the value of $b$ from $(6, 3)$ to $(6 + \varepsilon_{1}, 3 + \varepsilon_{2})$ then since we know that the bottom row $R_0' = R_0 - \frac{2}{3}R_1 - \frac{1}{3}R_2$, we get that the final value will be
+\[
+5 + \frac{2}{3} \varepsilon_1 + \frac{1}{3} \varepsilon_2 = 5 + \lambda^{T}\varepsilon
+.\]
+Moreover since $R_1' = \frac{1}{3}R_1 - \frac{1}{3}R_2$ and $R_2' = \frac{1}{3}R_1 + \frac{2}{3}R_2$, we get the final tableau of
+\[
+\renewcommand{\arraystretch}{1.5}
+\begin{array}{|cccc|c|}
+	\hline
+	0 & 1 & \frac{1}{3} & -\frac{1}{3} & 1 + \frac{1}{3}\varepsilon_1 - \frac{1}{3}\varepsilon_2 \\
+	1 & 0 & \frac{1}{3} & \frac{2}{3} & 4 + \frac{1}{3}\varepsilon_1 + \frac{2}{3}\varepsilon_2 \\
+	\hline
+	0 & 0 & -\frac{2}{3} & -\frac{1}{3} & -5 - \frac{2}{3}\varepsilon_1 - \frac{1}{3}\varepsilon_2 \\
+	\hline
+\end{array}
+\renewcommand{\arraystretch}{1}
+\] 
+Hence the maximum value is indeed $5 + \frac{2}{3}\varepsilon_1 + \frac{1}{3}\varepsilon_2$, provided that $1 + \frac{1}{3}\varepsilon_1 - \frac{1}{3}\varepsilon_2$ and $4 + \frac{1}{3}\varepsilon_1 + \frac{2}{3}\varepsilon_2$ are greater than or equal to $0$.
+
+Similarly, if we want to change the value of $c$, we can do the same thing on the dual tableau. However we can also do this more directly. If our initial tableau was
+\begin{center}
+	\begin{tabular}{|cccc|c|}
+		\hline
+		1 & 2 & 1 & 0 & 6 \\
+		1 & -1 & 0 & 1 & 3 \\
+		\hline
+		$1 + \delta_1$ & $1 + \delta_2$ & 0 & 0 & 0 \\
+		\hline
+	\end{tabular}
+\end{center}
+then doing the same process leads us to
+\[
+\renewcommand{\arraystretch}{1.5}
+\begin{array}{|cccc|c|}
+	\hline
+	0 & 1 & \frac{1}{3} & -\frac{1}{3} & 1 \\
+	1 & 0 & \frac{1}{3} & \frac{2}{3} & 4 \\
+	\hline
+	\delta_1 & \delta_2 & -\frac{2}{3} & -\frac{1}{3} & -5 \\
+	\hline
+\end{array}
+\renewcommand{\arraystretch}{1}
+\]
+Therefore we need to subtract $\delta_1$ times the second row and $\delta_2$ times the first row, to give a final tableau of
+\[
+\renewcommand{\arraystretch}{1.5}
+\begin{array}{|cccc|c|}
+	\hline
+	0 & 1 & \frac{1}{3} & -\frac{1}{3} & 1 \\
+	1 & 0 & \frac{1}{3} & \frac{2}{3} & 4 \\
+	\hline
+	0 & 0 & -\frac{2}{3} - \frac{1}{3}\delta_1 - \frac{1}{3}\delta_2 & -\frac{1}{3} - \frac{2}{3}\delta_1 + \frac{1}{3}\delta_2 & -5 - 4\delta_1 - \delta_2 \\
+	\hline
+\end{array}
+\renewcommand{\arraystretch}{1}
+\]
+For this to be an optimum, we require $-\frac{2}{3} - \frac{1}{3}\delta_1 - \frac{1}{3}\delta_2$ and $-\frac{1}{3} - \frac{2}{3}\delta_1 + \frac{1}{3}\delta_2$ to be non-positive, and then the optimum will be 
+\[
+	5 + 4\delta_1 + \delta_2
+.\]
+
+\subsection{Shadow prices and the diet problem}%
+\label{sub:shadow_prices_and_the_diet_problem}
+
+Let $a_{ij}$ be the amount of vitamin $i$ in one unit of food stuff $j$. Then our problem is to
+\[
+	\text{minimize } P = \sum_{j = 1}^{n}x_jc_j \text{ such that } \sum_{j = 1}^{n}a_{ij}x_j \geq b_i \text{ for all } i, x_j \geq 0
+.\]
+Suppose that a vitamin company sells a vitamin based diet. If they choose price $p_i$, then their problem is to
+\[
+	\text{maximize } \sum_{i = 1}^{n}b_ip_i \text{ such that } \sum_{i = 1}^{n}a_{ij}p_i \leq c_j \text{ for all } j, p_i \geq 0
+.\]
+This is the dual to our problem.
+
+\newpage
+
+\section{Two Person Zero-Sum Games}%
+\label{sec:two_person_zero_sum_games}
+
+\subsection{Games with a saddle point}%
+\label{sub:games_with_a_saddle_point}
+
+A \textbf{zero-sum} game is one in which one player wins and the other loses.\index{zero-sum} The players play simultaneously, and both have a \textbf{payoff matrix}\index{payoff matrix} $A$, which is $m \times n$. Then $a_{ij}$ is the amount that the first player wins and the second player loses, if the first player picks $i$ and the second player picks $j$. Consider the payoff matrix
+\[
+	\begin{array}{|cccc|}
+		\hline
+		-5 & 3 & 1 & 20 \\
+		5 & 5 & 4 & 6 \\
+		-4 & 6 & 0 & -5 \\
+		\hline
+\end{array}
+.\]
+We look at what the players will play, given what the other player has played.
+\begin{itemize}
+	\item If 2 plays the first column, then 1 plays the second row, gaining 5.
+	\item If 2 plays the second column, then 1 can gain 6.
+	\item If 2 plays the third column, then 1 can gain 4.
+	\item If 2 plays the fourth column, then 1 can gain 20.
+\end{itemize}
+We can do a similar thing, looking at how 2 will play.
+\begin{itemize}
+	\item If 1 plays the first row, then 2 will lose -5.
+	\item If 1 plays the second row, then 2 will lose 4.
+	\item If 1 plays the third row, then 2 will lose -5.
+\end{itemize}
+Notice that here, the minimum column maximum is the maximal row minimum, and this point is $(2, 3)$. Hence we say $(2, 3)$ is a \textbf{saddle point}\index{saddle point}.
+
+\begin{definition}
+	A saddle point of a payoff matrix $A$ is a pair of strategies $(i^{\ast}, j^{\ast})$ such that
+	\[
+	a_{i^{\ast}j^{\ast}} = \min_{j} \max_{i} a_{ij} = \max_{i} \min_{j} a_{ij}
+	.\]
+\end{definition}
+
+\begin{remark}
+	\begin{enumerate}[1.]
+		\item[]
+		\item Each player maximizes his minimum gain.
+		\item It does not matter if a player announces his move in advance.
+		\item We always have
+			\[
+			\max_{i} \min_{j} a_{ij} \leq \min_{j} \max_{i} a_{ij}
+			.\]
+	\end{enumerate}
+\end{remark}
+
+\subsection{Game without a saddle-point}%
+\label{sub:game_without_a_saddle_point}
+
+We consider the game Morra\index{Morra}. Two players displays either one or two fingers, and guess how many fingers the opponent will show. If one person wins and one person loses, the gain is the total number of fingers shown. Thus the payoff matrix looks as follows:
+
+\[
+\begin{array}{|cccc|}
+	\hline
+	0 & 2 & -3 & 0 \\
+	-2 & 0 & 0 & 3 \\
+	3 & 0 & 0 & -4 \\
+	0 & -3 & 4 & 0 \\
+	\hline
+\end{array}
+\]
+Here, there is no saddle point, as
+\[
+-2 = \max_{i} \min_{j} a_{ij} < \min_{j} \max_{i} a_{ij} = 2
+.\]
+
+\subsection{Determination of an optimal strategy}%
+\label{sub:determination_of_an_optimal_strategy}
+
+Instead of playing a fixed value, we look at what happens when the players play each value with a fixed probability. Say player 1 plays row $i$ with probability $p_i$, and player 2 plays column $j$ with probability $q_j$.
+
+Now if player 2 plays $j$, then player 1 will gain
+\[
+\sum_{i = 1}^{n}a_{ij}p_i
+.\]
+Therefore, player 1 attempts to
+\[
+	\text{maximize } \left\{ \min_{j} \sum_{i}a_{ij}p_i \right\} \text{ such that } \sum_{i}p_i = 1. p_i \geq 0
+.\]
+This is equivalent to the problem of
+\[
+	\text{maximize } v \text{ such that } \sum_{i}a_{ij}p_i \geq v \text{ for all } j, \sum_{i}p_i = 1, p_i \geq 0
+.\]
+If $e$ is the all ones vector, then we can write this as
+\[
+	\text{maximize } v \text{ such that } p^{T}A \geq e^{T}v, e^{T}p = 1, p \geq 0 \tag{GP}\label{gproblem}
+.\]
+Similarly, the problem for player 2 is
+\[
+	\text{minimize } v \text{ such that } Aq \leq ev, e^{T}q = 1, q \geq 0 \tag{GD}\label{gdual}
+.\]
+Note that these are dual problems.
+
+\begin{theorem}
+	Suppose $p \in \mathbb{R}^{m}$, $q \in \mathbb{R}^{n}$, and $v \in \mathbb{R}$, such that
+	\begin{enumerate}[\normalfont(a)]
+		\item $p \geq 0$, $e^{T}p = 1$, $p^{T}A \geq ve^{T}$,
+		\item $q \geq 0$, $e^{T}q = 1$, $Aq \leq ve$,
+		\item $v = p^{T}Aq$.
+	\end{enumerate}
+	Then $p$ is optimal for GP and $q$ is optimal for GD, with common optimum, which we call the \textbf{value of the game}, $v$.\index{value of a game}
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} Player 1 can guarantee to get
+\[
+	\min_{q} p^{T}Aq \geq \min_{q} (ve^{T})q = v
+,\]
+and similarly player 2 pays out no more than
+\[
+	\max_{p} p^{T}Aq \leq \max_{p} p^{T}(ve) = v
+.\]
+Thus the optimal $p, q$ give a saddle point in mixed strategies.
+\end{adjustbox}
+
+\begin{remark}
+	\begin{enumerate}[1.]
+		\item[]
+		\item If a game has a saddle point in pure strategies, then the values of $p$ and $q$ in theorem 9.1 is $p_{i^{\ast}} = q_{j^{\ast}} = 1$, and the other $p_i, q_j$ are equal to $0$.
+		\item For two finger Morra, the optimal strategy is
+			\[
+				p = q = \left(0, \frac{4}{7}, \frac{3}{7}, 0\right)
+			.\]
+			In fact, there is another solution
+			\[
+				p = q = \left(0, \frac{3}{5}, \frac{2}{5}, 0 \right)
+			,\]
+			and any strategy on the line between these two strategies works.
+		\item To solve using the simplex algorithm, we  do the following:
+			\begin{enumerate}[(a)]
+				\item Add a constant $k$ to each $a_{ij}$ to make the game positive.
+				\item We maximize $v$ such that $p^{T}A \geq e^{T}v$, subject to $e^{T}p = 1$. Letting $x = p/v$, then this becomes
+					\[
+						\text{minimize } e^{T}x \text{ such that } x^{T}A \geq e^{T}, x \geq 0
+					.\]
+					The dual is
+					\[
+						\text{maximize } e^{T}y \text{ such that } Ay \leq e, y \geq 0
+					.\]
+					We can then solve this using the simplex algorithm.
+			\end{enumerate}
+	\end{enumerate}
+\end{remark}
+
+\newpage
+
+\section{Maximal Flow in a Network}%
+\label{sec:maximal_flow_in_a_network}
+
+\subsection{Max-flow/min-cut theory}%
+\label{sub:max_flow_min_cut_theory}
+
+A network\index{network} is a connected graph of vertices and edges. Here we look at a directed network, where the edge between vertex $i$ and $j$ has capacity $c_{ij}$.
+
+Our problem is to maximise $v$, the flow into and out of the network, such that $0 \leq x_{ij} \leq c_{ij}$, where $x_{ij}$ is the flow along edge $(i, j)$, and the flow out of a node $i$ equals the flow into the node $i$, apart from the start and end node. Thus,
+\[
+\sum_{j \in N}x_{ij} - \sum_{j \in N}x_{ji} =
+\begin{cases}
+	v & i = 1, \\
+	0 & i = 2, \ldots, n-1, \\
+	-v & i = n.
+\end{cases}
+\]
+
+Note we can turn an undirected edge into two directed edges.
+
+\begin{definition}
+	A \textbf{cut} $(S, \bar S)$ is a partition of the node set $N$ into two disjoint subsets, such that $1 \in S$, $n \in \bar S$.\index{cut}
+\end{definition}
+
+\begin{definition}
+	The \textbf{capacity} of a cut is
+	\[
+		C(S, \bar S) = \sum_{\substack{i \in S \\ j \in \bar S}}c_{ij}
+	.\]\index{capacity}
+\end{definition}
+
+Note that the maximal flow is less than or equal to $C(S, \bar S)$, over all possible cuts.
+
+\begin{theorem}[Max flow/min cut Theorem]
+	The maximal flow value through the network is equal to the minimal cut capacity.
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} We sum the feasibility constraints over $i \in S$:
+\begin{align*}
+	v &= \sum_{i \in S, j \in N}x_{ij} - \sum_{j \in N, i \in S}x_{ji} \\
+	  &= \sum_{i \in S, j \in \bar S}x_{ij} - \sum_{j \in \bar S, i \in S}x_{ji} \\
+	  &\leq C(S, \bar S).
+\end{align*}
+Therefore, any flow $v$ is less than or equal to any cut capacity $C(S, \bar S)$.
+\end{adjustbox}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+Now let $f$ be a flow and define $S \subset N$ recursively:
+\begin{enumerate}[(1)]
+	\item $1 \in S$.
+	\item If $i \in S$ and $x_{ij} < c_{ij}$, then $j \in S$.
+	\item If $i \in S$ and $x_{ji} > 0$, then $j \in S$.
+\end{enumerate}
+We keep doing this until no more nodes can be added to $S$.
+
+Now if $n \in S$, then we can increase the flow along some path. Eventually we find $n \not \in S$. Then
+\begin{align*}
+	v &= \sum_{i \in S, j \in \bar S}x_{ij} - \sum_{j \in \bar S, i \in S}x_{ji} \\
+	  &= \sum_{i \in S, j \in \bar S}c_{ij} - 0 = C(S, \bar S).
+\end{align*}
+\end{adjustbox}
+
+\begin{corollary}
+	If we can reach a flow with value equal to a cut capacity then we have found the maximum flow.
+\end{corollary}
+
+\subsection{Ford-Fulkerson algorithm}%
+\label{sub:ford_fulkerson_algorithm}
+
+The Ford-Fulkerson algorithm\index{Ford-Fulkerson algorithm} to find maximum flow is as follows:
+\begin{enumerate}[1)]
+	\item Start with a feasible flow, for example $x_{ij} = 0 = v$.
+	\item Consider $S$ recursively, as above.
+	\item If $n \in S$, there is a path from $1$ to $n$ along which flow can be increased by
+		\[
+			\varepsilon = \min_{(i,j)} \max \left(x_{ji}, c_{ij} - x_{ij}\right) > 0
+		.\]
+		We construct this flow, then recursively apply this algorithm again.
+	\item Eventually $n \not \in S$, then we are done.
+\end{enumerate}
+
+Provided all capacities are rational, the algorithm will terminate in a finite number of steps.
+
+\subsection{Hall's matching theorem}%
+\label{sub:hall_s_matching_theorem}
+
+Consider a bipartite graph between sets of vertices $L$ and $R$, where $|L| = |R|$. We wish to find when there is a perfect matching between $L$ and $R$.
+
+\begin{theorem}[Hall's theorem]\index{Hall's theorem}
+	Consider a bipartite graph $G = (L \cup R, E)$ with $|L| = |R|$. It has a perfect matching if and only if $|N(X)| \geq |X|$ for every $X \subseteq L$.
+\end{theorem}
+Here we define
+\[
+	N(X) = \{j \mid j \in R, (i, j) \in E \text{ for some } i \in X\}
+,\]
+i.e. $N(X)$ is the set of neighbours of $X$.
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} Clearly if a perfect matching exists, then $|N(X)| \geq X$ for every subset $X$.
+
+	Conversely, take a network on the bipartite graph $(L \cup R)$. We assign a start node $S$ and end node $T$, and connect $S$ with every node in $L$ with capacity 1, and similarly connect $T$ with every node in $R$ with capacity 1. Then we give every edge in $E$ a capacity of $\infty$. Apply the Ford-Fulkerson algorithm to this network.
+
+	At the end, we have unit flows along some edges, and no flow along some others. Then consider the edges in $S$ and $\bar S$. If $X$ is the edges in $L$, which are in $S$, then the set of edges in $R$ which are in $S$ has cardinality $|N(X)| \geq |X|$. Then since $T \in \bar S$, the edges connecting $N(X)$ and $T$ must be cut. Hence at least $|L| - |X| + |X|$ edges must be cut, as required.
+\end{adjustbox}
+
+\newpage
+
+\section{Minimum Cost Circulation Problems}%
+\label{sec:minimum_cost_circulation_problems}
+
+\subsection{Minimum cost circulation}%
+\label{sub:minimum_cost_circulation}\index{minimum cost circulation}
+
+Consider a closed network. For each arc $(i, j)$, assign a flow $x_{ij}$, such that $c_{ij}^{-} \leq x_{ij} \leq c_{ij}^{+}$. Then we want to minimize the cost
+\[
+\sum_{ij} d_{ij} x_{ij}
+,\]
+subject to the constraint that the flow is a circulation, meaning
+\[
+\sum_{j}x_{ij} - \sum_{j} x_{ji} = 0
+.\]
+for each $i$. Note this is equivalent to the maximum flow problem: take our network, give cost $0$ to each edge, and add an edge of cost $-1$ between $T$ and $S$.
+
+\subsection{Sufficient conditions for minimal cost circulation}%
+\label{sub:sufficient_conditions_for_minimal_cost_circulation}
+
+Let $X$ be constraints on $x_{ij}$
+\[
+	X = \{x_{ij} \mid c_{ij}^{-} \leq x_{ij} \leq c_{ij}^{+}\}
+.\]
+Then the Lagrangian is
+\begin{align*}
+	L(x, \lambda) &= \sum_{ij}d_{ij}x_{ij} + \sum_{i} \lambda_i \left( \sum_{j} x_{ji} - \sum_{j}x_{ij}\right) \\
+		      &= \sum_{ij} (d_{ij} - \lambda_i + \lambda_j)x_{ij}.
+\end{align*}
+Hence, to minimize, we get
+\[
+x_{ij} =
+\begin{cases}
+	c_{ij}^{-} & \text{if } d_{ij} - \lambda_i + \lambda_j > 0, \\
+	c_{ij}^{+} & \text{if } d_{ij} - \lambda_i + \lambda_j < 0.
+\end{cases}
+\]
+Therefore if $c_{ij}^{-} < x_{ij} < c_{ij}^{+}$, then $d_{ij} - \lambda_i + \lambda_j = 0$. In this case, $\lambda_i - \lambda_j$ is called the \textbf{tension}.\index{tension}
+
+\subsection{The transportation problem}%
+\label{sub:the_transportation_problem}\index{transportation problem}
+
+Consider supplies at node $1, \ldots, n$, in amounts $s_1, \ldots, s_n$, and demand at nodes $1, \ldots, m$, in amount $d_1, \ldots, d_m$. Then we want to minimise
+\[
+\sum_{ij} d_{ij} x_{ij}
+,\]
+where $d_{ij}$ is the cost and $x_{ij}$ is the amount shipped, subject to constraints
+\[
+\sum_{j} x_{ij} = s_i, quad \sum_{i}x_{ij} = d_j
+,\]
+and $x_{ij} \geq 0$. Note that we can change the transportation problem into a minimum cost circulation problem, and it can be shown the converse is true as well.
+
+\newpage
+
+\section{Transportation and Assignment Problems}%
+\label{sec:transportation_and_assignment_problems}
+
+\subsection{The transportation algorithm}%
+\label{sub:the_transportation_algorithm}\index{transportation algorithm}
+
+First using Lagrangian methods on the transportation problem, the Lagrangian is
+\begin{align*}
+	L(x, \lambda, \mu) &= \sum_{ij}x_{ij}d_{ij} + \sum_{i} \lambda_i \left(s_i - \sum_{j}x_{ij}\right) + \sum_{j}\mu_j \left(d_j - \sum_{i}x_{ij}\right) \\
+			   &= \sum_{ij}(d_{ij} - \lambda_i - \mu_j) x_{ij}.
+\end{align*}
+Note that whenever $x_{ij} > 0$, we must have $d_{ij} = \lambda_i + \mu_j$. Moreover everywhere we must have $d_{ij} \geq \lambda_i + \mu_j$. Note that $\lambda_i$, $\mu_j$ is determined up to an additive constant, so we can let $\lambda_1 = 0$.
+
+The transportation algorithm is as follows:
+
+\begin{enumerate}[1)]
+	\item Arrange the problem into a grid.
+	\item We use the Northwest method: greedily work from Northwest, supplying as much as we can from one node to another. If we run out of demand, we move right, and if we run out of supply, we move down. This gives a basic feasible solution, where the number of non-zero entries is one less than the sum of the number of rows and columns.
+	\item For each positive entry, we can figure out what the value of $\lambda_i$ and $\mu_j$ is, by using $d_{ij} = \lambda_i + \mu_j$.
+	\item Everywhere else, we check that $d_{ij} \geq \lambda_i + \mu_j$. If this is true, we are done.
+	\item Otherwise, find a violating cell, and add $\varepsilon$ to it. To maintain the supply and demand conditions, add and subtract $\varepsilon$ from the other cells which form a cycle with the violating cell. Then we repeat this algorithm.
+\end{enumerate}
+
+\begin{remark}
+	The route around which you need to adjust may be more complicated, depending on which cell we choose to change.
+\end{remark}
+
+
+
+\newpage
+
+\printindex
+
+
+\end{document}

@@ -1,0 +1,1470 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage[a4paper]{geometry}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsthm}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{adjustbox}
+\usepackage[shortlabels]{enumitem}
+\usepackage{parskip}
+\makeatletter
+\newcommand{\@minipagerestore}{\setlength{\parskip}{\medskipamount}}
+\makeatother
+\usepackage{imakeidx}
+\usepackage{upgreek}
+\usepackage{bm}
+
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Img}{Im}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\nullity}{null}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\adj}{adj}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\Stab}{Stab}
+\DeclareMathOperator{\ccl}{ccl}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Syl}{Syl}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Fit}{Fit}
+\DeclareMathOperator{\Ann}{Ann}
+
+
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+
+\setlength\parindent{0pt}
+
+\newcommand{\course}{VP }
+\newcommand{\lecnum}{}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{proposition}{Proposition}[section]
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\leftmark}
+\lhead{Page \thepage}
+\setlength{\headheight}{15pt}
+
+\makeindex[intoc]
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+
+\newcommand{\mapsfrom}{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}
+
+\begin{document}
+
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+	\begin{center}
+		\vspace*{1em}
+		\Huge
+		\textbf{IB Variational Principles}
+
+		\vspace{1em}
+		\large
+		Ishan Nath, Easter 2022
+
+		\vspace{1.5em}
+
+		\Large
+
+		Based on Lectures by Dr. Maciej Dunajski
+
+		\vspace{1em}
+
+		\large
+		\today
+	\end{center}
+	
+\end{titlepage}
+\hypersetup{pageanchor=true}
+
+\tableofcontents
+
+\newpage
+
+\setcounter{section}{-1}
+
+\section{Motivation}%
+\label{sec:motivation}
+
+The theory of variational principles is rooted in the many problems that we can solve with it. To motivate it, we will look at such problems.
+
+\begin{example}[The Brachistochrone Problem]\index{brachistochrone problem}
+\label{ex:brach0}
+	A particle slides on a wire under the influence of gravity, between two fixed points $A = (x_1, y_1)$ and $B = (x_2, y_2)$. Which shape of the wire gives the shortest travel time, starting from rest?
+\end{example}
+
+This was considered by Johann Bernoulli, in 1896. To solve, first let $A = (0, 0)$. Now note that the travel time is
+\[
+	T = \int_{A}^{B} \frac{dl}{v(x, y)}
+.\]
+Now considering the conservation of energy,
+\[
+	\frac{1}{2} mv^2 + mgy = 0 \implies v = \sqrt{2g} \sqrt{-y}
+.\]
+This gives
+\[
+	T[y] = \frac{1}{\sqrt{2g}} \int_{0}^{x_2} \frac{\sqrt{1 + (y')^2}}{\sqrt{-y}} \, dx
+,\]
+subject to $y(0) = 0$, and $y(x_2) = y_2$.
+
+\begin{example}[Geodesics]\index{geodesics}
+	What is the shortest path $\upgamma$ between two points $A$, $B$ on a surface?
+\end{example}
+
+Take $\Sigma = \mathbb{R}^2$ as our example, and let $A = (x_1, y_1)$ and $B = (x_2, y_2)$. The distance along a curve $\upgamma$, parametrised by $x$ is
+\[
+	D[y] = \int_{A}^{B} \, dl = \int_{x_1}^{x_2} \sqrt{1 + (y')^2} \, dx
+.\]
+We seek to minimise $D$ by varying $\upgamma$.
+
+In general, variational principles is focused on minimizing (or maximizing) a function
+\[
+	F[y] = \int_{x_1}^{x_2}f(x, y, y') \, dx
+\]
+among all functions such that $y(x_1) = y_1$, $y(x_2) = y_2$. This is an example of a \textbf{functional}\index{functional}. The same way a function is a map from numbers to numbers, a functional is a map from functions to numbers.
+
+The calculus of variations is focused on finding the extrema of functionals on spaces of functions.
+
+Variational calculus is also important physically, as we can see from the following examples.
+
+\begin{example}[Fermat's Principle]\index{Fermat's principle}
+	Light between two points travels along paths which require the least time.
+\end{example}
+
+\begin{example}[Principle of Least Action]\index{principle of least action}
+	Let $T$ be the kinetic energy ($m|\mathbf{ \dot x}|^2/2$ in Newtonian mechanics), and $V$ be the potential energy. The \textbf{action} is defined as
+	\[
+		S[\upgamma] = \int_{t_1}^{t_2} (T - V) \, dt
+	.\]
+	Then the action is minimized along paths of motion.
+\end{example}
+
+In this course, we will look at:
+\begin{itemize}
+	\item Necessary conditions for extrema of functionals, and the Euler-Lagrange equations.
+	\item Lots of examples, from geometry to physics, and problems with constraints, such as the isoperimetric problem.
+	\item Second variations, which are sufficient conditions for extrema.
+\end{itemize}
+
+\subsection{Notation}%
+\label{sub:notation}
+
+There is some standard notation that we will be using.
+
+\begin{itemize}
+	\item $C(\mathbb{R})$ is the space of all continuous functions on $\mathbb{R}$.
+	\item $C^{k}(\mathbb{R})$ is the space of all functions on $\mathbb{R}$ with continuous $k$'th derivatives.
+	\item $C_{(\alpha, \beta)}^{k}(\mathbb{R})$ is the space of all functions on $\mathbb{R}$ with continuous $k$'th derivatives, such that $f(\alpha) = f(\beta)$.
+\end{itemize}
+
+\newpage
+
+\section{Calculus for functions on \texorpdfstring{$\mathbb{R}^{n}$}{Rn}}%
+\label{sec:calculus_for_functions_on_r_n_}
+
+We will begin by looking at functions $f \in C^2(\mathbb{R}^{n})$, $f : \mathbb{R}^{n} \to \mathbb{R}$. The point $\mathbf{a} \in \mathbb{R}^{n}$ is \textbf{stationary} if\index{stationary point}
+
+\[
+	\nabla f (\mathbf{a}) = \left. \left( \frac{\partial f}{\partial x_1}, \frac{\partial f}{\partial x_2}, \ldots, \frac{\partial f}{\partial x_n} \right) \right|_{\mathbf{x} = \mathbf{a}} = \mathbf{0}
+.\]
+Expanding near $\mathbf{a}$, we get
+\[
+	f(\mathbf{x}) = f(\mathbf{a}) + \underbrace{(\mathbf{x} - \mathbf{a}) \nabla f(\mathbf{a})}_{0, \text{ as $a$ is stationary}} + \frac{1}{2} (x_i - a_i)(x_j - a_j) \partial^2_{ij} f(\mathbf{a}) + \mathcal{O}(|\mathbf{x} - \mathbf{a}|^3)
+.\]
+Here, the order 2 term is the \textbf{Hessian matrix}\index{Hessian matrix}
+\[
+H_{ij} = \partial_i \partial_{j} f = H_{ji}
+.\]
+Shift the origin to set $\mathbf{a} = \mathbf{0}$, and since $H$ is symmetric, we can diagonalise $H(\mathbf{0})$ by an orthogonal transformation
+\[
+	H' = R^{T} H(\mathbf{0}) R = 
+	\begin{pmatrix}
+		\lambda_1 & 0 & \cdots & 0 \\
+			  0 & \lambda_2 & \cdots & 0 \\
+			  \vdots & \vdots & \ddots & \vdots \\
+			 0 & 0 & \cdots & \lambda_n
+	\end{pmatrix}
+.\]
+Then, returning to our expansion, we get that
+\[
+	f(\mathbf{x}) - f(\mathbf{0}) = \frac{1}{2} \sum_{i} \lambda_i x_i^2 + \mathcal{O}(|\mathbf{x}|^3)
+.\]
+
+Depending on the eigenvalues of the Hessian, we can have the following occur:
+\begin{enumerate}[(i)]
+	\item If all the eigenvalues are positive, then $f(\mathbf{x}) > f(\mathbf{0})$ in all directions, so we have a \textbf{local minimum}.\index{local minimum}
+	\item If all the eigenvalues are negative, then similarly we have a \textbf{local maximum}.\index{local maximum}
+	\item If some eigenvalues are positive, and some are negative, then $f$ increases in some directions, and decreases in others, so we have a \textbf{saddle point}.\index{saddle point}
+	\item If some eigenvalues are zero, then we must consider higher order terms in the expansion.
+\end{enumerate}
+
+In two dimensions, $\det H = \lambda_1 \lambda_2$, and $\tr H = \lambda_1 + \lambda_2$. We can thus efficiently determine which case we are in:
+\begin{itemize}
+	\item If $\det > 0$ and $\tr > 0$, then we have a local minimum.
+	\item If $\det > 0$ and $\tr < 0$, then we have a local maximum.
+	\item If $\det < 0$, we have a saddle point.
+	\item If $\det = 0$, then we must look at higher derivatives.
+\end{itemize}
+
+\begin{remark}
+	\begin{enumerate}[1)]
+		\item[]
+		\item If $f : \mathbb{D} \to \mathbb{R}$, where $\mathbb{D}$ is bounded, then the global minima or maxima may not be a local maxima or minima, but may be a boundary point.
+		\item If $f$ is harmonic\index{harmonic function} on $\mathbb{R}^2$, meaning $f_{xx} + f_{yy} = 0$, then $\tr H = 0$ for all points, meaning the maxima/minima must occur on the boundary.
+	\end{enumerate}
+\end{remark}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	If $f(x, y) = x^3 + y^3 - 3xy$, then we can calculate
+	\[
+		\nabla f = (3x^2 - 3y, 3y^2 - 3x) = (0, 0)
+	\]
+	at points where $x^2 - y = 0$, and $y^2 - x = 0$, i.e. $y^{4} = y$. Thus gives two solution: $(x, y) = (0, 0)$ or $(1, 1)$. We can also compute the Hessian matrix
+	\[
+	H = 
+	\begin{pmatrix}
+		6x & -3 \\
+		-3 & 6y
+	\end{pmatrix}
+	.\]
+	\begin{itemize}
+		\item At $(0, 0)$, $\det H = -9 < 0$, so we have a saddle point.
+		\item At $(1, 1)$, $\det H = 27 > 0$, and $\tr H = 12 > 0$, so this is a local minimum.
+	\end{itemize}
+	Intuitively, this makes sense: near the origin $f \approx -3xy$, which is a saddle point.
+\end{example}
+
+\end{adjustbox}
+
+\subsection{Constraints and Lagrange Multipliers}%
+\label{sub:constraints_and_lagrange_multipliers}
+
+We begin with an example.
+
+\begin{example}
+	Find the circle centred at $(0, 0)$ with smallest radius, which intersects the parabola $y = x^2 - 1$.
+\end{example}
+
+There are two approaches:
+\begin{itemize}
+	\item The direct method: let $f = x^2 + y^2 = x^2 + (x^2 - 1)^2 = x^{4} - x^2 + 1$. The derivative if $4x^3 - 3x = 0$, which has roots at $x = 0$ and $x = \pm \sqrt{2}/2$.
+
+		In the first case, the radius is 1, and in the second it is $\sqrt{3}/2$, which is the global minimum.
+	\item Lagrange multipliers:\index{Lagrange multipliers} Define $h(x, y, \lambda) = f(x, y) - \lambda g(x, y)$, where $g$ is the constraint\index{constraint function}, and $\lambda$ is the Lagrange multiplier.
+
+		This gives a function $h = x^2 + y^2 - \lambda(y - x^2 + 1)$, which we extremize over all three variables:
+		\[
+		\frac{\partial h}{\partial x} = 2x + 2 \lambda x = 0, \quad \frac{\partial h}{\partial y} = 2y - \lambda = 0, \quad \frac{\partial h}{\partial \lambda} = y - x^2 + 1 = 0
+		,\]
+		\[
+			\implies (x, y) = (0, -1) \text{ or } \left( \pm \frac{\sqrt 2}{2}, - \frac{1}{2} \right)
+		.\]
+		This gives the same minima as before.
+\end{itemize}
+
+The question is: why does this work? The simple answer is geometry.
+
+At each point on the constraint space, we can construct a normal vector $\nabla g$, and similarly a normal vector to the objective function $\nabla f$. At the extrema, we must have $\nabla f \parallel \nabla g$, implying $\nabla f = \lambda \nabla g$, or
+\[
+	\nabla (f - \lambda g) = 0
+.\]
+
+In general, for a function $f : \mathbb{R}^{n} \to \mathbb{R}$, subject to $g_{a}(\mathbf{x}) = 0$, where there are $k$ constraints, we can define a function $h$ in $n + k$ variables, such that
+\[
+	h(x_1, \ldots, x_n, \lambda_1, \ldots, \lambda_k) = f(\mathbf{x}) - \sum_{a} \lambda_a g_a(\mathbf{x})
+.\]
+Now to find extrema, we impose the conditions that
+\[
+	\frac{\partial h}{\partial x_i} = 0, \quad \frac{\partial h}{\partial \lambda_j} = 0
+.\]
+
+\newpage
+
+\section{Euler-Lagrange Equations}%
+\label{sec:euler_lagrange_equations}
+
+As said before, we wish to extremize the functional
+\[
+	F[y] = \int_{\alpha}^{\beta} f(x, y, y') \, dx
+,\]
+where $y(\alpha) = y_1$, and $y(\beta) = y_2$.
+
+Assume the extremum $y = y(x)$ exists. Consider a small perturbation
+\[
+	y \mapsto y + \varepsilon \eta (x)
+,\]
+where $\eta (\alpha) = \eta (\beta) = 0$. Then we wish to compute $F[y + \varepsilon \eta]$.
+
+\begin{lemma}[Fundamental Lemma of Variational Calculus]\index{fundamental lemma of variational calculus}\label{lem:flovc}
+	If $g : [\alpha, \beta] \to \mathbb{R}$ is continuous on $[\alpha, \beta]$, and
+	\[
+		\int_{\alpha}^{\beta} g(x) \cdot \eta(x) \, dx = 0
+	\]
+	for all continuous $\eta$ on $[\alpha, \beta]$, with $\eta(\alpha) = \eta(\beta) = 0$, then $g \equiv 0$ on $[\alpha, \beta]$.
+\end{lemma}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} Say there exists $\bar x \in (\alpha, \beta)$ such that $g(\bar x) \neq 0$. Then  without loss of generality, say $g(\bar x) > 0$.
+
+	Then there exists an interval $[x_1, x_2] \in (\alpha, \beta)$ such that $g(x) > c > 0$ on this interval. Then take
+	\[
+		\eta (x) =
+		\begin{cases}
+			(x - x_1)(x_2 - x) & \text{if } x \in [x_1, x_2], \\
+			0 & \text{if } x \not \in [x_1, x_2].
+		\end{cases}
+	\]
+	Then
+	\[
+		\int_{\alpha}^{\beta} g(x) \eta (x) \, dx > c \int_{x_1}^{x_2} (x - x_1)(x_2 - x) \, dx > 0
+	.\]
+\end{adjustbox}
+
+\begin{remark}
+	The function $\eta$ is an example of a bump function. To find bump functions in $C^{k}$, take
+	\[
+		\eta(x) =
+		\begin{cases}
+			[(x - x_1)(x_2 - x)]^{k+1} & x \in [x_1, x_2], \\
+			0 & x \not \in [x_1, x_2].
+		\end{cases}
+	\]
+\end{remark}
+
+Now we consider $F[y + \varepsilon \eta]$:
+\begin{align*}
+	F[y + \varepsilon \eta] &= \int_{\alpha}^{\beta} f(x, y + \varepsilon \eta, y' + \varepsilon \eta') \, dx \\
+				&= F[y] + \varepsilon \int_{\alpha}^{\beta} \left[ \frac{\partial f}{\partial y} \eta + \frac{\partial f}{\partial y'} \eta' \right] \, dx + \mathcal{O}(\varepsilon^2) \\
+				&= F[y] + \varepsilon \left\{ \int_{\alpha}^{\beta} \left[ \frac{\partial f}{\partial y} \eta - \frac{d}{dx} \left( \frac{\partial f}{\partial y'} \right) \eta \right] \, dx + \left[ \frac{\partial f}{\partial y'} \eta \right]_{\alpha}^{\beta} \right\} + \mathcal{O}(\varepsilon^2).
+\end{align*}
+Notice the last term is 0, since $\eta(\alpha) = \eta(\beta) = 0$. Therefore, since at extrema we have $F[y + \varepsilon \eta] = F[y] + \mathcal{O}(\varepsilon^2)$, we must have
+\[
+	0 = \int_{\alpha}^{\beta} \underbrace{\left[ \frac{\partial f}{\partial y} - \frac{d}{dx} \left( \frac{\partial f}{\partial y'} \right) \right]}_{g} \eta \, dx
+.\]
+Applying our previous lemma with $g$, this implies that
+\[
+	\frac{d}{dx} \left( \frac{\partial f}{\partial y'} \right) - \frac{\partial f}{\partial y} = 0 \tag{2}\label{eq:el}
+.\]
+This is known as the \textbf{Euler-Lagrange equation},\index{Euler-Lagrange equation} and is a necessary condition for an extrema. (For a bit of history, in 1745 Lagrange writes to Euler citing his method. Euler adopts this approach and \eqref{eq:el}, and so calculus of variations is born.)
+
+\begin{remark}
+	\begin{itemize}
+		\item[]
+		\item \eqref{eq:el} is a second order ODE for $y(x)$, with boundary conditions $y(\alpha) = y_1$, $y(\beta) = y_2$.
+		\item The left hand side of~\eqref{eq:el} is denoted as
+			\[
+				\frac{\delta F}{\delta y(x)}
+			,\]
+			and is called the functional derivative\index{functional derivative}.
+		\item We can have other boundary conditions, such as
+			\[
+			\left. \frac{\partial f}{\partial y'} \right|_{\alpha, \beta} = 0
+			.\]
+		\item We have to be careful with derivatives: in this proof,
+			\[
+				\frac{\partial f}{\partial y} = \left( \frac{\partial f}{\partial y} \right)_{x, y'}
+			,\]
+			with $x, y, y'$ independent. The total derivative\index{total derivative} is defined as
+			\[
+			\frac{d}{dx} = \frac{\partial}{\partial x} + y' \frac{\partial}{\partial y} + y'' \frac{\partial}{\partial y'}
+			,\]
+			provided we are working with functions in $x, y, y'$ only.
+	\end{itemize}
+	
+\end{remark}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	Take the function $f = x \cdot [(y')^2 - y^2]$. Then,
+	\[
+		\partial_{x} f = (y')^2 - y^2, \quad \partial_{y} f = -2xy, \quad \partial_{y'} f = 2xy'
+	,\]
+	\[
+		\frac{df}{dx} = (y')^2 - y^2 - 2xyy' + 2xy'y''
+	.\]
+\end{example}
+\end{adjustbox}
+
+\subsection{First integrals of the Euler-Lagrange equations}%
+\label{sub:first_integrals_of_the_euler_lagrange_equations}
+
+In same cases the Euler-Lagrange equation~\eqref{eq:el} can be integrated once to a first order ODE, known as the \textbf{first integral}.\index{first integral}
+
+\begin{enumerate}[(a)]
+	\item If $f$ does not explicitly depend on $y$, then the Euler-Lagrange equation becomes
+		\[
+			\frac{d}{dx} \left( \frac{\partial f}{\partial y'} \right) = 0
+		,\]
+		which when integrated gives
+		\[
+			\frac{\partial f}{\partial y'} = \text{constant} \tag{2.1}\label{eq:el-a}
+		.\] 
+\end{enumerate}
+
+With this, we can solve the problem of geodesics:
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\begin{example}[Geodesics on $\mathbb{R}^2$]\index{geodesics}
+	In this case, our function is
+	\[
+		F[y] = \int_{\alpha}^{\beta} \sqrt{dx^2 + dy^2} = \int_{\alpha}^{\beta} \underbrace{\sqrt{1 + (y')^2}}_{f(y')} \, dx
+	.\]
+	Then applying \eqref{eq:el-a},
+	\[
+		\frac{\partial f}{\partial y} = 0 \implies \frac{\partial f}{\partial y'} = \frac{y'}{\sqrt{1 + (y')^2}} = \text{constant}
+	.\]
+	Therefore $y'$ is equal to a constant $m$, so $y = mx + c$ is an extrema.
+\end{example}
+
+\end{adjustbox}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\begin{example}[Geodesics on a sphere]\index{geodesics}
+		Consider $S^2 \subset \mathbb{R}^3$. In spherical polars $\theta$ and $\phi$, the line element is
+		\[
+		ds^2 = dx^2 + dy^2 + dz^2 = d\theta^2 + \sin^2\theta d\phi^2
+		.\]
+		Parametrise the curve by $\phi = \phi(\theta)$, then
+		\[
+			ds = \sqrt{1 + \sin^2\theta (\phi')^2} d \theta
+		.\]
+		Then, the required functional is
+		\[
+			F[\phi] = \int_{\theta_1 = \alpha}^{\theta_2 = \beta} \sqrt{1 + \sin^2\theta (\phi')^2}d \theta
+		.\]
+		We can thus apply~\eqref{eq:el-a}:
+		\[
+		\frac{\partial f}{\partial \theta} = 0 \implies \frac{\partial f}{\partial \phi'} = \frac{\sin^2\theta \cdot \phi'}{\sqrt{1 + \sin^2 \theta (\phi')^2 }} = \kappa
+		.\]
+		Solving this gives
+		\[
+			(\phi')^2 = \frac{\kappa^2}{\sin^2\theta (\sin^2\theta - \kappa^2)} \implies \phi = \pm \int \frac{\kappa\, d\theta}{\sin\theta\sqrt{\sin^2\theta - \kappa^2}}
+		.\]
+		We can integrate by substituting $\cot \theta = u$, to give
+		\[
+			\int \frac{\kappa\, d \theta}{\sin \theta \sqrt{\sin^2 \theta - \kappa^2}} = \int \frac{-\kappa}{\sqrt{1 - \kappa^2(u^2 + 1)}} \, du = \cos^{-1} \left( \frac{\kappa}{\sqrt{1 - \kappa^2}} u \right) + C
+		.\]
+		Therefore,
+		\[
+			\pm \frac{\sqrt{1 - \kappa^2}}{\kappa} \cos (\phi - \phi_0) = \cot \theta
+		.\]
+		This is the intersection of a plane through the origin with the unit sphere; therefore, we have proven that the extrema are segments of great circles.
+\end{example}
+
+\end{adjustbox}
+
+\begin{enumerate}[resume*]
+	\item Consider, for general $f(x, y, y')$,
+		\begin{align*}
+			\frac{d}{dx} \left(f - y' \frac{\partial f}{\partial y'} \right) &= \frac{\partial f}{\partial x} + y' \frac{\partial f}{\partial y} + y'' \frac{\partial f}{\partial y'} - y'' \frac{\partial f}{\partial y'} - y' \frac{d}{dx} \left( \frac{\partial f}{\partial y'} \right) \\
+											 &= y' \underbrace{\left( \frac{\partial f}{\partial y} - \frac{d}{dx} \frac{\partial f}{\partial y'} \right)}_{0 \text{ by~\eqref{eq:el}}} + \frac{\partial f}{\partial x} = \frac{\partial f}{\partial x}.
+		\end{align*}
+		Hence, if $\partial f/\partial x = 0$, so $f$ does not depend explicitly on $x$, then
+		\[
+			f - y' \frac{\partial f}{\partial y'} = \text{constant} \tag{2.2}\label{eq:el-b}
+		.\]
+\end{enumerate}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\begin{example}[Brachistochrone]\index{brachistochrone}
+		We return to example~\eqref{ex:brach0}: recall that
+		\[
+			F[y] = \frac{1}{\sqrt{2g}} \int_{0}^{\beta} \frac{\sqrt{1 + (y')^2}}{\sqrt{-y}} dx
+		.\]
+		We can apply the first integral~\eqref{eq:el-b} to get
+		\[
+			\frac{\sqrt{1 + (y')^2}}{\sqrt{-y}} - y' \frac{y'}{\sqrt{1 + (y')^2} \sqrt{-y}} = \kappa
+		,\]
+		\[
+			\implies \frac{dy}{dx} = y' = \pm \frac{\sqrt{1 + \kappa^2y}}{\kappa \sqrt{-y}}
+		.\]
+		Writing this as an integral in $x$,
+		\[
+			x = \pm \kappa \int \frac{\sqrt{-y}}{\sqrt{1 + \kappa^2y}}\, dy
+		.\]
+		Now we can use the substitution
+		\[
+			y = -\frac{1}{\kappa^2} \sin^2 \frac{\theta}{2}
+		\]
+		to get
+		\[
+			x = \mp \frac{1}{2\kappa^2} \int (1 - \cos \theta) \, d\theta = \mp \frac{1}{2 \kappa^2} (\theta - \sin \theta) + c
+		.\]
+		Since the curve goes through $(0, 0),$ we must have $c = 0$. Moreover we will take the positive root.
+\end{example}
+
+\end{adjustbox}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+Therefore we get the parametrisation
+\[
+\begin{dcases}
+	x = \frac{\theta - \sin\theta}{2 \kappa^2}, \\
+	y = - \frac{1}{\kappa^2} \sin^2 \frac{\theta}{2}.
+\end{dcases}
+\]
+This is the parametrised form of a \textbf{cycloid}.\index{cycloid} This is the curve traced by a point on the boundary of a circle, as the circle rolls along an integer line.
+
+Proving that the brachistochrone is a cycloid was first done by Bernoulli, in 1697.
+\end{adjustbox}
+
+\subsection{Fermat's Principle}%
+\label{sub:fermat_s_principle}
+
+Recall Fermat's principle:
+
+\begin{proposition}[Fermat's principle]\index{Fermat's principle}
+	Light and sound travels along paths between two points which require the least time.
+\end{proposition}
+
+If we parametrise the ray as a path $y = y(x)$, and the speed of light as a function $c(x, y)$, then the appropriate functional is
+\[
+	F[y] = \int_{A}^{B} \frac{dl}{c} = \int_{\alpha}^{\beta} \frac{\sqrt{1 + (y')^2}}{c(x, y)}\, dx
+.\]
+We assume that $c = c(x)$, then by the Euler-Lagrange equation, specifically~\eqref{eq:el-a}, we get that
+\[
+	\frac{\partial f}{\partial y'} = \frac{y'}{\sqrt{1 + (y')^2} c(x)} = \text{constant}
+.\]
+However, notice that at a point $(x, y)$, the quantity
+\[
+	\frac{y'}{\sqrt{1 + (y')^2}} = \sin \theta
+,\]
+the sine of the tangent line. Therefore, this equation can be written as
+\[
+	\frac{\sin \theta_1}{c(x_1)} = \frac{\sin \theta_2}{c(x_2)}
+,\]
+which is \textbf{Snell's law}.\index{Snell's law}
+
+\newpage
+
+\section{Extensions of the Euler-Lagrange equation}%
+\label{sec:extensions_of_the_euler_lagrange_equation}
+
+\subsection{Euler-Lagrange with constraints}%
+\label{sub:euler_lagrange_with_constraints}
+
+We again wish to extremise $F[y]$, subject to constraints
+\[
+	B[y] = \int_{\alpha}^{\beta} g(x, y, y') \, dx = K
+,\]
+where $K$ is constant. The idea is to use Lagrange multipliers\index{Lagrange multipliers} on a new functional
+\[
+	\phi[y, \lambda] = F[y] - \lambda G[y]
+.\]
+Replacing $f$ in the Euler-Lagrange equation with $f - \lambda y$ gives
+\[
+	\frac{d}{dx} \left( \frac{\partial}{\partial y'} (f - \lambda g) \right) = \frac{\partial}{\partial y} (f - \lambda g) \tag{3.1}\label{eq:el-e1}
+.\]
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\begin{example}[Dido problem/Isoperimetric problem]\index{isoperimetric problem}\index{Dido problem}
+	What simple and closed planar curve $\upgamma$ of fixed length maximizes the enclosed area?
+\end{example}
+
+Here, a curve is \textbf{simple}\index{simple curve} if it is contractible to a point, and non-self-intersecting. We also assume the curve is convex, otherwise we can form a curve with bigger area by taking the convex hull.
+
+Assuming convexity, we can pick coordinate axes such that there exists a leftmost and rightmost points on the curve, with $x$-coordinates $\alpha$ and $\beta$. Then given $x \in (\alpha, \beta)$, there exists $(y_1, y_2)$ on the curve such that $y_1(x) < y_2(x)$. Then $y_1, y_2$ are functions on $[\alpha, \beta]$. The area is then
+\[
+	A[y] = \int_{\alpha}^{\beta} (y_2(x) - y_1(x)) \, dx = \oint_{\upgamma} y(x) \, dx
+.\]
+The constraint that we have a constant length is given by
+\[
+	L[y] = \oint_{\upgamma} \sqrt{1 + (y')^2}\, dx
+.\]
+Since $\upgamma$ has no boundary, we do not need to worry about boundary conditions. From \eqref{eq:el-e1}, we apply Euler-Lagrange to
+\[
+	h = f - \lambda g = y - \lambda \sqrt{1 + (y')^2}
+.\]
+\end{adjustbox}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+Since $\partial h /\partial x = 0$, from \eqref{eq:el-b}, we get that
+\[
+	h - y' \frac{\partial h}{\partial y'} = y - \lambda\sqrt{1 + (y')^2} + y' \lambda \frac{y'}{\sqrt{1 + (y')^2}} = y - \frac{\lambda}{\sqrt{1 + (y')^2}} = K
+,\]
+\[
+	\implies (y')^2 = \frac{\lambda^2}{(y - K)^2} - 1
+.\]
+The solutions to this are simply circles of radius $\lambda$, given by
+\[
+	(x - x_0)^2 + (y - y_0)^2 = \lambda^2
+.\]
+In this case, since the circumference is $2\pi\lambda = L$, the value of the Lagrange multiplier is $\lambda = L/2\pi$.
+
+\end{adjustbox}
+
+\subsection{Sturm-Liouville Problem}%
+\label{sub:sturm_liouville_problem}\index{Sturm-Liouville problem}
+
+Consider a function $\rho(x) > 0$ for $x \in [\alpha, \beta]$, and $\sigma(x)$ a function of $x$. Define
+\[
+	F[y] = \int_{\alpha}^{\beta} [\rho \cdot (y')^2 + \sigma \cdot y^2] \, dx, \quad G[y] = \int_{\alpha}^{\beta} y^2 \, dx
+.\]
+The \textbf{Sturm-Liouville problem} asks to minimize $F$ subject to $G = 1$.
+
+We begin by defining the functional $\phi[y, \lambda] = F[y] - \lambda(G[y] - 1)$. The corresponding function $h$ is
+\[
+	h = \rho(y')^2 + \sigma y^2 - \lambda \left(y^2 - \frac{1}{\beta - \alpha} \right)
+.\]
+Then the partials are
+\[
+	\frac{\partial h}{\partial y'} = 2 \rho y', \qquad \frac{\partial h}{\partial y} = 2 \sigma y - 2 \lambda y
+.\]
+Therefore the Euler-Lagrange equation~\eqref{eq:el} gives
+\[
+	- \frac{d}{dx} (\rho y') + \sigma y = \lambda y \tag{3.2}\label{eq:sl}
+.\]
+The left-hand side is a linear operator acting on $y$, therefore we can write this as
+\[
+	\mathcal{L}(y) = \lambda y
+.\]
+Here $\mathcal{L}$ is called the \textbf{Sturm-Liouville operator}.\index{Sturm-Liouville operator}
+
+If $\rho = 1$, the equation becomes 
+\[
+-y'' + \sigma y = \lambda y
+.\]
+This is the Schr\"{o}dinger equation.\index{Schr\"{o}dinger equation}
+
+If $\sigma(x) > 0$, and $y(\alpha) = y(\beta) = 0$, then the positive minimum of $F$ is the smallest eigenvalue of \eqref{eq:sl}.
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} Take equation~\eqref{eq:sl} and multiply by $y$:
+	\[
+		- \frac{d}{dx} (\rho y') y + \sigma y^2 = \lambda y^2
+	.\]
+	Integrating by parts gives
+	\[
+		F[y] - \underbrace{\left[yy'\rho\right]_{\beta}^{\alpha}}_{0} = \lambda \underbrace{G[y]}_{1}
+	.\]
+	Hence the smallest eigenvalue $\lambda$ is the minimum of $F$.
+\end{adjustbox}
+
+\subsection{Several dependent variables}%
+\label{sub:several_dependent_variables}
+
+Let $\mathbf{y}(x) = (y_1(x), y_2(x), \ldots, y_n(x))$ be a vector of variables. Then we can define a functional
+\[
+	F[\mathbf{y}] = \int_{\alpha}^{\beta} f(x, y_1, \ldots, y_n, y_1', \ldots, y_n')\, dx
+.\]
+Assume that there exists an extremum $\mathbf{y}$. We perturb by
+\[
+	y_i \to y_i(x) + \eta_i(x)
+,\]
+where $\eta(\alpha) = \eta(\beta) = 0$. The same derivation as the Euler-Lagrange equation gives
+\[
+	F[\mathbf{y} + \varepsilon \bm{\eta}] - F[\bm{\eta}] = \varepsilon \int_{\alpha}^{\beta} \sum_{i = 1}^{n} \eta_i \left[ \frac{d}{dx} \left( \frac{\partial f}{\partial y_i} \right) - \frac{\partial f}{\partial y_i} \right] \, dx + \varepsilon \sum_{i = 1}^{n} \left[ \frac{\partial f}{\partial y_i'} \eta_i \right]_{\alpha}^{\beta} + \mathcal{O}(\varepsilon^2)
+.\]
+Using well-chosen $\eta_i$ and the fundamental theorem of variational calculus, we get
+\[
+	\frac{d}{dx} \left(\frac{\partial f}{\partial y_i} \right) = \frac{\partial f}{\partial y_i} \tag{3.3}\label{eq:el-e2}
+,\]
+for all $i$. This is a system of second order ODEs.
+\newpage
+Similar to the Euler-Lagrange equations, we can take first integrals under certain conditions:
+\begin{itemize}
+	\item If $\partial f/\partial y_j = 0$ for some $1 \leq j \leq n$, then
+		\[
+			\frac{\partial f}{\partial y_j} = \text{constant}
+		.\]
+	\item If $\partial f/\partial x = 0$, then
+		\[
+			f - \sum_{i = 1}^{n} y_i' \frac{\partial f}{\partial y_i} = \text{constant}
+		.\]
+\end{itemize}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}[Geodesics on surfaces]\index{geodesics}
+	Take $\Sigma \subset \mathbb{R}^3$, a surface given by $g(x, y, z) = 0$. Then a geodesic is the shortest path $\upgamma$ on the surface between $A, B \in \Sigma$.
+
+	We parametrise $\upgamma$ by $\mathbf{x}(0) = A$, $\mathbf{x}(1) = B$. Then we can take a functional
+	\[
+		\phi[\mathbf{x}, \lambda] = \int_{0}^{1} \left[\sqrt{\dot x^2 + \dot y^2 + \dot z^2} - \lambda(t) g(x, y, z)\right]\, dt = \int_{0}^{1} h(t, x, y, z, \lambda, \dot x, \dot y, \dot z) \, dt
+	.\]
+	Note that the Lagrange multiplier $\lambda$ is now a function of $t$, as we require the curve to lie on $\Sigma$. 
+
+	Taking the Euler-Lagrange equations with $h$ gives:
+	\[
+		\frac{d}{dt} \frac{\partial h}{\partial \dot \lambda} - \frac{\partial h}{\partial \lambda} = 0 \implies g(x, y, z) = 0
+	,\]
+	\[
+		\frac{d}{dt} \left( \frac{\dot x}{\sqrt{\dot x^2 + \dot y^2 + \dot z^2}}\right) + \lambda \frac{\partial g}{\partial x} = 0
+	,\]
+	and similarly for $y$ and $z$. Alternatively, we can solve the constraint $g = 0$, avoiding Lagrange multipliers.
+\end{example}
+
+\end{adjustbox}
+
+\subsection{Several independent variables}%
+\label{sub:several_independent_variables}
+
+In general, give $\phi : \mathbb{R}^{n} \to \mathbb{R}^{m}$, we can define
+\[
+	F[\phi] = \int_{D} f(x_1, x_2, \ldots, x_n, \phi, \phi_{x_1}, \phi_{x_2}, \ldots, \phi_{x_n} ) \, dx_1 dx_2 \ldots dx_n
+,\]
+where we evaluate the integral over a domain $D \subset \mathbb{R}^{n}$.
+
+Assuming we have an extremum $\phi$, consider perturbations
+\[
+	\phi \to \phi(x_1, \ldots, x_n) + \varepsilon \eta(x_1, \ldots, x_n)
+,\]
+where we require $\eta = 0$ on $\partial D$. Then
+
+\begin{align*}
+	F[\phi + \varepsilon \eta] - F[\phi] &= \varepsilon \int_{D} \left[ \eta \frac{\partial f}{\partial \phi} + \sum_{i = 1}^{n} \eta_{x_i} \frac{\partial f}{\partial \phi_{x_i}} \right] \, dx_1\ldots dx_n + \mathcal{O}(\varepsilon^2) \\
+					     &= \varepsilon \int_{D} \left[ \eta \frac{\partial f}{\partial \phi} + \nabla \cdot \left(\eta \frac{\partial f}{\partial \phi_{\mathbf{x}}}\right) - \eta \nabla \cdot \frac{\partial f}{\partial \phi_{\mathbf{x}}} \right]\, dx_1\ldots dx_n + \mathcal{O}(\varepsilon^2)
+,\end{align*}
+where
+\[
+\frac{\partial f}{\partial \phi_{\mathbf{x}}} = \left( \frac{\partial f}{\partial \phi_{x_1}}, \frac{\partial f}{\partial \phi_{x_2}}, \ldots, \frac{\partial f}{\partial \phi_{x_n}} \right)
+.\]
+Then, applying divergence theorem on $\eta \, \partial f/\partial \phi_{\mathbf{x}}$,
+\[
+	\int_{D} \nabla \cdot \left( \eta \frac{\partial f}{\partial \phi_{\mathbf{x}}} \right) \, dx_1\ldots dx_n = \int_{\partial D} \eta \frac{\partial f}{\partial \phi_{\mathbf{x}}} \cdot d \mathbf{S} = 0
+.\]
+Therefore, we have
+\[
+F[\phi + \varepsilon \eta] - F[\phi] = \varepsilon \int_{D} \eta \left( \frac{\partial f}{\partial \phi} - \nabla \cdot \frac{\partial f}{\partial \phi_{\mathbf{x}}} \right)\, dx_1\ldots dx_n + \mathcal{O}(\varepsilon^2)
+.\]
+Thus, for several independent variables, the Euler-Lagrange equation becomes a single second order PDE for one function $\phi$:
+\[
+	\frac{\partial f}{\partial \phi} - \sum_{i = 1}^{n} \frac{\partial}{\partial x_i} \left( \frac{\partial f}{\partial \phi_{x_i}}\right) = 0 \tag{3.4}\label{eq:el-e3}
+.\]
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	Consider $n = 2$. We wish to extremize the potential energy function
+	\[
+		F[\phi] = \int_{D} \frac{1}{2} (\phi_{x}^2 + \phi_{y}^2) \, dxdy
+	.\]
+	Since the partial derivatives of $f$ are
+	\[
+	\frac{\partial f}{\partial \phi} = 0, \quad \frac{\partial f}{\partial \phi_x} = \phi_x, \quad \frac{\partial f}{\partial \phi_y} = \phi_y
+	,\]
+	then equation~\eqref{eq:el-e3} gives
+	\[
+	\frac{\partial}{\partial x} \phi_x + \frac{\partial}{\partial y} \phi_y = 0
+	,\]
+	or $\phi_{xx} + \phi_{yy} = 0$. This is simply the Laplace equation. Therefore harmonic functions extremize potential functions.\index{Laplace equation}
+\end{example}
+
+\end{adjustbox}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\begin{example}[Minimal surfaces]\index{minimal surfaces}
+	We wish to minimise the area of $\Sigma \subset \mathbb{R}^3$, subject to boundary conditions
+	\[
+		\Sigma = \{ \mathbf{x} \in \mathbb{R}^3 \mid K(\mathbf{x}) = 0 \}
+	.\]
+	By the implicit function theorem, we can solve $K = 0$ to give $z = \phi(x, y)$. Then,
+	\[
+	ds^2 = dx^2 + dy^2 + dz^2, \quad dz = \phi_x dx + \phi_y dy,
+	\]
+	\[
+		\implies ds^2 = (1 + \phi_x^2)dx^2 + 2\phi_x\phi_y dxdy + (1 + \phi_y)^2 dy^2
+	.\]
+	This is called the \textbf{Riemannian metric}\index{Riemannian metric}. Thus we can write
+	\[
+	ds^2 = 
+	\begin{pmatrix}
+		dx & dy
+	\end{pmatrix}
+	\begin{pmatrix}
+		1 + \phi_x^2 & \phi_x \phi_y \\
+		\phi_x\phi_y & 1 + \phi_y^2
+	\end{pmatrix}
+	\begin{pmatrix}
+		dx \\
+		dy
+	\end{pmatrix} = \sum_{i,j = 1}^{2} g_{ij}(x, y) dx_i dx_j
+	.\]
+	Then the area element on $\Sigma$ is $\sqrt{\det g}\, dxdy$, and the area functional is
+	\[
+		A[\phi] = \int_{\Sigma}\sqrt{1 + \phi_x^2 + \phi_y^2}\, dxdy
+	.\]
+\end{example}
+
+\end{adjustbox}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	Applying \eqref{eq:el-e3}, we get
+	\[
+		\frac{\partial}{\partial x} \left( \frac{\phi_x}{\sqrt{1 + \phi_x^2 + \phi_y^2}}\right) + \frac{\partial}{\partial y} \left( \frac{\phi_y}{\sqrt{1 + \phi_x^2 + \phi_y^2}}\right) = 0
+	.\]
+	Expanding, this becomes
+	\[
+		(1 + \phi_y^2)\phi_{xx} + (1 + \phi_x^2)\phi_{yy} - 2\phi_x\phi_y\phi_{xy} = 0 \tag{3.5}\label{eq:ms}
+	.\]
+	This is known as the \textbf{minimal surface equation}.\index{minimal surface equation}
+
+	If we assume circular symmetry, then $z = \phi(r)$, where $r = \sqrt{x^2 + y^2}$. Then writing $z = z(r)$, the partial derivatives becomes
+	\[
+	\phi_x = \frac{dz}{dr} \frac{\partial r}{\partial x} = z' \frac{x}{r}, \quad \phi_y = z' \frac{y}{r}
+	.\]
+	Thus equation~\eqref{eq:ms} becomes
+	\[
+		rz'' + z' + (z')^3 = 0
+	.\]
+	Substituting $z' = w$, we get
+	\[
+		\frac{1}{2} r \frac{d}{dr} (w^2) + w^{4} + w^2 = 0
+	.\]
+	We can solve this to get
+	\[
+		r = r_0 \cosh \left( \frac{z - z_0}{r_0} \right)
+	.\]
+	This gives a \textbf{catenoid},\index{catenoid} which is the smallest surface of revolution. The boundary of a catenoid is two circles of the same radius. Assuming $r_0 = 0$, if at $z = R$, we have $r = L$, then we get
+	\[
+		\frac{L}{r_0} \frac{R}{L} = \cosh \left( \frac{L}{r_0} \right)
+	.\]
+	This gives 2 minimal surfaces for large $R$. The large value of $R$ gives a \textbf{stable} catenoid, while the smaller value is \textbf{unstable}. This refers to their behaviour as the bounding circles are drawn apart.
+\end{adjustbox}
+
+\subsection{Higher derivatives}%
+\label{sub:higher_derivatives}
+
+Consider a functional
+\[
+	F[y] = \int_{\alpha}^{\beta} f(x, y, y', \ldots, y^{(n)})\, dx
+.\]
+To solve, we proceed as we did in section~\eqref{sec:euler_lagrange_equations}. Assume that $y$ extremizing $F[y]$ exists. Then perturb $y \to y + \varepsilon \eta$, where $\eta = \eta' = \ldots = \eta^{(n-1)} = 0$ at $\alpha, \beta$. This gives
+\[
+	F[y + \varepsilon \eta] - F[y] = \varepsilon \int_{\alpha}^{\beta} \left( \frac{\partial f}{\partial y} \eta + \frac{\partial f}{\partial y'} \eta' + \cdots + \frac{\partial f}{\partial y^{(n)}} \eta^{(n)} \right)\, dx + \mathcal{O}(\varepsilon^2)
+.\]
+We can integrate by parts multiple times and use lemma~\eqref{lem:flovc} to get
+\[
+	0 = \frac{\partial f}{\partial y} - \frac{d}{dx} \left( \frac{\partial f}{\partial y'} \right) + \frac{d^2}{dx^2} \left( \frac{\partial f}{\partial y''} \right) + \cdots + (-1)^{n} \frac{d^{n}}{dx^{n}} \left( \frac{\partial f}{\partial y^{(n)}} \right) \tag{3.6}\label{el-e4}
+.\]
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	Take the case $n = 2$, and assume $\partial f/\partial y = 0$. Then equation~\eqref{el-e4} gives
+	\[
+		\frac{d}{dx} \left( \frac{\partial f}{\partial y'} - \frac{d}{dx} \frac{\partial f}{\partial y''} \right) = 0
+	.\]
+	Thus if we wish to extremize
+	\[
+		F[y] = \int_{0}^{1} (y'')^2 \, dx
+	,\]
+	where $y(0) = y'(0) = y(1) = 0$, and $y'(1) = 1$, then the above gives
+	\[
+		\frac{d}{dx} (2y'') = \text{constant} \implies y''' = k
+	.\]
+	If we impose boundary constraints, this leaves us with $y = x^3 - x^2$. We can prove this is an absolute minimum as well: let $y_0 = x^3 - x^2$, and perturb $y_0 \to y_0 + \eta$, where $\eta(0) = \eta'(0) = \eta(1) = \eta'(1) = 0$. Then
+	\begin{align*}
+		F[y_0 + \eta] - F[y_0] &= \int_{0}^{1} (\eta'')^2 \, dx + 2 \int_{0}^{1} (y_0'' \eta'') \, dx > 4 \int_{0}^{1} (3x - 1) \eta'' \, dx \\
+				       &= 4\left( \left[-\eta'\right]_{0}^{1} + \int_{0}^{1} \left( \frac{d}{dx} (3x\eta') - 3\eta' \right) \, dx \right) \\
+				       &= 4\left( \left[3x\eta'\right]_{0}^{1} - \left[3\eta\right]_{0}^{1} \right) = 0.
+	\end{align*}
+	
+\end{example}
+
+\end{adjustbox}
+
+\newpage
+
+\section{Least action principle and Noether's theorem}%
+\label{sec:least_action_principle_and_noether_s_theorem}
+
+Consider a particle in $\mathbb{R}^3$, with kinetic energy $T$ and potential energy $V$. Then we can define
+\[
+	L(\mathbf{x}, \mathbf{\dot x}, t) = T - V \tag{4.1}\label{eq:la}
+,\]
+the \textbf{Lagrangian}\index{Lagrangian}. Here $L$ is a function of three dependent variables, $\mathbf{x} = (x_1, x_2, x_3)$, and one independent variable, $t$. We can define the \textbf{action functional}\index{action functional}
+\[
+	S[\mathbf{x}] = \int_{t_1}^{t_2} L \, dt \tag{4.2}\label{eq:af}
+.\]
+
+Using these, we can state Hamilton's principle.
+
+\begin{proposition}[Hamilton's principle/Least action principle]\index{Hamilton's principle}\index{least action principle}
+	The motion of a particle is such that $S[\mathbf{x}]$ is stationary, that is, $L$ satisfies the Euler-Lagrange equations.
+\end{proposition}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	If we take
+	\[
+		T = \frac{1}{2} m |\mathbf{\dot x}|^2, \quad V = V(\mathbf{x})
+	,\]
+	then using Euler-Lagrange gives
+	\[
+		\frac{d}{dt} \left( \frac{\partial L}{\partial \dot x_i} \right) = \frac{\partial L}{\partial x_i} \implies m \ddot x_i = - \frac{\partial V}{\partial x_i}
+	.\]
+	This can be rewritten as
+	\[
+	m \mathbf{\ddot x} = - \nabla V
+	,\]
+	which is Newton's second law.\index{Newton's second law}
+\end{example}
+
+\end{adjustbox}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\begin{example}[Central force in 2 dimensions]\index{central force}
+	Consider the action
+	\[
+		L = \frac{1}{2} m (\dot r^2 + r^2 \dot \theta ^2) - V(r)
+	.\]
+	The Euler-Lagrange equations gives
+	\begin{align*}
+		\frac{d}{dt} \frac{\partial L}{\partial \dot r} - \frac{\partial L}{\partial r} &= 0, \\
+		\frac{d}{dt} \frac{\partial L}{\partial \dot \theta} - \frac{\partial L}{\partial \theta} &= 0.
+	\end{align*}
+
+\end{example}
+
+\end{adjustbox}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	Since the action doesn't depend on $\theta$, we get that
+	\[
+		\frac{\partial L}{\partial \dot \theta} = mr^2 \dot \theta = \text{constant}
+	.\]
+	This shows that angular momentum\index{angular momentum} is conserved. Moreover, since $L$ is independent of $t$, we get
+	\begin{align*}
+		\dot r \frac{\partial L}{\partial \dot r} + \dot \theta \frac{\partial L}{\partial \dot \theta} - L &= \text{constant}, \\
+		\implies \dot r m \dot r + \dot \theta m r^2 \dot \theta - L &= \frac{1}{2} m \dot r^2 + \frac{1}{2} m r^2 \dot \theta^2 + V(r) = E.
+	\end{align*}
+	Therefore energy\index{energy} is conserved as well.
+
+\end{adjustbox}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\begin{example}[Configuration space, and generalised coordinates]
+		In Newtonian dynamics, we think of a system of particles as $N$ independent trajectories in $\mathbb{R}^3$.
+
+		The Lagrangian approach is to instead view these trajectories as a single particle moving in \textbf{configuration space}\index{configuration space}. This is of dimension $3N$, and can encode the behaviour of all particles.
+
+		To find the trajectory $q$ in the configuration space, we must find the Lagrangian $L(q_i, \dot q_i, t)$ and solve the Euler-Lagrange equations.
+\end{example}
+
+\end{adjustbox}
+
+\subsection{Noether's theorem}%
+\label{sub:noether_s_theorem}
+
+We consider functionals of the form
+\[
+	F[\mathbf{y}] = \int_{\alpha}^{\beta} (y_1, \ldots, y_n, y_1', \ldots, y_n', x) \, dx
+.\]
+Suppose there exists a 1-parameter family of transformations
+\begin{align*}
+	y_i(x) &\to Y_i(x, s), \\
+	Y_i(x, 0) &= y_i(x).
+\end{align*}
+This is a continuous symmetry\index{continuous symmetry}\index{symmetry} of a Lagrangian $f$, if
+\[
+	\frac{d}{ds} f(Y_1(x, s), \ldots, Y_n(x, s), Y_1'(x, s), \ldots, Y_n'(x, s), x) = 0
+.\]
+
+\begin{theorem}[Noether's theorem]\index{Noether's theorem}
+	Given a continuous symmetry $Y_i(x, s)$ of $f$, the quantity
+	\[
+		\sum_{i = 1}^{n} \left. \frac{\partial f}{\partial y_i'} \frac{\partial Y_i}{\partial s} \right|_{s = 0} \tag{4.3}\label{eq:nt}
+	\]
+	is a first integral of the Euler-Lagrange equation with $Y_i(x, 0) = y_i(x)$.
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} Summing over $i$, we get
+\begin{align*}
+	0 &= \left.\frac{\partial f}{\partial s}\right|_{s = 0} = \left. \frac{\partial f}{\partial y_i} \frac{\partial Y_i}{\partial s} \right|_{s = 0} + \left.\frac{\partial f}{\partial y_i'} \frac{\partial Y_i'}{\partial s}\right|_{s = 0}\\
+	  &= \left.\left[ \frac{d}{dx} \left( \frac{\partial f}{\partial y_i'}\right) \frac{\partial Y_i}{\partial s} + \frac{\partial f}{\partial y_i'} \frac{d}{dx} \frac{\partial Y_i}{\partial s} \right] \right|_{s = 0} \\
+	  &= \left. \frac{d}{dx} \left[ \frac{\partial f}{\partial y_i'} \frac{\partial Y_i}{\partial s} \right] \right|_{s = 0}\!\!\!\!\!\!\!\!.
+\end{align*}
+
+\end{adjustbox}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	Consider
+	\[
+		f = \frac{1}{2}(y')^2 + \frac{1}{2}(z')^2 - V(y - z)
+	.\]
+	Taking $Y = y + s$, $Z = z + s$, then this is a symmetry of $f$. Hence, from~\eqref{eq:nt},
+	\[
+		\left.\left(\frac{\partial f}{\partial y'} \frac{\partial Y}{\partial s} + \frac{\partial f}{\partial z'} \frac{\partial Z}{\partial s} \right)\right|_{s = 0} = y' + z'
+	\]
+	is conserved. Hence we have conserved momentum in the $y + z$ direction.
+\end{example}
+
+\end{adjustbox}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\begin{example}[Central forces again]
+	Take the action
+	\[
+		L = \frac{1}{2} m(\dot r^2 + r^2 \dot \theta^2) - V(r)
+	.\]
+	Taking $\Theta = \theta + s$, $R = r$, then this is a symmetry, so \eqref{eq:nt} gives
+	\[
+		\left( \frac{\partial L}{\partial \dot \theta} \frac{\partial \Theta}{\partial s} + \frac{\partial L}{\partial \dot r} \frac{\partial R}{\partial s} \right) = mr^2\dot \theta
+	\]
+	is conserved. So due to the rotational invariance of $L$, angular momentum is conserved.
+\end{example}
+
+\end{adjustbox}
+
+\newpage
+
+\section{Convex functions}%
+\label{sec:convex_functions}
+
+We will go back to calculus in $\mathbb{R}^{n}$, and look at a class of functions for which it is easy to classify stationary points.
+
+\begin{definition}[Convexity]
+	A set $S \subset \mathbb{R}^{n}$ is \textbf{convex}\index{convex} if for all $x, y \in S$, $(1 - t)x + ty \in S$, for all $0 \leq t \leq 1$.
+
+	A graph of a function $f : \mathbb{R}^{n} \to \mathbb{R}$ is a surface $\{z - f(\mathbf{x}) = 0\}$ in $\mathbb{R}^{n + 1}$. A chord of $f$ is a line segment in $\mathbb{R}^{n+1}$ joining two points on the graph.
+
+	A function $f : \mathbb{R}^{n} \to \mathbb{R}$ is convex if
+	\begin{enumerate}[(i)]
+		\item the domain of $f$ is a convex set,
+		\item $f((1 - t)x + ty) \leq (1 - t)f(x) + tf(y)$ for all $x, y \in S$, $0 \leq t \leq 1$.
+	\end{enumerate}\index{convex function}
+	Hence $f$ is convex if the graph of $f$ lies below, or on its chords.
+\end{definition}
+
+\begin{remark}
+	\begin{enumerate}[(i)]
+		\item[]
+		\item $f$ is concave by replacing $\leq$ by $\geq$ in the above definitions.
+		\item $f$ is convex if and only if $-f$ is concave.
+		\item $f$ is strictly convex if $f((1 - t)x + ty) < (1 - t)f(x) + tf(y)$ for $0 < t < 1$.
+	\end{enumerate}
+	
+\end{remark}
+
+Functions such as $x^2$ are convex, and $1/x$ is convex on the positive reals.
+
+\subsection{Conditions for convexity}%
+\label{sub:conditions_for_convexity}
+
+There are 3 different tests for $f$ to be convex.
+
+\begin{enumerate}[a)]
+	\item If $f$ is once differentiable, then $f$ is convex if and only if
+		\[
+			f(y) \geq f(x) + (y - x) \cdot \nabla f(x)
+		.\]
+\end{enumerate}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} Assume the above holds. Then applying it twice,
+\begin{align*}
+	f(x) &\geq f(z) + (x - z) \cdot \nabla f(z), \\
+	f(y) &\geq f(z) + (y - z) \cdot \nabla f(z).
+\end{align*}
+Take $z = (1 - t)x + ty$. Then adding $(1 - t)$ times the first equation, and $t$ times the second gives
+\[
+	(1 - t)f(x) + tf(y) \geq f(z) = f((1 - t)x + ty)
+.\]
+\end{adjustbox}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	Now assume $f$ is convex. For fixed $x$ and $y$, define
+	\[
+		h(t) = (1 - t)f(x) + tf(y) - f((1 - t)x + ty) \geq 0
+	.\]
+	Then
+	\[
+		h'(0) = -f(x) + f(y) - (y - x) \cdot \nabla f(x)
+	.\]
+	However since $h$ is positive on $(0, 1)$, this gives $h'(0) \geq 0$, as desired.
+\end{adjustbox}
+
+\begin{corollary}
+	If $f$ is convex and has a stationary point, then this point is a global minimum.
+\end{corollary}
+
+This follows as if $\nabla f(x_0) = 0$, then
+\[
+	f(y) \geq f(x_0) + (y - x_0) \cdot \nabla f(x_0) = f(x_0)
+.\]
+There are more tests that can be used:
+\begin{enumerate}[resume*]
+	\item If $(\nabla f(y) - \nabla f(x)) \cdot (y - x) \geq 0$, then $f$ is convex.
+	\item Assume $f$ is twice differentiable. Then $f$ is convex if and only if the Hessian has all eigenvalues non-negative (this is known as the second order conditions).\index{second order conditions}
+\end{enumerate}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} Assume convexity. Then applying test b) on $y = x + h$, we get
+	\[
+		h \cdot (\nabla f(x + h) - \nabla f(y)) \geq 0
+	.\]
+	For small $h$, since
+	\[
+		\partial_{i}f(x + h) = \partial_{i}f(x) + h_j H_{ij}(x) + \mathcal{O}(|h|^2)
+	,\]
+	by dotting with $h$, we get
+	\[
+		h_ih_j H_{ij}(x) + \mathcal{O}(|h|^2) \geq 0
+	.\]
+	This implies that the Hessian is non-negative definite, implying the eigenvalues are non-negative. The converse is an exercise.
+\end{adjustbox}
+
+\newpage
+
+\section{Legendre transform}%
+\label{sec:legendre_transform}
+
+\begin{definition}[Legendre transform]\index{Legendre transform}
+	The Legendre transform of $f: \mathbb{R}^{n} \to \mathbb{R}$ is
+	\[
+		f^{\ast}(\mathbf{p}) = \sup_{\mathbf{x}} (\mathbf{p} \cdot \mathbf{x} - f(\mathbf{x})) \tag{6.1}\label{eq:lt}
+	.\]
+	The domain of $f^{\ast}$ consists of all vectors $\mathbf{p}$ such that the supremum is finite.
+\end{definition}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	Consider the Legendre transform of $f(x) = ax^2$, $a > 0$. Then
+	\[
+		f^{\ast}(p) = \sup_{x}(px - ax^2)
+	.\]
+	The maximum occurs at $p = 2xa$, so $x = p/2a$. Hence
+	\[
+		f^{\ast}(p) = \frac{p^2}{4a}
+	.\]
+	Computing
+	\[
+		(f^{\ast})^{\ast}(s) = \sup_{p}\left(sp - \frac{p^2}{4a}\right)
+	.\]
+	This occurs when $p = 2as$, so
+	\[
+		f^{\ast\ast}(s) = as^2 = f(s)
+	.\]
+	In fact $f^{\ast\ast} = f$ for convex functions.
+\end{example}
+
+\end{adjustbox}
+
+\begin{proposition}
+	The domain of $f^{\ast}$ is a convex set, and $f^{\ast}$ is convex.
+\end{proposition}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:}
+\begin{align*}
+	f^{\ast}((1 - t)p + tq) &= \sup_{x}[(1 - t)p \cdot x + t q \cdot x - f(x)] \\
+				&= \sup_{x}\left[(1 - t)[p \cdot x - f(x)] + t[q \cdot x - f(x)]\right] \\
+				&\leq (1 - t)f^{\ast}(p) + t f^{\ast}(q).
+\end{align*}
+Hence if $f^{\ast}(p)$, $f^{\ast}(q)$ exist, then $f^{\ast}[(1 - t)p + tq]$ does as well, and $f^{\ast}$ satisfies the convexity definition.
+\end{adjustbox}
+
+In practice, if $f$ is convex and differentiable, then $f^{\ast}(p)$ is the global minimum over all $x$. Hence
+\[
+	\nabla (p \cdot x - f(x)) = 0 \implies p = \nabla f
+.\]
+If $f$ is strictly convex, then there exists a unique inversion of $p = \nabla f$, so that
+\[
+	f^{\ast}(p) = p \cdot x(p) - f(x(p))
+.\]
+
+\subsection{Applications to Thermodynamics}%
+\label{sub:applications_to_thermodynamics}
+
+Consider a system of many particles. In thermodynamics, we have an order of $10^{27}$ particles. Using Newtonian or Lagrangian mechanics, this gives $10^{27}$ ODE's to solve, which simply cannot be done.
+
+Instead, we define a few macroscopic variables, such as pressure $P$, volume $V$, temperature $T$ and entropy $S$.\index{thermodynamics}
+
+One such quantity we can define is the internal energy $U(S, V)$. Then we can define the Hermholtz free energy\index{Hermholtz free energy}
+\[
+	F(T, V) = \min_{S}(U(S, V) - TS) = -\max_{S}(TS - U(S, V)) = -U^{\ast}(T, V)
+.\]
+This is the Legendre transform of $U$ with respect to $S$, with $V$ held fixed. Then
+\[
+	\left.\frac{\partial}{\partial S}(TS - U(S, V))\right|_{T, V} = 0 \implies T = \left.\frac{\partial U}{\partial S}\right|_{V}
+.\] 
+We can also define the enthalpy\index{enthalpy} as
+\[
+	H(S, P) = \min_{V}(U(S, V) + PV) = -U^{\ast}(P, S)
+.\]
+Again, this has a minimum when
+\[
+	P = -\left. \frac{\partial U}{\partial V} \right|_{S}
+.\]
+Thus the Legendre transform is a way to swap from dependence on variables $(S, V)$, to other variables $(T, V)$ and $(S, P)$.
+
+\newpage
+
+\section{Hamilton's equations}%
+\label{sec:hamilton_s_equations}
+
+Recall in \S\eqref{sub:noether_s_theorem} that the Lagrangian
+\[
+	L = T - V = L(\mathbf{q}, \mathbf{\dot q}, t)
+\]
+is a function on the configuration space.
+
+The \textbf{Hamiltonian}\index{Hamiltonian} is the Legendre transform of $L$ with respect to $\mathbf{\dot q} = \mathbf{v}$, where $\mathbf{v}$ is the solution to
+\[
+p_i = \frac{\partial L}{\partial \dot q_i}
+.\]
+Here we assume the convexity of $L$ in $\mathbf{v}$. We say that $\mathbf{p}$ is the generalised momentum\index{generalised momentum}.
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	Take
+	\[
+		T = \frac{1}{2} m |\mathbf{\dot q}|^2, \quad V = V(\mathbf{q})
+	.\]
+	Then we have
+	\[
+	\mathbf{p} = \frac{\partial L}{\partial \mathbf{\dot q}} = m \mathbf{\dot q}
+	.\]
+	Therefore $\mathbf{p}$ is precisely the momentum. Hence the Hamiltonian is
+	\[
+		H(\mathbf{q}, \mathbf{p}, t) = \mathbf{p} \cdot \frac{\mathbf{p}}{m} - \frac{1}{2}m \frac{|\mathbf{p}|^2}{m^2} - V(\mathbf{q}) = \frac{1}{2m} |\mathbf{p}|^2 + V(\mathbf{q})
+	.\]
+\end{example}
+\end{adjustbox}
+
+Consider taking the total derivative of $H$.Since
+\[
+	H = \mathbf{p} \cdot \mathbf{\dot q} - L(\mathbf{q}, \mathbf{\dot q}, t)
+,\]
+we have
+\begin{align*}
+	dH &= \frac{\partial H}{\partial q_i}dq_i + \frac{\partial H}{\partial p_i}d p_i + \frac{\partial H}{\partial t}dt \\
+	   &= p_i d\dot q_i + \dot q_i dp_i - \underbrace{\frac{\partial L}{\partial q_i}}_{\dot p_i \text{ by E-L}}dq_i - \underbrace{\frac{\partial L}{\partial \dot q_i}}_{p_i} d\dot q_i - \frac{\partial L}{\partial t}dt \\
+	   &= \dot q_i dp_i - \dot p_i dq_i - \frac{\partial L}{\partial t}dt.
+\end{align*}
+Comparing differentials, we get that
+\[
+	\dot q_i = \frac{\partial H}{\partial p_i}, \quad \dot p_i = - \frac{\partial H}{\partial q_i}, \quad \frac{\partial H}{\partial t} = - \frac{\partial L}{\partial t} \tag{7.1}\label{eq:he}
+.\]
+This is known as Hamilton's equations\index{Hamilton's equations}. Assuming there is no explicit $t$-dependence in $L$, then \eqref{eq:he} is a system of $2n$ first order ODEs. The solution curves form a trajectory in $2n$-dimensional phase space.
+
+\begin{remark}
+	Hamilton's equations also arise from extremizing a functional in phase space
+	\[
+		S[\mathbf{q}, \mathbf{p}] = \int_{t_1}^{t_2} \left[ \dot q_ip_i - H(\mathbf{q}, \mathbf{p}, t) \right]\, dt
+	.\]
+	Using Euler-Lagrange,
+	\begin{itemize}
+		\item Variations with respect to $p_i$ give
+			\[
+				\frac{\partial f}{\partial p_i} - \frac{d}{dt} \left( \frac{\partial f}{\partial \dot p_i}\right) = 0 \implies \dot q_i = \frac{\partial H}{\partial p_i}
+			.\]
+		\item Variations with respect to $q_i$ gives
+			\[
+				\frac{\partial f}{\partial q_i} - \frac{d}{dt} \left( \frac{\partial f}{\partial \dot q_i}\right) = 0 \implies \dot p_i = - \frac{\partial H}{\partial q_i}
+			.\]
+	\end{itemize}
+	
+\end{remark}
+
+\newpage
+
+\section{The Second Variation}%
+\label{sec:the_second_variation}\index{second variation}
+
+The Euler-Lagrange equation can lead to a minimum, maximum or a saddle point. We will now look at the nature of the stationary points of
+\[
+	F[y] = \int_{\alpha}^{\beta} f(x, y, y')\, dx
+.\]
+Assume $y$ is a critical point, and expand $F[y + \varepsilon \eta]$ around a solution to the Euler-Lagrange equation:
+\begin{align*}
+	F[y + \varepsilon \eta] - F[y] &= \int_{\alpha}^{\beta} [f(x, y + \varepsilon \eta, y' + \varepsilon \eta') - f]\, dx \\
+				       &= \varepsilon \int_{\alpha}^{\beta} \eta \left(\frac{\partial f}{\partial y} - \frac{d}{dx} \frac{\partial f}{\partial y'} \right) \, dx \\
+				       &\qquad + \frac{\varepsilon^2}{2} \int_{\alpha}^{\beta} \left[ \eta^2 \frac{\partial^2 f}{\partial y^2} + 2 \eta \eta' \frac{\partial^2 f}{\partial y \partial y'} + (\eta')^2 \frac{\partial^2 f}{\partial y'^2} \right] \, dx + \mathcal{O}(\varepsilon^3).
+\end{align*}
+It is the latter term which is the second variation:
+\begin{align*}
+	\delta^2F[y] &= \frac{1}{2} \int_{\alpha}^{\beta} \left[ \eta^2 \frac{\partial^2 f}{\partial y^2} + \frac{d}{dx} (\eta^2) \frac{\partial^2 f}{\partial y \partial y'} + (\eta')^2 \frac{\partial^2 f}{\partial y'^2}\right]\, dx \\
+		     &= \frac{1}{2} \int_{\alpha}^{\beta} \left[Q \eta^2 + P(\eta')^2 \right] \, dx, \tag{8.1}\label{eq:sv}
+\end{align*}
+where
+\begin{align*}
+	P &= \frac{\partial^2 f}{\partial y'^2}, \\
+	Q &= \frac{\partial^2 f}{\partial y^2} - \frac{d}{dx} \left( \frac{\partial^2 f}{\partial y \partial y'} \right).
+\end{align*}
+Therefore, if $y_0(x)$ is a solution to the Euler-Lagrange equation~\eqref{eq:el} and $Q\eta^2 + P(\eta')^2 > 0$, for all $\eta$ vanishing at $\alpha$ and $\beta$, then $y_0(x)$ is a local minimum of $F[y]$.
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\begin{example}[Geodesics on $\mathbb{R}^2$ ]
+		Take the function $f = \sqrt{1 + (y')^2}$. Then
+		\[
+			Q = 0, \quad P = \frac{\partial}{\partial y'} \frac{y'}{\sqrt{1 + (y')^2}} = \frac{1}{[1 + (y')^2]^{3/2}}
+		.\]
+		Hence if $\eta' = 0,$ then $\eta = 0$, so there is no variation, and if $\eta' \neq 0$, then $P(\eta')^2 > 0$. Hence straight lines are local length minimizers.
+\end{example}
+
+\end{adjustbox}
+
+\begin{proposition}
+	If $y_0(x)$ is a local minimum, then
+	\[
+		P = \left. \frac{\partial^2 f}{\partial y'^2} \right|_{y_0(x)} \geq 0 \tag{8.2}\label{eq:lc}
+		.\]
+		This is known as the Legendre condition.\index{Legendre condition}
+\end{proposition}
+
+To see why this is true, note that if $\eta'$ is small, then $\eta$ can't be too large. However the converse is not true. Indeed, $\eta$ can be small, but $\eta'$ arbitrarily large, if it oscillates very rapidly.
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} (Sketch) Assume there exists $x_0 \in (\alpha, \beta)$ such that $P(x_0, y_0(x_0), y_0'(x_0)) < 0$. Then taking a small, oscillating function around $x_0$, $P(\eta')^2 + Q \eta^2 < 0$.
+\end{adjustbox}
+
+\begin{remark}
+	Note that the Legendre condition is not sufficient. However $P > 0, Q \geq 0$ is sufficient, as if $\eta' = 0$, then $\eta = 0$, otherwise $P(\eta')^2 > 0$.
+\end{remark}
+
+\subsection{Associated eigenvalue problem}%
+\label{sub:associated_eigenvalue_problem}
+
+Looking at \eqref{eq:sv},
+\[
+	Q \eta^2 + P(\eta')^2 = Q \eta^2 + \frac{d}{dx} (P \eta \eta') - \eta(P \eta')'
+.\] 
+Now integrating and dropping boundary terms,
+\[
+	\delta^2 F[y_0] = \frac{1}{2} \int_{\alpha}^{\beta} \eta\left[ - (P \eta')' + Q \eta\right]\, dx
+.\]
+Here $\mathcal{L}(\eta) = (-P\eta')' + Q\eta$ is a Sturm-Liouville operator. Thus if there exists $\eta$ such that
+\[
+	\mathcal{L}(\eta) = - \omega^2 \eta, \quad \eta(\alpha) = \eta(\beta) = 0 \tag{8.2}\label{eq:aep}
+,\]
+then $y_0$ is not a local minimizer.
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	Take
+	\[
+		F[y] = \int_{0}^{\beta} [(y')^2 - y^2]\, dx
+	,\]
+	with $y(0) = y(\beta) = 0$, and $\beta \neq N \pi$. Then by Euler-Lagrange, $y'' + y = 0$, so $y_0 = 0$ is a stationary point. Then
+\end{example}
+
+\end{adjustbox}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\[
+		\delta^2 F[y_0] = \int_{0}^{\beta} [(\eta')^2 - \eta^2]\, dx
+	.\]
+	Here $P = 2 > 0$. We wish to extremize \eqref{eq:aep}:
+	\[
+		\eta'' - \eta = -\omega^2\eta, \quad \eta(0) = \eta(\beta) = 0
+	.\]
+	This has solutions
+	\[
+		\eta = A \sin \left( \frac{\pi x}{\beta} \right), \quad \left( \frac{\pi}{\beta}\right)^2 = 1 - \omega^2
+	.\]
+	Thus this is possible for $\beta > \pi$. So if $P > 0$, a problem with the positivity of $\delta^2 F$ may arise if the interval is too large.
+
+\end{adjustbox}
+
+\subsection{The Jacobian condition}%
+\label{sub:the_jacobian_condition}
+
+Legendre tried to prove that $P > 0$ is sufficient for $y = y_0$ to be a local minimum. From our last condition, this could not have worked, however it idea used was good: Let $\phi = \phi(x)$ be any differentiable function of $x$ on $[\alpha, \beta]$. Then
+\[
+	0 = \int_{\alpha}^{\beta}(\phi \eta^2)'\, dx = \int_{\alpha}^{\beta} [\phi' \eta^2 + 2 \eta \eta' \phi]\, dx
+.\]
+Adding this to \eqref{eq:sv},
+\[
+	\delta^2F[y] = \frac{1}{2} \int_{\alpha}^{\beta} [P(\eta')^2 + 2 \eta \eta' \phi + (Q + \phi') \eta^2]\, dx
+.\]
+Assume that $P > 0$ at this solution $y$, and complete the square:
+\[
+	\delta^2F[y] = \frac{1}{2} \int_{\alpha}^{\beta} \left[ P \left( \eta' + \frac{\phi}{P} \eta \right)^2 + \left(Q + \phi' - \frac{\phi^2}{P}\right)\eta^2 \right]\,dx
+,\]
+which is positive if we can choose $\phi$ such that
+\[
+	\phi^2 = P(Q + \phi') \tag{8.3}\label{eq:psv}
+.\]
+If \eqref{eq:psv} holds then $\delta^2 F > 0$ unless
+\[
+\eta' + \frac{\phi}{P}\eta =
+\]
+on $[\alpha, \beta]$. But $\eta = 0$ at $\alpha$, $\beta$, so $\eta'(\alpha) = 0$, meaning $\eta = 0$ on $[\alpha, \beta]$.
+
+The equation~\eqref{eq:psv} is of Ricatti type, so we can transform it into a linear second order equation. Set $\phi = -pu'/u$, where $u \neq 0$ on $[\alpha, \beta]$. Then
+\[
+	P \left(\frac{u'}{u}\right)^2 = Q - \left( \frac{(Pu')}{u} \right)' = Q - \frac{(Pu')'}{u} + P\left(\frac{u'}{u}\right)^2
+,\]
+or
+\[
+	-(Pu')' + Qu = 0 \tag{8.4}\label{eq:jac}
+.\]
+This is the Jacobi accessory condition\index{Jacobi accessory condition}\index{Jacobian condition}. Thus we require a solution to \eqref{eq:jac} such that $u \neq 0$ on $[\alpha, \beta]$, which may not exist on a large interval.
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	Take
+	\[
+		F[y] = \frac{1}{2} \int_{\alpha}^{\beta} [(y')^2 - y^2]\, dx
+	.\]
+	Then
+	\[
+		\delta^2F[y] = \frac{1}{2} \int_{\alpha}^{\beta} [(\eta')^2 - \eta^2]\, dx
+	.\]
+	The Jacobi accessory condition is $u'' + u = 0$. The general solution is $u = A \sin x + B \cos x$, so we want to know when this is non-zero on $[\alpha, \beta]$. This occurs if
+	\[
+	\tan x \neq \frac{B}{A}
+	.\]
+	It is possible to avoid $B/A$ on an interval smaller than $\pi$.
+\end{example}
+\end{adjustbox}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}[Geodesics on a sphere]
+	On a geodesic, the line element is
+	\[
+		\sqrt{d\theta^2 + \sin^2\theta d\phi^2} = \sqrt{(\theta')^2 + \sin^2\theta}d\phi
+	.\]
+	We found earlier that the critical points are segments of great circles. The second variation at the stationary points are
+	\[
+		\frac{\partial^2f}{(\partial \theta')^2} = 1 = P, \quad Q = -1
+	.\]
+	Hence
+	\[
+		\delta^2F[\theta_0 = \pi/2, \eta] = \frac{1}{2} \int_{\phi_1}^{\phi_2}[(\eta')^2 - \eta^2]\, d\phi
+	.\]
+	This is positive if $\phi_2 - \phi_1 < \pi$. 
+\end{example}
+\end{adjustbox}
+
+
+\newpage
+
+\printindex
+
+\end{document}

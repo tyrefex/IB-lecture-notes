@@ -1,0 +1,226 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage[a4paper]{geometry}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsthm}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{adjustbox}
+\usepackage[shortlabels]{enumitem}
+\usepackage{parskip}
+\makeatletter
+\newcommand{\@minipagerestore}{\setlength{\parskip}{\medskipamount}}
+\makeatother
+\usepackage{imakeidx}
+\usepackage{bbm}
+
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Img}{Im}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\nullity}{null}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\adj}{adj}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\Stab}{Stab}
+\DeclareMathOperator{\ccl}{ccl}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Syl}{Syl}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Fit}{Fit}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Mkv}{Markov}
+
+
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+
+\setlength\parindent{0pt}
+
+\newcommand{\course}{GRM }
+\newcommand{\lecnum}{}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{proposition}{Proposition}[section]
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\leftmark}
+\lhead{Page \thepage}
+\setlength{\headheight}{15pt}
+
+\newcommand{\mapsfrom}{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}
+
+\makeindex[intoc]
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+    pdfauthor={Ishan Nath}
+}
+
+\begin{document}
+
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+	\begin{center}
+		\vspace*{1em}
+		\Huge
+		\textbf{IB Markov Chains}
+
+		\vspace{1em}
+		\large
+		Ishan Nath, Michaelmas 2022
+
+		\vspace{1.5em}
+
+		\Large
+
+		Based on Lectures by Dr. Perla Sousi
+
+		\vspace{1em}
+
+		\large
+		\today
+	\end{center}
+	
+\end{titlepage}
+\hypersetup{pageanchor=true}
+
+\tableofcontents
+
+\newpage
+
+\setcounter{section}{-1}
+
+\section{Introduction}%
+\label{sec:introduction}
+
+\textbf{Markov chains} are random processes (sequence of random variables) that retain no memory of the past.
+
+\subsection{History}%
+\label{sub:history}
+
+These were first studied by Markov in 1906. Before Markov, Poisson processes and branching processes were studied. The motivation was to extend the law of large numbers to a non-iid setting.
+
+After Markov, Kolmogorov began studying continuous time Markov chains, also known as Markov processes. An important example is Brownian motion, which is a fundamental object in modern probability theory.
+
+Markov chains are the simplest mathematical models for random phenomena evolving in time. They are \textbf{simple} in the sense they are amenable to tools from probability, analysis and combinatorics.
+
+Applications of Markov chains include population growth, mathematical genetics, queueing networks and Monte Carlo simulation.
+
+\subsection{PageRank Algorithm}%
+\label{sub:pagerank_algorithm}\index{PageRank}
+
+This is an algorithm used by Google Search to rank web pages. We model the web as a directed graph, $G = (V, E)$. Here, $V$ is the set of vertices, which are associated to the website, and $(i, j) \in E$ if $i$ contains a link to page $j$.
+
+Let $L(i)$ be the number of outgoing edges from $i$, i.e. the outdegree, and let $|V| = n$. Then we define a set of probabilities
+\[
+	\hat{p}_{ij} =
+\begin{cases}
+	\frac{1}{L(i)} & \text{if } L(i) > 0, (i, j) \in E, \\
+	\frac{1}{n} & \text{otherwise}.
+\end{cases}
+\]
+
+Take $\alpha \in (0,1)$, then we define $p_{ij} = \alpha \hat{p}_{ij} + (1 - \alpha) \frac{1}{n}$. Consider a random surfer, who tosses a coin with bias $\alpha$, and either goes to $\hat p$, or chooses a website uniform at random.
+
+We wish to find an invariant distribution $\pi = \pi P$. Then $\pi_{i}$ is the proportion of time spent at webpage $i$ by the surfer. We can then rank the pages by the values of $\pi_{i}$.
+
+\newpage
+
+\section{Formal Setup}%
+\label{sec:formal_setup}
+
+We begin with a state space $I$, which is either finite or countable, and a $\sigma$-algebra $(\Omega, \mathcal{F}, \mathbb{P})$.
+
+\begin{definition}
+	A stochastic process $(X_n)_{n \geq 0}$ is called a \textbf{Markov chain}\index{Markov chain} if for all $n \geq 0$, and $x_{0}, x_{1} ,\ldots, x_{n+1} \in I$,
+	\[
+		\mathbb{P}(X_{n+1} = x_{n+1} \mid X_{n} = x_{n}, \ldots, X_{0} = x_{0}) = \mathbb{P}(X_{n+1} = x_{n+1} \mid X_{n} = x_{n})
+	.\]
+	If $\mathbb{P}(X_{n+1} = y \mid X_{n} = x)$ is independent of $n$ for all $x, y$, then $X$ is called \textbf{time-homogeneous}\index{time-homogeneous}. Otherwise, it is \textbf{time-inhomogeneous}.
+
+	For a time-homogeneous Markov chain, define $P(x, y) = \mathbb{P}(X_1 = y \mid X_0 = x)$. $P$ is called the \textbf{transition matrix}\index{transition matrix} of the Markov chain. We have
+	\[
+		\sum_{y \in I} P(x, y) = \sum_{y \in I} \mathbb{P}(X_1 = y \mid X_0 = x) = 1
+	.\]
+	Such a matrix is called a \textbf{stochastic matrix}\index{stochastic matrix}.
+\end{definition}
+
+\begin{definition}
+	$(X_n)_{n \geq 0}$ with values in $I$ is called $\Mkv(\lambda, P)$ if $X_0 \sim \lambda$ and $(X_n)_{n \geq 0}$ is a Markov chain with transition matrix $P$.
+\end{definition}
+
+There are several equivalent definitions for Markov chains.
+
+\begin{theorem}
+	$X$ is $\Mkv(\lambda, P)$ if for all $n \geq 0$, $x_0, x_1, \ldots, x_n \in I$,
+	\[
+		\mathbb{P}(X_0 = x_0, \ldots, X_n = x_n) = \lambda(x_0)P(x_0,x_1) \cdots P(x_{n-1}, x_n)
+	.\]
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} If $X$ is $\Mkv(\lambda, P)$, then 
+	\begin{align*}
+		\mathbb{P}(X_n = x_n, \ldots, X_0 = x_0) &= \mathbb{P}(X_n = x_n \mid X_{n-1} = x_{n-1}, \ldots, X_0 = x_0) \times \cdots \\
+							 & \times \mathbb{P}(X_1 = x_1 \mid X_0 = x_0) \mathbb{P}(X_0 = x_0) \\
+							 &= \lambda(x_0)P(x_0,x_1)\cdots P(x_{n-1}, x_n).
+	\end{align*}
+	For the other direction, note for $n = 0$, we have $\mathbb{P}(X_0 = x_0) = \lambda(x_0)$, so $X_0 \sim \lambda$, and
+	\begin{align*}
+		\mathbb{P}(X_n = x_n \mid X_{n-1} = x_{n-1}, \ldots, X_0 = x_0) &= \frac{\mathbb{P}(X_n = x_n, \ldots, X_0 = x_0)}{\mathbb{P}(X_{n-1} = x_{n-1}, \ldots, X_0 = x_0)} \\
+										&= P(x_{n-1}, x_n).
+	\end{align*}
+\end{adjustbox}
+
+\begin{definition}
+	Let $i \in I$. The $\delta_{i}$-mass at $i$ is defined by
+	\[
+		\delta_{ij} = \mathbbm{1}(i = j) =
+		\begin{cases}
+			1 & \text{if } i = j, \\
+			0 & \text{otherwise}.
+		\end{cases}	
+	\] 
+\end{definition}
+
+\begin{definition}
+	Let $X_1, \ldots, X_{n}$ be discrete random variables with values in $I$. They are independent if for all $x_1, \ldots, x_n \in I$,
+	\[
+		\mathbb{P}(X_1 = x_1, \ldots, X_n = x_n) = \prod_{i = 1}^{n} \mathbb{P}(X_i = x_i)
+	.\]
+	Let $(X_n)_{n \geq 0}$ be a sequence of random variables in $I$.They are independent if for all $i_1 < i_2 < \cdots < i_k$, and for all $x_1, \ldots, x_k \in I$,
+	\[
+		\mathbb{P}(X_{i_1} = x_1, \ldots, X_{i_k} = i_k) = \prod_{j = 1}^{k} \mathbb{P}(X_{i_j} = x_j)
+	.\]
+	Let $(X_n)_{n \geq 0}$ and $(Y_n)_{n \geq 0}$ be two sequences. We say $X \perp Y$, or $X$ independent to $Y$, if for all $k, m \in \mathbb{N}$, $i_1 < \cdots < i_k$, $j_1 < \cdots < j_m$, $x_1, \ldots, x_k, y_1, \ldots, y_m$,
+	\begin{align*}
+		\mathbb{P}(&X_{i_1} = x_1, \ldots, X_{i_k} = x_k, Y_{j_1} = y_1, \ldots, Y_{j_m} = y_m) \\
+			   &= \mathbb{P}(X_{i_1} = x_1, \ldots, X_{i_k} = x_k) \mathbb{P}(Y_{j_1} = y_1, \ldots, Y_{j_m} = y_m)
+	.\end{align*}
+\end{definition}
+
+\end{document}

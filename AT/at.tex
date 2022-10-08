@@ -1,0 +1,214 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage[a4paper]{geometry}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsthm}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{adjustbox}
+\usepackage[shortlabels]{enumitem}
+\usepackage{parskip}
+\makeatletter
+\newcommand{\@minipagerestore}{\setlength{\parskip}{\medskipamount}}
+\makeatother
+\usepackage{imakeidx}
+
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Img}{Im}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\nullity}{null}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\adj}{adj}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\Stab}{Stab}
+\DeclareMathOperator{\ccl}{ccl}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Syl}{Syl}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Fit}{Fit}
+\DeclareMathOperator{\Ann}{Ann}
+
+
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+
+\setlength\parindent{0pt}
+
+\newcommand{\course}{AT }
+\newcommand{\lecnum}{}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{proposition}{Proposition}[section]
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\leftmark}
+\lhead{Page \thepage}
+\setlength{\headheight}{15pt}
+
+\newcommand{\mapsfrom}{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}
+
+\makeindex[intoc]
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+    pdfauthor={Ishan Nath}
+}
+
+\begin{document}
+
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+	\begin{center}
+		\vspace*{1em}
+		\Huge
+		\textbf{IB Analysis \& Topology}
+
+		\vspace{1em}
+		\large
+		Ishan Nath, Michaelmas 2022
+
+		\vspace{1.5em}
+
+		\Large
+
+		Based on Lectures by Dr. Paul Russell
+
+		\vspace{1em}
+
+		\large
+		\today
+	\end{center}
+	
+\end{titlepage}
+\hypersetup{pageanchor=true}
+
+\tableofcontents
+
+\newpage
+
+\part{Generalizing Continuity and Convergence}%
+\label{prt:generalizing_continuity_and_convergence}
+
+\section{Three Examples of Convergence}%
+\label{sec:three_examples_of_convergence}
+
+\subsection{Convergence in \texorpdfstring{$\mathbb{R}$}{R}}%
+\label{sub:convergence_in_r_}
+
+Let $(x_n)$ be a sequence in $\mathbb{R}$ and $x \in \mathbb{R}$. We say $(x_n)$ \textbf{converges}\index{convergence in $\mathbb{R}$} to $x$, and write $x_n \to x$, if for all $\varepsilon > 0$, there exists $N$ such that for all $n \geq N$, $|x_n - x| < \varepsilon$.
+
+In $\mathbb{R}$, one useful fact is the \textbf{triangle inequality} -- $|a+b| \leq |a| + |b|$. We also have two key theorems:
+
+\begin{theorem}[Bolzano-Weierstrass Theorem]\index{Bolzano-Weierstrass theorem}
+\item
+	A bounded sequence in $\mathbb{R}$ must have a convergent subsequence.
+\end{theorem}
+
+Recall that a sequence $(x_n)$ in $\mathbb{R}$ is \textbf{Cauchy}\index{Cauchy sequence} if for all $\varepsilon > 0$, there exists $N$, such that for all $m, n \geq N$, $|x_m - x_n| < \varepsilon$. It is easy to show every convergent sequence is Cauchy. We also have the following:
+
+\begin{theorem}[General Principle of Convergence]\index{general principle of convergence}
+\item
+	Any Cauchy sequence in $\mathbb{R}$ converges.
+\end{theorem}
+
+This can be proven by Bolzano-Weierstrass theorem.
+
+\subsection{Convergence in \texorpdfstring{$\mathbb{R}^2$}{R\^2}}%
+\label{sub:convergence_in_r_2_}
+
+Let $(z_n)$ be a sequence in $\mathbb{R}^2$, and $z \in \mathbb{R}^2$. We wish to define $(z_n) \to z$.
+
+In $\mathbb{R}$, we used the norm $|x|$. In $\mathbb{R}^2$, if we have $z = (x, y)$, then we can say $\|z\| = \sqrt{x^2 + y^2}$. This also satisfies the triangle inequality\index{triangle inequality} -- $\|a + b\| \leq \|a\| + \|b\|$.
+
+\begin{definition}
+	Let $(z_n)$ be a sequence in $\mathbb{R}^2$, and $z \in \mathbb{R}^2$. We say that $(z_n)$ \textbf{converges} to $z$, and write $z_n \to z$, if for all $\varepsilon > 0$, there exists $N$ such that for all $n \geq N$, $\|z_n - z\| < \varepsilon$.
+
+	Equivalently, $z_n \to z$ if and only if $\|z_n - z\| \to 0$.
+\end{definition}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\begin{lemma}
+	If $(z_n)$, $(w_n)$ are sequences in $\mathbb{R}^2$ with $z_n \to z$, $w_n \to w$. Then $z_n + w_n \to z + w$.
+\end{lemma}
+
+\textbf{Proof:}
+\begin{align*}
+	\|(z_n + w_n) - (z + w)\| \leq \|z_n - z\| + \|w_n - w\| \to 0 + 0 = 0.
+\end{align*}
+
+\end{adjustbox}
+
+In fact, given convergence in $\mathbb{R}$, convergence in $\mathbb{R}^2$ is easy.
+
+\begin{proposition}
+	Let $(z_n)$ be a sequence in $\mathbb{R}^2$ and let $z \in \mathbb{R}^2$. Write $z_n = (x_n, y_n)$ and $z = (x, y)$. Then $z_n \to z$ if and only if $x_n \to x$ and $y_n \to y$.
+\end{proposition}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:}
+
+First, note $|x_n - x|, |y_n - y| \leq \|z_n - z\|$, so $\|z_n - z\| \to 0$ implies $|x_n - x|, |y_n - y| \to 0$.
+
+Now, if $|x_n - x|, |y_n - y| \to 0$, then $\|z_n - z\| = \sqrt{|x_n - x|^2 + |y_n - y|^2} \to 0$.
+\end{adjustbox}
+
+\begin{definition}
+	A sequence $(z_n)$ in $\mathbb{R}^2$ is \textbf{bounded} if there exists $M \in \mathbb{R}$ such that for all $n$, $\|z_n\| \leq M$.
+\end{definition}
+
+\begin{theorem}[Bolzano-Weierstrass in $\mathbb{R}^2$]
+\item
+	A bounded sequence in $\mathbb{R}^2$ must have a convergent subsequence.
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} Let $(z_n)$ be a bounded subsequence in $\mathbb{R}^2$. Write $z_n = (x_n, y_n)$. Now $|x_n|, |y_n| \leq \|z_n\|$, so $x_n, y_n$ are bounded in $\mathbb{R}$.
+
+	By Bolzano-Weierstrass, $x_n$ has a convergent subsequence, say $x_{n_j} \to x \in \mathbb{R}$. Similarly $(y_{n_j})$ is bounded, so it has a convergent subsequence $y_{n_{j_k}} \to y$. Since we know $x_{n_{j_k}} \to x$, $z_{n_{j_k}} \to z = (x, y)$.
+\end{adjustbox}
+
+\begin{definition}
+	A sequence $(z_n) \in \mathbb{R}^2$ is \textbf{Cauchy} if for all $\varepsilon > 0$, there exists $N$ such that for all $m, n \geq N$, $\|z_m - z_n\| < \varepsilon$.
+\end{definition}
+
+It is easy to show a convergent sequence in $\mathbb{R}^2$ is Cauchy.
+
+\begin{theorem}[General Principle of Convergence for $\mathbb{R}^2$]
+\item
+	Any Cauchy sequence in $\mathbb{R}^2$ converges.
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} Let $(z_n)$ be a Cauchy sequence in $\mathbb{R}^2$. Write $z_n = (x_n, y_n)$. For all $m, n$, $|x_m - x_n| \leq \|z_m - z_n\|$, so $(x_n)$ is a Cauchy sequence in $\mathbb{R}$, thus it converges in $\mathbb{R}$. Similarly, $(y_n)$ converges in $\mathbb{R}$, so $(z_n)$ converges.
+\end{adjustbox}
+
+
+\newpage
+
+\printindex
+
+\end{document}

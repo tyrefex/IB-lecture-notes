@@ -1,0 +1,249 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage[a4paper]{geometry}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsthm}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{adjustbox}
+\usepackage[shortlabels]{enumitem}
+\usepackage{parskip}
+\makeatletter
+\newcommand{\@minipagerestore}{\setlength{\parskip}{\medskipamount}}
+\makeatother
+\usepackage{imakeidx}
+
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Img}{Im}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\nullity}{null}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\adj}{adj}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\Stab}{Stab}
+\DeclareMathOperator{\ccl}{ccl}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Syl}{Syl}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Fit}{Fit}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\epi}{epi}
+
+
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+
+\setlength\parindent{0pt}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{proposition}{Proposition}[section]
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\leftmark}
+\lhead{Page \thepage}
+\setlength{\headheight}{15pt}
+
+\makeindex[intoc]
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+\newcommand{\mapsfrom}{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}
+
+\begin{document}
+
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+	\begin{center}
+		\vspace*{1em}
+		\Huge
+		\textbf{IB Methods}
+
+		\vspace{1em}
+		\large
+		Ishan Nath, Michaelmas 2022
+
+		\vspace{1.5em}
+
+		\Large
+
+		Based on Lectures by Prof. Edward Shellard
+
+		\vspace{1em}
+
+		\large
+		\today
+	\end{center}
+	
+\end{titlepage}
+\hypersetup{pageanchor=true}
+
+\tableofcontents
+
+\newpage
+
+\part{Self-Adjoint ODE'S}%
+\label{prt:self_adjoint_ode_s}
+
+\section{Fourier Series}%
+\label{sec:fourier_series}
+
+\subsection{Periodic Functions}%
+\label{sub:periodic_functions}
+
+A function $f(x)$ is \textbf{periodic}\index{periodic function} if
+\[
+	f(x + T) = f(x)
+,\]
+where $T$ is the period.
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\begin{example} Consider simple harmonic motion. We have
+\[
+y = A \sin \omega t
+,\]
+where $A$ is the amplitude and the period $T = 2 \pi / \omega$, with angular frequency $\omega$.
+\end{example}
+\end{adjustbox}
+
+Consider the set of functions
+\[
+	g_n(x) = \cos \frac{n \pi x}{L}, \quad h_n(x) = \sin \frac{n \pi x}{L}
+,\]
+which are periodic on the interval $0 \leq x < 2L$. Recall the identities
+\begin{align*}
+	\cos A \cos B &= \frac{1}{2} \left(\cos(A - B) + \cos (A + B) \right), \\
+	\sin A \sin B &= \frac{1}{2} \left( \cos(A - B) - \cos(A + B) \right), \\
+	\sin A \cos B &=  \frac{1}{2} \left( \sin(A - B) + \sin(A + B) \right).
+\end{align*}
+
+Define the \textbf{inner product}\index{inner product} for two periodic functions $f, g$ on the interval $[0, 2L)$ 
+\[
+	\langle f, g \rangle = \int_{0}^{2L}f(x) g(x)\, dx
+.\]
+I claim that the functions $g_n, h_m$ are \textbf{mutually orthogonal}. Indeed,
+\begin{align*}
+	\langle h_n, h_m \rangle &= \int_{0}^{2L} \sin \frac{n \pi x}{L} \sin \frac{m \pi x}{L} \, dx \\
+				 &= \frac{1}{2} \int_{0}^{2L} \left( \cos \frac{(n - m)\pi x}{L} - \cos \frac{(n + m)\pi x}{L}\right) \, dx \\
+				 &= \frac{1}{2} \frac{L}{\pi} \left[ \frac{\sin (n - m) \pi x/L}{n - m} - \frac{\sin (n + m) \pi x/L}{n + m} \right]_{0}^{2L} = 0.
+\end{align*}
+This works for $n \neq m$. For $n = m$,
+\begin{align*}
+	\langle h_n, h_n \rangle &= \int_{0}^{2L} \sin^2 \frac{n \pi x}{L} \, dx \\
+				 &= \frac{1}{2} \int_{0}^{2L} \left( 1 - \cos \frac{2 \pi n x}{L} \right) \, dx \\
+				 &= L \;\; (n \neq 0).
+\end{align*}
+Hence, we can put these together to get
+\[
+	\langle h_n, h_m \rangle =
+	\begin{cases}
+		L \delta_{nm}, & \forall\,\! n, m \neq 0, \\
+		0, & n = 0.
+	\end{cases}
+\] 
+Similarly, we can show
+\[
+	\langle g_n, g_m \rangle =
+	\begin{cases}
+		L \delta_{nm}, & \forall\,\! n, m \neq 0, \\
+		2L \delta_{0n}, &m = 0.
+	\end{cases}
+	\quad \text{ and } \; \langle h_n, g_m \rangle = 0
+.\]
+
+\subsection{Definition of Fourier series}%
+\label{sub:definition_of_fourier_series}\index{Fourier series}
+
+We can express any `well-behaved' periodic function $f(x)$ with period $2L$ as
+\[
+	f(x) = \frac{1}{2}a_0  + \sum_{n = 1}^{\infty} a_n \cos \frac{n \pi x}{L} + \sum_{n = 1}^{\infty}b_n \sin \frac{n \pi x}{L}
+,\]
+
+where $a_n, b_n$ are constant such that the right hand side is convergent for all $x$ where $f$ is continuous. At a discontinuity $x$, the Fourier series approaches the midpoint
+\[
+	\frac{1}{2} \left( f(x_{+}) + f(x_{-}) \right)
+.\]
+\subsubsection{Fourier Coefficients}%
+\label{subsub:fourier_coefficients}
+
+Consider the inner product
+\[
+	\langle h_m(x), f(x) \rangle = \int_{0}^{2L} \sin \frac{m \pi x}{L} f(x) \, dx = L b_m
+,\]
+by the orthogonality relations. Hence we find that
+\begin{align*}
+	b_n &= \frac{1}{L} \int_{0}^{2L}f(x) \sin \frac{n \pi x}{L} \, dx, \\
+	a_n &= \frac{1}{L} \int_{0}^{2L}f(x) \cos \frac{n \pi x}{L} \, dx.
+\end{align*}
+\begin{remark}
+	\begin{enumerate}[(i)]
+		\item[]
+		\item $a_n$ includes $n = 0$, since $\frac{1}{2} a_0$ is the \textbf{average}
+			\[
+				\langle f(x) \rangle = \frac{1}{2L} \int_{0}^{2L} f(x) \, dx
+			.\]
+		\item The range of integration is over one period, so we may take the integral over $[0, 2L)$ or $[-L, L)$.
+		\item We can think of the Fourier series as a decomposition into harmonics. The simplest Fourier series are the sine and cosine functions.
+	\end{enumerate}	
+\end{remark}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}[Sawtooth wave]
+\item
+	Consider the function $f(x) = x$ for $-L \leq x < L$, periodic with period $T = 2L$. The cosine coefficients are
+	\[
+	a_n = \frac{1}{L} \int_{-L}^{L} x \cos \frac{n \pi x}{L} \, dx = 0
+	,\]
+	as $x \cos \omega x$ is odd. The sine coefficients are
+	\begin{align*}
+		b_n &= \frac{2}{L} \int_{0}^{L} x \sin \frac{n \pi x}{L} \, dx \\
+		    &= -\frac{2}{n \pi} \left[ x \cos \frac{n \pi x}{L} \right]_{0}^{L} + \frac{2}{n \pi} \int_{0}^{L} \cos \frac{n \pi x}{L} \, dx \\
+		    &= - \frac{2L}{n \pi} \cos n \pi + \frac{2L}{(n \pi)^2} \sin n \pi = \frac{2L}{n \pi }(-1)^{n+1}.
+	\end{align*}
+	
+\end{example}
+
+\end{adjustbox}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	So the sawtooth Fourier series is
+	\begin{align*}
+		f(x) &= \frac{2L}{\pi} \sum_{n = 1}^{\infty} \frac{(-1)^{n+1}}{n} \sin \frac{n \pi x}{L} \\
+		     &= \frac{2L}{\pi} \left( \sin \frac{\pi x}{L} - \frac{1}{2} \sin \frac{2 \pi x}{L} + \frac{1}{3} \sin \frac{3 \pi x}{L} - \cdots \right).
+	\end{align*}
+
+\end{adjustbox}
+
+
+\newpage
+
+\printindex
+
+\end{document}
