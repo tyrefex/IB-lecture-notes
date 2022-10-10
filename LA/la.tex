@@ -265,6 +265,178 @@ Note that the union of two subspaces is generally not a subspace, as it is usual
 
 \newpage
 
+\section{Spans, Linear Independence and the Steinitz Exchange Lemma}%
+\sectionmark{Spans, LI and the SEL}
+\label{sec:spans_linear_independence_and_the_steinitz_exchange_lemma}
+
+\begin{definition}[Span of a family of vectors]\index{span}
+	Let $V$ be a $F$ vector space. Let $S \subset B$ be a subset. We define
+	\begin{align*}
+		\langle S \rangle &= \left\{ \text{finite linear combinations of elements of } S \right\} \\
+				  &= \left\{ \sum_{\delta \in J} \lambda_{\delta} v_{\delta},  v_{\delta} \in S,  \lambda_{\delta} \in F, J \text{ finite} \right\}.
+	\end{align*}
+\end{definition}
+
+By convention, we let $\langle \emptyset \rangle = \{0\}$.
+
+\begin{remark}
+	$\langle S' \rangle$ is the smallest vector subspace which contains $S$.
+\end{remark}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	Take $V = \mathbb{R}^3$, and
+	\[
+	S = \left\{
+		\begin{pmatrix}
+			1 \\
+			0 \\
+			0
+		\end{pmatrix}
+		,
+		\begin{pmatrix}
+			0 \\
+			1\\
+			2
+		\end{pmatrix}
+		,
+		\begin{pmatrix}
+			3 \\
+			-2 \\
+			4
+		\end{pmatrix}
+	\right\}
+	.\]
+	Then we have
+	\[
+		\langle S' \rangle = \left\{
+			\begin{pmatrix}
+				a \\
+				b \\
+				2b
+			\end{pmatrix}
+			,
+		(a, b) \in \mathbb{R}^2\right\}
+	.\]
+	Take $V = \mathbb{R}^{n}$, and let $e_i$ be the $i$'th basis vector. Then $V = \langle e_1, \ldots, e_n \rangle$.
+
+	Take $X$ a set, and $V = \mathbb{R}^{X}$. Let $S_x : X \to \mathbb{R}$, such that $y \mapsto 1$ if $x = y$, otherwise $y \mapsto 0$. Then
+	\begin{align*}
+		\langle (S_x)_{x \in X} \rangle &= \{f \in \mathbb{R}^{X} \mid f \text{ has finite support}\}.
+	\end{align*}
+\end{example}
+
+\end{adjustbox}
+
+\begin{definition}
+	Let $V$ be a $F$ vector space. Let $S'$ be a subset of $V$. We may say that $S$ \textbf{spans} $V$ if $\langle S \rangle = V$.
+\end{definition}
+
+\begin{definition}[Finite dimension]\index{finite dimension}
+	Let $V$ be a $F$ vector space. We say that $V$ is \textbf{finite dimensional} if it is spanned by a finite set.
+\end{definition}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	Consider $P[x]$, the polynomials over $\mathbb{R}$, and $P_n[x]$, the polynomials over $\mathbb{R}$ with degree $\leq n$. Then since
+	\[
+		\langle 1, x, \ldots, x^{n}\rangle = P_n[x]
+	,\]
+	$P_n[x]$ is finite dimensional, however $P[x]$ is not.
+\end{example}
+
+\end{adjustbox}
+
+\begin{definition}[Independence]\index{linear independence}
+	We say that $(v_1, \ldots, v_n)$, elements of $V$ are \textbf{linearly independent} if
+	\[
+	\sum_{i = 1}^{n} \lambda_i v_i = 0 \implies \lambda_i = 0 \, \forall i
+	.\]
+\end{definition}
+
+\begin{remark}
+	\begin{enumerate}[1.]
+		\item[]
+		\item We also say that the family $(v_1, \ldots, v_n)$ is \textbf{free}.
+		\item Equivalently, $(v_1, \ldots, v_n)$ are not linearly independent if one of these vectors is a linear combination of the remaining $(n-1)$.
+		\item If $(v_i)$ is free, then $v_i = 0$ for all $i$.
+	\end{enumerate}
+	
+\end{remark}
+
+\begin{definition}[Basis]\index{basis}
+	A subset $S$ of $V$ is a \textbf{basis} of $V$ if and only if
+	\begin{enumerate}[(i)]
+		\item $\langle S' \rangle = V$,
+		\item $S$ is linearly independent.
+	\end{enumerate}
+	
+\end{definition}
+
+\begin{remark}
+	A subset $S$ that generates $V$ is a generating family, so a basis $S$ is a free generating family.
+\end{remark}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	For $V = \mathbb{R}^{n}$, then $(e_i)$ is a basis of $V$.
+
+	If $V = \mathbb{C}$, then for $F = \mathbb{C}$, $\{1\}$ is a basis.
+
+	If $V = P[x]$, then $S = \{x^{n}, n \geq 0\}$ is a basis for $V$.
+\end{example}
+
+\end{adjustbox}
+
+\begin{lemma}
+	$V$ is a $F$ vector space. Then $(v_1, \ldots, v_n)$ is a basis of $V$ if and only if any vector $v \in V$ has a unique decomposition
+	\[
+	v = \sum_{i = 1}^{n} \lambda_i v_i
+	.\]
+\end{lemma}
+
+\begin{remark}
+	We call $(\lambda_1, \ldots, \lambda_n)$ the coordinates of $v$ in the basis $(v_1, \ldots, v_n)$.
+\end{remark}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} Since $\langle v_1, \ldots, v_n \rangle = V$, we must have 
+	\[
+	v = \sum_{i = 1}^{n} \lambda_i v_i
+	\]
+	for some $\lambda_i$. Now assume
+	\begin{align*}
+		v = \sum_{i = 1}^{n}\lambda_i v_i = \sum_{i = 1}^{n}\lambda_i' v_i, \\
+		\implies \sum_{i = 1}^{n}(\lambda_i - \lambda_i') v_i = 0.
+	\end{align*}
+	Since $v_i$ are free, $\lambda_i = \lambda_i'$.
+\end{adjustbox}
+
+\begin{lemma}
+	If $(v_1, \ldots, v_n)$ spans $V$, then some subset of this family is a basis of $V$.
+\end{lemma}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} If $(v_1, \ldots, v_n)$ are linearly independent, we are done. Otherwise assume they are not independent, then by possibly reordering the vectors, we have
+	\[
+		v_n \in \langle v_1, \ldots, v_{n-1}\rangle
+	.\]
+	Then we have $V = \langle v_1, \ldots, v_n \rangle = \langle v_1, \ldots, v_{n-1}\rangle$.
+	By iterating, we must eventually get to an independent set.
+\end{adjustbox}
+
+\begin{theorem}[Steinitz Exchange Lemma]
+	Let $V$ be a finite dimensional vector space over $F$. Take
+	\begin{enumerate}[(i)]
+		\item $(v_1, \ldots, v_m)$ free,
+		\item $(w_1, \ldots, w_n)$ generating.
+	\end{enumerate}
+	Then $m \leq n$, and up to reordering, $(v_1, \ldots, v_m, w_{m+1}, \ldots, w_n)$ spans $V$.
+\end{theorem}
+
+
+\newpage
+
 \printindex
 
 \end{document}
