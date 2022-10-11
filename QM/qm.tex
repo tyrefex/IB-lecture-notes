@@ -128,6 +128,8 @@ A particle is defined by its position $\mathbf{x}$ and velocity $\mathbf{v} = \m
 .\]
 Solving this determines $\mathbf{x}(t), \mathbf{\dot x}(t)$ for all $t$ once the initial conditions $\mathbf{x}(t_0), \mathbf{\dot x}(t_0)$ are known.
 
+Particles do not interfere with each other.
+
 \begin{definition}
 	A wave\index{wave} is any real or complex-valued function with periodicity in time or space.
 \end{definition}
@@ -169,7 +171,7 @@ where $\omega = c |\mathbf{k}|$.
 \label{sub:particle_like_behaviour_of_waves}
 
 \subsubsection{Black-body radiation}%
-\label{subsub:black_body_radiation}
+\label{subsub:black_body_radiation}\index{black-body radiation}
 
 When a body is heated at temperature $T$, it radiates light at different frequencies. The classical prediction is that $E = k_B T$, where $E$ is the energy of the wave and $k_B$ is the Boltzmann constant. This gives
 \[
@@ -179,7 +181,123 @@ This diverges as $\omega \to \infty$. Planck's model stated
 \[
 	I(\omega) \propto \frac{\omega^2}{\pi^2 c^3} \frac{\hbar \omega}{\exp(\hbar \omega / k_B T) - 1}
 .\]
-Here $\hbar - h/2\pi$ is the reduced Planck constant, with $h \approx 6.6 \cdot 10^{-34} \text{Joule} \times \text{sec}$. This only makes sense if $E = \hbar \omega$.
+Here $\hbar = h/2\pi$ is the reduced Planck constant, with $h \approx 6.6 \cdot 10^{-34} \text{Joule} \times \text{sec}$. This only makes sense if $E = \hbar \omega$.
+
+\subsubsection{Photoelectric effect}%
+\label{subsub:photoelectric_effect}\index{photoelectric effect}
+
+The photoelectric effect is a result of an experimental phenomena, where light hitting a metal surface caused electrons to emit from the surface.
+
+This experiment took place as the intensity $I$ and angular frequency $\omega$ of the incident light changed.
+
+The classical expectation is as follows:
+\begin{enumerate}[(i)]
+	\item Since the energy of the incident light is proportional to $I$, as $I$ increases, there will be enough energy to break the bonds of the electrons with the atoms.
+	\item The emission rate should be constant as $I$ increases.
+\end{enumerate}
+
+The experiment drew a number of surprising facts:
+\begin{enumerate}[1.]
+	\item Below $\omega_{min}$, there was not electron emission.
+	\item The maximum energy of the electrons depended on $\omega$ and not $I$.
+	\item The emission rate increased as $I$ increased.
+\end{enumerate}
+
+In 1905, Einstein developed Planck's idea to explain this phenomena.
+\begin{itemize}
+	\item Light was quantized in small quanta, called photons.
+	\item Each photon carries $E = \hbar \omega$, $p = \hbar k$.
+	\item The phenomenon of electron emission comes from scattering of a single photon off of a single electron.
+\end{itemize}
+
+Then for the electron to leave, we must have
+\[
+E_{min} = 0  = \hbar \omega_{min} - \phi
+,\]
+where $\phi$ is the binding energy of the electron with the metal atoms. Then moreover,
+\[
+E_{max} = \hbar \omega_{max} - \phi
+.\]
+Finally, as $I$ increases, there is a greater number of photons, so this leads to a higher electron emission rate.
+
+\subsubsection{Compton scattering}%
+\label{subsub:compton_scattering}\index{Compton scattering}
+
+In 1923, Compton studied X-rays scattering off free electrons. Here, the binding energy of the electrons was much smaller than the incoming energy, so the electrons were essentially free.
+
+The expectation was that, given an X-ray of frequency $\omega$, the resulting frequency $\omega'$ after the impact would follow a Gaussian centred at $\omega$. This could be done by analysing the intensity of the outgoing light.
+
+The result was a very narrow Gaussian centred around $\omega$, but there also was another peak at another frequency $\varphi$.
+
+In fact, we can find that the angle of the outgoing X-ray via
+\[
+2 \sin^2 \frac{\theta}{2} = \frac{mc}{|q|} - \frac{mc}{|p|}
+,\]
+where $p, q$ are the momenta of the ingoing and outgoing photons. Then, since $p = \hbar k$ and $q = \hbar k'$, we get
+\[
+	|p| = \hbar k = \hbar \frac{\omega}{c}, \quad |q| = \hbar \frac{\omega'}{c}, \quad \frac{1}{\omega'} = \frac{1}{\omega} + \frac{\hbar}{mc}(1 - \cos \theta)
+.\]
+
+\subsection{Atomic Spectra}%
+\label{sub:atomic_spectra}
+
+In 1897, Thompson formulated the plum-pudding model, where the atom has uniformly distributed charge.
+
+In 1909, Rutherford conducted the gold foil experiment, showing the majority of the atom was vacuum. This resulted in the Rutherford model. However, this did not work because:
+\begin{enumerate}[(i)]
+	\item If the electron moves on a circular orbit, it would radiate.
+	\item The electrons would collapse on the nucleus due to the Coulomb force.
+	\item The model did not explain the measured spectra.
+\end{enumerate}
+
+In 1913, Bohr explained these problems by assuming the electron orbits around the nucleus are quantized so that the orbital angular momentum $L$ takes discrete values
+\[
+L_n = n \hbar
+.\]
+\begin{proposition}
+	If $L$ is quantized, then $r, v, E$ are quantized.
+\end{proposition}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} Since $L = m_e v r$, this implies
+\[
+v = \frac{L}{m_0 r} \implies v_n = n \frac{\hbar}{m_e r}
+.\]
+The Coulomb Force shows
+\[
+	F = \frac{e^2}{4 \pi \epsilon_0} \frac{1}{r^2} = m_e \frac{v^2}{r}
+.\]
+This gives
+\[
+	r = r_n = n^2 \left( \frac{4 \pi \epsilon_0}{m_e e^2}\hbar ^2 \right) = n^2 a_0
+,\]
+where $a_0$ is the Bohr radius.
+\end{adjustbox}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+As a result of the quantization of the radius and velocity, the energy is also quantized. The energy is
+\[
+E_n = \frac{1}{2} m_e v_n^2 - \frac{e^2}{4 \pi \varepsilon_0} \frac{1}{r_n} = - \frac{e^2}{8 \pi \varepsilon_0 a_0} \frac{1}{n^2} = - \frac{e^{4} m_e}{32 \pi^2 \varepsilon_0^2 \hbar^2} \frac{1}{n^2} = \frac{E_1}{n^2}
+.\]
+Here $E_1$ is the lowest possible energy state, or ground state, of the Bohr atom.
+
+\end{adjustbox}
+
+
+The energy emitted by transition from the $m$-th to the $n$-th orbital is $E_{mn} = E_m - E_n$. Using $E_{mn} = \hbar \omega_{mn}$, we get
+\[
+	\omega_{mn} = 2 \pi c R_0 \left( \frac{1}{n^2} - \frac{1}{m^2} \right)
+,\]
+where $R_0$ agrees with the Rydberg constant.
+
+\subsection{Wave-like Behaviour of Particles}%
+\label{sub:wave_like_behaviour_of_particles}
+
+In 1923, De Broglie hypothesised that any particles of any mass can be associated with a wave having
+\[
+\omega = \frac{E}{\hbar}, \quad k = \frac{p}{\hbar}
+.\]
+In 1927, Davisson and Germer scattered electrons off of crystals. The interference pattern was consistent with the De Broglie hypothesis.
 
 
 \newpage

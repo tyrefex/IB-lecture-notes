@@ -340,6 +340,105 @@ Equivalently, $f_n \to f$ uniformly if for sufficiently large $n$, $f_n - f$ is 
 	as $n \to \infty$ since $f_n \to f$ uniformly.
 \end{adjustbox}
 
+Unfortunately, uniform convergence cannot preserve all properties.
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	Take $f_n : [-1, 1] \to \mathbb{R}$, where each $f_n$ is differentiable and $f_n \to f$ uniformly, but $f$ is not differentiable. Take
+	\[
+		f_n = \sqrt{\left( \frac{1}{n} + x^2 \right)}
+	.\]
+	Then $f_n$ is differentiable, and also uniformly converges to $f(x) = |x|$. But $f$ is not differentiable.
+\end{example}
+
+\end{adjustbox}
+
+In fact, we need uniform convergence of the \textbf{derivatives}.
+
+\begin{theorem}
+	Let $f_n : (u, v) \mapsto \mathbb{R}$ with $f_n \to f : (u, v) \to \mathbb{R}$ pointwise. Suppose further that each $f_n$ is continuously differentiable and that $f_n' \to g : (u, v) \to \mathbb{R}$ uniformly. Then $f$ is differentiable with $f' = g$.
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} Fix $a \in (u, v)$. Let $x \in (u, v)$. By FTC, we have each $f_n'$ is integrable over $[a, x]$ and
+	\[
+		\int_{a}^{x}f_n' = f_n(x) - f_n(a)
+	.\]
+	But $f_n' \to g$ uniformly, so by theorem 5, $g$ is integrable over $[a, x]$ and
+	\[
+		\int_{a}^{x}g = \lim_{n \to \infty} \int_{a}^{x} f_n' (x) = f(x) - f(a)
+	.\]
+	So we have shown that for all $x \in (u, v)$,
+	\[
+		f(x) = f(a) + \int_{a}^{x} g
+	.\]
+	By theorem 4, $g$ is continuous so by FTC, $f$ is differentiable with $f' = g$.
+\end{adjustbox}
+
+\begin{remark}
+	It would have sufficed to assume that $f_n(x) \to f(x)$ for a single value of $x$.
+\end{remark}
+
+\begin{definition}\index{uniformly Cauchy}
+	Let $X \subset \mathbb{R}$ and let $f_n : X \to \mathbb{R}$ for each $n \geq 1$. We say $(f_n)$ is \textbf{uniformly Cauchy} if for all $\varepsilon > 0$, there exists $N$ such that for all $m, n \geq N$ and for all $x \in X$,
+	\[
+		|f_m(x) - f_n(x)| < \varepsilon
+	.\]
+\end{definition}
+It is easy to show that a uniformly convergent sequence is uniformly Cauchy.
+
+\begin{theorem}[General Principle of Uniform Convergence]\index{general principle of uniform convergence}
+	Let $(f_n)$ be a uniformly Cauchy sequence of functions $X \to \mathbb{R}$. Then $(f_n)$ is uniformly convergent.
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} Let $x \in X$, and $\varepsilon > 0$. Then there exists $N$, such that for all $m, n \geq N$ and for all $y \in X$, $|f_m(y) - f_n(y)| < \varepsilon$. In particular, $|f_m(x) - f_n(x)| < \varepsilon$, so $(f_n(x))$ is a Cauchy sequence in $\mathbb{R}$, so by GPC, it converges pointwise, say $f_n(x) \to f(x)$ as $n \to \infty$.
+
+	Let $\varepsilon > 0$. Then we can find an $N$ such that for all $m, n \geq N$ and all $y \in X$, $|f_m(y) - f_n(y)| < \varepsilon$. Fixing $y, m$ and letting $n \to \infty$, $|f_m(y) - f(y)| \leq \varepsilon$. But since $y$ is arbitrary, this shows $f_n \to f$ uniformly.
+\end{adjustbox}
+
+We will also try to take Bolzano-Weierstrass over to the space of functions.
+
+\begin{definition}
+	Let $X \subset \mathbb{R}$ and let $f_n : X \to \mathbb{R}$ for each $n \geq 1$. We say $(f_n)$ is \textbf{pointwise bounded}\index{pointwise bounded} if for all $x$, there exists $M$ such that for all $n$, $|f_n(x)| \leq M$.
+
+	We say $(f_n)$ is \textbf{uniformly bounded}\index{uniformly bounded} if there exists $M$, such that for all $x$ and $n$, $|f_n(x)| \leq M$.
+\end{definition}
+
+We would like a uniform Bolzano-Weierstrass, saying if $(f_n)$ is a uniformly bounded sequence of functions, then it has a uniformly convergent subsequence. But this is not true.
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	Take $f_n : \mathbb{R} \to \mathbb{R}$, 
+	\[
+		f_n(x) =
+		\begin{cases}
+			1 & x = n,\\
+			0 & x \neq n
+		\end{cases}
+	.\]
+	Then $(f_n)$ is uniformly bounded, but if $m \neq n$, then $f_m(m) = 1$ and $f_n(m) = 0$, so $|f_m(m) - f_n(m)| = 1$, hence $(f_n)$ are not uniformly Cauchy, so cannot be uniformly convergent.
+\end{example}
+
+\end{adjustbox}
+
+We look at previous proofs we have done. Recall that if $\sum a_n x^{n}$ is a real power of series with radius of convergence $R > 0$, then we can differentiate and integrate it term-by-term within $(-R, R)$.
+
+\begin{definition}
+	Let $f_n : X \to \mathbb{R}$ for each $n \geq 0$. We say that the series
+	\[
+	\sum_{n = 0}^{\infty}f_n
+	\]
+	\textbf{converges uniformly} if the sequence of partial sums $(F_n)$ does, where $F_n = f_0 + f_1 + \cdots + f_n$.
+\end{definition}
+
+If we can prove that $\sum a_n x^{n}$ is uniformly convergent, then we can apply earlier theorems to show differentiability. However this is not quite true, for example take
+\[
+\sum_{n = 0}^{\infty} x^{n}
+.\]
+
+However, we do have another approach. We can show that if $0 < r < R$, then we do have uniform convergence on $(-r, r)$, and then given $x \in (-R, R)$, we can choose $|x| < r < R$ and use the above to show all the properties we want. This is known as the \textbf{local uniform convergence of power series}.\index{local uniform convergence of power series}
+
 \newpage
 
 \printindex
