@@ -1,0 +1,5 @@
+\contentsline {section}{\numberline {1}Vector Spaces and Subspaces}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Subspaces and Quotients}{4}{subsection.1.1}%
+\contentsline {section}{\numberline {2}Spans, Linear Independence and the Steinitz Exchange Lemma}{5}{section.2}%
+\contentsline {section}{\numberline {3}Basis, Dimension and Direct Sums}{9}{section.3}%
+\contentsline {section}{Index}{12}{section*.2}%

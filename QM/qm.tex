@@ -41,11 +41,10 @@
 	\def\svgwidth{\columnwidth}
 	\import{./figures/}{#1.pdf_tex}
 }
+\newcommand{\diff}{\mathop{}\!\mathrm{d}}
+\newcommand{\Diff}[1]{\mathop{}\!\mathrm{d}^{#1}}
 
 \setlength\parindent{0pt}
-
-\newcommand{\course}{QM }
-\newcommand{\lecnum}{}
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{corollary}{Corollary}[section]
@@ -181,7 +180,7 @@ This diverges as $\omega \to \infty$. Planck's model stated
 \[
 	I(\omega) \propto \frac{\omega^2}{\pi^2 c^3} \frac{\hbar \omega}{\exp(\hbar \omega / k_B T) - 1}
 .\]
-Here $\hbar = h/2\pi$ is the reduced Planck constant, with $h \approx 6.6 \cdot 10^{-34} \text{Joule} \times \text{sec}$. This only makes sense if $E = \hbar \omega$.
+Here $\hbar = h/2\pi$ is the reduced Planck constant\index{Planck constant}, with $h \approx 6.6 \cdot 10^{-34} \text{Joule} \times \text{sec}$. This only makes sense if $E = \hbar \omega$.
 
 \subsubsection{Photoelectric effect}%
 \label{subsub:photoelectric_effect}\index{photoelectric effect}
@@ -239,7 +238,7 @@ where $p, q$ are the momenta of the ingoing and outgoing photons. Then, since $p
 .\]
 
 \subsection{Atomic Spectra}%
-\label{sub:atomic_spectra}
+\label{sub:atomic_spectra}\index{atomic spectra}
 
 In 1897, Thompson formulated the plum-pudding model, where the atom has uniformly distributed charge.
 
@@ -271,7 +270,7 @@ This gives
 \[
 	r = r_n = n^2 \left( \frac{4 \pi \epsilon_0}{m_e e^2}\hbar ^2 \right) = n^2 a_0
 ,\]
-where $a_0$ is the Bohr radius.
+where $a_0$ is the Bohr radius\index{Bohr radius}.
 \end{adjustbox}
 
 \begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
@@ -298,6 +297,121 @@ In 1923, De Broglie hypothesised that any particles of any mass can be associate
 \omega = \frac{E}{\hbar}, \quad k = \frac{p}{\hbar}
 .\]
 In 1927, Davisson and Germer scattered electrons off of crystals. The interference pattern was consistent with the De Broglie hypothesis.
+
+\newpage
+
+\section{Foundation of Quantum Mechanics}%
+\label{sec:foundation_of_quantum_mechanics}
+
+Quantum mechanics is founded in linear algebra:
+
+\begin{itemize}
+	\item The vector $\mathbf{v}$ in LA becomes the state $\psi$ in QM.
+	\item The bases $\{e_i\}$ in LA becomes the bases $\mathbf{x}$ in QM.
+	\item The coordinate representation
+		\[
+		\mathbf{v} \to
+		\begin{pmatrix}
+			v_1 \\
+			\vdots \\
+			v_n
+		\end{pmatrix}
+		\]
+		becomes the wavefunction $\psi(\mathbf{x}, t)$.
+	\item The vector space $V$ becomes the wavefunction space $L^2(\mathbb{R}^3)$.
+	\item The inner product $\langle -, - \rangle$ becomes the inner product
+		\[
+			(\psi, \phi) = \int_{\mathbb{R}^3} \psi^{\ast}(\mathbf{x}, t) \phi(\mathbf{x}, t)\Diff3 x
+		.\]
+	\item The linear map $V \to V$ represented by a matrix $T$ becomes the linear maps between $L^2(\mathbb{R}^3) \to L^2(\mathbb{R}^3)$, given by operators $\hat O$.
+\end{itemize}
+
+\subsection{Wavefunctions and Probabilistic Interpretation}%
+\label{sub:wavefunctions_and_probabilistic_interpretation}\index{wavefunction}
+
+In classical mechanics, the dynamics of a particle is determined by $\mathbf{x}$ and $\mathbf{\dot x}$. In quantum mechanics, we have a similar idea.
+
+\begin{definition}
+	$\psi$ is the state\index{quantum state} of the particle.
+\end{definition}
+
+\begin{definition}
+	$\psi(\mathbf{x}, t) : \mathbb{R}^3 \to \mathbb{C}$ is a complex-valued function satisfying mathematical properties dictated by physical interpretation.
+\end{definition}
+
+\begin{proposition}[Born's rule]\index{Born's rule}
+	The probability density for a particle to sit at $\mathbf{x}$ at given time $t$ is $\rho(\mathbf{x}, t) \propto |\psi(\mathbf{x}, t)|^2$. Then, $\rho(\mathbf{x}, t)\diff V$ is the probability that the volume sits in a small volume centred around $\mathbf{x}$, which is proportional to the squared modulus of $\psi(\mathbf{x}, t)$.
+\end{proposition}
+
+\begin{enumerate}[(i)]
+	\item Because the particle has to be somewhere, the wavefunction has to be normalisable (or square-integrable\index{square-integrable function}\index{normalisable function}) in $\mathbb{R}^3$, so
+		\[
+			\int_{\mathbb{R}^3} \psi^{\ast}(\mathbf{x}, t) \psi(\mathbf{x}, t)\Diff3 x = \int_{\mathbb{R}^3} |\psi(\mathbf{x}, t)|^2\Diff3 x = \mathcal{N} < \infty
+		,\]
+		with $\mathcal{N} \in \mathbb{R}$ and $\mathcal{N} \neq 0$.
+	\item Because the total probability has to be 1, we consider the normalised wavefunction\index{normalised wavefunction}
+		\[
+			\bar \psi(\mathbf{x}, t) = \frac{1}{\sqrt{\mathcal{N}}} \psi(\mathbf{x}, t)
+		.\]
+		Then we have
+		\[
+			\int_{\mathbb{R}^3}|\bar \psi (\mathbf{x}, t)|^2\Diff3 x = 1
+		,\]
+		so $\rho(\mathbf{x}, t) = |\bar \psi(\mathbf{x}, t)|^2$. We often write wavefunctions as $\psi$, and then normalise at the end.
+	\item If $\tilde \psi (\mathbf{x}, t) = e^{i\alpha} \psi (\mathbf{x}, t)$ with $\alpha \in \mathbb{R}$, then $|\tilde \psi(\mathbf{x}, t)|^2 = |\psi(\mathbf{x}, t)|^2$, so $\psi$ and $\tilde \psi$ are equivalent states.
+\end{enumerate}
+
+The state $\psi$ corresponds to rays in the vector space, which are equivalence classes of wavefunctions under the equivalence relation $\psi_1 \sim \psi_2 \iff \psi_1 = e^{i \alpha}\psi_2$.
+
+\subsection{Hilbert Space}%
+\label{sub:hilbert_space}\index{Hilbert space}
+
+\begin{definition}
+	The set of all square-integrable functions in $\mathbb{R}^3$ is called a Hilbert space $\mathcal{H}$ or $L^2(\mathbb{R}^3)$.
+\end{definition}
+
+\begin{theorem}
+	If $\psi_1(\mathbf{x}, t), \psi_2(\mathbf{x}, t) \in \mathcal{H}$, then $\psi(\mathbf{x}, t) = \alpha_1 \psi_1(\mathbf{x}, t) + \alpha_2 \psi_2(\mathbf{x}, t) \in \mathcal{H}$.
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} Since $\psi_1, \psi_2 \in \mathcal{H}$, we can say
+\[
+	\int_{\mathbb{R}^3} |\psi_1(\mathbf{x}, t)|^2\Diff3 x = \mathcal{N}_1, \quad \int_{\mathbb{R}^3} |\psi_2 (\mathbf{x}, t)|^2\Diff3 x = \mathcal{N}_2
+.\]
+Note the triangle inequality: if $z_1, z_2 \in \mathbb{C}$, then $|z_1 + z_2| < |z_1| + |z_2|$. Let $z_1 = \alpha_1 \psi_1(\mathbf{x}, t)$, $z_2 = \alpha_2 \psi_2 (\mathbf{x}, t)$. Then
+\begin{align*}
+	\int_{\mathbb{R}^3}|\psi(\mathbf{x}, t)|^2\Diff3 x &= \int_{\mathbb{R}^3} |\alpha_1 \psi_1(\mathbf{x}, t) + \alpha_2 \psi_2(\mathbf{x}, t)|^2\Diff3 x \\
+							   &\leq \int_{\mathbb{R}^3} (|\alpha_1 \psi_1(\mathbf{x}, t)| + |\alpha_2 \psi_2(\mathbf{x}, t)|)^2\Diff3 x \\
+							   &= \int_{\mathbb{R}^3}(|\alpha_1 \psi_1(\mathbf{x}, t)|^2 + |\alpha_2 \psi_2(\mathbf{x}, t)|^2 + 2|\alpha_1 \psi_1||\alpha_2\psi_2|)\Diff3 x \\
+							   &\leq \int_{\mathbb{R}^3} 2|\alpha_1 \psi_1(\mathbf{x}, t)|^2 + 2|\alpha_2 \psi_2(\mathbf{x}, t)|^2\Diff3 x \\
+							   &= 2|a_1|^2\mathcal{N}_1 + 2|a_2|^2\mathcal{N}_2 < \infty.
+\end{align*}
+\end{adjustbox}
+
+\subsection{Inner Product}%
+\label{sub:inner_product}
+
+\begin{definition}
+	Define the inner product\index{inner product} in $\mathcal{H}$ as
+	\[
+		(\psi, \phi) = \int_{\mathbb{R}^3} \psi^{\ast}(\mathbf{x}, t) \phi(\mathbf{x}, t)\Diff3 x
+	.\]
+\end{definition}
+
+\begin{theorem}
+	If $\psi, \phi \in \mathcal{H}$, then the inner product exists.
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} Let the square integrals of $\psi$ and $\phi$ be $\mathcal{N}_1$ and $\mathcal{N}_2$, respectively. Then, we use the Schwarz inequality as follows:
+\begin{align*}
+	|(\psi, \phi)| &= \left| \int_{\mathbb{R}^3} \psi^{\ast}(\mathbf{x}, t) \phi(\mathbf{x}, t) \Diff3 x \right| \\
+		       &\leq \sqrt{\int_{\mathbb{R}^3} |\psi(\mathbf{x}, t)|^2\Diff3 x \cdot \int_{\mathbb{R}^3}|\phi(\mathbf{x}, t)|^2\Diff3 x} \\
+		       &= \sqrt{\mathcal{N}_1\mathcal{N}_2} < \infty.
+\end{align*}
+\end{adjustbox}
+
 
 
 \newpage

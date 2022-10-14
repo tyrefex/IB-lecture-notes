@@ -1,0 +1,5 @@
+\contentsline {section}{\numberline {0}Introduction}{2}{section.0}%
+\contentsline {subsection}{\numberline {0.1}History}{2}{subsection.0.1}%
+\contentsline {subsection}{\numberline {0.2}PageRank Algorithm}{2}{subsection.0.2}%
+\contentsline {section}{\numberline {1}Formal Setup}{3}{section.1}%
+\contentsline {section}{Index}{7}{section*.2}%

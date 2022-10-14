@@ -1,0 +1,73 @@
+\indexentry{objective function|hyperpage}{3}
+\indexentry{decision variables|hyperpage}{3}
+\indexentry{regional constraints|hyperpage}{3}
+\indexentry{functional constraints|hyperpage}{3}
+\indexentry{feasible set|hyperpage}{3}
+\indexentry{feasible|hyperpage}{3}
+\indexentry{optimal solution|hyperpage}{3}
+\indexentry{slack variable|hyperpage}{3}
+\indexentry{gradient descent|hyperpage}{3}
+\indexentry{convex|hyperpage}{4}
+\indexentry{strictly convex|hyperpage}{4}
+\indexentry{strongly convex|hyperpage}{4}
+\indexentry{concave|hyperpage}{4}
+\indexentry{strictly concave|hyperpage}{4}
+\indexentry{strongly concave|hyperpage}{4}
+\indexentry{epigraph|hyperpage}{4}
+\indexentry{supporting hyperplane theorem|hyperpage}{4}
+\indexentry{non-negative definite|hyperpage}{7}
+\indexentry{Hessian|hyperpage}{7}
+\indexentry{learning rate|hyperpage}{8}
+\indexentry{$\beta$-smooth|hyperpage}{8}
+\indexentry{condition number|hyperpage}{9}
+\indexentry{Newton's method|hyperpage}{10}
+\indexentry{machine learning|hyperpage}{10}
+\indexentry{neural network|hyperpage}{10}
+\indexentry{weights|hyperpage}{11}
+\indexentry{bias|hyperpage}{11}
+\indexentry{cost|hyperpage}{11}
+\indexentry{Lagrangian|hyperpage}{12}
+\indexentry{Lagrangian sufficiency theorem|hyperpage}{12}
+\indexentry{LST|hyperpage}{12}
+\indexentry{complementary slackness|hyperpage}{15}
+\indexentry{value function|hyperpage}{15}
+\indexentry{large deviations|hyperpage}{15}
+\indexentry{Lagrangian necessity|hyperpage}{17}
+\indexentry{shadow prices|hyperpage}{18}
+\indexentry{weak duality theorem|hyperpage}{19}
+\indexentry{Lagrangian dual problem|hyperpage}{19}
+\indexentry{primal problem|hyperpage}{19}
+\indexentry{strong duality|hyperpage}{19}
+\indexentry{shorfall|hyperpage}{19}
+\indexentry{surplus|hyperpage}{19}
+\indexentry{barrier methods|hyperpage}{20}
+\indexentry{linear programming problem|hyperpage}{21}
+\indexentry{extreme point|hyperpage}{21}
+\indexentry{fundamental theorem of linear programming|hyperpage}{21}
+\indexentry{support|hyperpage}{22}
+\indexentry{basic solution|hyperpage}{22}
+\indexentry{basis|hyperpage}{22}
+\indexentry{non-degenerate solution|hyperpage}{22}
+\indexentry{simplex method|hyperpage}{23}
+\indexentry{simplex algorithm|hyperpage}{23}
+\indexentry{simplex method|hyperpage}{25}
+\indexentry{simplex algorithm|hyperpage}{25}
+\indexentry{pivot column|hyperpage}{25}
+\indexentry{pivot row|hyperpage}{25}
+\indexentry{pivot|hyperpage}{25}
+\indexentry{dual linear problem|hyperpage}{27}
+\indexentry{weak duality theorem for LP|hyperpage}{27}
+\indexentry{zero-sum|hyperpage}{31}
+\indexentry{payoff matrix|hyperpage}{31}
+\indexentry{saddle point|hyperpage}{31}
+\indexentry{Morra|hyperpage}{32}
+\indexentry{value of a game|hyperpage}{33}
+\indexentry{network|hyperpage}{35}
+\indexentry{cut|hyperpage}{35}
+\indexentry{capacity|hyperpage}{35}
+\indexentry{Ford-Fulkerson algorithm|hyperpage}{36}
+\indexentry{Hall's theorem|hyperpage}{37}
+\indexentry{minimum cost circulation|hyperpage}{38}
+\indexentry{tension|hyperpage}{38}
+\indexentry{transportation problem|hyperpage}{38}
+\indexentry{transportation algorithm|hyperpage}{40}

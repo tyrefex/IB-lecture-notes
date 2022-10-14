@@ -1,0 +1,129 @@
+\begin{theindex}
+
+  \item $\beta$-smooth, \hyperpage{8}
+
+  \indexspace
+
+  \item barrier methods, \hyperpage{20}
+  \item basic solution, \hyperpage{22}
+  \item basis, \hyperpage{22}
+  \item bias, \hyperpage{11}
+
+  \indexspace
+
+  \item capacity, \hyperpage{35}
+  \item complementary slackness, \hyperpage{15}
+  \item concave, \hyperpage{4}
+  \item condition number, \hyperpage{9}
+  \item convex, \hyperpage{4}
+  \item cost, \hyperpage{11}
+  \item cut, \hyperpage{35}
+
+  \indexspace
+
+  \item decision variables, \hyperpage{3}
+  \item dual linear problem, \hyperpage{27}
+
+  \indexspace
+
+  \item epigraph, \hyperpage{4}
+  \item extreme point, \hyperpage{21}
+
+  \indexspace
+
+  \item feasible, \hyperpage{3}
+  \item feasible set, \hyperpage{3}
+  \item Ford-Fulkerson algorithm, \hyperpage{36}
+  \item functional constraints, \hyperpage{3}
+  \item fundamental theorem of linear programming, \hyperpage{21}
+
+  \indexspace
+
+  \item gradient descent, \hyperpage{3}
+
+  \indexspace
+
+  \item Hall's theorem, \hyperpage{37}
+  \item Hessian, \hyperpage{7}
+
+  \indexspace
+
+  \item Lagrangian, \hyperpage{12}
+  \item Lagrangian dual problem, \hyperpage{19}
+  \item Lagrangian necessity, \hyperpage{17}
+  \item Lagrangian sufficiency theorem, \hyperpage{12}
+  \item large deviations, \hyperpage{15}
+  \item learning rate, \hyperpage{8}
+  \item linear programming problem, \hyperpage{21}
+  \item LST, \hyperpage{12}
+
+  \indexspace
+
+  \item machine learning, \hyperpage{10}
+  \item minimum cost circulation, \hyperpage{38}
+  \item Morra, \hyperpage{32}
+
+  \indexspace
+
+  \item network, \hyperpage{35}
+  \item neural network, \hyperpage{10}
+  \item Newton's method, \hyperpage{10}
+  \item non-degenerate solution, \hyperpage{22}
+  \item non-negative definite, \hyperpage{7}
+
+  \indexspace
+
+  \item objective function, \hyperpage{3}
+  \item optimal solution, \hyperpage{3}
+
+  \indexspace
+
+  \item payoff matrix, \hyperpage{31}
+  \item pivot, \hyperpage{25}
+  \item pivot column, \hyperpage{25}
+  \item pivot row, \hyperpage{25}
+  \item primal problem, \hyperpage{19}
+
+  \indexspace
+
+  \item regional constraints, \hyperpage{3}
+
+  \indexspace
+
+  \item saddle point, \hyperpage{31}
+  \item shadow prices, \hyperpage{18}
+  \item shorfall, \hyperpage{19}
+  \item simplex algorithm, \hyperpage{23}, \hyperpage{25}
+  \item simplex method, \hyperpage{23}, \hyperpage{25}
+  \item slack variable, \hyperpage{3}
+  \item strictly concave, \hyperpage{4}
+  \item strictly convex, \hyperpage{4}
+  \item strong duality, \hyperpage{19}
+  \item strongly concave, \hyperpage{4}
+  \item strongly convex, \hyperpage{4}
+  \item support, \hyperpage{22}
+  \item supporting hyperplane theorem, \hyperpage{4}
+  \item surplus, \hyperpage{19}
+
+  \indexspace
+
+  \item tension, \hyperpage{38}
+  \item transportation algorithm, \hyperpage{40}
+  \item transportation problem, \hyperpage{38}
+
+  \indexspace
+
+  \item value function, \hyperpage{15}
+  \item value of a game, \hyperpage{33}
+
+  \indexspace
+
+  \item weak duality theorem, \hyperpage{19}
+  \item weak duality theorem for LP, \hyperpage{27}
+  \item weights, \hyperpage{11}
+
+  \indexspace
+
+  \item zero-sum, \hyperpage{31}
+
+\end{theindex}

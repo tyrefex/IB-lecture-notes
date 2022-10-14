@@ -185,6 +185,7 @@ We know how to
 
 \begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
 	\begin{enumerate}[(i)]
+		\setcounter{enumi}{1}
 		\item For any set $X$, take
 			\[
 				\mathbb{R}^{X} = \{f : X \to \mathbb{R}\}
@@ -425,14 +426,158 @@ By convention, we let $\langle \emptyset \rangle = \{0\}$.
 	By iterating, we must eventually get to an independent set.
 \end{adjustbox}
 
-\begin{theorem}[Steinitz Exchange Lemma]
+\begin{theorem}[Steinitz Exchange Lemma]\index{Steinitz exchange lemma}
 	Let $V$ be a finite dimensional vector space over $F$. Take
-	\begin{enumerate}[(i)]
+	\begin{enumerate}[\normalfont(i)]
 		\item $(v_1, \ldots, v_m)$ free,
 		\item $(w_1, \ldots, w_n)$ generating.
 	\end{enumerate}
 	Then $m \leq n$, and up to reordering, $(v_1, \ldots, v_m, w_{m+1}, \ldots, w_n)$ spans $V$.
 \end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} Induction. Suppose that we have replaced $l$ of the $w_i$, reordering if necessary, so
+\[
+	\langle v_1, \ldots, v_{l}, w_{l+1}, \ldots, w_n \rangle = V
+.\]
+If $m = l$, we are done. Otherwise, $l < m$. Then since these vectors span $V$, we have
+
+ 
+\end{adjustbox}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\[
+v_{l+1} = \sum_{i \leq l}a_i v_i + \sum_{i > l}\beta_i w_i
+.\]
+	Since $(v_1, \ldots, v_{l+1})$ is free, some of the $\beta_i$ are non-zero. Upon reordering, we may let $\beta_{l+1} \neq 0$. Then,
+\[
+	w_{l+1} = \frac{1}{\beta_{l+1}} \left[ v_{l+1} - \sum_{i \leq l}\alpha_i v_i - \sum_{i > l+1} \beta_i w_i \right]
+.\]
+Hence, $V = \langle v_1, \ldots, v_l, w_{l+1}, \ldots, w_n \rangle = \langle v_1, \ldots, v_l, v_{l+1}, w_{l+1}, \ldots, w_n \rangle = \langle v_1, \ldots, v_{l+1}, w_{l+2}, \ldots, w_n \rangle$. Iterating this process, we eventually get $l = m$, which then proves $m \leq n$.
+\end{adjustbox}
+
+\newpage
+
+\section{Basis, Dimension and Direct Sums}%
+\label{sec:basis_dimension_and_direct_sums}
+
+\begin{corollary}
+	Let $V$ be a finite dimensional vector space over $F$. Then any two bases of $V$ have the same number of vectors, called the \textbf{dimension}\index{dimension} of $V$.
+\end{corollary}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} take $(v_1, \ldots, v_n), (w_1, \ldots, w_m)$ bases of $V$.
+	\begin{enumerate}[(i)]
+		\item As $(v_i)$ is free and $(w_i)$ is generating, $n \leq m$.
+		\item As $(w_i)$ is free and $(v_i)$ is generating, $m \leq n.$
+	\end{enumerate}
+	So $m = n$.
+\end{adjustbox}
+
+\begin{corollary}
+	Let $V$ be a vector space over $F$ with dimension $n \in \mathbb{N}$.
+	\begin{enumerate}[\normalfont(i)]
+		\item Any set of independent vectors has at most $n$ elements, with equality if and only if it is a basis.
+		\item Any spanning set of vectors has at least $n$ elements, with equality if and only if it is a basis.
+	\end{enumerate}
+	
+\end{corollary}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} Exercise (fill this in).
+\end{adjustbox}
+
+\begin{proposition}
+	Let $U, W$ be finite dimensional subspaces of $V$. If $U$ and $W$ are finite dimensional, then so is $U + W$, and
+	\[
+		\dim (U + W) = \dim U + \dim W - \dim(U \cap W)
+	.\]
+\end{proposition}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} Pick $(v_1, \ldots, v_l)$ a basis of $U \cap W$. Extend to a basis $(v_1, \ldots, v_l, u_1, \ldots, u_m)$ of $U$, and a basis $(v_1, \ldots, v_l, w_1, \ldots, w_n)$ of $W$. Then we show $(v_1, \ldots, v_l, u_1, \ldots, u_m, w_1, \ldots, w_n)$ is a basis of $U + W$.
+
+	It is clearly a generating family, so we will show it is free. Suppose
+	\[
+		\sum_{i = 1}^{l} \alpha_i v_i + \sum_{ = 1}^{m} \beta_i u_i + \sum_{i = 1}^{n} \gamma_i w_i = 0
+	.\]
+	Then we get
+	\[
+	\sum_{i = 1}^{n} \gamma_i w_i \in U \cap W
+	,\]
+	implying that
+	\[
+	\sum_{i = 1}^{l} s_i v_i = \sum_{i = 1}^{n} \gamma_i w_i
+	.\]
+	But since $(v_1, \ldots, w_n)$ is a basis of $W$, we get $\gamma_i = 0$. Similarly, $\beta_i = 0$. Thus,
+	\[
+	\sum_{i = 1}^{l} \alpha_i v_i = 0
+	.\]
+	Since $(v_i)$ is a basis of $U \cap W$, $\alpha_i = 0$.
+\end{adjustbox}
+
+\begin{proposition}
+	Let $V$ be a finite dimensional vector space over $F$. Let $U \leq V$. Then $U$ and $V/U$ are both finite dimensional and
+	\[
+		\dim V = \dim U + \dim(V/U)
+	.\]
+\end{proposition}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} Let $(u_1, \ldots, u_l)$ be a basis of $U$. Extend to a basis $(u_1, \ldots, u_l, w_{l+1}, \ldots, w_{n})$ of $V$. Then we show that $(w_{l+1} + U, \ldots, w_{n} + U)$ is a basis of $V/U$. (Fill this in).
+\end{adjustbox}
+
+\begin{remark}
+	If $U \leq V$, then we say $U$ is proper if $U \neq V$. Then for finite dimensions, $U$ proper\index{proper subspace} implies $\dim U < \dim V$, as $\dim(V/U) > 0$.
+\end{remark}
+
+\begin{definition}[Direct sum]\index{direct sum}
+	Let $V$ be a vector space over $F$, and $U, W \leq V$. We say $V = U \oplus W$ if and only if any element of $v \in V$ can be uniquely decomposed as $v = u + w$ for $u \in U, w \in W$.
+\end{definition}
+
+\begin{remark}
+	If $V = U \oplus W$, we say that $W$ is a complement\index{complement} of $U$ in $V$. There is no uniqueness of such a complement.
+\end{remark}
+
+In the sequel, we use the following notation. Let $\mathcal{B}_1 = \{u_1, \ldots, u_l\}$ and $\mathcal{B}_2 = \{w_1, \ldots, w_m\}$ be collections of vectors. Then
+\[
+	\mathcal{B}_1 \cup \mathcal{B}_2 = \{u_1, \ldots, u_l, w_1, \ldots, w_m\}
+\]
+with the convention that $\{v\} \cup \{v\} = \{v, v\}$.
+
+\begin{lemma}
+	Let $U, W \leq V$. Then the following are equivalent:
+	\begin{enumerate}[\normalfont(i)]
+		\item $V = U \oplus W$;
+		\item $V = U + W$ and $U \cap W = \{0\}$;
+		\item For any basis $\mathcal{B}_1$ of $U$, $\mathcal{B}_2$ of $W$, the union $\mathcal{B} = \mathcal{B}_1 \cup \mathcal{B}_2$ is a basis of $V$.
+	\end{enumerate}
+\end{lemma}
+
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} We show (ii) implies (i). Let $V = U + W$, then clearly $U, W$ generate $V$. We only need to show uniqueness. Suppose $u_1 + w_1 = u_2 + w_2$. Then
+	\[
+		u_1 - u_2 = w_2 - w_1 \in U \cap W = \{0\}
+	.\]
+	Hence $u_1 = u_2$ and $w_1 = w_2$, as required.
+
+	Now we show (i) implies (iii). Let $\mathcal{B}_1$ be a basis of $U$, and $\mathcal{B}_2$ a basis of $W$. Then $\mathcal{B} = \mathcal{B}_1 \cup \mathcal{B}_2$ generates $U + W = V$, and $\mathcal{B}$ is free, as if $\sum \lambda_i v_i = u + w = 0$, then $0 = 0 + 0$ uniquely, so $u = 0, w = 0$, giving $\lambda_i = 0$ for all $i$.
+
+	Finally, we show (iii) implies (ii). Let $\mathcal{B} = \mathcal{B}_1 \cup \mathcal{B}_2$. Then since $\mathcal{B}$ is a basis of $V$,
+	\[
+	v = \sum_{u_i \in \mathcal{B}_1}\lambda_i u_i + \sum_{w_i \in \mathcal{B}_2}\lambda_i w_i = u + w
+	.\]
+	Now if $v \in U \cap W$,
+	\[
+	v = \sum_{u \in \mathcal{B}_1} \lambda_u u = \sum_{w \in \mathcal{B}_2} \lambda_w w
+	.\]
+	This gives
+	\[
+	\sum_{u \in \mathcal{B}_1}\lambda_u u - \sum_{w \in \mathcal{B}_2} \lambda_w w = 0
+	.\]
+	Since $\mathcal{B}_1 \cup \mathcal{B}_2$ is free, we get $\lambda_u = \lambda_w = 0$, so $U \cap W = \{0\}$.
+\end{adjustbox}
 
 
 \newpage

@@ -43,6 +43,8 @@
 	\def\svgwidth{\columnwidth}
 	\import{./figures/}{#1.pdf_tex}
 }
+\newcommand{\diff}{\mathop{}\!\mathrm{d}}
+\newcommand{\Diff}[1]{\mathop{}\!\mathrm{d}^{#1}}
 
 \setlength\parindent{0pt}
 
@@ -146,18 +148,18 @@ which are periodic on the interval $0 \leq x < 2L$. Recall the identities
 
 Define the \textbf{inner product}\index{inner product} for two periodic functions $f, g$ on the interval $[0, 2L)$ 
 \[
-	\langle f, g \rangle = \int_{0}^{2L}f(x) g(x)\, dx
+	\langle f, g \rangle = \int_{0}^{2L}f(x) g(x)\diff x
 .\]
 I claim that the functions $g_n, h_m$ are \textbf{mutually orthogonal}. Indeed,
 \begin{align*}
-	\langle h_n, h_m \rangle &= \int_{0}^{2L} \sin \frac{n \pi x}{L} \sin \frac{m \pi x}{L} \, dx \\
-				 &= \frac{1}{2} \int_{0}^{2L} \left( \cos \frac{(n - m)\pi x}{L} - \cos \frac{(n + m)\pi x}{L}\right) \, dx \\
+	\langle h_n, h_m \rangle &= \int_{0}^{2L} \sin \frac{n \pi x}{L} \sin \frac{m \pi x}{L}\diff x \\
+				 &= \frac{1}{2} \int_{0}^{2L} \left( \cos \frac{(n - m)\pi x}{L} - \cos \frac{(n + m)\pi x}{L}\right)\diff x \\
 				 &= \frac{1}{2} \frac{L}{\pi} \left[ \frac{\sin (n - m) \pi x/L}{n - m} - \frac{\sin (n + m) \pi x/L}{n + m} \right]_{0}^{2L} = 0.
 \end{align*}
 This works for $n \neq m$. For $n = m$,
 \begin{align*}
-	\langle h_n, h_n \rangle &= \int_{0}^{2L} \sin^2 \frac{n \pi x}{L} \, dx \\
-				 &= \frac{1}{2} \int_{0}^{2L} \left( 1 - \cos \frac{2 \pi n x}{L} \right) \, dx \\
+	\langle h_n, h_n \rangle &= \int_{0}^{2L} \sin^2 \frac{n \pi x}{L}\diff x \\
+				 &= \frac{1}{2} \int_{0}^{2L} \left( 1 - \cos \frac{2 \pi n x}{L} \right)\diff x \\
 				 &= L \;\; (n \neq 0).
 \end{align*}
 Hence, we can put these together to get
@@ -195,19 +197,19 @@ where $a_n, b_n$ are constant such that the right hand side is convergent for al
 
 Consider the inner product
 \[
-	\langle h_m(x), f(x) \rangle = \int_{0}^{2L} \sin \frac{m \pi x}{L} f(x) \, dx = L b_m
+	\langle h_m(x), f(x) \rangle = \int_{0}^{2L} \sin \frac{m \pi x}{L} f(x)\diff x = L b_m
 ,\]
 by the orthogonality relations. Hence we find that
 \begin{align*}
-	b_n &= \frac{1}{L} \int_{0}^{2L}f(x) \sin \frac{n \pi x}{L} \, dx, \\
-	a_n &= \frac{1}{L} \int_{0}^{2L}f(x) \cos \frac{n \pi x}{L} \, dx.
+	b_n &= \frac{1}{L} \int_{0}^{2L}f(x) \sin \frac{n \pi x}{L}\diff x, \\
+	a_n &= \frac{1}{L} \int_{0}^{2L}f(x) \cos \frac{n \pi x}{L}\diff x.
 \end{align*}
 \begin{remark}
 	\begin{enumerate}[(i)]
 		\item[]
 		\item $a_n$ includes $n = 0$, since $\frac{1}{2} a_0$ is the \textbf{average}
 			\[
-				\langle f(x) \rangle = \frac{1}{2L} \int_{0}^{2L} f(x) \, dx
+				\langle f(x) \rangle = \frac{1}{2L} \int_{0}^{2L} f(x)\diff x
 			.\]
 		\item The range of integration is over one period, so we may take the integral over $[0, 2L)$ or $[-L, L)$.
 		\item We can think of the Fourier series as a decomposition into harmonics. The simplest Fourier series are the sine and cosine functions.
@@ -219,12 +221,12 @@ by the orthogonality relations. Hence we find that
 \item
 	Consider the function $f(x) = x$ for $-L \leq x < L$, periodic with period $T = 2L$. The cosine coefficients are
 	\[
-	a_n = \frac{1}{L} \int_{-L}^{L} x \cos \frac{n \pi x}{L} \, dx = 0
+	a_n = \frac{1}{L} \int_{-L}^{L} x \cos \frac{n \pi x}{L}\diff x = 0
 	,\]
 	as $x \cos \omega x$ is odd. The sine coefficients are
 	\begin{align*}
-		b_n &= \frac{2}{L} \int_{0}^{L} x \sin \frac{n \pi x}{L} \, dx \\
-		    &= -\frac{2}{n \pi} \left[ x \cos \frac{n \pi x}{L} \right]_{0}^{L} + \frac{2}{n \pi} \int_{0}^{L} \cos \frac{n \pi x}{L} \, dx \\
+		b_n &= \frac{2}{L} \int_{0}^{L} x \sin \frac{n \pi x}{L}\diff x \\
+		    &= -\frac{2}{n \pi} \left[ x \cos \frac{n \pi x}{L} \right]_{0}^{L} + \frac{2}{n \pi} \int_{0}^{L} \cos \frac{n \pi x}{L}\diff x \\
 		    &= - \frac{2L}{n \pi} \cos n \pi + \frac{2L}{(n \pi)^2} \sin n \pi = \frac{2L}{n \pi }(-1)^{n+1}.
 	\end{align*}
 	
@@ -321,7 +323,7 @@ These are sufficiency conditions for a ``well-behaved'' function to have a uniqu
 
 It is always valid to integrate the Fourier series of $f(x)$ term-by-term to obtain
 \[
-	F(x) = \int_{-L}^{x} f(x) \, dx
+	F(x) = \int_{-L}^{x} f(x)\diff x
 ,\]
 because $F(x)$ satisfies the Dirichlet conditions if $f(x)$ does.
 
@@ -351,8 +353,8 @@ But this is unbounded.
 This gives the relation between the integral of the square of a function and the sum of the squares of the Fourier coefficients:
 
 \begin{align*}
-	\int_{0}^{2L}[f(x)]^2\, dx &= \int_{0}^{2L} dx \left[ \frac{1}{2} a_0 + \sum_{n}a_n \cos \frac{n \pi x}{L} + \sum_{n}b_n \sin \frac{n \pi x}{L} \right]^2 \\
-				   &= \int_{0}^{2L} dx \left[ \frac{1}{4} a_0^2 + \sum_{n} a_n^2 \cos^2 \frac{n \pi x}{L} + \sum_{n} b_n^2 \sin^2 \frac{n \pi x}{L} \right]\\
+	\int_{0}^{2L}[f(x)]^2\diff x &= \int_{0}^{2L}\diff x \left[ \frac{1}{2} a_0 + \sum_{n}a_n \cos \frac{n \pi x}{L} + \sum_{n}b_n \sin \frac{n \pi x}{L} \right]^2 \\
+				   &= \int_{0}^{2L}\diff x \left[ \frac{1}{4} a_0^2 + \sum_{n} a_n^2 \cos^2 \frac{n \pi x}{L} + \sum_{n} b_n^2 \sin^2 \frac{n \pi x}{L} \right]\\
 				   &= L \left[ \frac{1}{2} a_0^2 + \sum_{n = 1}^{\infty} (a_n^2 + b_n^2) \right].
 \end{align*}
 
@@ -362,7 +364,7 @@ This is also called the \textbf{completeness relation}\index{completeness relati
 \begin{example}
 	Take the sawtooth wave. We have
 	\[
-	LHS = \int_{-L}^{L} x^2 \, dx = \frac{2}{3}L^3
+	LHS = \int_{-L}^{L} x^2\diff x = \frac{2}{3}L^3
 	,\]
 	\[
 	RHS = L \sum_{n = 1}^{\infty} \frac{4L^2}{n^2 \pi^2} = \frac{4L^3}{\pi ^2}\sum_{n = 1}^{\infty} \frac{1}{n^2}
@@ -378,6 +380,154 @@ Therefore, we obtain
 \sum_{n = 1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}
 .\]
 \end{adjustbox}
+
+\subsection{Alternative Fourier Series}%
+\label{sub:alternative_fourier_series}
+
+\subsubsection{Half-range Series}%
+\label{subsub:half_range_series}\index{half-range series}
+
+Consider $f(x)$ defined only on $0 \leq x < L$. Then we can extend its range over $- L \leq x < L$ in two simple ways:
+\begin{enumerate}[(i)]
+	\item Require it to be odd, so $f(-x) = -f(x)$. Then $a_n = 0$, and
+		\[
+			b_n = \frac{2}{L} \int_{0}^{L} \sin \frac{n \pi x}{L}\diff x
+		.\]
+		This is a Fourier sine series.
+	\item Require it to be even, so $f(-x) = f(x)$. Then $b_n = 0$,
+		\[
+			a_n = \frac{2}{L} \int_{0}^{L}f(x) \cos \frac{n \pi x}{L}\diff x
+		.\]
+		This is a Fourier cosine series.
+\end{enumerate}
+
+\subsubsection{Complex Representation}%
+\label{subsub:complex_representation}
+
+Recall that
+\[
+	\cos \frac{n \pi x}{L} = \frac{1}{2} \left( e^{i n \pi x/L} + e^{-i n \pi x/L}\right), \quad \sin \frac{n \pi x}{L} = \frac{1}{2i} \left(e^{i n \pi x/L} - e^{-i n \pi x/L}\right)
+.\]
+So our Fourier series becomes
+\begin{align*}
+	f(x) &= \frac{1}{2} a_0 + \sum_{n = 1}^{\infty}a_n \cos \frac{n \pi x}{L} + \sum_{n = 1}^{\infty} b_n \sin \frac{n \pi x}{L} \\
+	     &= \frac{1}{2} a_0 + \frac{1}{2} \sum_{n = 1}^{\infty}(a_n - i b_n) e^{i n \pi x/L} + \frac{1}{2} \sum_{n = 1}^{\infty}(a_n + i b_n) e^{-i n \pi x/L} \\
+	     &= \sum_{m = -\infty}^{\infty} c_m e^{i m \pi x/L}.
+\end{align*}
+The coefficients $c_m$ satisfy
+\[
+c_m =
+\begin{cases}
+	\frac{1}{2}(a_{m} - ib_{m}) & m > 0, \\
+	\frac{1}{2} a_0 & m = 0, \\
+	\frac{1}{2}(a_{-m} + i b_{-m}) & m < 0.
+\end{cases}
+\]
+Equivalently,
+\[
+	c_m = \frac{1}{2L}\int_{-L}^{L}f(x) e^{-i m \pi x/L}\diff x
+.\]
+Our inner product in the complex representation is
+\[
+	\langle f, g \rangle = \int f^{\ast}g \diff x
+.\]
+This is orthogonal, as
+\[
+\int_{-L}^{L} e^{-i m \pi x/L}e^{i n \pi x/L} \diff x = 2L \delta_{mn}
+,\]
+and satisfies Parseval's theorem as a result:
+\[
+	\int_{-L}^{L}|f(x)|^2\diff x = 2L \sum_{m = -\infty}^{\infty}|c_m|^2
+.\]
+
+\subsection{Fourier Series Motivations}%
+\label{sub:fourier_series_motivations}
+
+\subsubsection{Self-adjoint matrices}%
+\label{subsub:self_adjoint_matrices}
+
+Suppose $\mathbf{u}, \mathbf{v}$ are complex $N$-vectors with inner product $\langle \mathbf{u}, \mathbf{v} \rangle = \mathbf{u}^{\dagger} \mathbf{v}$. Then matrix $A$ is self-adjoint\index{self-adjoint matrix} (or Hermitian\index{Hermitian matrix}) if
+\[
+	\langle A \mathbf{u}, \mathbf{v} \rangle = \langle \mathbf{u}, A \mathbf{v} \rangle \implies A^{\dagger} = A
+.\]
+The eigenvalues $\lambda_1, \ldots, \lambda_N$ of $A$ satisfy the following properties:
+\begin{enumerate}[(i)]
+	\item The eigenvalues are real: $\lambda_n^{\ast} = \lambda_n$.
+	\item If $\lambda_n \neq \lambda_m$, then their respective eigenvectors are orthogonal: $\langle \mathbf{v}_n, \mathbf{v}_m \rangle = 0$.
+	\item If we rescale our eigenvectors then $\{\mathbf{v}_1, \ldots, \mathbf{v}_N\}$ form an orthonormal basis.
+\end{enumerate}
+
+Given $\mathbf{b}$, we can try to solve for $\mathbf{x}$ in $A \mathbf{x} = \mathbf{b}$. Express 
+\[
+	\mathbf{b} = \sum_{n = 1}^{N} b_n \mathbf{v}_n, \quad \mathbf{x} = \sum_{n = 1}^{N} c_n \mathbf{v}_n
+.\]
+Substituting into the equation,
+\begin{align*}
+	A \mathbf{x} &= \sum_{n = 1}^{N} A c_n \mathbf{v}_n = \sum_{n = 1}^{N} c_n \lambda_n \mathbf{v}_n, \\
+	\mathbf{b} &= \sum_{n = 1}^{N} b_n \mathbf{v}_n.
+\end{align*}
+Equating and using orthogonality,
+\[
+c_n \lambda_n = b_n \implies c_n = \frac{b_n}{\lambda_n}
+.\]
+Hence the solution is
+\[
+\mathbf{x} = \sum_{n = 1}^{N}\frac{b_n}{\lambda_n} \mathbf{v}_n
+.\]
+
+\subsubsection{Solving inhomogeneous ODE with Fourier series}%
+\label{subsub:solving_inhomogeneous_ode_with_fourier_series}
+
+Take the following problem: We wish to find $y(x)$ given $f(x)$ for which
+\[
+	\mathcal{L}(y) = - \frac{\Diff2 y}{\diff x^2} = f(x)
+,\]
+subject to the boundary conditions $y(0) = y(L) = 0$. The related eigenvalue problem is 
+\[
+	\mathcal{L}y_n = \lambda_n y_n, \quad y_n(0) = y_n(L) = 0
+.\]
+This has eigenfunctions and eigenvalues
+\[
+	y_n(x) = \sin \frac{n \pi x}{L}, \quad \lambda_n = \left( \frac{n \pi}{L} \right)^2
+.\]
+Note that $\mathcal{L}$ is a self-adjoint ODE with orthogonal eigenfunctions. Thus we seek solutions as a half-range sine series. We try
+\[
+	y(x) = \sum_{n = 1}^{\infty} c_n \sin \frac{n \pi x}{L},
+\]
+and expand
+\[
+	f(x) = \sum_{n = 1}^{\infty} b_n \sin \frac{n \pi x}{L}
+.\]
+Substituting this in,
+\begin{align*}
+	\mathcal{L}y &= - \frac{\Diff2}{\diff x^2} \left( \sum_{n} c_n \sin \frac{n \pi x}{L} \right) = \sum_{n = 1}^{\infty} c_n \left(\frac{n \pi}{L} \right)^2 \sin \frac{n \pi x}{L} \\
+		     &= \sum_{n = 1}^{\infty} b_n \sin \frac{n \pi x}{L}.
+\end{align*}
+By orthogonality, we have
+\[
+	c_n \left( \frac{n \pi}{L}\right)^2 = b_n \implies c_n = \left( \frac{L}{n \pi} \right)^2
+.\]
+Thus the solution is
+\[
+	y(x) = \sum_{n = 1}^{\infty} \left( \frac{L}{n \pi}\right)^2 b_n \sin \frac{n \pi x}{L} = \sum_{n = 1}^{\infty} \frac{b_n}{\lambda_n} y_n
+.\]
+This is similar to a self-adjoint matrix.
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	Consider the square wave on $L = 1$, as an odd function. This has Fourier series
+	\[
+		f(x) = 4 \sum_{m} \frac{\sin (2m - 1)\ pi x}{(2m - 1)\pi}
+	.\]
+	So the solution should be
+	\[
+		y(x) = \sum \frac{b_n}{\lambda_n} y_n = 4 \sum_{m} \frac{\sin (2m - 1)\pi x}{((2m -1)\pi)^3}
+	.\]
+	This is the Fourier series for $y(x) = x(1-x)/2$.
+\end{example}
+
+\end{adjustbox}
+
 
 
 \newpage

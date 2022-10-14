@@ -1,5 +1,6 @@
 \documentclass[12pt]{article}
 \usepackage{amsmath}
+\usepackage{mathtools}
 \usepackage[a4paper]{geometry}
 \usepackage{fancyhdr}
 \usepackage{tikz}
@@ -56,6 +57,7 @@
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}[section]
 
 \theoremstyle{remark}
 \newtheorem*{remark}{Remark}
@@ -216,11 +218,114 @@ There are several equivalent definitions for Markov chains.
 	\[
 		\mathbb{P}(X_{i_1} = x_1, \ldots, X_{i_k} = i_k) = \prod_{j = 1}^{k} \mathbb{P}(X_{i_j} = x_j)
 	.\]
-	Let $(X_n)_{n \geq 0}$ and $(Y_n)_{n \geq 0}$ be two sequences. We say $X \perp Y$, or $X$ independent to $Y$, if for all $k, m \in \mathbb{N}$, $i_1 < \cdots < i_k$, $j_1 < \cdots < j_m$, $x_1, \ldots, x_k, y_1, \ldots, y_m$,
+	Let $(X_n)_{n \geq 0}$ and $(Y_n)_{n \geq 0}$ be two sequences. We say $X \perp Y$, or $X$ independent to $Y$,\index{independent sequences} if for all $k, m \in \mathbb{N}$, $i_1 < \cdots < i_k$, $j_1 < \cdots < j_m$, $x_1, \ldots, x_k, y_1, \ldots, y_m$,
 	\begin{align*}
 		\mathbb{P}(&X_{i_1} = x_1, \ldots, X_{i_k} = x_k, Y_{j_1} = y_1, \ldots, Y_{j_m} = y_m) \\
 			   &= \mathbb{P}(X_{i_1} = x_1, \ldots, X_{i_k} = x_k) \mathbb{P}(Y_{j_1} = y_1, \ldots, Y_{j_m} = y_m)
 	.\end{align*}
 \end{definition}
+
+\begin{theorem}[Simple Markov Property]\index{simple Markov property}
+	Suppose $X$ is $\Mkv(\lambda, P)$ with values in $I$. Let $m \in \mathbb{N}$ and $i \in I$. Then conditional on $X_m = i$, the process $(X_{m+n})_{n \geq 0}$ is $\Mkv(\delta_i, P)$ and it is independent of $X_0, \ldots, X_m$.
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} Let $x_0, \ldots, x_n \in I$. Then
+\begin{align*}
+	\mathbb{P}(X_m &= x_0, \ldots, X_{m+n} = x_n \mid X_m = i) \\
+		       &= \delta_{ix_0} \frac{\mathbb{P}(X_m = x_0, \ldots, X_{m+n} = x_n)}{\mathbb{P}(X_m = i)}, \\
+	\mathbb{P}(X_m &= x_0, \ldots, X_{m+n} = x_n) \\
+		       &= \sum_{y_0,\ldots, y_{m-1}}\mathbb{P}(X_0 = y_0, \ldots, X_{m} = x_0, \ldots, X_{m+n} = x_0) \\
+		       &= \sum_{y_0, \ldots, y_{m-1}} \lambda(y_0) P(y_0, y_1) \cdots P(y_{m-1}, x_0) \cdots P(x_{n-1}, x_n) \\
+		       &= P(x_0, x_1) \cdots P(x_{n-1}, x_n) \sum_{y_0, \ldots, y_{m-1}} \lambda(y_0) P(y_0, y_1) \cdots P(y_{m-1}, x_0), \\
+	\mathbb{P}(X_m &= i) = \sum_{y_0, \ldots, y_{m-1}} \lambda(y_0) P(y_0, y_1) \cdots P(y_{m-1}, i).
+\end{align*}
+
+\end{adjustbox}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+Putting this together, we get the probability is
+\[
+	\delta_{ix_0}P(x_0, x_1)\cdots P(x_{n-1}, x_n) \implies \Mkv(\delta_i, P)
+.\]
+Now we show independence. Let $m \leq i_1 < \cdots < i_k$. Then,
+\begin{align*}
+	\mathbb{P}(X_{i_1} &= x_1, \ldots, X_{i_k} = x_k, X_0 = y_0, \ldots, X_m = y_m \mid X_{m} = i) \\
+			   &= \frac{\mathbb{P}(X_{i_1} = x_1, \ldots, X_{i_k} = x_k, X_0 = y_0, \ldots, X_m = y_m)}{\mathbb{P}(X_m = i)} \\
+			   &= \frac{\lambda(y_0) P(y_0, y_1) \cdots P(y_{m-1}, y_m)}{\mathbb{P}(X_m = i)} \mathbb{P}(X_{i_1} = x_1, \ldots, X_{i_k} = x_k \mid X_{m} = i) \\
+			   &= \mathbb{P}(X_{i_1} = x_1, \ldots, X_{i_k} = x_k \mid X_{m} = i) \mathbb{P}(X_0 = y_0, \ldots \mid X_m = i).
+\end{align*}
+
+\end{adjustbox}
+
+Let $X \sim \Mkv(\lambda, P)$. How can we find $\mathbb{P}(X_n = x)$? Evaluating,
+\begin{align*}
+	\mathbb{P}(X_n = x) &= \sum_{x_0, \ldots, x_{n-1}}\mathbb{P}(X_0 = x_0, \ldots, X_n = x) \\
+			    &= \sum_{x_0, \ldots, x_{n-1}} \lambda(x_0) P(x_0, x_1) \cdots P(x_{n-1}, x) = (\lambda P^{n})x.
+\end{align*}
+Here, $\lambda$ is a row vector, and $P^{n}$ is the $n$'th power of the transition matrix. By convention, $P^{0} = I$.
+
+Consider the related problem of finding $\mathbb{P}(X_{n+m} = y \mid X_m = x)$. From the simple Markov property, $(X_{m+n})_{n \geq 0}$ is $\Mkv(\delta_{x}, P)$. So
+\[
+	\mathbb{P}(X_{n+m} = y \mid X_{m} = x) = (\delta_{x} P^{n})y = (P^{n})xy
+.\]
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	Take the transition matrix
+	\[
+	P = 
+	\begin{pmatrix}
+		1 - \alpha & \alpha \\
+		\beta & 1 - \beta
+	\end{pmatrix}
+	.\] 
+	Then $p_{11}(n+1) = (1 - \alpha)p_{11}(n) + \beta p_{12}(n)$. Since $p_{11}(n) + p_{12}(n) = 1$, we get the general form
+	\[
+		p_{11}(n) =
+		\begin{dcases}
+			\frac{\alpha}{\alpha + \beta} + \frac{\alpha}{\alpha + \beta}(1 - \alpha - \beta)^{n} & \alpha + \beta > 0, \\
+			1 & \alpha + \beta = 0.
+		\end{dcases}	
+	\]
+\end{example}
+
+\end{adjustbox}
+
+Suppose $P$ is $k \times k$ stochastic, and let $\lambda_1, \ldots, \lambda_k$ be the eigenvalues of $P$.
+
+If $\lambda_1, \ldots, \lambda_k$ are all distinct, then $P$ is diagonalisable, so we can write
+\[
+P = U
+\begin{pmatrix}
+	\lambda_1 & 0 & \cdots & 0 \\
+	0 & \lambda_2 & \cdots & 0 \\
+	\vdots & \vdots & \ddots & \vdots \\
+	0 & 0 & \cdots & \lambda_k
+\end{pmatrix}
+U^{-1}
+.\]
+Then we get
+\[
+P^{n} = U
+\begin{pmatrix}
+	\lambda_1^{n} & 0 & \cdots & 0 \\
+	0 & \lambda_2^{n} & \cdots & 0 \\
+	\vdots & \vdots & \ddots & \vdots \\
+	0 & 0 & \cdots & \lambda_k^{n}
+\end{pmatrix}
+.\]
+Hence $p_{11}(n) = \alpha_1 \lambda_1^{n} + \cdots + \alpha_k \lambda_k^{n}$.
+
+If one of the eigenvalues is complex, say $\lambda_{k-1}$, then also its conjugate is an eigenvalue. Say $\lambda_{k} = \overline{\lambda_{k-1}}$. If $\lambda_{k-1} = r e^{i \theta} = r \cos \theta + i r \sin \theta$, $\lambda_k = r \cos \theta - i r \sin \theta$, then we can write the general form as
+\[
+	p_{11}(n) = \alpha_1 \lambda_1^{n} + \cdots + \alpha_{k-2} \lambda_{k-2}^{n} + \alpha_{k-1} r^{n} \cos n \theta + \alpha_{k} r^{n} \sin n \theta
+.\]
+
+If an eigenvalue $\lambda$ has multiplicity $r$, then we must include the term $(a_{r-1}n^{r-1} + \cdots + a_1 n + a_0) \lambda^{n}$, by Jordan Normal Form.
+
+\newpage
+
+\printindex
 
 \end{document}

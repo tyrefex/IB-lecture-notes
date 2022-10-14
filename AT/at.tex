@@ -41,6 +41,8 @@
 	\def\svgwidth{\columnwidth}
 	\import{./figures/}{#1.pdf_tex}
 }
+\newcommand{\diff}{\mathop{}\!\mathrm{d}}
+\newcommand{\Diff}[1]{\mathop{}\!\mathrm{d}^{#1}}
 
 \setlength\parindent{0pt}
 
@@ -422,14 +424,17 @@ We would like a uniform Bolzano-Weierstrass, saying if $(f_n)$ is a uniformly bo
 
 \end{adjustbox}
 
-We look at previous proofs we have done. Recall that if $\sum a_n x^{n}$ is a real power of series with radius of convergence $R > 0$, then we can differentiate and integrate it term-by-term within $(-R, R)$.
+\subsection{Application to Power Series}%
+\label{sub:application_to_power_series}
+
+Recall that if $\sum a_n x^{n}$ is a real power of series with radius of convergence $R > 0$, then we can differentiate and integrate it term-by-term within $(-R, R)$.
 
 \begin{definition}
 	Let $f_n : X \to \mathbb{R}$ for each $n \geq 0$. We say that the series
 	\[
 	\sum_{n = 0}^{\infty}f_n
 	\]
-	\textbf{converges uniformly} if the sequence of partial sums $(F_n)$ does, where $F_n = f_0 + f_1 + \cdots + f_n$.
+	\textbf{converges uniformly}\index{uniform convergence of series} if the sequence of partial sums $(F_n)$ does, where $F_n = f_0 + f_1 + \cdots + f_n$.
 \end{definition}
 
 If we can prove that $\sum a_n x^{n}$ is uniformly convergent, then we can apply earlier theorems to show differentiability. However this is not quite true, for example take
@@ -438,6 +443,131 @@ If we can prove that $\sum a_n x^{n}$ is uniformly convergent, then we can apply
 .\]
 
 However, we do have another approach. We can show that if $0 < r < R$, then we do have uniform convergence on $(-r, r)$, and then given $x \in (-R, R)$, we can choose $|x| < r < R$ and use the above to show all the properties we want. This is known as the \textbf{local uniform convergence of power series}.\index{local uniform convergence of power series}
+
+\begin{lemma} 
+	Let $\sum a_n x^{n}$ be a real power series with radius of convergence $R > 0$. Let $0 < r < R$. Then $\sum a_n x^{n}$ converges uniformly on $(-r, r)$.
+\end{lemma}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} Define $f, f_m : (-r, r) \to \mathbb{R}$ by
+	\[
+		f(x) = \sum_{n = 0}^{\infty} a_n x^{n}, \quad f_m(x) = \sum_{n = 0}^{m} a_n x^{n}
+	.\]
+	Recall that $\sum a_n x^{n}$ converges absolutely for all $x$ with $|x| < R$. Let $x \in (-r, r)$. Then
+	\begin{align*}
+		|f(x) - f_m(x)| &= \left| \sum_{n = m + 1}^{\infty} a_n x^{n} \right| \\
+				&\leq \sum_{n = m+1}^{\infty}|a_n||x|^{n} \leq \sum_{n = m + 1}^{\infty}|a_n|r^{n},
+	\end{align*}
+	which converges by absolute convergence at $r$. hence if $m$ is sufficiently large, $f - f_m$ is bounded and
+	\[
+		\sup_{x \in (-r, r)}|f(x) - f_m(x)| \leq \sum_{n = m+1}^{\infty} |a_n|r^{n} \to 0
+	\]
+	as $m \to \infty$.
+\end{adjustbox}
+
+\begin{theorem}
+	Let $\sum a_n x^{n}$ be a real power series with radius of convergence $R > 0$. Define $f : (-R, R) \to \mathbb{R}$ by
+	 \[
+		 f(x) = \sum_{n = 0}^{\infty} a_n x^{n}
+	.\]
+	Then,
+	\begin{enumerate}[\normalfont(i)]
+		\item $f$ is continuous;
+		\item For any $x \in (-R, R)$, $f$ is integrable over $[0, x]$ with
+			\[
+			\int_{0}^{x} = \sum_{n= 0}^{\infty}\frac{a_n}{n+1}x^{n+1}
+			.\]
+	\end{enumerate}
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} Let $x \in (-R, R)$. Pick $r$ such that $|x| < r < R$. By the above lemma, $\sum a_n y^{n}$ converges uniformly on $(-r, r)$. But the partial sum functions are all continuous on $(-r, r)$, hence $f|_{(-r, r)}$ is continuous. Thus $f$ is a continuous function on $(-R, R)$.
+
+	Moreover, $[0, x] \subset (-r, r)$ so we also have $\sum a_n y^{n}$ converges uniformly on $[0, x]$. Each partial sum on $[0, x]$ is a polynomial, so can be integrated with
+	\[
+		\int_{0}^{x} \sum_{n = 0}^{m} a_ny^{n}\diff y = \sum_{n = 0}^{m} \int_{0}^{x} a_n y^{n}\diff y = \sum_{n = 0}^{m} \frac{a_n}{n+1}x^{n+1}
+	.\]
+	Thus, $f$ is integrable over $[0, x]$ with
+	\begin{align*}
+		\int_{0}^{x} f = \lim_{m \to \infty}\int_{0}^{x} \sum_{n = 0}^{m} a_n y^{n}\diff y = \lim_{m \to \infty} \sum_{n = 0}^{m} \frac{a_n}{n+1}x^{n+1} = \sum_{n = 0}^{\infty} \frac{a_n}{n+1}x^{n+1}.
+	\end{align*}
+\end{adjustbox}
+
+For differentiation, we need the following lemma:
+
+\begin{lemma}
+	Let $\sum a_n x^{n}$ be a real power series with radius of convergence $R > 0$. Then the power series $\sum n a_n x^{n-1}$ has radius of convergence at least $R$.
+\end{lemma}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} Let $x \in \mathbb{R}$, $0 < |x| < R$. Pick $w$ with $|x| < w < R$. Then $\sum a_n w^{n}$ is absolutely convergent, so $a_n w^{n} \to 0$. Therefore, there exists $M$ such that $|a_n w^{n}| \leq M$ for all $n$. For each $n$,
+\[
+|na_n x^{n-1}| = |a_n w^{n}| \left| \frac{x}{w} \right|^{n} \frac{1}{|x|}n
+.\]
+\end{adjustbox}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+Fix $n$, let $\alpha = |x/w| < 1$, and let $c = M/|x|$, a constant. Then $|n a_n x^{n-1}| \leq c n \alpha^{n}$. By comparison test, it suffices to show $\sum n \alpha^{n}$ converges. Note
+\[
+	\left| \frac{(n+1)\alpha^{n+1}}{n \alpha^{n}} \right| = \left(1 + \frac{1}{n} \right) \alpha \to \alpha < 1
+\]
+as $n \to \infty$, so this converges by the ratio test.
+
+\end{adjustbox}
+
+
+\begin{theorem}
+	Let $\sum a_n x^{n}$ be a real power series with radius of convergence $R > 0$. Let $f : (-R, R) \to \mathbb{R}$ be defined by
+	\[
+		f(x) = \sum_{n = 0}^{\infty}a_n x^{n}
+	.\]
+	Then $f$ is differentiable and for all $x \in (-R, R)$,
+	\[
+		f'(x) = \sum_{n = 1}^{\infty}n a_n x^{n-1}
+	.\]
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} Let $x \in (-R, R)$. Pick $r$ with $|x| < r < R$. Then $\sum a_n y^{n}$ converges uniformly on $(-r, r)$. Moreover, the power series $\sum n a_n y^{n-1}$ had radius of convergence at least $R$, and so also converges uniformly on $(-r, r)$.
+
+	The partial sum functions $f_m(y)$ are polynomials, so are differentiable with
+	\[
+		f_m'(y) = \sum_{n = 1}^{m} n a_n y^{n-1}
+	.\]
+	we now have $f_m'$ converging uniformly on $(-r, r)$ to the function
+	\[
+		g(y) = \sum_{n = 1}^{\infty}n a_n y^{n-1}
+	.\]
+	Hence, $f|_{(-r, r)}$ is differentiable and for all $y \in (-r, r)$, $f'(y) = g(y)$. In particular, $f$ is differentiable at $x$ with $f'(x) = g(x)$. This gives $f$ is a differentiable function on $(-R, R)$ with derivative $g$ as desired.
+\end{adjustbox}
+
+\subsection{Uniform Continuity}%
+\label{sub:uniform_continuity}
+
+Let $X \subset \mathbb{R}$. Let $f : X \mapsto \mathbb{R}$. Recall that $f$ is \textbf{continuous}\index{continuity} if for all $\varepsilon > 0$ and for all $x \in X$, there exists $\delta > 0$, such that for all $y \in X$ with $|x - y| < \delta$, we have $|f(x) - f(y)| < \varepsilon$.
+
+\begin{definition}
+	We say $f$ is \textbf{uniformly continuous}\index{uniform continuity} if for all $\varepsilon > 0$, there exists $\delta > 0$, such that for all $x, y \in X$ with $|x - y| < \delta$, we have $|f(x) - f(y)| < \varepsilon$.
+\end{definition}
+
+\begin{remark}
+	Clearly if $f$ is uniformly continuous, then $f$ is continuous. The converse is not true.
+\end{remark}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	Consider $f : \mathbb{R} \to \mathbb{R}$ given by $f(x) = x^2$. Then $f$ is continuous as it is a polynomial. Suppose $\delta > 0$. Then,
+	\[
+		f(x + \delta) - f(x) = (x + \delta)^2 - x^2 = 2 \delta x + \delta^2 \to \infty
+	\]
+	as $x \to \infty$. So the condition fails for $\varepsilon = 1$.
+
+	Even on the bounded interval $(0, 1)$, take $f(x) = 1/x$. This is clearly continuous, but cannot be uniformly continuous as it approaches infinity as $x$ approaches 0.
+\end{example}
+
+\end{adjustbox}
+
+
 
 \newpage
 
