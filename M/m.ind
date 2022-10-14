@@ -1,5 +1,10 @@
 \begin{theindex}
 
+  \item boundary conditions, \hyperpage{12}
+
+  \indexspace
+
+  \item complementary function, \hyperpage{12}
   \item completeness relation, \hyperpage{7}
 
   \indexspace
@@ -18,11 +23,14 @@
 
   \indexspace
 
-  \item inner product, \hyperpage{2}
+  \item initial conditions, \hyperpage{12}
+  \item inner product of complex-valued functions, \hyperpage{13}
+  \item inner product of periodic functions, \hyperpage{2}
 
   \indexspace
 
   \item Parseval's theorem, \hyperpage{7}
+  \item particular integral, \hyperpage{12}
   \item periodic function, \hyperpage{2}
 
   \indexspace
@@ -30,6 +38,12 @@
   \item sawtooth wave, \hyperpage{4}
   \item see-saw wave, \hyperpage{6}
   \item self-adjoint matrix, \hyperpage{9}
+  \item self-adjoint operator, \hyperpage{14}
   \item square wave, \hyperpage{6}
+  \item Sturm-Liouville form, \hyperpage{13}
+
+  \indexspace
+
+  \item weight function, \hyperpage{13}
 
 \end{theindex}

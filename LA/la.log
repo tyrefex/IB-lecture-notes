@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2021.3.9)  14 OCT 2022 01:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2021.3.9)  14 OCT 2022 11:55
 entering extended mode
 **./la.tex
 (la.tex
@@ -793,7 +793,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip71
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 76.
+Package hyperref Info: Option `colorlinks' set `true' on input line 78.
 
 (C:\Program Files\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2021-03-02 L3 backend support: PDF output (pdfTeX)
@@ -802,24 +802,24 @@ File: l3backend-pdftex.def 2021-03-02 L3 backend support: PDF output (pdfTeX)
 ) (la.aux)
 \openout1 = `la.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -881,7 +881,7 @@ Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 )
-Package hyperref Info: Link coloring ON on input line 80.
+Package hyperref Info: Link coloring ON on input line 82.
 
 (C:\Program Files\MiKTeX\tex/latex/hyperref\nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
@@ -894,19 +894,19 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count335
 )
-LaTeX Info: Redefining \ref on input line 80.
-LaTeX Info: Redefining \pageref on input line 80.
-LaTeX Info: Redefining \nameref on input line 80.
+LaTeX Info: Redefining \ref on input line 82.
+LaTeX Info: Redefining \pageref on input line 82.
+LaTeX Info: Redefining \nameref on input line 82.
 
 (la.out) (la.out)
 \@outlinefile=\write5
 \openout5 = `la.out'.
 
-Package hyperref Info: Option `pageanchor' set `false' on input line 82.
+Package hyperref Info: Option `pageanchor' set `false' on input line 84.
  [1
 
 {C:/Users/nath2/AppData/Local/MiKTeX/pdftex/config/pdftex.map}]
-Package hyperref Info: Option `pageanchor' set `true' on input line 106.
+Package hyperref Info: Option `pageanchor' set `true' on input line 108.
  (la.toc
 LaTeX Font Info:    Trying to load font information for U+msa on input line 2.
  (C:\Program Files\MiKTeX\tex/latex/amsfonts\umsa.fd
@@ -922,36 +922,41 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
  [1] [2] [3] [4] [5]
 [6] [7] [8]
-Underfull \hbox (badness 2326) in paragraph at lines 498--499
+Underfull \hbox (badness 2326) in paragraph at lines 500--501
 []\OT1/cmr/bx/n/12 Proof: \OT1/cmr/m/n/12 Pick $(\OML/cmm/m/it/12 v[]; [] ; v[]
 \OT1/cmr/m/n/12 )$ a ba-sis of $\OML/cmm/m/it/12 U \OMS/cmsy/m/n/12 \ \OML/cmm/
 m/it/12 W$\OT1/cmr/m/n/12 . Ex-tend to a ba-sis
  []
 
 [9]
-Underfull \hbox (badness 3965) in paragraph at lines 527--528
+Underfull \hbox (badness 3965) in paragraph at lines 529--530
 []\OT1/cmr/bx/n/12 Proof: \OT1/cmr/m/n/12 Let $(\OML/cmm/m/it/12 u[]; [] ; u[]\
 OT1/cmr/m/n/12 )$ be a ba-sis of $\OML/cmm/m/it/12 U$\OT1/cmr/m/n/12 . Ex-tend 
 to a ba-sis
  []
 
-[10] [11]
+[10] [11] [12]
+Overfull \hbox (15.20218pt too wide) in paragraph at lines 628--628
+[]\OT1/cmr/bx/n/17.28 Linear maps, Iso-mor-phism and the Rank-Nullity
+ []
+
+[13] [14] [15] [16]
 runsystem(makeindex la.idx)...executed (allowed).
 
- (la.ind) [12
+ (la.ind) [17
 
 ] (la.aux)
 Package rerunfilecheck Info: File `la.out' has not changed.
-(rerunfilecheck)             Checksum: 7EF113188AE2E41F38974C8F15754E8B;1003.
+(rerunfilecheck)             Checksum: 93F3C538838EF343FDD8CB36D9AFC82F;1329.
  ) 
 Here is how much of TeX's memory you used:
- 23330 strings out of 479334
- 411424 string characters out of 2866961
- 715178 words of memory out of 3000000
- 40271 multiletter control sequences out of 15000+200000
- 411863 words of font info for 57 fonts, out of 3000000 for 9000
+ 23371 strings out of 479334
+ 411830 string characters out of 2866961
+ 716281 words of memory out of 3000000
+ 40277 multiletter control sequences out of 15000+200000
+ 412564 words of font info for 59 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 113i,13n,116p,510b,509s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 113i,18n,116p,510b,547s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\nath2\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
 1200.pk><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/
 Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Program Fi
@@ -965,9 +970,9 @@ fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX/fonts/type1/pu
 blic/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfont
 s/cm/cmsy8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.p
 fb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on la.pdf (13 pages, 199753 bytes).
+Output written on la.pdf (18 pages, 223140 bytes).
 PDF statistics:
- 221 PDF objects out of 1000 (max. 8388607)
- 62 named destinations out of 1000 (max. 500000)
- 53 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 283 PDF objects out of 1000 (max. 8388607)
+ 95 named destinations out of 1000 (max. 500000)
+ 61 words of extra memory for PDF output out of 10000 (max. 10000000)
 

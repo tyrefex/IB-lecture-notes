@@ -1,5 +1,5 @@
 \indexentry{periodic function|hyperpage}{2}
-\indexentry{inner product|hyperpage}{2}
+\indexentry{inner product of periodic functions|hyperpage}{2}
 \indexentry{Fourier series|hyperpage}{3}
 \indexentry{Fourier coefficients|hyperpage}{4}
 \indexentry{sawtooth wave|hyperpage}{4}
@@ -11,3 +11,11 @@
 \indexentry{half-range series|hyperpage}{8}
 \indexentry{self-adjoint matrix|hyperpage}{9}
 \indexentry{Hermitian matrix|hyperpage}{9}
+\indexentry{complementary function|hyperpage}{12}
+\indexentry{particular integral|hyperpage}{12}
+\indexentry{boundary conditions|hyperpage}{12}
+\indexentry{initial conditions|hyperpage}{12}
+\indexentry{inner product of complex-valued functions|hyperpage}{13}
+\indexentry{Sturm-Liouville form|hyperpage}{13}
+\indexentry{weight function|hyperpage}{13}
+\indexentry{self-adjoint operator|hyperpage}{14}

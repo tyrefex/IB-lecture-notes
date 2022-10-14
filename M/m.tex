@@ -146,7 +146,7 @@ which are periodic on the interval $0 \leq x < 2L$. Recall the identities
 	\sin A \cos B &=  \frac{1}{2} \left( \sin(A - B) + \sin(A + B) \right).
 \end{align*}
 
-Define the \textbf{inner product}\index{inner product} for two periodic functions $f, g$ on the interval $[0, 2L)$ 
+Define the \textbf{inner product}\index{inner product of periodic functions} for two periodic functions $f, g$ on the interval $[0, 2L)$ 
 \[
 	\langle f, g \rangle = \int_{0}^{2L}f(x) g(x)\diff x
 .\]
@@ -517,7 +517,7 @@ This is similar to a self-adjoint matrix.
 \begin{example}
 	Consider the square wave on $L = 1$, as an odd function. This has Fourier series
 	\[
-		f(x) = 4 \sum_{m} \frac{\sin (2m - 1)\ pi x}{(2m - 1)\pi}
+		f(x) = 4 \sum_{m} \frac{\sin (2m - 1)\pi x}{(2m - 1)\pi}
 	.\]
 	So the solution should be
 	\[
@@ -528,6 +528,135 @@ This is similar to a self-adjoint matrix.
 
 \end{adjustbox}
 
+\newpage
+
+\section{Sturm-Liouville theory}%
+\label{sec:sturm_liouville_theory}
+
+\subsection{Second-order linear ODEs}%
+\label{sub:second_order_linear_odes}
+
+We wish to solve a general inhomogeneous ODE
+\[
+	\mathcal{L}y = \alpha(x) y'' + \beta(x) y' + \gamma(x) y = f(x)
+.\]
+\begin{itemize}
+	\item The \textbf{homogeneous} equation $\mathcal{L} y = 0$ has two independent solutions $y_1(x)$, $y_2(x)$. The \textbf{complementary function}\index{complementary function} $y_c(x)$ is the general solution of
+		\[
+			y_c(x) = A y_1(x) +B y_2(x)
+		,\]
+		where $A, B$ are constants.
+	\item The \textbf{inhomogeneous} equation $\mathcal{L}y = f(x)$ has a special solution, the \textbf{particular integral}\index{particular integral} $y_p(x)$. The general solution is then
+		\[
+			y(x) = y_p(x) + Ay_1(x) + By_2(x)
+		.\]
+	\item Two \textbf{boundary} or \textbf{initial} conditions are required to determine $A, B$:
+		\begin{enumerate}[(a)]
+			\item \textbf{Boundary conditions}\index{boundary conditions} require us to solve the equation on $a < x < b$ given $y$ at $x = a, b$ (Dirichlet conditions), or given $y'$ at $x = a, b$ (Neumann conditions), or given a mixed value $y + ky'$. Boundary conditions are often assumed to be $y(a) = y(b)$, to admit the trivial solution $y \equiv 0$. This can be done by adding complementary functions
+				\[
+				\tilde y = y + A_1 y_1 + B y_2
+				.\]
+			\item \textbf{Initial condition}\index{initial conditions} require us to solve the equation for $x \geq a$, given $y$ and $y'$ at $x = a$.
+		\end{enumerate}
+		
+\end{itemize}
+
+\subsubsection{General eigenvalue problem}%
+\label{subsub:general_eigenvalue_problem}
+
+To solve the equation employing eigenfunction expansion, we are required to solve the related eigenvalue problem
+\[
+	\alpha(x) y'' + \beta(x) y' + \gamma(x) y = - \lambda \rho(x) y
+,\]
+with specified boundary conditions. This forms often occurs in higher dimensions, after separation of variables.
+
+\subsection{Self-adjoint operators}%
+\label{sub:self_adjoint_operators}
+
+For two complex-valued functions $f, g$ on $a \leq x \leq b$, we can define the \textbf{inner product}\index{inner product of complex-valued functions}
+\[
+	\langle f, g \rangle = \int_{a}^{b} f^{\ast}(x) g(x)\diff x
+.\]
+The norm is then $\|f\| = \langle f, f \rangle^{1/2}$.
+
+\subsubsection{Sturm-Liouville equation}%
+\label{subsub:sturm_liouville_equation}
+
+The eigenvalue problem greatly simplifies if $\mathcal{L}$ is \textbf{self-adjoint}, that is, it can be expressed in \textbf{Sturm-Liouville form}\index{Sturm-Liouville form}
+\[
+	\mathcal{L} y \equiv - (\rho y')' + q y = \lambda \omega y
+,\]
+where the \textbf{weight function}\index{weight function} $\omega(x)$ is non-negative. We can convert to Sturm-Liouville form by multiplying by an integrating factor $F(x)$ to find
+\[
+F \alpha y'' + F \beta y' + F \gamma y = - \lambda F \rho y
+.\]
+This gives
+\[
+	\frac{\diff}{\diff x} (F \alpha y') - F' \alpha y' - F \alpha' y' + F \beta y' + F \gamma y = - \lambda F \rho y
+.\]
+Eliminating $y'$ terms, we require
+\[
+	F' \alpha = F(\beta - \alpha') \implies \frac{F'}{F} = \frac{\beta - \alpha'}{\alpha}
+.\]
+Solving, we get
+\[
+	F(x) = \exp \left( \int^{x} \frac{(\beta - \alpha')}{\alpha} \diff x \right)
+,\]
+and $(F \alpha y')' + F \gamma y = - \lambda F \rho y$. So $\rho(x) = F(x) \alpha (x)$, $q(x) = - F(x) \gamma(x)$, and $\omega(x) = F(x) \rho(x)$. This is non-negative as $F(x) > 0$.
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	Take the Hermite equation
+	\[
+	y'' - 2xy' + 2n y = 0
+	.\]
+	Putting this into Sturm-Liouville form, we have $\alpha = 1$, $\beta - 2x$, $\gamma = 0$ and $\lambda \rho = 2n$. Thus we take
+	\[
+		F = \exp \left( \int^{x} \frac{-2x}{2} \diff x \right) = e^{-x^2}
+	.\]
+	Hence
+	\[
+		\mathcal{L} y \equiv -(e^{-x^2} y')' = 2n e^{-x^2}y
+	.\]
+\end{example}
+
+\end{adjustbox}
+
+\subsubsection{Self-adjoint definition}%
+\label{subsub:self_adjoint_definition}
+
+A linear operator $\mathcal{L}$ is \textbf{self-adjoint}\index{self-adjoint operator} on $a \leq x \leq b$ for all pairs of functions $y_1, y_2$ satisfying boundary conditions, if
+\[
+	\langle y_1, \mathcal{L}y_2 \rangle = \langle \mathcal{L}y_1, y_2 \rangle
+,\]
+or
+\[
+	\int_{a}^{b} y^{\ast}_1(x) \mathcal{L}y_2(x)\diff x = \int_{a}^{b} (\mathcal{L}y_1(x))^{\ast} y_2(x) \diff x
+.\]
+
+Substituting the Sturm-Liouville form into this equation gives
+\begin{align*}
+	\langle y_1, \mathcal{L}y_2 \rangle - \langle \mathcal{L}y_1, y_2 \rangle &= \int_{a}^{b} [-y_1(\rho y_2')' + y_1qy_2 + y_2(\rho y_1')' - y_2 qy_1]\diff x \\
+										  &= \int_{a}^{b} [-(\rho y_1 y_2')' + (\rho y_1' y_2)']\diff x \\
+										  &= \left[ - \rho y_1 y_2' + \rho y_1' y_2 \right]_{a}^{b} = 0.
+\end{align*}
+for given boundary conditions at $x = a, b$. Suitable boundary conditions include:
+\begin{itemize}
+	\item $y(a) = y(b) = 0$, $y'(a) = y'(b) = 0$, or mixed boundary condition $y + ky' = 0$;
+	\item Periodic functions $y(a) = y(b)$;
+	\item Singular points of the ODE $\rho(a) = \rho(b) = 0$;
+	\item Combinations of the above.
+\end{itemize}
+
+\subsection{Properties of self-adjoint operators}%
+\label{sub:properties_of_self_adjoint_operators}
+
+Self-adjoint operators satisfy many similar properties to self-adjoint matrices:
+\begin{enumerate}[1.]
+	\item The eigenvalues $\lambda_n$ are real.
+	\item The eigenfunctions $y_n$ are orthogonal.
+	\item The eigenfunctions $y_n$ form a complete set.
+\end{enumerate}
 
 
 \newpage

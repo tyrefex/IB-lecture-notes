@@ -43,6 +43,8 @@
 	\def\svgwidth{\columnwidth}
 	\import{./figures/}{#1.pdf_tex}
 }
+\newcommand{\diff}{\mathop{}\!\mathrm{d}}
+\newcommand{\Diff}[1]{\mathop{}\!\mathrm{d}^{#1}}
 
 \setlength\parindent{0pt}
 
@@ -578,6 +580,239 @@ with the convention that $\{v\} \cup \{v\} = \{v, v\}$.
 	.\]
 	Since $\mathcal{B}_1 \cup \mathcal{B}_2$ is free, we get $\lambda_u = \lambda_w = 0$, so $U \cap W = \{0\}$.
 \end{adjustbox}
+
+\begin{definition}
+	Let $V$ be a vector space over $F$, and $V_1, \ldots, V_l \leq V$. Then
+	\begin{enumerate}[\normalfont(i)]
+		\item The sum of the subspaces is
+			\[
+				\sum_{i = 1}^{l} V_i = \{v_1 + \cdots + v_l \mid v_j \in V_J, 1 \leq j \leq l \}
+			.\]
+		\item The sum is direct:
+			\[
+			\sum_{i = 1}^{l} V_i = \bigoplus_{i = 1}^{l} V_i
+			\]
+			if and only if
+			\[
+			v_1 + \cdots + v_l = v_1' + \cdots + v_l' \implies v_1 = v_1', \ldots, v_l = v_l'
+			.\]
+	\end{enumerate}
+	
+\end{definition}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} Exercise.
+\end{adjustbox}
+
+\begin{proposition}
+	The following are equivalent:
+	\begin{enumerate}[\normalfont(i)]
+		\item
+			\[
+			\sum_{i = 1}^{l} V_i = \bigoplus_{i = 1}^{l} V_i
+			,\]
+		\item 
+			\[
+				\forall i, V_i \cap \left( \sum_{j < i} V_i \right) = \{0\}
+			,\]
+		\item For any basis $\mathcal{B}_i$ of $V_i$,
+			\[
+				\mathcal{B} = \bigcup_{i = 1}^{l} \mathcal{B}_i \text{ is a basis of } \sum_{i = 1}^{l} V_l
+			.\]
+	\end{enumerate}
+	
+\end{proposition}
+
+\newpage
+
+\section{Linear maps, Isomorphism and the Rank-Nullity Theorem}%
+\sectionmark{Linear maps, Isomorphism and Rank-Nullity}
+\label{sec:linear_maps_isomorphism_and_the_rank_nullity_theorem}
+
+\begin{definition}[Linear map]\index{linear map}
+	Let $V, W$ be vector spaces over $F$. A map $\alpha : V \to W$ is \textbf{linear} if and only if for all $\lambda_1, \lambda_2 \in F$ and $v_1, v_2 \in V$, we have
+	\[
+		\alpha(\lambda_1 v_1 + \lambda_2 v_2) = \lambda_1 \alpha(v_1) + \lambda_2 \alpha(v_2)
+	.\]
+\end{definition}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	\begin{enumerate}[(i)]
+		\item[]
+		\item Take an $m \times n$ matrix $M$, Then we can take the linear map $\alpha : \mathbb{R}^{m} \to \mathbb{R}^{n}$ defined by $X \mapsto M X$.
+		\item Take the linear map $\alpha : \mathcal{C}[0, 1] \to \mathcal{C}[0, 1]$ by
+			\[
+				f \mapsto \alpha(f)(x) = \int_{0}^{x}f(t)\diff t
+			.\]
+		\item Fix $x \in [a, b]$. Then we can take a linear map $\mathcal{C}[a, b] \to \mathbb{R}$ by $f \mapsto f(x)$.
+	\end{enumerate}
+	
+\end{example}
+
+\end{adjustbox}
+
+\begin{remark}
+	Let $U, V, W$ be $F$-vector spaces.
+	\begin{enumerate}[(i)]
+		\item The identity map $\id_V : V \to V$ by $x \mapsto x$ is a linear map.
+		\item If $U \to V$ is $\beta$ linear, and $V \to W$ is $\alpha$ linear, then $U \to W$ is linear by $\alpha \circ \beta$.
+	\end{enumerate}
+\end{remark}
+
+\begin{lemma}
+	Let $V, W$ be $F$-vector spaces, and $\mathcal{B}$ a basis of $V$. Let $\alpha_0 : \mathcal{B} \to W$ be any map, then there is a unique linear map $\alpha : V \to W$ extending $\alpha_0$.
+\end{lemma}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} For $v \in V$, we can write
+\[
+v = \sum_{i = 1}^{n} \lambda_i v_i
+,\]
+where $\mathcal{B} = (v_1, \ldots, v_n)$. Then by linearity, we must have
+\[
+	\alpha(v) = \alpha \left( \sum_{i = 1}^{n} \lambda_i v_i \right) = \sum_{i = 1}^{}\lambda_i \alpha_0 (v_i)
+.\]
+This is unique as $\mathcal{B}$ is a basis.
+\end{adjustbox}
+
+\begin{remark}
+	This is true in infinite dimensions as well.
+\end{remark}
+
+Often, to define a linear map, we define its value on a basis and extend by linearity. As a corollary, if $\alpha_1, \alpha_2 : V \to W$ are linear and agree on a basis of $V$, they are equal.
+
+\begin{definition}[Isomorphism]\index{isomorphism}
+	Let $V, W$ be vector spaces over $F$. A map $\alpha : V \to W$ is called an \textbf{isomorphism} if and only if $\alpha$ is linear and bijective. If such an $\alpha$ exists, we say $V \cong W$.
+\end{definition}
+
+\begin{remark}
+	If $\alpha : V \to W$ is an isomorphism, then $\alpha^{-1} : W \to V$ is linear. Indeed, for $w_1, w_2 \in W \times W$, let $w_1 = \alpha(v_1), w_2 = \alpha(v_2)$. Then,
+	\begin{align*}
+		\alpha^{-1}(\lambda_1 w_1 + \lambda_2 w_2) &= \alpha^{-1}(\lambda_1 \alpha(v_1) + \lambda_2 \alpha(v_2)) \\
+							   &= \alpha^{-1} ( \alpha(\lambda_1 v_1 + \lambda_2 v_2) ) \\
+							   &= \lambda_1 v_1 + \lambda_2 v_2 \\
+							   &= \lambda_1 \alpha^{-1}(v_1) + \lambda_2 \alpha^{-1}(v_2).
+	\end{align*}
+\end{remark}
+
+\begin{lemma}
+	Congruence is an equivalence relation on the class of all vector spaces of $F$:
+	\begin{enumerate}[\normalfont(i)]
+		\item $\id_V : V \to V$ is an isomorphism.
+		\item $\alpha : V \to W$ is an isomorphism implies $\alpha^{-1} : W \to V$ is an isomorphism.
+		\item If $\alpha : U \to V$ is an isomorphism, $\beta : V \to W$ is an isomorphism, then $\beta \circ \alpha : U \to W$ is an isomorphism.
+	\end{enumerate}
+\end{lemma}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} Exercise.
+\end{adjustbox}
+
+\begin{theorem}
+	If $V$ is a vector space over $F$ of dimension $n$, then $V \cong F^{n}$.
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} Let $\mathcal{B} = (v_1, \ldots, v_n)$ be a basis of $V$. Then take
+	\begin{align*}
+		\alpha : V &\to F^{n} \\
+		v = \sum_{i = 1}^{n} \lambda_i v_i &\mapsto 
+		\begin{pmatrix}
+			\lambda_1 \\
+			\vdots \\
+			\lambda_n
+		\end{pmatrix}
+	\end{align*}
+	as an isomorphism.
+\end{adjustbox}
+
+\begin{remark}
+	In this way, choosing a basis of $V$ is like choosing an isomorphism from $V$ to $F^{n}$.
+\end{remark}
+
+\begin{theorem}
+	Let $V, W$ be vector spaces over $F$ with finite dimension. Then $V \cong W$ if and only if $\dim V = \dim W$.
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} If $\dim V = \dim W$, then $V \cong F^{n} \cong W$, so $V \cong W$.
+
+Otherwise, let $\alpha : V \to W$ be an isomorphism, and $\mathcal{B}$ a basis of $V$. Then we show $\alpha(\mathcal{B})$ is a basis of $W$.
+\begin{itemize}
+	\item $\alpha(\mathcal{B})$ spans $V$ from the surjectivity of $\alpha$.
+	\item $\alpha(\mathcal{B})$ is free from the injectivity of $\alpha$.
+\end{itemize}
+Hence $\dim V = \dim W$.
+
+\end{adjustbox}
+
+\begin{definition}[Kernal and Image]\index{kernel}\index{image}
+	Let $V, W$ be vector spaces over $F$. Let $\alpha : V \to W$ be a linear map. We define
+	\begin{enumerate}[(i)]
+	\item $\Ker \alpha = \{v \in V \mid \alpha(v) = 0\}$, the kernel of $\alpha$.
+	\item  $\Img(\alpha = \{w \in W \mid \exists v \in V, \alpha(v) = w\}$, the image of $\alpha$.
+	\end{enumerate}
+\end{definition}
+
+\begin{lemma}
+	$\Ker \alpha$ is a subspace of $V$, and $\Img \alpha$ is a subspace of $W$.
+\end{lemma}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} Let $\lambda_1, \lambda_2 \in F$, and $v_1, v_2 \in \Ker \alpha$. Then
+\[
+	\alpha (\lambda_1 v_1 + \lambda_2 v_2) = \lambda_1 \alpha(v_1) + \lambda_2 \alpha(v_2) = 0
+.\]
+So $\lambda_1 v_1 + \lambda_2 v_2 \in \Ker \alpha$.
+
+Now if $w_1 = \alpha(v_1), w_2 = \alpha (v_2)$, then
+ \[
+	 \lambda_1 w_1 + \lambda_2 w_2 = \lambda_1 \alpha(v_1) + \lambda_2 \alpha(v_2) = \alpha(\lambda_1 v_1 + \lambda_2 v_2)
+.\]
+Hence $\lambda_1 w_1 + \lambda_2 w_2 \in \Img \alpha$.
+\end{adjustbox}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	Consider $\alpha : \mathcal{C}^{\infty}(\mathbb{R}) \to \mathcal{C}^{\infty}(\mathbb{R}),$ given by
+	\[
+		f \mapsto \alpha(f) = f'' + f
+	.\]
+	Then $\alpha$ is linear, and
+	\[
+		\Ker \alpha = \{f \in \mathcal{C}^{\infty}(\mathbb{R}) \mid f'' + f = 0\} = \langle \sin t, \cos t \rangle
+	.\]
+\end{example}
+
+\end{adjustbox}
+
+\begin{remark}
+	If $\alpha : V \to W$ is linear, then $\alpha$ is injective if and only if $\Ker \alpha = \{0\}$, as
+	\[
+		\alpha(v_1) = \alpha(v_2) \iff \alpha(v_1 - v_2) = 0
+	.\]
+\end{remark}
+
+\begin{theorem}
+	Let $V, W$ be vector spaces over $F$, and $\alpha : V \to W$ linear. Then
+	\begin{align*}
+		V/\Ker \alpha &\to \Img \alpha \\
+		\bar \alpha(v + \Ker \alpha) &\mapsto \alpha(v)
+	\end{align*}
+	is an isomorphism.
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} We proceed in steps.
+\begin{itemize}
+	\item $\bar \alpha$ is well defined: Note if $v + \Ker \alpha = v' + \Ker \alpha$, then $v - v' \in \Ker \alpha$, so $\alpha(v - v') = 0$. Hence $\alpha(v) = \alpha(v')$.
+	\item $\bar \alpha$ is linear: This follows from linearity of $\alpha$.
+	\item $\bar \alpha$ is a bijection: First, if $\bar \alpha (v + \Ker \alpha) = 0$, then $\alpha(v) = 0$, so $v \in \Ker \alpha$, hence $v + \Ker \alpha = 0 + \Ker \alpha$, so $\alpha$ is injective. Then $\bar \alpha$ is surjective from the definition of the image.
+\end{itemize}
+
+\end{adjustbox}
+
 
 
 \newpage

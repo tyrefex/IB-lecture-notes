@@ -1,10 +1,10 @@
 # Fdb version 3
-["makeindex la.idx"] 1665707874 "la.idx" "la.ind" "la" 1665708720
-  "la.idx" 1665708719 505 bf3a48d318d348398626a278f23d6b71 "pdflatex"
+["makeindex la.idx"] 1665744801 "la.idx" "la.ind" "la" 1665744958
+  "la.idx" 1665744957 649 7737efa2c30c0f65623edf77bd2fd700 "pdflatex"
   (generated)
-  "la.ind"
   "la.ilg"
-["pdflatex"] 1665708712 "la.tex" "la.pdf" "la" 1665708720
+  "la.ind"
+["pdflatex"] 1665744951 "la.tex" "la.pdf" "la" 1665744958
   "C:/Program Files/MiKTeX/fonts/tfm/jknappen/ec/tcrm1200.tfm" 993062508 1444 95ffe0f19b974d50849790c8225c7ef7 ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233955448 1004 54797486969f23fa377b128694d548df ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1233955448 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -28,6 +28,8 @@
   "C:/Program Files/MiKTeX/fonts/tfm/public/cm/cmsy6.tfm" 1136768653 1116 933a60c408fc0a863a92debe84b2d294 ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/cm/cmsy8.tfm" 1136768653 1120 8b7d695260f3cff42e636090a8002094 ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/cm/cmti12.tfm" 1136768653 1484 ed72f8f5cf654cda15ecc8e32bfcbee5 ""
+  "C:/Program Files/MiKTeX/fonts/tfm/public/cm/cmti7.tfm" 1136768653 1492 86331993fe614793f5e7e755835c31c5 ""
+  "C:/Program Files/MiKTeX/fonts/tfm/public/cm/cmti8.tfm" 1136768653 1504 1747189e0441d1c18f3ea56fafc1c480 ""
   "C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1247596666 32080 340ef9bf63678554ee606688e7b5339d ""
   "C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb" 1247596667 36554 b67dc2cfa451409e100b3fcf5f506509 ""
   "C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb" 1247596667 30251 6afa5cb1d0204815a708a080681d4674 ""
@@ -196,15 +198,15 @@
   "C:/Users/nath2/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk" 1609593004 14064 3c7cf39df335b16ccecd29613979c535 ""
   "C:/Users/nath2/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1615262009 9397586 7714a73faef2a04929797f6e0c630ddd ""
   "C:/Users/nath2/AppData/Local/MiKTeX/pdftex/config/pdftex.map" 1615261973 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
-  "la.aux" 1665708719 1831 9b69bde565639e647f6656e5941f801f "pdflatex"
-  "la.ind" 1665708719 628 16daf29ca85969c087aca48858381718 "makeindex la.idx"
-  "la.out" 1665708719 1003 7ef113188ae2e41f38974c8f15754e8b "pdflatex"
-  "la.tex" 1665708712 19789 124eb18186022ed91278d4b850102439 ""
-  "la.toc" 1665708719 422 6875c90b87f1615f3817ac80638599a5 "pdflatex"
+  "la.aux" 1665744958 2127 e0c03a98d2197fa5e498d2bf09f20169 "pdflatex"
+  "la.ind" 1665744958 792 6913b465a675ee7a8d1df2dc4526b910 "makeindex la.idx"
+  "la.out" 1665744958 1329 93f3c538838ef343fdd8cb36d9afc82f "pdflatex"
+  "la.tex" 1665744949 28797 41f2bbed7e4ad2ecca10e3a6611da778 ""
+  "la.toc" 1665744958 532 f10fa5a69737c394228c914334f779c9 "pdflatex"
   (generated)
-  "la.aux"
-  "la.toc"
   "la.log"
-  "la.out"
+  "la.toc"
+  "la.aux"
   "la.pdf"
   "la.idx"
+  "la.out"

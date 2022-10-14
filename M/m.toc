@@ -14,4 +14,11 @@
 \contentsline {subsection}{\numberline {1.6}Fourier Series Motivations}{9}{subsection.1.6}%
 \contentsline {subsubsection}{\numberline {1.6.1}Self-adjoint matrices}{9}{subsubsection.1.6.1}%
 \contentsline {subsubsection}{\numberline {1.6.2}Solving inhomogeneous ODE with Fourier series}{10}{subsubsection.1.6.2}%
-\contentsline {section}{Index}{12}{section*.2}%
+\contentsline {section}{\numberline {2}Sturm-Liouville theory}{12}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Second-order linear ODEs}{12}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}General eigenvalue problem}{12}{subsubsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.2}Self-adjoint operators}{13}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Sturm-Liouville equation}{13}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}Self-adjoint definition}{14}{subsubsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.3}Properties of self-adjoint operators}{15}{subsection.2.3}%
+\contentsline {section}{Index}{16}{section*.2}%
