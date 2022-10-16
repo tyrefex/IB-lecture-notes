@@ -567,6 +567,169 @@ Let $X \subset \mathbb{R}$. Let $f : X \mapsto \mathbb{R}$. Recall that $f$ is \
 
 \end{adjustbox}
 
+\begin{theorem}
+	A continuous real-valued function on a closed bounded interval is uniformly continuous.
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} Let $f : [a, b] \to \mathbb{R}$, and suppose $f$ is continuous but not uniformly continuous. Then we can find an $\varepsilon > 0$ such that, for all $\delta > 0$, there exist $x, y \in [a, b]$ with $|x - y| < \delta$ but $|f(x) - f(y)| \geq \varepsilon$. In particular, take $\delta = 1/n$.
+
+	Thus, we can find sequence $(x_n), (y_n)$ in $[a, b]$ with $|x_n - y_n| < 1/n$ but $|f(x_n) - f(y_n)| \geq \varepsilon$. The sequence $(x_n)$ is bounded, so by Bolzano-Weierstrass it has a convergent subsequence $x_{n_j} \to x$. Since $[a, b]$ is closed, $x \in [a, b]$.
+
+	Then $x_{n_j} - y_{n_j} \to 0$, so also $y_{n_j} \to x$. But $f$ is continuous at $x$, so there exists $\delta > 0$ such that for all $y \in [a, b]$, $|y - x| < \delta$ implies $|f(y) - f(x)| < \varepsilon/2$. Take such a $\delta$. As $x_{n_j} \to x$, we can find $J_1$ such that $j \geq J_1$ implies $|x_{n_j} - x| < \delta$. Similarly, we can find $J_2$ such that for $j \geq J_2$, $|y_{n_j} - x| < \delta$. Let $j = \max\{J_1, J_2\}$. Then we have $|f(x_{n_j}) - f(x)|, |f(y_{n_j}) - f(x)| < \varepsilon/2$. But by triangle inequality,
+	\[
+		|f(x_{n_j}) - f(y_{n_j})| \leq |f(x_{n_j}) - f(x)| + |f(x) - f(y_{n_j})| < \varepsilon
+	,\]
+	a contradiction.
+\end{adjustbox}
+
+\begin{corollary}
+	A continuous real-valued function on a closed bounded interval is bounded.
+\end{corollary}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} Let $f : [a, b] \mapsto \mathbb{R}$ be continuous, and so uniformly continuous. Then we can find $\delta > 0$ such that for all $x, y \in [a, b]$, $|x - y| < \delta$ implies $|f(x) - f(y)| < 1$. Let $M = \lceil (b - a)/\delta \rceil$. Then for any $x \in [a, b]$, we can find $a = x_0 \leq x_1 \leq \ldots \leq x_M = x$, with $|x_{i} - x_{i-1}< \delta$. Then we have
+	\[
+		|f(x)| \leq |f(a)| + \sum_{i = 1}^{M} |f(x_i) - f(x_{i-1})| < |f(a)| + M
+	.\]
+\end{adjustbox}
+
+\begin{corollary}
+	A continuous real-valued function on a closed bounded interval is integrable.
+\end{corollary}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} Let $f : [a, b] \to \mathbb{R}$ be continuous, and so uniformly continuous. Let $\varepsilon > 0$. Then we can find $\delta > 0$ such that for all $x, y \in [a, b]$, $|x - y| < \delta$, we have $|f(x) - f(y)| < \varepsilon$. Let $\mathcal{D} = \{x_0 < x_1 < \ldots < x_n\}$ be a dissection such that $x_{i} - x_{i-1} < \delta$, and $i \in \{1, \ldots, n\}$. Then for any $u, v \in [x_{i-1}, x_i]$, we have $|u - v| < \delta$, so $|f(u) - f(v)| < \varepsilon$. Hence
+	\[
+		\sup_{x \in [x_{i-1}, x_i]} f(x) - \inf_{x \in [x_{i-1}, x_i]} f(x) \leq \varepsilon
+	.\]
+	This gives
+	\[
+		S(f, \mathcal{D}) - s(f, \mathcal{D}) \leq \sum_{i = 1}^{n}(x_i - x_{i-1})\varepsilon = \varepsilon(b - a)
+	.\]
+	But this can be made arbitrarily small, so by Riemann's criterion, $f$ is integrable over $[a, b]$.
+\end{adjustbox}
+
+\newpage
+
+\section{Metric Spaces}%
+\label{sec:metric_spaces}
+
+\subsection{Definitions and Examples}%
+\label{sub:definitions_and_examples}
+
+Our goal is to generalize the idea of convergence. This requires a notion of distance.
+
+We have seen in $\mathbb{R}$, we have a norm $|x - y|$, in $\mathbb{R}^2$ we have $\|x - y\|$, and in function space, we can take
+\[
+	\sup_{x \in X}|f(x) - g(x)|
+.\]
+We have seen that the triangle inequality is very useful, so we wish to preserve this property.
+
+\begin{definition}
+	A \textbf{metric space}\index{metric space} is a set $X$ endowed with a \textbf{metric}\index{metric} $d$, i.e. a function $d : X^2 \to \mathbb{R}$, satisfying:
+	\begin{enumerate}[(i)]
+		\item $d(x, y) \geq 0$ for all $x, y \in X$, with equality if and only if $x = y$;
+		\item $d(x, y) = d(y, x)$ for all $x, y \in X$;
+		\item $d(x, z) \leq d(x, y) + d(y, z)$ for all $x, y z \in X$.
+	\end{enumerate}
+\end{definition}
+
+We could define a metric space as an ordered pair $(X, d)$, but usually it is obvious what $d$ is, so we often refer to the metric space as the set $X$.
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	\begin{enumerate}[(i)]
+		\item[]
+		\item If $X = \mathbb{R}$, we have the usual metric\index{usual metric} $d(x, y) = |x - y|$.
+		\item If $X = \mathbb{R}^{n}$, we can take the Euclidean metric\index{Euclidean metric}
+			\[
+				d(x, y) = \|x - y\| = \sqrt{\sum_{i = 1}^{n}(x_{i} - y_i)^2}
+			.\]
+		\item Uniform convergence might not work. We wish to take $d(f, g) = \sup|f - g|$, but this might not exist if $f - g$ is unbounded. However, with the appropriate subspace of functions, we can take this metric. Let $Y \subset \mathbb{R}$, and take
+			\[
+				X = B(Y) = \{f : Y \to \mathbb{R} \mid f \text{ bounded}\}
+			,\]
+			with the \textbf{uniform metric}
+			\[
+				d(f, g) = \sup_{x \in Y}|f(x) - g(x)|
+			.\]
+	\end{enumerate}
+	
+\end{example}
+
+\end{adjustbox}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\begin{enumerate}
+		\item[]
+			We can check the triangle inequality: if $f, g, h \in B(Y)$, then for all $x \in Y$,
+			\[
+				|f(x) - h(x)| \leq |f(x) - g(x)| + |g(x) - h(x)| \leq d(f, g) + d(g, h)
+			.\]
+			Taking the sup over all $x \in Y$, we get
+			\[
+				d(f, h) \leq d(f, g) + d(g, h)
+			.\]
+	\end{enumerate}
+\end{adjustbox}
+
+
+\begin{remark}
+	Suppose $(X, d)$ is a metric space and $Y \subset X$. Then $d|_{Y}$ is a metric on $Y$. We say $Y$ with this metric is a \textbf{subspace}\index{subspace} of $X$.
+\end{remark}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	\begin{enumerate}[(i)]
+		\item[]
+		\item We can take $\mathbb{Q}, \mathbb{Z}, \mathbb{N}, [0, 1]$ as subspaces of $\mathbb{R}$.
+		\item A continuous function on a bounded interval is bounded, so $\mathcal{C}([a, b])$ is a subspace of $B([a, b])$, with the uniform metric.
+		\item We can take the empty metric space $X = \emptyset$ with the empty metric.
+	\end{enumerate}
+\end{example}
+\end{adjustbox}
+
+Moreover, we can define different metrics on the same set.
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	\begin{enumerate}[(i)]
+		\item[]
+		\item We can take the $l_1$ metric on $\mathbb{R}^{n}$:
+			\[
+				d(x, y) = \sum_{i = 1}^{n}|x_i - y_i|
+			.\]
+		\item We can also take the $l_{\infty}$ metric on $\mathbb{R}^{n}$:
+			\[
+				d(x, y) = \max_{i} |x_i - y_i|
+			.\]
+		\item On $\mathcal{C}([a, b])$, we can define the $L_1$ metric
+			\[
+				d(f, g) = \int_{a}^{b}|f - g|
+			.\]
+	\end{enumerate}
+	
+\end{example}
+
+\end{adjustbox}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{enumerate}[(i)]
+	\setcounter{enumi}{3}
+		\item If $X = \mathbb{C}$, we can define a metric
+			\[
+				d(z, w) =
+				\begin{cases}
+					0 & z = w,\\
+					|z| + |w| & z \neq w.
+				\end{cases}
+			\]
+			We can check that the triangle inequalitys. This is known as the British Rail metric or SNCF metric.
+\end{enumerate}
+
+\end{adjustbox}
+
 
 
 \newpage

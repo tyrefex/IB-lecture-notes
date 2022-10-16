@@ -10,6 +10,10 @@
 
   \indexspace
 
+  \item Euclidean metric, \hyperpage{14}
+
+  \indexspace
+
   \item general principle of convergence, \hyperpage{2}
   \item general principle of uniform convergence, \hyperpage{8}
 
@@ -19,8 +23,17 @@
 
   \indexspace
 
+  \item metric, \hyperpage{14}
+  \item metric space, \hyperpage{14}
+
+  \indexspace
+
   \item pointwise bounded, \hyperpage{8}
   \item pointwise convergence, \hyperpage{4}
+
+  \indexspace
+
+  \item subspace, \hyperpage{15}
 
   \indexspace
 
@@ -33,5 +46,6 @@
   \item uniform convergence of series, \hyperpage{9}
   \item uniformly bounded, \hyperpage{8}
   \item uniformly Cauchy, \hyperpage{7}
+  \item usual metric, \hyperpage{14}
 
 \end{theindex}

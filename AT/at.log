@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2021.3.9)  13 OCT 2022 23:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2021.3.9)  15 OCT 2022 12:03
 entering extended mode
 **./at.tex
 (at.tex
@@ -908,23 +908,23 @@ Overfull \hbox (37.52097pt too wide) in paragraph at lines 288--303
 [] 
  []
 
-[5] [6] [7] [8] [9] [10] [11] [12]
+[5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16]
 runsystem(makeindex at.idx)...executed (allowed).
 
- (at.ind) [13
+ (at.ind) [17
 
 ] (at.aux)
 Package rerunfilecheck Info: File `at.out' has not changed.
-(rerunfilecheck)             Checksum: FB94F8B94D08C27D10778E9732706C6D;1368.
+(rerunfilecheck)             Checksum: 378877BFE66A373CE8076EFEF4998B1A;1669.
  ) 
 Here is how much of TeX's memory you used:
- 22847 strings out of 479334
- 402656 string characters out of 2866961
- 708764 words of memory out of 3000000
- 39806 multiletter control sequences out of 15000+200000
+ 22875 strings out of 479334
+ 402935 string characters out of 2866961
+ 708859 words of memory out of 3000000
+ 39811 multiletter control sequences out of 15000+200000
  412847 words of font info for 63 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 113i,12n,116p,510b,534s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 113i,12n,116p,560b,534s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Progra
 m Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKT
 eX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program Files/MiKTeX/fonts/typ
@@ -938,9 +938,9 @@ onts/cm/cmsy10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy
 6.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Pro
 gram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files/M
 iKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on at.pdf (14 pages, 215536 bytes).
+Output written on at.pdf (18 pages, 236197 bytes).
 PDF statistics:
- 230 PDF objects out of 1000 (max. 8388607)
- 56 named destinations out of 1000 (max. 500000)
- 77 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 283 PDF objects out of 1000 (max. 8388607)
+ 79 named destinations out of 1000 (max. 500000)
+ 93 words of extra memory for PDF output out of 10000 (max. 10000000)
 
