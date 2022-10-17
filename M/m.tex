@@ -658,7 +658,138 @@ Self-adjoint operators satisfy many similar properties to self-adjoint matrices:
 	\item The eigenfunctions $y_n$ form a complete set.
 \end{enumerate}
 
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} 
+\begin{enumerate}[1.]
+	\item Given $\mathcal{L}y_n = \lambda_n \omega y_n$, we take the complex conjugate $\mathcal{L}y_n^{\ast} = \lambda_n^{\ast} \omega y_n^{\ast}$. Then,
+		\[
+			0 = \int_{a}^{b} (y_n^{\ast} \mathcal{L}y_n - (\mathcal{L}y_n^{\ast}) y_n)\diff x = (\lambda_n - \lambda_n^{\ast}) \int_{a}^{b} \omega y_n y_n^{\ast}\diff x
+		.\]
+		But the right hand side is non-zero, unless $\lambda_n = \lambda_n^{\ast}$, so the eigenvalues are real.
+	\item Consider two eigenfunctions $\mathcal{L}y_m = \lambda_m \omega y_m$, $\mathcal{L}y_n = \lambda_n \omega y_n$. Then
+		\[
+			0 = \int_{a}^{b}(y_m \mathcal{L}y_n - y_n \mathcal{L}y_m) \diff x = (\lambda_n - \lambda_n) \int_{a}^{b} \omega y_n y_m \diff x
+		.\]
+		Since $\lambda_m \neq \lambda_n$, we get
+		\[
+		\int_{a}^{b} \omega y_n y_m \diff x = 0
+		.\]
+		We say $y_n, y_m$ are orthogonal with respect to the weight function $\omega(x)$ on the interval $a \leq x \leq b$. Define the inner product with respect to the weight $\omega(x)$ as
+		\[
+			\langle f, g \rangle_{\omega} = \int_{a}^{b} \omega(x) f^{\ast}(x) g(x) \diff x = \langle \omega f, g \rangle = \langle f, \omega g\rangle
+		.\]
+	\item Completeness implies we can approximate any well-behaved function $f(x)$ on $a \leq x \leq b$ by the series
+		\[
+			f(x) = \sum_{n = 1}^{\infty} a_n y_n(x)
+		.\]
+\end{enumerate}
 
+\end{adjustbox}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{enumerate}
+	\item[]	To find the expansion coefficients we consider
+		\[
+			\int_{a}^{b} \omega(x) y_m(x) f(x) \diff x = \sum_{n = 1}^{\infty} a_n \int_{a}^{b} \omega y_n y_m \diff x = a_m \int_{a}^{b} \omega y_m^2\diff x
+		.\]
+		Hence
+		\[
+			a_n = \frac{\int_{a}^{b} \omega(x) y_n(x) f(x) \diff x}{\int_{a}^{b}\omega(x) y_n^2(x)\diff x}
+		.\]
+		Normally, we have normalized eigenfunctions\index{normalized eigenfunction}, where we take
+		\[
+			Y_n(x) = \frac{y_n(x)}{\left( \int_{a}^{b}\omega y_n^2 \diff x \right)^{1/2}}
+		.\]
+		This gives
+		\[
+			\langle Y_n, Y_m \rangle_{\omega} = \delta_{nm}
+		,\]
+		so
+		\[
+			f(x) = \sum_{n = 1}^{\infty} A_n Y_n(x)
+		,\]
+		where
+		\[
+		A_n = \int_{a}^{b} \omega Y_n f \diff x
+		.\]
+\end{enumerate}
+
+\end{adjustbox}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	Recall the Fourier Series in Sturm-Liouville form
+	\[
+	\mathcal{L}y_n = -\frac{\Diff2 y_n}{\diff x^2} = \lambda_n y_n
+	,\]
+	with $\lambda_n = (n\pi/L)^2$ by orthogonality relations.
+\end{example}
+
+\end{adjustbox}
+
+\subsection{Completeness and Parseval's Identity}%
+\label{sub:completeness_and_parseval_s_identity}
+
+Consider
+\begin{align*}
+	\int_{a}^{b}\left[ f(x) - \sum_{n = 1}^{\infty} a_n y_n \right]^2\omega \diff x &= \int_{a}^{b} \left[f^2 - 2f \sum_{n}a_n y_n + \sum_{n}a_n^2 y_n^2\right] \omega \diff x \\
+											&= \int_{a}^{b}\omega f^2 \diff x - \sum_{n = 1}^{\infty}a_n^2 \int_{a}^{b}\omega y_n^2 \diff x,
+\end{align*}
+because
+\[
+\int_{a}^{b} f y_n \omega \diff x = a_n \int_{a}^{b} \omega y_n^2 \diff x
+.\]
+Hence if the eigenfunctions are \textbf{complete} then the series converges, and we get
+\[
+\int_{a}^{b} \omega f^2 \diff x = \sum_{n = 1}^{\infty} a_n^2 \int_{a}^{b} \omega y_n^2 \diff x = \sum_{n = 1}^{\infty} A_n^2
+.\]
+We also get \textbf{Bessel's inequality}\index{Bessel's inequality}, by looking at what happens if some eigenfunctions are missing:
+\[
+\int_{a}^{b} \omega f^2 \diff x \geq \sum_{n = 1}^{\infty} A_n^2
+.\]
+We define the partial sums
+\[
+	S_N(x) = \sum_{n = 1}^{N}a_n y_n
+.\]
+The error in the partial sum
+\[
+	\epsilon_N = \int_{a}^{b} \omega[f(x) - S_N(x)]^2\diff x \to 0
+.\]
+is minimized by the sequence defined as above, as
+\begin{align*}
+	\frac{\partial \epsilon_N}{\partial a_n} &= \frac{\partial}{\partial a_n} \left[ \int_{a}^{b} \omega \left[f(x) - \sum_{n = 1}^{N}a_n y_n\right]^2 \diff x \right] \\
+						 &= - 2 \int_{a}^{b} y_n \omega \left[f - \sum_{n = 1}^{N} a_n y_n\right]\diff x \\
+						 &= -2 \int_{a}^{b}(\omega f y_n - a_n \omega y_n^2)\diff x = 0.
+\end{align*}
+
+\subsection{Legendre Polynomials}%
+\label{sub:legendre_polynomials}
+
+Consider Legendre's equation\index{Legendre's equation} arising from spherical polar coordinates
+\[
+	(1 - x^2)y'' - 2xy' + \lambda y = 0
+\]
+on the interval $-1 \leq x \leq 1$ with $y$ finite at $x = \pm 1$. This is in Sturm-Liouville form with $\rho = 1-x^2$, $q = 0$, $\omega = 1$. To solve, we seek a power series about $x = 0$. Let
+\[
+y = \sum_{n = 0}^{\infty} c_n x^{n}
+.\]
+Then substituting,
+\[
+	(1 - x^2)\sum_{n = 0}^{\infty} n(n-1) c_n x^{n-2} - 2x \sum_{n = 0}^{\infty} n c_n x^{n-1} + \lambda \sum_{n = 0}^{\infty} c_n x^{n} = 0
+.\]
+Equating powers of $x^{n}$, we get
+\[
+	(n+2)(n+1)c_{n+2} - n(n-1)c_n - 2n c_n + \lambda c_n = 0
+,\]
+\[
+	\implies c_{n+2} = \frac{n(n+1) - \lambda}{(n+1)(n+2)} c_n
+.\]
+So specifying $c_0, c_1$ gives two independent solutions,
+\begin{align*}
+	y_{even} &= c_0 \left[ 1 + \frac{(-\lambda)}{2!}x^2 + \frac{(6 - \lambda)(-\lambda)}{4!}x^{4} + \cdots \right], \\
+	y_{odd} &= c_1 \left[x + \frac{(2 - \lambda)}{3!}x^3 + \frac{(12 - \lambda)(2 - \lambda)}{5!}x^{5} + \cdots \right].
+\end{align*}
+But as $n \to \infty$, the ratio of terms tends to $1$, so the radius of convergence is $|x| < 1$. This means this series is divergent at $x = \pm 1$.
 \newpage
 
 \printindex

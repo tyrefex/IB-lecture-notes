@@ -1,5 +1,6 @@
 \begin{theindex}
 
+  \item Bessel's inequality, \hyperpage{17}
   \item boundary conditions, \hyperpage{12}
 
   \indexspace
@@ -26,6 +27,14 @@
   \item initial conditions, \hyperpage{12}
   \item inner product of complex-valued functions, \hyperpage{13}
   \item inner product of periodic functions, \hyperpage{2}
+
+  \indexspace
+
+  \item Legendre's equation, \hyperpage{17}
+
+  \indexspace
+
+  \item normalized eigenfunction, \hyperpage{16}
 
   \indexspace
 

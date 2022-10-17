@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2021.3.9)  14 OCT 2022 10:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2021.3.9)  17 OCT 2022 14:55
 entering extended mode
 **./m.tex
 (m.tex
@@ -921,20 +921,21 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 \openout6 = `m.toc'.
 
  [1] [2] [3] [4] [5]
-[6] [7] [8] [9] [10] [11] [12] [13] [14] [15]
+[6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18]
 runsystem(makeindex m.idx)...executed (allowed).
 
- (m.ind) [16
+ (m.ind) [19
 
-] (m.aux)
+]
+(m.aux)
 Package rerunfilecheck Info: File `m.out' has not changed.
-(rerunfilecheck)             Checksum: 18028963BB17218BAF4869D21143951E;4554.
+(rerunfilecheck)             Checksum: 354E840747E53E923AAE0C95ABD5D9F9;4962.
  ) 
 Here is how much of TeX's memory you used:
- 23373 strings out of 479334
- 412443 string characters out of 2866961
- 718318 words of memory out of 3000000
- 40308 multiletter control sequences out of 15000+200000
+ 23386 strings out of 479334
+ 412624 string characters out of 2866961
+ 718436 words of memory out of 3000000
+ 40312 multiletter control sequences out of 15000+200000
  411504 words of font info for 56 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  113i,12n,116p,509b,462s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -950,9 +951,9 @@ s/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX/fon
 ts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX/fonts/type1/publ
 ic/amsfonts/cm/cmti12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/
 symbols/msbm10.pfb>
-Output written on m.pdf (17 pages, 210825 bytes).
+Output written on m.pdf (20 pages, 225885 bytes).
 PDF statistics:
- 317 PDF objects out of 1000 (max. 8388607)
- 69 named destinations out of 1000 (max. 500000)
- 205 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 349 PDF objects out of 1000 (max. 8388607)
+ 78 named destinations out of 1000 (max. 500000)
+ 221 words of extra memory for PDF output out of 10000 (max. 10000000)
 

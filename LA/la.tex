@@ -4,6 +4,8 @@
 \usepackage[a4paper]{geometry}
 \usepackage{fancyhdr}
 \usepackage{tikz}
+\usetikzlibrary{cd}
+\usetikzlibrary{babel}
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{amsthm}
@@ -497,7 +499,7 @@ Hence, $V = \langle v_1, \ldots, v_l, w_{l+1}, \ldots, w_n \rangle = \langle v_1
 \end{proposition}
 
 \begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} Pick $(v_1, \ldots, v_l)$ a basis of $U \cap W$. Extend to a basis $(v_1, \ldots, v_l, u_1, \ldots, u_m)$ of $U$, and a basis $(v_1, \ldots, v_l, w_1, \ldots, w_n)$ of $W$. Then we show $(v_1, \ldots, v_l, u_1, \ldots, u_m, w_1, \ldots, w_n)$ is a basis of $U + W$.
+	\textbf{Proof:} Pick $(v_1, \ldots, v_l)$ a basis of $U \cap W$. Extend this to a basis $(v_1, \ldots, v_l, u_1, \ldots, u_m)$ of $U$, and a basis $(v_1, \ldots, v_l, w_1, \ldots, w_n)$ of $W$. Then we show $(v_1, \ldots, v_l, u_1, \ldots, u_m, w_1, \ldots, w_n)$ is a basis of $U + W$.
 
 	It is clearly a generating family, so we will show it is free. Suppose
 	\[
@@ -526,7 +528,7 @@ Hence, $V = \langle v_1, \ldots, v_l, w_{l+1}, \ldots, w_n \rangle = \langle v_1
 \end{proposition}
 
 \begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} Let $(u_1, \ldots, u_l)$ be a basis of $U$. Extend to a basis $(u_1, \ldots, u_l, w_{l+1}, \ldots, w_{n})$ of $V$. Then we show that $(w_{l+1} + U, \ldots, w_{n} + U)$ is a basis of $V/U$. (Fill this in).
+	\textbf{Proof:} Let $(u_1, u_2, \ldots, u_l)$ be a basis of $U$. Extend this to a basis $(u_1, \ldots, u_l, w_{l+1}, \ldots, w_{n})$ of $V$. Then we show that $(w_{l+1} + U, \ldots, w_{n} + U)$ is a basis of $V/U$. (Fill this in).
 \end{adjustbox}
 
 \begin{remark}
@@ -625,7 +627,7 @@ with the convention that $\{v\} \cup \{v\} = \{v, v\}$.
 
 \newpage
 
-\section{Linear maps, Isomorphism and the Rank-Nullity Theorem}%
+\section{Linear maps, Isomorphisms and the Rank-Nullity Theorem}%
 \sectionmark{Linear maps, Isomorphism and Rank-Nullity}
 \label{sec:linear_maps_isomorphism_and_the_rank_nullity_theorem}
 
@@ -798,7 +800,7 @@ Hence $\lambda_1 w_1 + \lambda_2 w_2 \in \Img \alpha$.
 	Let $V, W$ be vector spaces over $F$, and $\alpha : V \to W$ linear. Then
 	\begin{align*}
 		V/\Ker \alpha &\to \Img \alpha \\
-		\bar \alpha(v + \Ker \alpha) &\mapsto \alpha(v)
+		v + \Ker \alpha &\mapsto \alpha(v)
 	\end{align*}
 	is an isomorphism.
 \end{theorem}
@@ -813,6 +815,174 @@ Hence $\lambda_1 w_1 + \lambda_2 w_2 \in \Img \alpha$.
 
 \end{adjustbox}
 
+\begin{definition}[Rank and Nullity]\index{rank}\index{nullity}
+	We define the rank $r(\alpha) = \rank(\alpha) = \dim \Img \alpha$, and the nullity $n(\alpha) = \nullity(\alpha) = \dim \Ker \alpha$.
+\end{definition}
+
+\begin{theorem}[Rank-nullity theorem]\index{rank-nullity theorem}
+	Let $U, V$ be vector spaces over $F$, with $\dim U < \infty$, and let $\alpha : U \to V$ be a lninear map. Then,
+	\[
+		\dim U = r(\alpha) + n(\alpha)
+	.\]
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} We have proven that $U/Ker \alpha \cong \Img \alpha$, but we have already proven $\dim U/Ker \alpha = \dim U - r(\alpha)$, which proves the theorem.
+\end{adjustbox}
+
+\begin{lemma}
+	Let $V, W$ be vector spaces over $F$ of equal finite dimension. Let $\alpha : V \to W$ be a linear map. Then the following are equivalent:
+	\begin{itemize}
+		\item $\alpha$ is injective,
+		\item $\alpha$ is surjective,
+		\item $\alpha$ is an isomorphism.
+	\end{itemize}
+\end{lemma}
+
+This follows immediately from the rank-nullity theorem.
+
+\newpage
+
+\section{Linear maps and Matrices}%
+\label{sec:linear_maps_and_matrices}
+
+\begin{definition}
+	If $V, W$ are vector spaces over $F$, then
+	\[
+		L(V, W) = \{\alpha : V \to W \text{ linear}\}
+	.\]
+\end{definition}
+
+\begin{proposition}
+	$L(V, W)$ is a vector space over $F$ with
+	\[
+		(\alpha_1 + \alpha_2)(v) = \alpha_1(v) + \alpha_2(v)
+	,\]
+	\[
+		(\lambda \alpha)(v) = \lambda \alpha 9v)
+	.\]
+	Moreover, if $V$ and $W$ are finite dimensional, then so is $L(V, W)$, and
+	\[
+		\dim L(V, W) = \dim V \dim W
+	.\]
+\end{proposition}
+
+\begin{definition}
+	An $m \times n$ matrix\index{matrix} over $F$ is an array with $m$ rows and $n$ columns with entries in $F$, $A = (a_{ij})$. Define
+	\[
+		M_{m, n}(F) = \{\text{set of } m \times n \text{ matrices over } F\}
+	.\]
+\end{definition}
+
+\begin{proposition}
+	$M_{m, n}(F)$ is a vector space over $F$, and $\dim M_{m, n}(F) = mn$
+\end{proposition}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} Let $E_{ij}$ be the matrix with $a_{xy} = \delta_{xi}\delta_{yj}$. Then $(E_{ij})$ is a basis of $M_{m, n}(F)$, as
+	\[
+		N = (a_{ij}) = \sum_{i, j}a_{ij} E_{ij}
+	,\]
+	and $(E_{ij})$ is free.
+\end{adjustbox}
+
+If $V, W$ are vector spaces over $F$, and $\alpha : V \to W$ is a linear map, we take a basis $\mathcal{B} = (v_1, \ldots, v_n)$ of $V$, and $\mathcal{C} = (w_1, \ldots, w_m)$ of $W$. Let $v \in V$, then
+\[
+v = \sum_{i = 1}^{n} \lambda_i v_i \sim
+\begin{pmatrix}
+	\lambda_1 \\
+	\vdots \\
+	\lambda_n
+\end{pmatrix}
+ \in F^{n}
+.\]
+We let this isomorphism from $V$ to $F^{n}$ be $[v]_{\mathcal{B}}$. Similarly, we can obtain $[w]_{\mathcal{B}}$ for $w \in W$.
+
+\begin{definition}
+	We define a matrix of $\alpha$ with respect to a basis $\mathcal{B}, \mathcal{C}$ as
+	\[
+		[\alpha]_{\mathcal{B}, \mathcal{C}} = ([\alpha(v_1)]_{\mathcal{C}}, [\alpha(v_2)]_{\mathcal{C}}, \ldots, [\alpha(v_n)]_{\mathcal{C}})
+	.\]
+\end{definition}
+
+By definition, if $[\alpha]_{\mathcal{B}, \mathcal{C}} = (a_{ij})$, then
+\[
+	\alpha(v_j) = \sum_{i = 1}^{m} a_{ij} w_i
+.\]
+
+\begin{lemma}
+	If $v \in V$, then
+	\[
+		[\alpha(v)]_{\mathcal{C}} = [\alpha]_{\mathcal{B}, \mathcal{C}} \cdot [v]_{\mathcal{B}}
+	,\]
+	or equivalently,
+	\[
+		(\alpha (v))_{i} = \sum_{j = 1}^{n} a_{ij} \lambda_j
+	.\] 
+\end{lemma}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} Let $v \in V$, then
+\[
+v = \sum_{j = 1}^{n} \lambda_j v_j
+.\]
+Then
+ \begin{align*}
+	 \alpha(v) &= \alpha \left( \sum_{j = 1}^{n} \lambda_j v_j \right) = \sum_{j = 1}^{n} \lambda_j \alpha(v_j) \\
+		   &= \sum_{j = 1}^{n} \lambda_j \sum_{i = 1}^{n} a_{ij} w_i = \sum_{i = 1}^{m} \left( \sum_{j = 1}^{n} a_{ij} \lambda_j \right) w_i.
+\end{align*}
+
+\end{adjustbox}
+
+\begin{lemma}
+	If $U \to V$ is linear under $\beta$, $V \to W$ linear under $\alpha$, then $U \to W$ is linear under $\alpha \to W$. Let $\mathcal{A}$ be a basis of $U$, $\mathcal{B}$ a basis of $V$, and $\mathcal{C}$ a basis of $W$. Then
+	\[
+		[\alpha \circ \beta]_{\mathcal{A}, \mathcal{C}} = [\alpha]_{\mathcal{B}, \mathcal{C}} \cdot [\beta]_{\mathcal{A}, \mathcal{B}}
+	.\] 
+\end{lemma}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} Let $A = [\alpha]_{\mathcal{B}, \mathcal{C}}$, $B = [\beta]_{\mathcal{A}, \mathcal{B}}$. Pick $u_l \in A$. Then
+	\begin{align*}
+		(\alpha \circ \beta)(u_l) &= \alpha(\beta(u_l)) = \alpha\left( \sum_{j} b_{jl} v_j \right) \\
+					  &= \sum_{j} b_{jl} \alpha(v_j) = \sum_{j}b_{jl}\sum_{i}a_{ij}w_i \\
+					  &= \sum_{i}\left( \sum_{j} a_{ij} b_{jl} \right) w_i.
+	\end{align*}
+\end{adjustbox}
+
+\begin{proposition}
+If $V$ and $W$ are vector spaces over $F$, and $\dim V = n$, $\dim W = m$, then $L(V, W) \cong M_{m, n}(F)$, so $\dim L(V, W) = m \times n$.
+\end{proposition}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} Fix $\mathcal{B}, \mathcal{C}$ bases of $V$ and $W$. We show
+\begin{align*}
+	\theta : L(V, W) &\to M_{m, n}(F) \\
+	\alpha &\mapsto [\alpha]_{\mathcal{B}, \mathcal{C}}
+\end{align*}
+is an isomorphism.
+\begin{itemize}
+	\item $\theta$ is linear:
+		$[\lambda_1 \alpha_1 + \lambda_2 \alpha_2]_{\mathcal{B}, \mathcal{C}} = \lambda_1 [\alpha_1]_{\mathcal{B}, \mathcal{C}} + \lambda_2[\alpha_2]_{\mathcal{B}, \mathcal{C}}$.
+	\item $\theta$ is surjective: Consider $A = (a_{ij})$. Consider the map
+		\[
+		\alpha : v_j \mapsto \sum_{i = 1}^{m} a_{ij}w_i
+		.\]
+		This can be extended by linearity, and $[\alpha]_{\mathcal{B}, \mathcal{C}} = A$.
+	\item $\theta$ is injective: If $[\alpha]_{\mathcal{B}, \mathcal{C}} = 0$, then $\alpha = 0$ for all $v$.
+\end{itemize}
+
+\end{adjustbox}
+
+\begin{remark}
+	If $\mathcal{B}, \mathcal{C}$ are bases of $V, W$ and $\varepsilon_{\mathcal{B}} : v \mapsto [v]_{\mathcal{B}}$, $\varepsilon_{\mathcal{C}} : w \mapsto [w]_{\mathcal{C}}$, then the following diagram commutes:
+	\[
+		\begin{tikzcd}
+			V \arrow[r, "\alpha"] \arrow[d, "\varepsilon_{\mathcal{B}}"] & W \arrow[d, "\varepsilon_{\mathcal{C}}"] \\
+			F^{n} \arrow[r, "{[\alpha]_{\mathcal{B},\mathcal{C}}}"] & F^{m}
+		\end{tikzcd}
+	\] 
+\end{remark}
 
 
 \newpage

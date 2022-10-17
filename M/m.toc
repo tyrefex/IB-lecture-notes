@@ -21,4 +21,6 @@
 \contentsline {subsubsection}{\numberline {2.2.1}Sturm-Liouville equation}{13}{subsubsection.2.2.1}%
 \contentsline {subsubsection}{\numberline {2.2.2}Self-adjoint definition}{14}{subsubsection.2.2.2}%
 \contentsline {subsection}{\numberline {2.3}Properties of self-adjoint operators}{15}{subsection.2.3}%
-\contentsline {section}{Index}{16}{section*.2}%
+\contentsline {subsection}{\numberline {2.4}Completeness and Parseval's Identity}{16}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Legendre Polynomials}{17}{subsection.2.5}%
+\contentsline {section}{Index}{19}{section*.2}%

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2021.3.9)  14 OCT 2022 11:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2021.3.9)  17 OCT 2022 16:03
 entering extended mode
 **./la.tex
 (la.tex
@@ -437,7 +437,28 @@ File: pgfmodulematrix.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 (C:\Program Files\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibra
 rytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2020/12/27 v3.1.8b (3.1.8b)
-))) (C:\Program Files\MiKTeX\tex/latex/amsfonts\amssymb.sty
+)))
+(C:\Program Files\MiKTeX\tex/latex/tikz-cd\tikzlibrarycd.code.tex
+(C:\Program Files\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibra
+rymatrix.code.tex
+File: tikzlibrarymatrix.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)
+(C:\Program Files\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibra
+ryquotes.code.tex
+File: tikzlibraryquotes.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)
+(C:\Program Files\MiKTeX\tex/generic/pgf/libraries\pgflibraryarrows.meta.code.t
+ex
+File: pgflibraryarrows.meta.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgfarrowinset=\dimen274
+\pgfarrowlength=\dimen275
+\pgfarrowwidth=\dimen276
+\pgfarrowlinewidth=\dimen277
+))
+(C:\Program Files\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibra
+rybabel.code.tex
+File: tikzlibrarybabel.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+) (C:\Program Files\MiKTeX\tex/latex/amsfonts\amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
 
 (C:\Program Files\MiKTeX\tex/latex/amsfonts\amsfonts.sty
@@ -477,12 +498,12 @@ Package: pdfpages 2021/02/05 v0.5s Insert pages of external PDF documents (AM)
 
 (C:\Program Files\MiKTeX\tex/latex/eso-pic\eso-pic.sty
 Package: eso-pic 2020/10/14 v3.0a eso-pic (RN)
-\ESO@tempdima=\dimen274
-\ESO@tempdimb=\dimen275
+\ESO@tempdima=\dimen278
+\ESO@tempdimb=\dimen279
 )
-\AM@pagewidth=\dimen276
-\AM@pageheight=\dimen277
-\AM@fboxrule=\dimen278
+\AM@pagewidth=\dimen280
+\AM@pageheight=\dimen281
+\AM@fboxrule=\dimen282
 
 (C:\Program Files\MiKTeX\tex/latex/pdfpages\pppdftex.def
 File: pppdftex.def 2021/02/05 v0.5s Pdfpages driver for pdfTeX (AM)
@@ -527,23 +548,23 @@ Package: trimclip 2020/08/19 v1.2 Trim and clip general TeX material
 Package: collectbox 2012/05/17 v0.4b Collect macro arguments as boxes
 \collectedbox=\box63
 )
-\tc@llx=\dimen279
-\tc@lly=\dimen280
-\tc@urx=\dimen281
-\tc@ury=\dimen282
+\tc@llx=\dimen283
+\tc@lly=\dimen284
+\tc@urx=\dimen285
+\tc@ury=\dimen286
 Package trimclip Info: Using driver 'tc-pdftex.def'.
 
 (C:\Program Files\MiKTeX\tex/latex/adjustbox\tc-pdftex.def
 File: tc-pdftex.def 2019/01/04 v2.2 Clipping driver for pdftex
 ))
-\adjbox@Width=\dimen283
-\adjbox@Height=\dimen284
-\adjbox@Depth=\dimen285
-\adjbox@Totalheight=\dimen286
-\adjbox@pwidth=\dimen287
-\adjbox@pheight=\dimen288
-\adjbox@pdepth=\dimen289
-\adjbox@ptotalheight=\dimen290
+\adjbox@Width=\dimen287
+\adjbox@Height=\dimen288
+\adjbox@Depth=\dimen289
+\adjbox@Totalheight=\dimen290
+\adjbox@pwidth=\dimen291
+\adjbox@pheight=\dimen292
+\adjbox@pdepth=\dimen293
+\adjbox@ptotalheight=\dimen294
 
 (C:\Program Files\MiKTeX\tex/latex/ifoddpage\ifoddpage.sty
 Package: ifoddpage 2016/04/23 v1.1 Conditionals for odd/even page detection
@@ -553,13 +574,13 @@ Package: ifoddpage 2016/04/23 v1.1 Conditionals for odd/even page detection
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \@vwid@box=\box64
 \sift@deathcycles=\count298
-\@vwid@loff=\dimen291
-\@vwid@roff=\dimen292
+\@vwid@loff=\dimen295
+\@vwid@roff=\dimen296
 ))
 (C:\Program Files\MiKTeX\tex/latex/enumitem\enumitem.sty
 Package: enumitem 2019/06/20 v3.9 Customized lists
 \labelindent=\skip68
-\enit@outerparindent=\dimen293
+\enit@outerparindent=\dimen297
 \enit@toks=\toks44
 \enit@inbox=\box65
 \enit@count@id=\count299
@@ -595,21 +616,21 @@ Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
 Package: multicol 2019/12/09 v1.8y multicolumn formatting (FMi)
 \c@tracingmulticols=\count302
 \mult@box=\box66
-\multicol@leftmargin=\dimen294
+\multicol@leftmargin=\dimen298
 \c@unbalance=\count303
 \c@collectmore=\count304
 \doublecol@number=\count305
 \multicoltolerance=\count306
 \multicolpretolerance=\count307
-\full@width=\dimen295
-\page@free=\dimen296
-\premulticols=\dimen297
-\postmulticols=\dimen298
+\full@width=\dimen299
+\page@free=\dimen300
+\premulticols=\dimen301
+\postmulticols=\dimen302
 \multicolsep=\skip69
 \multicolbaselineskip=\skip70
 \partial@page=\box67
 \last@line=\box68
-\maxbalancingoverflow=\dimen299
+\maxbalancingoverflow=\dimen303
 \mult@rightbox=\box69
 \mult@grightbox=\box70
 \mult@gfirstbox=\box71
@@ -654,9 +675,9 @@ Package: multicol 2019/12/09 v1.8y multicolumn formatting (FMi)
 \c@minrows=\count308
 \c@columnbadness=\count309
 \c@finalcolumnbadness=\count310
-\last@try=\dimen300
-\multicolovershoot=\dimen301
-\multicolundershoot=\dimen302
+\last@try=\dimen304
+\multicolovershoot=\dimen305
+\multicolundershoot=\dimen306
 \mult@nat@firstbox=\box110
 \colbreak@box=\box111
 \mc@col@check@num=\count311
@@ -698,7 +719,7 @@ Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
 (C:\Program Files\MiKTeX\tex/latex/letltxmacro\letltxmacro.sty
 Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
 )
-\@linkdim=\dimen303
+\@linkdim=\dimen307
 \Hy@linkcounter=\count318
 \Hy@pagecounter=\count319
 
@@ -738,7 +759,7 @@ Package hyperref Info: Bookmarks ON on input line 4445.
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 4804.
-\XeTeXLinkMargin=\dimen304
+\XeTeXLinkMargin=\dimen308
 
 (C:\Program Files\MiKTeX\tex/generic/bitset\bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
@@ -748,8 +769,8 @@ Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
 \Fld@menulength=\count322
-\Field@Width=\dimen305
-\Fld@charsize=\dimen306
+\Field@Width=\dimen309
+\Fld@charsize=\dimen310
 Package hyperref Info: Hyper figures OFF on input line 6075.
 Package hyperref Info: Link nesting OFF on input line 6080.
 Package hyperref Info: Hyper index ON on input line 6083.
@@ -793,7 +814,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip71
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 78.
+Package hyperref Info: Option `colorlinks' set `true' on input line 80.
 
 (C:\Program Files\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2021-03-02 L3 backend support: PDF output (pdfTeX)
@@ -802,24 +823,24 @@ File: l3backend-pdftex.def 2021-03-02 L3 backend support: PDF output (pdfTeX)
 ) (la.aux)
 \openout1 = `la.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 82.
-LaTeX Font Info:    ... okay on input line 82.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 82.
-LaTeX Font Info:    ... okay on input line 82.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 82.
-LaTeX Font Info:    ... okay on input line 82.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 82.
-LaTeX Font Info:    ... okay on input line 82.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 82.
-LaTeX Font Info:    ... okay on input line 82.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 82.
-LaTeX Font Info:    ... okay on input line 82.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 82.
-LaTeX Font Info:    ... okay on input line 82.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 82.
-LaTeX Font Info:    ... okay on input line 82.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 82.
-LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 84.
+LaTeX Font Info:    ... okay on input line 84.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 84.
+LaTeX Font Info:    ... okay on input line 84.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 84.
+LaTeX Font Info:    ... okay on input line 84.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 84.
+LaTeX Font Info:    ... okay on input line 84.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 84.
+LaTeX Font Info:    ... okay on input line 84.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 84.
+LaTeX Font Info:    ... okay on input line 84.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 84.
+LaTeX Font Info:    ... okay on input line 84.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 84.
+LaTeX Font Info:    ... okay on input line 84.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 84.
+LaTeX Font Info:    ... okay on input line 84.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -858,13 +879,13 @@ LaTeX Font Info:    ... okay on input line 82.
 (C:\Program Files\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count329
-\scratchdimen=\dimen307
+\scratchdimen=\dimen311
 \scratchbox=\box113
 \nofMPsegments=\count330
 \nofMParguments=\count331
 \everyMPshowfont=\toks45
 \MPscratchCnt=\count332
-\MPscratchDim=\dimen308
+\MPscratchDim=\dimen312
 \MPnumerator=\count333
 \makeMPintoPDFobject=\count334
 \everyMPtoPDFconversion=\toks46
@@ -881,7 +902,7 @@ Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 )
-Package hyperref Info: Link coloring ON on input line 82.
+Package hyperref Info: Link coloring ON on input line 84.
 
 (C:\Program Files\MiKTeX\tex/latex/hyperref\nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
@@ -894,19 +915,19 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count335
 )
-LaTeX Info: Redefining \ref on input line 82.
-LaTeX Info: Redefining \pageref on input line 82.
-LaTeX Info: Redefining \nameref on input line 82.
+LaTeX Info: Redefining \ref on input line 84.
+LaTeX Info: Redefining \pageref on input line 84.
+LaTeX Info: Redefining \nameref on input line 84.
 
 (la.out) (la.out)
 \@outlinefile=\write5
 \openout5 = `la.out'.
 
-Package hyperref Info: Option `pageanchor' set `false' on input line 84.
+Package hyperref Info: Option `pageanchor' set `false' on input line 86.
  [1
 
 {C:/Users/nath2/AppData/Local/MiKTeX/pdftex/config/pdftex.map}]
-Package hyperref Info: Option `pageanchor' set `true' on input line 108.
+Package hyperref Info: Option `pageanchor' set `true' on input line 110.
  (la.toc
 LaTeX Font Info:    Trying to load font information for U+msa on input line 2.
  (C:\Program Files\MiKTeX\tex/latex/amsfonts\umsa.fd
@@ -921,42 +942,28 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 \openout6 = `la.toc'.
 
  [1] [2] [3] [4] [5]
-[6] [7] [8]
-Underfull \hbox (badness 2326) in paragraph at lines 500--501
-[]\OT1/cmr/bx/n/12 Proof: \OT1/cmr/m/n/12 Pick $(\OML/cmm/m/it/12 v[]; [] ; v[]
-\OT1/cmr/m/n/12 )$ a ba-sis of $\OML/cmm/m/it/12 U \OMS/cmsy/m/n/12 \ \OML/cmm/
-m/it/12 W$\OT1/cmr/m/n/12 . Ex-tend to a ba-sis
+[6] [7] [8] [9] [10] [11] [12]
+Overfull \hbox (22.8702pt too wide) in paragraph at lines 630--630
+[]\OT1/cmr/bx/n/17.28 Linear maps, Iso-mor-phisms and the Rank-Nullity
  []
 
-[9]
-Underfull \hbox (badness 3965) in paragraph at lines 529--530
-[]\OT1/cmr/bx/n/12 Proof: \OT1/cmr/m/n/12 Let $(\OML/cmm/m/it/12 u[]; [] ; u[]\
-OT1/cmr/m/n/12 )$ be a ba-sis of $\OML/cmm/m/it/12 U$\OT1/cmr/m/n/12 . Ex-tend 
-to a ba-sis
- []
-
-[10] [11] [12]
-Overfull \hbox (15.20218pt too wide) in paragraph at lines 628--628
-[]\OT1/cmr/bx/n/17.28 Linear maps, Iso-mor-phism and the Rank-Nullity
- []
-
-[13] [14] [15] [16]
+[13] [14] [15] [16] [17] [18] [19]
 runsystem(makeindex la.idx)...executed (allowed).
 
- (la.ind) [17
+ (la.ind) [20
 
 ] (la.aux)
 Package rerunfilecheck Info: File `la.out' has not changed.
-(rerunfilecheck)             Checksum: 93F3C538838EF343FDD8CB36D9AFC82F;1329.
+(rerunfilecheck)             Checksum: C306A3BA9E4F4835DF31D7C283C5A075;1506.
  ) 
 Here is how much of TeX's memory you used:
- 23371 strings out of 479334
- 411830 string characters out of 2866961
- 716281 words of memory out of 3000000
- 40277 multiletter control sequences out of 15000+200000
+ 24401 strings out of 479334
+ 444139 string characters out of 2866961
+ 744133 words of memory out of 3000000
+ 41275 multiletter control sequences out of 15000+200000
  412564 words of font info for 59 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 113i,18n,116p,510b,547s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 113i,18n,116p,510b,1043s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\nath2\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
 1200.pk><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/
 Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Program Fi
@@ -968,11 +975,12 @@ b><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program
  Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX/
 fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX/fonts/type1/pu
 blic/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfont
-s/cm/cmsy8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.p
-fb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on la.pdf (18 pages, 223140 bytes).
+s/cm/cmsy6.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pf
+b><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Progra
+m Files/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on la.pdf (21 pages, 248547 bytes).
 PDF statistics:
- 283 PDF objects out of 1000 (max. 8388607)
- 95 named destinations out of 1000 (max. 500000)
- 61 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 324 PDF objects out of 1000 (max. 8388607)
+ 110 named destinations out of 1000 (max. 500000)
+ 69 words of extra memory for PDF output out of 10000 (max. 10000000)
 
