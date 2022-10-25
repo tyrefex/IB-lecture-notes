@@ -2,4 +2,9 @@
 \contentsline {subsection}{\numberline {0.1}History}{2}{subsection.0.1}%
 \contentsline {subsection}{\numberline {0.2}PageRank Algorithm}{2}{subsection.0.2}%
 \contentsline {section}{\numberline {1}Formal Setup}{3}{section.1}%
-\contentsline {section}{Index}{7}{section*.2}%
+\contentsline {subsection}{\numberline {1.1}Communicating Classes}{6}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Birth and Death chains}{9}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Mean Hitting Times}{11}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Strong Markov Property}{12}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}Stopping Times}{12}{subsection.1.5}%
+\contentsline {section}{Index}{13}{section*.2}%

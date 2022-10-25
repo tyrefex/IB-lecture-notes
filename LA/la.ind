@@ -4,6 +4,8 @@
 
   \indexspace
 
+  \item change of basis matrix, \hyperpage{20}
+  \item column rank, \hyperpage{23}
   \item complement, \hyperpage{11}
 
   \indexspace
@@ -13,7 +15,19 @@
 
   \indexspace
 
+  \item elementary column operation, \hyperpage{24}
+  \item elementary matrices, \hyperpage{24}
+  \item elementary row operation, \hyperpage{24}
+  \item endomorphism, \hyperpage{24}
+  \item equivalent matrices, \hyperpage{21}
+
+  \indexspace
+
   \item finite dimension, \hyperpage{5}
+
+  \indexspace
+
+  \item Gauss' pivot algorithm, \hyperpage{25}
 
   \indexspace
 
@@ -49,9 +63,12 @@
 
   \item rank, \hyperpage{16}
   \item rank-nullity theorem, \hyperpage{16}
+  \item row echelon form, \hyperpage{25}
+  \item row rank, \hyperpage{23}
 
   \indexspace
 
+  \item similar matrices, \hyperpage{24}
   \item span, \hyperpage{5}
   \item Steinitz exchange lemma, \hyperpage{7}
   \item subspace, \hyperpage{3}

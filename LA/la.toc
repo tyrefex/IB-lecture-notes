@@ -4,4 +4,8 @@
 \contentsline {section}{\numberline {3}Basis, Dimension and Direct Sums}{9}{section.3}%
 \contentsline {section}{\numberline {4}Linear maps, Isomorphisms and the Rank-Nullity Theorem}{13}{section.4}%
 \contentsline {section}{\numberline {5}Linear maps and Matrices}{17}{section.5}%
-\contentsline {section}{Index}{20}{section*.2}%
+\contentsline {section}{\numberline {6}Change of Basis and Equivalent Matrices}{20}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Change of Basis}{20}{subsection.6.1}%
+\contentsline {section}{\numberline {7}Elementary operations and Elementary Matrices}{24}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Representation of Square Invertible Matrix}{25}{subsection.7.1}%
+\contentsline {section}{Index}{27}{section*.2}%

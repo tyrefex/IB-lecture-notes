@@ -984,6 +984,320 @@ is an isomorphism.
 	\] 
 \end{remark}
 
+\newpage
+
+\section{Change of Basis and Equivalent Matrices}%
+\label{sec:change_of_basis_and_equivalent_matrices}
+
+Let $\alpha : V \to W$ with $\mathcal{B}$ and $\mathcal{C}$ bases of $V, W$. Then
+\[
+	[\alpha(v)]_{\mathcal{C}} = [\alpha]_{\mathcal{B}, \mathcal{C}} \cdot [v]_{\mathcal{B}}
+.\]
+If $Y \leq V$, we can take $\mathcal{B}$ a basis of $V$, such that $(v_1, \ldots, v_k, v_{k+1}, \ldots, v_n)$ is a basis of $V$, and $(v_1, \ldots, v_k)$ is a basis $\mathcal{B}'$ of $Y$, and $(v_{k+1}, \ldots, v_n)$ is a basis $\mathcal{B}''$.
+
+Then if $Z \leq W$, we can take a basis $\mathcal{C}$ of $W$ $(w_1, \ldots, w_l, w_{l+1}, \ldots, w_m)$, such that $(w_1, \ldots, w_l)$ is a basis $\mathcal{C}'$ of $Z$, and $(w_{l+1}, \ldots, w_m)$ is a basis $\mathcal{C}''$. Then
+\[
+	[\alpha]_{\mathcal{B}, \mathcal{C}} =
+	\begin{pmatrix}
+		A & B \\
+		0 & C
+	\end{pmatrix}
+.\]
+Then we can show that
+\[
+	A = [\alpha|_{Y}]_{\mathcal{B}', \mathcal{C}'}
+,\]
+if $\alpha(Y) \leq Z$. Moreover, we can show $\alpha$ induces a homomorphism
+\begin{align*}
+	\bar \alpha : V / Y &\to W / Z \\
+	v + Y &\mapsto \alpha(v) + Z
+\end{align*}
+This is well-defined as $\alpha(v) \in Z$ for $v \in Y$, and $[\bar \alpha]_{\mathcal{B}'', \mathcal{C}''} = C$.
+
+\subsection{Change of Basis}%
+\label{sub:change_of_basis}
+
+Consider $\alpha : V \to W$, where $V$ has two bases $\mathcal{B} = \{v_1, \ldots, v_n\}$ and $\mathcal{B}' = \{v_1', \ldots, v_n'\}$ and $W$ has two bases $\mathcal{C} = \{w_1, \ldots, w_n\}$ and $\mathcal{C}' = \{w_1', \ldots, w_m'\}$. We aim to find the relation between $[\alpha]_{\mathcal{B}, \mathcal{C}}$ and $[\alpha]_{\mathcal{B}', \mathcal{C}'}$.
+
+\begin{definition}
+	The change of basis matrix\index{change of basis matrix} from $\mathcal{B}'$ to $\mathcal{B}$ is $P = (p_{ij})$ given by
+	\[
+		P = ([v_1']_{\mathcal{B}}, \ldots, [v_n']_{\mathcal{B}}) = [\id]_{\mathcal{B}', \mathcal{B}}
+	.\]
+\end{definition}
+
+\begin{lemma}
+	$[v]_{\mathcal{B}} = P[v]_{\mathcal{B}'}$.
+\end{lemma}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} In general $[\alpha(v)]_{\mathcal{C}} = [\alpha]_{\mathcal{B}, \mathcal{C}} [v]_{\mathcal{B}}$. If $P = [\id]_{\mathcal{B}', \mathcal{B}}$, then
+	\[
+		[v]_{\mathcal{B}} = [\id(v)]_{\mathcal{B}} = [\id]_{\mathcal{B}', \mathcal{B}} [v]_{\mathcal{B}'} = P[v]_{\mathcal{B}'}
+	.\]
+\end{adjustbox}
+
+\begin{remark} 
+	$P$ is an $n \times n$ invertible matrix, and $P^{-1}$ is the change of basis matrix from $B$ to $B'$. Indeed,
+	\[
+		[\id]_{\mathcal{B}, \mathcal{B}'} [\id]_{\mathcal{B}', \mathcal{B}} = [\id]_{\mathcal{B}', \mathcal{B}'} = \id
+	,\]
+	and similarly.
+\end{remark}
+
+Note while we know $[v]_{\mathcal{B}} = P [v]_{\mathcal{B}'}$, to compute a vector in $\mathcal{B}'$, we have $[v]_{\mathcal{B}'} = P^{-1}[v]_{\mathcal{B}}$. This is hard to do.
+
+Similarly, we can also change basis $\mathcal{C}$ to $\mathcal{C}'$ in $W$. In this case, the change of basis matrix $Q = [\id]_{\mathcal{C}', \mathcal{C}}$ is $m \times m$ and invertible.
+
+Now given $\alpha : V \to W$, we wish to find how $[\alpha]_{\mathcal{B}, \mathcal{C}}$ and $[\alpha]_{\mathcal{B}', \mathcal{C}'}$.
+
+\begin{proposition}
+	If $A = [\alpha]_{\mathcal{B}, \mathcal{C}}$, $A' = [\alpha]_{\mathcal{B}', \mathcal{C}'}$, $P = [\id]_{\mathcal{B}', \mathcal{B}}$, $Q = [\id]_{\mathcal{C}'}, \mathcal{C}$, then
+	\[
+	A' = Q^{-1}AP
+	.\]
+\end{proposition}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} Combining the facts we know, we get
+\[
+	[\alpha(v)]_{\mathcal{C}} = Q[\alpha(v)]_{\mathcal{C}'} = Q[a]_{\mathcal{B}', \mathcal{C}'} [v]_{\mathcal{B}'} = Q A' [v]_{\mathcal{B}'}.
+\]
+But we also know
+\[
+	[\alpha(v)]_{\mathcal{C}} = [\alpha]_{\mathcal{B}, \mathcal{C}}[v]_{\mathcal{B}} = A P [v]_{\mathcal{B}'}
+.\]
+But since this is true for any $v \in V$, we get $QA' = AP$, so $A' = Q^{-1}AP$.
+\end{adjustbox}
+
+\begin{definition}[Equivalent matrices]\index{equivalent matrices}
+	Two matrices $A, B \in M_{m, n}(F)$ are equivalent if $A' = Q^{-1}AP$, where $Q \in M_{m, m}$ and $P \in M_{n, n}$ are invertible.
+\end{definition}
+
+\begin{remark}
+	This defines an equivalence relation on $M_{m, n}(F)$, as
+	\begin{itemize}
+		\item $A = I_m^{-1}AI_n$,
+		\item If $A' = Q^{-1}AP$, then $A = (Q^{-1})^{-1}A' P^{-1}$,
+		\item If $A' = Q^{-1}AP$, $A'' = (Q')^{-1}A'P'$, then $A'' = (QQ')^{-1}A(PP')$.
+	\end{itemize}
+	
+\end{remark}
+
+\begin{proposition}
+	Let $V, W$ be vector spaces over $F$, with $\dim_F V = n$, $\dim_F W = m$. Let $\alpha : V \to W$ be a linear map. Then there exists $\mathcal{B}$, $\mathcal{C}$ bases of $V, W$ such that
+	\[
+		[\alpha]_{\mathcal{B}, \mathcal{C}} =
+		\begin{pmatrix}
+			I_r & 0 \\
+			0 & 0
+		\end{pmatrix}
+	.\]
+\end{proposition}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} Choose $\mathcal{B}$ and $\mathcal{C}$ wisely. Fix $r \in \mathbb{N}$ such that $\dim \Ker \alpha = n - r$. Let $N(\alpha) = \Ker(\alpha) = \{x \in V \mid \alpha(x) = 0\}$. Fix any basis of $N(x)$, $(v_{r+1}, \ldots, v_n)$, and extend it to a basis $\mathcal{B} = (v_1, \ldots, v_r, v_{r+1}, \ldots, v_n)$.
+
+	We claim that $(\alpha(v_1), \ldots, \alpha(v_r))$ is a basis of $\Img \alpha$.
+	\begin{itemize}
+		\item First, if $v = \sum \lambda_i v_i$, then
+			\[
+				\alpha(v) = \sum_{i = 1}^{n} \lambda_i \alpha(v_i) = \sum_{i = 1}^{r} \lambda_i \alpha(v_i)
+			.\]
+			Let $y \in \Img \alpha$, so then
+			\[
+				y = \sum_{i = 1}^{r} \lambda_i \alpha(v_i)
+			.\]
+			So $y \in \langle \alpha(v_1), \ldots, \alpha(v_r)\rangle$.
+		\item Now, suppose that it is not free, so
+			\[
+				\sum_{i = 1}^{r} \lambda_i \alpha(v_i) = 0
+			.\]
+			Then we get
+			\[
+				\alpha\left( \sum_{i = 1}^{r} \lambda_i v_i \right) = 0
+			,\]
+			so
+			\[
+			\sum_{i = 1}^{r} \lambda_i v_i \in \Ker \alpha
+			.\]
+			Hence, we get that
+			\[
+			\sum_{i = 1}^{r} \lambda_i v_i = \sum_{i = 1}^{n} \mu_i v_i
+			.\]
+			But since $(v_1, \ldots, v_n)$ is a basis, $\lambda_i = \mu_i = 0$.
+	\end{itemize}
+	So we have $(\alpha(v_1), \ldots, \alpha(v_r))$ is a basis of $\Img \alpha$, and $(v_{r+1}, \ldots, v_{n})$ is a basis of $\Ker \alpha$. Let $\mathcal{C} = (\alpha(v_1), \ldots, \alpha(v_r), w_{r+1}, \ldots, w_{m})$. We get that
+	\[
+		[\alpha]_{\mathcal{B}, \mathcal{C}} = (\alpha(v_1), \ldots, \alpha(v_r), \alpha(v_{r+1}), \ldots, \alpha(v_n)) =
+		\begin{pmatrix}
+			I_r & 0 \\
+			0 & 0
+		\end{pmatrix}	
+	.\]
+\end{adjustbox}
+
+\begin{remark}
+	This proves another proof of the rank-nullity theorem: $r(\alpha) + n(\alpha) = n$.
+\end{remark}
+
+\begin{corollary}
+	Any $m \times n$ matrix is equivalent to
+	\[
+	\begin{pmatrix}
+		I_r & 0 \\
+		0 & 0
+	\end{pmatrix}
+	,\]
+	where $r = \rank(\alpha)$.
+\end{corollary}
+
+\begin{definition}
+	For $a \in M_{m, n}(F)$, the column rank\index{column rank} $r_c(A)$ of $A$ is the dimension of the span of the column vectors of $A$ in $F^{m}$. Similarly, the row rank\index{row rank} is the column rank of $A^{T}$.
+\end{definition}
+
+\begin{remark}
+	If $\alpha$ is a linear map represented by $A$ with respect to one basis, the column rank $A$ equals the rank of $\alpha$.
+\end{remark}
+
+\begin{proposition}
+	Two matrices are equivalent if and only if $r_c(A) = r_c(A')$.
+\end{proposition}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} If $A$ and $A'$ are equivalent then they coorespond to the same linear map $\alpha$ except in two different bases.
+
+Conversely, if $r_c(A) = r_c(A') = r$, then both $A$ and $A'$ are equivalent to
+\[
+\begin{pmatrix}
+	I_r & 0 \\
+	0 & 0
+\end{pmatrix}
+,\]
+hence are equivalent.
+\end{adjustbox}
+
+\begin{theorem}
+	$r_c(A) = r_c(A^{T})$, so column rank equals row rank.
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} If $r = r_c(A)$, then
+	\[
+	Q^{-1}AP =
+	\begin{pmatrix}
+		I_r & 0 \\
+		0 & 0
+	\end{pmatrix}
+	.\]
+	Take the transpose, to get
+	\[
+		(Q^{-1}AP)^{T} = P^{T}A^{T}(Q^{-1})^{T} = P^{T}A^{T}(Q^{T})^{-1} =
+		\begin{pmatrix}
+			I_r & 0 \\
+			0 & 0
+		\end{pmatrix}
+	.\]
+	Hence $r_c(A^{T}) = r = r_c(A)$.
+\end{adjustbox}
+
+\newpage
+
+\section{Elementary operations and Elementary Matrices}%
+\label{sec:elementary_operations_and_elementary_matrices}
+
+This is a special case of the change of basis formula, when $\alpha : V \to V$ is a map from a vector space to itself, called an endomorphism.\index{endomorphism} Suppose $\mathcal{B} = \mathcal{C}$ and $\mathcal{B}' = \mathcal{C}'$, and $P$ is the change of basis matrix from $\mathcal{B}'$ to $\mathcal{B}$. Then
+\[
+	[\alpha]_{\mathcal{B'},  \mathcal{B}'} = P^{-1} [\alpha]_{\mathcal{B}, \mathcal{B}} P
+.\]
+
+\begin{definition}
+	Let $A, A'$ be $n \times n$ matrices. We say that $A$ and $A'$ are similar\index{similar matrices} if and only if $A' = P^{-1}AP$ for a square invertible matrix $P$.
+\end{definition}
+
+\begin{definition}
+	The elementary column operations\index{elementary column operation} on an $m \times n$ matrix $A$ are:
+	\begin{enumerate}[(i)]
+		\item Swap columns $i$ and $j$;
+		\item Replace column $i$ by $\lambda$ times column $i$;
+		\item Add $\lambda$ times column $i$ to column $j$, for $i \neq j$.
+	\end{enumerate}
+	The elementary row operations are analogously defined\index{elementary row operation}.
+\end{definition}
+
+Note elementary operations are invertible, and all operations can be realized through the action of elementary matrices\index{elementary matrices}:
+\begin{enumerate}[(i)]
+	\item For swapping columns $i$ and $j$, we can take an identity matrix, but with $a_{ij} = a_{ji} = 1$, and $a_{ii} = a_{jj} = 0$.
+	\item For multiplying column $i$ by $\lambda$, we can take an identity matrix but with $a_{ii} = \lambda$.
+	\item For adding $\lambda$ times columns $i$ to column $j$, we can take an identity matrix but with $a_{ij} = \lambda$.
+\end{enumerate}
+An elementary columns (resp. row) operation can be done by multiplying $A$ by the corresponding elementary matrix from the right (resp. left).
+
+We will now show that any $m \times n$ matrix is equivalent to
+\[
+\begin{pmatrix}
+	I_r & 0 \\
+	0 & 0
+\end{pmatrix}
+.\]
+Start with a matrix $A$. If all entries are zero, we are done. Otherwise, pick $a_{ij} = \lambda \neq 0$. By swapping columns and rows, we can ensure $a_{11} = \lambda$. Multiplying column 1 by $1/\lambda$, we get $a_{11} = 1$. We can then clean out row 1 by subtracting a suitable multiply of column 1 from every row, and similarly from column 1. This gives us a matrix
+\[
+\begin{pmatrix}
+	1 & 0 & \cdots & 0 \\
+	0 & & & \\
+	\vdots & & \tilde A & \\
+	0 & & &
+\end{pmatrix}
+.\]
+Iterating with $\tilde A$, a strictly smaller matrix, eventually gives
+\[
+\begin{pmatrix}
+	I_r & 0 \\
+	0 & 0
+\end{pmatrix} = Q^{-1}AP
+.\]
+A variation of this is known as \textbf{Gauss' pivot algorithm}\index{Gauss' pivot algorithm}. If we only use row operations, we can reach the row-echelon form of the matrix\index{row echelon form}:
+\begin{itemize}
+	\item Assume that $a_{i1} \neq 0$ for some $i$.
+	\item Swap rows $i$ and $1$.
+	\item Divide first row by $\lambda = a_{i1}$.
+	\item Use $1$ in $a_{11}$ to clean the first column.
+	\item Iterate over all columns.
+\end{itemize}
+This procedure is what is usually done when solving a system of linear equations.
+
+\subsection{Representation of Square Invertible Matrix}%
+\label{sub:representation_of_square_invertible_matrix}
+
+\begin{lemma}
+	If $A$ is an $n \times n$ square invertible matrix, then we can obtain $I_n$ using either only row or column elementary operations.
+\end{lemma}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} We prove for column operations; row operations are analogous. We proceed by induction on the number of rows.
+\begin{itemize}
+	\item Suppose that we could write $A$ in the form
+		\[
+		\begin{pmatrix}
+			I_h & 0 \\
+			\ast & \ast
+		\end{pmatrix}
+		.\]
+		Then we want to obtain the same structure as we go from $h$ to $h + 1$.
+	\item We show there exists $j > h$ such that $\lambda = a_{h+1, j} \neq 0$. Otherwise, the row rank is less than $n$, as the first $h+1$ rows are linearly dependent. Hence $\rank A < n$.
+	\item We swap columns $h + 1$ and $j$, so $\lambda = a_{h+1,h+1} \neq 0$, and then divide by $\lambda$.
+	\item Finally, we can use the $1$ in $a_{h+1, h+1}$ to clear out the rest of the $(h+1)$'st row.
+\end{itemize}
+
+\end{adjustbox}
+
+This gives $A E_1 \ldots E_c = I_n$, or $A^{-1} = E_1 \ldots E_c$. This is an algorithm for computing $A^{-1}$.
+
+\begin{proposition}
+	Any invertible square matrix is a product of elementary matrices.
+\end{proposition}
+
+
 
 \newpage
 

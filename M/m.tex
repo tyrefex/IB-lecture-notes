@@ -790,6 +790,232 @@ So specifying $c_0, c_1$ gives two independent solutions,
 	y_{odd} &= c_1 \left[x + \frac{(2 - \lambda)}{3!}x^3 + \frac{(12 - \lambda)(2 - \lambda)}{5!}x^{5} + \cdots \right].
 \end{align*}
 But as $n \to \infty$, the ratio of terms tends to $1$, so the radius of convergence is $|x| < 1$. This means this series is divergent at $x = \pm 1$.
+
+However, we can use finiteness to our advantage. Take $\lambda = l(l+1)$ with $l$ an integer. Then one of the series terminates. These \textbf{Legendre polynomials}\index{Legendre polynomials} $P_l(x)$ are eigenfunctions on $-1 \leq x \leq 1$ with normalization convention $P_l(1) = 1$. The first few values are
+\begin{align*}
+	l &= 0, & \lambda &= 0, & P_0(x) &= 1, \\
+	l &= 1, & \lambda &= 2, & P_1(x) &= x, \\
+	l &= 2, & \lambda &= 6, & P_2(x) &= (3x^2-1)/2, \\
+	l &= 3, & \lambda &= 12, & P_3(x) &= (5x^3 - 3x)/2.
+\end{align*}
+As these are in Sturm-Liouville form, we get
+\[
+\int_{-1}^{1}P_n P_m\diff x = 0, \quad \int_{-1}^{1}P_n^2\diff x = \frac{2}{2n+1}
+.\]
+The normalization can be proven with Rodrigues' formula
+\[
+	P_n(x) = \frac{1}{2^{n}x!} \left( \frac{\diff}{\diff x} \right)^{n} (x^2 - 1)^{n}
+.\]
+We can also take the generating function
+\[
+	\sum_{n = 0}^{\infty} P_n(x)t^{n} = \frac{1}{\sqrt{1 - 2xt + t^2}}
+,\]
+then using the binomial expansion gives $P_n$. We also have recursive formulas
+\begin{align*}
+	(l+1)P_{l+1}(x) &= (2l+1)xP_l(x) - lP_{l-1}(x), \\
+	(2l+1)P_{l}(x) &= \frac{d}{dx} (P_{l+1}(x) - P_{l-1}(x)).
+\end{align*}
+The Legendre polynomials are complete, so any function on $-1 \leq x \leq 1$ can be expressed as
+\[
+	f(x) = \sum_{l = 0}^{\infty} a_l P_l(x)
+,\]
+where
+\[
+	a_l = \frac{2l+1}{2} \int_{-1}^{1}f(x) P_n(x)\diff x
+.\]
+
+\subsection{Sturm-Liouville Theory and Inhomogeneous ODEs}%
+\label{sub:sturm_liouville_theory_and_inhomogeneous_odes}
+
+Consider the inhomogeneous ODE on $a \leq x \leq b$:
+\[
+	\mathcal{L}y = f(x) - \omega(x) F(x)
+.\]
+Given eigenfunctions $y_n(x)$ satisfying
+\begin{align*}
+	\mathcal{L}y_n & \lambda_n \omega y_n, \\
+	y(x) &= \sum_{n} c_n y_n(x), \\
+	F(x) &= \sum_{n}a_n y_n(x),
+\end{align*}
+we can find the coefficients
+\[
+a_n = \int_{a}^{b} \omega F y_n \diff x / \int_{a}^{b} \omega y_n^2\diff x
+.\]
+Substituting this, we have
+\[
+\mathcal{L}y = \mathcal{L}\sum_{n}c_n y_n = \sum_{n} c_n \lambda_n \omega y_n = \omega \sum_{n} a_n y_n
+.\]
+Hence, by orthogonality, $c_n \lambda_n = a_n$, giving
+\[
+	y(x) = \sum_{n = 1}^{\infty} \frac{a_n}{\lambda_n} y_n(x)
+.\]
+This assumes $\lambda_n \neq 0$.
+
+Generalizing, if we have a linear response term, as is often induced by a driving force,
+\[
+	\mathcal{L}y - \tilde \lambda \omega y = f(x)
+.\]
+The solution becomes
+\[
+	y(x) = \sum_{n = 1}^{\infty} \frac{a_n}{\lambda_n - \tilde \lambda} y_n(x)
+.\]
+This assumes $\tilde \lambda \neq \lambda_n$.
+
+\subsubsection{Integral solution and Green's function}%
+\label{subsub:integral_solution_and_green_s_function}
+
+Recall that
+\[
+	y(x) = \sum_{n = 1}^{\infty}\frac{a_n}{\lambda_n} y_n(x) = \sum_{n} \frac{y_n(x)}{\lambda_n \mathcal{N}} \int_{a}^{b} \omega(\xi) F(\xi) y_n(\xi)\diff \xi
+,\]
+where $\mathcal{N} = \int \omega y_n^2 \diff x$. Then, we can continue rewriting as
+\[
+	\int_{a}^{b} \sum_{n = 1}^{\infty} \frac{y_n(x) y_n(\xi)}{\lambda_n \mathcal{N}_n} \omega(\xi) F(\xi)\diff \xi = \int_{a}^{b}G(x, \xi) f(\xi)\diff \xi
+,\]
+where
+\[
+	G(x, \xi) = \sum_{n = 1}^{\infty} \frac{y_n(x) y_n(\xi)}{\lambda_n \mathcal{N}_n}
+\]
+is the eigenfunction expansion of the Green's function\index{Green's function}. Note that $G(x, \xi)$ depends only on $\mathcal{L}$ and the boundary conditions, not on the forcing term $f(x)$: it acts like $\mathcal{L}^{-1}$.
+
+\newpage
+
+\part{PDEs on Bounded Domains}%
+\label{prt:pdes_on_bounded_domains}
+
+\section{The Wave Equation}%
+\label{sec:the_wave_equation}
+
+\subsection{Waves on an elastic string}%
+\label{sub:waves_on_an_elastic_string}
+
+Consider small displacements on a stretched string with fixed ends at $x = 0$ and $x = L$, with boundary conditions $y(0, t) = y(L, t) = 0$, and initial conditions
+\[
+	y(x, 0) = p(x), \quad \frac{\partial y}{\partial t}(x, 0) = q(x)
+.\]
+We derive the equation of motion by balancing forces on the segment $(x, x + \delta x)$, and taking $\delta x \to 0$. Then the boundary of the string on the segment induces forces $T_1, T_2$ at angles $\theta_1, \theta_2$ to the horizontal.
+
+Assume that $|\partial y/\partial x| \ll 1$, so $\theta_1$, $\theta_2$ are small.
+
+\begin{itemize}
+	\item Resolving in the $x$-direction, $T_1 \cos \theta_1 = T_2 \cos \theta_2$, so $T_1 \approx T_2 = T$. Hence, tension $T$ is a constant independent of $x$, up to $\mathcal{O}(|\partial y/\partial x|^2)$.
+	\item Resolving in the $y$-direction,
+		\begin{align*}
+			F_T &= T_2 \sin \theta_2 - T_1 \sin \theta_1 \approx T \left( \left. \frac{\partial y}{\partial x}\right|_{x + \delta x} \!\!\!\!\!\! - \left. \frac{\partial y}{\partial x} \right|_{x}\right) \\
+			    &= T \frac{\partial^2 y}{\partial x^2} \delta x.
+		\end{align*}
+\end{itemize}
+
+Hence, by Newton's law,
+\begin{align*}
+	F &= ma = (\mu \delta x) \frac{\partial^2 y}{\partial t^2} = F_T + F_g \\
+	&= T \frac{\partial^2 y}{\partial x^2} \delta x - g \mu \delta x,
+\end{align*}
+where $\mu$ is the mass per unit length. define the wave speed as $c = \sqrt{T/\mu}$, and we find
+\[
+\frac{\partial^2 y}{\partial t^2} = \frac{T}{\mu} \frac{\partial^2 y}{\partial x^2} - g = c^2 \frac{\partial^2 y}{\partial x^2} - g
+.\] 
+Assume gravity is negligible. Then we have the 1-dimensional wave equation
+\[
+\frac{1}{c^2} \frac{\partial^2 y}{\partial t^2} = \frac{\partial^2 y}{\partial x^2}
+.\]
+
+\subsection{Separation of Variables}%
+\label{sub:separation_of_variables}
+
+We wish to solve the wave equation subject to boundary conditions and initial conditions. Consider possible solution of separable form
+\[
+	y(x, t) = X(x) T(t)
+.\]
+Substitute in the wave equation
+\[
+\frac{1}{c^2} X \ddot T = X'' T \implies \frac{1}{c^2} \frac{\ddot T}{T} = \frac{X''}{X}
+.\]
+But the left hand side depends only on $t$, while the right hand side depends only on $x$. This means both sides must be equal to a constant $\lambda$. Hence
+\begin{align*}
+	X'' + \lambda X &= 0, \\
+	\ddot T + \lambda c^2 T &= 0.
+\end{align*}
+
+\subsection{Boundary Conditions and Normal Modes}%
+\label{sub:boundary_conditions_and_normal_modes}
+
+We have three possibilities for $\lambda$.
+\begin{enumerate}[(i)]
+	\item $\lambda < 0$. We have $\chi^2 = - \lambda$ for the characteristic polynomial, so
+		\[
+			X(x) = A e^{\chi x} + Be^{-\chi x} = \tilde A \cosh \chi x + \tilde B \sinh \chi x
+		.\]
+		But the boundary conditions $X(0) = X(L) = 0$ imply $\tilde A = \tilde B = 0$, giving the trivial solution.
+	\item $\lambda = 0$. Then $X(x) = Ax + B$, again giving $A = B = 0$.
+	\item $\lambda > 0$. Then $X(x) = A \cos \sqrt \lambda x + B \sin \sqrt \lambda L = 0$. Since $X(0) = 0$, $A = 0$, and $X(L) = 0$ gives $\sqrt \lambda L = n \pi$, so
+		\[
+			X_n(x) = B_n \sin \frac{n \pi x}{L}, \quad \lambda_n = \left( \frac{n \pi}{L}\right)^2
+		.\]
+		These are the normal modes\index{normal modes} because the spatial shape in $x$ does not change in time.
+\end{enumerate}
+
+\subsection{Initial Conditions and Temporal Solutions}%
+\label{sub:initial_conditions_and_temporal_solutions}
+
+Substituting the eigenvalues $\lambda_n$ into the time ODE:
+\[
+\ddot T + \frac{n^2 \pi^2 c^2}{L^2} T = 0
+.\]
+This gives
+\[
+	T_n(t) = C_n \cos \frac{n \pi ct}{L} + D_n \sin \frac{n \pi ct}{L}
+.\]
+Thus a specific solution to the wave equation is
+\[
+	y_n(x, t) = T_n(t)X_n(x) = \left(c_n \cos \frac{n \pi ct}{L} + D_n \sin \frac{n \pi ct}{L} \right) \sin \frac{n \pi x}{L}
+.\]
+Since the wave equation and boundary conditions are linear, we can add the solutions together to find the general string solution
+\[
+	y(x, t) = \sum_{n = 1}^{\infty} \left( c_n \cos \frac{n \pi ct}{L} + D_n \sin \frac{n \pi ct}{L} \right) \sin \frac{n \pi x}{L}
+.\]
+By construction, this satisfies boundary conditions, so now we need to impose the initial conditions. For $t = 0$, we have
+\[
+	y(x, 0) = p(x) = \sum_{n = 1}^{\infty} c_n \sin \frac{n \pi x}{L}
+,\]
+\[
+	\frac{\partial y}{\partial t}(x, 0) = q(x) = \sum_{n = 1}^{\infty} \frac{n \pi c}{L} D_n \sin \frac{n \pi x}{L}
+.\]
+Hence the coefficients are given by a Fourier sine series
+\begin{align*}
+	C_n &= \frac{2}{L} \int_{0}^{L}p(x) \sin \frac{n \pi x}{L} \diff x, \\
+	D_n &= \frac{2}{n \pi c} \int_{0}^{L}q(x) \sin \frac{n \pi x}{L} \diff x.
+\end{align*}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	Pluck a string at $x = \xi$, drawing it back as
+	\[
+		y(x, 0) = \rho(x) =
+		\begin{cases}
+			x(1 - \xi) & 0 \leq x \leq \xi, \\
+			\xi(1 - x) & \xi \leq x \leq 1,
+		\end{cases}
+	\]
+	\[
+		\frac{\partial y}{\partial t} (x, 0) = q(x) = 0
+	.\]
+	Then by Fourier series, $C_n = (2 \sin n \pi \xi)/(n \pi)^2$, $D_n = 0$. Thus we have the solution
+	\[
+		y(x, t) = \sum_{n = 1}^{\infty} \frac{2}{(n \pi)^2} \sin n \pi \xi \sin n \pi x \cos n \pi c t
+	.\]
+	Taking $\xi = 1/2$, we get $c_2m = 0$, $c_{2m-1} = 2(-1)^{m+1}/((2m-1)\pi)^2$. For a guitar, we typically have $1/4 \leq \xi \leq 1/3$, and for a violin we have $\xi \approx 1/7$.
+\end{example}
+
+\end{adjustbox}
+
+Note, if we recall the sine and cosine summation identities, we can rewrite our solution as
+\begin{align*}
+	y(x, t) &= \frac{1}{2} \sum_{n = 1}^{\infty}\biggl[ c_n \sin \frac{n \pi}{L} (x - ct) + D_n \cos \frac{n \pi}{L} (x - ct) \\
+		&+ C_n \sin \frac{n \pi}{L} (x + ct) + D_n \cos \frac{n \pi}{L} (x + ct) \biggr] = f(x - ct) + g(x + ct)
+\end{align*}
+The standing wave solution is made up of a right-moving wave and a left-moving wave.
+
 \newpage
 
 \printindex

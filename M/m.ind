@@ -1,58 +1,64 @@
 \begin{theindex}
 
-  \item Bessel's inequality, \hyperpage{17}
-  \item boundary conditions, \hyperpage{12}
+  \item Bessel's inequality, \hyperpage{18}
+  \item boundary conditions, \hyperpage{13}
 
   \indexspace
 
-  \item complementary function, \hyperpage{12}
-  \item completeness relation, \hyperpage{7}
+  \item complementary function, \hyperpage{13}
+  \item completeness relation, \hyperpage{8}
 
   \indexspace
 
-  \item Dirichlet conditions, \hyperpage{5}
+  \item Dirichlet conditions, \hyperpage{6}
 
   \indexspace
 
-  \item Fourier coefficients, \hyperpage{4}
-  \item Fourier series, \hyperpage{3}
+  \item Fourier coefficients, \hyperpage{5}
+  \item Fourier series, \hyperpage{4}
 
   \indexspace
 
-  \item half-range series, \hyperpage{8}
-  \item Hermitian matrix, \hyperpage{9}
+  \item Green's function, \hyperpage{21}
 
   \indexspace
 
-  \item initial conditions, \hyperpage{12}
-  \item inner product of complex-valued functions, \hyperpage{13}
-  \item inner product of periodic functions, \hyperpage{2}
+  \item half-range series, \hyperpage{9}
+  \item Hermitian matrix, \hyperpage{10}
 
   \indexspace
 
-  \item Legendre's equation, \hyperpage{17}
+  \item initial conditions, \hyperpage{13}
+  \item inner product of complex-valued functions, \hyperpage{14}
+  \item inner product of periodic functions, \hyperpage{3}
 
   \indexspace
 
-  \item normalized eigenfunction, \hyperpage{16}
+  \item Legendre polynomials, \hyperpage{19}
+  \item Legendre's equation, \hyperpage{18}
 
   \indexspace
 
-  \item Parseval's theorem, \hyperpage{7}
-  \item particular integral, \hyperpage{12}
-  \item periodic function, \hyperpage{2}
+  \item normal modes, \hyperpage{23}
+  \item normalized eigenfunction, \hyperpage{17}
 
   \indexspace
 
-  \item sawtooth wave, \hyperpage{4}
-  \item see-saw wave, \hyperpage{6}
-  \item self-adjoint matrix, \hyperpage{9}
-  \item self-adjoint operator, \hyperpage{14}
-  \item square wave, \hyperpage{6}
-  \item Sturm-Liouville form, \hyperpage{13}
+  \item Parseval's theorem, \hyperpage{8}
+  \item particular integral, \hyperpage{13}
+  \item periodic function, \hyperpage{3}
 
   \indexspace
 
-  \item weight function, \hyperpage{13}
+  \item sawtooth wave, \hyperpage{5}
+  \item see-saw wave, \hyperpage{7}
+  \item self-adjoint matrix, \hyperpage{10}
+  \item self-adjoint operator, \hyperpage{15}
+  \item square wave, \hyperpage{7}
+  \item Sturm-Liouville form, \hyperpage{14}
+
+  \indexspace
+
+  \item weight function, \hyperpage{14}
 
 \end{theindex}

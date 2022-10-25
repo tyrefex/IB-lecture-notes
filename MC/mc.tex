@@ -324,6 +324,244 @@ If one of the eigenvalues is complex, say $\lambda_{k-1}$, then also its conjuga
 
 If an eigenvalue $\lambda$ has multiplicity $r$, then we must include the term $(a_{r-1}n^{r-1} + \cdots + a_1 n + a_0) \lambda^{n}$, by Jordan Normal Form.
 
+\subsection{Communicating Classes}%
+\label{sub:communicating_classes}
+
+\begin{definition}
+	$X$ is a Markov chain with matrix $P$ on $I$. Let $x, y \in I$. We say $x \to y$ ($x$ leads to $y$) if
+	\[
+	\mathbb{P}_x(X_n = y \text{ for some } n \geq 0\} > 0
+	.\]
+	We say that $x$ and $y$ communicate\index{communicate} and $x \leftrightarrow y$ if both $x \to y$ and $y \to x$.
+\end{definition}
+
+\begin{theorem}
+	The following are equivalent:
+	\begin{enumerate}[\normalfont(i)]
+		\item $x \to y$;
+		\item There exists a sequence $x = x_0, x_1, \ldots, x_k = y$ such that $P(x_0, x_1), \ldots, P(x_{k-1}, x_k) > 0$;
+		\item There exists $n \geq 0$ such that $P_{xy}(n) > 0$.
+	\end{enumerate}	
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:}
+
+We show (i) if and only if (iii). Note
+\[
+	\{X_n = y \text{ for some } n \geq 0 \} = \bigcup_{n \geq 0} \{X_n = y\}
+.\]
+If $x \to y$, then there exists $n \geq 0$ such that $\mathbb{P}_x(X_n = y) > 0$, so $P_{xy}(n) > 0$. If there exists $n \geq 0$ such that $P_x(X_n = y) > 0$, then $x \to y$.
+
+Now we note (ii) iff (iii) as
+\[
+	\mathbb{P}_x(X_n = y) = \sum_{x_1, \ldots, x_{n-1}} P(x, x_1) \cdots P(x_{n-1}, y)
+.\]
+\end{adjustbox}
+
+\begin{corollary}
+	$\leftrightarrow$ defines an equivalence class on $I$.
+\end{corollary}
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} $x \leftrightarrow x$ as $P_{xx}(0) = 1$, and $x \leftrightarrow y \iff y \leftrightarrow x$.
+
+	Then transitivity follows from property (ii).
+\end{adjustbox}
+
+
+\begin{definition}
+	The equivalence classes induced by $\leftrightarrow$ on $I$ are called communicating classes\index{communicating classes}. We say that a class $C$ is closed\index{closed class} if whenever $x \in C$ and $x \to y$, then $y \in C$.
+
+	A matrix $P$ is called irreducible\index{irreducible} if it has a single communicating class.
+
+	A state $x$ is called absorbing\index{absorbing state} if $\{x\}$ is a closed class. Equivalently, if the Markov chain started from $x$, it would remain at $x$ forever.
+\end{definition}
+
+\begin{definition}
+	For $A \subset I$, we let $T_A : \Omega \to \mathbb{N} \cup \{\infty\}$. Then we define
+	\[
+		T_A(\omega) = \inf \{n \geq 0 : X_n(\omega) \in A\}
+	.\]
+	By convention, we take $\inf(\emptyset) = \infty$. Then $T_A$ is the first hitting time\index{first hitting time} of $A$.
+
+	Denote $h_i^{A} = \mathbb{P}_i(T_A < \infty)$. Then $h^{A} : I \to [0, 1]$ is a vector of hitting probabilities. We can also define
+	\[
+		k^{A} : I \to \mathbb{R}_+ \cup \{\infty\}
+	,\]
+	as the mean hitting time. Then
+	\[
+		k_i^{A} = \mathbb{E}_i[T_A] = \sum_{n =  1}^{\infty }n \mathbb{P}_i(T_A = n)
+	,\]
+	if $\mathbb{P}_i(T_A = \infty) = 0$.
+\end{definition}
+
+\begin{theorem}
+	Let $A \subset I$. The vector $(h_i^{A} : i \in A)$ is a solution to the linear system
+	\[
+	h_i^{A} =
+	\begin{dcases}
+		1 & i \in A, \\
+		\sum_{j}P(i, j) h_j^{A} & i \not \in A.
+	\end{dcases}
+	\]
+	The vector $(h_i^{A})$ is the minimal non-negative solution to this solution.
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} Clearly, if $i \in A$, then $h_i^{A} = 1$. So assume $i \not \in A$. Then
+\begin{align*}
+	h_i^{A} &= \mathbb{P}_i(T_A < \infty) = \sum_{n = 1}^{\infty} \mathbb{P}_i(X_1 \not \in A, \ldots, X_{n-1} \not \in A, X_n \in A) \\
+		&= \mathbb{P}_i(X_1 \in A) + \sum_{n = 2}^{\infty} \mathbb{P}_i(X_1 \not \in A, \ldots, X_n \in A) \\
+		&= \mathbb{P}_i(X_1 \in A) + \sum_{n = 2}^{\infty} \sum_{j \not \in A} \mathbb{P}_i(X_1 = j, X_2 \not \in A, \ldots, X_n \in A) \\
+		&= \mathbb{P}_i(X_1 \in A) + \sum_{n = 2}^{\infty} \sum_{j \not \in A}\mathbb{P}_i(X_2 \not \in A, \ldots, X_n \in A \mid X_0 = i, X_1 = j) P(i, j) \\
+		&= \mathbb{P}_i(X_1 = A) + \sum_{n = 1}^{\infty} \sum_{j \not \in A}P(i, j) \mathbb{P}_j(X_1 \not \in A, \ldots, X_n \in A) \\
+		&= \sum_{j \in A}P(i, j) h_j^{A} + \sum_{j \not \in A}P(i, j) h_j^{A} \\
+		&= \sum_{j} P(i, j) h_j^{A}.
+\end{align*}
+\end{adjustbox}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+Now we prove minimality. Let $(x_i)$ be another non-negative solution. We are required to show $h_i^{A} \leq x_i$. Assume $i \not \in A$. Then we know
+\begin{align*}
+	x_i &= \sum_{j}P(i, j)x_j \\
+	x_i &= \sum_{j \in A}P(i, j) + \sum_{j \not \in A}P(i, j)x_j \\
+	    &= \sum_{j \in A}P(i, j) + \sum_{j \not \in A}\sum_{k \in A}P(i, j)P(j, k) + \sum_{j \in A}\sum_{k \not \in A}P(i, j)P(j, k) x_k \\
+	    &= \mathbb{P}_i(X_1 \in A) + \mathbb{P}_i(X_1 \not \in A, X_2 \in A) + \sum_{j \not \in A}\sum_{k \in A}P(i, j)P(j, k)x_k \\
+	    &\geq \mathbb{P}_i(X_1 \in A) + \mathbb{P}_i(X_1 \not \in A, X_2 \in A) + \cdots + \mathbb{P}_i(X_1 \not \in A, \ldots, X_n \in A).
+\end{align*}
+Hence $x_i \geq \mathbb{P}_i(T_A \leq n)$, and since the union of these events is $\{T_A < \infty\}$, we get
+\[
+	x_i \geq \mathbb{P}_i(T_A < \infty) = h_i^{A}
+.\] 
+
+\end{adjustbox}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	Consider a simple random walk on $\mathbb{Z}_{+}$. We have a transition matrix $P(0, 1) = 1$, and $P(i, i+1) = p = 1 - P(i, i-1)$. Then we wish to find $h_i = \mathbb{P}_i(T_0 < \infty)$. We know $h_0 = 1$, and $h_i = p \cdot h_{i+1} + q h_{i-1}$. This gives
+	\[
+		h_i = a + b \left( \frac{q}{p} \right)^{i} = a + (1 - a) \left( \frac{q}{p} \right)^{i}
+	.\]
+	We assume $q > p$: to get the non-negative and minimal solution we need to take $a = 1$. Then $h_i = 1$ for all $i \geq 1$.
+
+	Now assume $q < p$: We get $a = 0$, s $h_i = (q/p)^{i}$.
+
+	If $p = q = 1/2$, we get $h_i = a + bi$, so by boundedness, $a = 1$, and $b = 0$. So $h_i = 1$ for all $i \geq 1$.
+\end{example}
+
+\end{adjustbox}
+
+\subsection{Birth and Death chains}%
+\label{sub:birth_and_death_chains}
+
+The above example is almost a birth and death chain, with equal probability at each $i$. Here, we have $P(0, 0) = 1$, $P(i, i+1) = p_i$, $P(i, i-1) = q_i$.
+
+We have $h_i = \mathbb{P}_i(T_0 < \infty)$, $h_0 = 1$. Then
+\[
+h_i = p_i h_{i+1} + q_i h_{i-1}
+.\]
+This gives
+\[
+	p_i (h_{i+1} - h_i) = q_i(h_{i} - h_{i-1})
+.\]
+We set $u_i = h_i - h_{i-1}$. Then
+\[
+u_{i+1} = \frac{q_i}{p_i} u_i = \cdots = \prod_{k = 1}^{i} \frac{q_k}{p_k}
+,\]
+with $u_1 = h_1 - 1$. Moreover, we have
+\[
+	h_i = \sum_{j = 1}^{i} (h_{j} - h_{j-1}) + 1 = 1 + \sum_{j = 1}^{i} u_j = 1 + u_1 + \sum_{j = 2}^{i} u_1 \prod_{k = 1}^{j-1} \frac{q_k}{p_k}
+.\]
+Hence
+\[
+	h_i = 1 + (h_1 - 1) + (h_1 - 1) \sum_{j = 2}^{i} \prod_{k = 1}^{j-1} \frac{q_k}{p_k}
+.\]
+We will let
+\[
+\lambda_j = \sum_{k = 0}^{j}\frac{q_k}{p_k}
+,\]
+where $\lambda_0 = 1$. Then
+ \[
+	 h_i = 1 - (1 - h_1) \sum_{j = 0}^{i-1} \lambda_j
+.\]
+We want $(h_i)$ to be the minimal non-negative solution, so
+\[
+	(1 - h_1) \leq \frac{1}{\sum_{j = 0}^{\infty} \lambda_j}
+,\]
+and
+\[
+h_1 = 1 - \frac{1}{\sum_{j = 0}^{\infty} \lambda_j}
+,\]
+by minimality. Thus if $\sum \lambda_j < \infty$, then
+\[
+h_i = \frac{\sum_{j = i}^{\infty} \lambda_j}{\sum_{j = 0}^{\infty} \lambda_j}
+.\]
+If the sum $\sum \lambda_j = \infty$, then $h_i = 1$.
+
+\subsection{Mean Hitting Times}%
+\label{sub:mean_hitting_times}
+
+For $A \subset I$, $T_A = \inf\{n \geq 0 \mid X_n \in A\}$. Then $k^{A}_i = \mathbb{E}_i[T_A]$.
+
+\begin{theorem}
+	The vector $(k_i^{A} \mid i \in I)$ is the minimal non-negative solution to the system
+	\[
+	k_i^{A} =
+	\begin{dcases}
+		0 & i \in A, \\
+		1 + \sum_{j \not \in A}P(i, j) k_j^{A} & i \in A
+	\end{dcases}
+	\]
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} If $i \in A$, then $k_i^{A} = 0$. Assume $i \not \in A$. Then
+\begin{align*}
+	k_i^{A} &= \mathbb{E}_i[T_A] = \sum_{n = 0}^{\infty} \mathbb{P}_i (T_A > n) = \sum_{n = 0}^{\infty}\mathbb{P}_i(X_0 \not \in A, \ldots, X_n \not \ni A) \\
+		&= 1 + \sum_{n = 1}^{\infty} \mathbb{P}_i(X_1 \not \in A, \ldots, X_n \not \in A) \\
+		&= 1 + \sum_{n = 1}^{\infty} \sum_{j} \mathbb{P}_i(X_1 = j, X_1 \not \in A, \ldots, X_n \not \in A) \\
+		&= 1 + \sum_{n = 1}^{\infty} \sum_{j} P(i, j) \mathbb{P}(X_1 \not \in A, \ldots, X_n \not \in A \mid X_1 = j) \\
+		&= 1 + \sum_{n = 1}^{\infty} \sum_{j} P(i, j) \mathbb{P}_j(X_0 \not \in A, \ldots, X_{n-1} \not \in A) \\
+		&= 1 + \sum_{j} P(i, j) \sum_{n = 0}^{\infty} \mathbb{P}_j(X_0 \not \in A, \ldots, X_n \not \in A) \\
+		&= 1 + \sum_{j}P(i,j) k_j^{A} = 1 + \sum_{j \not \in A}P(i, j) k_{j}^{A}.
+\end{align*}
+\end{adjustbox}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+Now we show minimality. Let $(x_i)$ be another non-negative solution. The $x_i = 0$, $i \in A$. If $i \not \in A$,
+\begin{align*}
+	x_i &= 1 + \sum_{j \not \in A}P(i, j) x_j = 1 + \sum_{j \not \in A}P(i, j) + \sum_{j \not \in A}\sum_{k \not \in A}P(i, j) P(j, k) x_k \\
+	    &=1 + \sum_{j_1 \not \in A}P(i, j_1) + \cdots + \sum_{j_1, \ldots, j_{n-1} \not \in A} P(i, j_1) \cdots P(j_{n-2}, j_{n-1}) + \cdots \\
+	    &\geq 1 + \mathbb{P}_i(T_A > 1) + \cdots + \mathbb{P}_i(T_A > n).
+\end{align*}
+So $x_i \geq \mathbb{E}_i[T_A] = k_i^{A}$.
+
+\end{adjustbox}
+
+\subsection{Strong Markov Property}%
+\label{sub:strong_markov_property}
+
+We have proven that the past and the future are independent, as the simple Markov property. This says, for $m \in \mathbb{N}$, $i \in I$, and $X \sim \Mkv(\lambda, P0$, that conditional on $X_m = i$, $(X_{n+m})_{n \geq 0}$ is $\Mkv(\delta_i, P)$, and is independent of $X_0, \ldots, X_m$.
+
+We look to replace the constant $m$ with a random variable.
+
+\subsection{Stopping Times}%
+\label{sub:stopping_times}
+
+\begin{definition}
+	A random variable $T : \Omega \to \{0, 1, \ldots\} \cup \{\infty\}$ is called a stopping time\index{stopping time} if the event $\{T = n\}$ depends on $X_0, \ldots, X_n$, for all $n \in \mathbb{N}$.
+\end{definition}
+
+For example, let $T_A = \inf\{n \geq 0 \mid X_n \in A\}$. Then $\{T_A = n\} = \{X_0 \not \in A, \ldots, X_{n-1} \not \in A, X_n \in A\}$. So the first hitting times are always stopping times.
+
+However, $L_A = \sup\{n \leq 10 \mid X_n \in A\}$ is not a stopping time.
+
+The strong Markov property is as follows:
+\begin{proposition}\index{strong Markov property}
+	Let $X$ be $\Mkv(\lambda, P)$ and let $T$ be a stopping time. Conditioning on $T < \infty$ and $X_T = i$, then $(X_{T + n})_{n \geq 0}$ is $\Mkv(\delta_i, P)$, and it is independent of $X_0, \ldots, X_T$.
+\end{proposition}
+
+
 \newpage
 
 \printindex

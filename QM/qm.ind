@@ -18,6 +18,8 @@
 
   \indexspace
 
+  \item Hermitian conjugate, \hyperpage{13}
+  \item Hermitian operator, \hyperpage{13}
   \item Hilbert space, \hyperpage{8}
 
   \indexspace
@@ -28,6 +30,11 @@
 
   \item normalisable function, \hyperpage{7}
   \item normalised wavefunction, \hyperpage{8}
+
+  \indexspace
+
+  \item observable, \hyperpage{12}
+  \item operator, \hyperpage{13}
 
   \indexspace
 
@@ -42,6 +49,10 @@
   \indexspace
 
   \item square-integrable function, \hyperpage{7}
+
+  \indexspace
+
+  \item time-dependent Schr\"{o}dinger equation, \hyperpage{10}
 
   \indexspace
 

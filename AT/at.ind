@@ -5,8 +5,17 @@
   \indexspace
 
   \item Cauchy sequence, \hyperpage{2}
+  \item Cauchy sequence in general metric space, \hyperpage{21}
+  \item closed, \hyperpage{22}
+  \item complete, \hyperpage{21}
   \item continuity, \hyperpage{11}
+  \item continuity in metric spaces, \hyperpage{18}
   \item convergence in $\mathbb{R}$, \hyperpage{2}
+  \item convergence in metric spaces, \hyperpage{16}
+
+  \indexspace
+
+  \item discrete metric, \hyperpage{16}
 
   \indexspace
 
@@ -16,6 +25,10 @@
 
   \item general principle of convergence, \hyperpage{2}
   \item general principle of uniform convergence, \hyperpage{8}
+
+  \indexspace
+
+  \item identity function, \hyperpage{20}
 
   \indexspace
 
@@ -30,6 +43,7 @@
 
   \item pointwise bounded, \hyperpage{8}
   \item pointwise convergence, \hyperpage{4}
+  \item projection maps, \hyperpage{20}
 
   \indexspace
 

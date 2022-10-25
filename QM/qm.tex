@@ -53,6 +53,7 @@
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}[section]
 
 \theoremstyle{remark}
 \newtheorem*{remark}{Remark}
@@ -412,6 +413,278 @@ Note the triangle inequality: if $z_1, z_2 \in \mathbb{C}$, then $|z_1 + z_2| < 
 \end{align*}
 \end{adjustbox}
 
+\subsubsection{Properties of the Inner Product}%
+\label{subsub:properties_of_the_inner_product}
+
+\begin{enumerate}[(i)]
+	\item $(\psi, \phi) = (\phi, \psi)^{\ast}$,
+	\item It is antilinear in the first entry, and linear in the second entry:
+		\begin{align*}
+			(a_1 \psi_1 +a_2 \psi_2, \phi) &= a_1^{\ast}(\psi_1, \phi) + a_2^{\ast}(\psi_2, \phi), \\
+			(\psi, a_1 \phi_1 + a_2 \phi_2) &= a_1(\psi, \phi_1) + a_2(\psi, \phi_2).
+		\end{align*}
+	\item The inner product of $\psi \in \mathcal{H}$ with itself is non-negative:
+		\[
+			(\psi, \psi) = \int_{\mathbb{R}^3} |\psi(\mathbf{x}, t)|^2 \Diff3 x > 0
+		.\]
+\end{enumerate}
+
+\begin{definition}
+	The norm of the wavefunction $\psi$ is the real number $\|\psi\| = \sqrt{(\psi, \psi)}$. We say $\psi$ is normalized if $\|\psi\| = 1$.
+\end{definition}
+
+\begin{definition}
+	Two wavefunctions $\psi, \phi \in \mathcal{H}$ are orthogonal if $(\psi, \phi) = 0$, and a set of wavefunctions $\{\psi_n\}$ is orthonormal if
+	\[
+		(\psi_m, \psi_n) = \delta_{mn}
+	.\]
+\end{definition}
+
+\begin{definition}
+	A set of wavefunctions $\{\psi_n\}$ is complete if all $\phi \in \mathcal{H}$ can be written as a linear combination of the $\{\psi_n\}$:
+	\[
+	\phi = \sum_{n = 0}^{\infty}c_n \psi_n
+	.\]
+\end{definition}
+
+\begin{lemma}
+	If $\{\psi_n\}$ form a complete orthonormal basis of $\mathcal{H}$, then $c_n = (\psi_n, \phi)$.
+\end{lemma}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:}
+\begin{align*}
+	(\psi_n, \phi) &= \left( \psi_n, \sum_{m = 0}^{n} c_m \psi_m \right) \\
+		       &= \sum_{m = 0}^{\infty} c_m (\psi_n, \psi_m) = \sum_{m = 0}^{\infty} c_m \delta_{mn} \\
+		       &= c_n.
+\end{align*}
+\end{adjustbox}
+
+\subsection{Time-dependent Schr\"{o}dinger Equation}%
+\label{sub:time_dependent_schrodinger_equation}
+
+The first postulate of quantum mechanics that we have encountered is Born's rule:
+\[
+	\rho(\mathbf{x}, t) \propto |\psi(\mathbf{x}, t)|^2
+.\]
+The second is the time-dependent Schr\"{o}dinger equation\index{time-dependent Schr\"{o}dinger equation}:
+\[
+	i \hbar \frac{\partial \psi}{\partial t} (\mathbf{x}, t) = - \frac{\hbar^2}{2m} \nabla^2 \psi(\mathbf{x}, t) + U(\mathbf{x}) \psi(\mathbf{x}, t)
+.\] 
+Here $U(\mathbf{x}) \in \mathbb{R}$ is the potential. Looking at the equation, we spot the following:
+\begin{itemize}
+	\item There is a first derivative in time: once $\psi(x, t_0)$ is known, then we know $\psi(x, t)$ at all times.
+	\item There is an asymmetry in time and space. This implies the TDSE is a non-relativistic equation.
+\end{itemize}
+
+Heuristically, this comes from the observation of electron diffraction, which leads to the thought that electrons believe like waves. Thus, we can think of a function
+\[
+	\psi(\mathbf{x}, t) \propto \exp[i(\mathbf{k} \cdot \mathbf{x} - \omega t)]
+\]
+that describes the dynamics of the electron. From De Broglie, we get
+\[
+\mathbf{k} = \frac{\mathbf{p}}{\hbar}, \quad \omega = \frac{E}{\hbar}
+.\]
+For a free particle, we get
+\[
+E = \frac{|\mathbf{p}|^2}{2m} \implies \omega = \frac{|\mathbf{p}|^2}{2 m \hbar} = \frac{\hbar}{2m} |\mathbf{k}|^2
+.\]
+The dispersion relation for a particle-wave is
+\[
+\omega \propto |\mathbf{k}|^2
+.\]
+For a light-wave, as the energy equation is different, we get
+\[
+\omega \propto |\mathbf{k}|
+.\]
+From dimensional analysis, we see that the wave equation must have a single derivative with respect to time, and a double derivative with respect to space.
+
+To apply the Schr\"{o}dinger equation, we need to ensure the wavefunction remains normalized throughout time. Hence we look at the following properties:
+
+\begin{enumerate}[(i)]
+	\item The squared integral
+		\[
+			\int_{\mathbb{R}^3}|\psi(\mathbf{x}, t)|^2\Diff3 x = \mathcal{N}
+		,\]
+		is independent of time.
+\end{enumerate}
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:}  We have
+	\[
+		\frac{\diff \mathcal{N}}{\diff t} = \frac{\diff}{\diff t} \int_{\mathbb{R}^3} |\psi(\mathbf{x}, t)|^2\Diff 3 x = \int_{\mathbb{R}^3} \frac{\partial}{\partial t}|\psi(\mathbf{x}, t)|^2\Diff3 x
+	.\]
+	But the partial derivative
+	\[
+		\frac{\partial}{\partial t}(\psi^{\ast}(\mathbf{x}, t) \psi(\mathbf{x}, t)) = \psi^{\ast} \frac{\partial \psi}{\partial t} + \frac{\partial \psi^{\ast}}{\partial t}\psi
+	.\]
+	From the TDSE and its conjugate,
+	\begin{align*}
+		\frac{\partial \psi}{\partial t} &= \frac{i \hbar}{2m} \nabla^2 \psi - i \frac{U}{\hbar}\psi, \\
+		\frac{\partial \psi^{\ast}}{\partial t} &= - \frac{i\hbar}{2m} \nabla^2\psi^{\ast} + i \frac{U}{\hbar} \psi^{\ast} \\
+		\implies \frac{\partial}{\partial t}(\psi^{\ast}\psi) &= \nabla \cdot \left[\frac{i\hbar}{2m} (\psi^{\ast}\nabla\psi - \psi\nabla\psi^{\ast}) \right] \\
+		\implies \frac{\diff \mathcal{N}}{\diff t} &= \int_{\mathbb{R}^3} \nabla \cdot \left[\frac{i \hbar}{2m} (\psi^{\ast}\nabla \psi - \psi \nabla \psi^{\ast})\right] = 0,
+	\end{align*}
+	because $\psi, \psi^{\ast}$ are such that $|\psi|, |\psi^{\ast}| \to 0$ as $|\mathbf{x}| \to \infty$.
+\end{adjustbox}
+\begin{enumerate}[resume*]
+	\item The probability is conserved with respect to time:
+		\[
+			\frac{\partial \rho}{\partial t} (\mathbf{x}, t) + \nabla \cdot J = 0
+		,\]
+		where
+		\[
+			J(\mathbf{x}, t) = - \frac{i \hbar}{2m} \left[ \psi^{\ast}\nabla \psi - \psi\nabla\psi^{\ast}\right]
+		.\]
+\end{enumerate}
+
+\subsection{Expectation Values and Operators}%
+\label{sub:expectation_values_and_operators}
+
+We have seen that all information is stored within the wavefunction, but we want to know how to extract information from $\psi$.
+
+\begin{definition}
+	An observable\index{observable} is any property of the particle described by $\psi$ that can be measured.
+\end{definition}
+
+\subsubsection{Heuristic Interpretation}%
+\label{subsub:heuristic_interpretation}
+
+Suppose we want to measure the position of a particle. The expectation is
+\[
+	\langle x \rangle = \int_{-\infty}^{\infty}x |\psi(x, t)|^2\diff x = \int_{-\infty}^{\infty}\psi^{\ast}(x, t) x \psi(x, t)\diff x
+.\]
+Hence the operator with respect to $x$ is
+\[
+\mathcal{O}_x \to \hat x \to x
+.\]
+The expectation value of an observable is the mean of an infinite series of measurements performed on particles on the same state. Performing the same measurement on one particle will collapse the wavefunction, and subsequent measurements will give the same result.
+
+As time goes on $\langle x \rangle$ will change. Thus we might be interested in knowing the momentum. Using our usual definition of momentum as mass times velocity, we get
+\begin{align*}
+	\langle p \rangle &= m \frac{\diff \langle x \rangle}{\diff t} = m \frac{\diff}{\diff t} \int_{-\infty}^{\infty} \psi^{\ast} x \psi \diff x = m \int_{-\infty}^{\infty} x \frac{\partial}{\partial t}(\psi^{\ast} \psi)\diff x \\
+			  &= \frac{i \hbar m}{2m}\int_{-\infty}^{\infty} x \frac{\partial}{\partial x}\left(\psi^{\ast} \frac{\partial \psi}{\partial x} - \psi \frac{\partial \psi^{\ast}}{\partial x}\right) \diff x \\
+			  &= - \frac{i \hbar}{2} \int_{-\infty}^{\infty} \left( \psi^{\ast} \frac{\partial \psi}{\partial x} - \psi \frac{\partial \psi^{\ast}}{\partial x} \right) \diff x \\
+			  &= - i \hbar \int_{-\infty}^{\infty} \psi^{\ast} \frac{\partial \psi}{\partial x}\diff x = \int_{-\infty}^{\infty} \psi^{\ast} \left(-i\hbar \frac{\partial}{\partial x} \right)\psi \diff x.
+\end{align*}
+Hence we can see the operator $\hat x = x$ represents position, and the operator $\hat p = - i \hbar \partial/\partial x$ represents momentum.
+
+\subsubsection{Hermitian Operators}%
+\label{subsub:hermitian_operators}
+
+In a $\mathbb{C}^{n}$ linear map, we generally have $w = Tv$, where $T$ is a complex matrix of size $n$. In quantum mechanics, the linear maps are from $\mathcal{H} \to \mathcal{H}$, given by $\hat O : \psi \to \tilde \psi$.
+
+\begin{definition}
+	An operator\index{operator} $\hat O$ is any linear map $\mathcal{H} \to \mathcal{H}$ such that
+	\[
+		\hat O(a_1 \psi_1 + a_2 \psi_2) = a_1 \hat O \psi_1 + a_2 \hat O \psi_2
+	,\]
+	with $a_1, a_2 \in \mathbb{C}$, $\psi_1, \psi_2 \in \mathcal{H}$.
+\end{definition}
+
+Some examples of operators are:
+\begin{itemize}
+	\item Finite differential operators, given by
+		\[
+			\sum_{n = 0}^{N} p_n(x) \frac{\partial^{n}}{\partial x^{n}}
+		.\]
+	\item Translation operators
+		\[
+			S_a : \psi(x) \to \psi(x - a)
+		.\]
+	\item Parity operator
+		\[
+			P : \psi(x) \to \psi(-x)
+		.\]
+\end{itemize}
+
+\begin{definition}
+	The Hermitian conjugate\index{Hermitian conjugate} $\hat O^{\dagger}$ of an operator $\hat O$ is the operator such that
+	\[
+		(\hat O^{\dagger} \psi_1, \psi_2) = (\psi_1, \hat O \psi_2)
+	.\]
+\end{definition}
+We can verify that
+\begin{itemize}
+	\item $(a_1 \hat A_1 + a_2 \hat A_2)^{\dagger} = a_1^{\ast}\hat A_1^{\dagger} + a_2^{\ast} \hat A_2^{\dagger}$,
+	\item $(\hat A \hat B)^{\dagger} = \hat B^{\dagger} \hat A^{\dagger}$.
+\end{itemize}
+
+\begin{definition}
+	An operator $\hat O$ is Hermitian if\index{Hermitian operator}
+	\[
+		\hat O = \hat O^{\dagger} \iff (\hat O \psi_1, \psi_2) = (\psi_1, \hat O \psi_2)
+	.\]
+	All physics quantities in quantum mechanics are represented by Hermitian operators.
+\end{definition}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	\begin{enumerate}[(i)]
+		\item[]
+		\item $\hat x : \psi(x, t) \to x \psi(x, t)$ is Hermitian as
+			\[
+				\int_{-\infty}^{\infty}(x\psi_1)^{\ast}\psi_1\diff x = \int_{-\infty}^{\infty}\psi_1^{\ast} x \psi_2 \diff x
+			.\]
+		\item $\hat p : \psi(x, t) \to -i\hbar \frac{\partial \psi}{\partial x}(x, t)$ is Hermitian as
+			\begin{align*}
+				(\hat p \psi_1, \psi_2) &= \int_{-\infty}^{\infty} \left(-i\hbar \frac{\partial \psi_1}{\partial x}\right)^{\ast} \psi_2 \diff x = i \hbar \int_{-\infty}^{\infty}\frac{\partial \psi_1^{\ast}}{\partial x}\psi_2 \diff x \\
+							&= i \hbar \left[\psi_1^{\ast} \psi_2\right]_{-\infty}^{\infty} - i \hbar \int_{-\infty}^{\infty} \psi_1^{\ast} \frac{\partial \psi_2}{\partial x}\diff x \\
+							&= \int_{-\infty}^{\infty} \psi_1^{\ast} \left(-i\hbar \frac{\partial \psi_2}{\partial x}\right) \diff x = (\psi_1, \hat p \psi_2).
+			\end{align*}
+		\item Kinetic energy
+			\[
+				\hat T : \psi(x, t) \to \frac{\hat p^2}{2m} \psi(x, t) = - \frac{\hbar^2}{2m} \frac{\partial^2 \psi}{\partial x^2}(x, t)
+			.\]
+		\item Potential energy
+			\[
+				\hat U : \psi(x, t) \to U(\hat x)\psi(x, t) = U(x)\psi(x, t)
+			.\]
+		\item Total energy
+			\[
+				\hat H : \psi(x, t) \to (\hat T + \hat U)\psi(x, t) = \left(- \frac{\hbar^2}{2m} \frac{\partial^2}{\partial x^2} + U(x) \right) \psi(x, t)
+			.\]
+	\end{enumerate}
+	
+\end{example}
+
+\end{adjustbox}
+
+
+\begin{theorem}
+	The eigenvalues of Hermitian operators are real.
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} Let $\hat A$ be a hermitian operator with eigenvalue $a$, eigenfunction $\|\psi\| = 1$. Then
+\[
+	(\psi, \hat A \psi) = (\psi, a \psi) = a(\psi, \psi) = a
+,\]
+but since $\hat A$ is Hermitian, this equals
+\[
+	(\hat A \psi, \psi) = (a \psi, \psi) = a^{\ast} (\psi, \psi) = a^{\ast}
+.\]
+So $a^{\ast} = a$, and $a \in \mathbb{R}$.
+\end{adjustbox}
+
+\begin{theorem}
+	If $\hat A$ is a Hermitian operator, and $\psi_1, \psi_2$ are normalised eigenfunctions of $\hat A$ with distinct eigenvalues $a_1, a_2$, then $\psi_1, \psi_2$ are orthogonal.
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} We have $\hat A \psi_1 = a_1\psi_1$, $\hat A \psi_2 = a_2 \psi_2$. Then
+\begin{align*}
+	a_1(\psi_1, \psi_2) &= a_1^{\ast}(\psi_1, \psi_2) = (a_1 \psi_1, \psi_2) = (\hat A\psi_1, \psi_2) \\
+			    &= (\psi_1, A \psi_2) = (\psi_1, a_2 \psi_2) = a_2(\psi_1, \psi_2).
+\end{align*}
+Since $a_1 \neq a_2$, we get $(\psi_1, \psi_2) = 0$.
+\end{adjustbox}
+
+\begin{theorem}
+	The discrete (or continuous) set of eigenfunctions of any Hermitian operator together form a complete orthonormal basis of $\mathcal{H}$, so
+	\[
+		\psi(x, t) = \sum_{i \in I}c_i \psi_i(x, t)
+	.\]
+\end{theorem}
 
 
 \newpage

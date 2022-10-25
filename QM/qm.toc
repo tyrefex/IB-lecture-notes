@@ -10,4 +10,9 @@
 \contentsline {subsection}{\numberline {2.1}Wavefunctions and Probabilistic Interpretation}{7}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}Hilbert Space}{8}{subsection.2.2}%
 \contentsline {subsection}{\numberline {2.3}Inner Product}{9}{subsection.2.3}%
-\contentsline {section}{Index}{10}{section*.2}%
+\contentsline {subsubsection}{\numberline {2.3.1}Properties of the Inner Product}{9}{subsubsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.4}Time-dependent Schr\"{o}dinger Equation}{10}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Expectation Values and Operators}{12}{subsection.2.5}%
+\contentsline {subsubsection}{\numberline {2.5.1}Heuristic Interpretation}{12}{subsubsection.2.5.1}%
+\contentsline {subsubsection}{\numberline {2.5.2}Hermitian Operators}{13}{subsubsection.2.5.2}%
+\contentsline {section}{Index}{16}{section*.2}%

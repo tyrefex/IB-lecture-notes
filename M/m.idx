@@ -1,24 +1,27 @@
-\indexentry{periodic function|hyperpage}{2}
-\indexentry{inner product of periodic functions|hyperpage}{2}
-\indexentry{Fourier series|hyperpage}{3}
-\indexentry{Fourier coefficients|hyperpage}{4}
-\indexentry{sawtooth wave|hyperpage}{4}
-\indexentry{Dirichlet conditions|hyperpage}{5}
-\indexentry{square wave|hyperpage}{6}
-\indexentry{see-saw wave|hyperpage}{6}
-\indexentry{Parseval's theorem|hyperpage}{7}
-\indexentry{completeness relation|hyperpage}{7}
-\indexentry{half-range series|hyperpage}{8}
-\indexentry{self-adjoint matrix|hyperpage}{9}
-\indexentry{Hermitian matrix|hyperpage}{9}
-\indexentry{complementary function|hyperpage}{12}
-\indexentry{particular integral|hyperpage}{12}
-\indexentry{boundary conditions|hyperpage}{12}
-\indexentry{initial conditions|hyperpage}{12}
-\indexentry{inner product of complex-valued functions|hyperpage}{13}
-\indexentry{Sturm-Liouville form|hyperpage}{13}
-\indexentry{weight function|hyperpage}{13}
-\indexentry{self-adjoint operator|hyperpage}{14}
-\indexentry{normalized eigenfunction|hyperpage}{16}
-\indexentry{Bessel's inequality|hyperpage}{17}
-\indexentry{Legendre's equation|hyperpage}{17}
+\indexentry{periodic function|hyperpage}{3}
+\indexentry{inner product of periodic functions|hyperpage}{3}
+\indexentry{Fourier series|hyperpage}{4}
+\indexentry{Fourier coefficients|hyperpage}{5}
+\indexentry{sawtooth wave|hyperpage}{5}
+\indexentry{Dirichlet conditions|hyperpage}{6}
+\indexentry{square wave|hyperpage}{7}
+\indexentry{see-saw wave|hyperpage}{7}
+\indexentry{Parseval's theorem|hyperpage}{8}
+\indexentry{completeness relation|hyperpage}{8}
+\indexentry{half-range series|hyperpage}{9}
+\indexentry{self-adjoint matrix|hyperpage}{10}
+\indexentry{Hermitian matrix|hyperpage}{10}
+\indexentry{complementary function|hyperpage}{13}
+\indexentry{particular integral|hyperpage}{13}
+\indexentry{boundary conditions|hyperpage}{13}
+\indexentry{initial conditions|hyperpage}{13}
+\indexentry{inner product of complex-valued functions|hyperpage}{14}
+\indexentry{Sturm-Liouville form|hyperpage}{14}
+\indexentry{weight function|hyperpage}{14}
+\indexentry{self-adjoint operator|hyperpage}{15}
+\indexentry{normalized eigenfunction|hyperpage}{17}
+\indexentry{Bessel's inequality|hyperpage}{18}
+\indexentry{Legendre's equation|hyperpage}{18}
+\indexentry{Legendre polynomials|hyperpage}{19}
+\indexentry{Green's function|hyperpage}{21}
+\indexentry{normal modes|hyperpage}{23}
