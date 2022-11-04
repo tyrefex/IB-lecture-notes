@@ -31,4 +31,12 @@
 \contentsline {subsection}{\numberline {3.2}Separation of Variables}{23}{subsection.3.2}%
 \contentsline {subsection}{\numberline {3.3}Boundary Conditions and Normal Modes}{23}{subsection.3.3}%
 \contentsline {subsection}{\numberline {3.4}Initial Conditions and Temporal Solutions}{23}{subsection.3.4}%
-\contentsline {section}{Index}{26}{section*.2}%
+\contentsline {subsection}{\numberline {3.5}Oscillation Energy}{25}{subsection.3.5}%
+\contentsline {subsection}{\numberline {3.6}Wave Reflection and Transmission}{26}{subsection.3.6}%
+\contentsline {subsection}{\numberline {3.7}Wave Equation in 2D Plane Polars}{27}{subsection.3.7}%
+\contentsline {subsection}{\numberline {3.8}2D Wave Equation Solution}{30}{subsection.3.8}%
+\contentsline {section}{\numberline {4}The Diffusion Equation}{32}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Physical Origin of Heat Equation}{32}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Similarity Solutions}{33}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Heat Conduction in a Finite Bar}{34}{subsection.4.3}%
+\contentsline {section}{Index}{36}{section*.2}%

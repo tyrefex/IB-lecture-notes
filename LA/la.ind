@@ -1,6 +1,12 @@
 \begin{theindex}
 
+  \item annihilator, \hyperpage{28}
+
+  \indexspace
+
   \item basis, \hyperpage{6}
+  \item bidual, \hyperpage{32}
+  \item bilinear form, \hyperpage{35}
 
   \indexspace
 
@@ -12,6 +18,10 @@
 
   \item dimension, \hyperpage{9}
   \item direct sum, \hyperpage{10}
+  \item double dual, \hyperpage{32}
+  \item dual basis, \hyperpage{27}
+  \item dual map, \hyperpage{29}
+  \item dual space, \hyperpage{27}
 
   \indexspace
 
@@ -40,15 +50,18 @@
 
   \indexspace
 
+  \item linear form, \hyperpage{27}
   \item linear independence, \hyperpage{6}
   \item linear map, \hyperpage{13}
 
   \indexspace
 
   \item matrix, \hyperpage{17}
+  \item matrix of bilinear form, \hyperpage{35}
 
   \indexspace
 
+  \item non-degenerate bilinear form, \hyperpage{37}
   \item nullity, \hyperpage{16}
 
   \indexspace
@@ -62,17 +75,24 @@
   \indexspace
 
   \item rank, \hyperpage{16}
+  \item rank of bilinear form, \hyperpage{38}
   \item rank-nullity theorem, \hyperpage{16}
+  \item reflexive space, \hyperpage{32}
   \item row echelon form, \hyperpage{25}
   \item row rank, \hyperpage{23}
 
   \indexspace
 
+  \item scalar product, \hyperpage{35}
   \item similar matrices, \hyperpage{24}
   \item span, \hyperpage{5}
   \item Steinitz exchange lemma, \hyperpage{7}
   \item subspace, \hyperpage{3}
   \item subspace sum, \hyperpage{3}
+
+  \indexspace
+
+  \item trace, \hyperpage{39}
 
   \indexspace
 

@@ -1,10 +1,10 @@
 # Fdb version 3
-["makeindex qm.idx"] 1666348849 "qm.idx" "qm.ind" "qm" 1666349952
-  "qm.idx" 1666349950 1000 7b4b0e9fff53a46323a964245c602efd "pdflatex"
+["makeindex qm.idx"] 1666993165 "qm.idx" "qm.ind" "qm" 1667088921
+  "qm.idx" 1667092519 1179 431aacdb6314a850842bb1c213e9e12b "pdflatex"
   (generated)
-  "qm.ilg"
   "qm.ind"
-["pdflatex"] 1666349941 "qm.tex" "qm.pdf" "qm" 1666349952
+  "qm.ilg"
+["pdflatex"] 1667088910 "qm.tex" "qm.pdf" "qm" 1667088921
   "C:/Program Files/MiKTeX/fonts/tfm/jknappen/ec/tcrm1200.tfm" 993062508 1444 95ffe0f19b974d50849790c8225c7ef7 ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233955448 1004 54797486969f23fa377b128694d548df ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1233955448 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -30,6 +30,7 @@
   "C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1247596666 32080 340ef9bf63678554ee606688e7b5339d ""
   "C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb" 1247596667 30251 6afa5cb1d0204815a708a080681d4674 ""
   "C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb" 1247596667 36741 0ee9e374ec3e30da87cdfb0ea3575226 ""
+  "C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb" 1247596666 37166 8ab3487cbe3ab49ebce74c29ea2418db ""
   "C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb" 1247596666 35469 dcf3a5f2fc1862f5952e3ee5eb1d98c4 ""
   "C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1247596667 32722 d7379af29a190c3f453aba36302ff5a9 ""
   "C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb" 1247596666 32362 bc3f3eec7ab7d65fe700963d4017d32c ""
@@ -166,6 +167,8 @@
   "C:/Program Files/MiKTeX/tex/latex/latex-tools/calc.sty" 1602847618 10505 5efd55f2010055e7b7875afd6a75be82 ""
   "C:/Program Files/MiKTeX/tex/latex/latex-tools/multicol.sty" 1602847617 32634 04852e45d7c17cb384689d2f83b628d3 ""
   "C:/Program Files/MiKTeX/tex/latex/letltxmacro/letltxmacro.sty" 1575403136 5766 13a9e8766c47f30327caf893ece86ac8 ""
+  "C:/Program Files/MiKTeX/tex/latex/mathtools/mathtools.sty" 1585058146 55731 4347f70fb23a75dbacb3c5fd21dd2675 ""
+  "C:/Program Files/MiKTeX/tex/latex/mathtools/mhsetup.sty" 1585058146 5437 39f2bba90502a381bd48d78339c1a5f0 ""
   "C:/Program Files/MiKTeX/tex/latex/parskip/parskip.sty" 1614788568 4288 8314ab6f56a049e82c4322f6919d2bd2 ""
   "C:/Program Files/MiKTeX/tex/latex/pdflscape/pdflscape.sty" 1575574826 6575 25396d208d8f2b9395d06ef315d5886c ""
   "C:/Program Files/MiKTeX/tex/latex/pdfpages/pdfpages.sty" 1612537900 54497 89e42e8a36e112674015e58ae5cc18c3 ""
@@ -191,15 +194,15 @@
   "C:/Users/nath2/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk" 1609593004 14064 3c7cf39df335b16ccecd29613979c535 ""
   "C:/Users/nath2/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1615262009 9397586 7714a73faef2a04929797f6e0c630ddd ""
   "C:/Users/nath2/AppData/Local/MiKTeX/pdftex/config/pdftex.map" 1615261973 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
-  "qm.aux" 1666349951 4890 7d245a8d2bed85ea073b523db138ad95 "pdflatex"
-  "qm.ind" 1666349951 1157 b5daf7861df1ccd89e0e87cf99f12d9b "makeindex qm.idx"
-  "qm.out" 1666349951 3412 04e4ece495963625250596e21eaeec29 "pdflatex"
-  "qm.tex" 1666349940 29540 60402f0d567203fcf9ad74480e102ee3 ""
-  "qm.toc" 1666349951 1663 c091419f43d243503b1d2966d710a54c "pdflatex"
+  "qm.aux" 1667092521 6601 a33bdff9301931596210e494700a5fbf "pdflatex"
+  "qm.ind" 1667092520 1340 67f8500c52a89d1b11fbc6fc13ad59bf "makeindex qm.idx"
+  "qm.out" 1667092521 4820 6c7bc704aa5ccd02f386dd55daeaa736 "pdflatex"
+  "qm.tex" 1667092511 39906 2aef7951639ad0032637c347bb6ebf99 ""
+  "qm.toc" 1667092521 2347 f9a8e37b912fd612b844cc6d6040a21e "pdflatex"
   (generated)
-  "qm.log"
-  "qm.pdf"
-  "qm.idx"
-  "qm.out"
   "qm.toc"
+  "qm.out"
+  "qm.idx"
+  "qm.pdf"
+  "qm.log"
   "qm.aux"

@@ -8,4 +8,6 @@
 \contentsline {section}{\numberline {2}Metric Spaces}{14}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Definitions and Examples}{14}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}Completeness}{20}{subsection.2.2}%
-\contentsline {section}{Index}{24}{section*.2}%
+\contentsline {subsection}{\numberline {2.3}Sequential Compactness}{26}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Topology of Metric Spaces}{28}{subsection.2.4}%
+\contentsline {section}{Index}{34}{section*.2}%

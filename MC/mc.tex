@@ -339,7 +339,8 @@ If an eigenvalue $\lambda$ has multiplicity $r$, then we must include the term $
 	The following are equivalent:
 	\begin{enumerate}[\normalfont(i)]
 		\item $x \to y$;
-		\item There exists a sequence $x = x_0, x_1, \ldots, x_k = y$ such that $P(x_0, x_1), \ldots, P(x_{k-1}, x_k) > 0$;
+		\item There exists a sequence $x = x_0, x_1, \ldots, x_k = y$ such that 
+			\[P(x_0, x_1), \ldots, P(x_{k-1}, x_k) > 0;\]
 		\item There exists $n \geq 0$ such that $P_{xy}(n) > 0$.
 	\end{enumerate}	
 \end{theorem}
@@ -560,6 +561,275 @@ The strong Markov property is as follows:
 \begin{proposition}\index{strong Markov property}
 	Let $X$ be $\Mkv(\lambda, P)$ and let $T$ be a stopping time. Conditioning on $T < \infty$ and $X_T = i$, then $(X_{T + n})_{n \geq 0}$ is $\Mkv(\delta_i, P)$, and it is independent of $X_0, \ldots, X_T$.
 \end{proposition}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} Take $x_0, \ldots, x_n \in I$, and $w \in \bigcup I^{k}$. Then we will show
+\begin{align*}
+	\mathbb{P}(X_T &= x_0, \ldots, X_{T+n} = x_n, (X_0, \ldots, X_T) = \omega \mid T < \infty, X_T = i) \\
+		       &= \delta_{ix_0}P(x_0, x_1)\cdots P(x_{n-1}, x_n) \mathbb{P}((X_0, \ldots, X_T) = \omega \mid T< \infty, X_T = i).
+\end{align*}
+This proves both statements. Set $\omega$ to have length $k$. Then
+\end{adjustbox}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{align*}
+	\mathbb{P}(X_k =& x_0, \ldots, X_{k+n} = x_n, (X_0, \ldots, X_k) = \omega, T = k \mid T < \infty, X_T = i) \\
+	= & \frac{\mathbb{P}(X_k = x_0, \ldots, X_{k+n} = x_n, (X_0, \ldots, X_k) = \omega, T = k, X_k = i)}{\mathbb{P}(T < \infty, X_T = i)} \\
+	= & \mathbb{P}(X_k = x_0, \ldots, X_{k+n} = x_n \mid (X_0, \ldots, X_k) = \omega, T = k, X_k = i)\\
+	  & \times \frac{\mathbb{P}((X_0, \ldots, X_k) = \omega, T = k, X_k = i)}{\mathbb{P}(T < \infty, X_T = i)} \\
+	= &\mathbb{P}(X_k = x_0, \ldots, X_{k+n} = x_n \mid X_k = i) \\
+	  & \times \mathbb{P}((X_0, \ldots, X_k) = \omega, T = k \mid T < \infty, X_T = i) \\
+	= & \delta_{ix_0}P(x_0, x_1) \cdots P(x_{n-1}, x_n) \mathbb{P}((X_0, \ldots, X_T) = \omega \mid T < \infty, X_T = i).
+\end{align*}
+This proves the Strong Markov property.
+\end{adjustbox}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	Consider a Markov chain with $P(0, 1) = 1$, and $P(i, i+1) = P(i, i-1) = 1/2$. Let $T_0 = \inf\{n \geq 0 \mid X_n = 0\}$, and let $h_i = \mathbb{P}_i(T_0 < \infty)$.
+
+	We know that $h_0 = 1$. We can condition to find $h_1 = 1/2 + h_2/2$.
+
+	We can use more knowledge of the Markov chain to find $h_2$. Notice that
+	\[
+		h_2 = \mathbb{P}_2(T_0 < \infty) = \mathbb{P}_2(T_1 < \infty, T_0 < \infty) = \mathbb{P}_2(T_0 < \infty \mid T_1 < \infty) \mathbb{P}_2(T_1 < \infty)
+	.\]
+	Then conditional on $T_1 < \infty$, by the strong Markov property, $X_{T_1 + n}$ is $\Mkv(\delta_1, P)$. So we can express $T_0 = T_1 + \tilde T_0$, where $\tilde T_0$ is independent of $T_1$ and has the same law as $T_0$ under $\mathbb{P}_1$. Hence
+	\[
+		\mathbb{P}_2(T_0 < \infty \mid T_1 < \infty) = \mathbb{P}_2(\tilde T_0 + T_1 < \infty \mid T_1 < \infty) = \mathbb{P}_1(T_0 < \infty) = h_1
+	.\]
+	This gives $h_2 = h_1^2$, so $h_1 = 1/2 +h_1^2/2$ implies $h_1 = 1$.
+\end{example}
+
+\end{adjustbox}
+
+\section{Transience and Recurrence}%
+\label{sec:transience_and_recurrence}
+
+\begin{definition}
+	A state $i$ is called recurrent\index{recurrent} if
+	\[
+		\mathbb{P}_i(X_n = i \text{ for infinitely many } n) = 1
+	.\]
+	A state $i$ is called transient\index{transient} if
+	\[
+		\mathbb{P}_i(X_n = i \text{ for infinitely many } n) = 0
+	.\]
+\end{definition}
+
+Define the total number of visits $V_i$ as
+\[
+	V_i = \sum_{l = 0}^{\infty} \mathbbm{1}(X_l = i)
+.\]
+Then by definition, we known $\mathbb{P}_i(V_i > 0) = 1$. Moreover, we can write $\mathbb{P}_i(V_i > 1) = \mathbb{P}_i(T_i^{(1)} < \infty)$, where $T_i^{(1)}$ is the first return time.
+
+Using the strong Markov property, we can then write $\mathbb{P}_i(V_i > 2) = \mathbb{P}_i(T_i^{(1)} < \infty)^2$. Indeed, let $T_i^{(0)} = 0$, and for $k \geq 1$, define 
+\[
+	T_i^{(k)} = \inf\{n > T_i^{(k-1)} \mid X_n = i\}
+.\]
+This is the $k$-th return time to $i$\index{return time}. Define
+\[
+	f_i = \mathbb{P}_i(T_i^{(1)} < \infty)
+.\]
+
+\begin{lemma}
+	For all $r \in \mathbb{N}$,
+	\[
+		\mathbb{P}_i(V_i > r) = f_i^{r}
+	.\]
+	Thus $V_i$ has geometric distribution.
+\end{lemma}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} $r = 0$ is trivially true. Suppose it is true for $r \leq k$. We will prove it for $k + 1$. Indeed,
+\begin{align*}
+	\mathbb{P}_i(V_i > k+1) &= \mathbb{P}_i(T_i^{(k+1)} < \infty) = \mathbb{P}_i(T_i^{(k+1)}< \infty, T_i^{(k)} < \infty) \\
+				&= \mathbb{P}_i(T_i^{(k+1)} < \infty \mid T_i^{(k)} < \infty) \mathbb{P}_i(T_i^{(k)} < \infty).
+\end{align*}
+By induction, we have $\mathbb{P}_i(T_i^{(k)} < \infty) = \mathbb{P}_i(V_i > k) = f_i^{k}$.
+
+Moreover, the successive return times to $i$ are stopping times, so conditional on $T_i^{(k)} < \infty$, we have $(X_{T_i^{(k)} + n})$ is $\Mkv(\delta_i, P)$, and is independent of $X_0, \ldots, X_{T_i^{(k)}}$ by the strong Markov property. Hence,
+\[
+	\mathbb{P}_i(T_i^{(k+1)} < \infty \mid T_i^{(k)} < \infty) = \mathbb{P}_i(T_i^{(1)} < \infty) = f_i
+.\]
+This finishes the proof.
+\end{adjustbox}
+
+\newpage
+
+\begin{theorem}
+	\begin{enumerate}[\normalfont(a)]
+		\item[]
+		\item If $f_i = 1$, then $i$ is recurrent and
+			\[
+				\sum_{n \geq 0} p_{ii}(n) = \infty
+			.\]
+		\item If $f_i < 1$, then $i$ is transient and
+			\[
+				\sum_{n \geq 0} p_{ii}(n) < \infty
+			.\]
+	\end{enumerate}
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} Note that
+\[
+	\mathbb{E}_i[V_i] = \mathbb{E}_i\Biggl[\sum_{l = 0}^{\infty} \mathbbm{1}(X_l = i) \Biggr] = \sum_{l = 0}^{\infty} p_{ii}(l)
+.\]
+\begin{enumerate}[(a)]
+	\item If $f_i = 1$, then by our lemma, $\mathbb{P}_i(V_i = \infty) = 1$. Hence $i$ is recurrent, so
+		\[
+			\mathbb{E}_i[V_i] = \infty \implies \sum_{n \geq 0} p_{ii}(n) = \infty
+		.\]
+	\item If $f_i < 1$, from our lemma,
+		\[
+			\mathbb{E}_i[V_i] = \frac{1}{1 - f_i} < \infty \implies \sum_{n \geq 0} p_{ii}(n) < \infty
+		,\]
+		which implies that $\mathbb{P}_i(V_i < \infty) = 1$, so $i$ is transient.
+\end{enumerate}
+\end{adjustbox}
+
+\begin{theorem}
+	If $x \leftrightarrow y$, then $x$ and $y$ are either both recurrent or both transient.
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} We will show if $x$ is recurrent, then $y$ is as well. Note if $x \leftrightarrow y$, then there exist $m, r > 0$ such that $p_{xy}(m) > 0$, and $p_{yx}(r) > 0$. Hence
+	\[
+		p_{yy}(n + m + r) \geq p_{yx}(r)p_{xx}(n)p_{xy}(m),
+	\]
+	so
+	\[
+		\sum_{n \geq 0}p_{yy}(n+m+r) \geq p_{yx}(r)p_{xy}(m) \sum_{n \geq 0}p_{xx}(n) = \infty
+	,\]
+	as $x$ is recurrent. Hence $y$ is also recurrent.
+\end{adjustbox}
+
+\begin{corollary}
+	All sates in a communicating class are either all recurrent or all transient.
+\end{corollary}
+
+\begin{theorem}
+	If $C$ is a recurrent communicating class, then $C$ is closed.
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} Let $x \in C$, and $x \to y$ but $y \not \in C$. Since $x \to y$, there exist some $m > 0$ such that $p_{xy}(m) > 0$. But then
+	\[
+		\mathbb{P}_x(V_x < \infty) \geq p_{xy}(m) > 0
+	.\]
+	So this shows that $x$ is transient.
+\end{adjustbox}
+
+\begin{theorem}
+	A finite closed class is recurrent.
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} Let $x \in C$. Since $C$ is finite, there exists $y \in C$ such that
+	\[
+		\mathbb{P}_x(X_n = y \text{ for infinitely many } n) > 0
+	\]
+	by the pigeonhole principle. Hence
+	\begin{align*}
+		\mathbb{P}_y(X_n &= y \text{ for infinitely many } n) \\
+				 &\geq \mathbb{P}_y(X_m = x, X_n = y \text{ for infinitely many } n \geq m) \\
+								     &= \mathbb{P}_y (X_n = y \text{ for infinitely many } n \geq m \mid X_m = x)\mathbb{P}_y(X_m = x) \\
+								     &= \mathbb{P}_x(X_n = y \text{ for infinitely many } n) p_{yx}(m) > 0.
+	\end{align*}
+	So $\mathbb{P}_y(X_n = y \text{ for infinitely many } n) > 0$, so $y$ is recurrent.
+\end{adjustbox}
+
+\begin{theorem}
+	If $P$ is irreducible and recurrent, then for all $x, y$,
+	\[
+		\mathbb{P}_x(T_y < \infty) = 1
+	.\]
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:}
+\begin{align*}
+	\mathbb{P}_x(X_n &= y \text{ infinitely many times}) \\
+			 &= \mathbb{P}_x(T_y < \infty, X_n = y \text{ for infinitely many } n \geq T_y) \\
+							    &= \mathbb{P}_x(X_n = y \text{ for infinitely many } n \geq T_y \mid T_y < \infty) \mathbb{P}_x(T_y < \infty) \\
+							    &= \mathbb{P}_y(X_n = y \text{ for infinitely many } n) \mathbb{P}_x(T_y < \infty) = \mathbb{P}_x(T_y < \infty).
+\end{align*}
+Suppose that $\mathbb{P}_x(T_y < \infty) < 1$, so $\mathbb{P}_x(T_y = \infty) > 0$. Then
+\begin{align*}
+	\mathbb{P}_y(V_y < \infty) &\geq \mathbb{P}_y(X_m = x, \tilde T_y = \infty) \\
+				   &=\mathbb{P}_y(\tilde T_y = \infty \mid X_m = x) \mathbb{P}_y(X_m = x) \\
+				   &= \mathbb{P}_x(T_y = \infty) p_{yx}(m) > 0.
+\end{align*}
+This implies $y$ is transient, a contradiction.
+\end{adjustbox}
+
+\section{Simple Random Walks on \texorpdfstring{$\mathbb{Z}^{d}$}{Z\^d}}%
+\label{sec:simple_random_walks_on_zd}
+
+\begin{definition}
+	A simple random walk\index{simple random walk} on $\mathbb{Z}^{d}$ is a Markov chain with transition matrix
+	\[
+		P(x, x+e_i) = P(x, x-e_i) = \frac{1}{2d}
+	.\]
+\end{definition}
+
+\begin{theorem}[P\'{o}lya]
+	A simple random walk is recurrent when $d \leq 2$ and it is transient when $d \geq 3$.
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} We first prove recurrence when $d = 1$. This is a simple random walk on $\mathbb{Z}$. Since this is irreducible, it is enough to show $0$ is recurrent, that is,
+	\[
+		\sum_{n \geq 0}p_{00}(n) = \infty
+	.\]
+	Note $p_{00}(n) = \mathbb{P}_0(X_n = 0)$. Note $n$ must be even for this to be possible. We can calculate
+	\[
+		\mathbb{P}_0(X_{2n} = 0) = \binom{2n}{n} \cdot \biggl( \frac{1}{2} \biggr)^{2n} = \frac{(2n)!}{n! \cdot n!} \cdot \frac{1}{2^{2n}} \sim \frac{1}{\sqrt{\pi n}}
+	,\]
+	where we use Stirling's formula. Hence, since this sum diverges, the simple random walk on $\mathbb{Z}$ is recurrent.
+\end{adjustbox}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	Consider when $P(i, i+1) = p$, $P(i, i-1) = q$, where $p \neq q$, $p + q = 1$. We show this is not recurrent. Indeed,
+	\[
+		\mathbb{P}_0(X_{2n} = 0) = \binom{2n}{n} p^{n}q^{n} \sim \frac{(4pq)^{n}}{\sqrt{\pi n}}
+	.\]
+	If $p \neq q$, then $4pq < 1$, so this sum converges as it is exponential, implying that the walk is transient.
+
+	For $d = 2$, we project the random walk onto the lines $y = x$ and $y = -x$. Then we prove that these are independent random walks on $\sqrt{2} \mathbb{Z}$.
+
+	Define a function $f : \mathbb{Z}^2 \to \mathbb{R}^2$ by
+	\[
+		f(x, y) = \biggl( \frac{x + y}{\sqrt 2}, \frac{x - y}{\sqrt 2} \biggr)
+	.\]
+	Then for a simple random walk $(X_n)$ on $\mathbb{Z}^2$, let
+	\[
+		f(X_n) = (X_n^{+}, X_n^{-})
+	.\]
+
+\begin{theorem}
+	$(X_{n}^{+}), (X_{n}^{-})$ are two independent simple random walks on $\mathbb{Z}/\sqrt 2$.
+\end{theorem}
+
+Indeed, let $(\xi_i)$ be an iid sequence, where
+\[
+	\mathbb{P}(\xi_i = (0, 1)) = \mathbb{P}(\xi_i = (1, 0)) = \mathbb{P}(\xi_i = (0, -1)) = \mathbb{P}(\xi_i = (-1, 0)) = \frac{1}{4}
+.\]
+Let $\xi_i = (\xi_i^{1}, \xi_i^{2})$, and define $X_n$ as the partial sums of the $\xi_i$. Then
+\[
+	f(X_n) = \Biggl( \sum_{i = 1}^{n} \frac{(\xi_i^{1} + \xi_i^{2})}{\sqrt 2}, \sum_{i = 1}^{n} \frac{(\xi_i^{1} - \xi_i^{2})}{\sqrt 2} \Biggr) = (X_{n}^{+}, X_{n}^{-})
+.\]
+It is easy to see that $(X_n^{+}), (X_{n}^{-})$ are simple random walks on $\mathbb{Z}/\sqrt 2$. To show they are independent, it is enough to check that $\xi_i^{1} + \xi_i^{2}$ is independent of $\xi_i^{1} - \xi_i^{2}$. This can be done by calculating all possible calculations.
+
+Hence, applying this, we get
+\[
+	\mathbb{P}_0(X_{2n} = 0) = \mathbb{P}_0(X_{2n}^{+} = 0, X_{2n}^{-} = 0) \sim \frac{1}{\pi n}
+.\]
+This sum diverges, hence $\mathbb{Z}^2$ is recurrent.
+
+\end{adjustbox}
+
 
 
 \newpage

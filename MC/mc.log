@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2021.3.9)  20 OCT 2022 23:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2021.3.9)  29 OCT 2022 02:35
 entering extended mode
 **./mc.tex
 (mc.tex
@@ -933,32 +933,35 @@ LaTeX Font Info:    Trying to load font information for U+bbm on input line 204
 
 (C:\Program Files\MiKTeX\tex/latex/bbm\ubbm.fd
 File: ubbm.fd 1999/03/15 V 1.2 Font definition for bbm font - TH
-) [3] [4] [5]
-Overfull \hbox (35.42798pt too wide) in paragraph at lines 342--343
-[]\OT1/cmr/m/it/12 There ex-ists a se-quence $\OML/cmm/m/it/12 x \OT1/cmr/m/n/1
-2 = \OML/cmm/m/it/12 x[]; x[]; [] ; x[] \OT1/cmr/m/n/12 = \OML/cmm/m/it/12 y$ \
-OT1/cmr/m/it/12 such that $\OML/cmm/m/it/12 P\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 
-x[]; x[]\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ; [] ; P\OT1/cmr/m/n/12 (\OML/cmm/m/i
-t/12 x[]; x[]\OT1/cmr/m/n/12 ) \OML/cmm/m/it/12 >
+) [3] [4] [5] [6] [7] [8]
+[9] [10] [11] [12]
+Overfull \hbox (6.24577pt too wide) detected at line 596
+\OML/cmm/m/it/12 h[] \OT1/cmr/m/n/12 = \U/msb/m/n/12 P[]\OT1/cmr/m/n/12 (\OML/c
+mm/m/it/12 T[] < \OMS/cmsy/m/n/12 1\OT1/cmr/m/n/12 ) = \U/msb/m/n/12 P[]\OT1/cm
+r/m/n/12 (\OML/cmm/m/it/12 T[] < \OMS/cmsy/m/n/12 1\OML/cmm/m/it/12 ; T[] < \OM
+S/cmsy/m/n/12 1\OT1/cmr/m/n/12 ) = \U/msb/m/n/12 P[]\OT1/cmr/m/n/12 (\OML/cmm/m
+/it/12 T[] < \OMS/cmsy/m/n/12 1 j \OML/cmm/m/it/12 T[] < \OMS/cmsy/m/n/12 1\OT1
+/cmr/m/n/12 )\U/msb/m/n/12 P[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 T[] < \OMS/cmsy
+/m/n/12 1\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 :
  []
 
-[6] [7] [8] [9] [10] [11] [12]
+[13] [14] [15] [16] [17] [18]
 runsystem(makeindex mc.idx)...executed (allowed).
 
- (mc.ind) [13
+ (mc.ind) [19
 
 ] (mc.aux)
 Package rerunfilecheck Info: File `mc.out' has not changed.
-(rerunfilecheck)             Checksum: 253C01BB4DA749D3E13C41A32B7EBCAA;1318.
+(rerunfilecheck)             Checksum: 0F0E6B2A6335E8868787F92830FE4424;1682.
  ) 
 Here is how much of TeX's memory you used:
- 23356 strings out of 479334
- 412209 string characters out of 2866961
- 722533 words of memory out of 3000000
- 40307 multiletter control sequences out of 15000+200000
- 410941 words of font info for 56 fonts, out of 3000000 for 9000
+ 23397 strings out of 479334
+ 412673 string characters out of 2866961
+ 722646 words of memory out of 3000000
+ 40323 multiletter control sequences out of 15000+200000
+ 412859 words of font info for 65 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 113i,12n,116p,510b,422s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 113i,13n,116p,510b,422s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\nath2\AppData\Local\MiKTeX\fonts/pk/ljfour/public/bbm/dpi600\bbm12
 .pk><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Prog
 ram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/Mi
@@ -972,9 +975,9 @@ pe1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/a
 msfonts/cm/cmsy6.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cm
 sy8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/
 Program Files/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on mc.pdf (14 pages, 208821 bytes).
+Output written on mc.pdf (20 pages, 236372 bytes).
 PDF statistics:
- 227 PDF objects out of 1000 (max. 8388607)
- 46 named destinations out of 1000 (max. 500000)
- 93 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 285 PDF objects out of 1000 (max. 8388607)
+ 69 named destinations out of 1000 (max. 500000)
+ 109 words of extra memory for PDF output out of 10000 (max. 10000000)
 

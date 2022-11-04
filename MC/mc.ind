@@ -27,7 +27,13 @@
 
   \indexspace
 
+  \item recurrent, \hyperpage{13}
+  \item return time, \hyperpage{14}
+
+  \indexspace
+
   \item simple Markov property, \hyperpage{4}
+  \item simple random walk, \hyperpage{17}
   \item stochastic matrix, \hyperpage{3}
   \item stopping time, \hyperpage{12}
   \item strong Markov property, \hyperpage{12}
@@ -35,6 +41,7 @@
   \indexspace
 
   \item time-homogeneous, \hyperpage{3}
+  \item transient, \hyperpage{13}
   \item transition matrix, \hyperpage{3}
 
 \end{theindex}

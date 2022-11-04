@@ -8,4 +8,10 @@
 \contentsline {subsection}{\numberline {6.1}Change of Basis}{20}{subsection.6.1}%
 \contentsline {section}{\numberline {7}Elementary operations and Elementary Matrices}{24}{section.7}%
 \contentsline {subsection}{\numberline {7.1}Representation of Square Invertible Matrix}{25}{subsection.7.1}%
-\contentsline {section}{Index}{27}{section*.2}%
+\contentsline {section}{\numberline {8}Dual Spaces and Dual Maps}{27}{section.8}%
+\contentsline {section}{\numberline {9}Properties of the Dual Map}{31}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Properties of the Dual Map}{31}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Double Dual}{32}{subsection.9.2}%
+\contentsline {section}{\numberline {10}Bilinear Forms}{35}{section.10}%
+\contentsline {section}{\numberline {11}Determinant and Traces}{39}{section.11}%
+\contentsline {section}{Index}{40}{section*.2}%

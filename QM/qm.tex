@@ -1,5 +1,6 @@
 \documentclass[12pt]{article}
 \usepackage{amsmath}
+\usepackage{mathtools}
 \usepackage[a4paper]{geometry}
 \usepackage{fancyhdr}
 \usepackage{tikz}
@@ -685,6 +686,253 @@ Since $a_1 \neq a_2$, we get $(\psi_1, \psi_2) = 0$.
 		\psi(x, t) = \sum_{i \in I}c_i \psi_i(x, t)
 	.\]
 \end{theorem}
+
+\subsubsection{Expectation values and operators}%
+\label{subsub:expectation_values_and_operators}
+
+So far, we have seen every quantum observable is represented by a Hermitian operator $\hat O$. We define the following postulates for the operators:
+
+\begin{enumerate}[1.]
+	\item The possible outcomes of a measurement of the observable $O$ are the eigenvalues of $\hat O$.
+	\item If $\hat O$ has a discrete set of normalized eigenfunctions $\{\psi_i\}$ with distinct eigenvalues $\{\lambda_i\}$, the measurement of $O$ on a particle described by $\psi$ has probability
+		\[
+			\mathbb{P}(O = \lambda_i) = |a_i|^2
+		,\]
+		where $\psi = \sum a_i \psi_i$.
+	\item If $\{\psi_i\}$ are the set of orthonormal eigenfunctions of $\hat O$, and $\{\psi_i\}_{i \in I}$ is the complete set of orthonormal eigenfunctions with eigenvalue $\lambda$, then
+		\[
+			\mathbb{P}(O = \lambda) = \sum_{i \in I}|a_i|^2
+		.\]
+		Indeed, if $\psi$ is normalized, we can check
+		\[
+			\sum_{i = 1}^{N} |a_i|^2 = \sum_{i = 1}^{N}(a_i \psi_i, a_i \psi_i) = \sum_{i, j = 1}^{N} (a_i \psi_i, a_j \psi_j) = (\psi, \psi) = 1
+		.\]
+	\item The projection postulate\index{projection postulate}: If $O$ is measured on $\psi$ at time $t$ and the outcome of the measurement of $\lambda_i$, the wavefunction of $\psi$ instantaneously becomes $\psi_i$. If $\hat O$ has degenerate eigenvalues with the same eigenvalue, the wavefunction becomes
+		\[
+		\psi = \sum_{i \in I}a_i \psi_i
+		.\]
+\end{enumerate}
+
+\begin{definition}[Projection Operator]\index{projection operator}
+	Given $\psi = \sum a_i \psi_i = \sum (\psi_i, \psi) \psi$, define
+	\[
+		\hat P_i : \psi \mapsto (\psi_i, \psi) \psi_i
+	.\]
+\end{definition}
+
+We can now define the expectation\index{expectation} value of an observable measured on state $\psi$:
+\begin{align*}
+	\langle O \rangle_{\psi} &= \sum_{i} \lambda_i \mathbb{P}(O = \lambda_i) = \sum_{i} \lambda_i |a_i|^2 = \sum_{i} \lambda_i |(\psi_i, \psi)|^2 \\
+				 &= \Biggl( \sum_{i}(\psi_i, \psi)\psi_i, \sum_{j} \lambda_j(\psi_j, \psi) \psi_j \Biggr) = (\psi, \hat O \psi) \\
+				 &= \int \psi^{\ast}(x, t) \hat O \psi(x, t) \diff x.
+\end{align*}
+The expectation satisfies linearity:
+\[
+	\langle a \hat A + b \hat B \rangle_{\psi} = a \langle \hat A \rangle_{\psi} + b \langle \hat B \rangle_{\psi}
+.\]
+
+\begin{remark}
+	\begin{itemize}
+		\item[]
+		\item The physics implication of the projection postulate is that if $O$ is measured twice, the outcome of the second measurement is the same as the first with probability $1$, if the difference between measurement times is small.
+		\item Born's rule says if $\phi(\mathbf{x}, t)$ is the state that gives the desired outcome om a measurement on a state $\psi(\mathbf{x}, t)$, the probability of such an outcome is given by
+			\[
+				|(\psi, \phi)|^2 = \Biggl| \int_{-\infty}^{\infty} \psi^{\ast}(x, t) \phi(x, t) \diff x \Biggr|^2
+			.\]
+	\end{itemize}
+\end{remark}
+
+\subsection{Time-independent Schr\"{o}dinger equation}%
+\label{sub:time_independent_schr"_o_dinger_equation}
+
+Recall the one-dimensional time-dependent Schr\"{o}dinger equation
+\[
+	i \hbar \frac{\partial \psi}{\partial t}(x, t) = -\frac{\hbar^2}{2m} \frac{\partial^2 \psi}{\partial x^2} (x, t) + U(x) \psi(x, t) = \hat H \psi(x, t)
+.\] 
+We try separation of variables:
+\[
+	\psi(x, t) = T(t) \chi(x)
+.\]
+Substituting, this gives
+\[
+	i \hbar \frac{\partial T}{\partial t}(t) \chi(x) = T(t) \hat H \chi(x)
+.\]
+Dividing by $T(t)\chi(x)$, we get
+\[
+	\frac{1}{T(t)} i \hbar \frac{\partial T (t)}{\partial t}(t) = \frac{\hat H \chi (x)}{\chi(x)} = E
+.\]
+Solving for time, we get
+\[
+	\frac{1}{T(t)} i \hbar \frac{\partial T(t)}{\partial t} = E \implies T(t) = e^{-i E t/\hbar}
+.\]
+The time-independent Schr\"{o}dinger equation is the equation for $\chi(x)$:
+\[
+	\hat H \chi(x) = E \chi(x) \iff - \frac{\hbar^2}{2m} \frac{\partial^2 \chi(x)}{\partial x^2} + U(x) \chi(x) = E \chi(x)
+.\]
+Note that the time-independent Schr\"{o}dinger equation is an eigenvalue equation for the $\hat H$ operator, and the eigenvalues of $\hat hH$ are all possible outcomes for the measurement of the energy of the state $\psi$.
+
+\subsection{Stationary states}%
+\label{sub:stationary_states}
+
+We have find a particular solution to the time-dependent Schr\"{o}dinger equation
+\[
+	\Psi(x, t) = \chi(x) e^{-iEt/\hbar}
+.\]
+
+\begin{definition}
+	These solutions are called \textbf{stationary states}.\index{stationary states}
+\end{definition}
+
+This is because the probability distribution of these states satisfies
+\[
+	\rho(x, t) = |\Psi(x, t)|^2 = |\chi(x)|^2
+,\]
+meaning they are independent of time.
+
+Due to completeness of eigenfunctions, applying this to $\hat O = \hat H$ gives the following result.
+
+\begin{theorem}
+	Every solution of the time-dependent Schr\"{o}dinger equation can be written as a linear combination of stationary states.
+\end{theorem}
+
+For systems with a discrete set of eigenvalues of $\hat H$, namely, $E_n = E_1, E_2, \ldots$, then
+\[
+	\psi(x, t) = \sum_{n} a_n \chi_n(x) e^{-iE_n t/\hbar}
+.\]
+
+For systems with a continuous set of eigenvalues of $\hat H$,
+\[
+	\psi(x, t) = \int_{\Delta}A(\alpha)\chi_{\alpha}(x) e^{-iE_{\alpha}t/\hbar} \diff \alpha
+.\]
+Here, the probability of measuring the energy to be $E_n = E(\alpha)$ is $|a_n|^2$ in the discrete case, or $|A(\alpha)|^2 \diff \alpha$ in the continuous case.
+
+Consider a system with only two energy eigenvalues $E_1 \neq E_2$. Then we can write the state $\psi$ as a combination
+\[
+	\psi(x, t) = a_1 \chi_1(x) e^{-i E_1 t/\hbar} + a_2 \chi_2(x) e^{-i E_2 t/\hbar}
+.\]
+Then this gives $\psi(x, 0) = a_1 \chi_1(x) + a_2 \chi_2(x)$. If $a_1 = 0$, then $\psi(x, t) = a_2 \chi_2(x) e^{-i E_2 t/\hbar}$, which implies $\psi$ is a stationary state.
+
+If $a_1 \neq 0$ and $a_2 \neq 0$, then
+\begin{align*}
+	|\psi(x, t)|^2 &= |a_1 \chi_1 e^{-iE_1 t/\hbar} + a_2 \chi_2 e^{-iE_2 t/\hbar}|^2 \\
+		       &= a_1^2|\chi_1^2| + a_2^2|\chi_2|^2 + 2a_1a_2 \chi_1(x)\chi_2(x) \cos \biggl( \frac{(E_1 - E_2)t}{\hbar} \biggr).
+\end{align*}
+Hence $\psi$ is not a stationary state.
+\newpage
+
+\section{4-Dimension Solutions of Schr\"{o}dinger Equation}%
+\label{sec:4_dimension_solutions_of_schr"_o_dinger_equation}
+
+The time-independent Schr\"{o}dinger equation is
+\[
+	\hat H \chi(x) = E \chi(x)
+,\]
+\[
+	- \frac{\hbar^2}{2m}\chi''(x) + U(x) \chi(x) = E \chi(x)
+.\]
+We want to solve the TISE for 3 cases:
+\begin{enumerate}[1.]
+	\item Bound states;
+	\item Free particles;
+	\item Scattering states.
+\end{enumerate}
+
+\subsection{Bound States}%
+\label{sub:bound_states}
+
+\subsubsection{Infinite potential well}%
+\label{subsub:infinite_potential_well}
+
+Consider the potential function
+\[
+	U(x) =
+	\begin{cases}
+		0 & |x| \leq a, \\
+		+\infty & |x| > a,
+	\end{cases}
+\]
+For $|x| > a$, we must have $\chi(x) = 0$, otherwise $U \cdot \chi = \infty$. Hence we have boundary conditions $\chi(\pm a) = 0$.
+
+For $|x| \leq a$, we look for solutions of
+\[
+\begin{dcases}
+	- \frac{\hbar^2}{2m} \chi''(x) = E \chi(x), \\
+	\chi(\pm a) = 0.
+\end{dcases}
+\]
+This has solutions $\chi(x) = A \sin (k x) + B \cos (k x)$, where $k = \sqrt{2mE/\hbar^2}$. Using the boundary conditions, we get $A \sin (k a) = B \cos (k a) = 0$.
+\begin{enumerate}[(i)]
+	\item $A = 0$ and $\cos (k a) = 0$, so $k_n = n \pi/(2a)$ for odd integers $a$.
+	\item $B = 0$ and $\sin (k a) = 0$, so $k_n = n \pi/(2a)$ for even integers $a$.
+\end{enumerate}
+
+We can determine $A$ and $B$ by requiring normalization of the electron:
+\[
+	\int_{-a}^{a} |\chi_n(x)|^2\diff x = 1 \implies A = B = \sqrt{\frac{1}{a}}
+.\]
+\begin{remark}
+	\begin{enumerate}[(i)]
+		\item The ground state $\chi_1$ has nonzero energy.
+		\item As $n \to \infty$, $|\chi_n(x)|^2$ approaches a constant.
+	\end{enumerate}
+\end{remark}
+
+\begin{proposition}
+	If the quantum system has non-degenerate eigenstates, then if $U(x) = U(-x)$, the eigenfunctions of $\hat H$ are either odd or even.
+\end{proposition}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} If $U(x) = U(-x)$, then the TISE is invariant under $x \mapsto -x$. Hence if $\chi(x)$ is a solution with eigenvalue $\lambda$, $\chi(-x)$ is also a solution with eigenvalue $\lambda$ and $\chi(-x) = \alpha \chi(x)$.
+
+	Hence $\chi(x) = \chi(-(-x)) = \alpha^2 \chi(x)$, so $\alpha^2 = 1$. Hence either $\alpha = 1$, and $\chi$ is even, or $\alpha = -1$, and $\chi$ is odd.
+\end{adjustbox}
+
+\subsubsection{Finite Potential Well}%
+\label{subsub:finite_potential_well}
+
+Consider the more physical problem of a finite potential well:
+\[
+	U(x) =
+	\begin{cases}
+		0 & |x| \leq a, \\
+		U_0 & |x| > a.
+	\end{cases}
+\]
+Consider $E > 0$ and $E < U_0$. We look for odd and even eigenfunctions.
+\begin{enumerate}[(i)]
+	\item For even parity bounded states, $\chi(-x) = \chi(x)$, so we solve
+		\[
+		\begin{cases}
+			-\frac{\hbar^2}{2m} \chi''(x) = E \chi(x) & |x| \leq a,\\
+			-\frac{\hbar^2}{2m}\chi''(x) = (E - U_0)\chi(x) & |x| > a.
+		\end{cases}
+		\]
+		The first equation gives $\chi''(x) + k^2 \chi(x) = 0$, where $k = \sqrt{2mE/\hbar^2}$, and so $\chi(x) = A \sin (kx) + B \cos (kx)$. But $A = 0$, since $\chi$ is even, so $\chi(x) = B \cos (kx)$.
+
+		The second equation gives $\chi''(x) - \bar k^2 \chi(x) = 0$, with $\bar k = \sqrt{2m(U_0 - E)/\hbar^2}$. Then $\chi(x) = ce^{+\bar k x} + D e^{- \bar k x}$. Imposing normalisability, we get $c = 0$ for $x > a$ and $d = 0$ for $x < -a$. Then, imposing evenness, we get
+		\[
+			\chi(x) =
+			\begin{cases}
+				C e^{\bar k r} & x < -a, \\
+				B \cos (kx) & |x| \leq a, \\
+				C e^{-\bar k r} &  x > a.
+			\end{cases}
+		\]
+		Continuity of $\chi$ and $\chi'$ at $x = \pm a$ implies
+		\[
+			c e^{- \bar k a} = B \cos (k a)
+		,\]
+		\[
+			- \bar k c e^{- \bar k a} = - k B \sin (k a)
+		.\]
+		This gives $k \tan (ka) = \bar k$, and $k^2 + \bar k^2 = (2mU_0)/\hbar^2$. Let $\xi = k a, \eta = \bar k a$. Then we have $\xi \tan \xi = \eta$ and $\xi^2 + \eta^2 = r_0^2$.
+
+		The eigenvalues of the Hamiltonian correspond to the points of intersection of these graphs.
+
+		As $U_0 \to \infty$, we get the same result for the infinite potential well.
+	\item The odd part is found in the example sheets.
+\end{enumerate}
+
 
 
 \newpage

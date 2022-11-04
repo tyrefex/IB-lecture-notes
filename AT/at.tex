@@ -994,9 +994,9 @@ Similarly, we can consider $\mathbb{Q}$, then this does not satisfy the general 
 	\setcounter{enumi}{5}
 \item Define
 	\[
-		l_1 = \biggl\{(x_n)_{n \geq 1} \in \mathbb{R}^{\mathbb{N}} \mid \sum_{n = 1}^{\infty} |x_n| \text{ converges} \biggr\}
+		\ell_1 = \biggl\{(x_n)_{n \geq 1} \in \mathbb{R}^{\mathbb{N}} \mid \sum_{n = 1}^{\infty} |x_n| \text{ converges} \biggr\}
 	.\]
-	We can define a metric $d$ on $l_1$ by
+	We can define a metric $d$ on $\ell_1$ by
 	\[
 		d((x_n), (y_n)) = \sum_{n = 1}^{\infty} |x_n - y_n|
 	.\]
@@ -1037,6 +1037,360 @@ Similarly, we can consider $\mathbb{Q}$, then this does not satisfy the general 
 	Finally, we need to check $x^{(n)} \to x$ as $n \to \infty$ in $l_1$, i.e. $d(x^{(n)}, x) \to 0$.
 \end{enumerate}
 
+\end{adjustbox}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{enumerate}
+	\item[]
+		Note that
+		\[
+			d(x^{(n)}, x) = \sum_{i = 1}^{\infty} |x_i^{(n)} - x_i| \leq \sum_{i = 1}^{I} |x_i^{(n)} - x_i| + \sum_{i = I+1}^{\infty}|x_i^{(n)}| + \sum_{i = I+1}^{\infty}|x_i|
+		.\]
+		Let $\varepsilon > 0$. We know that $\sum |x_i|$ is convergent, so we can pick $I_1$ such that 
+		\[
+		\sum_{i = I_1 + 1}^{\infty}|x_i| < \varepsilon
+		.\]
+		As $(x^{(n)})$ is Cauchy, we can find $N_1$ such that for all $m, n \geq N_1$, $d(x^{(m)}, x^{(n)}) < \varepsilon$. As $\sum |x_i^{(N_1)}|$ converges, we can find $I_2$ such that
+		\[
+			\sum_{i = I_2 + 1}^{\infty} |X_i^{(N_1)}| < \varepsilon
+		.\]
+		Then for $n \geq N_1$, we have
+		\[
+			\sum_{i = I_2 + 1}^{\infty}|x_i^{(n)}| \leq \sum_{i = I_2 + 1}^{\infty}|x_i^{(N_1)}| + \sum_{i = I_2 + 1}^{\infty}|x_i^{(n)} - x_i^{(N_1}| < \varepsilon + d(x^{(n)}, x^{(N_1)}) < 2 \varepsilon
+		.\]
+		Let $I = \max\{I_1, I_2\}$. For each $i = 1, 2, \ldots, I$, we have $|x_i^{(n)} - i| \to 0$ as $n \to \infty$, so
+		\[
+			\sum_{i = 1}^{I}|x_i^{(n)} - x_i| \to 0
+		\]
+		as $n \to \infty$. Hence we can find $N_2$ such that for $n \geq N_2$,
+		\[
+			\sum_{i = 1}^{I}|x_i^{(n)} - x_i| < \varepsilon
+		.\]
+		Let $N = \max\{N_1, N_2\}$ and let $n \geq N$. Then
+		\begin{align*}
+			d(x^{(n)}, x) &\leq \sum_{i = 1}^{I}|x_i^{(n)} - x_i| + \sum_{i = I+1}^{\infty}|x_i^{(n)}| + \sum_{i = I+1}^{\infty}|x_i| \\
+				      &\leq \sum_{i = 1}^{I}|x_i^{(n)} - x_i| + \sum_{i = I_2 + 1}^{\infty}|x_i^{(n)}| + \sum_{i = I_1 + 1}^{\infty}|x_i| \\
+				      &< \varepsilon + 2\varepsilon + \varepsilon = 4\varepsilon.
+		\end{align*}
+		Hence $d(x^{(n)}, x) \to 0$ as $n \to \infty$. Hence $\ell_1$ is complete.
+\end{enumerate}
+\end{adjustbox}
+
+\begin{definition}
+	Let $(X, d)$ be a metric space and $f : X \to X$. We say $f$ is a \textbf{contraction}\index{contraction} if there exists $\lambda \in [0, 1)$ such that for all $x,y \in X$, $d(f(x), f(y)) \leq \lambda d(x, y)$.
+\end{definition}
+
+\begin{theorem}[Contraction Mapping Theorem]\index{contraction mapping theorem}
+	Let $(X, d)$ be a complete, non-empty metric space and $f : X \to X$ a contraction. Then $f$ has a unique fixed point.
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} We show the existence of a fixed point. Let $\lambda \in [0, 1]$ satisfy $d(f(x), f(y)) \leq \lambda d(x, y)$. Let $x_0 \in X$, and define $x_n = f(x_{n-1})$. Let $\Delta = d(x_0, x_1)$. Then by induction, $d(x_n, x_{n+1}) \leq \lambda^{n} \Delta$. Suppose $N \leq m < n$. Then
+	\[
+		d(x_m, x_n) \leq \sum_{i = m}^{n-1}d(x_i, x_{i+1}) \leq \sum_{i = 1}^{n-1} \lambda^{i} \Delta \leq \sum_{i = N}^{\infty} \lambda^{i} \Delta = \frac{\lambda^{N}\Delta}{1 - \lambda} \to 0
+	.\]
+	So for all $\varepsilon > 0$, there exists $N$, such that for all $m, n \geq N$, $d(x_m, x_n) < \varepsilon$. Then $(x_n)$ is Cauchy, so by completeness it converges, say $x_n \to x \in X$. But also $x_n = f(x_{n-1}) \to f(x)$ as f is continuous (as it is Lipschitz). So by uniqueness of limits, $f(x) = x$.
+
+	Now suppose $f(y) = y$ for some $y \in X$. Then $d(x, y) = d(f(x), f(y)) \leq \lambda d(x, y)$, with $\lambda < 1$. So $d(x, y) = 0$, i.e. $x = y$.
+\end{adjustbox}
+
+\begin{remark}
+	\begin{enumerate}[1.]
+		\item[]
+		\item $f$ is continuous as for all $x, y \in X$, $d(f(x), f(y)) \leq d(x, y)$. So for all $\varepsilon > 0$, if $d(x, y) < \varepsilon$, then $d(f(x), f(y)) < \varepsilon$. Indeed, this implies $f$ is uniformly continuous.
+		\item We have proven more than claimed. Not only does $f$ have a unique fixed point, but starting from any point of the space and repeatedly applying $f$, the resulting sequence converges to the fixed point. In fact, the speed of convergence is exponential.
+	\end{enumerate}
+\end{remark}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	Consider $f(x) = \cos x$ on $\mathbb{R}$. Suppose we want to find a solution to $f(x) = x$. Any root must lie in $[-1, 1]$, so consider $X = [-1, 1]$ with the usual metric. Then $X$ is closed and bounded, hence complete. Thinking of $f : X \to X$, then suppose $x, y \in [-1, 1]$. We have
+	\[
+	|\cos x - \cos y| = |x - y||\cos' z| = |x - y||- \sin z| \leq |x - y| \sin 1
+	.\]
+\end{example}
+\end{adjustbox}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	But $0 \leq \sin 1 < 1$, so $\cos$ is a contraction of $[-1, 1]$. Thus by the contraction mapping theorem, $\cos$ has a unique fixed point in $[-1, 1]$. Thus $\cos x = x$ has a unique solution. To find this solution, we can apply $f$ repeatedly to a point, which exponentially converges to the root.
+\end{adjustbox}
+
+\subsection{Sequential Compactness}%
+\label{sub:sequential_compactness}
+
+Recall that Bolzano-Weierstrass for $\mathbb{R}^{n}$ says a bounded sequence in $\mathbb{R}^{n}$ has a convergent subsequence.
+
+\begin{definition}
+	Let $(X, d)$ be a metric space. We say $X$ is bounded\index{bounded} if there exists $M \in \mathbb{R}$, such that for all $x, y \in X$, $d(x, y) \leq M$.
+\end{definition}
+
+\begin{remark}
+	It is easy to check (from the triangle inequality) that $X$ bounded is equivalent to either $X = \emptyset$ or there existing $M \in \mathbb{R}, x \in X$ such that $d(x, y) \leq M$ for all $y \in X$.
+\end{remark}
+
+Recall the definition of a closed set. We say $Y \subset X$ is closed in $X$ if whenever $(x_n)$ is a sequence in $Y$ with $x_n \to x \in X$, then $x \in Y$.
+
+\begin{definition}
+	A metric space is \textbf{sequentially compact}\index{sequentially compact} if every sequence has a compact subsequence.
+\end{definition}
+
+\begin{theorem}
+	Let $X \subset \mathbb{R}^{n}$ with the Euclidean metric. Then $X$ is sequentially compact if and only if $X$ is closed and bounded.
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} Suppose $X$ is closed and bounded. Let $(x_n)$ be a sequence in $X$. Then $(x_n)$ is a bounded sequence in $\mathbb{R}^{n}$ so by Bolzano-Weierstrass, in $\mathbb{R}^{n}$, $x_{n_j} \to x$ for some $x \in \mathbb{R}^{n}$ and some subsequence $(x_{n_j})$ of $(x_n)$. 
+
+	As $X$ is closed, $x \in X$. Hence the subsequence $(x_{n_j})$ converges in $X$. So $X$ is sequentially compact.
+
+	Suppose $X$ is not closed. Then we can find a sequence $(x-n)$ in $X$ such that in $\mathbb{R}^{n}$, $x_n \to x \in \mathbb{R}^{n}$ with $x \not \in X$. Now any subsequence $x_{n_j} \to x$ in $\mathbb{R}^{n}$. But $x \not \in X$, so $(x_{n_j})$ does not converge in $X$. Hence $X$ is not sequentially compact.
+
+	Suppose instead $X$ is not bounded. Then we can find a sequence $(x_n)$ in $X$ with $\|x_n\| \geq n$. Suppose we have a subsequence $x_{n_j}\to x \in X$. Then $\|x_{n_j}\| \to \|x\|$, but $\|x_{n_j}\| \to \infty$. So $X$ is not sequentially compact.
+\end{adjustbox}
+
+Consider the same problem in a general metric space. Then this does not work: consider $\mathbb{R} \setminus \{0\}$, and $X = (0, 1]$, which is closed and bounded. Then the sequence $(1/n)_{n\geq 1}$ has no convergent subsequence.
+
+This does not work as the space is not complete, so we consider the same problem in a complete space. However, this still doesn't work. Let
+\[
+	X = \{f \in B(\mathbb{R}) \mid \sup_{x \in \mathbb{R}}|f(x)| \leq \}
+,\]
+with the uniform metric. Then $X$ is complete and bounded, but consider
+\[
+	f_n(x) =
+	\begin{cases}
+		1 & x = n, \\
+		0 & x \neq n.
+	\end{cases}
+.\]
+Then $(f_n)$ is a sequence in $X$, but for all $m \neq n$, $d(f_m, f_n) = 1$. So $(f_n)$ cannot have a convergent subsequence.
+
+In this case, our space $X$ is too big, so we can find infinitely many objects which are far apart. This calls for a stronger concept of boundedness.
+
+\begin{definition}
+	Let $(X, d)$ be a metric space. We say $X$ is \textbf{totally bounded}\index{totally bounded} if for all $\delta > 0$, we can find a finite set $A \subset X$ such that for all $x \in X$, there exists $a \in A$ such that $d(x, a) < \delta$.
+\end{definition}
+
+This is the relevant condition needed to extend our theorem from $\mathbb{R}^{n}$ to a general metric space.
+
+\begin{theorem}
+	A metric space is sequentially compact if and only if it is complete and totally bounded.
+\end{theorem}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} Suppose $(X, d)$ is complete and totally bounded. Let $(x_n)$ be a sequence in $X$.
+
+	As $X$ is totally bounded, we can find a finite sequence $A_1 \subset X$ such that for all $x \in X$, there exists $a \in A_1$ such that $d(x, a) < 1$. In particular, there is an infinite set $N_1 \subset \mathbb{N}$ and a point $a_i \in A_i$ such that for all $n \in N_1$, $d(x_n, a_1) < 1$. Hence for all $m, n \in N_1$, $d(x_m, x_n) < 2$.
+
+	Similarly, we can find finite $A_2 \subset X$ such that for all $x \in X$, there exists $a \in A_2$ with $d(x, a) < 1/2$. In particular, there is an infinite $N_2 \subset N_1$ such that for all $n \in N_2$, $d(x_n, a_2) < 1/2$, and then for all $m, n \in N_2$, $d(x_m, x_n) < 1$.
+
+	Continue to get a sequence $N_1 \supset N_2 \supset N_3 \supset \cdots$ of infinite subset of $\mathbb{N}$ such that for all $m, n \in N_1$, we have $d(x_m, x_n) < 2/i$.
+
+\end{adjustbox}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	Pick $n_1 \in N_1$, $n_2 \in N_2$ with $n_2 > n_1$, and successively pick $n_k \in N_k$ with $n_k > n_{k-1}$. We obtain a subsequence $(x_{n_j})$ of $(x_n)$ such that for all $j$, $x_{n_j} \in N_j$. Thus if $i \leq j$, then $x_{n_i}, x_{n_j} \in N_1$, and so $d(x_{n_i}, x_{n_j}) < 2/i$. Hence $(x_{n_j})$ is a Cauchy sequence, and hence by completeness converges. Thus $X$ is sequentially compact.
+
+	Suppose now that $X$ is not complete. Then $X$ has a Cauchy sequence $(x_n)$ which doesn't converge. Suppose we have a convergent subsequence, say $x_{n_j}\to x$. Then we can prove $x_n \to x$.
+
+	Suppose instead $X$ is not totally bounded. Then there is some $\delta > 0$ such that whenever $A \subset X$ is finite, there exists $x \in X$ such that for all $a \in A$, $d(x, a) \geq \delta$.
+
+	Thus, pick $x_1 \in X$. Pick $x_2 \in X$ such that $d(x_1, x_2) \geq \delta$, pick $x_3 \in X$ such that $d(x_1, x_3), d(x_2, x_3) \geq \delta$, and continue to get a sequence $(x_n)$ in $X$ such that for all $i \neq j$, $d(x_i, x_j) \geq \delta$. Hence $(x_n)$ has no convergent subsequence.
+
+\end{adjustbox}
+
+
+\begin{corollary}
+	A continuous function on a sequentially compact metric space is uniformly continuous. If the function is real-valued, the it is bounded and attains its bounds.
+\end{corollary}
+
+\subsection{Topology of Metric Spaces}%
+\label{sub:topology_of_metric_spaces}
+
+In $\mathbb{R}^{n}$, we have different concepts of distance given by Euclidean distance $\ell_1$ and $\ell_{\infty}$. But these all give the same concept of convergence and continuity. We want some way to visualise why these are all the same.
+
+\begin{definition}
+	Let $(X, d)$ and $(Y, e)$ be metric spaces. Let $f : X \to Y$. We say $f$ is a \textbf{homeomorphism}\index{homeomorphism} and that $X$ and $Y$ are homeomorphic\index{homeomorphic} if $f$ is a continuous bijection with continuous inverse.
+\end{definition}
+
+\begin{remark}
+	Homeomorphism is an equivalence relation.
+\end{remark}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	\begin{enumerate}[1.]
+		\item[]
+		\item If $x, y \in \mathbb{R}^{n}$, then
+			\[
+				d_{\infty}(x, y) \leq d_1(x, y) \leq n d_{\infty}(x, y)
+			.\]
+			So the identity map $\mathbb{R}^{n} \to \mathbb{R}^{n}$ is continuous from $(\mathbb{R}^{n}, d_1 ) \to (\mathbb{R}^{n}, d_{\infty})$, and inverse is simply itself. So this is a homeomorphism.
+
+			Similarly, $\mathbb{R}^{n}$ with the Euclidean metric is homeomorphic to both these spaces.
+		\item If $(X, d) \to (Y, e)$ are metric spaces and $f : X \to Y$ is a bijection satisfying
+			\begin{enumerate}[(i)]
+				\item There exists $A$ such that for all $x, y \in X$, $e(f(x), f(y)) \leq d(x, y)$;
+				\item There exists $B$ such that for all $x, y \in X$, $d(x, y) \leq Be(f(x), f(y))$;
+			\end{enumerate}
+			then $f$, $f^{-1}$ are continuous, so $X, Y$ are homeomorphic.
+		\item Define
+			\[
+				f : \biggl( - \frac{\pi}{2} , \frac{\pi}{2} \biggr) \to \mathbb{R}
+			\]
+			by $f(x) = \tan x$. Then $f$ is a homeomorphism, but is not of type 2.
+	\end{enumerate}
+\end{example}
+
+\end{adjustbox}
+
+\begin{proposition}
+	Let $(V, b), (W, c), (X, d), (Y, e)$ be metric spaces and $f : X \to V$, $g : Y \to W$ be homemorphisms.
+	\begin{enumerate}[\normalfont(i)]
+		\item In $X$, $x_n \to x$ if and only if in $V$ $f(x_n) \to f(x)$.
+		\item A function $h : X \to Y$ is continuous at $a \in X$ if and only if $g \circ h \circ f^{-1}$ is continuous at $f(a) \in V$.
+	\end{enumerate}
+\end{proposition}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:}
+\begin{enumerate}[(i)]
+	\item Note $x_n \to x \implies f(x_n) \to f(x)$ as $f$ is continuous, and $f(x_n) \to f(x) \implies x_n = f^{-1}(f(x_n)) \to f^{-1}(f(x)) = x$ as $f^{-1}$ is continuous.
+	\item $h$ is continuous implies $g \circ h \circ f^{-1}$ is continuous. But $g \circ h \circ f^{-1}$ continuous implies $h = g^{-1} \circ( g \circ h \circ f^{-1}) \circ f$ is continuous.
+\end{enumerate}
+\end{adjustbox}
+
+We now have examples of metric spaces that look different but behave identically with respect to convergence and continuity. This begs the question: can we dispense with the notion of distance altogether?
+
+We begin by looking at continuity in a different way.
+
+\begin{definition}
+	Let $(X, d)$ be a metric space. Let $a \in X$ and let $\varepsilon > 0$. The \textbf{open ball}\index{open ball} of radius $\varepsilon$ about $a$ is the set
+	\[
+		B_{\varepsilon}(a) = \{x \in X \mid d(x, a) < \varepsilon\}
+	.\]
+\end{definition}
+
+\begin{remark}
+	Suppose $f : X \to Y$, where $d$ is the metric on $X$, $e$ is the metric on $Y$ Let $a \in X$. Then $f$ is continuous at $a$ if and only if for all $\varepsilon > 0$, there exists $\delta > 0$ such that $d(x, a) < \delta \implies d(f(x), f(y)) < \varepsilon$.
+
+	But this is equivalent to, for all $\varepsilon > 0$, there existing $\delta > 0$ such that $x \in B_{\delta}(a) \implies f(x) \in B_{\varepsilon}(f(a))$, or $f(B_{\delta}(a)) \subset B_{\varepsilon}(f(a))$, or $B_{\delta}(a) \subset f^{-1}(B_{\varepsilon}(f(a)))$.
+
+	So we can redefine continuity in terms of open balls. But open balls still refer to distance with their radii, so we shall extend this notion further.
+\end{remark}
+
+\begin{definition}
+	Let $X$ be a metric space. A subset $G \subset X$ is \textbf{open}\index{open} if for all $x \in G$, there exists $\varepsilon > 0$ such that $B_{\varepsilon}(x) \subset G$.
+
+	A subset $N \subset X$ is a \textbf{neighbourhood}\index{neighbourhood} of a point $a \in X$ if there exists an open set $G \subset X$ such that $a \in G \subset N$.
+\end{definition}
+
+\begin{remark}
+	\begin{enumerate}[1.]
+		\item[]
+		\item A set is open if for each point in the set it contains all points nearby as well. A set is a neighbourhood of $a$ if it contains all points near $a$.
+		\item The open ball $B_{\varepsilon}(x)$ is open. If $x \in B_{\varepsilon(a)}$, then $d(x, a) = \delta < \varepsilon$. So by the triangle inequality, $B_{\varepsilon - \delta}(x) \subset B_{\varepsilon}(a)$.
+		\item If $\mathcal{N}$ is an open set and $a \in \mathcal{N}$, then certainly $\mathcal{N}$ is a neighbourhood of $a$, as $a \in \mathcal{N} \subset \mathcal{N}$.
+
+			However a neighbourhood of $a$ need not be open, for example $[-1, 1]$ is a neighbourhood of $0$ in $\mathbb{R}$, as
+			\[
+				0 \in (-1, 1) \subset [-1, 1]
+			.\]
+		\item $\mathcal{N}$ is a neighbourhood of $a$ if and only if there exists $\varepsilon > 0$ such that $B_{\varepsilon}(a) \subset \mathcal{N}$.
+		\item A set $G$ is open if and only if it is a neighbourhood of each of its points.
+	\end{enumerate}
+\end{remark}
+
+\begin{proposition}
+	Let $(X, d), (Y, e)$ be metric spaces and $f : X \to Y$.
+	\begin{enumerate}[\normalfont(i)]
+		\item $f$ is continuous at $a \in X$ if and only if whenever $\mathcal{N} \subset Y$ is a neighbourhood of $f(a)$, we have $f^{-1}(\mathcal{N}) \subset X$ is a neighbourhood of $a$;
+		\item $f$ is a continuous function if and only if whenever $G \subset Y$ is open, we have $f^{-1}(G) \subset X$ is open.
+	\end{enumerate}
+\end{proposition}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:}
+\begin{enumerate}[(i)]
+	\item Suppose $f$ is continuous at $a \in X$. Let $\mathcal{N}$ be a neighbourhood of $f(x)$. Then there exists $\varepsilon > 0$ such that $B_{\varepsilon}(f(x)) \subset \mathcal{N}$. But $f$ is continuous, so there exists $\delta > 0$ such that $B_{\delta}(a) \subset f^{-1}(B_{\varepsilon}(f(a))) \subset f^{-1}(\mathcal{N})$. So $f^{-1}(\mathcal{N})$ is a neighbourhood of $a$.
+
+		Suppose $f^{-1}(\mathcal{N})$ is a neighbourhood of $a$ for every neighbourhood $\mathcal{N}$ of $f(a)$. Let $\varepsilon > 0$. In particular, $B_{\varepsilon}(f(a))$ is a neighbourhood of $f(a)$, so $f^{-1}(B_{\varepsilon}(f(a)))$ is a neighbourhood of $a$. Hence there exists $\delta > 0$ such that $B_{\delta}(a) \subset f^{-1}(B_{\varepsilon}(f(a)))$, so $f$ is continuous at $a$.
+
+	\item Suppose $f$ is continuous. Let $G \subset Y$ be open, and let $a \in f^{-1}(G)$. Then $f(a) \in G$, and $G$ is open so $G$ is a neighbourhood of $f(a)$. Moreover, $f$ is continuous at $a$, so $f^{-1}(G)$ is a neighbourhood of $a$.  Hence there exists $\delta > 0$ such that $B_{\delta}(a) \subset f^{-1}(G)$. So $f^{-1}(G)$ is open.
+
+		Let $a \in X$. Let $\mathcal{N} \subset Y$ be a neighbourhood of $f(a)$. Then there exists $G \subset Y$ open such that $f(a) \in G \subset \mathcal{N}$. By our assumption, $f^{-1}(G) \subset X$ is open. Now $a \in f^{-1}(G) \subset f^{-1}(\mathcal{N})$ with $f^{-1}(G)$ open, so $f^{-1}(\mathcal{N})$ is a neighbourhood of $a$. So by (i), $f$ is continuous at $a$, hence is continuous everywhere.
+\end{enumerate}
+\end{adjustbox}
+
+\begin{remark}
+	\begin{enumerate}[1.]
+		\item[]
+		\item This says that we can define continuity entirely in terms of open sets without mentioning the metric.
+		\item We say previously that homeomorphisms preserve convergence and continuity. This proposition says homeomorphisms also preserve open sets.
+
+			Precisely, if $f : X \to Y$ is a homeomorphism, then $G \subset X$ is open is open if and only if $f(G) \subset Y$ is open. This is by using the fact that $f$ and $f^{-1}$ are continuous.
+	\end{enumerate}
+\end{remark}
+
+What else is preserved by homeomorphisms? Suppose $f : X \to Y$ is a homeomorphism and $X$ is sequentially compact. Let $(y_n)$ be a sequence in $Y$. Then $(f^{-1}(y_n))$ is a sequence in $X$ and so has a convergent subsequence $f^{-1}(y_{n_j}) \to x \in X$. But converge of sequences is preserved by homeomorphisms, so
+\[
+	y_{n_j} = f(f^{-1})(y_{n_j}) \to f(x) \in Y
+.\]
+So $Y$ is sequentially compact. Thus if $X, Y$ are homeomorphic, then $X$ is sequentially compact if and only if $Y$ is sequentially compact.
+
+Thus we can say sequential compactness is a topological property. However, completeness is not the same.
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	We say $(0, 1)$ and $\mathbb{R}$ with the usual metric in each case are homeomorphic. But $\mathbb{R}$ is complete and $(0, 1)$ is not. So completeness is not a topological property.
+\end{example}
+\end{adjustbox}
+
+In this case, the property of being a Cauchy sequence is not preserved by homeomorphisms.
+
+\begin{remark}
+	Suppose $(x_n)$ is a sequence in a metric space $X$ and $x \in X$. Then $x_n \to x$ if and only if, for all $\varepsilon > 0$, there exists $N$ such that for all $n \geq N$, $d(x_n, x) < \varepsilon$. This is equivalent to, for all neighbourhood $\mathcal{N}$ of $x$, there exists $N$ such that for all $n \geq N$, $x_n \in \mathcal{N}$.
+
+	This defines convergence solely in terms of neighbourhoods. We can't do something similar for Cauchy sequences, however.
+\end{remark}
+
+We have just seen that sequential compactness is a topological property. We can define sequential compactness just in terms of neighbourhoods and open sets, as we can express convergence of sequence in terms of neighbourhoods.
+
+We may ask whether there is a better way to do this.
+
+\begin{definition}
+	Let $X$ be a metric space. An open cover\index{open cover} of $X$ is a collection $\mathcal{C}$ of open subsets of $X$ such that
+	\[
+	X = \bigcup_{G \in \mathcal{C}}G
+	.\]
+	A subcover of $\mathcal{C}$ is an open cover $\mathcal{B}$ of $X$ with $\mathcal{B} \subset \mathcal{C}$.\index{subcover} We say $X$ is \textbf{compact}\index{compact} if every open cover of $X$ has a finite subcover.
+\end{definition}
+
+\begin{proposition}[Heine-Borel Theorem]
+	$[0, 1]$ with the usual metric is compact.
+\end{proposition}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} Let $\mathcal{C}$ be an open cover of $[0, 1]$. Let 
+	\[
+		A = \{x \in [0, 1] \mid \exists \mathcal{B} \subset \mathcal{C}, [0, x] \subset \bigcup_{G \in \mathcal{B}} G \}
+	.\]
+	We know there exists $G \in \mathcal{C}$ with $0 \in G$. So $0 \in A$. Clearly $A$ is bounded above by $1$, so $A$ has a supremum $\sigma = \sup A$.
+
+	As $G$ is open, there exists $\varepsilon > 0$ such that $[0, \varepsilon) = B_{\varepsilon}(0) \subset G$. So $\sigma > 0$.
+
+	Suppose $\sigma < 1$. We can find $G' \in \mathcal{C}$ with $\sigma \in G'$. As $\sigma = \sup A$, we can find $x \in A$ with $x \in G'$. So we have $\mathcal{C} \subset \mathcal{C}$ finite with
+	 \[
+		 [0, x] = \bigcup_{G' \in \mathcal{B}}G'
+	.\]
+	But there exists $\varepsilon > 0$ such that $(\sigma - \varepsilon, \sigma + \varepsilon) = [B_{\varepsilon}(\sigma)]$. So
+	\[
+		[0, \sigma + \frac{\varepsilon}{2}] \subset \bigcup_{G \in \mathcal{B} \cup \{G'\}}G
+	.\]
+	This is a contradiction, so $\sigma = 1$. Hence we can find $G'' \in \mathcal{C}$ such that $1 \in G''$. As $G''$ is open, we can find $\varepsilon > 0$ such that $(1 - \varepsilon, 1] \subset G''$. As $1 = \sup A$, we can find $x \in A \cap (1 - \varepsilon , 1]$. This says that we have a finite $\mathcal{B} \subset \mathcal{C}$ with
+	 \[
+		 [0, x] \subset \bigcup_{G \in \mathcal{B}}G
+	.\]
+	Then $\mathcal{B} \cup \{G''\}$ is an open cover of $[0, 1]$, and so a subcover of $\mathcal{C}$. So $[0, 1]$ is compact.
 \end{adjustbox}
 
 

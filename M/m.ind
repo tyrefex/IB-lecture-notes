@@ -1,5 +1,7 @@
 \begin{theindex}
 
+  \item Bessel function of the first kind, \hyperpage{28}
+  \item Bessel's equation, \hyperpage{28}
   \item Bessel's inequality, \hyperpage{18}
   \item boundary conditions, \hyperpage{13}
 
@@ -14,6 +16,11 @@
 
   \indexspace
 
+  \item error function, \hyperpage{34}
+
+  \indexspace
+
+  \item Fick's law, \hyperpage{32}
   \item Fourier coefficients, \hyperpage{5}
   \item Fourier series, \hyperpage{4}
 
@@ -39,6 +46,7 @@
 
   \indexspace
 
+  \item Neumann functions, \hyperpage{29}
   \item normal modes, \hyperpage{23}
   \item normalized eigenfunction, \hyperpage{17}
 

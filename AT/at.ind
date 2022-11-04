@@ -1,15 +1,19 @@
 \begin{theindex}
 
   \item Bolzano-Weierstrass theorem, \hyperpage{2}
+  \item bounded, \hyperpage{26}
 
   \indexspace
 
   \item Cauchy sequence, \hyperpage{2}
   \item Cauchy sequence in general metric space, \hyperpage{21}
   \item closed, \hyperpage{22}
+  \item compact, \hyperpage{32}
   \item complete, \hyperpage{21}
   \item continuity, \hyperpage{11}
   \item continuity in metric spaces, \hyperpage{18}
+  \item contraction, \hyperpage{25}
+  \item contraction mapping theorem, \hyperpage{25}
   \item convergence in $\mathbb{R}$, \hyperpage{2}
   \item convergence in metric spaces, \hyperpage{16}
 
@@ -28,6 +32,11 @@
 
   \indexspace
 
+  \item homeomorphic, \hyperpage{28}
+  \item homeomorphism, \hyperpage{28}
+
+  \indexspace
+
   \item identity function, \hyperpage{20}
 
   \indexspace
@@ -41,16 +50,29 @@
 
   \indexspace
 
+  \item neighbourhood, \hyperpage{30}
+
+  \indexspace
+
+  \item open, \hyperpage{30}
+  \item open ball, \hyperpage{30}
+  \item open cover, \hyperpage{32}
+
+  \indexspace
+
   \item pointwise bounded, \hyperpage{8}
   \item pointwise convergence, \hyperpage{4}
   \item projection maps, \hyperpage{20}
 
   \indexspace
 
+  \item sequentially compact, \hyperpage{26}
+  \item subcover, \hyperpage{32}
   \item subspace, \hyperpage{15}
 
   \indexspace
 
+  \item totally bounded, \hyperpage{27}
   \item triangle inequality, \hyperpage{2}
 
   \indexspace

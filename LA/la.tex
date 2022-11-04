@@ -1297,6 +1297,565 @@ This gives $A E_1 \ldots E_c = I_n$, or $A^{-1} = E_1 \ldots E_c$. This is an al
 	Any invertible square matrix is a product of elementary matrices.
 \end{proposition}
 
+\newpage
+
+\section{Dual Spaces and Dual Maps}%
+\label{sec:dual_spaces_and_dual_maps}
+
+\begin{definition}
+	$V$ is a $F$-vector space. We say $V^{\ast}$ is the dual of $V$ if
+	\[
+		V^{\ast} = L(V, F) = \{ \alpha : V \to F \text{ linear}\}
+	.\]\index{dual space}
+	If $\alpha : V \to F$ is linear, then we say $\alpha$ is a linear form.\index{linear form}
+\end{definition}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	\begin{enumerate}[(i)]
+		\item[]
+		\item $\tr : M_{n, n}(F) \to F$ is a linear map, so $\tr \in M_{n,n}^{\ast}(F)$.
+		\item Let $f : [0, 1] \to \mathbb{R}$ by $x \mapsto f(x)$, and $Tf : \mathcal{C}^{\infty}([0,1], \mathbb{R}) \to \mathbb{R}$ by
+			\[
+				\phi \mapsto \int_{0}^{1} f(x)\phi(x)\diff x
+			.\]
+			Then $Tf$ is a linear form.
+	\end{enumerate}
+\end{example}
+\end{adjustbox}
+
+\begin{lemma}
+	Let $V$ be a vector space over $F$ with a finite basis $\mathcal{B} = \{e_1, \ldots, e_n\}$. Then there exists a basis for $V^{\ast}$ given by $\mathcal{B}^{\ast} = \{\varepsilon_1, \ldots, \varepsilon_n\}$, with
+	\[
+		\varepsilon_j \Biggl( \sum_{i = 1}^{n} a_i e_i \Biggr) = a_j
+	.\]
+	Then $\mathcal{B}^{\ast}$ is the dual basis of $\mathcal{B}$.\index{dual basis}
+\end{lemma}
+
+\begin{remark}
+	If we define the Kronecker symbols
+	\[
+	\delta_{ij} =
+	\begin{cases}
+		1 & i = j, \\
+		0 & \text{otherwise},
+	\end{cases}
+	\]
+	then we can equivalently define
+	\[
+		\varepsilon_j \Biggl( \sum_{i = 1}^{n} a_i e_i \Biggr) = a_j \iff \varepsilon_j(e_i) = \delta_{ij}
+	.\]
+\end{remark}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} Let $(\varepsilon_1, \ldots, \varepsilon_n)$ be defined as above.
+
+	We prove $(\varepsilon_i)$ are free. Indeed, suppose
+	\[
+		\sum_{j = 1}^{n} \lambda_j \varepsilon_j = 0 \implies \sum_{j = 1}^{n} \lambda_j e_j(e_i) = 0 \implies \lambda_i = 0
+	.\]
+\end{adjustbox}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	Now we show $(\varepsilon_i)$ generates $V^{\ast}$. Pick $\alpha \in V^{\ast}$, then for $x \in V$, we have
+	\[
+		\alpha(x) = \alpha \Biggl( \sum_{j = 1}^{n} \lambda_j e_j \Biggr) = \sum_{j = 1}^{n} \lambda_j \alpha(e_j)
+	.\]
+	On the other hand, consider the linear form
+	\[
+		\sum_{j = 1}^{n} \alpha(e_j) \varepsilon_j \in V^{\ast}
+	.\]
+	Then we have
+	\begin{align*}
+		\sum_{j = 1}^{n} \alpha(e_j) \varepsilon_j(x) &= \sum_{j = 1}^{n} \alpha(e_j) \varepsilon_j\Biggl( \sum_{k = 1}^{n} \lambda_k e_k \Biggr) = \sum_{j = 1}^{n} \alpha(e_j) \sum_{k = 1}^{n} \lambda_k \varepsilon_j (e_k) \\
+							      &= \sum_{j = 1}^{n} \alpha(e_j) \lambda_j = \alpha(x).
+	\end{align*}
+	Hence $(\varepsilon_i)$ generates $V^{\ast}$.
+\end{adjustbox}
+
+
+\begin{corollary}
+	If $V$ is finite dimensional, then $\dim V^{\ast} = \dim V$.
+\end{corollary}
+
+This is very different in infinite dimensions.
+
+\begin{remark}
+	It is sometimes convenient to think of $V^{\ast}$ as the space of row vector of length $n$ over $F$. If $(e_1, \ldots, e_n)$ is a basis of $v$ such that $x = \sum x_i e_i$ and $(\varepsilon_1, \ldots, \varepsilon_n)$ is a basis of $V^{\ast}$ such that $\alpha = \sum \alpha_i \varepsilon_i$, then
+	\begin{align*}
+		\alpha(x) &= \sum_{i = 1}^{n} \alpha_i \varepsilon_i \Biggl( \sum_{j = 1}^{n} x_j e_j \Biggr) = \sum_{i = 1}^{n} \alpha_i \sum_{j = 1}^{n} x_j \varepsilon_i(e_j) = \sum_{i = 1}^{n} \alpha_i x_i \\
+			  &= 
+			  \begin{pmatrix}
+				  \alpha_1 & \cdots & \alpha_n
+			  \end{pmatrix}
+			  \begin{pmatrix}
+			  	x_1 \\
+				\vdots \\
+				x_n
+			  \end{pmatrix}.
+	\end{align*}
+	This gives a scalar product structure on $V^{\ast}$.
+\end{remark}
+
+\begin{definition}
+	If $U \leq V$, we define the annihilator\index{annihilator} of $U$ by
+	\[
+		U^{\circ} = \{\alpha \in V^{\ast} \mid \alpha(u) = 0 \; \forall u \in U\}
+	.\]
+\end{definition}
+\newpage
+
+\begin{lemma}
+	\begin{enumerate}[\normalfont(i)]
+		\item $U^{\circ} \le V^{\ast}$.
+		\item If $U \leq V$ and $\dim V < \infty$, then $\dim V = \dim U + \dim U^{\circ}$.
+	\end{enumerate}
+\end{lemma}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} Suppose $\alpha, \alpha' \in U^{\circ}$. Then for all $u \in U$,
+	\[
+		(\alpha + \alpha')(u) = \alpha(u) + \alpha'(u) = 0
+	,\]
+	and for all $\lambda \in F$, $(\lambda \alpha)(u) = \lambda \alpha(u) = 0$. Hence $U^{\circ} \le V^{\ast}$.
+
+	Now let $U \leq V$, and $\dim V = n$. Let $(e_1, \ldots, e_k)$ be a basis of $U$ and complete it to a basis $\mathcal{B} = (e_1, \ldots, e_k, e_{k+1}, \ldots, e_n)$ of $V$. Let $(\varepsilon_1, \ldots, \varepsilon_n)$ be the dual basis of $\mathcal{B}$. Then I claim $U^{\circ} = \langle \varepsilon_{k+1}, \ldots, \varepsilon_n\rangle$.
+
+	Indeed, pick $i > k$, then $\varepsilon_i(e_k) = \delta_{ik} = 0$, so $\varepsilon_i \in U^{\circ}$. Now let $\alpha \in U^{\circ}$. Then $(\varepsilon_1, \ldots, \varepsilon_n)$ is a basis of $V^{\ast}$ implies $\alpha = \sum \alpha_i \varepsilon_i$. But $\alpha \in U^{\circ} \implies \alpha(e_i) = 0$, which gives $\alpha_i = 0$ for $i \leq k$. Hence $\alpha \in \langle \varepsilon_{k+1}, \ldots, \varepsilon_n\rangle$.
+\end{adjustbox}
+
+\begin{definition}
+	Let $V, W$ be vector spaces over $F$, and let $\alpha \in L(V, W)$. Then the map
+	\begin{align*}
+		\alpha^{\ast} : W^{\ast} &\to V^{\ast} \\
+		\varepsilon &\mapsto \varepsilon \circ \alpha
+	\end{align*}
+	is an element of $L(W^{\ast}, V^{\ast}$. This is known as the dual map of $\alpha$.\index{dual map}
+\end{definition}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} $\varepsilon \circ \alpha : V \to F$ is linear due to the linearity of $\varepsilon$ and $\alpha$. Hence $\varepsilon \circ \alpha \in V^{\ast}$.
+
+We show $\alpha^{\ast}$ is linear. Let $\theta_1, \theta_2 \in W^{\ast}$. Then,
+\[
+	\alpha^{\ast}(\theta_1 + \theta_2) = (\theta_1 + \theta_2)(\alpha) = \theta_1 \circ \alpha + \theta_2 \circ \alpha = \alpha^{\ast} (\theta_1) + \alpha^{\ast}(\theta_2)
+.\]
+Similarly, if $\lambda \in F$, then
+\[
+	\alpha^{\ast}(\lambda \theta) = \lambda \alpha^{\ast}(\theta)
+.\]
+Hence $\alpha^{\ast} \in L(W^{\ast}, V^{\ast})$.
+\end{adjustbox}
+
+\begin{proposition}
+	Let $V, W$ be finite dimensional spaces over $F$ with bases $\mathcal{B}, \mathcal{C}$. Let $\mathcal{B}^{\ast}, \mathcal{C}^{\ast}$ be the dual bases for $V^{\ast}, W^{\ast}$. Then
+	\[
+		[\alpha^{\ast}]_{\mathcal{C}^{\ast}, \mathcal{B}^{\ast}} = [\alpha]_{\mathcal{B},\mathcal{C}}^{T}
+	.\]
+\end{proposition}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} Let $\mathcal{B} = (b_1, \ldots, b_n), \mathcal{C} = (c_1, \ldots, c_m)$, $\mathcal{B}^{\ast} = (\beta_1, \ldots, \beta_n), \mathcal{C}^{\ast} = (\gamma_1, \ldots, \gamma_m)$. Say $[\alpha]_{\mathcal{B}, \mathcal{C}} = A = (a_{ij})$. Recall $\alpha^{\ast} : W^{\ast} \to V^{\ast}$, so let us compute
+	\begin{align*}
+		\alpha^{\ast}(\gamma_r)(b_s) = \gamma_r \circ \alpha(b_s) = \gamma_r \Biggl( \sum_{t} a_{ts} c_t \Biggr) = \sum_{t} a_{ts} \gamma_r(c_t) = a_{rs}.
+	\end{align*}
+	Say that
+	\[
+		[\alpha^{\ast}]_{\mathcal{C}^{\ast}, \mathcal{B}^{\ast}} = 
+		\begin{pmatrix}
+			\alpha^{\ast}(\gamma_1) & \cdots & \alpha^{\ast}(\gamma_m)
+		\end{pmatrix}
+		= (m_{ij})
+	.\]
+	Then we can find that
+	\[
+		\alpha^{\ast}(\gamma_r) = \sum_{i = 1}^{n} m_{ir}\beta_i
+	,\]
+	so
+	\[
+		\alpha^{\ast}(\gamma_r)(b_s) = m_{sr}
+	.\]
+	This gives $a_{rs} = m_{sr}$, as desired.
+\end{adjustbox}
+
+\newpage
+
+\section{Properties of the Dual Map}%
+\label{sec:properties_of_the_dual_map}
+
+Recall if $V, W$ are vector spaces over $F$, and $\alpha \in L(V, W)$, then we can construct a dual map
+\begin{align*}
+	\alpha^{\ast} : W^{\ast} &\to V^{\ast} \\
+	\varepsilon &\mapsto \varepsilon \circ \alpha
+\end{align*}
+Moreover, if $\mathcal{B}, \mathcal{C}$ are bases of $V$ and $W$, and $\mathcal{B}^{\ast}$, $\mathcal{C}^{\ast}$ are the dual bases of $\mathcal{B}$ and $\mathcal{C}$ respectively, then
+\[
+	[\alpha^{\ast}]_{\mathcal{C}^{\ast}, \mathcal{B}^{\ast}} = [\alpha]_{\mathcal{B}, \mathcal{C}}^{T}
+.\]
+Now if $\mathcal{E} = (e_1, \ldots, e_n)$ is a basis of $V$ and $\mathcal{F} = (f_1, \ldots, f_n)$ is another basis of $V$, then consider the change of basis matrix
+\[
+	P = [\id]_{\mathcal{F}, \mathcal{E}}
+.\]
+Consider $\mathcal{E}^{\ast} = (\varepsilon_1, \ldots, \varepsilon_n)$ and $\mathcal{F}^{\ast} = (\eta_1, \ldots, \eta_n)$.
+
+\begin{lemma}
+	The change of basis matrix from $\mathcal{F}^{\ast}$ to $\mathcal{E}^{\ast}$ is
+	\[
+		(P^{-1})^{T}
+	.\]
+\end{lemma}
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} We have
+\[
+	[\id]_{\mathcal{F}^{\ast}, \mathcal{E}^{\ast}} = [\id]_{\mathcal{E}, \mathcal{F}}^{T} = ([\id]_{\mathcal{F}, \mathcal{E}}^{-1})^{T}
+.\]
+\end{adjustbox}
+
+\subsection{Properties of the Dual Map}%
+\label{sub:properties_of_the_dual_map}
+
+\begin{lemma}
+	Let $V, W $ be vector spaces over $F$. Let $\alpha \in L(V, W)$ and $\alpha^{\ast} \in L(W^{\ast}, V^{\ast})$. Then
+	\begin{enumerate}[\normalfont(i)]
+		\item $\Ker(\alpha^{\ast}) = (\Img \alpha)^{\circ}$. Hence $\alpha^{\ast}$ is injective if and only if $\alpha$ is surjective.
+		\item $\Img \alpha^{\ast} \leq (\Ker \alpha)^{\circ}$ with equality if $V, W$ are finite dimensional. Hence in this case, $\alpha^{\ast}$ is injective if and only if $\alpha$ is injective.
+	\end{enumerate}
+\end{lemma}
+
+There are many problems where the understanding of $\alpha^{\ast}$ is simpler than the understanding of $\alpha$.
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:}
+\begin{enumerate}[(i)]
+	\item Let $\varepsilon \in W^{\ast}$. Then $\varepsilon \in \Ker \alpha^{\ast} \iff \alpha^{\ast} (\varepsilon) = 0$. But $\alpha^{\ast}(\varepsilon) = \varepsilon(\alpha)$, so for all $x$,
+			\[
+				\varepsilon(\alpha)(x) = \varepsilon(\alpha(x)) = 0
+			.\]
+			This holds if and only if $\varepsilon \in (\Img \alpha)^{\circ}$.
+		\item We will first show that
+			 \[
+				 \Img \alpha^{\ast} \leq (\Ker \alpha)^{\circ}
+			.\]
+			Indeed, if $\varepsilon \in \Img \alpha^{\ast}$, then $\varepsilon = \alpha^{\ast}(\phi)$, so for all $u \in \Ker \alpha$,
+			\[
+				\varepsilon(u) = \alpha^{\ast}(\phi) (u) = \phi \circ \alpha(u) = \phi(0) = 0
+			.\]
+			Hence $\varepsilon \in (\Ker \alpha)^{\circ}$. In finite dimension, we can compare the dimension of $\Img \alpha^{\ast}$ and $(\Ker \alpha)^{\circ}$. Indeed,
+			\[
+				\dim (\Img \alpha^{\ast}) = r(\alpha^{\ast}) = r([\alpha^{\ast}]_{\mathcal{C}^{\ast}, \mathcal{B}^{\ast}}) = r([\alpha]_{\mathcal{B},\mathcal{C}}^{T}) = r([\alpha]_{\mathcal{B}, \mathcal{C}}) = r(\alpha)
+			.\]
+			Hence, we get
+			\[
+				\dim (\Img \alpha^{\ast}) = r(\alpha^{\ast}) = r(\alpha) = \dim V - \dim \Ker \alpha = \dim [(\Ker \alpha)^{\circ}]
+			.\]
+			Since the dimensions are the same, we get $\Img \alpha^{\ast} = (\Ker \alpha)^{\circ}$.
+\end{enumerate}
+\end{adjustbox}
+
+\subsection{Double Dual}%
+\label{sub:double_dual}
+
+If $V$ is a vector space over $F$, then $V^{\ast} = L(V, F)$.
+
+We define the \textbf{bidual}\index{bidual}\index{double dual} as
+\[
+	V^{\ast \ast} = (V^{\ast})^{\ast} = L(V^{\ast}, F)
+.\]
+This is a very important space in infinite dimension. In general, there is no obvious connection between $V$ and $V^{\ast}$. However, there is a large class of function spaces such that
+\[
+V \cong V^{\ast \ast}
+.\]
+This is known as a reflexive space\index{reflexive space}.
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	For $p > 2$, define
+	\[
+		L^{p}(\mathbb{R}) = \biggl\{ f : \mathbb{R} \to \mathbb{R} \,\bigg\vert\, \int_{\mathbb{R}} |f(x)|^{p} \diff x < \infty \biggr\}
+	.\]
+	This is an example of a reflexive space.
+\end{example}
+\end{adjustbox}
+
+In general, there is a canonical embedding of $V$ into $V^{\ast \ast}$. Indeed, pick $v \in V$. We define
+\begin{align*}
+	\hat v : V^{\ast} &\to F \\
+	\varepsilon &\mapsto \varepsilon(v)
+\end{align*}
+Then this is linear, as
+\[
+	\hat v(\lambda_1 \varepsilon_1 + \lambda_2 \varepsilon_2) = (\lambda_1 \varepsilon_1 + \lambda_2 + \varepsilon_2)(v) = \lambda_1 \varepsilon_1(v) + \lambda_2 \varepsilon_2(v) = \lambda_1 \hat v(\varepsilon_1) + \lambda_2 \hat v(\varepsilon_2)
+.\]
+
+\begin{theorem}
+	If $V$ is a finite dimensional vector space over $F$, then the hat map $v \mapsto \hat v$ is an isomorphism.
+\end{theorem}
+
+In infinite dimension, under certain assumption (e.g. Banach space) we can show that the hat map is injective.
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} If $V$ is finite dimensional, then first note that for $v \in V$, $\hat v \in V^{\ast \ast}$. We show the hat map is linear: for $v_1, v_2 \in V$, $\lambda_1, \lambda_2 \in F$ and $\varepsilon \in V^{\ast}$,
+	\[
+		\widehat{\lambda_1 v_1 + \lambda_2 v_2} (\varepsilon) = \varepsilon(\lambda_1 v_1 + \lambda_2 v_2) = \lambda_1 \varepsilon(v_1) + \lambda_1 \varepsilon_2(v_2) = \lambda_1 \hat v_1(\varepsilon) + \lambda_2 \hat v_2 (\varepsilon)
+	.\]
+	Now we show the hat map is injective. Let $e \in V \setminus \{0\}$. Then extend to a basis $(e, e_2, \ldots, e_n)$. Let $(\varepsilon, \varepsilon_2, \ldots, \varepsilon_n)$ be the dual basis. Then
+	\[
+		\hat e (\varepsilon) = \varepsilon(e) = 1
+	.\]
+	Hence $\hat e \neq \{0\}$, so the hat map is injective.
+
+	Finally, we show the hat map is an isomorphism. We already know $\dim V = \dim V^{\ast}$, and as a result $\dim V^{\ast} = \dim V^{\ast \ast}$. Thus, since the hat map is injective, it is an isomorphism.
+\end{adjustbox}
+
+\begin{lemma}
+	Let $V$ be a finite dimensional vector space over $K$, and let $U \leq V$. Then
+	\[
+	\hat U = U^{\circ \circ}
+	.\]
+	Hence after identification of $V$ and $V^{\ast \ast}$, we get
+	\[
+	U = U^{\circ \circ}
+	.\]
+\end{lemma}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} We will show $U \leq U^{\circ \circ}$. Indeed, let $u \in U$. Then for all $\varepsilon \in U^{\circ}$, $\varepsilon(u) = 0$. So for all $\varepsilon \in U^{\circ}$, $\hat u(\varepsilon) = \varepsilon(u) = 0$. Hence $\hat u \in U^{\circ \circ}$, so $\hat U \subset U^{\circ \circ}$.
+
+	But then we can compute dimension to find
+	\[
+	\dim U^{\circ \circ} = \dim V - \dim U^{\circ} = \dim U
+	,\]
+	proving this lemma.
+\end{adjustbox}
+
+\begin{remark}
+	If $T \leq V^{\ast}$, then
+	\[
+		T^{\circ} = \{v \in V \mid \theta(v) = 0, \, \forall \theta \in T\}
+	.\]
+\end{remark}
+
+\begin{lemma}
+	Let $V$ be a finite dimensional vector space over $K$. Let $U_1, U_2 \leq V$. Then,
+	\begin{enumerate}[\normalfont(i)]
+		\item $(U_1 + U_2)^{\circ} = U_1^{\circ} \cap U_2^{\circ}$,
+		\item $(U_1 \cap U_2)^{\circ} = U_1^{\circ} + U_2^{\circ}$.
+	\end{enumerate}
+\end{lemma}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:}
+\begin{enumerate}[(i)]
+	\item Let $\theta \in V^{\ast}$, then
+		\begin{align*}
+			\theta \in (U_1 + U_2)^{\circ} &\iff \theta(u_1 + u_2) = 0 \iff \theta(u) = 0 \, \forall u \in U_1 \cup U_2 \\
+						       &\iff \theta \in U_1^{\circ} \cap U_2^{\circ}.
+		\end{align*}
+		Hence $(U_1 + U_2)^{\circ} = U_1^{\circ} \cap U_2^{\circ}$.
+	\item Looking at (i), we can take the annihilator of everything to get
+		\[
+			(U_1 \cap U_2)^{\circ} = (U_1^{\circ} + U_2^{\circ})^{\circ \circ} = U_1^{\circ} + U_2^{\circ}
+		.\]
+\end{enumerate}
+\end{adjustbox}
+
+\newpage
+
+\section{Bilinear Forms}%
+\label{sec:bilinear_forms}
+
+\begin{definition}
+	Let $U, V$ be vector spaces over $K$. Then
+	\[
+	\phi : U \times V \to K
+	\]
+	is a \textbf{bilinear form}\index{bilinear form} if it is linear in both components.
+\end{definition}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\begin{example}
+	\begin{enumerate}[(i)]
+		\item[]
+		\item Take $V \times V^{\ast} \to K$ by $(v, \theta) \mapsto \theta(v)$.
+		\item The scalar product\index{scalar product} on $U = V = \mathbb{R}^{n}$ is $\psi : \mathbb{R}^{n} \times \mathbb{R}^{n} \to \mathbb{R}$ by
+			\[
+				\left(
+					\begin{pmatrix}
+						x_1 \\
+						\vdots \\
+						x_n
+					\end{pmatrix},
+					\begin{pmatrix}
+						y_1 \\
+						\vdots \\
+						y_n
+					\end{pmatrix}
+				\right)
+				\mapsto  \sum_{i = 1}^{n} x_i y_i
+			.\]
+		\item If $U = V = \mathcal{C}([0, 1], \mathbb{R})$, then we can define
+			\[
+				\phi(f, g) = \int_{0}^{1}f(t)g(t) \diff t
+			.\]
+			This can be thought of as an infinite dimensional scalar product.
+	\end{enumerate}
+\end{example}
+\end{adjustbox}
+
+\begin{definition}
+	Let $\mathcal{B} = (e_1, \ldots, e_m)$ be a basis of $U$, and $\mathcal{C} = (f_1, \ldots, f_n)$ be a basis of $V$. If $\phi : U \times V \to F$ is a bilinear form, then the matrix of $\phi$ with respect to $\mathcal{B}$ and $\mathcal{C}$\index{matrix of bilinear form} is
+	\[
+		[\phi]_{\mathcal{B}, \mathcal{C}} = (\phi(e_i, f_j))
+	.\]
+\end{definition}
+
+\begin{lemma}
+	\[
+		\phi(u, v) = [u]_{\mathcal{B}}^{T} [\phi]_{\mathcal{B}, \mathcal{C}} [v]_{\mathcal{C}}
+	.\]
+\end{lemma}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} Let
+\[
+u = \sum_{i = 1}^{m} \lambda_i e_i, \quad v = \sum_{j = 1}^{n} \mu_ij f_j
+.\]
+Since $\phi$ is a bilinear form,
+\begin{align*}
+	\phi(u, v) &= \phi \Biggl( \sum_{i = 1}^{m} \lambda_i e_i, \sum_{j = 1}^{n} \mu_j e_j \Biggr) = \sum_{i = 1}^{m}\sum_{j = 1}^{n} \lambda_i \mu_j \phi(e_i, f_j) \\
+		   &= [u]_{\mathcal{B}}^{T}[\phi]_{\mathcal{B}, \mathcal{C}}[v]_{\mathcal{C}}.
+\end{align*}
+\end{adjustbox}
+
+\begin{remark}
+	$[\phi]_{\mathcal{B},\mathcal{C}}$ is the only matrix satisfying this property.
+\end{remark}
+
+\begin{definition}
+	$\phi: U \times V \to K$ a bilinear form determines two linear maps:
+	\begin{align*}
+		\phi_L : U \to V^{\ast}& \\
+		\phi_L(u) : V &\to K \\
+			      v &\mapsto \phi(u, v)\\
+			      \phi_R : V \to U^{\ast}& \\
+			      \phi_R(v) : U &\to K \\
+			      u &\mapsto \phi(u, v)
+	\end{align*}
+\end{definition}
+
+\begin{lemma}
+	Let $\mathcal{B} = (e_1, \ldots, e_m)$ a basis of $U$, and $\mathcal{B}^{\ast} = (\varepsilon_1, \ldots, \varepsilon_m)$ a dual basis of $U^{\ast}$, Similarly, let $\mathcal{C} = (f_1, \ldots, f_n)$ be a basis of $V$, and $\mathcal{C}^{\ast} (\eta_1, \ldots, \eta_n)$ a dual basis of $V^{\ast}$.
+
+	Let $A = [\phi]_{\mathcal{B}, \mathcal{C}}$. Then,
+	\begin{align*}
+		[\phi_R]_{\mathcal{C}, \mathcal{B}^{\ast}} &= A, \\
+		[\phi_L]_{\mathcal{B}, \mathcal{C}^{\ast}} &= A^{T}.
+	\end{align*}
+\end{lemma}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} We have $\phi_L(e_i, f_j) = \phi(e_i, f_j) = A_{ij}$, and so
+	\[
+		\phi_L(e_i) = \sum A_{ij} \eta_j
+	.\]
+	Similarly, $\phi_R(f_j)(e_i) = \phi(e_i, f_j) = A_{ij}$, so
+	\[
+		\phi_R(f_{j}) = \sum A_{ij} \varepsilon_i
+	.\]
+	This naturally gives our result.
+\end{adjustbox}
+
+\begin{definition}
+	Let $\Ker \phi_L$ be the left kernel of $\phi$, and $\Ker \phi_R$ be the right kernel of $\phi$.
+
+	We say that $\phi$ is non-degenerate\index{non-degenerate bilinear form} if $\Ker \phi_L = \{0\}$ and $\Ker \phi_R = \{0\}$. Otherwise, we say that $\phi$ is degenerate.
+\end{definition}
+
+\begin{lemma}
+	Let $U, V$ be finite dimensional, $\mathcal{B}, \mathcal{C}$ bases of $U$ and $V$, and $\phi: U \times V \to K$ a bilinear form. Let $A = [\phi]_{\mathcal{B}, \mathcal{C}}$.
+
+	Then $\phi$ is non-degenerate if and only if $A$ is invertible.
+\end{lemma}
+
+\begin{corollary}
+	If $\phi$ is non-degenerate, then $\dim U = \dim V$.
+\end{corollary}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	\textbf{Proof:} $\phi$ is non-degenerate if and only if $\Ker \phi_L = \{0\}$ and $\Ker \phi_R = \{0\}$. But this implies $\nullity (A^{T}) = 0$ and $\nullity (A) = 0$, hence by rank-nullity theorem, we must have $\rank (A^{T}) = \dim U$, and $\rank (A) = \dim V$. But this gives $A$ invertible and $\dim U = \dim V$.
+\end{adjustbox}
+
+\begin{remark}
+	Taking $\phi : \mathbb{R}^{n} \times \mathbb{R}^{n} \to \mathbb{R}$ by the scalar product, then $\phi$ is non-degenerate, as in the standard basis $\mathcal{B}$,
+	\[
+		[\phi]_{\mathcal{B}, \mathcal{B}} = I_n
+	.\]
+\end{remark}
+
+\begin{corollary}
+	When $U$ and $V$ are finite dimensional, then choosing a non-degenerate bilinear form $\phi: U \times V \to K$ is equivalent to choosing an isomorphism $\phi_L : U \to V^{\ast}$.
+\end{corollary}
+
+\begin{definition}
+	If $T \subset U$, we define
+	\[
+		T^{\perp} = \{v \in V \mid \phi(t, v) = 0 \, \forall t \in T\}
+	.\]
+	Similarly, if $S \subset V$, then
+	\[
+		^{\perp}S = \{u \in U \mid \phi(u, s) = 0 \, \forall s \in S\}
+	.\]
+\end{definition}
+
+\begin{proposition}
+	Let $\mathcal{B}, \mathcal{B}'$ be two bases of $U$, and $P = [\id]_{\mathcal{B}', \mathcal{B}}$, and $\mathcal{C}, \mathcal{C}'$ two bases of $V$, and $Q = [\id]_{\mathcal{C}', \mathcal{C}}$, then if $\phi: U \times V \to K$ is a bilinear form, then
+	\[
+		[\phi]_{\mathcal{B}', \mathcal{C}'} = P^{T} [\phi]_{\mathcal{B}, \mathcal{C}} Q
+	.\]
+\end{proposition}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:} We have
+\[
+	\phi(u, v) = [u]_{\mathcal{B}}^{T} [\phi]_{\mathcal{B}, \mathcal{C}}[v]_{\mathcal{C}} = (P[u]_{\mathcal{B}'})^{T}[\phi]_{\mathcal{B},\mathcal{C}}(Q[v]_{\mathcal{C}'}) = [u]_{\mathcal{B}'}^{T} (P^{T} [\phi]_{\mathcal{B}, \mathcal{C}} Q)[v]_{\mathcal{C}'}
+,\]
+which implies $P^{T}[\phi]_{\mathcal{B}, \mathcal{C}}Q = [\phi]_{\mathcal{B}', \mathcal{C}'}$.
+\end{adjustbox}
+
+\begin{definition}
+	The rank of $\phi$ ($\rank \phi$) is the rank of any matrix representing $\phi$.\index{rank of bilinear form}
+\end{definition}
+
+This is true as $\rank (P^{T}AQ) = \rank A$, if $P$ and $Q$ are invertible.
+
+Note we could have equivalently defined $\rank \phi = \rank \phi_L = \rank \phi_R$.
+
+\newpage
+
+\section{Determinant and Traces}%
+\label{sec:determinant_and_traces}
+
+\begin{definition}
+	If $A \in M_{n}(K)$, we define the trace\index{trace} of $A$ as
+	\[
+	\tr A = \sum_{i = 1}^{n} A_{ii}
+	.\]
+\end{definition}
+
+\begin{remark}
+	The map $M_n(K) \to K$ by $A \mapsto \tr A$ is linear.
+\end{remark}
+
+\begin{lemma}
+	$\tr (AB) = \tr (BA)$.
+\end{lemma}
+
+\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\textbf{Proof:}
+\[
+	\tr (AB) = \sum_{i = 1}^{n} \Biggl( \sum_{j = 1}^{n} a_{ij} b_{ji} \Biggr) = \sum_{j = 1}^{n} \sum_{i = 1}^{n} b_{ji} a_{ij} = \tr (BA)
+.\]
+\end{adjustbox}
 
 
 \newpage

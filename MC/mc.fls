@@ -1155,6 +1155,15 @@ INPUT C:\Program Files\MiKTeX\tex\latex\bbm\ubbm.fd
 INPUT C:\Users\nath2\AppData\Local\MiKTeX\fonts\tfm\public\bbm\bbm12.tfm
 INPUT C:\Users\nath2\AppData\Local\MiKTeX\fonts\tfm\public\bbm\bbm8.tfm
 INPUT C:\Users\nath2\AppData\Local\MiKTeX\fonts\tfm\public\bbm\bbm6.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmmi12.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmsy10.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmex10.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam10.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam10.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
+INPUT C:\Users\nath2\AppData\Local\MiKTeX\fonts\tfm\public\bbm\bbm17.tfm
+INPUT C:\Users\nath2\AppData\Local\MiKTeX\fonts\tfm\public\bbm\bbm10.tfm
 INPUT .\mc.ind
 INPUT mc.ind
 INPUT .\mc.ind
