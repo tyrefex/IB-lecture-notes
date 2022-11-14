@@ -1,25 +1,36 @@
 \begin{theindex}
 
+  \item \texorpdfstring{$\pi$}{pi}-system, \hyperpage{45}
+
+  \indexspace
+
   \item Bolzano-Weierstrass theorem, \hyperpage{2}
   \item bounded, \hyperpage{26}
 
   \indexspace
 
   \item Cauchy sequence, \hyperpage{2}
-  \item Cauchy sequence in general metric space, \hyperpage{21}
-  \item closed, \hyperpage{22}
-  \item compact, \hyperpage{32}
+  \item Cauchy sequence in general metric space, \hyperpage{20}
+  \item closed, \hyperpage{22}, \hyperpage{36}
+  \item cocountable topology, \hyperpage{38}
+  \item cofinite topology, \hyperpage{38}
+  \item compact, \hyperpage{32}, \hyperpage{42}
   \item complete, \hyperpage{21}
+  \item connected, \hyperpage{50}
   \item continuity, \hyperpage{11}
   \item continuity in metric spaces, \hyperpage{18}
-  \item contraction, \hyperpage{25}
+  \item continuity in topological spaces, \hyperpage{36}
+  \item contraction, \hyperpage{24}
   \item contraction mapping theorem, \hyperpage{25}
   \item convergence in $\mathbb{R}$, \hyperpage{2}
   \item convergence in metric spaces, \hyperpage{16}
+  \item convergence in topological spaces, \hyperpage{39}
 
   \indexspace
 
+  \item disconnected, \hyperpage{50}
   \item discrete metric, \hyperpage{16}
+  \item discrete topology, \hyperpage{37}
 
   \indexspace
 
@@ -28,16 +39,20 @@
   \indexspace
 
   \item general principle of convergence, \hyperpage{2}
-  \item general principle of uniform convergence, \hyperpage{8}
+  \item general principle of uniform convergence, \hyperpage{7}
 
   \indexspace
 
+  \item Hausdorff, \hyperpage{39}
   \item homeomorphic, \hyperpage{28}
-  \item homeomorphism, \hyperpage{28}
+  \item homeomorphism, \hyperpage{28}, \hyperpage{37}
 
   \indexspace
 
   \item identity function, \hyperpage{20}
+  \item indiscrete topology, \hyperpage{38}
+  \item induced topology, \hyperpage{36}
+  \item intermediate value theorem, \hyperpage{50}
 
   \indexspace
 
@@ -50,36 +65,42 @@
 
   \indexspace
 
-  \item neighbourhood, \hyperpage{30}
+  \item neighbourhood, \hyperpage{30}, \hyperpage{36}
 
   \indexspace
 
   \item open, \hyperpage{30}
-  \item open ball, \hyperpage{30}
-  \item open cover, \hyperpage{32}
+  \item open ball, \hyperpage{29}
+  \item open cover, \hyperpage{32}, \hyperpage{42}
+  \item open set, \hyperpage{36}
 
   \indexspace
 
   \item pointwise bounded, \hyperpage{8}
   \item pointwise convergence, \hyperpage{4}
+  \item product topology, \hyperpage{45}
   \item projection maps, \hyperpage{20}
 
   \indexspace
 
-  \item sequentially compact, \hyperpage{26}
-  \item subcover, \hyperpage{32}
+  \item sequentially compact, \hyperpage{26}, \hyperpage{42}
+  \item subcover, \hyperpage{32}, \hyperpage{42}
   \item subspace, \hyperpage{15}
+  \item subspace topology, \hyperpage{41}
 
   \indexspace
 
+  \item topological, \hyperpage{37}
+  \item topological space, \hyperpage{36}
+  \item topology, \hyperpage{36}
   \item totally bounded, \hyperpage{27}
   \item triangle inequality, \hyperpage{2}
 
   \indexspace
 
-  \item uniform continuity, \hyperpage{12}
-  \item uniform convergence, \hyperpage{5}
-  \item uniform convergence of series, \hyperpage{9}
+  \item uniform continuity, \hyperpage{11}
+  \item uniform convergence, \hyperpage{4}
+  \item uniform convergence of series, \hyperpage{8}
   \item uniformly bounded, \hyperpage{8}
   \item uniformly Cauchy, \hyperpage{7}
   \item usual metric, \hyperpage{14}

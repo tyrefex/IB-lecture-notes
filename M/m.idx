@@ -2,7 +2,6 @@
 \indexentry{inner product of periodic functions|hyperpage}{3}
 \indexentry{Fourier series|hyperpage}{4}
 \indexentry{Fourier coefficients|hyperpage}{5}
-\indexentry{sawtooth wave|hyperpage}{5}
 \indexentry{Dirichlet conditions|hyperpage}{6}
 \indexentry{square wave|hyperpage}{7}
 \indexentry{see-saw wave|hyperpage}{7}
@@ -20,7 +19,7 @@
 \indexentry{weight function|hyperpage}{14}
 \indexentry{self-adjoint operator|hyperpage}{15}
 \indexentry{normalized eigenfunction|hyperpage}{17}
-\indexentry{Bessel's inequality|hyperpage}{18}
+\indexentry{Bessel's inequality|hyperpage}{17}
 \indexentry{Legendre's equation|hyperpage}{18}
 \indexentry{Legendre polynomials|hyperpage}{19}
 \indexentry{Green's function|hyperpage}{21}
@@ -30,3 +29,13 @@
 \indexentry{Neumann functions|hyperpage}{29}
 \indexentry{Fick's law|hyperpage}{32}
 \indexentry{error function|hyperpage}{34}
+\indexentry{delta function|hyperpage}{43}
+\indexentry{Heaviside function|hyperpage}{44}
+\indexentry{sampling property|hyperpage}{44}
+\indexentry{even property|hyperpage}{45}
+\indexentry{scaling property|hyperpage}{45}
+\indexentry{Dirac comb|hyperpage}{45}
+\indexentry{Wronskian|hyperpage}{50}
+\indexentry{Fourier transform|hyperpage}{54}
+\indexentry{Fourier inversion theorem|hyperpage}{54}
+\indexentry{absolutely integrable|hyperpage}{54}

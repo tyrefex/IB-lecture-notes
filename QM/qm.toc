@@ -16,10 +16,20 @@
 \contentsline {subsubsection}{\numberline {2.5.1}Heuristic Interpretation}{12}{subsubsection.2.5.1}%
 \contentsline {subsubsection}{\numberline {2.5.2}Hermitian Operators}{13}{subsubsection.2.5.2}%
 \contentsline {subsubsection}{\numberline {2.5.3}Expectation values and operators}{15}{subsubsection.2.5.3}%
-\contentsline {subsection}{\numberline {2.6}Time-independent Schr\"{o}dinger equation}{17}{subsection.2.6}%
-\contentsline {subsection}{\numberline {2.7}Stationary states}{18}{subsection.2.7}%
-\contentsline {section}{\numberline {3}4-Dimension Solutions of Schr\"{o}dinger Equation}{19}{section.3}%
+\contentsline {subsection}{\numberline {2.6}Time-independent Schr\"{o}dinger equation}{16}{subsection.2.6}%
+\contentsline {subsection}{\numberline {2.7}Stationary states}{17}{subsection.2.7}%
+\contentsline {section}{\numberline {3}4D Solutions}{19}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Bound States}{19}{subsection.3.1}%
 \contentsline {subsubsection}{\numberline {3.1.1}Infinite potential well}{19}{subsubsection.3.1.1}%
 \contentsline {subsubsection}{\numberline {3.1.2}Finite Potential Well}{20}{subsubsection.3.1.2}%
-\contentsline {section}{Index}{22}{section*.2}%
+\contentsline {subsubsection}{\numberline {3.1.3}Harmonic Oscillator}{21}{subsubsection.3.1.3}%
+\contentsline {subsection}{\numberline {3.2}The Free Particle}{23}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Gaussian Wavepacket}{23}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Beam Interpretation}{25}{subsubsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.3}Scattering States}{25}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Scattering off Potential Step}{26}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}Scattering off Potential Barrier}{28}{subsubsection.3.3.2}%
+\contentsline {section}{\numberline {4}Simultaneous Measurements}{29}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Commutators}{29}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Heisenberg's Uncertainty Principle}{30}{subsection.4.2}%
+\contentsline {section}{Index}{32}{section*.2}%

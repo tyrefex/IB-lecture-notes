@@ -1,101 +1,124 @@
 \begin{theindex}
 
-  \item annihilator, \hyperpage{28}
+  \item adjugate, \hyperpage{51}
+  \item algebraic multiplicity, \hyperpage{63}
+  \item alternate, \hyperpage{43}
+  \item annihilator, \hyperpage{30}
 
   \indexspace
 
-  \item basis, \hyperpage{6}
-  \item bidual, \hyperpage{32}
-  \item bilinear form, \hyperpage{35}
+  \item basis, \hyperpage{7}
+  \item bidual, \hyperpage{33}
+  \item bilinear form, \hyperpage{36}
 
   \indexspace
 
-  \item change of basis matrix, \hyperpage{20}
-  \item column rank, \hyperpage{23}
+  \item Cayley-Hamilton theorem, \hyperpage{63}
+  \item change of basis matrix, \hyperpage{21}
+  \item characteristic polynomial, \hyperpage{55}
+  \item column rank, \hyperpage{24}
   \item complement, \hyperpage{11}
 
   \indexspace
 
-  \item dimension, \hyperpage{9}
-  \item direct sum, \hyperpage{10}
-  \item double dual, \hyperpage{32}
-  \item dual basis, \hyperpage{27}
-  \item dual map, \hyperpage{29}
-  \item dual space, \hyperpage{27}
+  \item determinant, \hyperpage{41}
+  \item determinant of a linear map, \hyperpage{47}
+  \item diagonalisable, \hyperpage{53}
+  \item dimension, \hyperpage{10}
+  \item direct sum, \hyperpage{11}
+  \item double dual, \hyperpage{33}
+  \item dual basis, \hyperpage{28}
+  \item dual map, \hyperpage{30}
+  \item dual space, \hyperpage{28}
 
   \indexspace
 
-  \item elementary column operation, \hyperpage{24}
-  \item elementary matrices, \hyperpage{24}
-  \item elementary row operation, \hyperpage{24}
-  \item endomorphism, \hyperpage{24}
-  \item equivalent matrices, \hyperpage{21}
+  \item eigenspace, \hyperpage{53}
+  \item eigenvalue, \hyperpage{53}
+  \item eigenvector, \hyperpage{53}
+  \item elementary column operation, \hyperpage{25}
+  \item elementary matrices, \hyperpage{25}
+  \item elementary row operation, \hyperpage{25}
+  \item endomorphism, \hyperpage{25}
+  \item equivalent matrices, \hyperpage{22}
 
   \indexspace
 
-  \item finite dimension, \hyperpage{5}
+  \item finite dimension, \hyperpage{6}
 
   \indexspace
 
-  \item Gauss' pivot algorithm, \hyperpage{25}
+  \item Gauss' pivot algorithm, \hyperpage{26}
+  \item geometric multiplicity, \hyperpage{63}
 
   \indexspace
 
-  \item image, \hyperpage{15}
-  \item isomorphism, \hyperpage{14}
+  \item image, \hyperpage{16}
+  \item isomorphism, \hyperpage{15}
 
   \indexspace
 
-  \item kernel, \hyperpage{15}
+  \item kernel, \hyperpage{16}
 
   \indexspace
 
-  \item linear form, \hyperpage{27}
-  \item linear independence, \hyperpage{6}
-  \item linear map, \hyperpage{13}
+  \item linear form, \hyperpage{28}
+  \item linear independence, \hyperpage{7}
+  \item linear map, \hyperpage{14}
 
   \indexspace
 
-  \item matrix, \hyperpage{17}
-  \item matrix of bilinear form, \hyperpage{35}
+  \item matrix, \hyperpage{18}
+  \item matrix of bilinear form, \hyperpage{36}
+  \item multilinear, \hyperpage{42}
 
   \indexspace
 
-  \item non-degenerate bilinear form, \hyperpage{37}
-  \item nullity, \hyperpage{16}
+  \item non-degenerate bilinear form, \hyperpage{38}
+  \item non-singular, \hyperpage{46}
+  \item nullity, \hyperpage{17}
 
   \indexspace
 
-  \item proper subspace, \hyperpage{10}
+  \item projector, \hyperpage{59}
+  \item proper subspace, \hyperpage{11}
 
   \indexspace
 
-  \item quotient, \hyperpage{4}
+  \item quotient, \hyperpage{5}
 
   \indexspace
 
-  \item rank, \hyperpage{16}
+  \item rank, \hyperpage{17}
   \item rank of bilinear form, \hyperpage{38}
-  \item rank-nullity theorem, \hyperpage{16}
-  \item reflexive space, \hyperpage{32}
-  \item row echelon form, \hyperpage{25}
-  \item row rank, \hyperpage{23}
+  \item rank-nullity theorem, \hyperpage{17}
+  \item reflexive space, \hyperpage{33}
+  \item row echelon form, \hyperpage{26}
+  \item row rank, \hyperpage{24}
 
   \indexspace
 
-  \item scalar product, \hyperpage{35}
-  \item similar matrices, \hyperpage{24}
-  \item span, \hyperpage{5}
-  \item Steinitz exchange lemma, \hyperpage{7}
-  \item subspace, \hyperpage{3}
-  \item subspace sum, \hyperpage{3}
+  \item scalar product, \hyperpage{36}
+  \item sign, \hyperpage{41}
+  \item signature, \hyperpage{41}
+  \item similar matrices, \hyperpage{25}
+  \item singular, \hyperpage{46}
+  \item span, \hyperpage{6}
+  \item Steinitz exchange lemma, \hyperpage{8}
+  \item subspace, \hyperpage{4}
+  \item subspace sum, \hyperpage{4}
+  \item symmetric group, \hyperpage{41}
 
   \indexspace
 
-  \item trace, \hyperpage{39}
+  \item trace, \hyperpage{40}
+  \item trace of endomorphism, \hyperpage{40}
+  \item transposition, \hyperpage{41}
+  \item triangulable, \hyperpage{53}
 
   \indexspace
 
-  \item vector space, \hyperpage{2}
+  \item vector space, \hyperpage{3}
+  \item volume form, \hyperpage{42}
 
 \end{theindex}

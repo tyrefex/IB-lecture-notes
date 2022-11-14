@@ -1,85 +1,8 @@
 \documentclass[12pt]{article}
-\usepackage{amsmath}
-\usepackage{mathtools}
-\usepackage[a4paper]{geometry}
-\usepackage{fancyhdr}
-\usepackage{tikz}
-\usetikzlibrary{cd}
-\usetikzlibrary{babel}
-\usepackage{amssymb}
-\usepackage{graphicx}
-\usepackage{amsthm}
-\usepackage{import}
-\usepackage{xifthen}
-\usepackage{pdfpages}
-\usepackage{transparent}
-\usepackage{adjustbox}
-\usepackage[shortlabels]{enumitem}
-\usepackage{parskip}
-\makeatletter
-\newcommand{\@minipagerestore}{\setlength{\parskip}{\medskipamount}}
-\makeatother
-\usepackage{imakeidx}
 
-\DeclareMathOperator{\Ker}{Ker}
-\DeclareMathOperator{\Img}{Im}
-\DeclareMathOperator{\rank}{rank}
-\DeclareMathOperator{\nullity}{null}
-\DeclareMathOperator{\spn}{span}
-\DeclareMathOperator{\tr}{tr}
-\DeclareMathOperator{\adj}{adj}
-\DeclareMathOperator{\id}{id}
-\DeclareMathOperator{\Sym}{Sym}
-\DeclareMathOperator{\Orb}{Orb}
-\DeclareMathOperator{\Stab}{Stab}
-\DeclareMathOperator{\ccl}{ccl}
-\DeclareMathOperator{\Aut}{Aut}
-\DeclareMathOperator{\Syl}{Syl}
-\DeclareMathOperator{\sgn}{sgn}
-\DeclareMathOperator{\Fit}{Fit}
-\DeclareMathOperator{\Ann}{Ann}
-\DeclareMathOperator{\epi}{epi}
-
-
-\newcommand{\incfig}[1]{%
-	\def\svgwidth{\columnwidth}
-	\import{./figures/}{#1.pdf_tex}
-}
-\newcommand{\diff}{\mathop{}\!\mathrm{d}}
-\newcommand{\Diff}[1]{\mathop{}\!\mathrm{d}^{#1}}
-
-\setlength\parindent{0pt}
-
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{corollary}{Corollary}[section]
-\newtheorem{lemma}{Lemma}[section]
-\newtheorem{proposition}{Proposition}[section]
-
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}[section]
-\newtheorem{example}{Example}[section]
-
-\theoremstyle{remark}
-\newtheorem*{remark}{Remark}
-
-\pagestyle{fancy}
-\fancyhf{}
-\rhead{\leftmark}
-\lhead{Page \thepage}
-\setlength{\headheight}{15pt}
+\usepackage{ishn}
 
 \makeindex[intoc]
-
-\usepackage{hyperref}
-\hypersetup{
-    colorlinks,
-    citecolor=black,
-    filecolor=black,
-    linkcolor=black,
-    urlcolor=black
-}
-
-\newcommand{\mapsfrom}{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}
 
 \begin{document}
 
@@ -138,10 +61,8 @@ We know how to
 	\item Multiply a vector $v \in V$ by a scalar $\lambda \in F$.
 \end{itemize}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{example}
+\begin{exbox}
 	\begin{enumerate}[(i)]
-		\item[]
 		\item Take $n \in \mathbb{N}$, then $F^{n}$ is the set of column vectors of length $n$ with elements in $F$. We have
 			\[
 			v \in F^{n}, v =
@@ -181,15 +102,6 @@ We know how to
 			\end{pmatrix}
 			.\]
 			Then $F^{n}$ is a $F$ vector space.
-	\end{enumerate}
-	
-\end{example}
-
-\end{adjustbox}
-
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\begin{enumerate}[(i)]
-		\setcounter{enumi}{1}
 		\item For any set $X$, take
 			\[
 				\mathbb{R}^{X} = \{f : X \to \mathbb{R}\}
@@ -197,8 +109,7 @@ We know how to
 			Then $\mathbb{R}^{X}$ is an $\mathbb{R}$ vector space.
 		\item Take $M_{n, m}(F)$, the set of $n \times m$ $F$ valued matrices. Then $M_{n, m}(F)$ is a $F$ vector space.
 \end{enumerate}
-
-\end{adjustbox}
+\end{exbox}
 
 \begin{remark}
 	The axiom of scalar multiplication implies that for all $v \in V$, $0 \cdot v = \mathbf{0}$.
@@ -214,16 +125,12 @@ We know how to
 \end{definition}
 Note if $V$ is an $F$ vector space, and $U \leq V$, then $U$ is an $F$ vector space.
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{example}
+\begin{exbox}
 	\begin{enumerate}[(i)]
-		\item[]
 		\item Take $V = \mathbb{R}^{\mathbb{R}}$, the space of functions $f : \mathbb{R} \to \mathbb{R}$. Let $\mathcal{C}(\mathbb{R})$ be the space of continuous function $f : \mathbb{R} \to \mathbb{R}$. Then $\mathcal{C}(\mathbb{R}) \leq \mathbb{R}^{\mathbb{R}}$.
 		\item Take the elements of $\mathbb{R}^3$ which sum up to $t$. This is a subspace if and only if $t = 0$.
 	\end{enumerate}	
-\end{example}
-
-\end{adjustbox}
+\end{exbox}
 
 Note that the union of two subspaces is generally not a subspace, as it is usually not closed under addition.
 
@@ -231,9 +138,9 @@ Note that the union of two subspaces is generally not a subspace, as it is usual
 	Let $V$ be an $F$ vector space, and $U, W \leq V$. Then $U \cap W \leq V$.
 \end{proposition}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} Since $0 \in U, 0 \in W$, $0 \in U \cap W$. Now consider $(\lambda, \mu) \in F^2$, and $(v_1, v_2) \in (U \cap W)^2$. Take $\lambda_1 v_1 + \lambda_2 v_2$. Since $u_1,v_1 \in U$, this is in $U$. Similarly, it is in $W$. So it is in $U \cap W$, and $U \cap W \leq V$.
-\end{adjustbox}
+\begin{proofbox}
+	Since $0 \in U, 0 \in W$, $0 \in U \cap W$. Now consider $(\lambda, \mu) \in F^2$, and $(v_1, v_2) \in (U \cap W)^2$. Take $\lambda_1 v_1 + \lambda_2 v_2$. Since $u_1,v_1 \in U$, this is in $U$. Similarly, it is in $W$. So it is in $U \cap W$, and $U \cap W \leq V$.
+\end{proofbox}
 
 \begin{definition}[Sum of subspaces]\index{subspace sum}
 	Let $V$ be an $F$ vector space. Let $U, W \leq V$. Then the \textbf{sum} of $U$ and $W$ is the set
@@ -242,12 +149,12 @@ Note that the union of two subspaces is generally not a subspace, as it is usual
 	.\]
 \end{definition}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\textbf{Proof:} Note $0 = 0 + 0 \in U + W$. Take $\lambda_1 f + \lambda_2 g$, where $f, g \in U + W$. Then we can write $f = f_1 + f_2, g = g_1 + g_2$, where $f_1, g_1 \in U$, $f_2, g_2 \in W$. Then 
+\begin{proofbox}
+	Note $0 = 0 + 0 \in U + W$. Take $\lambda_1 f + \lambda_2 g$, where $f, g \in U + W$. Then we can write $f = f_1 + f_2, g = g_1 + g_2$, where $f_1, g_1 \in U$, $f_2, g_2 \in W$. Then 
 \[
 	\lambda_1 f + \lambda_2 g = \lambda_1 (f_1 + f_2) + \lambda_2(g_1 + g_2) = (\lambda_1 f_1 + \lambda_2 g_1) + (\lambda_1 f_2 + \lambda_2 g_2) \in U + W
 .\]
-\end{adjustbox}
+\end{proofbox}
 
 \begin{remark}
 	$U + W$ is the smallest subspace of $V$ which contains both $U$ and $W$.
@@ -288,8 +195,7 @@ By convention, we let $\langle \emptyset \rangle = \{0\}$.
 	$\langle S' \rangle$ is the smallest vector subspace which contains $S$.
 \end{remark}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{example}
+\begin{exbox}
 	Take $V = \mathbb{R}^3$, and
 	\[
 	S = \left\{
@@ -329,9 +235,7 @@ By convention, we let $\langle \emptyset \rangle = \{0\}$.
 	\begin{align*}
 		\langle (S_x)_{x \in X} \rangle &= \{f \in \mathbb{R}^{X} \mid f \text{ has finite support}\}.
 	\end{align*}
-\end{example}
-
-\end{adjustbox}
+\end{exbox}
 
 \begin{definition}
 	Let $V$ be a $F$ vector space. Let $S'$ be a subset of $V$. We may say that $S$ \textbf{spans} $V$ if $\langle S \rangle = V$.
@@ -341,16 +245,13 @@ By convention, we let $\langle \emptyset \rangle = \{0\}$.
 	Let $V$ be a $F$ vector space. We say that $V$ is \textbf{finite dimensional} if it is spanned by a finite set.
 \end{definition}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{example}
+\begin{exbox}
 	Consider $P[x]$, the polynomials over $\mathbb{R}$, and $P_n[x]$, the polynomials over $\mathbb{R}$ with degree $\leq n$. Then since
 	\[
 		\langle 1, x, \ldots, x^{n}\rangle = P_n[x]
 	,\]
 	$P_n[x]$ is finite dimensional, however $P[x]$ is not.
-\end{example}
-
-\end{adjustbox}
+\end{exbox}
 
 \begin{definition}[Independence]\index{linear independence}
 	We say that $(v_1, \ldots, v_n)$, elements of $V$ are \textbf{linearly independent} if
@@ -382,16 +283,14 @@ By convention, we let $\langle \emptyset \rangle = \{0\}$.
 	A subset $S$ that generates $V$ is a generating family, so a basis $S$ is a free generating family.
 \end{remark}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{example}
+\begin{exbox}
 	For $V = \mathbb{R}^{n}$, then $(e_i)$ is a basis of $V$.
 
 	If $V = \mathbb{C}$, then for $F = \mathbb{C}$, $\{1\}$ is a basis.
 
 	If $V = P[x]$, then $S = \{x^{n}, n \geq 0\}$ is a basis for $V$.
-\end{example}
 
-\end{adjustbox}
+\end{exbox}
 
 \begin{lemma}
 	$V$ is a $F$ vector space. Then $(v_1, \ldots, v_n)$ is a basis of $V$ if and only if any vector $v \in V$ has a unique decomposition
@@ -404,8 +303,8 @@ By convention, we let $\langle \emptyset \rangle = \{0\}$.
 	We call $(\lambda_1, \ldots, \lambda_n)$ the coordinates of $v$ in the basis $(v_1, \ldots, v_n)$.
 \end{remark}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} Since $\langle v_1, \ldots, v_n \rangle = V$, we must have 
+\begin{proofbox}
+	Since $\langle v_1, \ldots, v_n \rangle = V$, we must have 
 	\[
 	v = \sum_{i = 1}^{n} \lambda_i v_i
 	\]
@@ -415,20 +314,20 @@ By convention, we let $\langle \emptyset \rangle = \{0\}$.
 		\implies \sum_{i = 1}^{n}(\lambda_i - \lambda_i') v_i = 0.
 	\end{align*}
 	Since $v_i$ are free, $\lambda_i = \lambda_i'$.
-\end{adjustbox}
+\end{proofbox}
 
 \begin{lemma}
 	If $(v_1, \ldots, v_n)$ spans $V$, then some subset of this family is a basis of $V$.
 \end{lemma}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} If $(v_1, \ldots, v_n)$ are linearly independent, we are done. Otherwise assume they are not independent, then by possibly reordering the vectors, we have
+\begin{proofbox}
+	If $(v_1, \ldots, v_n)$ are linearly independent, we are done. Otherwise assume they are not independent, then by possibly reordering the vectors, we have
 	\[
 		v_n \in \langle v_1, \ldots, v_{n-1}\rangle
 	.\]
 	Then we have $V = \langle v_1, \ldots, v_n \rangle = \langle v_1, \ldots, v_{n-1}\rangle$.
 	By iterating, we must eventually get to an independent set.
-\end{adjustbox}
+\end{proofbox}
 
 \begin{theorem}[Steinitz Exchange Lemma]\index{Steinitz exchange lemma}
 	Let $V$ be a finite dimensional vector space over $F$. Take
@@ -439,17 +338,12 @@ By convention, we let $\langle \emptyset \rangle = \{0\}$.
 	Then $m \leq n$, and up to reordering, $(v_1, \ldots, v_m, w_{m+1}, \ldots, w_n)$ spans $V$.
 \end{theorem}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\textbf{Proof:} Induction. Suppose that we have replaced $l$ of the $w_i$, reordering if necessary, so
+\begin{proofbox}
+	We use induction. Suppose that we have replaced $l$ of the $w_i$, reordering if necessary, so
 \[
 	\langle v_1, \ldots, v_{l}, w_{l+1}, \ldots, w_n \rangle = V
 .\]
 If $m = l$, we are done. Otherwise, $l < m$. Then since these vectors span $V$, we have
-
- 
-\end{adjustbox}
-
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
 \[
 v_{l+1} = \sum_{i \leq l}a_i v_i + \sum_{i > l}\beta_i w_i
 .\]
@@ -457,8 +351,13 @@ v_{l+1} = \sum_{i \leq l}a_i v_i + \sum_{i > l}\beta_i w_i
 \[
 	w_{l+1} = \frac{1}{\beta_{l+1}} \left[ v_{l+1} - \sum_{i \leq l}\alpha_i v_i - \sum_{i > l+1} \beta_i w_i \right]
 .\]
-Hence, $V = \langle v_1, \ldots, v_l, w_{l+1}, \ldots, w_n \rangle = \langle v_1, \ldots, v_l, v_{l+1}, w_{l+1}, \ldots, w_n \rangle = \langle v_1, \ldots, v_{l+1}, w_{l+2}, \ldots, w_n \rangle$. Iterating this process, we eventually get $l = m$, which then proves $m \leq n$.
-\end{adjustbox}
+Hence, 
+\begin{align*}
+	V &= \langle v_1, \ldots, v_l, w_{l+1}, \ldots, w_n \rangle = \langle v_1, \ldots, v_l, v_{l+1}, w_{l+1}, \ldots, w_n \rangle \\
+	  &= \langle v_1, \ldots, v_{l+1}, w_{l+2}, \ldots, w_n \rangle.
+\end{align*}
+Iterating this process, we eventually get $l = m$, which then proves $m \leq n$.
+\end{proofbox}
 
 \newpage
 
@@ -469,14 +368,14 @@ Hence, $V = \langle v_1, \ldots, v_l, w_{l+1}, \ldots, w_n \rangle = \langle v_1
 	Let $V$ be a finite dimensional vector space over $F$. Then any two bases of $V$ have the same number of vectors, called the \textbf{dimension}\index{dimension} of $V$.
 \end{corollary}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} take $(v_1, \ldots, v_n), (w_1, \ldots, w_m)$ bases of $V$.
+\begin{proofbox}
+	Take $(v_1, \ldots, v_n), (w_1, \ldots, w_m)$ bases of $V$.
 	\begin{enumerate}[(i)]
 		\item As $(v_i)$ is free and $(w_i)$ is generating, $n \leq m$.
 		\item As $(w_i)$ is free and $(v_i)$ is generating, $m \leq n.$
 	\end{enumerate}
 	So $m = n$.
-\end{adjustbox}
+\end{proofbox}
 
 \begin{corollary}
 	Let $V$ be a vector space over $F$ with dimension $n \in \mathbb{N}$.
@@ -487,9 +386,9 @@ Hence, $V = \langle v_1, \ldots, v_l, w_{l+1}, \ldots, w_n \rangle = \langle v_1
 	
 \end{corollary}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} Exercise (fill this in).
-\end{adjustbox}
+\begin{proofbox}
+	Exercise (fill this in).
+\end{proofbox}
 
 \begin{proposition}
 	Let $U, W$ be finite dimensional subspaces of $V$. If $U$ and $W$ are finite dimensional, then so is $U + W$, and
@@ -498,8 +397,8 @@ Hence, $V = \langle v_1, \ldots, v_l, w_{l+1}, \ldots, w_n \rangle = \langle v_1
 	.\]
 \end{proposition}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} Pick $(v_1, \ldots, v_l)$ a basis of $U \cap W$. Extend this to a basis $(v_1, \ldots, v_l, u_1, \ldots, u_m)$ of $U$, and a basis $(v_1, \ldots, v_l, w_1, \ldots, w_n)$ of $W$. Then we show $(v_1, \ldots, v_l, u_1, \ldots, u_m, w_1, \ldots, w_n)$ is a basis of $U + W$.
+\begin{proofbox}
+	Pick $(v_1, \ldots, v_l)$ a basis of $U \cap W$. Since $U \cap W \leq U$, we can extend this to a basis $(v_1, \ldots, v_l, u_1, \ldots, u_m)$ of $U$, and a basis $(v_1, \ldots, v_l, w_1, \ldots, w_n)$ of $W$. Then we show $(v_1, \ldots, v_l, u_1, \ldots, u_m, w_1, \ldots, w_n)$ is a basis of $U + W$.
 
 	It is clearly a generating family, so we will show it is free. Suppose
 	\[
@@ -518,7 +417,7 @@ Hence, $V = \langle v_1, \ldots, v_l, w_{l+1}, \ldots, w_n \rangle = \langle v_1
 	\sum_{i = 1}^{l} \alpha_i v_i = 0
 	.\]
 	Since $(v_i)$ is a basis of $U \cap W$, $\alpha_i = 0$.
-\end{adjustbox}
+\end{proofbox}
 
 \begin{proposition}
 	Let $V$ be a finite dimensional vector space over $F$. Let $U \leq V$. Then $U$ and $V/U$ are both finite dimensional and
@@ -527,9 +426,9 @@ Hence, $V = \langle v_1, \ldots, v_l, w_{l+1}, \ldots, w_n \rangle = \langle v_1
 	.\]
 \end{proposition}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} Let $(u_1, u_2, \ldots, u_l)$ be a basis of $U$. Extend this to a basis $(u_1, \ldots, u_l, w_{l+1}, \ldots, w_{n})$ of $V$. Then we show that $(w_{l+1} + U, \ldots, w_{n} + U)$ is a basis of $V/U$. (Fill this in).
-\end{adjustbox}
+\begin{proofbox}
+	Let $(u_1, u_2, \ldots, u_l)$ be a basis of $U$. As $U \leq V$, we can extend this to a basis $(u_1, \ldots, u_l, w_{l+1}, \ldots, w_{n})$ of $V$. Then we show that $(w_{l+1} + U, \ldots, w_{n} + U)$ is a basis of $V/U$. (Fill this in).
+\end{proofbox}
 
 \begin{remark}
 	If $U \leq V$, then we say $U$ is proper if $U \neq V$. Then for finite dimensions, $U$ proper\index{proper subspace} implies $\dim U < \dim V$, as $\dim(V/U) > 0$.
@@ -558,9 +457,8 @@ with the convention that $\{v\} \cup \{v\} = \{v, v\}$.
 	\end{enumerate}
 \end{lemma}
 
-
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} We show (ii) implies (i). Let $V = U + W$, then clearly $U, W$ generate $V$. We only need to show uniqueness. Suppose $u_1 + w_1 = u_2 + w_2$. Then
+\begin{proofbox}
+	We show (ii) implies (i). Let $V = U + W$, then clearly $U, W$ generate $V$. We only need to show uniqueness. Suppose $u_1 + w_1 = u_2 + w_2$. Then
 	\[
 		u_1 - u_2 = w_2 - w_1 \in U \cap W = \{0\}
 	.\]
@@ -581,7 +479,7 @@ with the convention that $\{v\} \cup \{v\} = \{v, v\}$.
 	\sum_{u \in \mathcal{B}_1}\lambda_u u - \sum_{w \in \mathcal{B}_2} \lambda_w w = 0
 	.\]
 	Since $\mathcal{B}_1 \cup \mathcal{B}_2$ is free, we get $\lambda_u = \lambda_w = 0$, so $U \cap W = \{0\}$.
-\end{adjustbox}
+\end{proofbox}
 
 \begin{definition}
 	Let $V$ be a vector space over $F$, and $V_1, \ldots, V_l \leq V$. Then
@@ -602,9 +500,9 @@ with the convention that $\{v\} \cup \{v\} = \{v, v\}$.
 	
 \end{definition}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\textbf{Proof:} Exercise.
-\end{adjustbox}
+\begin{proofbox}
+	Exercise.
+\end{proofbox}
 
 \begin{proposition}
 	The following are equivalent:
@@ -638,10 +536,8 @@ with the convention that $\{v\} \cup \{v\} = \{v, v\}$.
 	.\]
 \end{definition}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{example}
+\begin{exbox}
 	\begin{enumerate}[(i)]
-		\item[]
 		\item Take an $m \times n$ matrix $M$, Then we can take the linear map $\alpha : \mathbb{R}^{m} \to \mathbb{R}^{n}$ defined by $X \mapsto M X$.
 		\item Take the linear map $\alpha : \mathcal{C}[0, 1] \to \mathcal{C}[0, 1]$ by
 			\[
@@ -649,10 +545,8 @@ with the convention that $\{v\} \cup \{v\} = \{v, v\}$.
 			.\]
 		\item Fix $x \in [a, b]$. Then we can take a linear map $\mathcal{C}[a, b] \to \mathbb{R}$ by $f \mapsto f(x)$.
 	\end{enumerate}
-	
-\end{example}
 
-\end{adjustbox}
+\end{exbox}
 
 \begin{remark}
 	Let $U, V, W$ be $F$-vector spaces.
@@ -666,8 +560,8 @@ with the convention that $\{v\} \cup \{v\} = \{v, v\}$.
 	Let $V, W$ be $F$-vector spaces, and $\mathcal{B}$ a basis of $V$. Let $\alpha_0 : \mathcal{B} \to W$ be any map, then there is a unique linear map $\alpha : V \to W$ extending $\alpha_0$.
 \end{lemma}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\textbf{Proof:} For $v \in V$, we can write
+\begin{proofbox}
+	For $v \in V$, we can write
 \[
 v = \sum_{i = 1}^{n} \lambda_i v_i
 ,\]
@@ -676,7 +570,7 @@ where $\mathcal{B} = (v_1, \ldots, v_n)$. Then by linearity, we must have
 	\alpha(v) = \alpha \left( \sum_{i = 1}^{n} \lambda_i v_i \right) = \sum_{i = 1}^{}\lambda_i \alpha_0 (v_i)
 .\]
 This is unique as $\mathcal{B}$ is a basis.
-\end{adjustbox}
+\end{proofbox}
 
 \begin{remark}
 	This is true in infinite dimensions as well.
@@ -707,16 +601,16 @@ Often, to define a linear map, we define its value on a basis and extend by line
 	\end{enumerate}
 \end{lemma}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\textbf{Proof:} Exercise.
-\end{adjustbox}
+\begin{proofbox}
+	Exercise.
+\end{proofbox}
 
 \begin{theorem}
 	If $V$ is a vector space over $F$ of dimension $n$, then $V \cong F^{n}$.
 \end{theorem}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} Let $\mathcal{B} = (v_1, \ldots, v_n)$ be a basis of $V$. Then take
+\begin{proofbox}
+	Let $\mathcal{B} = (v_1, \ldots, v_n)$ be a basis of $V$. Then take
 	\begin{align*}
 		\alpha : V &\to F^{n} \\
 		v = \sum_{i = 1}^{n} \lambda_i v_i &\mapsto 
@@ -727,7 +621,7 @@ Often, to define a linear map, we define its value on a basis and extend by line
 		\end{pmatrix}
 	\end{align*}
 	as an isomorphism.
-\end{adjustbox}
+\end{proofbox}
 
 \begin{remark}
 	In this way, choosing a basis of $V$ is like choosing an isomorphism from $V$ to $F^{n}$.
@@ -737,8 +631,8 @@ Often, to define a linear map, we define its value on a basis and extend by line
 	Let $V, W$ be vector spaces over $F$ with finite dimension. Then $V \cong W$ if and only if $\dim V = \dim W$.
 \end{theorem}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\textbf{Proof:} If $\dim V = \dim W$, then $V \cong F^{n} \cong W$, so $V \cong W$.
+\begin{proofbox}
+	If $\dim V = \dim W$, then $V \cong F^{n} \cong W$, so $V \cong W$.
 
 Otherwise, let $\alpha : V \to W$ be an isomorphism, and $\mathcal{B}$ a basis of $V$. Then we show $\alpha(\mathcal{B})$ is a basis of $W$.
 \begin{itemize}
@@ -746,8 +640,7 @@ Otherwise, let $\alpha : V \to W$ be an isomorphism, and $\mathcal{B}$ a basis o
 	\item $\alpha(\mathcal{B})$ is free from the injectivity of $\alpha$.
 \end{itemize}
 Hence $\dim V = \dim W$.
-
-\end{adjustbox}
+\end{proofbox}
 
 \begin{definition}[Kernal and Image]\index{kernel}\index{image}
 	Let $V, W$ be vector spaces over $F$. Let $\alpha : V \to W$ be a linear map. We define
@@ -761,8 +654,8 @@ Hence $\dim V = \dim W$.
 	$\Ker \alpha$ is a subspace of $V$, and $\Img \alpha$ is a subspace of $W$.
 \end{lemma}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\textbf{Proof:} Let $\lambda_1, \lambda_2 \in F$, and $v_1, v_2 \in \Ker \alpha$. Then
+\begin{proofbox}
+	Let $\lambda_1, \lambda_2 \in F$, and $v_1, v_2 \in \Ker \alpha$. Then
 \[
 	\alpha (\lambda_1 v_1 + \lambda_2 v_2) = \lambda_1 \alpha(v_1) + \lambda_2 \alpha(v_2) = 0
 .\]
@@ -773,10 +666,9 @@ Now if $w_1 = \alpha(v_1), w_2 = \alpha (v_2)$, then
 	 \lambda_1 w_1 + \lambda_2 w_2 = \lambda_1 \alpha(v_1) + \lambda_2 \alpha(v_2) = \alpha(\lambda_1 v_1 + \lambda_2 v_2)
 .\]
 Hence $\lambda_1 w_1 + \lambda_2 w_2 \in \Img \alpha$.
-\end{adjustbox}
+\end{proofbox}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{example}
+\begin{exbox}
 	Consider $\alpha : \mathcal{C}^{\infty}(\mathbb{R}) \to \mathcal{C}^{\infty}(\mathbb{R}),$ given by
 	\[
 		f \mapsto \alpha(f) = f'' + f
@@ -785,9 +677,7 @@ Hence $\lambda_1 w_1 + \lambda_2 w_2 \in \Img \alpha$.
 	\[
 		\Ker \alpha = \{f \in \mathcal{C}^{\infty}(\mathbb{R}) \mid f'' + f = 0\} = \langle \sin t, \cos t \rangle
 	.\]
-\end{example}
-
-\end{adjustbox}
+\end{exbox}
 
 \begin{remark}
 	If $\alpha : V \to W$ is linear, then $\alpha$ is injective if and only if $\Ker \alpha = \{0\}$, as
@@ -805,15 +695,14 @@ Hence $\lambda_1 w_1 + \lambda_2 w_2 \in \Img \alpha$.
 	is an isomorphism.
 \end{theorem}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\textbf{Proof:} We proceed in steps.
+\begin{proofbox}
+	We proceed in steps.
 \begin{itemize}
 	\item $\bar \alpha$ is well defined: Note if $v + \Ker \alpha = v' + \Ker \alpha$, then $v - v' \in \Ker \alpha$, so $\alpha(v - v') = 0$. Hence $\alpha(v) = \alpha(v')$.
 	\item $\bar \alpha$ is linear: This follows from linearity of $\alpha$.
 	\item $\bar \alpha$ is a bijection: First, if $\bar \alpha (v + \Ker \alpha) = 0$, then $\alpha(v) = 0$, so $v \in \Ker \alpha$, hence $v + \Ker \alpha = 0 + \Ker \alpha$, so $\alpha$ is injective. Then $\bar \alpha$ is surjective from the definition of the image.
 \end{itemize}
-
-\end{adjustbox}
+\end{proofbox}
 
 \begin{definition}[Rank and Nullity]\index{rank}\index{nullity}
 	We define the rank $r(\alpha) = \rank(\alpha) = \dim \Img \alpha$, and the nullity $n(\alpha) = \nullity(\alpha) = \dim \Ker \alpha$.
@@ -826,9 +715,9 @@ Hence $\lambda_1 w_1 + \lambda_2 w_2 \in \Img \alpha$.
 	.\]
 \end{theorem}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} We have proven that $U/Ker \alpha \cong \Img \alpha$, but we have already proven $\dim U/Ker \alpha = \dim U - r(\alpha)$, which proves the theorem.
-\end{adjustbox}
+\begin{proofbox}
+	We have proven that $U/Ker \alpha \cong \Img \alpha$, but we have already proven $\dim U/Ker \alpha = \dim U - r(\alpha)$, which proves the theorem.
+\end{proofbox}
 
 \begin{lemma}
 	Let $V, W$ be vector spaces over $F$ of equal finite dimension. Let $\alpha : V \to W$ be a linear map. Then the following are equivalent:
@@ -878,13 +767,13 @@ This follows immediately from the rank-nullity theorem.
 	$M_{m, n}(F)$ is a vector space over $F$, and $\dim M_{m, n}(F) = mn$
 \end{proposition}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} Let $E_{ij}$ be the matrix with $a_{xy} = \delta_{xi}\delta_{yj}$. Then $(E_{ij})$ is a basis of $M_{m, n}(F)$, as
+\begin{proofbox}
+	Let $E_{ij}$ be the matrix with $a_{xy} = \delta_{xi}\delta_{yj}$. Then $(E_{ij})$ is a basis of $M_{m, n}(F)$, as
 	\[
 		N = (a_{ij}) = \sum_{i, j}a_{ij} E_{ij}
 	,\]
 	and $(E_{ij})$ is free.
-\end{adjustbox}
+\end{proofbox}
 
 If $V, W$ are vector spaces over $F$, and $\alpha : V \to W$ is a linear map, we take a basis $\mathcal{B} = (v_1, \ldots, v_n)$ of $V$, and $\mathcal{C} = (w_1, \ldots, w_m)$ of $W$. Let $v \in V$, then
 \[
@@ -921,8 +810,8 @@ By definition, if $[\alpha]_{\mathcal{B}, \mathcal{C}} = (a_{ij})$, then
 	.\] 
 \end{lemma}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\textbf{Proof:} Let $v \in V$, then
+\begin{proofbox}
+	Let $v \in V$, then
 \[
 v = \sum_{j = 1}^{n} \lambda_j v_j
 .\]
@@ -931,8 +820,7 @@ Then
 	 \alpha(v) &= \alpha \left( \sum_{j = 1}^{n} \lambda_j v_j \right) = \sum_{j = 1}^{n} \lambda_j \alpha(v_j) \\
 		   &= \sum_{j = 1}^{n} \lambda_j \sum_{i = 1}^{n} a_{ij} w_i = \sum_{i = 1}^{m} \left( \sum_{j = 1}^{n} a_{ij} \lambda_j \right) w_i.
 \end{align*}
-
-\end{adjustbox}
+\end{proofbox}
 
 \begin{lemma}
 	If $U \to V$ is linear under $\beta$, $V \to W$ linear under $\alpha$, then $U \to W$ is linear under $\alpha \to W$. Let $\mathcal{A}$ be a basis of $U$, $\mathcal{B}$ a basis of $V$, and $\mathcal{C}$ a basis of $W$. Then
@@ -941,21 +829,21 @@ Then
 	.\] 
 \end{lemma}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} Let $A = [\alpha]_{\mathcal{B}, \mathcal{C}}$, $B = [\beta]_{\mathcal{A}, \mathcal{B}}$. Pick $u_l \in A$. Then
+\begin{proofbox}
+	Let $A = [\alpha]_{\mathcal{B}, \mathcal{C}}$, $B = [\beta]_{\mathcal{A}, \mathcal{B}}$. Pick $u_l \in A$. Then
 	\begin{align*}
 		(\alpha \circ \beta)(u_l) &= \alpha(\beta(u_l)) = \alpha\left( \sum_{j} b_{jl} v_j \right) \\
 					  &= \sum_{j} b_{jl} \alpha(v_j) = \sum_{j}b_{jl}\sum_{i}a_{ij}w_i \\
 					  &= \sum_{i}\left( \sum_{j} a_{ij} b_{jl} \right) w_i.
 	\end{align*}
-\end{adjustbox}
+\end{proofbox}
 
 \begin{proposition}
 If $V$ and $W$ are vector spaces over $F$, and $\dim V = n$, $\dim W = m$, then $L(V, W) \cong M_{m, n}(F)$, so $\dim L(V, W) = m \times n$.
 \end{proposition}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\textbf{Proof:} Fix $\mathcal{B}, \mathcal{C}$ bases of $V$ and $W$. We show
+\begin{proofbox}
+	Fix $\mathcal{B}, \mathcal{C}$ bases of $V$ and $W$. We show
 \begin{align*}
 	\theta : L(V, W) &\to M_{m, n}(F) \\
 	\alpha &\mapsto [\alpha]_{\mathcal{B}, \mathcal{C}}
@@ -971,8 +859,7 @@ is an isomorphism.
 		This can be extended by linearity, and $[\alpha]_{\mathcal{B}, \mathcal{C}} = A$.
 	\item $\theta$ is injective: If $[\alpha]_{\mathcal{B}, \mathcal{C}} = 0$, then $\alpha = 0$ for all $v$.
 \end{itemize}
-
-\end{adjustbox}
+\end{proofbox}
 
 \begin{remark}
 	If $\mathcal{B}, \mathcal{C}$ are bases of $V, W$ and $\varepsilon_{\mathcal{B}} : v \mapsto [v]_{\mathcal{B}}$, $\varepsilon_{\mathcal{C}} : w \mapsto [w]_{\mathcal{C}}$, then the following diagram commutes:
@@ -1030,12 +917,12 @@ Consider $\alpha : V \to W$, where $V$ has two bases $\mathcal{B} = \{v_1, \ldot
 	$[v]_{\mathcal{B}} = P[v]_{\mathcal{B}'}$.
 \end{lemma}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} In general $[\alpha(v)]_{\mathcal{C}} = [\alpha]_{\mathcal{B}, \mathcal{C}} [v]_{\mathcal{B}}$. If $P = [\id]_{\mathcal{B}', \mathcal{B}}$, then
+\begin{proofbox}
+	In general $[\alpha(v)]_{\mathcal{C}} = [\alpha]_{\mathcal{B}, \mathcal{C}} [v]_{\mathcal{B}}$. If $P = [\id]_{\mathcal{B}', \mathcal{B}}$, then
 	\[
 		[v]_{\mathcal{B}} = [\id(v)]_{\mathcal{B}} = [\id]_{\mathcal{B}', \mathcal{B}} [v]_{\mathcal{B}'} = P[v]_{\mathcal{B}'}
 	.\]
-\end{adjustbox}
+\end{proofbox}
 
 \begin{remark} 
 	$P$ is an $n \times n$ invertible matrix, and $P^{-1}$ is the change of basis matrix from $B$ to $B'$. Indeed,
@@ -1058,8 +945,8 @@ Now given $\alpha : V \to W$, we wish to find how $[\alpha]_{\mathcal{B}, \mathc
 	.\]
 \end{proposition}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\textbf{Proof:} Combining the facts we know, we get
+\begin{proofbox}
+	Combining the facts we know, we get
 \[
 	[\alpha(v)]_{\mathcal{C}} = Q[\alpha(v)]_{\mathcal{C}'} = Q[a]_{\mathcal{B}', \mathcal{C}'} [v]_{\mathcal{B}'} = Q A' [v]_{\mathcal{B}'}.
 \]
@@ -1068,7 +955,7 @@ But we also know
 	[\alpha(v)]_{\mathcal{C}} = [\alpha]_{\mathcal{B}, \mathcal{C}}[v]_{\mathcal{B}} = A P [v]_{\mathcal{B}'}
 .\]
 But since this is true for any $v \in V$, we get $QA' = AP$, so $A' = Q^{-1}AP$.
-\end{adjustbox}
+\end{proofbox}
 
 \begin{definition}[Equivalent matrices]\index{equivalent matrices}
 	Two matrices $A, B \in M_{m, n}(F)$ are equivalent if $A' = Q^{-1}AP$, where $Q \in M_{m, m}$ and $P \in M_{n, n}$ are invertible.
@@ -1095,8 +982,8 @@ But since this is true for any $v \in V$, we get $QA' = AP$, so $A' = Q^{-1}AP$.
 	.\]
 \end{proposition}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} Choose $\mathcal{B}$ and $\mathcal{C}$ wisely. Fix $r \in \mathbb{N}$ such that $\dim \Ker \alpha = n - r$. Let $N(\alpha) = \Ker(\alpha) = \{x \in V \mid \alpha(x) = 0\}$. Fix any basis of $N(x)$, $(v_{r+1}, \ldots, v_n)$, and extend it to a basis $\mathcal{B} = (v_1, \ldots, v_r, v_{r+1}, \ldots, v_n)$.
+\begin{proofbox}
+	Choose $\mathcal{B}$ and $\mathcal{C}$ wisely. Fix $r \in \mathbb{N}$ such that $\dim \Ker \alpha = n - r$. Let $N(\alpha) = \Ker(\alpha) = \{x \in V \mid \alpha(x) = 0\}$. Fix any basis of $N(x)$, $(v_{r+1}, \ldots, v_n)$, and extend it to a basis $\mathcal{B} = (v_1, \ldots, v_r, v_{r+1}, \ldots, v_n)$.
 
 	We claim that $(\alpha(v_1), \ldots, \alpha(v_r))$ is a basis of $\Img \alpha$.
 	\begin{itemize}
@@ -1135,7 +1022,7 @@ But since this is true for any $v \in V$, we get $QA' = AP$, so $A' = Q^{-1}AP$.
 			0 & 0
 		\end{pmatrix}	
 	.\]
-\end{adjustbox}
+\end{proofbox}
 
 \begin{remark}
 	This proves another proof of the rank-nullity theorem: $r(\alpha) + n(\alpha) = n$.
@@ -1164,8 +1051,8 @@ But since this is true for any $v \in V$, we get $QA' = AP$, so $A' = Q^{-1}AP$.
 	Two matrices are equivalent if and only if $r_c(A) = r_c(A')$.
 \end{proposition}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\textbf{Proof:} If $A$ and $A'$ are equivalent then they coorespond to the same linear map $\alpha$ except in two different bases.
+\begin{proofbox}
+	If $A$ and $A'$ are equivalent then they coorespond to the same linear map $\alpha$ except in two different bases.
 
 Conversely, if $r_c(A) = r_c(A') = r$, then both $A$ and $A'$ are equivalent to
 \[
@@ -1175,14 +1062,14 @@ Conversely, if $r_c(A) = r_c(A') = r$, then both $A$ and $A'$ are equivalent to
 \end{pmatrix}
 ,\]
 hence are equivalent.
-\end{adjustbox}
+\end{proofbox}
 
 \begin{theorem}
 	$r_c(A) = r_c(A^{T})$, so column rank equals row rank.
 \end{theorem}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} If $r = r_c(A)$, then
+\begin{proofbox}
+	If $r = r_c(A)$, then
 	\[
 	Q^{-1}AP =
 	\begin{pmatrix}
@@ -1199,7 +1086,7 @@ hence are equivalent.
 		\end{pmatrix}
 	.\]
 	Hence $r_c(A^{T}) = r = r_c(A)$.
-\end{adjustbox}
+\end{proofbox}
 
 \newpage
 
@@ -1273,8 +1160,8 @@ This procedure is what is usually done when solving a system of linear equations
 	If $A$ is an $n \times n$ square invertible matrix, then we can obtain $I_n$ using either only row or column elementary operations.
 \end{lemma}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\textbf{Proof:} We prove for column operations; row operations are analogous. We proceed by induction on the number of rows.
+\begin{proofbox}
+	We prove for column operations; row operations are analogous. We proceed by induction on the number of rows.
 \begin{itemize}
 	\item Suppose that we could write $A$ in the form
 		\[
@@ -1288,8 +1175,7 @@ This procedure is what is usually done when solving a system of linear equations
 	\item We swap columns $h + 1$ and $j$, so $\lambda = a_{h+1,h+1} \neq 0$, and then divide by $\lambda$.
 	\item Finally, we can use the $1$ in $a_{h+1, h+1}$ to clear out the rest of the $(h+1)$'st row.
 \end{itemize}
-
-\end{adjustbox}
+\end{proofbox}
 
 This gives $A E_1 \ldots E_c = I_n$, or $A^{-1} = E_1 \ldots E_c$. This is an algorithm for computing $A^{-1}$.
 
@@ -1310,10 +1196,8 @@ This gives $A E_1 \ldots E_c = I_n$, or $A^{-1} = E_1 \ldots E_c$. This is an al
 	If $\alpha : V \to F$ is linear, then we say $\alpha$ is a linear form.\index{linear form}
 \end{definition}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{example}
+\begin{exbox}
 	\begin{enumerate}[(i)]
-		\item[]
 		\item $\tr : M_{n, n}(F) \to F$ is a linear map, so $\tr \in M_{n,n}^{\ast}(F)$.
 		\item Let $f : [0, 1] \to \mathbb{R}$ by $x \mapsto f(x)$, and $Tf : \mathcal{C}^{\infty}([0,1], \mathbb{R}) \to \mathbb{R}$ by
 			\[
@@ -1321,8 +1205,7 @@ This gives $A E_1 \ldots E_c = I_n$, or $A^{-1} = E_1 \ldots E_c$. This is an al
 			.\]
 			Then $Tf$ is a linear form.
 	\end{enumerate}
-\end{example}
-\end{adjustbox}
+\end{exbox}
 
 \begin{lemma}
 	Let $V$ be a vector space over $F$ with a finite basis $\mathcal{B} = \{e_1, \ldots, e_n\}$. Then there exists a basis for $V^{\ast}$ given by $\mathcal{B}^{\ast} = \{\varepsilon_1, \ldots, \varepsilon_n\}$, with
@@ -1347,16 +1230,13 @@ This gives $A E_1 \ldots E_c = I_n$, or $A^{-1} = E_1 \ldots E_c$. This is an al
 	.\]
 \end{remark}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} Let $(\varepsilon_1, \ldots, \varepsilon_n)$ be defined as above.
+\begin{proofbox}
+	Let $(\varepsilon_1, \ldots, \varepsilon_n)$ be defined as above.
 
 	We prove $(\varepsilon_i)$ are free. Indeed, suppose
 	\[
 		\sum_{j = 1}^{n} \lambda_j \varepsilon_j = 0 \implies \sum_{j = 1}^{n} \lambda_j e_j(e_i) = 0 \implies \lambda_i = 0
 	.\]
-\end{adjustbox}
-
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
 	Now we show $(\varepsilon_i)$ generates $V^{\ast}$. Pick $\alpha \in V^{\ast}$, then for $x \in V$, we have
 	\[
 		\alpha(x) = \alpha \Biggl( \sum_{j = 1}^{n} \lambda_j e_j \Biggr) = \sum_{j = 1}^{n} \lambda_j \alpha(e_j)
@@ -1371,7 +1251,7 @@ This gives $A E_1 \ldots E_c = I_n$, or $A^{-1} = E_1 \ldots E_c$. This is an al
 							      &= \sum_{j = 1}^{n} \alpha(e_j) \lambda_j = \alpha(x).
 	\end{align*}
 	Hence $(\varepsilon_i)$ generates $V^{\ast}$.
-\end{adjustbox}
+\end{proofbox}
 
 
 \begin{corollary}
@@ -1403,17 +1283,17 @@ This is very different in infinite dimensions.
 		U^{\circ} = \{\alpha \in V^{\ast} \mid \alpha(u) = 0 \; \forall u \in U\}
 	.\]
 \end{definition}
-\newpage
 
 \begin{lemma}
 	\begin{enumerate}[\normalfont(i)]
+		\item[]
 		\item $U^{\circ} \le V^{\ast}$.
 		\item If $U \leq V$ and $\dim V < \infty$, then $\dim V = \dim U + \dim U^{\circ}$.
 	\end{enumerate}
 \end{lemma}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} Suppose $\alpha, \alpha' \in U^{\circ}$. Then for all $u \in U$,
+\begin{proofbox}
+	Suppose $\alpha, \alpha' \in U^{\circ}$. Then for all $u \in U$,
 	\[
 		(\alpha + \alpha')(u) = \alpha(u) + \alpha'(u) = 0
 	,\]
@@ -1422,7 +1302,7 @@ This is very different in infinite dimensions.
 	Now let $U \leq V$, and $\dim V = n$. Let $(e_1, \ldots, e_k)$ be a basis of $U$ and complete it to a basis $\mathcal{B} = (e_1, \ldots, e_k, e_{k+1}, \ldots, e_n)$ of $V$. Let $(\varepsilon_1, \ldots, \varepsilon_n)$ be the dual basis of $\mathcal{B}$. Then I claim $U^{\circ} = \langle \varepsilon_{k+1}, \ldots, \varepsilon_n\rangle$.
 
 	Indeed, pick $i > k$, then $\varepsilon_i(e_k) = \delta_{ik} = 0$, so $\varepsilon_i \in U^{\circ}$. Now let $\alpha \in U^{\circ}$. Then $(\varepsilon_1, \ldots, \varepsilon_n)$ is a basis of $V^{\ast}$ implies $\alpha = \sum \alpha_i \varepsilon_i$. But $\alpha \in U^{\circ} \implies \alpha(e_i) = 0$, which gives $\alpha_i = 0$ for $i \leq k$. Hence $\alpha \in \langle \varepsilon_{k+1}, \ldots, \varepsilon_n\rangle$.
-\end{adjustbox}
+\end{proofbox}
 
 \begin{definition}
 	Let $V, W$ be vector spaces over $F$, and let $\alpha \in L(V, W)$. Then the map
@@ -1433,8 +1313,8 @@ This is very different in infinite dimensions.
 	is an element of $L(W^{\ast}, V^{\ast}$. This is known as the dual map of $\alpha$.\index{dual map}
 \end{definition}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\textbf{Proof:} $\varepsilon \circ \alpha : V \to F$ is linear due to the linearity of $\varepsilon$ and $\alpha$. Hence $\varepsilon \circ \alpha \in V^{\ast}$.
+\begin{proofbox}
+	$\varepsilon \circ \alpha : V \to F$ is linear due to the linearity of $\varepsilon$ and $\alpha$. Hence $\varepsilon \circ \alpha \in V^{\ast}$.
 
 We show $\alpha^{\ast}$ is linear. Let $\theta_1, \theta_2 \in W^{\ast}$. Then,
 \[
@@ -1445,7 +1325,7 @@ Similarly, if $\lambda \in F$, then
 	\alpha^{\ast}(\lambda \theta) = \lambda \alpha^{\ast}(\theta)
 .\]
 Hence $\alpha^{\ast} \in L(W^{\ast}, V^{\ast})$.
-\end{adjustbox}
+\end{proofbox}
 
 \begin{proposition}
 	Let $V, W$ be finite dimensional spaces over $F$ with bases $\mathcal{B}, \mathcal{C}$. Let $\mathcal{B}^{\ast}, \mathcal{C}^{\ast}$ be the dual bases for $V^{\ast}, W^{\ast}$. Then
@@ -1454,8 +1334,8 @@ Hence $\alpha^{\ast} \in L(W^{\ast}, V^{\ast})$.
 	.\]
 \end{proposition}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} Let $\mathcal{B} = (b_1, \ldots, b_n), \mathcal{C} = (c_1, \ldots, c_m)$, $\mathcal{B}^{\ast} = (\beta_1, \ldots, \beta_n), \mathcal{C}^{\ast} = (\gamma_1, \ldots, \gamma_m)$. Say $[\alpha]_{\mathcal{B}, \mathcal{C}} = A = (a_{ij})$. Recall $\alpha^{\ast} : W^{\ast} \to V^{\ast}$, so let us compute
+\begin{proofbox}
+	Let $\mathcal{B} = (b_1, \ldots, b_n), \mathcal{C} = (c_1, \ldots, c_m)$, $\mathcal{B}^{\ast} = (\beta_1, \ldots, \beta_n), \mathcal{C}^{\ast} = (\gamma_1, \ldots, \gamma_m)$. Say $[\alpha]_{\mathcal{B}, \mathcal{C}} = A = (a_{ij})$. Recall $\alpha^{\ast} : W^{\ast} \to V^{\ast}$, so let us compute
 	\begin{align*}
 		\alpha^{\ast}(\gamma_r)(b_s) = \gamma_r \circ \alpha(b_s) = \gamma_r \Biggl( \sum_{t} a_{ts} c_t \Biggr) = \sum_{t} a_{ts} \gamma_r(c_t) = a_{rs}.
 	\end{align*}
@@ -1476,7 +1356,7 @@ Hence $\alpha^{\ast} \in L(W^{\ast}, V^{\ast})$.
 		\alpha^{\ast}(\gamma_r)(b_s) = m_{sr}
 	.\]
 	This gives $a_{rs} = m_{sr}$, as desired.
-\end{adjustbox}
+\end{proofbox}
 
 \newpage
 
@@ -1504,12 +1384,12 @@ Consider $\mathcal{E}^{\ast} = (\varepsilon_1, \ldots, \varepsilon_n)$ and $\mat
 		(P^{-1})^{T}
 	.\]
 \end{lemma}
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\textbf{Proof:} We have
+\begin{proofbox}
+	We have
 \[
 	[\id]_{\mathcal{F}^{\ast}, \mathcal{E}^{\ast}} = [\id]_{\mathcal{E}, \mathcal{F}}^{T} = ([\id]_{\mathcal{F}, \mathcal{E}}^{-1})^{T}
 .\]
-\end{adjustbox}
+\end{proofbox}
 
 \subsection{Properties of the Dual Map}%
 \label{sub:properties_of_the_dual_map}
@@ -1524,8 +1404,7 @@ Consider $\mathcal{E}^{\ast} = (\varepsilon_1, \ldots, \varepsilon_n)$ and $\mat
 
 There are many problems where the understanding of $\alpha^{\ast}$ is simpler than the understanding of $\alpha$.
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\textbf{Proof:}
+\begin{proofbox}
 \begin{enumerate}[(i)]
 	\item Let $\varepsilon \in W^{\ast}$. Then $\varepsilon \in \Ker \alpha^{\ast} \iff \alpha^{\ast} (\varepsilon) = 0$. But $\alpha^{\ast}(\varepsilon) = \varepsilon(\alpha)$, so for all $x$,
 			\[
@@ -1550,7 +1429,7 @@ There are many problems where the understanding of $\alpha^{\ast}$ is simpler th
 			.\]
 			Since the dimensions are the same, we get $\Img \alpha^{\ast} = (\Ker \alpha)^{\circ}$.
 \end{enumerate}
-\end{adjustbox}
+\end{proofbox}
 
 \subsection{Double Dual}%
 \label{sub:double_dual}
@@ -1567,15 +1446,13 @@ V \cong V^{\ast \ast}
 .\]
 This is known as a reflexive space\index{reflexive space}.
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{example}
+\begin{exbox}
 	For $p > 2$, define
 	\[
 		L^{p}(\mathbb{R}) = \biggl\{ f : \mathbb{R} \to \mathbb{R} \,\bigg\vert\, \int_{\mathbb{R}} |f(x)|^{p} \diff x < \infty \biggr\}
 	.\]
 	This is an example of a reflexive space.
-\end{example}
-\end{adjustbox}
+\end{exbox}
 
 In general, there is a canonical embedding of $V$ into $V^{\ast \ast}$. Indeed, pick $v \in V$. We define
 \begin{align*}
@@ -1593,8 +1470,8 @@ Then this is linear, as
 
 In infinite dimension, under certain assumption (e.g. Banach space) we can show that the hat map is injective.
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} If $V$ is finite dimensional, then first note that for $v \in V$, $\hat v \in V^{\ast \ast}$. We show the hat map is linear: for $v_1, v_2 \in V$, $\lambda_1, \lambda_2 \in F$ and $\varepsilon \in V^{\ast}$,
+\begin{proofbox}
+	If $V$ is finite dimensional, then first note that for $v \in V$, $\hat v \in V^{\ast \ast}$. We show the hat map is linear: for $v_1, v_2 \in V$, $\lambda_1, \lambda_2 \in F$ and $\varepsilon \in V^{\ast}$,
 	\[
 		\widehat{\lambda_1 v_1 + \lambda_2 v_2} (\varepsilon) = \varepsilon(\lambda_1 v_1 + \lambda_2 v_2) = \lambda_1 \varepsilon(v_1) + \lambda_1 \varepsilon_2(v_2) = \lambda_1 \hat v_1(\varepsilon) + \lambda_2 \hat v_2 (\varepsilon)
 	.\]
@@ -1605,7 +1482,7 @@ In infinite dimension, under certain assumption (e.g. Banach space) we can show 
 	Hence $\hat e \neq \{0\}$, so the hat map is injective.
 
 	Finally, we show the hat map is an isomorphism. We already know $\dim V = \dim V^{\ast}$, and as a result $\dim V^{\ast} = \dim V^{\ast \ast}$. Thus, since the hat map is injective, it is an isomorphism.
-\end{adjustbox}
+\end{proofbox}
 
 \begin{lemma}
 	Let $V$ be a finite dimensional vector space over $K$, and let $U \leq V$. Then
@@ -1618,15 +1495,15 @@ In infinite dimension, under certain assumption (e.g. Banach space) we can show 
 	.\]
 \end{lemma}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} We will show $U \leq U^{\circ \circ}$. Indeed, let $u \in U$. Then for all $\varepsilon \in U^{\circ}$, $\varepsilon(u) = 0$. So for all $\varepsilon \in U^{\circ}$, $\hat u(\varepsilon) = \varepsilon(u) = 0$. Hence $\hat u \in U^{\circ \circ}$, so $\hat U \subset U^{\circ \circ}$.
+\begin{proofbox}
+	We will show $U \leq U^{\circ \circ}$. Indeed, let $u \in U$. Then for all $\varepsilon \in U^{\circ}$, $\varepsilon(u) = 0$. So for all $\varepsilon \in U^{\circ}$, $\hat u(\varepsilon) = \varepsilon(u) = 0$. Hence $\hat u \in U^{\circ \circ}$, so $\hat U \subset U^{\circ \circ}$.
 
 	But then we can compute dimension to find
 	\[
 	\dim U^{\circ \circ} = \dim V - \dim U^{\circ} = \dim U
 	,\]
 	proving this lemma.
-\end{adjustbox}
+\end{proofbox}
 
 \begin{remark}
 	If $T \leq V^{\ast}$, then
@@ -1643,8 +1520,7 @@ In infinite dimension, under certain assumption (e.g. Banach space) we can show 
 	\end{enumerate}
 \end{lemma}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\textbf{Proof:}
+\begin{proofbox}
 \begin{enumerate}[(i)]
 	\item Let $\theta \in V^{\ast}$, then
 		\begin{align*}
@@ -1657,7 +1533,7 @@ In infinite dimension, under certain assumption (e.g. Banach space) we can show 
 			(U_1 \cap U_2)^{\circ} = (U_1^{\circ} + U_2^{\circ})^{\circ \circ} = U_1^{\circ} + U_2^{\circ}
 		.\]
 \end{enumerate}
-\end{adjustbox}
+\end{proofbox}
 
 \newpage
 
@@ -1672,8 +1548,7 @@ In infinite dimension, under certain assumption (e.g. Banach space) we can show 
 	is a \textbf{bilinear form}\index{bilinear form} if it is linear in both components.
 \end{definition}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{example}
+\begin{exbox}
 	\begin{enumerate}[(i)]
 		\item[]
 		\item Take $V \times V^{\ast} \to K$ by $(v, \theta) \mapsto \theta(v)$.
@@ -1699,8 +1574,7 @@ In infinite dimension, under certain assumption (e.g. Banach space) we can show 
 			.\]
 			This can be thought of as an infinite dimensional scalar product.
 	\end{enumerate}
-\end{example}
-\end{adjustbox}
+\end{exbox}
 
 \begin{definition}
 	Let $\mathcal{B} = (e_1, \ldots, e_m)$ be a basis of $U$, and $\mathcal{C} = (f_1, \ldots, f_n)$ be a basis of $V$. If $\phi : U \times V \to F$ is a bilinear form, then the matrix of $\phi$ with respect to $\mathcal{B}$ and $\mathcal{C}$\index{matrix of bilinear form} is
@@ -1715,8 +1589,8 @@ In infinite dimension, under certain assumption (e.g. Banach space) we can show 
 	.\]
 \end{lemma}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\textbf{Proof:} Let
+\begin{proofbox}
+	Let
 \[
 u = \sum_{i = 1}^{m} \lambda_i e_i, \quad v = \sum_{j = 1}^{n} \mu_ij f_j
 .\]
@@ -1725,7 +1599,7 @@ Since $\phi$ is a bilinear form,
 	\phi(u, v) &= \phi \Biggl( \sum_{i = 1}^{m} \lambda_i e_i, \sum_{j = 1}^{n} \mu_j e_j \Biggr) = \sum_{i = 1}^{m}\sum_{j = 1}^{n} \lambda_i \mu_j \phi(e_i, f_j) \\
 		   &= [u]_{\mathcal{B}}^{T}[\phi]_{\mathcal{B}, \mathcal{C}}[v]_{\mathcal{C}}.
 \end{align*}
-\end{adjustbox}
+\end{proofbox}
 
 \begin{remark}
 	$[\phi]_{\mathcal{B},\mathcal{C}}$ is the only matrix satisfying this property.
@@ -1753,8 +1627,8 @@ Since $\phi$ is a bilinear form,
 	\end{align*}
 \end{lemma}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} We have $\phi_L(e_i, f_j) = \phi(e_i, f_j) = A_{ij}$, and so
+\begin{proofbox}
+	We have $\phi_L(e_i, f_j) = \phi(e_i, f_j) = A_{ij}$, and so
 	\[
 		\phi_L(e_i) = \sum A_{ij} \eta_j
 	.\]
@@ -1763,7 +1637,7 @@ Since $\phi$ is a bilinear form,
 		\phi_R(f_{j}) = \sum A_{ij} \varepsilon_i
 	.\]
 	This naturally gives our result.
-\end{adjustbox}
+\end{proofbox}
 
 \begin{definition}
 	Let $\Ker \phi_L$ be the left kernel of $\phi$, and $\Ker \phi_R$ be the right kernel of $\phi$.
@@ -1781,9 +1655,9 @@ Since $\phi$ is a bilinear form,
 	If $\phi$ is non-degenerate, then $\dim U = \dim V$.
 \end{corollary}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} $\phi$ is non-degenerate if and only if $\Ker \phi_L = \{0\}$ and $\Ker \phi_R = \{0\}$. But this implies $\nullity (A^{T}) = 0$ and $\nullity (A) = 0$, hence by rank-nullity theorem, we must have $\rank (A^{T}) = \dim U$, and $\rank (A) = \dim V$. But this gives $A$ invertible and $\dim U = \dim V$.
-\end{adjustbox}
+\begin{proofbox}
+	$\phi$ is non-degenerate if and only if $\Ker \phi_L = \{0\}$ and $\Ker \phi_R = \{0\}$. But this implies $\nullity (A^{T}) = 0$ and $\nullity (A) = 0$, hence by rank-nullity theorem, we must have $\rank (A^{T}) = \dim U$, and $\rank (A) = \dim V$. But this gives $A$ invertible and $\dim U = \dim V$.
+\end{proofbox}
 
 \begin{remark}
 	Taking $\phi : \mathbb{R}^{n} \times \mathbb{R}^{n} \to \mathbb{R}$ by the scalar product, then $\phi$ is non-degenerate, as in the standard basis $\mathcal{B}$,
@@ -1814,13 +1688,13 @@ Since $\phi$ is a bilinear form,
 	.\]
 \end{proposition}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\textbf{Proof:} We have
+\begin{proofbox}
+	We have
 \[
 	\phi(u, v) = [u]_{\mathcal{B}}^{T} [\phi]_{\mathcal{B}, \mathcal{C}}[v]_{\mathcal{C}} = (P[u]_{\mathcal{B}'})^{T}[\phi]_{\mathcal{B},\mathcal{C}}(Q[v]_{\mathcal{C}'}) = [u]_{\mathcal{B}'}^{T} (P^{T} [\phi]_{\mathcal{B}, \mathcal{C}} Q)[v]_{\mathcal{C}'}
 ,\]
 which implies $P^{T}[\phi]_{\mathcal{B}, \mathcal{C}}Q = [\phi]_{\mathcal{B}', \mathcal{C}'}$.
-\end{adjustbox}
+\end{proofbox}
 
 \begin{definition}
 	The rank of $\phi$ ($\rank \phi$) is the rank of any matrix representing $\phi$.\index{rank of bilinear form}
@@ -1850,13 +1724,1048 @@ Note we could have equivalently defined $\rank \phi = \rank \phi_L = \rank \phi_
 	$\tr (AB) = \tr (BA)$.
 \end{lemma}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\textbf{Proof:}
+\begin{proofbox}
 \[
 	\tr (AB) = \sum_{i = 1}^{n} \Biggl( \sum_{j = 1}^{n} a_{ij} b_{ji} \Biggr) = \sum_{j = 1}^{n} \sum_{i = 1}^{n} b_{ji} a_{ij} = \tr (BA)
 .\]
-\end{adjustbox}
+\end{proofbox}
 
+\begin{corollary}
+	Similar matrices have the same trace, as
+	\[
+		\tr(P^{-1}AP) = \tr(APP^{-1}) = \tr(A)
+	.\] 
+\end{corollary}
+
+\begin{definition}
+	If $\alpha : V \to V$ is linear, we can define
+	\[
+		\tr \alpha = \tr([\alpha]_{\mathcal{B}})
+	\]
+	in any basis $\mathcal{B}$.\index{trace of endomorphism}
+\end{definition}
+
+\begin{lemma}
+	If $\alpha : V \to V$ with $\alpha^{\ast} : V^{\ast} \to V^{\ast}$ the dual map,
+\end{lemma}
+
+\begin{proofbox}
+	\[
+		\tr \alpha = \tr([\alpha]_{\mathcal{B}}) = \tr([\alpha]_{\mathcal{B}}^{T}) = \tr([\alpha^{\ast}]_{\mathcal{B}^{\ast}}
+	.\]
+\end{proofbox}
+
+\newpage
+
+\section{Determinants}%
+\label{sec:determinants}
+
+\subsection{Permutations and Transposition}%
+\label{sub:permutations_and_transposition}
+
+We define $S_n$ as the symmetric group\index{symmetric group}, the permutations of $X = \{1, \ldots, n\}$.
+
+The transposition $\tau_{k, \ell} \in S_n$ for $k \neq l$\index{transposition} is $\tau_{k, \ell} = (k, \ell)$.
+
+Then we know any permutation $\sigma$ can be decomposed as a product of transpositions:
+\[
+\sigma = \prod_{i = 1}^{n_{\sigma}} \tau_i
+.\]
+The signature\index{signature}\index{sign} is a map
+\begin{align*}
+	\varepsilon : S_n &\to \{\pm 1\} \\
+	\sigma &\mapsto
+	\begin{cases}
+		1 & n_{\sigma} \text{ even},\\
+		-1 & n_{\sigma} \text{ odd}.
+	\end{cases}
+\end{align*}
+
+\begin{definition}
+	For $A \in M_{n}(K)$, and $A = (a_{ij})$, we define the determinant of $A$\index{determinant} as
+	\[
+		\det A = \sum_{\sigma S_n}\varepsilon(\sigma)a_{\sigma(1) 1} a_{\sigma(2) 2} \cdots a_{\sigma(n) n}
+	.\]
+\end{definition}
+
+\begin{exbox}
+	For $n = 2$, we have
+	\[
+	\det
+	\begin{pmatrix}
+		a_{11} & a_{12} \\
+		a_{21} & a_{22}
+	\end{pmatrix}
+	= a_{11}a_{22} - a_{12}a_{21}
+	.\]
+\end{exbox}
+
+\begin{lemma}
+	If $A = (a_{ij})$ is an upper (or lower) triangular matrix with $0$ on the diagonal, then $\det A = 0$.
+\end{lemma}
+
+\begin{proofbox}
+	\[
+		\det A = \sum_{\sigma \in S_n} a_{\sigma(1) 1} \cdots a_{\sigma(n) n}
+	\]
+	For the summands not to be $0$, we need $\sigma(j) < j$ for all $j \in \{1, \ldots, n\}$. But this is impossible for all $\sigma \in S_n$, so all summands are $0$, and $\det A = 0$.
+
+	Similarly, if $A$ is upper-triangular, not necessarily with $0$'s on the diagonal, then the summands are non-zero only if $\sigma(j) \leq j$ for all $j \in \{1, \ldots, n\}$. By induction and the fact $\sigma$ is a permutation, we get $\sigma(j) = j$ for all $j \in \{1, \ldots, n\}$ and the only term that doesn't vanish is $a_{11}a_{22}\cdots a_{nn}$. Hence
+	\[
+	\det
+	\begin{pmatrix}
+		\lambda_1 & & \ast \\
+		 & \ddots & \\
+		0 &  & \lambda_n
+	\end{pmatrix}
+	= \prod_{i = 1}^{n} \lambda_i = \det
+	\begin{pmatrix}
+		\lambda_1 & & 0 \\
+			  & \ddots & \\
+		\ast & &\lambda_n
+	\end{pmatrix}
+	.\]
+\end{proofbox}
+
+\begin{lemma}
+	$\det A = \det(A^{T})$.
+\end{lemma}
+
+\begin{proofbox}
+	\begin{align*}
+		\det A &= \sum_{\sigma \in S_n} \eps(\sigma) a_{\sigma(1) 1} \cdots a_{\sigma(n) n} = \sum_{\sigma \in S_n} \eps(\sigma) \prod_{i = 1}^{n} a_{\sigma(i) i} \\
+		       &= \sum_{\sigma \in S_n} \eps(\sigma) \prod_{i = 1}^{n} a_{i \sigma^{-1}(i)}.
+	\end{align*}
+	Now remember $1 = \eps(\sigma \sigma^{-1}) = \eps(\sigma) \eps(\sigma^{-1})$, so $\eps(\sigma^{-1}) = \eps(\sigma)$. Hence
+	\begin{align*}
+		\det A &= \sum_{\sigma \in S_n} \eps(\sigma) \prod_{i = 1}^{n} a_{i \sigma^{-1}(i)} = \sum_{\sigma \in S_n} \eps(\sigma^{-1}) \prod_{i = 1}^{n}a_{i \sigma^{-1}(i)} \\
+		       &= \sum_{\sigma \in S_n} \eps(\sigma) \prod_{i = 1}^{n} a_{i \sigma(i)} = \det (A^{T}).
+	\end{align*}
+\end{proofbox}
+
+Our definition of $\det A$ has seemingly come out of nowhere. We want some reason to take this as our definition.
+
+\begin{definition}
+	A volume form\index{volume form} on $K^{n}$ is a function
+	\[
+		\underbrace{K^{n} \times \cdots \times K^{n}}_{n \text{ times}} \to K
+	,\]
+	such that
+	\begin{enumerate}[(i)]
+		\item It is multilinear,\index{multilinear} so for any $1 \leq i \leq n$, and all $(v_1, \ldots, v_{i-1}, v_{i+1}, \ldots, v_n) \in (K^{n})^{n-1}$, we want the map
+			\begin{align*}
+				K^{n} &\to K \\
+				v &\mapsto d(v_1, \ldots, v_{i-1}, v, v_{i+1}, \ldots, v_n)
+			\end{align*}
+			to be linear.
+		\item It is alternate,\index{alternate} so if $v_i = v_j$ for some $i \neq j$, then
+			\[
+				d(v_1, \ldots, v_n) = 0
+			.\]
+	\end{enumerate}
+\end{definition}
+
+Then we want to show that there is in fact only one volume form on $K^{n} \times \cdots \times K^{n}$ given by the determinant: If $A = (a_{ij}) = (A^{(1)} \mid \ldots \mid A^{(n)})$, then we denote
+\[
+	\det A = \det(A^{(1)}, \ldots, A^{(n)})
+.\]
+\begin{lemma}
+	$K^{n} \times \cdots \times K^{n} \to K$ by $(A^{(1)}, \ldots, A^{(n)}) \mapsto \det A$ is a volume form.
+\end{lemma}
+
+\begin{proofbox}
+	\begin{enumerate}[(i)]
+		\item Firstly, this map is multilinear. Pick $\sigma \in S_n$. Then the individual summands $\prod_{i = 1}^{n} a_{\sigma(i)i}$ are multilinear, as there is only one term from each column appearing in this expression.
+
+			Since the sum of multilinear maps is multilinear, $\det$ is multilinear.
+		\item Now we show the map is alternate. Assume $k \neq \ell$, and $A^{(k)} = A^{(\ell)}$. Then we want to show $\det A = 0$. Let $\tau = (k, \ell)$ be a transposition. Then note $A^{(k)} = A^{(\ell)} \iff a_{ij} = a_{i \tau(j)}$ for all $i \in \{1, \ldots, n\}$.
+
+				We can decompose $S_n = A_n \cup \tau A_n$. Here $A_n$ is the alternating group, which are the permutations with an even number of transpositions, and $\tau A_n$ are the permutations with an odd number of transpositions. Thus,
+				\begin{align*}
+					\det A &= \sum_{\sigma \in S_n} \eps(\sigma) \prod_{i = 1}^{n} a_{i \sigma(i)} = \sum_{\sigma \in A_n} \prod_{i = 1}^{n} a_{i \sigma(i)} + \sum_{\sigma \in \tau A_n} - \prod_{i = 1}^{n} a_{i \sigma(i)} \\
+					       &= \sum_{\sigma \in A_n} \prod_{i = 1}^{n}a_{i \sigma(i)} - \sum_{\sigma \in A_n} a_{i \tau \sigma(i)} = \sum_{\sigma \in A_n} \Biggl( \prod_{i = 1}^{n} a_{i \sigma(i)} - \prod_{j = 1}^{n} a_{i \sigma(i)} \Biggr) \\
+					       &= 0.
+				\end{align*}
+	\end{enumerate}
+\end{proofbox}
+
+\begin{lemma}
+	Let $d$ be a volume form. Then swapping two entries changes the sign, so
+	\[
+		d(v_1, \ldots, v_i, \ldots, v_j, \ldots, v_n) = - d(v_1, \ldots, v_j, \ldots, v_i, \ldots, v_n)
+	.\]
+\end{lemma}
+
+\begin{proofbox}
+	\begin{align*}
+		0 &= d(v_1, \ldots, v_i + v_j, \ldots, v_i + v_j, \ldots, v_n) \\
+		  &= d(v_1, \ldots, v_i, \ldots, v_i, \ldots, v_n) + \quad + d(v_1, \ldots, v_i, \ldots, v_j, \ldots, v_n) \\
+		  & \qquad + d(v_1, \ldots, v_j, \ldots, v_i, \ldots, v_n) + d(v_1, \ldots, v_j, \ldots, v_j, \ldots, v_n) \\
+		  &= d(v_1, \ldots, v_i, \ldots, v_j, \ldots, v_n) + d(v_1, \ldots, v_j, \ldots, v_i, \ldots, n).
+	\end{align*}
+\end{proofbox}
+
+\begin{corollary}
+	If $\sigma \in S_n$, and $d$ is a volume form, then
+	\[
+		d(v_{\sigma(1)}, \ldots, v_{\sigma(n)}) = \eps(\sigma) d(v_1, \ldots, v_n)
+	.\]
+\end{corollary}
+
+This follows as $\sigma$ is a product of transpositions.
+
+\begin{theorem}
+	Let $d$ be a volume form on $K^{n}$, and let $A = (A^{(1)}, \ldots, A^{(n)})$. Then,
+	\[
+		d(A^{(1)}, \ldots, A^{(n)}) = d(e_1, \ldots, e_n) \det A
+	.\]
+\end{theorem}
+
+Hence, up to a constant, $\det$ is the only volume form on $K^{n}$.
+
+\begin{proofbox}
+	\begin{align*}
+		d(A^{(1)}, \ldots, A^{(n)}) &= d \Biggl( \sum_{i = 1}^{n} a_{i1}e_1, \ldots, A^{(n)} \Biggr) = \sum_{i = 1}^{n} a_{i1} d(e_1, A^{(2)}, \ldots, A^{(n)}) \\
+					    &= \sum_{i = 1}^{n} a_{i1} \Biggl( e_1, \sum_{j = 1}^{n} a_{j2}e_2, \ldots, A^{(n)}\Biggr) \\
+					    &= \sum_{i = 1}^{n} \sum_{j = 1}^{n} a_{i1}a_{j2} d(e_i, e_j, \ldots, A^{(n)}) \\
+					    &= \sum_{1 \leq i_k \leq n} \Biggl( \prod_{k = 1}^{n} a_{i_k k} \Biggr) d(e_{i_1}, e_{i_2}, \ldots, e_{i_n}).
+	\end{align*}
+	This last term is non-zero if and only if all $i_k$ are distinct, meaning there exists $\sigma \in S_n$ such that $i_k = \sigma(k)$. This means
+	\begin{align*}
+		d(A^{(1)}, \ldots, A^{(n)}) &= \sum_{\sigma \in S_n} \prod_{k = 1}^{n} a_{\sigma(k) k}d(e_{\sigma(1)}, \ldots, e_{\sigma(n)}) \\
+					    &= \sum_{\sigma \in S_n} \Biggl[ \prod_{k = 1}^{n} a_{\sigma(k) k} \Biggr] \eps(\sigma) d(e_1, \ldots, e_n) \\
+					    &= d(e_1, \ldots, e_n) \det A.
+	\end{align*}
+\end{proofbox}
+
+\begin{corollary}
+	$\det$ is the only volume form such that $d(e_1, \ldots, e_n) = 1$.
+\end{corollary}
+
+\newpage
+
+\section{Some Properties of Determinants}%
+\label{sec:some_properties_of_determinants}
+
+\begin{lemma}
+	If $A, B \in M_{n}(F)$, then 
+	\[
+		\det (AB) = (\det A)(\det B)
+	.\]
+\end{lemma}
+
+\begin{proofbox}
+	Pick $A$. Consider the map $d_a : \underbrace{K^{n} \times \cdots \times K^{n}}_{n} \to K$ defined by
+	\[
+		d_A(v_1, \ldots, v_n) = \det(Av_1, \ldots, Av_n)
+	.\]
+	Then $d_A$ is multilinear and alternate, as $v_i \mapsto A v_i$ is linear, and $v_i = v_j \implies A v_i = A v_j$. Thus, there exists $C$ such that
+	\[
+		d_A(v_1, \ldots, v_n) = C \det(v_1, \ldots, v_n)
+	.\]
+	Computing on the canonical basis,
+	\[
+		d_A(e_1, \ldots, e_n) = \det(Ae_1, \ldots, Ae_n) = \det(A_1, \ldots, A_n) = \det A
+	.\]
+	Hence, $C = \det A$.
+
+	Now observe $AB = ((AB)_1, \ldots, (AB)_n)$, so
+	\[
+		\det(AB) = \det(AB_1, \ldots, AB_n) = (\det A)\det(B_1, \ldots, B_n) = (\det A)(\det B)
+	.\]
+\end{proofbox}
+
+\begin{definition}
+	For $A \in M_n(K)$, we say that
+	\begin{enumerate}[(i)]
+		\item $A$ is singular if $\det A = 0$,\index{singular}
+		\item $A$ is non-singular if $\det A \neq 0$.\index{non-singular}
+	\end{enumerate}
+\end{definition}
+
+\begin{lemma}
+	$A$ is invertible implies $A$ is non-singular.
+\end{lemma}
+
+\begin{proofbox}
+	If $A$ is invertible, then there exists $A^{-1}$ such that $AA^{-1} = A^{-1}A = I_n$. Thus
+	\[
+		(\det A)(\det A^{-1}) = \det (AA^{-1}) = \det I_n = 1
+	,\]
+	so $\det A \neq 0$.
+\end{proofbox}
+
+\begin{remark}
+	This also prove $\det A^{-1} = (\det A)^{-1}$.
+\end{remark}
+
+\begin{theorem}
+	Let $A \in M_n(K)$. Then the following are equivalent:
+	\begin{enumerate}[\normalfont(i)]
+		\item $A$ is invertible;
+		\item $A$ is non-singular;
+		\item $r(A) = n$.
+	\end{enumerate}
+\end{theorem}
+
+\begin{proofbox}
+	We have already seen (i) $\iff$ (iii), from rank nullity, and we have just shown (i) $\implies$ (ii). Thus it suffices to show (ii) $\implies$ (iii). Indeed, assume $r(a) < n$.
+
+		Then $r(A) < n \iff \dim \spn \{c_1, \ldots, c_n\} < n$, so there exists $(\lambda_1, \ldots, \lambda_n) \neq (0, \ldots, 0)$ such that
+			\[
+			\sum_{i = 1}^{n} \lambda_i c_i = 0
+			.\]
+			Pick $j$ with $\lambda_j \neq 0$. Then,
+			\[
+			c_j = \frac{1}{\lambda_j} \sum_{i \neq j}\lambda_i c_i
+			.\]
+			This gives
+			\[
+				\det A = \det(c_1, \ldots, c_j, \ldots, c_n) = \det \Biggl( c_1, \ldots, \frac{-1}{\lambda_j} \sum_{i \neq j}\lambda_i c_i, \ldots, c_n \Biggr) = 0
+			.\]
+			Hence by contrapositive, (ii) $\implies$ (iii).
+\end{proofbox}
+
+\begin{remark}
+	This gives a sharp criterion for invertibility of a linear system of $n$ equations with $n$ unknowns.
+\end{remark}
+
+\subsection{Determinant of linear maps}%
+\label{sub:determinant_of_linear_maps}
+
+\begin{lemma}
+	Conjugate matrices have the same determinant.
+\end{lemma}
+
+\begin{proofbox}
+	\[
+		\det(P^{-1}AP) = \det P^{-1} \det A \det P = \det A \det (P^{-1}P) = \det A
+	.\]
+\end{proofbox}
+
+\begin{definition}
+	For $\alpha : V \to V$ linear, we define $\det \alpha = \det([\alpha]_{\mathcal{B}})$.\index{determinant of a linear map}
+\end{definition}
+
+\begin{theorem}
+	$\det : L(V, V) \to K$ satisfies
+	\begin{enumerate}[\normalfont(i)]
+		\item $\det \id = 1$;
+		\item $\det(\alpha \circ \beta) = (\det \alpha) (\det \beta)$;
+		\item $\det \alpha \neq 0$ if and only if $\alpha$ is invertible, and then $\det(\alpha^{-1}) = (\det \alpha)^{-1}$.
+	\end{enumerate}
+\end{theorem}
+
+\begin{proofbox}
+	Pick a basis $\mathcal{B}$ and express in terms of $[\alpha]_{\mathcal{B}}, [\beta]_{\mathcal{B}}$.
+\end{proofbox}
+
+\subsection{Determinant of Block Matrices}%
+\label{sub:determinant_of_block_matrices}
+
+\begin{lemma}
+	For $A \in M_{k}(K)$, $B \in M_{\ell}(K)$, and $C \in M_{k, \ell}(K)$, let
+	\[
+	M =
+	\begin{pmatrix}
+		A & C \\
+		0 & B
+	\end{pmatrix} \in M_n(K)
+	.\]
+	Then, $\det M = (\det A)(\det B)$.
+\end{lemma}
+
+\begin{proofbox}
+	We know that
+	\[
+		\det M = \sum_{\sigma \in S_n} \eps(\sigma) \prod_{i = 1}^{n} m_{\sigma(i)i}
+	.\]
+	Observe, that $m_{\sigma(i)i} = 0$ if $i \leq k$, and $\sigma(i) > k$. Hence,we only need to sum over $\sigma \in S_n$ such that
+	\begin{enumerate}[(i)]
+		\item For all $j \in [1, k]$, $\sigma(j) \ni [1, k]$;
+		\item For all $j \in [k+1, n], \sigma(j) \in [k+1,n]$.
+	\end{enumerate}
+	In other words, we restrict $\sigma$ to $\sigma_1 : \{1, \ldots, k\} \to \{1, \ldots, k\}$ and  $\sigma_2 : \{k+1, \ldots, n\} \to \{k+1, \ldots, n\}$. Hence
+	\[
+		m_{\sigma(j)j} =
+		\begin{cases}
+			a_{\sigma_1(j)j} & j \leq k, \\
+			b_{\sigma_2(j)(j)} & j \geq k.
+		\end{cases}
+	.\]
+	We know $\eps(\sigma) = \eps(\sigma_1) \eps(\sigma_2)$. So
+	\begin{align*}
+		\det M &= \sum_{\sigma \ni S_n}\eps(\sigma) \prod_{i = 1}^{n} m_{\sigma(i)i} = \sum_{\substack{\sigma_1 \in S_k, \\ \sigma_2 \in S_{\ell}}}\eps(\sigma_1 \circ \sigma_2) \prod_{i = 1}^{k} a_{\sigma_1(i)i} \prod_{j = k+1}^{n} b_{\sigma_2(j)j} \\
+		       &= \Biggl( \sum_{\sigma_1 \in S_k} \eps(\sigma_1) \prod_{i = 1}^{k} a_{\sigma_1(i)i} \Biggr) \Biggl( \sum_{\sigma_2 \in S_{\ell}} \eps(\sigma_2) \prod_{j = k+1}^{n} b_{\sigma_2(j)j} \Biggr) \\
+		       &= (\det A)(\det B).
+	\end{align*}
+\end{proofbox}
+
+\begin{corollary}
+	If $A_1, \ldots, A_k$ are square matrices, then
+	\[
+		\det
+	\begin{pmatrix}
+		A_1 & \ast & \cdots & \ast \\
+		0 & A_2 & \cdots & \ast \\
+		 \vdots & \vdots& \ddots & \vdots \\
+		 0 & 0 & \cdots & A_k
+	\end{pmatrix}
+	= (\det A_1) \cdots (\det A_k)
+	.\]
+\end{corollary}
+This follows from induction on the number of matrices. In particular, if $A$ is upper-triangular with $\lambda_i$ on the diagonals, then $\det A = \prod \lambda_i$.
+
+However, note that in general,
+\[
+\det
+\begin{pmatrix}
+	A & B \\
+	C & D
+\end{pmatrix}
+\neq \det A \det D - \det B \det C
+.\]
+
+\begin{remark}
+	In 3 dimensions, $(a, b, c) \mapsto (a \times b) \cdot c$ is a volume form. Thus we can show $\det(a, b, c) = (a \times b) \cdot c$.
+\end{remark}
+
+\newpage
+
+\section{Adjugate Matrix}%
+\label{sec:adjugate_matrix}
+
+Observe by swapping two columns in $A = (A^{(1)}, \ldots, A^{(n)})$, the determinant alternates parity. Using the fact that $\det A = \det (A^{T})$, we can see that swapping two rows also changes the parity of the determinant.
+
+\subsection{Column expansion and Adjugate Matrix}%
+\label{sub:column_expansion_and_adjugate_matrix}
+
+It is hard to compute the determinant using our current definitions. Using column expansion, we can reduce the computation of $n \times n$ determinants to $(n-1) \times (n-1)$ determinants.
+
+\begin{definition}
+	Let $A \in M_n(K)$. Pick $i, j \in \{1, \ldots, n\}$. We define $A_{\widehat{ij}} \in M_{n-1}(K)$, obtained by removing the $i$'th row and $j$'th column from $A$.
+\end{definition}
+
+\begin{lemma}
+	Let $A \in M_n(K)$.
+	\begin{enumerate}[\normalfont(i)]
+		\item Pick $1 \leq j \leq n$, then:
+			\[
+				\det A = \sum_{i = 1}^{n}(-1)^{i+j} a_{ij} \det A_{\widehat{ij}}
+			.\]
+		\item Pick $1 \leq i \leq n$, then:
+			\[
+				\det A = \sum_{j = 1}^{n} (-1)^{i+j} a_{ij} \det A_{\widehat{ij}}
+			.\]
+	\end{enumerate}
+\end{lemma}
+
+\begin{proofbox}
+	We prove expansion with respect to the $j$'th column. Then row expansion will follow by taking the transpose. First, we can write $A = (A^{(1)}, \ldots, A^{(j)}, \ldots, A^{(n)})$. Then,
+	\[
+		A^{(j)} = \sum_{i = 1}^{n} a_{ij}e_i
+	.\]
+	Hence we get
+	\[
+		\det \Biggl( A^{(1)}, \ldots, \sum_{i = 1}^{n} a_{ij}e_i, \ldots, A^{(n)} \Biggr) = \sum_{i= 1}^{n} a_{ij} \det (A^{(1)}, \ldots, e_i, \ldots, A^{(n)})
+	.\]
+	Now, we can compute:
+
+	\begin{align*}
+		\det(A^{(1)}, &\ldots, e_i, \ldots, A^{(n)}) = \det
+		\begin{pmatrix}
+			& & 0 & & \\
+			& & \vdots & & \\
+			A^{(1)} & \cdots & 1 & \cdots & A^{(n)} \\
+			& & \vdots & & \\
+			& & 0 & &
+		\end{pmatrix}
+		\\
+							    &= (-1)^{j-1} \det
+							    \begin{pmatrix}
+								    0 & & & & & & \\
+								    \vdots & & & & & & \\
+								    1 & A^{(1)} & \cdots & A^{(j-1)} & A^{(j+1)} & \cdots & A^{(n)} \\
+								    \vdots & & & & & & \\
+								    0 & & & & & &
+							    \end{pmatrix} \\
+							    &= (-1)^{i-1}(-1)^{j-1} \det
+							    \begin{pmatrix}
+								    1 & a_{i1} & \cdots & a_{ij-1} & a_{ij+1} & \cdots & a_{in} \\
+								    0 && & & & & \\
+								    \vdots & & & A_{\widehat{ij}} & & & \\
+								    0 & & & & & &
+							    \end{pmatrix}
+							    \\
+							    &= (-1)^{i+j}\det(A_{\widehat{ij}}).
+	\end{align*}
+
+	Combining these facts,
+	\[
+	\det A = \sum_{i = 1}^{n} a_{ij} \det(A^{(1)}, \ldots, a_i, \ldots, A^{(n)}) = \sum_{i = 1}^{n} a_{ij}(-1)^{i+j}\det_{\widehat{ij}}
+	.\]
+\end{proofbox}
+
+\begin{definition}
+	Let $A \in M_n(K)$. The adjugate matrix $\adj A$ is the $n \times n$ matrix with $(i, j)$ entry given by $(-1)^{i+j}\det(A_{\widehat{ji}})$.\index{adjugate}
+\end{definition}
+
+\begin{theorem}
+	Let $A \in M_n(K)$. Then,
+	\[
+		(\adj A) A = (\det A)I_n
+	.\]
+	In particular, when $A$ is invertible,
+	\[
+	A^{-1} = \frac{1}{\det A} \adj A
+	.\]
+\end{theorem}
+
+\begin{proofbox}
+	From what we have just proven,
+	\[
+		\det A = \sum_{i = 1}^{n} (-1)^{i+j}(\det A_{\widehat{ij}})a_{ij} = \sum_{i = 1}^{n}(\adj A)_{ji} a_{ij} = (\adj (A) A)_{jj}
+	.\]
+	Now for $j \neq k$, we have
+	\begin{align*}
+		0 &= \det(A^{(1)}, \ldots, A^{(k)}, \ldots, A^{(k)}, \ldots, A^{(n)}) \\
+		  &= \det\Biggl(A^{(1)}, \ldots, \sum_{i = 1}^{n}a_{ik} e_i, \ldots, A^{(k)}, \ldots, A^{(n)} \Biggr) \\
+		  &= \sum_{i = 1}^{n} a_{ik} \det (A^{(1)}, \ldots, e_i, \ldots, A^{(n)}) \\
+		  &= \sum_{i = 1}^{n} (\adj A)_{ji} a_{ik} = ((\adj A)A)_{jk}.
+	\end{align*}
+\end{proofbox}
+
+\begin{proposition}
+	Let $A \in M_n(K)$ be invertible, and $b \in K^{n}$. Then the unique solution to $Ax = b$ is given by
+	\[
+		x_i = \frac{1}{\det A} \det(A_{\hat i b})
+	,\]
+	where $A_{\hat i b}$ is obtained by replacing the $i$'th column of $A$ by $b$.
+\end{proposition}
+
+Algorithmically, this avoids computing $A^{-1}$.
+
+\begin{proofbox}
+	If $A$ is invertible, then there exists unique $x \in K^{n}$ with $Ax = b$. Let $x$ be this solution, then
+	\begin{align*}
+		\det(A_{\hat i b}) &= \det(A^{(1)}, \ldots, A^{(i-1)}, b, A^{(i+1)}, \ldots, A^{(n)}) \\
+				   &= \det (A^{(1)}, \ldots, A^{(i-1)}, Ax, A^{(i+1)}, \ldots, A^{(n)}) \\
+				   &= \det \Biggl(A^{(1)}, \ldots, A^{(i-1)}, \sum_{j = 1}^{n} x_j A^{(j)}, A^{(i+1)}, \ldots, A^{(n)} \Biggr) \\
+				   &= x_i \det (A^{(1)}, \ldots, A^{(i-1)}, A^{(i)}, A^{(i+1)}, \ldots, A^{(n)}) = x_i \det A.
+	\end{align*}
+	Inverting, this gives
+	\[
+	x_i = \frac{\det A_{\hat i b}}{\det A}
+	.\]
+\end{proofbox}
+
+\newpage
+
+\section{Eigenvectors, Eigenvalues and Triangular Matrices}%
+\label{sec:eigenvectors_eigenvalues_and_triangular_matrices}
+
+Here, we set up towards our goal of the diagonalisation of endomorphisms. Let $V$ be a vector space over $K$, and $\dim V = n < +\infty$. Then recall $\alpha : V \to V$ linear is an endomorphism of $V$.
+
+We want to find a basis $\mathcal{B}$ of $V$ such that in this basis,
+\[
+	[\alpha]_{\mathcal{B}} = [\alpha]_{\mathcal{B}, \mathcal{B}}
+\]
+has a ``nice'' form.
+
+Recall that for another basis $\mathcal{B}'$ of $V$, the change of basis matrix satisfies
+\[
+	[\alpha]_{\mathcal{B}'} = P^{-1}[\alpha]_{\mathcal{B}}P
+.\]
+Equivalently, given a matrix $A \in M_n(K)$, we want to find whether it is conjugate to a matrix with a ``simple'' form.
+
+\begin{definition}
+	\begin{enumerate}[(i)]
+		\item[]
+		\item $\alpha \in L(V)$ is \textit{diagonalisable}\index{diagonalisable} if there exists a basis $\mathcal{B}$ of $V$ such that $[\alpha]_{\mathcal{B}}$ is diagonal.
+		\item $\alpha \in L(V)$ is \textit{triangulable}\index{triangulable} if there exists a basis $\mathcal{B}$ of $V$ such that $[\alpha]_{\mathcal{B}}$ is triangular:
+			\[
+				[\alpha]_{\mathcal{B}}=
+				\begin{pmatrix}
+					\lambda_1 & \ast & \cdots & \ast \\
+					0 & \lambda_2 & \cdots & \ast \\
+					\vdots & \vdots & \ddots & \vdots \\
+					0 & 0 & \cdots & \lambda_n
+				\end{pmatrix}
+			\]
+	\end{enumerate}
+\end{definition}
+
+\begin{remark}
+	A matrix is diagonalisable (resp. triangulable) if and only if it is conjugate to a diagonal (resp. triangular) matrix.
+\end{remark}
+
+\begin{definition}
+	\begin{enumerate}[(i)]
+		\item[]
+		\item $\lambda \in K$ is an \textit{eigenvalue}\index{eigenvalue} of $\alpha \in L(V)$ if there exists $v \in V\setminus\{0\}$ such that $\alpha(v) = \lambda v$.
+		\item $v \in V$ is an \textit{eigenvector}\index{eigenvector} of $\alpha \in L(V)$ if and only if $v \neq 0$ and there exists $\lambda \in K$ such that $\alpha(v) = \lambda v$.
+		\item $V_{\lambda} = \{v \in V \mid \alpha(v) = \lambda v\} \leq V$ is the \textit{eigenspace}\index{eigenspace} associated to $\lambda \in K$.
+	\end{enumerate}
+\end{definition}
+
+\begin{lemma}
+	Let $\alpha \in L(V)$ and $\lambda \in K$. Then
+	\[
+		\lambda \text{ is an eigenvalue of } \alpha \iff \det(\alpha - \lambda \id) = 0
+	.\]
+\end{lemma}
+
+\begin{proofbox}
+	If $\lambda$ is an eigenvalue, then we have a chain of equalities
+	\begin{align*}
+		& \lambda \text{ eigenvalue} \\
+		\iff& \exists v \in V\setminus\{0\}, \alpha(v) = \lambda v \\
+			\iff& \exists v \in V \setminus\{0\}, (\alpha - \lambda \id)(v) = 0 \\
+			\iff& \ker(\alpha - \lambda \id) \neq \{0\} \\
+				\iff& r(\alpha - \lambda \id) < n \\
+					\iff& \det(\alpha - \lambda \id) = 0.
+	\end{align*}
+\end{proofbox}
+
+\begin{remark}
+	If $\alpha(v_j) = \lambda v_j$, and $v_j \neq 0$, then we can complete to a basis of $V$ $(v_1, \ldots, v_j, \ldots, v_n)$, such that
+	\[
+		[\alpha]_{\mathcal{B}} (A^{(1)}, \ldots, e_j, \ldots, A^{(n)})
+	.\]
+\end{remark}
+
+\subsection{Polynomials}%
+\label{sub:polynomials}
+
+We will look at how polynomials interact with $\alpha \in L(V)$. First, if $K$ is a field, and
+\[
+	f(t) = a_n t^{n} + a_{n-1} t^{n-1} + \cdots + a_1 t + a_0
+,\]
+with $a_i \in K$, then $n$ is the largest exponent such that $a_n \neq 0$. We say $n = \deg f$. Then, we can easily show
+\[
+	\deg(f + g) \leq \max\{\deg f, \deg g\}, \quad \deg(fg) = \deg f + \deg g
+.\]
+Define $K[t]$ as the ring of polynomials with coefficients in $K$. Then $\lambda$ is a root of $f(t) \iff f(\lambda) = 0$.
+
+\begin{lemma}
+	If $\lambda$ is a root of $f$, then $t - \lambda$ divides $f$.
+\end{lemma}
+
+\begin{proofbox}
+	Write $f(t) = a_nt^{n} + \cdots + a_1 t + a_0$, then $f(\lambda) = a_n \lambda^{n} + \cdots + a_1 \lambda + a_0 = 0$. Hence,
+	\begin{align*}
+		f(t) &= f(t) - f(\lambda) = a_n(t^{n} - \lambda^{n}) + \cdots + a_1(t - \lambda) \\
+		     &= a_n(t - \lambda)(t^{n-1} + \cdots + \lambda^{n-1}) + \cdots + a_1(t - \lambda) \\
+		     &= (t - \lambda)g(t).
+	\end{align*}
+\end{proofbox}
+
+\begin{corollary}
+	A non-zero polynomial of degree $n$ has at most $n$ roots.
+\end{corollary}
+
+This follows from induction of degree, and the above lemma.
+
+\begin{corollary}
+	If $f_1, f_2$ are polynomials of degree less than $n$, such that $f_1(t_i) = f_2(t_i)$ for at least $n$ values $(t_i)$, then $f_1 = f_2$.
+\end{corollary}
+
+This follows from the above corollary on $f_1 - f_2$.
+
+\begin{theorem}
+	Any $f \in \mathbb{C}[t]$ of positive degree has a complex root (hence exactly $\deg f$ roots when counted with multiplicity).
+\end{theorem}
+
+This will be proved in complex analysis.
+
+\begin{definition}
+	Let $\alpha \in L(V)$. The \textit{characteristic polynomial}\index{characteristic polynomial} of $\alpha$ is
+	\[
+		\chi_{\alpha}(t) = \det(A - t \id)
+	.\]
+\end{definition}
+
+\begin{remark}
+	We can visualise
+	\[
+	A - t \id =
+	\begin{pmatrix}
+		a_{11} - t & a_{12} & \cdots & a_{1n} \\
+		a_{21} & a_{22} - t & \cdots & a_{2n} \\
+		\vdots & \vdots & \ddots & \vdots \\
+		a_{n1} & a_{n2} & \cdots & a_{nn} - t
+	\end{pmatrix}
+	.\]
+	The fact that $\det(A - t \id)$ is a polynomial of degree $n$ comes from the definition of $\det$.
+
+	Moreover, notice that conjugate matrices have the same characteristic polynomial:
+	\[
+		\det(P^{-1}AP - \lambda \id) = \det(P^{-1}(A - \lambda \id)P) = \det(A - \lambda \id)
+	.\]
+	Hence $\chi_\alpha(t) = \det(A - \lambda \id)$ does not depend on the basis $\mathcal{B}$ in which we express $\alpha$.
+\end{remark}
+
+\begin{theorem} 
+	$\alpha \in L(V)$ is triangulable if and only if $\chi_\alpha$ can eb written as a product of linear factors over $K$:
+	\[
+		\chi_\alpha(t) = c \prod_{i = 1}^{n} (t - \lambda_i)
+	.\]
+	In particular, over $K = \mathbb{C}$, any matrix is triangulable.
+\end{theorem}
+
+\begin{proofbox}
+	Suppose $\alpha$ is triangulable. Then in some basis, we have
+	\[
+		[\alpha]_{\mathcal{B}}=
+		\begin{pmatrix}
+			\lambda_1 & \ast & \cdots & \ast \\
+			0 & \lambda_2 & \cdots & \ast \\
+			\vdots & \vdots & \ddots & \vdots \\
+			0 & 0 & \cdots & \lambda_n
+		\end{pmatrix}
+	.\]
+	Then we can expand
+	 \[
+		 \chi_{\alpha}(t) =
+			\begin{pmatrix}
+				\lambda_1 - t & \ast & \cdots & \ast \\
+				0 & \lambda_2 - t & \cdots & \ast \\
+				\vdots & \vdots & \ddots & \vdots \\
+				0 & 0 & \cdots & \lambda_n - t
+			\end{pmatrix}
+			= \prod_{i = 1}^{n}(\lambda_i - t)
+	.\]
+	For the backwards direction, we argue by induction on $n = \dim V$. If $n = 1$, then the conclusion is obvious. So suppose $n > 1$.
+
+	By assumption let $\chi_{\alpha}(t)$ have a root $\lambda$. Then note $\chi_{\alpha}(\lambda) = 0 \iff \lambda$ is an eigenvalue of $\alpha$. Let $U=  V_{\lambda}$ be the associated eigenspace, and note $\{0\} \subsetneq U$.
+
+		Let $(v_1, \ldots, v_k)$ be a basis of $U$, and complete to a basis $(v_1, \ldots, v_k, v_{k+1}, \ldots, v_n)$ of $V$. Let $\spn(v_{k+1}, \ldots, v_n) = W$, then $V = U \oplus W$. In $\mathcal{B}$, we have
+		\[
+			[\alpha]_{\mathcal{B}} =
+			\begin{pmatrix}
+				\lambda I_k & \ast \\
+				0 & C
+			\end{pmatrix}
+		.\]
+		$\alpha$ induces an endomorphism
+		\[
+		\bar \alpha : V / U \to V/U
+		.\]
+		Then $C = [\bar \alpha]_{\bar{\mathcal{B}}}$, where $\bar{\mathcal{B}} = (v_{k+1} + U, \ldots, v_n + U)$. Then, as this is a block product,
+		\begin{align*}
+			\det(\alpha - t \id) &= \det
+			\begin{pmatrix}
+				(\lambda - t)\id & \ast \\
+				0 & C - t \id
+			\end{pmatrix}
+			\\
+					     &= (\lambda-t)^{k}\det(C - t\id) = c \prod_{i= 1}^{n} (t - \lambda_i).
+		\end{align*}
+		From uniqueness of factorisation, we can determine
+		\[
+			\det(C - t \id) = \tilde c \prod_{i = k+1}^{n} (t - \tilde \lambda_i)
+		.\]
+		Hence, by induction (as $\dim V/U < \dim V$), there is a basis $\check{\mathcal{B}} = (\check{v}_{k+1}, \ldots, \check v_{n})$ of $W$ where $[\mathcal{C}]_{\check{\mathcal{B}}}$ is triangular.
+
+		Hence letting $\hat{\mathcal{B}} = (v_1, \ldots, v_k, \check v_{k+1}, \ldots, \check v_n)$, $[\alpha]_{\hat{\mathcal{B}}}$ is triangular.
+\end{proofbox}
+
+\begin{lemma}
+	If $V$ is $n$-dimensional over $K = \mathbb{R}, \mathbb{C}$, and $\alpha \in L(V)$, then if $\chi_{\alpha}(t) = (-1)^{n}t^{n} + c_{n-1}t^{n-1} + \cdots + c_0$, we have
+	\[
+		c_0 = \det A = \det \alpha, \quad c_{n-1} = (-1)^{n-1} \tr A
+	.\]
+\end{lemma}
+
+\begin{proofbox}
+	We known $\chi_{\alpha}(t) = \det(a - t \id)$, so $\chi_{\alpha}(0) = \det \alpha = c_0$.
+
+	Say that $K = \mathbb{C}$. We known $\alpha$ is triangulable over $\mathbb{C}$, so
+	\begin{align*}
+		\chi_{\alpha}(t) &= \det
+		\begin{pmatrix}
+			a_1 - t & \cdots & \ast \\
+			\vdots & \ddots & \vdots \\
+			0 & \cdots & a_n - t
+		\end{pmatrix} = \prod_{i = 1}^{n}(a_i - t) \\
+				 &= (-1)^{n}t^{n} + c_{n-1}t^{n-1} + \cdots + c_0, \\
+		c_{n-1} &= (-1)^{n-1} \sum_{i = 1}^{n} a_i = (-1)^{n-1} \tr \alpha.
+	\end{align*}
+\end{proofbox}
+
+\newpage
+
+\section{Diagonalisation Matrix and Minimal Polynomial}%
+\label{sec:diagonalisation_matrix_and_minimal_polynomial}
+
+\begin{definition}
+	Pick $p(t)$, a polynomial over $K$, with $p(t) = a_n t^{n} + \cdots + a_1 t + a_0$ Hence if $A \in M_n(K)$, then $A^{m} \in M_n(K)$, and we define
+	\[
+		p(A) = a_n A^{n} + \cdots + a_1 A + a_n \id \in M_n(K)
+	.\]
+	Similarly, for $\alpha \in L(V)$, we can define
+	\[
+		p(\alpha) = a_n \alpha^{n} + \cdots + a_1 \alpha + a_n \id
+	.\]
+\end{definition}
+
+\begin{theorem}
+	Let $V$ be a vector space over $K$, with $\dim V < \infty$, and $\alpha \in L(V)$.
+
+	Then $\alpha$ is diagonalizable if and only if there exists a polynomial which is a product of distinct linear factors such that $p(\alpha) = 0$.
+\end{theorem}
+
+In other words $\alpha$ is diagonalizable if and only if there exist distinct $(\lambda_1, \ldots, \lambda_k)$, with $\lambda_j \in K$, such that
+\[
+	p(\alpha) = (\alpha - \lambda_1 \id) \cdots (\alpha - \lambda_k \id) = 0
+.\]
+
+\begin{proofbox}
+	Suppose $\alpha$ is diagonalizable with $\lambda_1, \ldots, \lambda_k$ the distinct polynomial. Let $p(t) = \prod (t - \lambda_i)$, and let $\mathcal{B}$ be a basis of $V$ made of eigenvectors of $\alpha$. Then for $v \in \mathcal{B}$, we have $\alpha(v) = \lambda_i v$ for some $i \in \{1, \ldots, k\}$, so
+	\[
+		(\alpha - \lambda_i \id)(v) = 0
+	.\]
+	Hence
+	\[
+		p(\alpha) = \Biggl[ \prod_{j = 1}^{k} (\alpha - \lambda_j \id) \Biggr] (v) = 0
+	\]
+	for all $v \in \mathcal{B}$. But since $\mathcal{B}$ is a basis, then by linearity, for all $v \in K$, $p(\alpha)(v) = 0$, so $p(\alpha) = 0$.
+
+	Now suppose $p(\alpha) = 0$ for 
+	\[
+		p(t) = \prod_{i = 1}^{k}(t - \lambda_i)
+	,\]
+	where $\lambda_i \neq \lambda_j$. Let $V_{\lambda_i} = \Ker(\alpha - \lambda_i \id)$. Then we claim
+	\[
+	V = \bigoplus_{i = 1}^{k} V_{\lambda_i}
+	.\]
+	Indeed, let
+	\[
+		q_j(t) = \prod_{\substack{i = 1 \\i \neq j}}^{k} \biggl( \frac{t - \lambda_i}{\lambda_j- \lambda_i} \biggr)
+	.\]
+	Then we have
+	\[
+		q_j(\lambda_i) =
+		\begin{cases}
+			1 & i = j, \\
+			0 & i \neq j.
+		\end{cases}
+	\]
+	Consider the polynomial
+	\[
+		q(t) = \sum_{j = 1}^{k} q_j(t)
+	.\]
+	Then $\deg q_j \leq j-1$, so $\deg q \leq k-1$. On the other hand, $q(\lambda_i) = 1$ for all $i$. Hence the polynomial $[q(t) - 1]$ degree less than or equal to $k-1$, and has at least $k$ roots, so for all $t$, $q(t) = 1$. Thus, we have
+	\[
+		q_1(t) + \cdots + q_k(t) = 1
+	.\]
+	Define the projector\index{projector}
+	\[
+		\mathbb{T}_j = q_j(\alpha) \in L(V)
+	.\]
+	Then we have
+	\begin{align*}
+		\sum_{j = 1}^{k} \mathbb{T}_j = \sum_{j = 1}^{k} q_j(\alpha) = \Biggl( \sum_{j = 1}^{k} q_j \Biggr) (\alpha) = \id
+	\end{align*}
+	This means for any vector $v \in V$,
+	\[
+		v = q(\alpha)(v) = \sum_{j = 1}^{k} \mathbb{T}_j(v) = \sum_{j = 1}^{k} q_j(\alpha)(v)
+	.\]
+	Now if we pick $j \in \{1, \ldots, k\}$, then
+	 \[
+		 (\alpha - \lambda_j \id) q_j(\alpha)(v) = \frac{1}{\prod_{i \neq j}(\lambda_j - \lambda_i)} p(\alpha)(v) = 0
+	.\]
+	Thus for all $j \in \{1, \ldots, k\}$, $(\alpha - \lambda_j \id)\mathbb{T}_j(v) = 0$, so $\mathbb{T}_j(v) \in V_{\lambda_j}$ for all $v$. Now for all $v \in V$,
+	\[
+		v = \sum_{j = 1}^{k} \mathbb{T}_j(v) \implies V = \sum_{j = 1}^{k}V_{\lambda_j}.
+	\]
+	Now we prove the sum is direct. Indeed, let $v \in V_{\lambda_j} \cap (\sum_{i \neq j} V_{\lambda_i})$. Then since $v \in V_{\lambda_j}$,
+	\[
+		\mathbb{T}_j(v) = q_j(\alpha)(v) = \prod_{i \neq j} \frac{\alpha - \lambda_i \id}{\lambda_i - \lambda_j} (v) = \prod_{i \neq j} \frac{(\lambda_j - \lambda_i)v}{\lambda_j - \lambda_i} = v
+	.\]
+	Now if $v \in \sum_{i \neq j} V_{\lambda_i}$, then note for $v \in V_{\lambda_i}$, then $\alpha(v) = \lambda_i v$ so
+	\[
+		\mathbb{T}_j(\alpha) = q_j(\alpha)(v) = \prod_{i \neq j} \frac{\alpha - \lambda_i \id}{\lambda_j - \lambda_i}(v) = 0
+	.\]
+	Hence if $v \in V_{\lambda_j}\cap (\sum_{i \neq j} V_{\lambda_i})$, then $v = 0$. Hence $V$ is a direct sum of eigenspaces, meaning it can be diagonalized.
+\end{proofbox}
+
+\begin{remark}
+	We have actually proved the following: If $\lambda_1, \ldots, \lambda_k$ are distinct eigenvalues of $\alpha$ then
+	\[
+	\sum_{i = 1}^{k}V_{\lambda_i} = \bigoplus_{i = 1}^{k} V_{\lambda_i}
+	.\]
+	This means that the only way digitalization fails is if the sum of the eigenspaces is a proper subspace of $V$.
+\end{remark}
+
+\begin{exbox}
+	For $A \in M_n(K)$, with $A$ having finite order $m$, then $A$ is diagonalizable, as $A$ is a root of
+	\[
+		t^{m}- 1 = \prod_{j = 1}^{m}(t - \zeta_m^{j})
+	.\]
+\end{exbox}
+
+\begin{theorem}
+	For $\dim V < +\infty$ and $\alpha, \beta \in L(V)$ diagonalizable, then $\alpha, \beta$ are simultaneously diagonalizable if and only if $\alpha$ and $\beta$ commute.
+\end{theorem}
+
+\begin{proofbox}
+	First, if $\alpha, \beta$ are simultaneously diagonalizable, then there is a basis of $V$ in which
+	\[
+		[\alpha]_{\mathcal{B}} = D_1, \quad [\beta]_{\mathcal{B}} = D_2
+	.\]
+	Since $D_1$ and $D_2$ diagonal, $D_1D_2 = D_2D_1$, so $\alpha \beta = \beta \alpha$.
+
+	Now suppose $\alpha, \beta$ are both diagonalizable and $\alpha \beta = \beta \alpha$. Let $\lambda_1, \ldots, \lambda_k$ be the $k$ distinct eigenvalues of $\alpha$. Then we can write
+	\[
+	V = \bigoplus_{i = 1}^{k} V_{\lambda_i}
+	\]
+	where $V_{\lambda_i}$ is the eigenspace associated to $\lambda_i$. We claim that $V_{\lambda_i}$ is stable by $\beta$. Indeed, if $v \in V_{\lambda_i}$, then
+	\[
+		\alpha (\beta(v)) = \beta (\alpha(v)) = \beta (\lambda_i v) = \lambda_i \beta(v)
+	.\]
+	Hence $\beta(v) \in V_{\lambda_i}$. Now we use the criterion for diagonalizability: if $\beta$ is diagonalizable, then there exists a polynomial with distinct linear factors such that $p(\beta) = 0$.
+
+	Since $\beta|_{V_{\lambda_j}}$ is an endomorphism and $p(\beta|_{V_{\lambda_j}}) = 0$, $B|_{V_{\lambda_j}}$ is diagonalizable. Let $\mathcal{B}_j$ be a basis for which $\beta|_{V_{\lambda_j}}$ is diagonal.
+
+	Then, since $V$ is the sum of $V_{\lambda_j}$, $(\mathcal{B}_1 , \ldots, \mathcal{B}_k) = \mathcal{B}$ is a basis of $V$ in which both $\alpha$ and $\beta$ are in diagonal form.
+\end{proofbox}
+
+\subsection{Minimal Polynomials}%
+\label{sub:minimal_polynomials}
+
+\begin{proposition}[Euclidean Algorithm for Polynomials]
+	Let $a, b$ be polynomials over $K$, with $b \neq 0$. Then there exist polynomials $q, r$ over $K$ with $\deg r < \deg b$ and $a = qb + r$.
+\end{proposition}
+
+\begin{definition}
+	Let $V$ be a finite-dimensional vector space over $K$, and let $\alpha \in L(V)$. The \textit{minimal polynomial} $m_{\alpha}$ of $\alpha$ is the unique non-zero polynomial with smallest degree such that $m_{\alpha}(\alpha) = 0$.
+\end{definition}
+
+The existence and uniqueness of a minimal polynomial can be seen as such. If $\dim V = n$, then we known $\dim L(V) = n^2$, so $(\id, \alpha, \ldots, \alpha^{n^2})$ cannot be free. Hence there is some combination
+\[
+a_{n^2}\alpha^{n^2} + \cdots + a_1 \alpha + a_0 = 0
+.\]
+Hence the existence of a minimal polynomial is shown.
+
+Now suppose $p(\alpha) = 0$. We show that $m_{\alpha} \mid p$. Indeed, from the Euclidean algorithm, we can find $q, r$ such that $p = m_{\alpha}q + r$, with $\deg r < \deg m_{\alpha}$. Since $p(\alpha) = m_{\alpha}(\alpha) = 0$, we must have $r(\alpha) = 0$.
+
+Hence by minimality of $m_{\alpha}$, $r = 0$, and $m_{\alpha} \mid p$. But this implies uniqueness, as if $m_1, m_2$ are both polynomials of smallest degree, then $m_1 \mid m_2$ and $m_2 \mid m_1$, so they are equal up to a constant factor.
+
+\begin{exbox}
+	If $V = \mathbb{R}^2$, take
+	\[
+	A =
+	\begin{pmatrix}
+		1 & 0 \\
+		0 & 1
+	\end{pmatrix}
+	, \quad B =
+	\begin{pmatrix}
+		1 & 1 \\
+		0 & 1
+	\end{pmatrix}
+	.\]
+	Let $p(t) = (t - 1)^2$, then $p(A) = p(B) = 0$. So their minimal polynomial is only $t - 1$ or $(t - 1)^2$. From this, we can check $m_{A} = t - 1$and $m_{B} = (t - 1)^2$. In particular, $B$ is not diagonalizable.
+\end{exbox}
+
+\newpage
+
+\section{Cayley-Hamilton Theorem}%
+\label{sec:cayley_hamilton_theorem}
+
+\begin{theorem}[Cayley-Hamilton Theorem]\index{Cayley-Hamilton theorem}
+	Let $V$ be a finite dimensional $K$ vector space, and $\alpha \in L(V)$ with characteristic polynomial $\chi_{\alpha}(t) = \det(\alpha - t \id)$. Then
+	\[
+		\chi_{\alpha}(\alpha) = 0
+	.\]
+\end{theorem}
+
+As a corollary, $m_{\alpha} \mid \chi_{\alpha}$.
+
+\begin{proofbox}
+	We solve over $K = \mathbb{C}$. Take a basis $\mathcal{B} = \{v_1, \ldots, v_n\}$ for which $[\alpha]_{\mathcal{B}}$ is triangular, i.e.
+	\[
+		[\alpha]_{\mathcal{B}} = 
+		\begin{pmatrix}
+			a_1 &  & \ast \\
+			    & \ddots & \\
+			0 & & a_n
+		\end{pmatrix}
+	,\]
+	and let $U_j = \langle v_1, \ldots, v_j\rangle$. Then, $(\alpha - a_j \id)U_j \leq U_{j-1}$, due to the triangular form. Now we known $\chi_{\alpha}(t) = \prod (a_i - t)$, so
+	\begin{align*}
+		&(\alpha - a_1 \id) \cdots (\alpha - a_{n-1} \id) (\alpha - a_n \id) V \\
+		\leq& (\alpha - a_1 \id) \cdots (\alpha - a_{n-1} \id) U_{n-1} \\
+		    & \,\vdots \\
+		\leq& (\alpha - a_1 \id) U_1 \\
+		=& 0.
+	\end{align*}
+	Hence $\chi_{\alpha}(\alpha) = 0$.
+\end{proofbox}
+
+\begin{definition}[Multiplicity]
+	For a finite-dimensional vector space $V$ and $\alpha \in L(V)$, let $\lambda$ be an eigenvalue of $\lambda$. Then
+	\[
+		\chi_{\alpha}(t) = (t - \lambda)^{a_{\lambda}}q(t)
+	,\]
+	where $a_{\lambda}$ is the \textit{algebraic multiplicity}\index{algebraic multiplicity} of $\lambda$, and the \textit{geometric multiplicity}\index{geometric multiplicity} of $\lambda$ is $\dim \Ker (\alpha - \lambda \id)$.
+\end{definition}
+
+\begin{remark}
+	If $\lambda$ is an eigenvalue, then $\alpha - \lambda \id$ is singular, so $\det(\alpha - \lambda \id) = \chi_{\alpha}(\lambda) = 0$.
+\end{remark}
+
+\begin{lemma}
+	For an eigenvalue $\lambda$ of $\alpha \in L(V)$, then $1 \leq g_{\lambda} \leq a_{\lambda}$.
+\end{lemma}
+
+\begin{proofbox}
+	Immediately, $g_{\lambda} = \dim \Ker(\alpha - \lambda \id) \geq 1$, as $\alpha - \lambda \id$ is singular. So we show $g_{\lambda} \leq a_{\lambda}$.
+
+	Indeed, let $(v_1, \ldots, v_{g_{\lambda}})$ be a basis of $V_{\lambda} = \Ker(\alpha - \lambda \id)$, and complete to a basis $\mathcal{B} = (v_1, \ldots, v_{g_{\lambda}}, v_{g_{\lambda} + 1}, \ldots, v_n)$ of $V$. Then,
+	\[
+		[\alpha]_{\mathcal{B}} =
+		\begin{pmatrix}
+			\lambda \id_{g_{\lambda}} & \ast \\
+			0 & A_1
+		\end{pmatrix}
+	,\]
+	\[
+		\implies \det[\alpha - t \id] = \det
+		\begin{pmatrix}
+			(\lambda - t) \id_{g_{\lambda}} & \ast \\
+			0 & A_1 - t \id
+		\end{pmatrix}
+		= (\lambda - t)^{g_t} \chi_{A_1}(t)
+	.\]
+	Hence $g_{\lambda} \leq a_{\lambda}$.
+\end{proofbox}
+
+\begin{lemma}
+	For $\lambda$ an eigenvalue of $\alpha \in L(V)$, let $c_{\lambda}$ be the multiplicity of $\lambda$ as a root of $m_{\alpha}$. Then $1 \leq c_{\lambda} \leq a_{\lambda}$.
+\end{lemma}
+
+\begin{proofbox}
+	From Cayley-Hamilton, $m_{\alpha} \mid \chi_{\alpha}$, immediately giving $c_{\lambda} \leq a_{\lambda}$. Now note $c_{\lambda} \geq 1$, as there exists a non-zero eigenvector $v$ of $\lambda$. Hence,
+	\[
+		m_{\alpha}(\alpha)(v) = (m_{\alpha}(\lambda))v = 0
+	,\]
+	so $m_{\alpha}(\lambda) = 0$, and $c_{\lambda} \geq 1$.
+\end{proofbox}
+
+\begin{exbox}
+	Take the matrix
+	\[
+	A =
+	\begin{pmatrix}
+		1 & 0 & -2 \\
+		0 & 1 & 1 \\
+		0 & 0 & 2
+	\end{pmatrix}
+	.\]
+	Since $A$ is triangular $\chi_{A}(t) = (t - 1)^2(t - 2)$. Hence $m_{A}$ is either $(t - 1)^2(t - 2)$ or $(t - 1)(t - 2)$. We can check that $(A - I)(A - 2I) = 0$, so $m_{A} = (t - 1)(t - 2)$, and $A$ is diagonalizable.
+\end{exbox}
 
 \newpage
 

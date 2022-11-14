@@ -1,5 +1,6 @@
 \begin{theindex}
 
+  \item anti-commutator, \hyperpage{31}
   \item atomic spectra, \hyperpage{5}
 
   \indexspace
@@ -10,6 +11,7 @@
 
   \indexspace
 
+  \item commutator, \hyperpage{29}
   \item Compton scattering, \hyperpage{4}
 
   \indexspace
@@ -18,10 +20,17 @@
 
   \indexspace
 
+  \item elastic constant, \hyperpage{21}
   \item expectation, \hyperpage{16}
 
   \indexspace
 
+  \item Gaussian wavepacket, \hyperpage{24}
+
+  \indexspace
+
+  \item harmonic oscillator, \hyperpage{21}
+  \item Hermite polynomials, \hyperpage{23}
   \item Hermitian conjugate, \hyperpage{13}
   \item Hermitian operator, \hyperpage{13}
   \item Hilbert space, \hyperpage{8}
@@ -45,8 +54,9 @@
   \item photoelectric effect, \hyperpage{3}
   \item Planck constant, \hyperpage{3}
   \item point particle, \hyperpage{2}
+  \item probability current, \hyperpage{12}
   \item projection operator, \hyperpage{16}
-  \item projection postulate, \hyperpage{16}
+  \item projection postulate, \hyperpage{15}
 
   \indexspace
 
@@ -54,12 +64,17 @@
 
   \indexspace
 
+  \item reflection coefficient, \hyperpage{26}
+
+  \indexspace
+
   \item square-integrable function, \hyperpage{7}
-  \item stationary states, \hyperpage{18}
+  \item stationary states, \hyperpage{17}
 
   \indexspace
 
   \item time-dependent Schr\"{o}dinger equation, \hyperpage{10}
+  \item transmission coefficient, \hyperpage{26}
 
   \indexspace
 

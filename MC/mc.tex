@@ -1,86 +1,9 @@
 \documentclass[12pt]{article}
-\usepackage{amsmath}
-\usepackage{mathtools}
-\usepackage[a4paper]{geometry}
-\usepackage{fancyhdr}
-\usepackage{tikz}
-\usepackage{amssymb}
-\usepackage{graphicx}
-\usepackage{amsthm}
-\usepackage{import}
-\usepackage{xifthen}
-\usepackage{pdfpages}
-\usepackage{transparent}
-\usepackage{adjustbox}
-\usepackage[shortlabels]{enumitem}
-\usepackage{parskip}
-\makeatletter
-\newcommand{\@minipagerestore}{\setlength{\parskip}{\medskipamount}}
-\makeatother
-\usepackage{imakeidx}
-\usepackage{bbm}
 
-\DeclareMathOperator{\Ker}{Ker}
-\DeclareMathOperator{\Img}{Im}
-\DeclareMathOperator{\rank}{rank}
-\DeclareMathOperator{\nullity}{null}
-\DeclareMathOperator{\spn}{span}
-\DeclareMathOperator{\tr}{tr}
-\DeclareMathOperator{\adj}{adj}
-\DeclareMathOperator{\id}{id}
-\DeclareMathOperator{\Sym}{Sym}
-\DeclareMathOperator{\Orb}{Orb}
-\DeclareMathOperator{\Stab}{Stab}
-\DeclareMathOperator{\ccl}{ccl}
-\DeclareMathOperator{\Aut}{Aut}
-\DeclareMathOperator{\Syl}{Syl}
-\DeclareMathOperator{\sgn}{sgn}
-\DeclareMathOperator{\Fit}{Fit}
-\DeclareMathOperator{\Ann}{Ann}
-\DeclareMathOperator{\Mkv}{Markov}
-
-
-\newcommand{\incfig}[1]{%
-	\def\svgwidth{\columnwidth}
-	\import{./figures/}{#1.pdf_tex}
-}
-
-\setlength\parindent{0pt}
-
-\newcommand{\course}{GRM }
-\newcommand{\lecnum}{}
-
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{corollary}{Corollary}[section]
-\newtheorem{lemma}{Lemma}[section]
-\newtheorem{proposition}{Proposition}[section]
-
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}[section]
-\newtheorem{example}{Example}[section]
-
-\theoremstyle{remark}
-\newtheorem*{remark}{Remark}
-
-\pagestyle{fancy}
-\fancyhf{}
-\rhead{\leftmark}
-\lhead{Page \thepage}
-\setlength{\headheight}{15pt}
-
-\newcommand{\mapsfrom}{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}
+\usepackage{ishn}
+\usepackage{microtype}
 
 \makeindex[intoc]
-
-\usepackage{hyperref}
-\hypersetup{
-    colorlinks,
-    citecolor=black,
-    filecolor=black,
-    linkcolor=black,
-    urlcolor=black
-    pdfauthor={Ishan Nath}
-}
 
 \begin{document}
 
@@ -99,7 +22,7 @@
 
 		\Large
 
-		Based on Lectures by Dr. Perla Sousi
+		Based on Lectures by Prof. Perla Sousi
 
 		\vspace{1em}
 
@@ -184,8 +107,8 @@ There are several equivalent definitions for Markov chains.
 	.\]
 \end{theorem}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} If $X$ is $\Mkv(\lambda, P)$, then 
+\begin{proofbox}
+	If $X$ is $\Mkv(\lambda, P)$, then 
 	\begin{align*}
 		\mathbb{P}(X_n = x_n, \ldots, X_0 = x_0) &= \mathbb{P}(X_n = x_n \mid X_{n-1} = x_{n-1}, \ldots, X_0 = x_0) \times \cdots \\
 							 & \times \mathbb{P}(X_1 = x_1 \mid X_0 = x_0) \mathbb{P}(X_0 = x_0) \\
@@ -196,7 +119,7 @@ There are several equivalent definitions for Markov chains.
 		\mathbb{P}(X_n = x_n \mid X_{n-1} = x_{n-1}, \ldots, X_0 = x_0) &= \frac{\mathbb{P}(X_n = x_n, \ldots, X_0 = x_0)}{\mathbb{P}(X_{n-1} = x_{n-1}, \ldots, X_0 = x_0)} \\
 										&= P(x_{n-1}, x_n).
 	\end{align*}
-\end{adjustbox}
+\end{proofbox}
 
 \begin{definition}
 	Let $i \in I$. The $\delta_{i}$-mass at $i$ is defined by
@@ -229,21 +152,19 @@ There are several equivalent definitions for Markov chains.
 	Suppose $X$ is $\Mkv(\lambda, P)$ with values in $I$. Let $m \in \mathbb{N}$ and $i \in I$. Then conditional on $X_m = i$, the process $(X_{m+n})_{n \geq 0}$ is $\Mkv(\delta_i, P)$ and it is independent of $X_0, \ldots, X_m$.
 \end{theorem}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\textbf{Proof:} Let $x_0, \ldots, x_n \in I$. Then
+\begin{proofbox}
+	Let $x_0, \ldots, x_n \in I$. Then
 \begin{align*}
 	\mathbb{P}(X_m &= x_0, \ldots, X_{m+n} = x_n \mid X_m = i) \\
 		       &= \delta_{ix_0} \frac{\mathbb{P}(X_m = x_0, \ldots, X_{m+n} = x_n)}{\mathbb{P}(X_m = i)}, \\
 	\mathbb{P}(X_m &= x_0, \ldots, X_{m+n} = x_n) \\
 		       &= \sum_{y_0,\ldots, y_{m-1}}\mathbb{P}(X_0 = y_0, \ldots, X_{m} = x_0, \ldots, X_{m+n} = x_0) \\
 		       &= \sum_{y_0, \ldots, y_{m-1}} \lambda(y_0) P(y_0, y_1) \cdots P(y_{m-1}, x_0) \cdots P(x_{n-1}, x_n) \\
-		       &= P(x_0, x_1) \cdots P(x_{n-1}, x_n) \sum_{y_0, \ldots, y_{m-1}} \lambda(y_0) P(y_0, y_1) \cdots P(y_{m-1}, x_0), \\
-	\mathbb{P}(X_m &= i) = \sum_{y_0, \ldots, y_{m-1}} \lambda(y_0) P(y_0, y_1) \cdots P(y_{m-1}, i).
+		       &= P(x_0, x_1) \cdots P(x_{n-1}, x_n) \sum_{y_0, \ldots, y_{m-1}} \lambda(y_0) P(y_0, y_1) \cdots P(y_{m-1}, x_0),
 \end{align*}
-
-\end{adjustbox}
-
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+\[
+	\mathbb{P}(X_m = i) = \sum_{y_0, \ldots, y_{m-1}} \lambda(y_0) P(y_0, y_1) \cdots P(y_{m-1}, i).
+\]
 Putting this together, we get the probability is
 \[
 	\delta_{ix_0}P(x_0, x_1)\cdots P(x_{n-1}, x_n) \implies \Mkv(\delta_i, P)
@@ -255,8 +176,7 @@ Now we show independence. Let $m \leq i_1 < \cdots < i_k$. Then,
 			   &= \frac{\lambda(y_0) P(y_0, y_1) \cdots P(y_{m-1}, y_m)}{\mathbb{P}(X_m = i)} \mathbb{P}(X_{i_1} = x_1, \ldots, X_{i_k} = x_k \mid X_{m} = i) \\
 			   &= \mathbb{P}(X_{i_1} = x_1, \ldots, X_{i_k} = x_k \mid X_{m} = i) \mathbb{P}(X_0 = y_0, \ldots \mid X_m = i).
 \end{align*}
-
-\end{adjustbox}
+\end{proofbox}
 
 Let $X \sim \Mkv(\lambda, P)$. How can we find $\mathbb{P}(X_n = x)$? Evaluating,
 \begin{align*}
@@ -270,8 +190,7 @@ Consider the related problem of finding $\mathbb{P}(X_{n+m} = y \mid X_m = x)$. 
 	\mathbb{P}(X_{n+m} = y \mid X_{m} = x) = (\delta_{x} P^{n})y = (P^{n})xy
 .\]
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{example}
+\begin{exbox}
 	Take the transition matrix
 	\[
 	P = 
@@ -288,9 +207,7 @@ Consider the related problem of finding $\mathbb{P}(X_{n+m} = y \mid X_m = x)$. 
 			1 & \alpha + \beta = 0.
 		\end{dcases}	
 	\]
-\end{example}
-
-\end{adjustbox}
+\end{exbox}
 
 Suppose $P$ is $k \times k$ stochastic, and let $\lambda_1, \ldots, \lambda_k$ be the eigenvalues of $P$.
 
@@ -345,9 +262,7 @@ If an eigenvalue $\lambda$ has multiplicity $r$, then we must include the term $
 	\end{enumerate}	
 \end{theorem}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\textbf{Proof:}
-
+\begin{proofbox}
 We show (i) if and only if (iii). Note
 \[
 	\{X_n = y \text{ for some } n \geq 0 \} = \bigcup_{n \geq 0} \{X_n = y\}
@@ -358,16 +273,17 @@ Now we note (ii) iff (iii) as
 \[
 	\mathbb{P}_x(X_n = y) = \sum_{x_1, \ldots, x_{n-1}} P(x, x_1) \cdots P(x_{n-1}, y)
 .\]
-\end{adjustbox}
+\end{proofbox}
 
 \begin{corollary}
 	$\leftrightarrow$ defines an equivalence class on $I$.
 \end{corollary}
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} $x \leftrightarrow x$ as $P_{xx}(0) = 1$, and $x \leftrightarrow y \iff y \leftrightarrow x$.
+
+\begin{proofbox}
+	$x \leftrightarrow x$ as $P_{xx}(0) = 1$, and $x \leftrightarrow y \iff y \leftrightarrow x$.
 
 	Then transitivity follows from property (ii).
-\end{adjustbox}
+\end{proofbox}
 
 
 \begin{definition}
@@ -408,8 +324,8 @@ Now we note (ii) iff (iii) as
 	The vector $(h_i^{A})$ is the minimal non-negative solution to this solution.
 \end{theorem}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\textbf{Proof:} Clearly, if $i \in A$, then $h_i^{A} = 1$. So assume $i \not \in A$. Then
+\begin{proofbox}
+	Clearly, if $i \in A$, then $h_i^{A} = 1$. So assume $i \not \in A$. Then
 \begin{align*}
 	h_i^{A} &= \mathbb{P}_i(T_A < \infty) = \sum_{n = 1}^{\infty} \mathbb{P}_i(X_1 \not \in A, \ldots, X_{n-1} \not \in A, X_n \in A) \\
 		&= \mathbb{P}_i(X_1 \in A) + \sum_{n = 2}^{\infty} \mathbb{P}_i(X_1 \not \in A, \ldots, X_n \in A) \\
@@ -419,9 +335,6 @@ Now we note (ii) iff (iii) as
 		&= \sum_{j \in A}P(i, j) h_j^{A} + \sum_{j \not \in A}P(i, j) h_j^{A} \\
 		&= \sum_{j} P(i, j) h_j^{A}.
 \end{align*}
-\end{adjustbox}
-
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
 Now we prove minimality. Let $(x_i)$ be another non-negative solution. We are required to show $h_i^{A} \leq x_i$. Assume $i \not \in A$. Then we know
 \begin{align*}
 	x_i &= \sum_{j}P(i, j)x_j \\
@@ -434,11 +347,9 @@ Hence $x_i \geq \mathbb{P}_i(T_A \leq n)$, and since the union of these events i
 \[
 	x_i \geq \mathbb{P}_i(T_A < \infty) = h_i^{A}
 .\] 
+\end{proofbox}
 
-\end{adjustbox}
-
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{example}
+\begin{exbox}
 	Consider a simple random walk on $\mathbb{Z}_{+}$. We have a transition matrix $P(0, 1) = 1$, and $P(i, i+1) = p = 1 - P(i, i-1)$. Then we wish to find $h_i = \mathbb{P}_i(T_0 < \infty)$. We know $h_0 = 1$, and $h_i = p \cdot h_{i+1} + q h_{i-1}$. This gives
 	\[
 		h_i = a + b \left( \frac{q}{p} \right)^{i} = a + (1 - a) \left( \frac{q}{p} \right)^{i}
@@ -448,9 +359,7 @@ Hence $x_i \geq \mathbb{P}_i(T_A \leq n)$, and since the union of these events i
 	Now assume $q < p$: We get $a = 0$, s $h_i = (q/p)^{i}$.
 
 	If $p = q = 1/2$, we get $h_i = a + bi$, so by boundedness, $a = 1$, and $b = 0$. So $h_i = 1$ for all $i \geq 1$.
-\end{example}
-
-\end{adjustbox}
+\end{exbox}
 
 \subsection{Birth and Death chains}%
 \label{sub:birth_and_death_chains}
@@ -515,8 +424,8 @@ For $A \subset I$, $T_A = \inf\{n \geq 0 \mid X_n \in A\}$. Then $k^{A}_i = \mat
 	\]
 \end{theorem}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\textbf{Proof:} If $i \in A$, then $k_i^{A} = 0$. Assume $i \not \in A$. Then
+\begin{proofbox}
+	If $i \in A$, then $k_i^{A} = 0$. Assume $i \not \in A$. Then
 \begin{align*}
 	k_i^{A} &= \mathbb{E}_i[T_A] = \sum_{n = 0}^{\infty} \mathbb{P}_i (T_A > n) = \sum_{n = 0}^{\infty}\mathbb{P}_i(X_0 \not \in A, \ldots, X_n \not \ni A) \\
 		&= 1 + \sum_{n = 1}^{\infty} \mathbb{P}_i(X_1 \not \in A, \ldots, X_n \not \in A) \\
@@ -526,9 +435,6 @@ For $A \subset I$, $T_A = \inf\{n \geq 0 \mid X_n \in A\}$. Then $k^{A}_i = \mat
 		&= 1 + \sum_{j} P(i, j) \sum_{n = 0}^{\infty} \mathbb{P}_j(X_0 \not \in A, \ldots, X_n \not \in A) \\
 		&= 1 + \sum_{j}P(i,j) k_j^{A} = 1 + \sum_{j \not \in A}P(i, j) k_{j}^{A}.
 \end{align*}
-\end{adjustbox}
-
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
 Now we show minimality. Let $(x_i)$ be another non-negative solution. The $x_i = 0$, $i \in A$. If $i \not \in A$,
 \begin{align*}
 	x_i &= 1 + \sum_{j \not \in A}P(i, j) x_j = 1 + \sum_{j \not \in A}P(i, j) + \sum_{j \not \in A}\sum_{k \not \in A}P(i, j) P(j, k) x_k \\
@@ -536,8 +442,7 @@ Now we show minimality. Let $(x_i)$ be another non-negative solution. The $x_i =
 	    &\geq 1 + \mathbb{P}_i(T_A > 1) + \cdots + \mathbb{P}_i(T_A > n).
 \end{align*}
 So $x_i \geq \mathbb{E}_i[T_A] = k_i^{A}$.
-
-\end{adjustbox}
+\end{proofbox}
 
 \subsection{Strong Markov Property}%
 \label{sub:strong_markov_property}
@@ -562,16 +467,13 @@ The strong Markov property is as follows:
 	Let $X$ be $\Mkv(\lambda, P)$ and let $T$ be a stopping time. Conditioning on $T < \infty$ and $X_T = i$, then $(X_{T + n})_{n \geq 0}$ is $\Mkv(\delta_i, P)$, and it is independent of $X_0, \ldots, X_T$.
 \end{proposition}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\textbf{Proof:} Take $x_0, \ldots, x_n \in I$, and $w \in \bigcup I^{k}$. Then we will show
+\begin{proofbox}
+	Take $x_0, \ldots, x_n \in I$, and $w \in \bigcup I^{k}$. Then we will show
 \begin{align*}
 	\mathbb{P}(X_T &= x_0, \ldots, X_{T+n} = x_n, (X_0, \ldots, X_T) = \omega \mid T < \infty, X_T = i) \\
 		       &= \delta_{ix_0}P(x_0, x_1)\cdots P(x_{n-1}, x_n) \mathbb{P}((X_0, \ldots, X_T) = \omega \mid T< \infty, X_T = i).
 \end{align*}
 This proves both statements. Set $\omega$ to have length $k$. Then
-\end{adjustbox}
-
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
 \begin{align*}
 	\mathbb{P}(X_k =& x_0, \ldots, X_{k+n} = x_n, (X_0, \ldots, X_k) = \omega, T = k \mid T < \infty, X_T = i) \\
 	= & \frac{\mathbb{P}(X_k = x_0, \ldots, X_{k+n} = x_n, (X_0, \ldots, X_k) = \omega, T = k, X_k = i)}{\mathbb{P}(T < \infty, X_T = i)} \\
@@ -582,26 +484,24 @@ This proves both statements. Set $\omega$ to have length $k$. Then
 	= & \delta_{ix_0}P(x_0, x_1) \cdots P(x_{n-1}, x_n) \mathbb{P}((X_0, \ldots, X_T) = \omega \mid T < \infty, X_T = i).
 \end{align*}
 This proves the Strong Markov property.
-\end{adjustbox}
+\end{proofbox}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{example}
+\begin{exbox}
 	Consider a Markov chain with $P(0, 1) = 1$, and $P(i, i+1) = P(i, i-1) = 1/2$. Let $T_0 = \inf\{n \geq 0 \mid X_n = 0\}$, and let $h_i = \mathbb{P}_i(T_0 < \infty)$.
 
 	We know that $h_0 = 1$. We can condition to find $h_1 = 1/2 + h_2/2$.
 
 	We can use more knowledge of the Markov chain to find $h_2$. Notice that
-	\[
-		h_2 = \mathbb{P}_2(T_0 < \infty) = \mathbb{P}_2(T_1 < \infty, T_0 < \infty) = \mathbb{P}_2(T_0 < \infty \mid T_1 < \infty) \mathbb{P}_2(T_1 < \infty)
-	.\]
+	\begin{align*}
+		h_2 &= \mathbb{P}_2(T_0 < \infty) = \mathbb{P}_2(T_1 < \infty, T_0 < \infty) \\
+		    &= \mathbb{P}_2(T_0 < \infty \mid T_1 < \infty) \mathbb{P}_2(T_1 < \infty).
+	\end{align*}
 	Then conditional on $T_1 < \infty$, by the strong Markov property, $X_{T_1 + n}$ is $\Mkv(\delta_1, P)$. So we can express $T_0 = T_1 + \tilde T_0$, where $\tilde T_0$ is independent of $T_1$ and has the same law as $T_0$ under $\mathbb{P}_1$. Hence
 	\[
 		\mathbb{P}_2(T_0 < \infty \mid T_1 < \infty) = \mathbb{P}_2(\tilde T_0 + T_1 < \infty \mid T_1 < \infty) = \mathbb{P}_1(T_0 < \infty) = h_1
 	.\]
 	This gives $h_2 = h_1^2$, so $h_1 = 1/2 +h_1^2/2$ implies $h_1 = 1$.
-\end{example}
-
-\end{adjustbox}
+\end{exbox}
 
 \section{Transience and Recurrence}%
 \label{sec:transience_and_recurrence}
@@ -640,8 +540,8 @@ This is the $k$-th return time to $i$\index{return time}. Define
 	Thus $V_i$ has geometric distribution.
 \end{lemma}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\textbf{Proof:} $r = 0$ is trivially true. Suppose it is true for $r \leq k$. We will prove it for $k + 1$. Indeed,
+\begin{proofbox}
+	$r = 0$ is trivially true. Suppose it is true for $r \leq k$. We will prove it for $k + 1$. Indeed,
 \begin{align*}
 	\mathbb{P}_i(V_i > k+1) &= \mathbb{P}_i(T_i^{(k+1)} < \infty) = \mathbb{P}_i(T_i^{(k+1)}< \infty, T_i^{(k)} < \infty) \\
 				&= \mathbb{P}_i(T_i^{(k+1)} < \infty \mid T_i^{(k)} < \infty) \mathbb{P}_i(T_i^{(k)} < \infty).
@@ -653,9 +553,7 @@ Moreover, the successive return times to $i$ are stopping times, so conditional 
 	\mathbb{P}_i(T_i^{(k+1)} < \infty \mid T_i^{(k)} < \infty) = \mathbb{P}_i(T_i^{(1)} < \infty) = f_i
 .\]
 This finishes the proof.
-\end{adjustbox}
-
-\newpage
+\end{proofbox}
 
 \begin{theorem}
 	\begin{enumerate}[\normalfont(a)]
@@ -671,8 +569,8 @@ This finishes the proof.
 	\end{enumerate}
 \end{theorem}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\textbf{Proof:} Note that
+\begin{proofbox}
+	Note that
 \[
 	\mathbb{E}_i[V_i] = \mathbb{E}_i\Biggl[\sum_{l = 0}^{\infty} \mathbbm{1}(X_l = i) \Biggr] = \sum_{l = 0}^{\infty} p_{ii}(l)
 .\]
@@ -687,14 +585,14 @@ This finishes the proof.
 		,\]
 		which implies that $\mathbb{P}_i(V_i < \infty) = 1$, so $i$ is transient.
 \end{enumerate}
-\end{adjustbox}
+\end{proofbox}
 
 \begin{theorem}
 	If $x \leftrightarrow y$, then $x$ and $y$ are either both recurrent or both transient.
 \end{theorem}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} We will show if $x$ is recurrent, then $y$ is as well. Note if $x \leftrightarrow y$, then there exist $m, r > 0$ such that $p_{xy}(m) > 0$, and $p_{yx}(r) > 0$. Hence
+\begin{proofbox}
+	We will show if $x$ is recurrent, then $y$ is as well. Note if $x \leftrightarrow y$, then there exist $m, r > 0$ such that $p_{xy}(m) > 0$, and $p_{yx}(r) > 0$. Hence
 	\[
 		p_{yy}(n + m + r) \geq p_{yx}(r)p_{xx}(n)p_{xy}(m),
 	\]
@@ -703,7 +601,7 @@ This finishes the proof.
 		\sum_{n \geq 0}p_{yy}(n+m+r) \geq p_{yx}(r)p_{xy}(m) \sum_{n \geq 0}p_{xx}(n) = \infty
 	,\]
 	as $x$ is recurrent. Hence $y$ is also recurrent.
-\end{adjustbox}
+\end{proofbox}
 
 \begin{corollary}
 	All sates in a communicating class are either all recurrent or all transient.
@@ -713,20 +611,19 @@ This finishes the proof.
 	If $C$ is a recurrent communicating class, then $C$ is closed.
 \end{theorem}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} Let $x \in C$, and $x \to y$ but $y \not \in C$. Since $x \to y$, there exist some $m > 0$ such that $p_{xy}(m) > 0$. But then
+\begin{proofbox} Let $x \in C$, and $x \to y$ but $y \not \in C$. Since $x \to y$, there exist some $m > 0$ such that $p_{xy}(m) > 0$. But then
 	\[
 		\mathbb{P}_x(V_x < \infty) \geq p_{xy}(m) > 0
 	.\]
 	So this shows that $x$ is transient.
-\end{adjustbox}
+\end{proofbox}
 
 \begin{theorem}
 	A finite closed class is recurrent.
 \end{theorem}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} Let $x \in C$. Since $C$ is finite, there exists $y \in C$ such that
+\begin{proofbox}
+	Let $x \in C$. Since $C$ is finite, there exists $y \in C$ such that
 	\[
 		\mathbb{P}_x(X_n = y \text{ for infinitely many } n) > 0
 	\]
@@ -738,7 +635,7 @@ This finishes the proof.
 								     &= \mathbb{P}_x(X_n = y \text{ for infinitely many } n) p_{yx}(m) > 0.
 	\end{align*}
 	So $\mathbb{P}_y(X_n = y \text{ for infinitely many } n) > 0$, so $y$ is recurrent.
-\end{adjustbox}
+\end{proofbox}
 
 \begin{theorem}
 	If $P$ is irreducible and recurrent, then for all $x, y$,
@@ -747,8 +644,7 @@ This finishes the proof.
 	.\]
 \end{theorem}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\textbf{Proof:}
+\begin{proofbox}
 \begin{align*}
 	\mathbb{P}_x(X_n &= y \text{ infinitely many times}) \\
 			 &= \mathbb{P}_x(T_y < \infty, X_n = y \text{ for infinitely many } n \geq T_y) \\
@@ -762,7 +658,7 @@ Suppose that $\mathbb{P}_x(T_y < \infty) < 1$, so $\mathbb{P}_x(T_y = \infty) > 
 				   &= \mathbb{P}_x(T_y = \infty) p_{yx}(m) > 0.
 \end{align*}
 This implies $y$ is transient, a contradiction.
-\end{adjustbox}
+\end{proofbox}
 
 \section{Simple Random Walks on \texorpdfstring{$\mathbb{Z}^{d}$}{Z\^d}}%
 \label{sec:simple_random_walks_on_zd}
@@ -778,8 +674,8 @@ This implies $y$ is transient, a contradiction.
 	A simple random walk is recurrent when $d \leq 2$ and it is transient when $d \geq 3$.
 \end{theorem}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} We first prove recurrence when $d = 1$. This is a simple random walk on $\mathbb{Z}$. Since this is irreducible, it is enough to show $0$ is recurrent, that is,
+\begin{proofbox}
+	We first prove recurrence when $d = 1$. This is a simple random walk on $\mathbb{Z}$. Since this is irreducible, it is enough to show $0$ is recurrent, that is,
 	\[
 		\sum_{n \geq 0}p_{00}(n) = \infty
 	.\]
@@ -788,9 +684,7 @@ This implies $y$ is transient, a contradiction.
 		\mathbb{P}_0(X_{2n} = 0) = \binom{2n}{n} \cdot \biggl( \frac{1}{2} \biggr)^{2n} = \frac{(2n)!}{n! \cdot n!} \cdot \frac{1}{2^{2n}} \sim \frac{1}{\sqrt{\pi n}}
 	,\]
 	where we use Stirling's formula. Hence, since this sum diverges, the simple random walk on $\mathbb{Z}$ is recurrent.
-\end{adjustbox}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
 	Consider when $P(i, i+1) = p$, $P(i, i-1) = q$, where $p \neq q$, $p + q = 1$. We show this is not recurrent. Indeed,
 	\[
 		\mathbb{P}_0(X_{2n} = 0) = \binom{2n}{n} p^{n}q^{n} \sim \frac{(4pq)^{n}}{\sqrt{\pi n}}
@@ -820,7 +714,7 @@ Let $\xi_i = (\xi_i^{1}, \xi_i^{2})$, and define $X_n$ as the partial sums of th
 \[
 	f(X_n) = \Biggl( \sum_{i = 1}^{n} \frac{(\xi_i^{1} + \xi_i^{2})}{\sqrt 2}, \sum_{i = 1}^{n} \frac{(\xi_i^{1} - \xi_i^{2})}{\sqrt 2} \Biggr) = (X_{n}^{+}, X_{n}^{-})
 .\]
-It is easy to see that $(X_n^{+}), (X_{n}^{-})$ are simple random walks on $\mathbb{Z}/\sqrt 2$. To show they are independent, it is enough to check that $\xi_i^{1} + \xi_i^{2}$ is independent of $\xi_i^{1} - \xi_i^{2}$. This can be done by calculating all possible calculations.
+It is easy to see that $(X_n^{+}), (X_{n}^{-})$ are simple random walks on $\mathbb{Z}/\sqrt 2$. To show they are independent, it is enough to check that $\xi_i^{1} + \xi_i^{2}$ is independent of $\xi_i^{1} - \xi_i^{2}$. This can be done by calculating all possiblities.
 
 Hence, applying this, we get
 \[
@@ -828,7 +722,429 @@ Hence, applying this, we get
 .\]
 This sum diverges, hence $\mathbb{Z}^2$ is recurrent.
 
-\end{adjustbox}
+Finally, we prove $\mathbb{Z}^3$ is transient by showing $\sum_n p_{00}(n) < \infty$. In order for the walk to be back at $0$ after $2n$ steps is it to make:
+\begin{itemize}
+	\item $i$ steps to the right, $i$ steps to the left,
+	\item $j$ steps north, $j$ steps south,
+	\item $k$ steps east, $k$ steps west,
+\end{itemize}
+for $i+j+k = n$. Hence we can write
+\begin{align*}
+	p_{00}(2n) &= \sum_{\substack{i, j, k \geq 0 \\ i + j + k = n}} \binom{2n}{i,i,j,j,k,k} \biggl(\frac{1}{6}\biggr)^{2n} \\
+		   &= \binom{2n}{n} \biggl( \frac{1}{2} \biggr)^{2n} \sum_{\substack{i, j, k \geq 0 \\i + j + k = n}} \binom{n}{i,j,k}^2 \biggl(\frac{1}{3}\biggr)^{2n}.
+\end{align*}
+By a simple combinatorial argument, we get
+\[
+	\sum_{\substack{i, j, k \geq 0 \\i + j + k = n}}\binom{n}{i,j,k} \biggl(\frac{1}{3}\biggr)^{n} = 1
+.\]
+We now prove a lemma. Let $n = 3m$. Then our claim is
+\[
+	\binom{n}{i,j,k} \leq \binom{n}{m,m,m}
+.\]
+Indeed, if the maximum is attained at $i, j, k$, then $i \leq j + 1$, as
+\[
+	\binom{n}{i,j,k} \geq \binom{n}{i-1,j+1,k} \implies i!j! \leq (i-1)!(j+1)! \implies i \leq j + 1
+.\]
+Since this holds for any pair in $(i,j,k)$, we have $(i,j,k) = (m,m,m)$. Hence, for $n = 3m$, we can bound
+\[
+	p_{00}(2n) \leq \binom{2n}{n} \biggl(\frac{1}{2}\biggr)^{2n} \biggl(\frac{1}{3}\biggr)^{n} \binom{n}{m,m,m} \leq \frac{A}{n^{3/2}}
+,\]
+for some $A$, by Stirling's formula. So $\sum_{m} p_{00}(6m) < \infty$. But now
+\[
+	p_{00}(6m) \geq p_{00}(6m - 2) \biggl(\frac{1}{6}\biggr)^2, \quad p_{00}(6m) \geq p_{00}(6m - 4) \biggl(\frac{1}{6}\biggr)^{4}
+.\]
+So $\sum_{n} p_{00}(2n) < \infty$, giving transience.
+\end{proofbox}
+
+\section{Invariant Distributions}%
+\label{sec:invariant_distributions}
+
+\begin{definition}
+	Let $I$ be a discrete set. Then $\lambda = (\lambda_i \mid i \in I)$ is a probability distribution if $\lambda_i \geq 0$ and $\sum_{i \in I}\lambda_i = 1$.\index{probability distribution}
+\end{definition}
+
+\begin{exbox}
+	Consider the Markov chain with transition probability
+	\[
+	P =
+	\begin{pmatrix}
+		1/2 & 1/2 \\
+		1/2 & 1/2
+	\end{pmatrix}
+	.\]
+	Then by looking at $P^{n}$, we can show that $p_{11}(n) \to 1/2$ as $n \to \infty$. So the Markov chain will converge to $(1/2, 1/2)$.
+\end{exbox}
+
+We want to find a probability distribution $\pi$ such that if $X_0 \sim \pi$, then $X_n \sim \pi$ for all $n$. Then
+\begin{align*}
+	\pi(j) &= \mathbb{P}(X_1 = j) = \sum_{i} \mathbb{P}(X_0 = i, X_1 = j) \\
+	       &= \sum_{i} \mathbb{P}(X_1 = j \mid X_0 = i)\mathbb{P}(X_0 = i) = \sum_{i}P(i, j) \pi(i).
+\end{align*}
+Hence $\pi(j) = \sum_{i} \pi(i) P(i, j)$, or $\pi = \pi P$, where $\pi$ is a row vector.
+
+\begin{definition}
+	A probability distribution $\pi$ is called invariant (or stationary or equilibrium)\index{invariant}\index{stationary} of $\pi = \pi P$.
+\end{definition}
+
+\begin{theorem}
+	Let $\pi$ be invariant and $X_0 \sim \pi$. Then $X_n \sim \pi$.
+\end{theorem}
+
+\begin{proofbox} 
+	We proceed by induction. Our base case $n = 0$ is given to us. Now assume $X_{n} \sim \pi$. Then
+	\begin{align*}
+		\mathbb{P}(X_{n+1} = j) &= \sum_{i} \mathbb{P}(X_{n+1} = j, X_n = i) \\
+					&= \sum_{i}\mathbb{P}(X_{n+1} = j \mid X_n = i) \mathbb{P}(X_n = i) \\
+					&= \sum_{i} P(i, j) \pi(i) = \pi(j).
+	\end{align*}
+\end{proofbox}
+
+\begin{theorem}
+	Let $I$ be a finite set and suppose that there exists $i \in I$ such that $p_{ij}(n) \to \pi(j)$ as $n \to \infty$. Then $\pi = (\pi(i) \mid i \in I)$ is an invariant distribution.
+\end{theorem}
+
+\begin{proofbox}
+	\[
+		\sum_{j \in I}\pi_j = \sum_{j \in I}\lim_{n \to \infty}p_{ij}(n) = \lim_{n \to \infty}\sum_{j \in I}p_{ij}(n) = 1,
+	\]
+	so $\pi$ is a probability distribution. Now note
+	\begin{align*}
+		\pi_j &= \lim_{n \to \infty}p_{ij}(n) = \lim_{n \to \infty} \sum_{k \in I}p_{ik}(n-1) P(k, j)) \\
+		    &= \sum_{k \in I}\lim_{n \to \infty}p_{ik}(n-1) P(k, j) = \sum_{k \in I}\pi_k P(k, j),
+	\end{align*}
+	so $\pi = \pi P$.
+\end{proofbox}
+\begin{remark}
+	$I$ is finite is essential. Consider a walk on $\mathbb{Z}$, with $P(i, i+1) = 1$. Then $p_{0i} \to 0$ for all $i$.
+
+	Since $P$ is a stochastic matrix, $1$ is always an eigenvalue. If $P$ is irreducible on a finite state sequence, then the Perron-Frobenius theorem ensures the existence of an invariant distribution.
+\end{remark}
+
+\begin{definition}
+	For $k \in I$, define $T_k = \inf\{n \geq 1 \mid X_n = k\}$ be the first return time to $k$. Then for every state $i$, define
+	\[
+		\nu_k(i) = \mathbb{E}_k\Biggl[ \sum_{\ell = 0}^{T_k - i} \mathbbm{1}(X_{\ell} = i) \Biggr]
+	,\]
+	so $\nu_k(i)$ is the expected number of visits to $i$ during an excursion from $k$. Thus $\nu_k$ is a measure on $I$.
+\end{definition}
+
+\begin{theorem}
+	If $P$ is irreducible and recurrent, then $\nu_k$ is an invariant measure satisfying $0 < \nu_k(i) < \infty$, and $\nu_k(k) = 1$.
+\end{theorem}
+
+\begin{proofbox}
+	Clearly $\nu_k(k) = 1$. Let $i \in I$. We will prove invariance, so $\nu_k(i) = \sum P(j,i) \nu_k(j)$. By recurrence, we get that $T_k < \infty$ with probability $1$, and $X_{T_k} = k$. So,
+	\begin{align*}
+		\nu_k(i) &= \mathbb{E}_k\Biggl[\sum_{\ell = 1}^{T_k}\mathbbm{1}(X_{\ell} = i)\Biggr] = \mathbb{E}_k\Biggl[\sum_{\ell  1}^{\infty} \mathbbm{1}(X_{\ell} = 1) \mathbbm{1}(T_k \geq \ell) \Biggr] \\
+			 &= \sum_{\ell = 1}^{\infty} \mathbb{P}_k(X_{\ell} = i, T_k \geq l) = \sum_{\ell = 1}^{\infty} \sum_{j} \mathbb{P}_k(X_{\ell} = i, X_{\ell - 1} = j, T_{k} \geq \ell) \\
+			 &= \sum_{\ell = 1}^{\infty} \sum_{j} \mathbb{P}_k(X_{\ell} = i \mid X_{\ell - 1} = j, T_{k} \geq l)\mathbb{P}_k(X_{\ell - 1}=j \mid T_{k} \geq \ell).
+	\end{align*}
+	Applying the Strong Markov property,
+	\[
+		\mathbb{P}_k(X_{\ell} = i \mid X_{\ell - 1} = j, T_k \geq l) = \mathbb{P}_k(X_{\ell} = i \mid X_{\ell - 1} = k) = P(j,i)
+	.\]
+	So
+	\begin{align*}
+		\nu_k(i) &= \sum_{\ell = 1}^{\infty} \sum_{j} P(j, i)\mathbb{P}_k(X_{\ell - 1} = j, T_{k} \geq \ell) \\
+			 &= \sum_{j} P(j, i) \mathbb{E}_k\Biggl[\sum_{\ell = 1}^{\infty} \mathbbm{1}(X_{\ell - 1} = j, T_k \geq \ell) \Biggr] \\
+			 &= \sum_{j} P(j, i) \nu_k(j).
+	\end{align*}
+	Hence $\nu_k$ is invariant. Now we show $\nu_k(i) > 0$. Since $\nu_k = \nu_k P^{m}$, we have
+	\[
+		\nu_k(i) \geq \nu_k(k) p_{ki}(m) = p_{ki}(m)
+	.\]
+	By irreducibility, there exists $m$ such that $p_{ki}(m) > 0$, so $\nu_k(i) > 0$. Now we show $\nu_k(i) < \infty$. Indeed,
+	\[
+		1 = \nu_k(k) \geq \nu_k(i) p_{ik}(m)
+	.\]
+	Take $n$ such that $p_{ik}(n) > 0$. Then we get
+	\[
+		\nu_k(i) \leq \frac{1}{p_{ik}(n)} < \infty
+	.\]
+\end{proofbox}
+
+\begin{theorem}
+	If $P$ is irreducible and $\lambda$ is an invariant measure satisfying $\lambda_k = 1$, then $\lambda \geq \nu_k$.
+	
+	If $P$ is also recurrent, then $\lambda = \nu_k$.
+\end{theorem}
+
+\begin{proofbox}
+	We have $\lambda_i \geq 0$ for all $i$. Then
+	\begin{align*}
+		\lambda_i &= \sum_{j} \lambda_j P(j, i) = P(k, i) + \sum_{j_1 \neq k} P(j_1, i) \lambda_{j_1} \\
+			  &= P(k,1) + \sum_{j_1 \neq k}P(k, j_1)P(j_1, i) + \sum_{\substack{j_1 \neq k, \\j_2 \neq k}} P(j_2, j_1)P(j_1, i) \lambda_{j_2} \\
+			  &= P(k,i) + \sum_{k_1 \neq k}P(k, j_1)P(j_1, i) + \cdots \\
+			  &\quad + \sum_{j_1, \ldots, j_{n-1} \neq k} P(k, j_{n-1} \cdots P(j_1,i) + \sum_{j_1, \ldots, j_{n} \neq k}P(j_n, j_{n-1}) \cdots P(j_1, i) \lambda_{j_n}.
+	\end{align*}
+	Using the fact $\lambda_{j_n} \geq 0$, we have
+	\begin{align*}
+		\lambda_i &\geq \mathbb{P}_k(X_1 = i, T_k \geq 2) + \mathbb{P}_k(X_2 = i, T_k \geq 3) \\
+			  & \qquad + \cdots + \mathbb{P}_k(X_n = i, T_k \geq n+1), \\
+		\lambda_i &\geq \mathbb{E}_k\Biggl[\sum_{\ell = 1}^{n}\mathbbm{1}(X_{\ell} = i, T_k \geq \ell + 1) \Biggr] \\
+			  &= \sum_{\ell = 0}^{n} \mathbb{E}_k[\mathbbm{1}(X_{\ell} = i, \ell \leq T_{k}-1)].
+	\end{align*}
+	Taking $n \to \infty$, we get that $\lambda_i \geq \nu_k(i)$.
+
+	If $P$ is recurrent, then $\nu_k$ is an invariant measure with $\nu_k(k) = 1$. Let $\mu_i = \lambda_i - \nu_k(i)$, an invariant measure with $\mu_i \geq 0$ and $\mu_k = 0$. Then we want to show $\mu_i = 0$ for all $i$. Let $i \in I$. Then,
+	\[
+		0 = \mu_k = \sum_{j} \mu_j P^{m}(j, k) \implies \mu_k \geq \mu_i P^{m}(i,k)
+	.\]
+	Taking $m$ such that $P_m(i, k) > 0$, we have $\mu_i = 0$.
+\end{proofbox}
+
+\begin{remark}
+	If $P$ is irreducible and recurrent, then all invariant measures are unique up to multiplicative factors.
+\end{remark}
+
+Now we want to find out when we can get an invariant distribution $\pi = \pi P$ with $\sum \pi_i = 1$.
+
+For $P$ irreducible and recurrent, by uniqueness, we can get an invariant distribution which is unique. If $\sum \nu_k(i) < \infty$, then we can find an invariant distribution
+\[
+	\pi_i = \frac{\nu_k(i)}{\sum_{j} \nu_k(j)}
+.\]
+
+Thus we are interested in when this sum is finite. Note
+\begin{align*}
+	\sum_{i \in I}\nu_k(i) &= \sum_{i \in I}\mathbb{E}_k\Biggl[\sum_{\ell = 0}^{T_k - 1}\mathbbm{1}(X_{\ell} = i) \Biggr] = \mathbb{E}_k\Biggl[\sum_{\ell = 0}^{T_k - 1}\sum_{i \in I} \mathbbm{1}(X_{\ell = i})\Biggr] \\
+			       &= \mathbb{E}_k[T_k].
+\end{align*}
+So if $\mathbb{E}_k[T_k] < \infty$, then we can normalise.
+
+\begin{definition}
+	For $P$ irreducible and recurrent, let $T_k = \inf\{n \geq 1 \mid X_n = k\}$. Then $P$ recurrent implies $\mathbb{P}_k(T_k < \infty) = 1$.
+
+	We say $k$ is \textit{positive recurrent}\index{positive recurrent} if $\mathbb{E}_k[T_k] < \infty$. Otherwise, we say $k$ is \textit{null recurrent}\index{null recurrent}.
+\end{definition}
+
+If $k$ is positive recurrent, then
+\[
+	\pi_j = \frac{\nu_k(k)}{\mathbb{E}_k[T_k]} = \frac{1}{\mathbb{E}_k[T_k]}
+.\]
+
+\begin{theorem}
+	Let $P$ be an irreducible matrix. Then the following are equivalent:
+	\begin{enumerate}[\normalfont(i)]
+		\item All states are positive recurrent;
+		\item Some state is positive recurrent;
+		\item There exists an invariant distribution $\pi_i$.
+	\end{enumerate}
+	If any of the above holds, then $\pi_k = (\mathbb{E}_k[T_k])^{-1}$ exists and is an invariant distribution.
+\end{theorem}
+
+\begin{proofbox}
+	Clearly (i) $\implies$ (ii). Now we show (ii) $\implies$ (iii). Let $k$ be the positive recurrent state. Then for all $i$,
+	\[
+		\nu_k(i) = \mathbb{E}_k\Biggl[\sum_{\ell = 0}^{T_{k} - 1}\mathbbm{1}(X_{\ell} = i) \Biggr]
+	.\]
+	Since $k$ is recurrent, we have $\nu_k P = \nu_k$, so $\nu_k$ is an invariant measure. Now, remember
+	\[
+		\sum_{i \in I}\nu_k(i) = \mathbb{E}_k\Biggl[\sum_{\ell = 0}^{T_k - 1} \sum_{i \in I}\mathbbm{1}(X_{\ell} = i) \Biggr] = \mathbb{E}_k[T_k]
+	.\]
+	Since $k$ is positive recurrent, $\mathbb{E}_k[T_k] < \infty$. So we can define $\pi_i = \nu_k(i)/\mathbb{E}_k[T_k]$, as an invariant distribution.
+
+	Finally, we show (iii) $\implies$ (i). Let $\pi$ be the invariant distribution. Let $k$ be a state, then we want to show $k$ is positive recurrent. First, we show $\pi_k > 0$. Note there exists $i \in I$ such that $\pi_i > 0$. Then since $\pi = \pi P = \pi P^{n}$ for all $n$,
+	\[
+		\pi_k = \sum_{j} \pi_j P^{n}(j, k)
+	.\]
+	Take $n$ such that $P^{n}(i, k) > 0$ by irreducibility, then $\pi_k \geq \pi_i P^{n}(i, k) > 0$. Define $\lambda_i = \pi_i/\pi_k$. Then this is an invariant measure on which $\lambda_k = 1$. So since $P$ is irreducible, $\lambda \geq \nu_k$. Hence,
+	\[
+		\mathbb{E}_k[T_k] = \sum_{i \in I}\nu_k(i) \leq \sum_{i \in I}\lambda_i = \frac{1}{\pi_k} < \infty
+	,\]
+	giving $k$ positive recurrent.
+
+	Now suppose (i), (ii) and (iii) holds, and let $k$ be a state. We know $k$ is positive recurrent. Define $\lambda_i = \pi_i/\pi_k$, which is an invariant measure with $\lambda_k = 1$. Then $P$ recurrent gives $\lambda = \nu_k$, so from the same calculation as above,
+	\[
+		\mathbb{E}_k[T_k] = \frac{1}{\pi_k}
+	.\]
+\end{proofbox}
+
+\begin{corollary}
+	If $P$ is irreducible, and $\pi$ is the invariant distribution, then for all $x, y$,
+	\[
+		\nu_x(y) = \frac{\pi_y}{\pi_x}
+	.\]
+\end{corollary}
+
+\begin{exbox}
+	Take a symmetric simple random walk on $\mathbb{Z}$. Then $P$ is recurrent. Does there exist an invariant distribution? We have
+	\[
+	\pi_i = \frac{1}{2} \pi_{i-1} + \frac{1}{2} \pi_{i_1}
+	.\]
+	Then $\pi_i \equiv 1$ is an invariant measure. Since $P$ is recurrent, all invariant measures have to be multiples of $\pi_i \equiv 1$. So there does not exist an invariant distribution, and so this walk in not positive recurrent.
+
+	Take an asymmetric simple random walk on $\mathbb{Z}$, with $P(x, x+1) = p$, $P(x, x-1) = q = 1-p$ with $p > q$. Then  $\pi_i = p \pi_{i-1} + q \pi_{i+1}$ gives
+	\[
+		\pi_i = a + b \biggl( \frac{p}{q} \biggr)^{i}
+	\]
+	as an invariant measure for any choice of $a, b$. So, there is no uniqueness up to a multiplicative factor, and indeed, this is valid under the observation that $P$ is transient.
+
+	Again, we can take a simple random walk on $\mathbb{Z}^3$, which is transient. Then $\pi_i \equiv 1$ is an invariant measure, so the existence of an invariant measure does not imply recurrence.
+
+	Now take the asymmetric simple random walk $\mathbb{Z}_{+}$ with $P(x, x+1) = p$, $P(x, x-1) = q$, where $p < q$. We look for invariant measures $\pi = \pi P$. Similar to the walk on $\mathbb{Z}$,
+	\[
+		\pi_i = \biggl( \frac{p}{q} \biggr)^{i} \pi_0
+	\]
+	is an invariant measure. Setting $\pi_0 = 1 - p/q$, we can get the invariant distribution
+	\[
+		\pi_i = \biggl( \frac{p}{q} \biggr)^{i} \biggl(1 - \frac{p}{q} \biggr)
+	.\]
+	Hence there exists an invariant distribution, so this walk is positive recurrent.
+\end{exbox}
+
+\newpage
+
+\section{Time Reversibility}%
+\label{sec:time_reversibility}
+
+\begin{proposition}
+	Let $P$ be irreducible, and $\pi$ an invariant distribution. Fix $N \in \mathbb{N}$ and $X_0 \sim \pi$. Define $Y_n = X_{N - n}$, for $0 \leq n \leq N$. Then, $(Y_n)$ is a Markov chain with transition matrix
+	\[
+		\hat P(x, y) = \frac{\pi(y)}{\pi(x)}P(y, x)
+	\]
+	and invariant distribution $\pi$.
+\end{proposition}
+
+\begin{proofbox}
+	$\hat P$ is a transition matrix, since
+	\[
+		\sum_{y} \hat P(x, y) = \sum_{y} \frac{\pi(y)}{\pi(x)} P(y, x) = \frac{\pi(x)}{\pi(x)} = 1.
+	\]
+	Let $y_0, \ldots, y_n \in I$. Then,
+	\begin{align*}
+		\mathbb{P}(Y_0 &= y_0, \ldots, Y_n = y_0) = \mathbb{P}(X_n = y_0, \ldots, X_0 = y_N) \\
+			       &= \mathbb{P}(X_0 = y_N, \ldots, X_N = y_0) = \pi(y_N)P(y_N, y_{N-1})\cdots P(y_1, y_0) \\
+			       &= \pi(y_{N-1})\hat P(y_{N_1}, Y_N) P(y_{N-1}, y_{N_2}) \cdots P(y_1, y_0) \\
+			       &= \cdots = \pi(y_0) \hat P(y_0, y_1) \cdots \hat P(y_{N-1}, Y_n).
+	\end{align*}
+	So $Y$ is $\Mkv(\pi, \hat P)$. Now we check $\hat P$ has invariant distribution $\pi$. Indeed,
+	\[
+		\sum_{x} \pi(x) \hat P(x, y) = \sum_{x} \pi(x) \frac{\pi(y)}{\pi(x)}P(y, x) = \pi(y)
+	.\]
+	So $\pi \hat P = \pi$, and $\hat P$ is irreducible. Indeed, let $x, y\in I$. Then as $P$ is irreducible, there exists $x_0 = x, \ldots, x_n = y$ with $P(x_0, x_1) \cdots P(x_{n-1}, x_n) > 0$. So,
+	\[
+		\hat P(x_n, x_{n-1}) \cdots \hat P(x_1, x_0) = P(x_0, x_1) \cdots P(x_{n-1}, x_n) \frac{\pi(x_0)}{\pi(x_n)} > 0
+	.\]
+\end{proofbox}
+
+\begin{definition}
+	A Markov chain with matrix $P$ and invariant distribution $\pi$ is called \textit{(time) reversible}\index{time reversible} if $\hat P = P$, i.e for all $x, y \in I$,
+	\[
+		\pi(x) P(x, y) = \pi(y) P(y, x)
+	,\]
+	which is the detailed balance equation\index{detailed balance equation}.
+
+	Equivalently $X$ is reversible of for all $N \in \mathbb{N}$, when $X_0 \sim \pi$, then
+	\[
+		(X_0, \ldots, X_N) \sim (X_N, \ldots, X_0)
+	.\]
+\end{definition}
+
+\begin{exbox}
+	Take a walk on $\mathbb{Z}_n$, where $P(i, i+1) = \frac{2}{3}$ and $P(i, i-1) = \frac{1}{3}$. Then the invariant distribution is $\pi_i = \frac{1}{n}$, and so $P$ is not reversible, because the
+	\[
+		\pi(i) P(i, i+1) = \frac{2}{3n} \neq \frac{1}{3n} = \pi(i+1) P(i+1, i)
+	,\]
+	so the detailed balance equations are not satisfied.
+
+	Now take the same walk, except on $\{0, 1, \ldots, n-1\}$, with $P(0,0) = \frac{1}{3}$ and $P(n-1,n-1) = \frac{2}{3}$. Then $\lambda_i = 2^{i}$ is an invariant distribution, so $\pi(i) \propto 2^{i}$.
+
+	We can then check $\pi$ satisfies the detailed balance equations, so $P$ is time reversible.
+\end{exbox}
+
+\begin{lemma}
+	Let $\mu$ be a distribution satisfying
+	\[
+		\mu(x) P(x, y) = \mu(y) P(y, x)
+	,\]
+	for all $x, y \in I$. Then $\mu$ is an invariant distribution.
+\end{lemma}
+
+\begin{proofbox}
+	\[
+		\sum_{x} \mu(x)P(x, y) = \sum_{x} \mu(y) P(y, x) = \mu(y)
+	.\]
+	So $\mu = \mu P$.
+\end{proofbox}
+
+Thus, when we look for an invariant distribution, we should look for a solution to the detailed balance equations. If a distribution that solves the detailed balance equation exists, then it is an invariant distribution.
+
+On the other hand, if no solution to the detailed balance equation exists, and there is an invariant distribution, then the chain is not reversible.
+
+\begin{exbox}
+	Take a simple random walk on a graph $G = (V, E)$, where we stipulate that $G$ is finite and connected. The probabilities are
+	\[
+		P(x, y) =
+		\begin{cases}
+			\frac{1}{d(x)} & (x, y) \in E, \\
+			0 & \text{else}.
+		\end{cases}
+	\]
+	Since $G$ is connected, $P$ is irreducible. To find an invariant distribution, we look at the detailed balance equation:
+	\[
+		\pi(x) \frac{1}{d(x)} = \pi(x) P(x, y) = \pi(y) P(y, x) = \pi(y) \frac{1}{d(y)}
+	.\]
+	Taking $\nu(x) = d(x0$, then $\nu$ is an invariant measure, so
+	\[
+		\pi(x) = \frac{d(x)}{\sum d(y)} = \frac{d(x)}{2|E|}
+	\]
+	is an invariant distribution. Hence a simple random walk on $G$ is reversible.
+\end{exbox}
+
+\newpage
+
+\section{Convergence to Equilibrium}%
+\label{sec:convergence_to_equilibrium}
+
+\begin{theorem}
+	Let $I$ be finite, and suppose there is $i \in I$ such that for all $j$,
+	\[
+		p_{ij}(n) \to \pi(j)
+	,\]
+	as $n \to \infty$. Then $\pi$ is invariant.
+\end{theorem}
+
+Hence, if this holds, then we can show $P$ has an invariant distribution $\pi$. Thus we want to find under what conditions do we have convergence to $\pi$.
+
+\begin{exbox}
+	Take a walk on $\{0, 1, \ldots, K\}$. Then, no matter the probabilities, $P^{n}(0, 0) = 0$, hence we cannot find an invariant distribution in this way.
+\end{exbox}
+
+\begin{definition}
+	Let $P$ be a transition matrix, and let $i \in I$. The period of $i$ is defined as
+	\[
+		d_i = \gcd \{n \geq 1 \mid P^{n}(i, i) > 0\}
+	.\]
+	$i$ is called \textit{aperiodic}\index{aperiodic} if $d_i = 1$.
+\end{definition}
+
+\begin{lemma}
+	Let $P$ be a transition matrix and $i \in I$. Then $d_i = 1$ if and only if $P^{n}(i, i) > 0$ for all $n$ sufficiently large.
+\end{lemma}
+
+\begin{proofbox}
+	It suffices to show that if $d_1 = 1$, then $P^{n}(i, i) > 0$ for all $n$ large enough. Let $D(i) = \{n \geq 1 \mid P^{n}(1, 1) > 0\}$.
+
+	Observe if $n, m \in D(i)$, then $n + m \in D(i)$. Now it suffices to prove that $D(i)$ contains two consecutive integers: if it contains $m$ and $m+1$, then it will contain $am + b(m+1)$ for all $a, b \in \mathbb{N}$. In particular, this hits all integers greater than $m^2$.
+
+	Let $n, m \in D(i)$ such that $n = m + r$, with $r$ minimal. Then there exists $k = \ell r + s \in D(i)$ with $0 < s < r$. Otherwise, all elements of $D(i)$ would be multiples of $r$.
+
+	Let $a = (\ell + 1)n$, and $b = (\ell + 1)m + k$. Then $a, b \in D(i)$. Notice that $a - b = r - s < r$, contradiction.
+
+	So $r = 1$, and $D(i)$ contains 2 consecutive integers.
+\end{proofbox}
+
+\begin{lemma}
+	If $P$ is irreducible and $i \in I$ is aperiodic, then all states are aperiodic.
+\end{lemma}
+
+\begin{proofbox}
+	Let $j \in I$, such that $P^{r}(i, j) > 0$ and $P^{s}(j, i) > 0$. Then for all large $n$,
+	\[
+		P^{n+r+s}(j,j) \geq P^{s}(j, i) P^{n}(i,i) P^{r}(i,j) > 0
+	.\]
+	So $j$ is aperiodic.
+\end{proofbox}
 
 
 

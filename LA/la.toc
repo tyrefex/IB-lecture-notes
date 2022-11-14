@@ -1,17 +1,29 @@
-\contentsline {section}{\numberline {1}Vector Spaces and Subspaces}{2}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Subspaces and Quotients}{4}{subsection.1.1}%
-\contentsline {section}{\numberline {2}Spans, Linear Independence and the Steinitz Exchange Lemma}{5}{section.2}%
-\contentsline {section}{\numberline {3}Basis, Dimension and Direct Sums}{9}{section.3}%
-\contentsline {section}{\numberline {4}Linear maps, Isomorphisms and the Rank-Nullity Theorem}{13}{section.4}%
-\contentsline {section}{\numberline {5}Linear maps and Matrices}{17}{section.5}%
-\contentsline {section}{\numberline {6}Change of Basis and Equivalent Matrices}{20}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Change of Basis}{20}{subsection.6.1}%
-\contentsline {section}{\numberline {7}Elementary operations and Elementary Matrices}{24}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Representation of Square Invertible Matrix}{25}{subsection.7.1}%
-\contentsline {section}{\numberline {8}Dual Spaces and Dual Maps}{27}{section.8}%
-\contentsline {section}{\numberline {9}Properties of the Dual Map}{31}{section.9}%
-\contentsline {subsection}{\numberline {9.1}Properties of the Dual Map}{31}{subsection.9.1}%
-\contentsline {subsection}{\numberline {9.2}Double Dual}{32}{subsection.9.2}%
-\contentsline {section}{\numberline {10}Bilinear Forms}{35}{section.10}%
-\contentsline {section}{\numberline {11}Determinant and Traces}{39}{section.11}%
-\contentsline {section}{Index}{40}{section*.2}%
+\contentsline {section}{\numberline {1}Vector Spaces and Subspaces}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Subspaces and Quotients}{5}{subsection.1.1}%
+\contentsline {section}{\numberline {2}Spans, Linear Independence and the Steinitz Exchange Lemma}{6}{section.2}%
+\contentsline {section}{\numberline {3}Basis, Dimension and Direct Sums}{10}{section.3}%
+\contentsline {section}{\numberline {4}Linear maps, Isomorphisms and the Rank-Nullity Theorem}{14}{section.4}%
+\contentsline {section}{\numberline {5}Linear maps and Matrices}{18}{section.5}%
+\contentsline {section}{\numberline {6}Change of Basis and Equivalent Matrices}{21}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Change of Basis}{21}{subsection.6.1}%
+\contentsline {section}{\numberline {7}Elementary operations and Elementary Matrices}{25}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Representation of Square Invertible Matrix}{26}{subsection.7.1}%
+\contentsline {section}{\numberline {8}Dual Spaces and Dual Maps}{28}{section.8}%
+\contentsline {section}{\numberline {9}Properties of the Dual Map}{32}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Properties of the Dual Map}{32}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Double Dual}{33}{subsection.9.2}%
+\contentsline {section}{\numberline {10}Bilinear Forms}{36}{section.10}%
+\contentsline {section}{\numberline {11}Determinant and Traces}{40}{section.11}%
+\contentsline {section}{\numberline {12}Determinants}{41}{section.12}%
+\contentsline {subsection}{\numberline {12.1}Permutations and Transposition}{41}{subsection.12.1}%
+\contentsline {section}{\numberline {13}Some Properties of Determinants}{46}{section.13}%
+\contentsline {subsection}{\numberline {13.1}Determinant of linear maps}{47}{subsection.13.1}%
+\contentsline {subsection}{\numberline {13.2}Determinant of Block Matrices}{48}{subsection.13.2}%
+\contentsline {section}{\numberline {14}Adjugate Matrix}{50}{section.14}%
+\contentsline {subsection}{\numberline {14.1}Column expansion and Adjugate Matrix}{50}{subsection.14.1}%
+\contentsline {section}{\numberline {15}Eigenvectors, Eigenvalues and Triangular Matrices}{53}{section.15}%
+\contentsline {subsection}{\numberline {15.1}Polynomials}{54}{subsection.15.1}%
+\contentsline {section}{\numberline {16}Diagonalisation Matrix and Minimal Polynomial}{58}{section.16}%
+\contentsline {subsection}{\numberline {16.1}Minimal Polynomials}{61}{subsection.16.1}%
+\contentsline {section}{\numberline {17}Cayley-Hamilton Theorem}{63}{section.17}%
+\contentsline {section}{Index}{65}{section*.2}%

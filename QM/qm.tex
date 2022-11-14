@@ -1,83 +1,8 @@
 \documentclass[12pt]{article}
-\usepackage{amsmath}
-\usepackage{mathtools}
-\usepackage[a4paper]{geometry}
-\usepackage{fancyhdr}
-\usepackage{tikz}
-\usepackage{amssymb}
-\usepackage{graphicx}
-\usepackage{amsthm}
-\usepackage{import}
-\usepackage{xifthen}
-\usepackage{pdfpages}
-\usepackage{transparent}
-\usepackage{adjustbox}
-\usepackage[shortlabels]{enumitem}
-\usepackage{parskip}
-\makeatletter
-\newcommand{\@minipagerestore}{\setlength{\parskip}{\medskipamount}}
-\makeatother
-\usepackage{imakeidx}
 
-\DeclareMathOperator{\Ker}{Ker}
-\DeclareMathOperator{\Img}{Im}
-\DeclareMathOperator{\rank}{rank}
-\DeclareMathOperator{\nullity}{null}
-\DeclareMathOperator{\spn}{span}
-\DeclareMathOperator{\tr}{tr}
-\DeclareMathOperator{\adj}{adj}
-\DeclareMathOperator{\id}{id}
-\DeclareMathOperator{\Sym}{Sym}
-\DeclareMathOperator{\Orb}{Orb}
-\DeclareMathOperator{\Stab}{Stab}
-\DeclareMathOperator{\ccl}{ccl}
-\DeclareMathOperator{\Aut}{Aut}
-\DeclareMathOperator{\Syl}{Syl}
-\DeclareMathOperator{\sgn}{sgn}
-\DeclareMathOperator{\Fit}{Fit}
-\DeclareMathOperator{\Ann}{Ann}
-
-
-\newcommand{\incfig}[1]{%
-	\def\svgwidth{\columnwidth}
-	\import{./figures/}{#1.pdf_tex}
-}
-\newcommand{\diff}{\mathop{}\!\mathrm{d}}
-\newcommand{\Diff}[1]{\mathop{}\!\mathrm{d}^{#1}}
-
-\setlength\parindent{0pt}
-
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{corollary}{Corollary}[section]
-\newtheorem{lemma}{Lemma}[section]
-\newtheorem{proposition}{Proposition}[section]
-
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}[section]
-\newtheorem{example}{Example}[section]
-
-\theoremstyle{remark}
-\newtheorem*{remark}{Remark}
-
-\pagestyle{fancy}
-\fancyhf{}
-\rhead{\leftmark}
-\lhead{Page \thepage}
-\setlength{\headheight}{15pt}
-
-\newcommand{\mapsfrom}{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}
+\usepackage{ishn}
 
 \makeindex[intoc]
-
-\usepackage{hyperref}
-\hypersetup{
-    colorlinks,
-    citecolor=black,
-    filecolor=black,
-    linkcolor=black,
-    urlcolor=black
-    pdfauthor={Ishan Nath}
-}
 
 \begin{document}
 
@@ -259,8 +184,8 @@ L_n = n \hbar
 	If $L$ is quantized, then $r, v, E$ are quantized.
 \end{proposition}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\textbf{Proof:} Since $L = m_e v r$, this implies
+\begin{proofbox}
+Since $L = m_e v r$, this implies
 \[
 v = \frac{L}{m_0 r} \implies v_n = n \frac{\hbar}{m_e r}
 .\]
@@ -273,16 +198,13 @@ This gives
 	r = r_n = n^2 \left( \frac{4 \pi \epsilon_0}{m_e e^2}\hbar ^2 \right) = n^2 a_0
 ,\]
 where $a_0$ is the Bohr radius\index{Bohr radius}.
-\end{adjustbox}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
 As a result of the quantization of the radius and velocity, the energy is also quantized. The energy is
 \[
 E_n = \frac{1}{2} m_e v_n^2 - \frac{e^2}{4 \pi \varepsilon_0} \frac{1}{r_n} = - \frac{e^2}{8 \pi \varepsilon_0 a_0} \frac{1}{n^2} = - \frac{e^{4} m_e}{32 \pi^2 \varepsilon_0^2 \hbar^2} \frac{1}{n^2} = \frac{E_1}{n^2}
 .\]
 Here $E_1$ is the lowest possible energy state, or ground state, of the Bohr atom.
-
-\end{adjustbox}
+\end{proofbox}
 
 
 The energy emitted by transition from the $m$-th to the $n$-th orbital is $E_{mn} = E_m - E_n$. Using $E_{mn} = \hbar \omega_{mn}$, we get
@@ -376,8 +298,8 @@ The state $\psi$ corresponds to rays in the vector space, which are equivalence 
 	If $\psi_1(\mathbf{x}, t), \psi_2(\mathbf{x}, t) \in \mathcal{H}$, then $\psi(\mathbf{x}, t) = \alpha_1 \psi_1(\mathbf{x}, t) + \alpha_2 \psi_2(\mathbf{x}, t) \in \mathcal{H}$.
 \end{theorem}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\textbf{Proof:} Since $\psi_1, \psi_2 \in \mathcal{H}$, we can say
+\begin{proofbox}
+Since $\psi_1, \psi_2 \in \mathcal{H}$, we can say
 \[
 	\int_{\mathbb{R}^3} |\psi_1(\mathbf{x}, t)|^2\Diff3 x = \mathcal{N}_1, \quad \int_{\mathbb{R}^3} |\psi_2 (\mathbf{x}, t)|^2\Diff3 x = \mathcal{N}_2
 .\]
@@ -389,7 +311,7 @@ Note the triangle inequality: if $z_1, z_2 \in \mathbb{C}$, then $|z_1 + z_2| < 
 							   &\leq \int_{\mathbb{R}^3} 2|\alpha_1 \psi_1(\mathbf{x}, t)|^2 + 2|\alpha_2 \psi_2(\mathbf{x}, t)|^2\Diff3 x \\
 							   &= 2|a_1|^2\mathcal{N}_1 + 2|a_2|^2\mathcal{N}_2 < \infty.
 \end{align*}
-\end{adjustbox}
+\end{proofbox}
 
 \subsection{Inner Product}%
 \label{sub:inner_product}
@@ -405,14 +327,14 @@ Note the triangle inequality: if $z_1, z_2 \in \mathbb{C}$, then $|z_1 + z_2| < 
 	If $\psi, \phi \in \mathcal{H}$, then the inner product exists.
 \end{theorem}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\textbf{Proof:} Let the square integrals of $\psi$ and $\phi$ be $\mathcal{N}_1$ and $\mathcal{N}_2$, respectively. Then, we use the Schwarz inequality as follows:
+\begin{proofbox}
+Let the square integrals of $\psi$ and $\phi$ be $\mathcal{N}_1$ and $\mathcal{N}_2$, respectively. Then, we use the Schwarz inequality as follows:
 \begin{align*}
 	|(\psi, \phi)| &= \left| \int_{\mathbb{R}^3} \psi^{\ast}(\mathbf{x}, t) \phi(\mathbf{x}, t) \Diff3 x \right| \\
 		       &\leq \sqrt{\int_{\mathbb{R}^3} |\psi(\mathbf{x}, t)|^2\Diff3 x \cdot \int_{\mathbb{R}^3}|\phi(\mathbf{x}, t)|^2\Diff3 x} \\
 		       &= \sqrt{\mathcal{N}_1\mathcal{N}_2} < \infty.
 \end{align*}
-\end{adjustbox}
+\end{proofbox}
 
 \subsubsection{Properties of the Inner Product}%
 \label{subsub:properties_of_the_inner_product}
@@ -452,14 +374,14 @@ Note the triangle inequality: if $z_1, z_2 \in \mathbb{C}$, then $|z_1 + z_2| < 
 	If $\{\psi_n\}$ form a complete orthonormal basis of $\mathcal{H}$, then $c_n = (\psi_n, \phi)$.
 \end{lemma}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\textbf{Proof:}
+\begin{proofbox}	
 \begin{align*}
 	(\psi_n, \phi) &= \left( \psi_n, \sum_{m = 0}^{n} c_m \psi_m \right) \\
 		       &= \sum_{m = 0}^{\infty} c_m (\psi_n, \psi_m) = \sum_{m = 0}^{\infty} c_m \delta_{mn} \\
 		       &= c_n.
 \end{align*}
-\end{adjustbox}
+\end{proofbox}
+
 
 \subsection{Time-dependent Schr\"{o}dinger Equation}%
 \label{sub:time_dependent_schrodinger_equation}
@@ -509,8 +431,9 @@ To apply the Schr\"{o}dinger equation, we need to ensure the wavefunction remain
 		,\]
 		is independent of time.
 \end{enumerate}
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:}  We have
+
+\begin{proofbox}	
+We have
 	\[
 		\frac{\diff \mathcal{N}}{\diff t} = \frac{\diff}{\diff t} \int_{\mathbb{R}^3} |\psi(\mathbf{x}, t)|^2\Diff 3 x = \int_{\mathbb{R}^3} \frac{\partial}{\partial t}|\psi(\mathbf{x}, t)|^2\Diff3 x
 	.\]
@@ -526,13 +449,13 @@ To apply the Schr\"{o}dinger equation, we need to ensure the wavefunction remain
 		\implies \frac{\diff \mathcal{N}}{\diff t} &= \int_{\mathbb{R}^3} \nabla \cdot \left[\frac{i \hbar}{2m} (\psi^{\ast}\nabla \psi - \psi \nabla \psi^{\ast})\right] = 0,
 	\end{align*}
 	because $\psi, \psi^{\ast}$ are such that $|\psi|, |\psi^{\ast}| \to 0$ as $|\mathbf{x}| \to \infty$.
-\end{adjustbox}
+\end{proofbox}
 \begin{enumerate}[resume*]
 	\item The probability is conserved with respect to time:
 		\[
 			\frac{\partial \rho}{\partial t} (\mathbf{x}, t) + \nabla \cdot J = 0
 		,\]
-		where
+		where the probability current is\index{probability current}
 		\[
 			J(\mathbf{x}, t) = - \frac{i \hbar}{2m} \left[ \psi^{\ast}\nabla \psi - \psi\nabla\psi^{\ast}\right]
 		.\]
@@ -618,10 +541,8 @@ We can verify that
 	All physics quantities in quantum mechanics are represented by Hermitian operators.
 \end{definition}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{example}
+\begin{exbox}
 	\begin{enumerate}[(i)]
-		\item[]
 		\item $\hat x : \psi(x, t) \to x \psi(x, t)$ is Hermitian as
 			\[
 				\int_{-\infty}^{\infty}(x\psi_1)^{\ast}\psi_1\diff x = \int_{-\infty}^{\infty}\psi_1^{\ast} x \psi_2 \diff x
@@ -645,18 +566,14 @@ We can verify that
 				\hat H : \psi(x, t) \to (\hat T + \hat U)\psi(x, t) = \left(- \frac{\hbar^2}{2m} \frac{\partial^2}{\partial x^2} + U(x) \right) \psi(x, t)
 			.\]
 	\end{enumerate}
-	
-\end{example}
-
-\end{adjustbox}
-
+\end{exbox}
 
 \begin{theorem}
 	The eigenvalues of Hermitian operators are real.
 \end{theorem}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\textbf{Proof:} Let $\hat A$ be a hermitian operator with eigenvalue $a$, eigenfunction $\|\psi\| = 1$. Then
+\begin{proofbox}
+Let $\hat A$ be a hermitian operator with eigenvalue $a$, eigenfunction $\|\psi\| = 1$. Then
 \[
 	(\psi, \hat A \psi) = (\psi, a \psi) = a(\psi, \psi) = a
 ,\]
@@ -665,20 +582,22 @@ but since $\hat A$ is Hermitian, this equals
 	(\hat A \psi, \psi) = (a \psi, \psi) = a^{\ast} (\psi, \psi) = a^{\ast}
 .\]
 So $a^{\ast} = a$, and $a \in \mathbb{R}$.
-\end{adjustbox}
+\end{proofbox}
+
 
 \begin{theorem}
 	If $\hat A$ is a Hermitian operator, and $\psi_1, \psi_2$ are normalised eigenfunctions of $\hat A$ with distinct eigenvalues $a_1, a_2$, then $\psi_1, \psi_2$ are orthogonal.
 \end{theorem}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\textbf{Proof:} We have $\hat A \psi_1 = a_1\psi_1$, $\hat A \psi_2 = a_2 \psi_2$. Then
+\begin{proofbox}	
+We have $\hat A \psi_1 = a_1\psi_1$, $\hat A \psi_2 = a_2 \psi_2$. Then
 \begin{align*}
 	a_1(\psi_1, \psi_2) &= a_1^{\ast}(\psi_1, \psi_2) = (a_1 \psi_1, \psi_2) = (\hat A\psi_1, \psi_2) \\
 			    &= (\psi_1, A \psi_2) = (\psi_1, a_2 \psi_2) = a_2(\psi_1, \psi_2).
 \end{align*}
 Since $a_1 \neq a_2$, we get $(\psi_1, \psi_2) = 0$.
-\end{adjustbox}
+\end{proofbox}
+
 
 \begin{theorem}
 	The discrete (or continuous) set of eigenfunctions of any Hermitian operator together form a complete orthonormal basis of $\mathcal{H}$, so
@@ -810,7 +729,7 @@ Consider a system with only two energy eigenvalues $E_1 \neq E_2$. Then we can w
 \[
 	\psi(x, t) = a_1 \chi_1(x) e^{-i E_1 t/\hbar} + a_2 \chi_2(x) e^{-i E_2 t/\hbar}
 .\]
-Then this gives $\psi(x, 0) = a_1 \chi_1(x) + a_2 \chi_2(x)$. If $a_1 = 0$, then $\psi(x, t) = a_2 \chi_2(x) e^{-i E_2 t/\hbar}$, which implies $\psi$ is a stationary state.
+This gives $\psi(x, 0) = a_1 \chi_1(x) + a_2 \chi_2(x)$. If $a_1 = 0$, then $\psi(x, t) = a_2 \chi_2(x) e^{-i E_2 t/\hbar}$, which implies $\psi$ is a stationary state.
 
 If $a_1 \neq 0$ and $a_2 \neq 0$, then
 \begin{align*}
@@ -820,8 +739,8 @@ If $a_1 \neq 0$ and $a_2 \neq 0$, then
 Hence $\psi$ is not a stationary state.
 \newpage
 
-\section{4-Dimension Solutions of Schr\"{o}dinger Equation}%
-\label{sec:4_dimension_solutions_of_schr"_o_dinger_equation}
+\section[4D Solutions]{4D Solutions of Schr\"{o}dinger Equation}%
+\label{sec:4d_solutions_of_schr"_o_dinger_equation}
 
 The time-independent Schr\"{o}dinger equation is
 \[
@@ -881,11 +800,11 @@ We can determine $A$ and $B$ by requiring normalization of the electron:
 	If the quantum system has non-degenerate eigenstates, then if $U(x) = U(-x)$, the eigenfunctions of $\hat H$ are either odd or even.
 \end{proposition}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} If $U(x) = U(-x)$, then the TISE is invariant under $x \mapsto -x$. Hence if $\chi(x)$ is a solution with eigenvalue $\lambda$, $\chi(-x)$ is also a solution with eigenvalue $\lambda$ and $\chi(-x) = \alpha \chi(x)$.
+\begin{proofbox}	
+If $U(x) = U(-x)$, then the TISE is invariant under $x \mapsto -x$. Hence if $\chi(x)$ is a solution with eigenvalue $\lambda$, $\chi(-x)$ is also a solution with eigenvalue $\lambda$ and $\chi(-x) = \alpha \chi(x)$.
 
 	Hence $\chi(x) = \chi(-(-x)) = \alpha^2 \chi(x)$, so $\alpha^2 = 1$. Hence either $\alpha = 1$, and $\chi$ is even, or $\alpha = -1$, and $\chi$ is odd.
-\end{adjustbox}
+\end{proofbox}
 
 \subsubsection{Finite Potential Well}%
 \label{subsub:finite_potential_well}
@@ -932,6 +851,484 @@ Consider $E > 0$ and $E < U_0$. We look for odd and even eigenfunctions.
 		As $U_0 \to \infty$, we get the same result for the infinite potential well.
 	\item The odd part is found in the example sheets.
 \end{enumerate}
+
+\subsubsection{Harmonic Oscillator}%
+\label{subsub:harmonic_oscillator}
+
+Consider the harmonic oscillator\index{harmonic oscillator}, which models many physical situations.
+\[
+	U(x) = \frac{1}{2}k x^2 = \frac{1}{2}m \omega^2 x^2
+.\]
+Here, we say $k$ is the elastic constant\index{elastic constant} and $\omega = \sqrt{k/m}$ is the angular frequency of the harmonic oscillator. In classical mechanics, we model this system as $\ddot x (t) = - \omega^2 x(t)$, so
+\[
+	x(t) = A \sin (\omega t) + B \cos (\omega t)
+,\]
+with $T = 2\pi/\omega$ being the period. In quantum mechanics, we have the Schr\"{o}dinger equation
+\[
+	- \frac{\hbar^2}{2m} \chi''(x) + \frac{1}{2} m \omega^2 x^2 \chi(x) =  E \chi(x)
+.\]
+
+We expect to have a discrete set of eigenvalues, with either even or odd eigenfunctions. Defining the variables
+\[
+\\xi^2 = \frac{m \omega}{\hbar} x^2, \quad \eps = \frac{2E}{\hbar \omega}
+,\]
+under a change of variables, our equation becomes
+\[
+	- \frac{\Diff2 \chi(\xi)}{\diff \xi^2} + \xi^2 \chi(\xi) = \eps \chi(\xi)
+.\]
+We solve this by starting from a particular solution $\eps = 1$, which corresponds to $E_0 = \hbar \omega/2$. Then,
+\[
+	\chi_0(\xi) = - e^{-\xi^2/2}
+.\]
+Hence we have found an eigenvalue $E_0 = \hbar \omega/2$. To find other eigenfunctions of $\hat H$, we take the function
+\[
+	\chi(\xi) = f(\xi) e^{-\xi^2/2}
+.\]
+Then plugging in $\chi$, we get $f$ must satisfy
+\[
+	- \frac{\Diff2 f}{\diff \xi^2} + 2 \xi \frac{\diff f}{\diff \xi} + (1 - \eps)f = 0
+.\]
+We can represent $f$ as a power series: $f(\xi) = \sum a_n \xi^{n}$. Then,
+\begin{align*}
+	\xi \frac{\diff f}{\diff \xi} &= \sum_{n = 0}^{\infty} n a_n \xi^{n}, \\
+	\frac{\Diff2 f}{\diff \xi^2} &= \sum_{n = 0}^{\infty}n(n-1)a_n \xi^{n-1} = \sum_{n = 0}^{\infty}(n+1)(n+2)a_n \xi^{n}.
+\end{align*}
+
+Plugging these values in, we get
+\[
+	\sum_{n = 0}^{\infty} [(n+1)(n+2)a_{n+2} = 2 na_n + (\eps - 1)a_n]\xi^{n} = 0 \implies a_{n+2} = \frac{(2n - \eps + 1)}{(n+1)(n+2)}
+.\]
+
+Because of the parity of eigenfunctions, we either have $a_n = 0$ for odd $n$, giving $f(\xi) = f(-\xi)$, or $a_n = 0$ for even $n$, giving $f(\xi) = -f(-\xi)$.
+
+\begin{proposition}
+	If the series $\sum a_n \xi^{n}$ does not terminate, then the eigenfunction of $\hat H$ would not be normalisable.
+\end{proposition}
+
+\begin{proofbox}
+	Suppose that the series does not terminate. We examine the behaviour of the series:
+	\[
+	\frac{a_{n+2}}{a_n} \to \frac{2}{n}
+	.\]
+	This has the same asymptotic behaviour as
+	\[
+		y(\xi) = e^{\xi ^2} = \sum_{m = 0}^{\infty} \frac{\xi^{2m}}{m!} = \sum_{n = 0}^{\infty} b_m \xi^{m}
+	.\]
+	So if $e^{\xi^2/2}$ and $f(\xi)$ have the same asymptotic behaviour, then
+	\[
+		\chi(\xi) \sim e^{\xi^2} \cdot e^{- \xi^2/2} = e^{\xi^2/2}
+	.\]
+	However, this is non-normalisable.
+\end{proofbox}
+
+Given that the series $\sum a_n \xi^{n}$ terminates, there must exist $N$ such that $a_{N + 2} = 0$, with $a_N \neq 0$, i.e. $\eps = 2N+1$.
+
+Thus $E_N = (N+1/2)\hbar \omega$. Note in particular $E_{N+1} - E_N = \hbar \omega$, and the eigenfunctions are $\chi(x) = f_N(\xi) e^{-\xi^2/2}$. Here, the polynomials $f_N$ satisfy
+\[
+	f_N(\xi) = (-1)^{N} e^{\xi^2} \frac{\Diff N}{\diff \xi^{N}}(e^{-\xi^2})
+,\]
+and are known as the Hermite polynomials.\index{Hermite polynomials}. The first few values are
+
+\begin{center}
+\begin{tabular}{c|c|c}
+	$N$ & $E_N$ & $f_N(\xi)$ \\
+	\hline
+	$0$ & $\hbar \omega/2$ & $1$ \\
+	$1$ & $3\hbar\omega/2$ & $\xi$ \\
+	$2$ & $5\hbar\omega/2$ & $(1 - 2\xi^2)$ \\
+	$3$ & $7\hbar\omega/2$ & $(\xi - 2\xi^2/3)$ \\
+\end{tabular}
+\end{center}
+
+\subsection{The Free Particle}%
+\label{sub:the_free_particle}
+
+We take the time-independent Schr\"{o}dinger equation with $U \equiv 0$:
+\[
+	-\frac{\hbar^2}{2m} \chi''(x) = E\chi(x)
+.\]
+This has solutions
+\[
+	\chi(x) = e^{ikx}
+,\]
+where $k = \sqrt{2mE/\hbar^2}$, and the energy is then $\hbar^2k^2/2m$. Hence,
+\[
+	\psi_k(x) = \chi_k(x) e^{-iE_kt/\hbar} = \exp \left( i \left(kx - \frac{\hbar k^2}{2m} \right) \right)
+.\]
+However, this wavefunction is not square integrable, as
+\[
+	\int_{-\infty}^{\infty} |\phi_k(x, t)|^2\diff x = \int_{-\infty}^{\infty}1\diff x = +\infty
+.\]
+To resolve this, we have two options:
+\begin{enumerate}[1.]
+	\item Build a linear superposition of non-normalisable states that is normalisable;
+	\item Ignore the problem but change the interpretation.
+\end{enumerate}
+
+\subsubsection{Gaussian Wavepacket}%
+\label{subsub:gaussian_wavepacket}
+
+Here we will build a superposition of non-normalisable states to make a normalisable state. Take
+\[
+	\psi(x, t) = \int_{-\infty}^{\infty} A(k) \psi_k(x, t) \diff k
+.\]
+A possible option is the \textit{Gaussian wavepacket}\index{Gaussian wavepacket}:
+\[
+	A(k) = A_{GP}(k) = \exp \left[ - \frac{\sigma}{2} (k - k_0)^2 \right]
+,\]
+where $\sigma$ is positive and $k_0 \in \mathbb{R}$.
+
+Substituting these values,
+\begin{align*}
+	\psi_{GP}(x, t) &= \int_{-\infty}^{\infty} \exp \left[ - \frac{\sigma}{2}(k - k_0)^2 + i k x - \frac{i \hbar k^2}{2m} \right]\diff k \\
+			&= \int_{-\infty}^{\infty} \left[-\frac{1}{2}\alpha k^2 + \beta k + \delta\right]\diff k \\
+			&= \int_{-\infty}^{\infty} \left[ - \frac{\alpha}{2}\left(k - \frac{\beta}{\alpha}\right)^2 + \frac{\beta^2}{2\alpha} + \delta\right] \diff k \\
+			&= \exp\left[ \frac{\beta^2}{2\alpha} + \delta \right] \int_{-\infty}^{\infty} \exp \left[- \frac{\alpha}{2} \left(k - \frac{\beta}{\alpha}\right)^2\right]\diff k \\
+			&= \exp \left[ \frac{\beta^2}{2\alpha} + \delta \right] \int_{-\infty - iu}^{\infty - iu} \exp\left( - \frac{\alpha}{2} \tilde k^2\right) \diff k \\
+			&= \sqrt{\frac{2\pi}{\alpha}} \exp\left[\frac{\beta^2}{2\alpha} + \delta\right].
+\end{align*}
+Now $\beta^2$ has a real factor of $-x^2$, hence $\psi_{GP}$ is normalisable to $\bar \psi_{GP}$. Hence
+\[
+	\rho_{GP}(x,t) = |\bar\psi_{GP}(x, t)|^2 = \sqrt{\frac{\sigma}{\pi(\sigma^2 + \frac{\hbar^2t^2}{m^2})}} \exp\left[\frac{\sigma(x - \frac{\hbar k_0}{m}t)^2}{\sigma^2 + \frac{\hbar^2t^2}{m^2}} \right]
+.\]
+The centre of the distribution is $\langle x \rangle_{\psi_{GP}}$, which is
+\[
+	\langle x \rangle_{\psi_{GP}} = \int_{-\infty}^{\infty} \bar \psi^{\ast}_{GP}(x, t) x \bar \psi_{GP}^{\ast}(x, t) \diff x = \int_{-\infty}^{\infty} x \rho_{GP}(x, t) \diff x = \frac{\hbar k_0}{m}t
+.\]
+Here $\hbar k_0/m$ can be though of as the velocity of the particle. The error of the position of the particle is
+\[
+	\Delta x = \sqrt{\langle x^2 \rangle_{\psi_{GP}} - \langle x \rangle^2_{\psi_{GP}}} = \sqrt{\frac{1}{2} \left(\sigma + \frac{\hbar^2t^2}{m^2 \sigma}\right)}
+.\]
+Physically, this means the longer the particle is left to travel, the more uncertain we are about its position. We can also calculate the momentum
+\[
+	\langle p \rangle_{\psi_{GP}} = \int_{-\infty}^{\infty} \bar \psi_{GP}^{\ast}(x, t) \left( - i \hbar \frac{\diff}{\diff x} \bar \psi_{GP}(x, t) \right) \diff x = \hbar k_0
+,\]
+which we expect given the velocity of the particle. The error of the momentum is
+\[
+	\Delta p = \sqrt{\langle p^2 \rangle_{\psi_{GP}} - \langle p \rangle_{\psi_{GP}}^{2}} = \frac{\hbar}{\sqrt{2 \sigma}}
+.\]
+%At $t = 0$, $\Delta p = \hbar \sqrt{2/\sigma}$, but as  $t \to \infty$, $\Delta p$ decreases.
+
+%What we have found is that
+%\begin{itemize}
+	%\item As $t\to \infty$, $\Delta x \to \infty$ but $\Delta p \to 0$.
+	%\item $\Delta x \cdot \Delta p = \frac{\hbar}{2}$, which is the minimal such value.
+%\end{itemize}
+
+We see that at $t = 0$, $\Delta x \cdot \Delta p = \hbar/2$, and in fact this is minimal.
+
+The Gaussian wavepacket is a state of minimum uncertainty at $t = 0$. Other $A(k)$ may give a normalisable state, but if you compute $\Delta x \cdot \Delta p$ the value will be greater they $\frac{\hbar}{2}$.
+
+For the De Broglie wave $\psi_k(x, t)$, we have $\Delta x = \infty$ and $\Delta p = 0$.
+
+\subsubsection{Beam Interpretation}%
+\label{subsub:beam_interpretation}
+
+In the following, we ignore the normalisation problem, and take $\chi_k = e^{ikx}$ as an eigenfunction of $\hat H$, so
+\[
+	\psi_k(x, t) = A e^{ikx} e^{-i \frac{\hbar^2 k^2}{2m} t}
+,\]
+but instead of $\chi_n(x)$ describing a single particle, they describe a beam of particles with
+\[
+	P_n = \hbar k, \quad E_k = \frac{\hbar^2 k^2}{2m}
+,\]
+and probability density
+\[
+	\rho_k(x, t) = |A|^2
+,\]
+representing the constant average density of particles. We can compute the probability current as
+\begin{align*}
+	j_k(x, t) &= -\frac{i\hbar}{2m} \biggl( \psi_k^{\ast} \frac{\partial \psi_k}{\partial x} - \psi_k \frac{\partial \psi^{\ast}_k}{\partial x} \\
+		  &= |A|^2 \frac{\hbar k}{m} = |A|^2 \frac{p}{m},
+\end{align*}
+the average flux of particles.
+
+\subsection{Scattering States}%
+\label{sub:scattering_states}
+
+Suppose we have a free particle, thrown at a potential barrier, between $0$ and $a$. Typically, if $E > U_0$, the particle will make it over, otherwise it will be reflected. For quantum states, this is more complicated.
+
+\begin{definition}
+	The probability that the particle is reflected is given by the reflection coefficient\index{reflection coefficient}
+	\[
+		R = \lim_{t \to \infty}\int_{-\infty}^{0} |\psi_{GP}(x, t)|^2\diff x
+	.\]
+
+	Similarly, the probability that the particle is transmitted is given by the transmission coefficient\index{transmission coefficient}
+	\[
+		T = \lim_{t \to \infty} \int_{0}^{\infty} |\psi_GP(x, t)|^2\diff x
+	.\]
+	From construction, $R + T = 1$.
+\end{definition}
+
+It is possible to solve scattering problems using the Gaussian wavepacket, however the beam interpretation gives the same results for $R$ and $T$, and it easier, hence we will use it.
+
+\subsubsection{Scattering off Potential Step}%
+\label{subsub:scattering_off_potential_step}
+
+Consider the potential
+\[
+	U(x) =
+	\begin{cases}
+		0 & x \leq 0, \\
+		U_0 & x > 0.
+	\end{cases}
+\]
+To find $\chi_k(x)$, we solve the time-independent Schr\"{o}dinger equation on both regions:
+\[
+	- \frac{\hbar^2}{2m} \chi_k''(x) + U(x) \chi_k(x) = E \chi_k(x)
+.\]
+\begin{itemize}
+	\item On $x \leq 0$, $U \equiv 0$, so the TISE becomes
+		\[
+			\chi_k''(x) + K^2 \chi_k(x) = 0
+		,\]
+		where $k = \sqrt{2mE/\hbar^2} > 0$. We know the general solution is
+		\[
+			\chi_k(x) = Ae^{ikx} + Be^{-ikx}
+		.\]
+	\item For $x > 0$, $U(x) = U_0$, so
+		\[
+			\chi_{\bar k}''(x) + \bar k^2 \chi_{\bar k}(x) = 0
+		,\]
+		where $\bar k = \sqrt{2m(E - U_0)/\hbar^2}$. If $E > U_0$, then
+		\[
+			\chi_{\bar k}(x) = Ce^{i \bar k x} + De^{i \bar k x}
+		.\]
+		Now $D = 0$, since initially there is no beam coming from the right.
+
+		If $E < U_0$, we get
+		\[
+			\chi_{\bar k}(x) = C e^{- \nu x} + D e^{\nu x}
+		.\]
+		Similarly, $D = 0$, otherwise $\chi_{\bar k}$ diverges.
+\end{itemize}
+We look at the case when $E \geq U_0$. Putting the solutions together,
+\[
+	\chi_{k, \bar k}(x) =
+	\begin{cases}
+		A e^{ikx} + Be^{-ikx} & x \leq 0, \\
+		Ce^{i\bar k x} & x > 0.
+	\end{cases}
+.\]
+We impose the continuity of $\chi(x)$ and $\chi'(x)$ to get
+\[
+\begin{cases}
+	A + B = C \\
+	ikA - ikB = i \bar k C
+\end{cases}
+.\]
+Hence, we get
+\[
+B = \frac{k - \bar k}{k + \bar k} A, \quad C = \frac{2k}{k + \bar k} A
+.\]
+In terms of the particle flux $J(x, t)$, we get
+\[
+	J(x, t) =
+	\begin{dcases}
+		\frac{\hbar k}{m}(|A|^2 - |B|^2) & x < 0, \\
+		\frac{\hbar \bar k}{m} |C|^2 & x \geq 0.
+	\end{dcases}
+\]
+
+Hence we have incoming, reflected and transmitted flux
+\[
+	j_{inc}(x) = \frac{\hbar k}{m}|A|^2, \quad j_{ref}(x) = \frac{\hbar k}{m} \biggl(\frac{k - \bar k}{k + \bar k}\biggr)^2 |A|^2, \quad j_{tr} = \frac{\hbar \bar k}{m} \frac{4k^2}{(k + \bar k)^2}|A|^2
+.\]
+Hence we can calculate the reflection and transmission coefficients
+\[
+	R = \frac{j_{ref}}{j_{inc}} = \frac{|B|^2}{|A|^2} = \biggl( \frac{k - \bar k}{k + \bar k}\biggr)^2
+,\]
+\[
+	T = \frac{j_{tr}}{j_{inc}} = \frac{|C|^2}{|A|^2}\frac{\bar k}{k} = \frac{4 k \bar k}{(k + \bar k)^2}
+.\]
+
+Note $R + T = 1$, as $E \to U_0$, then $\bar k \to 0$ so $T \to 0$ and $R \to 1$, and as $E \to \infty$, $T \to 1$ and $R \to 0$.
+
+Now we can look at the case when $E < U_0$. Then, we can calculate
+\[
+	j_{in} = \frac{\hbar k}{m}|A|^2, \quad j_{tr} = 0, \quad j_{ref}(x, t) = \frac{\hbar k}{m}|B|^2
+.\]
+Hence $R = 1$ and $T = 0$, but $\chi_{\bar k}(x) \neq 0$ for all $x > 0$.
+
+\subsubsection{Scattering off Potential Barrier}%
+\label{subsub:scattering_off_potential_barrier}
+
+Consider the potential
+\[
+	U(x) =
+	\begin{cases}
+		0 & x \leq 0, x \geq a, \\
+		U_0 & 0 < x < a.
+	\end{cases}
+\]
+We consider when $E < U_0$, then let $k = \sqrt{2mE/\hbar^2} > 0$, $\eta = \sqrt{2m(U_0 - E)/\hbar^2} > 0$. The solution of the TISE is
+\[
+	\chi(x) =
+	\begin{cases}
+		e^{ikx} + Ae^{-ikx} & x \leq 0, \\
+		B e^{-\nu x} + C e^{\nu x} & 0 < x < a, \\
+		De^{ikx} + E^{-ikx} & x \geq a.
+	\end{cases}
+\]
+Now $E = 0$ as there are no incoming waves from the right. The continuity of $\chi, \chi'$ at $x = 0, a$ gives four equations, from which we can solve for $A, B, C$ and $D$:
+\[
+\begin{cases}
+	1 + A = B + C, \\
+	ik - ikA = - \eta B + \eta C, \\
+	Be^{-\eta a} + Ce^{\eta a} = De^{ika}, \\
+	-\eta Be^{-\eta a} + \eta Ce^{\eta a} = ikDe^{ika}.
+\end{cases}
+\]
+
+Solving, we can find
+\[
+	D = - \frac{4 i \eta k}{(\eta - ik)^2 \exp[(\eta + ik)a] - (\eta + ik)^2\exp[-(\eta - ik)a]}
+.\]
+Hence the transmission coefficient is
+\[
+	T = |D|^2 = \frac{4 k^2 \eta^2}{(k^2 + \eta^2)^2 \sinh^2(\eta a) + 4 k^2 \eta^2}
+.\]
+
+Taking the limit $U_0 \gg E$, then $\eta a \gg 1$, so
+ \[
+	 T \to \frac{16k^2 \eta^2}{(\eta^2 + k^2)^2} e^{-2 \eta a}
+.\]
+
+\newpage
+
+\section{Simultaneous Measurements}%
+\label{sec:simultaneous_measurements}
+
+\subsection{Commutators}%
+\label{sub:commutators}
+
+\begin{definition}
+	The \textit{commutator} of two operators $\hat A$, $\hat B$ is the operator $[\hat A, \hat B] = \hat A \hat B - \hat B \hat A$.\index{commutator}
+\end{definition}
+
+The commutator has the properties:
+\begin{itemize}
+	\item $[\hat A, \hat B] = - [\hat B, \hat A]$;
+	\item $[\hat A, \hat A] = 0$;
+	\item $[\hat A, \hat B \hat C] = [\hat A, \hat B] \hat C + \hat B[\hat A, \hat C]$;
+	\item $[\hat A \hat B, \hat C] = \hat A[\hat B, \hat C] + [\hat A, \hat C]\hat B$.
+\end{itemize}
+
+\begin{exbox}
+	We compute $[\hat x, \hat p]$ in one dimension. Take $\psi \in \mathcal{H}$. Then
+	\[
+		\hat x \hat p \psi = x \biggl( - i \hbar \frac{\partial}{\partial x} \biggr) \psi(x) = - i \hbar x \frac{\partial \psi}{\partial x}(x),
+	\]
+	\[
+		\hat p \hat x \psi = - i \hbar \frac{\partial}{\partial x} (x \psi(x)) = - i \hbar \psi(x) - i \hbar x \frac{\partial \psi}{\partial x}(x)
+	,\]
+	\[
+		\implies [\hat x, \hat p]\psi = i \hbar \psi, \quad [\hat x, \hat p] = i \hbar \hat I
+	.\]
+\end{exbox}
+
+\begin{definition}
+	Two Hermitian operators $\hat A$ and $\hat B$ are simultaneously diagonalizable in $\mathcal{H}$ if there exists a complete basis of joint eigenfunctions $\{\psi_i\}$ such that
+	\[
+	\hat A \psi_i = a_i \psi_i, \quad \hat B \psi_i = b_i \psi_i
+	.\]
+\end{definition}
+
+\begin{theorem}
+	Two Hermitian operators $\hat A$ and $\hat B$ are simultaneously diagonalizable if and only if $[\hat A, \hat B] = 0$.
+\end{theorem}
+
+\begin{proofbox}
+	If $\hat A, \hat B$ are simultaneously diagonalizable then there exists a set of joint eigenfunctions $\{\psi_i\}$ which are a complete basis of $x$. Now,
+	\[
+		[\hat A, \hat B] \psi_i = \hat A \hat B \psi_i - \hat B \hat A \psi_i = (a_i b_i - a_i b_i)\psi_i = 0
+	.\]
+	Take $\psi \in \mathcal{H}$. Then we can write it as a sum of $\psi_i$, so
+	\[
+		[\hat A, \hat B] \psi = \sum c_i [\hat A, \hat B] \psi_i = 0
+	.\]
+	Now if $[\hat A, \hat B] = 0$ and $\psi_i$ is an eigenfunction of $\hat A$ with eigenvalue $a_i$, then
+	\[
+		0 = [\hat A, \hat B] \psi_i = \hat A \hat B \psi_i - \hat B \hat A \psi_i = \hat A \hat B \psi_i - a_i \hat B \psi_i
+	\]
+	\[
+		\implies \hat A (\hat B \psi_i) = a_i (\hat B \psi_i)
+	.\]
+	Thus $\hat B$ maps the eigenspace $E_i$ of eigenfunctions of $\hat A$ with eigenvalues $a_i$ into itself, so $\hat B|_{E_i}$ is a Hermitian operator on $E_i$, and we can diagonalize it.
+
+	Since this holds for all eigenspaces $E_i$ of $\hat A$, we can find a complete basis of simultaneous eigenfunctions of $\hat A$ and $\hat B$.
+\end{proofbox}
+
+\subsection{Heisenberg's Uncertainty Principle}%
+\label{sub:heisenberg_s_uncertainty_principle}
+
+\begin{definition}
+	The uncertainty in a measurement of an observable $A$ on a state $\psi$ is defined as
+	\[
+		\Delta_{\psi}A = \sqrt{(\Delta_{\psi}A)^2}
+	,\]
+	where
+	\[
+		(\Delta_{\psi}A)^2 = \langle (\hat A - \langle \hat A \rangle_{\psi} \hat I)^2 \rangle_{\psi} = \langle \hat A^2 \rangle_{\psi} - (\langle \hat A \rangle_{\psi})^2
+	.\]
+\end{definition}
+
+Note these two definitions are equivalent, as
+\begin{align*}
+	\langle( \hat A - \langle \hat A \rangle_{\psi} \hat I)^2 \rangle_{\psi} &= \int_{\mathbb{R}^3} \psi^{\ast} (\hat A - \langle \hat A \rangle_{\psi}\hat I)^2 \psi \Diff3 x \\
+										 &= \int_{\mathbb{R}^3} \psi^{\ast} \hat A^2 \psi \Diff3x + (\langle \hat A \rangle_{\psi})^2 \int_{\mathbb{R}^3} \psi^{\ast}\psi \Diff3 - 2 \langle \hat A \rangle_{\psi} \int_{\mathbb{R}^3} \psi^{\ast} \hat A \psi \Diff3 x \\
+										 &= \langle \hat A \rangle^2_{\psi} - (\langle \hat A \rangle_{\psi})^2.
+\end{align*}
+
+\begin{lemma}
+	$(\Delta_{\psi} A)^2 \geq 0$, with equality if and only if $\psi$ is an eigenfunction of $A$.
+\end{lemma}
+
+\begin{proofbox}
+	\begin{align*}
+		(\Delta_{\psi}A)^2 &= \langle (\hat A - \langle \hat A \rangle_{\psi} \hat I)^2 \rangle_{\psi} \\
+				   &= (\psi, (\hat A - \langle \hat A \rangle_{\psi} \hat I)^2 \psi) = ((\hat A - \langle \hat A \rangle_{\psi} \hat I)\psi, (\hat A - \langle \hat A \rangle_{\psi} \hat I)\psi) \\
+				   &= (\phi, \phi) \geq 0.
+	\end{align*}
+	Now we prove that $(\Delta_{\psi}A)^2 = 0 \iff \phi = 0$. Indeed, if $(\Delta_{\psi}A)^2 = 0$, then $(\phi, \phi) = 0$, so $\hat A \psi = \langle \hat A \rangle\_{psi} \psi$.
+
+		Alternatively, is $\psi$ is an eigenfunction of $\hat A$ with real eigenvalue $a \in \mathbb{R}$, then $\langle \hat A \rangle_{\psi} = (\psi, \hat A \psi) = a (\psi, \psi) = a$, and similarly $\langle \hat A^2 \rangle_{\psi} = a^2$.
+
+		Then $(\Delta_{\psi}A)^2 = \langle \hat A^2 \rangle_{\psi} - (\langle \hat A \rangle_{\psi})^2 = 0$.
+\end{proofbox}
+
+\begin{lemma}
+	If $\psi, \phi \in \mathcal{H}$, then $|(\psi, \phi)|^2 \leq (\psi, \psi)(\phi, \phi)$, with equality if and only if $\phi = a \psi$ for some $a \in \mathbb{C}$.
+\end{lemma}
+
+This is the Schwarz inequality.
+
+\begin{theorem}[Generalized Uncertainty Theorem]
+	If $A$ and $B$ are observables, then
+	\[
+		(\Delta_{\psi}A)(\Delta_{\psi}B) \geq \frac{1}{2} |(\psi, [\hat A, \hat B]\psi)|
+	.\]
+\end{theorem}
+
+\begin{proofbox}
+	Note $(\Delta_{\psi}A)^2 = ((\hat A - \langle \hat A \rangle_{\psi} \hat I) \psi, (\hat A - \langle \hat A \rangle_{\psi} \hat I)\psi)$, and similarly for $B$.
+
+	Define $\hat A' = \hat A - \langle \hat A \rangle_{\psi} \hat I$, $\hat B' = \hat B - \langle \hat B \rangle_{\psi} \hat I$. Then, using the Schwarz inequality,
+	\[
+		(\Delta_{\psi}A)^2(\Delta_{\psi}B)^2 \geq |(\hat A' \psi, \hat B' \psi)|^2 = |(\psi, \hat A' \hat B' \psi)|^2
+	.\]
+	Define $\{\hat A', \hat B'\} = \hat A' \hat B' + \hat B' \hat A'$, the anti-commutator\index{anti-commutator}. Then this is symmetric, so we can write
+	\[
+		\hat A' \hat B' = \frac{1}{2} ([\hat A', \hat B'] + \{\hat A', \hat B'\})
+	.\]
+	Note under the Hermitian conjugate, $[\hat A', \hat B']$ flips sign, whereas $\{\hat A', \hat B'\}$ stays the same. Hence $(\psi, [\hat A', \hat B']\psi)$ is purely imaginary and $(\psi, \{\hat A', \hat B'\}\psi)$ is real. So,
+	\[
+		(\Delta_{\psi} A)^2 (\Delta_{\psi}B)^2 = \frac{1}{4} (|(\psi, [\hat A', \hat B']\psi)|^2 + |(\psi, \{\hat A', \hat B'\}\psi)|^2)
+	.\]
+	Dropping the anti-commutator term and taking the square roots gives our result.
+\end{proofbox}
+
 
 
 

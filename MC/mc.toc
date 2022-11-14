@@ -8,5 +8,8 @@
 \contentsline {subsection}{\numberline {1.4}Strong Markov Property}{12}{subsection.1.4}%
 \contentsline {subsection}{\numberline {1.5}Stopping Times}{12}{subsection.1.5}%
 \contentsline {section}{\numberline {2}Transience and Recurrence}{13}{section.2}%
-\contentsline {section}{\numberline {3}Simple Random Walks on $\mathbb {Z}^{d}$}{17}{section.3}%
-\contentsline {section}{Index}{19}{section*.2}%
+\contentsline {section}{\numberline {3}Simple Random Walks on $\mathbb {Z}^{d}$}{16}{section.3}%
+\contentsline {section}{\numberline {4}Invariant Distributions}{19}{section.4}%
+\contentsline {section}{\numberline {5}Time Reversibility}{26}{section.5}%
+\contentsline {section}{\numberline {6}Convergence to Equilibrium}{29}{section.6}%
+\contentsline {section}{Index}{31}{section*.2}%

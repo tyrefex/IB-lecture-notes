@@ -1,6 +1,7 @@
 \begin{theindex}
 
   \item absorbing state, \hyperpage{7}
+  \item aperiodic, \hyperpage{29}
 
   \indexspace
 
@@ -10,11 +11,16 @@
 
   \indexspace
 
+  \item detailed balance equation, \hyperpage{26}
+
+  \indexspace
+
   \item first hitting time, \hyperpage{7}
 
   \indexspace
 
   \item independent sequences, \hyperpage{4}
+  \item invariant, \hyperpage{20}
   \item irreducible, \hyperpage{7}
 
   \indexspace
@@ -23,7 +29,13 @@
 
   \indexspace
 
+  \item null recurrent, \hyperpage{23}
+
+  \indexspace
+
   \item PageRank, \hyperpage{2}
+  \item positive recurrent, \hyperpage{23}
+  \item probability distribution, \hyperpage{19}
 
   \indexspace
 
@@ -33,13 +45,15 @@
   \indexspace
 
   \item simple Markov property, \hyperpage{4}
-  \item simple random walk, \hyperpage{17}
+  \item simple random walk, \hyperpage{16}
+  \item stationary, \hyperpage{20}
   \item stochastic matrix, \hyperpage{3}
   \item stopping time, \hyperpage{12}
   \item strong Markov property, \hyperpage{12}
 
   \indexspace
 
+  \item time reversible, \hyperpage{26}
   \item time-homogeneous, \hyperpage{3}
   \item transient, \hyperpage{13}
   \item transition matrix, \hyperpage{3}

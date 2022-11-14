@@ -1,84 +1,8 @@
 \documentclass[12pt]{article}
-\usepackage{amsmath}
-\usepackage{mathtools}
-\usepackage[a4paper]{geometry}
-\usepackage{fancyhdr}
-\usepackage{tikz}
-\usepackage{amssymb}
-\usepackage{graphicx}
-\usepackage{amsthm}
-\usepackage{import}
-\usepackage{xifthen}
-\usepackage{pdfpages}
-\usepackage{transparent}
-\usepackage{adjustbox}
-\usepackage[shortlabels]{enumitem}
-\usepackage{parskip}
-\makeatletter
-\newcommand{\@minipagerestore}{\setlength{\parskip}{\medskipamount}}
-\makeatother
-\usepackage{imakeidx}
 
-\DeclareMathOperator{\Ker}{Ker}
-\DeclareMathOperator{\Img}{Im}
-\DeclareMathOperator{\rank}{rank}
-\DeclareMathOperator{\nullity}{null}
-\DeclareMathOperator{\spn}{span}
-\DeclareMathOperator{\tr}{tr}
-\DeclareMathOperator{\adj}{adj}
-\DeclareMathOperator{\id}{id}
-\DeclareMathOperator{\Sym}{Sym}
-\DeclareMathOperator{\Orb}{Orb}
-\DeclareMathOperator{\Stab}{Stab}
-\DeclareMathOperator{\ccl}{ccl}
-\DeclareMathOperator{\Aut}{Aut}
-\DeclareMathOperator{\Syl}{Syl}
-\DeclareMathOperator{\sgn}{sgn}
-\DeclareMathOperator{\Fit}{Fit}
-\DeclareMathOperator{\Ann}{Ann}
-\DeclareMathOperator{\epi}{epi}
-\DeclareMathOperator{\erf}{erf}
-
-
-\newcommand{\incfig}[1]{%
-	\def\svgwidth{\columnwidth}
-	\import{./figures/}{#1.pdf_tex}
-}
-\newcommand{\diff}{\mathop{}\!\mathrm{d}}
-\newcommand{\Diff}[1]{\mathop{}\!\mathrm{d}^{#1}}
-
-\setlength\parindent{0pt}
-
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{corollary}{Corollary}[section]
-\newtheorem{lemma}{Lemma}[section]
-\newtheorem{proposition}{Proposition}[section]
-
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}[section]
-\newtheorem{example}{Example}[section]
-
-\theoremstyle{remark}
-\newtheorem*{remark}{Remark}
-
-\pagestyle{fancy}
-\fancyhf{}
-\rhead{\leftmark}
-\lhead{Page \thepage}
-\setlength{\headheight}{15pt}
+\usepackage{ishn}
 
 \makeindex[intoc]
-
-\usepackage{hyperref}
-\hypersetup{
-    colorlinks,
-    citecolor=black,
-    filecolor=black,
-    linkcolor=black,
-    urlcolor=black
-}
-
-\newcommand{\mapsfrom}{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}
 
 \begin{document}
 
@@ -127,14 +51,13 @@ A function $f(x)$ is \textbf{periodic}\index{periodic function} if
 ,\]
 where $T$ is the period.
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\begin{example} Consider simple harmonic motion. We have
-\[
-y = A \sin \omega t
-,\]
-where $A$ is the amplitude and the period $T = 2 \pi / \omega$, with angular frequency $\omega$.
-\end{example}
-\end{adjustbox}
+\begin{exbox}
+	Consider simple harmonic motion. We have
+	\[
+	y = A \sin \omega t
+	,\]
+	where $A$ is the amplitude and the period $T = 2 \pi / \omega$, with angular frequency $\omega$.
+\end{exbox}
 
 Consider the set of functions
 \[
@@ -217,9 +140,7 @@ by the orthogonality relations. Hence we find that
 	\end{enumerate}	
 \end{remark}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\begin{example}[Sawtooth wave]\index{sawtooth wave}
-\item
+\begin{exbox}[Sawtooth wave]
 	Consider the function $f(x) = x$ for $-L \leq x < L$, periodic with period $T = 2L$. The cosine coefficients are
 	\[
 	a_n = \frac{1}{L} \int_{-L}^{L} x \cos \frac{n \pi x}{L}\diff x = 0
@@ -230,19 +151,12 @@ by the orthogonality relations. Hence we find that
 		    &= -\frac{2}{n \pi} \left[ x \cos \frac{n \pi x}{L} \right]_{0}^{L} + \frac{2}{n \pi} \int_{0}^{L} \cos \frac{n \pi x}{L}\diff x \\
 		    &= - \frac{2L}{n \pi} \cos n \pi + \frac{2L}{(n \pi)^2} \sin n \pi = \frac{2L}{n \pi }(-1)^{n+1}.
 	\end{align*}
-	
-\end{example}
-
-\end{adjustbox}
-
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
 	So the sawtooth Fourier series is
 	\begin{align*}
 		f(x) &= \frac{2L}{\pi} \sum_{n = 1}^{\infty} \frac{(-1)^{n+1}}{n} \sin \frac{n \pi x}{L} \\
 		     &= \frac{2L}{\pi} \left( \sin \frac{\pi x}{L} - \frac{1}{2} \sin \frac{2 \pi x}{L} + \frac{1}{3} \sin \frac{3 \pi x}{L} - \cdots \right).
 	\end{align*}
-
-\end{adjustbox}
+\end{exbox}
 
 With Fourier series, we can construct functions with only finitely many discontinuities, the topologist's sine curve, and the Weierstrass function.
 
@@ -279,8 +193,7 @@ These are sufficiency conditions for a ``well-behaved'' function to have a uniqu
 	If $f(x)$ has continuous derivatives up to the $p$'th derivative, which is discontinuous, then the Fourier series converges as $\mathcal{O}(n^{-(p+1)})$.
 \end{theorem}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{example}
+\begin{exbox}
 	Take the square wave\index{square wave}, with $p = 0$.
 	\[
 		f(x) =
@@ -315,9 +228,7 @@ These are sufficiency conditions for a ``well-behaved'' function to have a uniqu
 		f(x) = 4 \sum_{m = 1}^{\infty} \frac{\sin (2m - 1) \pi x}{((2m - 1)\pi)^3}
 	.\]
 	Consider $f(x) = (1 - x^2)^2$, for $p = 3$. Then $a_n = \mathcal{O}(n^{-4})$.
-\end{example}
-
-\end{adjustbox}
+\end{exbox}
 
 \subsubsection{Integration of Fourier Series}%
 \label{subsub:integration_of_fourier_series}
@@ -341,12 +252,9 @@ But this is unbounded.
 	If $f(x)$ is continuous and satisfies the Dirichlet conditions, and $f'(x)$ satisfies the Dirichlet conditions, then $f'(x)$ can be found by term-by-term differentiation of the Fourier series of $f(x)$.
 \end{theorem}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{example}
+\begin{exbox}
 	If we differentiate the see-saw with $\xi = 1/2$, then we get an offset square wave.
-\end{example}
-
-\end{adjustbox}
+\end{exbox}
 
 \subsection{Parseval's Theorem}%
 \label{sub:parseval_s_theorem}\index{Parseval's theorem}
@@ -361,8 +269,7 @@ This gives the relation between the integral of the square of a function and the
 
 This is also called the \textbf{completeness relation}\index{completeness relation} because the left hand side is always greater than equal to the right hand side if any basis is missing.
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{example}
+\begin{exbox}
 	Take the sawtooth wave. We have
 	\[
 	LHS = \int_{-L}^{L} x^2\diff x = \frac{2}{3}L^3
@@ -370,17 +277,11 @@ This is also called the \textbf{completeness relation}\index{completeness relati
 	\[
 	RHS = L \sum_{n = 1}^{\infty} \frac{4L^2}{n^2 \pi^2} = \frac{4L^3}{\pi ^2}\sum_{n = 1}^{\infty} \frac{1}{n^2}
 	.\]
-
-\end{example}
-
-\end{adjustbox}
-
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-Therefore, we obtain
-\[
-\sum_{n = 1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}
-.\]
-\end{adjustbox}
+	Therefore, we obtain
+	\[
+	\sum_{n = 1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}
+	.\]
+\end{exbox}
 
 \subsection{Alternative Fourier Series}%
 \label{sub:alternative_fourier_series}
@@ -514,8 +415,7 @@ Thus the solution is
 .\]
 This is similar to a self-adjoint matrix.
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{example}
+\begin{exbox}
 	Consider the square wave on $L = 1$, as an odd function. This has Fourier series
 	\[
 		f(x) = 4 \sum_{m} \frac{\sin (2m - 1)\pi x}{(2m - 1)\pi}
@@ -525,9 +425,7 @@ This is similar to a self-adjoint matrix.
 		y(x) = \sum \frac{b_n}{\lambda_n} y_n = 4 \sum_{m} \frac{\sin (2m - 1)\pi x}{((2m -1)\pi)^3}
 	.\]
 	This is the Fourier series for $y(x) = x(1-x)/2$.
-\end{example}
-
-\end{adjustbox}
+\end{exbox}
 
 \newpage
 
@@ -605,8 +503,7 @@ Solving, we get
 ,\]
 and $(F \alpha y')' + F \gamma y = - \lambda F \rho y$. So $\rho(x) = F(x) \alpha (x)$, $q(x) = - F(x) \gamma(x)$, and $\omega(x) = F(x) \rho(x)$. This is non-negative as $F(x) > 0$.
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{example}
+\begin{exbox}
 	Take the Hermite equation
 	\[
 	y'' - 2xy' + 2n y = 0
@@ -619,9 +516,7 @@ and $(F \alpha y')' + F \gamma y = - \lambda F \rho y$. So $\rho(x) = F(x) \alph
 	\[
 		\mathcal{L} y \equiv -(e^{-x^2} y')' = 2n e^{-x^2}y
 	.\]
-\end{example}
-
-\end{adjustbox}
+\end{exbox}
 
 \subsubsection{Self-adjoint definition}%
 \label{subsub:self_adjoint_definition}
@@ -659,8 +554,7 @@ Self-adjoint operators satisfy many similar properties to self-adjoint matrices:
 	\item The eigenfunctions $y_n$ form a complete set.
 \end{enumerate}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\textbf{Proof:} 
+\begin{proofbox}
 \begin{enumerate}[1.]
 	\item Given $\mathcal{L}y_n = \lambda_n \omega y_n$, we take the complex conjugate $\mathcal{L}y_n^{\ast} = \lambda_n^{\ast} \omega y_n^{\ast}$. Then,
 		\[
@@ -683,13 +577,7 @@ Self-adjoint operators satisfy many similar properties to self-adjoint matrices:
 		\[
 			f(x) = \sum_{n = 1}^{\infty} a_n y_n(x)
 		.\]
-\end{enumerate}
-
-\end{adjustbox}
-
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{enumerate}
-	\item[]	To find the expansion coefficients we consider
+	To find the expansion coefficients we consider
 		\[
 			\int_{a}^{b} \omega(x) y_m(x) f(x) \diff x = \sum_{n = 1}^{\infty} a_n \int_{a}^{b} \omega y_n y_m \diff x = a_m \int_{a}^{b} \omega y_m^2\diff x
 		.\]
@@ -701,32 +589,22 @@ Self-adjoint operators satisfy many similar properties to self-adjoint matrices:
 		\[
 			Y_n(x) = \frac{y_n(x)}{\left( \int_{a}^{b}\omega y_n^2 \diff x \right)^{1/2}}
 		.\]
-		This gives
-		\[
-			\langle Y_n, Y_m \rangle_{\omega} = \delta_{nm}
-		,\]
-		so
+		This gives $\langle Y_n, Y_m \rangle_{\omega} = \delta_{nm}$, so
 		\[
 			f(x) = \sum_{n = 1}^{\infty} A_n Y_n(x)
-		,\]
-		where
-		\[
+		, \text{ where }
 		A_n = \int_{a}^{b} \omega Y_n f \diff x
 		.\]
 \end{enumerate}
+\end{proofbox}
 
-\end{adjustbox}
-
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{example}
+\begin{exbox}
 	Recall the Fourier Series in Sturm-Liouville form
 	\[
 	\mathcal{L}y_n = -\frac{\Diff2 y_n}{\diff x^2} = \lambda_n y_n
 	,\]
 	with $\lambda_n = (n\pi/L)^2$ by orthogonality relations.
-\end{example}
-
-\end{adjustbox}
+\end{exbox}
 
 \subsection{Completeness and Parseval's Identity}%
 \label{sub:completeness_and_parseval_s_identity}
@@ -736,7 +614,7 @@ Consider
 	\int_{a}^{b}\left[ f(x) - \sum_{n = 1}^{\infty} a_n y_n \right]^2\omega \diff x &= \int_{a}^{b} \left[f^2 - 2f \sum_{n}a_n y_n + \sum_{n}a_n^2 y_n^2\right] \omega \diff x \\
 											&= \int_{a}^{b}\omega f^2 \diff x - \sum_{n = 1}^{\infty}a_n^2 \int_{a}^{b}\omega y_n^2 \diff x,
 \end{align*}
-because
+which follows from
 \[
 \int_{a}^{b} f y_n \omega \diff x = a_n \int_{a}^{b} \omega y_n^2 \diff x
 .\]
@@ -988,8 +866,7 @@ Hence the coefficients are given by a Fourier sine series
 	D_n &= \frac{2}{n \pi c} \int_{0}^{L}q(x) \sin \frac{n \pi x}{L} \diff x.
 \end{align*}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{example}
+\begin{exbox}
 	Pluck a string at $x = \xi$, drawing it back as
 	\[
 		y(x, 0) = \rho(x) =
@@ -1005,10 +882,8 @@ Hence the coefficients are given by a Fourier sine series
 	\[
 		y(x, t) = \sum_{n = 1}^{\infty} \frac{2}{(n \pi)^2} \sin n \pi \xi \sin n \pi x \cos n \pi c t
 	.\]
-	Taking $\xi = 1/2$, we get $c_2m = 0$, $c_{2m-1} = 2(-1)^{m+1}/((2m-1)\pi)^2$. For a guitar, we typically have $1/4 \leq \xi \leq 1/3$, and for a violin we have $\xi \approx 1/7$.
-\end{example}
-
-\end{adjustbox}
+	Taking $\xi = 1/2$, we get $c_{2m} = 0$, $c_{2m-1} = 2(-1)^{m+1}/((2m-1)\pi)^2$. For a guitar, we typically have $1/4 \leq \xi \leq 1/3$, and for a violin we have $\xi \approx 1/7$.
+\end{exbox}
 
 Note, if we recall the sine and cosine summation identities, we can rewrite our solution as
 \begin{align*}
@@ -1154,8 +1029,7 @@ Take $a_0 = (2^{m}m!)^{-1}$, to find the Bessel function of the first kind\index
 	J_m(z) = \biggl(\frac{z}{2}\biggr)^{m} \sum_{n = 0}^{\infty} \frac{(-1)^{n}}{n!(n+m)!} \biggl( \frac{z}{2} \biggr)^{2n}
 .\]
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{example}
+\begin{exbox}
 	Using $y = \sqrt z R$ in the Bessel equation, we find
 	\[
 		y'' + y \biggl( 1 + \frac{1}{4z} - \frac{m^2}{z^2} \biggr) = 0
@@ -1164,8 +1038,7 @@ Take $a_0 = (2^{m}m!)^{-1}$, to find the Bessel function of the first kind\index
 	\[
 		R = \frac{1}{\sqrt z}(A \cos z + B \sin z)
 	.\]
-\end{example}
-\end{adjustbox}
+\end{exbox}
 
 These also work for $m = \mu$ if we replace $(n+m)!$ with $\Gamma(n+m+1)$. We can get a second solution with $p = -m$, which are the Neumann functions\index{Neumann functions}
 \[
@@ -1198,13 +1071,10 @@ For large $z \to \infty$, we have oscillatory solutions
 	Y_m(z) &\approx \sqrt{\frac{2}{\pi z}} \sin \biggl( z - \frac{m \pi}{2} - \frac{\pi}{4} \biggr).
 \end{align*}
 
-Define $j_{mn}$ to be the $n$'th solution to the Bessel function $J_m(z)$, so $J_m(j_{mn}) = 0$. Approximately, we get
+Define $j_{mn}$ to be the $n$'th solution to the Bessel function $J_m(z)$, so $J_m(j_{mn}) = 0$. Approximating $J_m$, we get
 \[
 	\cos \biggl( z - \frac{m \pi}{2} - \frac{\pi}{4} \biggr) = 0
-,\]
-i.e.
-\[
-z \approx n \pi + \frac{m \pi}{2} - \frac{\pi}{4} \equiv \tilde j_{mn}
+\implies z = n \pi + \frac{m \pi}{2} - \frac{\pi}{4} \approx \tilde j_{mn}
 .\]
 This is accurate within $10\%$.
 
@@ -1241,15 +1111,14 @@ For example,
 	\int_{0}^{2\pi}\diff \theta \cos p \theta \int_{0}^{1} r \diff r J_{pq}(j_{pq} r) \phi(r, \theta) = \frac{\pi}{2} [J_{p+1}(j_{pq})]^2 A_{pq}
 .\]
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{example}
+\begin{exbox}
 	Consider the initial radial profile $u(r, \theta, 0) = \phi(r) = 1 - r^2$, giving $B_{mn} = 0$ and $A_{mn} = 0$ for $m \neq 0$ and $\frac{\partial u}{\partial t} (r, \theta, 0) = 0$. This gives $C_{mn} = D_{mn} = 0$, and we need to find
 	\begin{align*}
 		A_{0n} &= \frac{2}{[J_1(j_{0n})]^2} \int_{0}^{1}J_0(j_{0n}r)(1 - r^2)r \diff r \\
 		       &= \frac{2}{[J_1(j_{0n})]^2} \frac{J_2(j_{0n})}{j_{0n}^2} \approx \frac{J_2(j_{0n})}{n}.
 	\end{align*}
-\end{example}
-\end{adjustbox}
+
+\end{exbox}
 
 \newpage
 
@@ -1357,7 +1226,7 @@ To apply Sturm-Liouville theory, we need homogeneous boundary conditions. Thus w
 
 We try $\theta_s(x) = Ax + B$, which satisfies the heat equation. To satisfy the boundary conditions, we take $A = 1/2L$, $B = 1/2$, to get
 \[
-	\theta_s = \frac{(x + L)}{2L}
+	\theta_s(x) = \frac{(x + L)}{2L}
 .\]
 Transforming, we can solve for
 \[
@@ -1388,6 +1257,720 @@ X_n = B_n \sin \frac{n \pi x}{L}, \quad \lambda_n = \frac{n^2 \pi^2}{L^2}
 Putting $\lambda_n$ into the equation for time, we find
 \[
 	T_n(t) = C_n \exp \biggl( - \frac{Dn^2\pi^2}{L^2}t \biggr)
+.\]
+Hence we can write the general solution with homogeneous boundary conditions as
+\[
+	\hat \theta(x, t) = \sum_{n = 1}^{\infty}b_n \sin \frac{n \pi x}{L} \exp \biggl( - \frac{D n^2 \pi^2}{L^2} t \biggr)
+.\]
+Impose the initial conditions at $t = 0$. We get the Fourier coefficients
+\begin{align*}
+	b_n &= \frac{1}{L} \int_{-L}^{L} \hat \theta(x, 0) \sin \frac{n \pi x}{L}\diff x \\
+	    &= \frac{2}{L} \int_{0}^{L} \underbrace{\biggl(H(x) - \frac{1}{2}\biggr)}_{=1/2}\sin \frac{n \pi x}{L} \diff x - \frac{2}{L} \int_{0}^{L} \frac{x}{2l}\sin \frac{n \pi x}{L} \diff x \\
+	    &= \underbrace{\frac{2}{(2m - 1)\pi}}_{\text{if }n = 2m - 1} - \frac{(-1)^{n+1}}{n \pi} = \frac{1}{n \pi}.
+\end{align*}
+So the solution we get is
+\[
+	\hat \theta(x, t) = \sum_{n = 1}^{\infty} \frac{1}{n \pi} \sin \frac{n \pi x}{L} \exp \biggl(- \frac{Dn^2\pi^2}{L^2}t \biggr)
+,\]
+or with the original boundary conditions,
+\[
+	\theta(x, t) = \frac{x+L}{2L} + \hat \theta(x, t)
+.\]
+The approximate solution is an excellent fit for $\theta$ if $t \ll 1$.
+
+\newpage
+
+\section{The Laplace Equation}%
+\label{sec:the_laplace_equation}
+
+We will now look at Laplace's equation
+\[
+\nabla^2 \phi = 0
+.\]
+This has wide applications in mathematical physics, applied and pure mathematics.
+
+Laplace's equation is used in
+\begin{itemize}
+	\item steady state heat flows,
+	\item potential theory $\mathbf{F} = - \nabla \phi$,
+	\item incompressible fluid flow $\mathbf{v} = \nabla \phi$.
+\end{itemize}
+
+We will solve Laplace's equation in a domain subject to two boundary conditions:
+\begin{itemize}
+	\item[Dirichlet:] $\phi$ is given on the boundary surface $\partial D$.
+	\item[Neumann:] $\mathbf{\hat n} \cdot \nabla \phi$ is given on the boundary surface $\partial D$.
+\end{itemize}
+
+\subsection{3D Cartesian Coordinates}%
+\label{sub:3d_cartesian_coordinates}
+
+In three dimensions, the equation becomes
+\[
+\frac{\partial^2 \phi}{\partial x^2} + \frac{\partial^2 \phi}{\partial y^2} + \frac{\partial^2 \phi}{\partial z^2} = 0
+.\]
+We seek separable solutions $\phi(x, y, z) = X(x)Y(y)Z(z)$. Then substituting,
+\[
+X''YZ + XY''Z + XYZ'' = 0 \implies \frac{X''}{X} = - \frac{Y''}{Y} - \frac{Z''}{Z} = - \lambda_{\ell}
+,\]
+and similarly we get
+\[
+\frac{Y''}{Y} = -\lambda_m, \quad \frac{Z''}{Z} = - \lambda_n = \lambda_{\ell} + \lambda_m
+.\]
+The general solution from the eigenmodes is
+\[
+	\phi(x, y, z) = \sum_{\ell, m, n} a_{\ell m n} X_{\ell}(x)Y_m(y)Z_n(z)
+.\]
+
+\begin{exbox}[Steady heat conduction]
+	Setting $\partial \theta/\partial t = 0$ in the heat equation, we get Laplace's equation.
+
+	Consider a semi-infinite rectangular bar with boundary conditions $\phi = 0$ at $x = 0, a$ and $y = 0, b$. Then we can assume $\phi$ stays `hot' near the origin, with $\phi = 1$ at $z = 0$, and gets cold further away, so $\phi \to 0$ as $z \to \infty$.
+
+	We successively solve for the eigenmodes:
+	\begin{itemize}
+		\item $X'' = - \lambda_{\ell}X$, with $X(0) = X(a) = 0$. Then the solution is
+			\[X_{\ell} = \sin \frac{\ell \pi x}{a}, \quad  \lambda_{\ell} = \frac{\ell^2 \pi^2}{a^2}.
+			\]
+		\item $Y'' = - \lambda_m Y$, with $Y(0) = Y(b) = 0$. Then the solution is
+			\[Y_m = \sin \frac{m \pi y}{b}, \quad \lambda_m = \frac{m^2 \pi^2}{b^2}.\]
+
+		\item $Z'' = -\lambda_nZ = (\lambda_\ell + \lambda_m)Z = \pi^2(\frac{\ell^2}{a^2} + \frac{m^2}{b^2})Z$, with boundary conditions $Z \to 0$ as $z \to \infty$. This implies we must have the negative exponential, so
+			\[
+				Z_{\ell m} = \exp \biggl[ - \biggl( \frac{\ell^2}{a^2} + \frac{m^2}{b^2} \biggr)^{1/2} \pi z \biggr]
+			.\]
+	\end{itemize}
+	Therefore, the general solution becomes
+	\[
+		\phi(x, y, z) = \sum_{\ell, m}^{\infty}a_{lm} \sin \frac{\ell \pi x}{L} \sin \frac{m \pi x}{L} \exp \biggl[ - \biggl( \frac{\ell^2}{a^2} \biggr)^{1/2}\pi z \biggr]
+	.\]
+	Finally, we fix $a_{\ell m}$ by using $\phi(x, y, 0) = 1$. Then
+	\begin{align*}
+		a_{\ell m} &= \frac{2}{b} \int_{0}^{b} \frac{2}{a} \int_{0}^{a} \sin \frac{\ell \pi x}{a} \sin \frac{m \pi y}{b} \diff x \diff y \\
+			   &= \underbrace{\frac{4a}{a(2k-1)\pi}}_{\text{if }l = 2k-1} \underbrace{\frac{4b}{b(2p-1)\pi}}_{\text{if }m = 2p-1} = \frac{16}{\pi^2\ell m}.\quad (2 \nmid lm)
+	\end{align*}
+	Asymptotically, only the small eigenmodes survive.
+\end{exbox}
+
+\subsection{2D Plane Polar Coordinates}%
+\label{sub:2d_plane_polar_coordinates}
+
+Recall in 2D plane polars,
+\[
+	\nabla^2 \phi = \frac{1}{r} \frac{\partial}{\partial r} \biggl( r \frac{\partial \phi}{\partial r} \biggr) + \frac{1}{r^2} \frac{\partial^2 \phi}{\partial \theta^2} = 0
+.\]
+We try to find separable solutions $\phi(r, \theta) = R(r) \Theta(\theta)$. Substituting, we get
+\[
+	\Theta'' + \mu \Theta = 0, \quad r(rR')' - \mu R = 0
+.\]
+\begin{itemize}
+	\item The polar equation has periodic boundary conditions, hence if $\mu = m^2$,
+		\[
+			\Theta_m(\theta) = \cos m \theta, \sin m \theta
+		.\]
+	\item The radial equation is $r(rR')' - m^2R = 0$. Trying $R =  r^{\beta}$, we get
+		\[
+			r(\beta r^{\beta})' - m^2 r^{\beta} = 0 \implies \beta^2 - m^2 = 0 \implies \beta = \pm m
+		.\]
+		Hence $R_m = r^{m}$ and $-r^{m}$, $m \neq 0$. If $m = 0$, we have
+		\[
+			(r R')' = 0 \implies r R' = C \implies R = C \log r + D
+		.\]
+\end{itemize}
+Hence the general solution is
+\[
+	\phi(r, \theta) = \frac{a_0}{2} + c_0 \log r + \sum_{m = 1}^{\infty}[(a_m \cos m \theta + b_m \sin m \theta)r^{m} + (c_m \cos m \theta + d_m \sin m \theta) r^{-m}]
+.\]
+
+\begin{exbox}[Soap film on a unit disk]
+	We solve Laplace's equation with a distorted circular wire of radius $r = 1$, and given boundary conditions $\phi(1, \theta) = f(\theta)$, to find $\phi(r, \theta)$ for $r < 1$.
+
+	First, regularity at $r = 0$ implies $c_m = d_m = 0$ for all $m$ (including $0$). So the equation becomes
+	\[
+		\phi(r, \theta) = \frac{1}{2}a_0 \sum_{m = 1}^{\infty}(a_m \cos m \theta + b_m \sin m \theta)r^{m}
+	.\]
+	At $r = 1$, we get
+	\[
+		\phi(1, \theta) = f(\theta) = \frac{1}{2}a_0 + \sum_{m = 1}^{\infty}(a_m \cos m \theta + b_m \sin m \theta)
+	.\]
+	Therefore the coefficients are the Fourier coefficients,
+	\[
+		a_m = \frac{1}{\pi} \int_{0}^{2 \pi}f(\theta) \cos m \theta \diff \theta, \quad b_m = \frac{1}{\pi} \int_{0}^{2 \pi}f(\theta) \sin m \theta \diff \theta
+	.\]
+	Due to the $r^{m}$ term, only the low Fourier modes survive to the center of the disk.
+\end{exbox}
+
+\subsection{3D Cylindrical Polar Coordinates}%
+\label{sub:3d_cylindrical_polar_coordinates}
+
+In this case, our Laplacian is
+\[
+	\nabla^2 \phi = \frac{1}{r} \frac{\partial}{\partial r} \biggl( r \frac{\partial \phi}{\partial r} \biggr) + \frac{1}{r^2} \frac{\partial^2 \phi}{\partial \theta^2} + \frac{\partial^2 \phi}{\partial z^2} = 0
+.\]
+With $\phi = R(r) \Theta(\theta) Z(z)$, we have
+\[
+	\Theta'' = - \mu \Theta, \quad Z'' = \lambda Z,\quad r(rR')' + (\lambda r^2 - \mu)R = 0
+.\]
+\begin{itemize}
+	\item The polar equation is $\mu_m = m^2, \Theta_m(\theta) = \cos m \theta$ and $\sin m \theta$.
+	\item The radial equation is Bessel's equation, with $R = J_m(kr)$ and $Y_m(kr)$. Setting the boundary conditions, $R = 0$ at $r = a$, means $J_m(ka) = 0$. Hence $k = j_{mn}a$. The radial eigenfunction is $R_{mn}(r) = J_m(j_{mn}r/a)$ (we can eliminate the Neumann solutions as they diverge as $r \to 0$).
+	\item The $Z$ equation obeys $Z'' = k^2 Z$, implying $Z = e^{-kz}$ and $Z = e^{kz}$ (we usually eliminate $e^{kz}$ with $Z \to 0$ as $z \to \infty)$.
+\end{itemize}
+Hence the general solution is
+\[
+	\phi(r, \theta, z) = \sum_{m = 0}^{\infty} \sum_{n = 1}^{\infty} (a_{mn} \cos m \theta + b_{mn} \sin m \theta) J_{m} \biggl( \frac{j_{mn}}{a} r \biggr) e^{-j_{mn}r/a}
+.\]
+
+\begin{exbox}
+	We describe steady-state heat flow in a semi-infinite circular wire with boundary conditions $\phi = 0$ at $r = a$, $\phi = T_0$ at $z = 0$ and $\phi \to 0$ as $z \to \infty$. The solution is
+	\[
+		\phi(r, \theta, z) = \sum_{n = 1}^{\infty} \frac{2T_0}{j_{0n}J_1(j_{0n})}J_0\biggl(\frac{j_{0n}}{a}r\biggr)e^{-j_{0n}z/a}
+	.\]
+\end{exbox}
+
+\subsection{3D Spherical Polar Coordinates}%
+\label{sub:3d_spherical_polar_coordinates}
+
+Recall that in spherical polars, $x = r \sin \theta \cos \phi$, $y = r \sin \theta \sin \phi$, $z = r \cos \theta$ and $\diff V = r^2 \sin \theta \diff r \diff \theta \diff \phi$. Laplace's equation becomes
+\[
+	\frac{1}{r^2}\frac{\partial}{\partial r}\biggl(r^2 \frac{\partial \Phi}{\partial r}\biggr) + \frac{1}{r^2 \sin \theta} \frac{\partial}{\partial \theta} \biggl( \sin \theta \frac{\partial \Phi}{\partial \theta}\biggr) + \frac{1}{r^2\sin^2\theta} \frac{\partial^2\Phi}{\partial \phi^2} = 0
+.\]
+We look only at the axisymmetric case, where there is no $\phi$ dependence. So we seek separable solutions $\Phi(r, \theta) = R(r) \Theta(\theta)$. Substituting,
+\[
+	(\sin \theta \Theta)' + \lambda \sin \theta = 0, \quad (r^2R')' - \lambda R = 0
+.\]
+\begin{itemize}
+	\item The polar equation is Legendre's equation. Substitute $x = \cos \theta$, and note $-1 \leq x \leq 1$. Then, since
+		\[
+		\frac{\diff x}{\diff \theta} = - \sin \theta \implies \frac{\diff \Theta}{\diff \theta} = - \sin \theta \frac{\diff \Theta}{\diff x}
+		,\]
+		our equation becomes
+		\[
+			\frac{\diff}{\diff x} \biggl[(1- x^2) \frac{\diff \Theta}{\diff x} \biggr] + \lambda \Theta = 0
+		.\]
+		This is Legendre's equation with eigenvalue $\lambda_{\ell} = \ell(\ell + 1)$, and eigenfunctions $\Theta_l(\theta) = P_{\ell}(x) = P_{\ell}(\cos \theta)$.
+	\item The radial equation is $(r^2R')' - \ell(\ell+1)R = 0$. We seek solution of the form $R = \alpha r^{\beta}$. Then we get $\beta(\beta + 1) - \ell(\ell + 1) = 0$. This has two solution $\beta = \ell$ or $\beta = - \ell - 1$, giving $R_\ell = r^{\ell}$ and $r^{- \ell - 1}$.
+\end{itemize}
+
+Hence the general axisymmetric solution is
+\[
+	\Phi(r, \theta) = \sum_{\ell = 0}^{\infty} (a_{\ell}r^{\ell} + b_{\ell} r^{-\ell - 1}) P_{\ell}(\cos \theta)
+,\]
+where $a_{\ell}, b_{\ell}$ are determined by boundary conditions, usually at fixed $r = r_0$. Then the orthogonality of $P_{\ell}$ can be used to obtain coefficients.
+
+\begin{exbox}
+	We solve $\nabla^2 \Phi = 0$ with axisymmetric boundary conditions at $r = 1$, $\Phi(1, \theta) = f(\theta)$. Regularity implies $b_{\ell} = 0$, so we have
+	\[
+		f(\theta) = \sum_{\ell = 0}^{\infty} a_{\ell} P_{\ell}(\cos \theta)
+	,\]
+	or writing $f(\theta) = F(\cos \theta)$,
+	\[
+		F(x) = \sum_{\ell = 0}^{\infty}a_{\ell} P_{\ell}(x)
+	.\]
+	This gives
+	\[
+		a_{\ell} = \frac{(2 \ell + 1)}{2}\int_{-1}^{1}F(x)P_{\ell}(x)\diff x
+	.\]
+	If $f(\theta) = \sin^2 \theta$, we get the solution
+	\[
+		\Phi(r, \theta) = \frac{2}{3}(1 - P_2(\cos \theta)r^2)
+	.\]
+\end{exbox}
+
+\subsection{Generating functions for Legendre Polynomials}%
+\label{sub:generating_functions_for_legendre_polynomials}
+
+Consider a charge on the $z$-axis at $\mathbf{r}_0 = (0, 0, 1)$, then the potential at $P$ becomes
+\begin{align*}
+	\Phi(\mathbf{r}) &= \frac{1}{|\mathbf{r} - \mathbf{r}_0|}= \frac{1}{(x^2 + y^2 + (z - 1)^2)^{1/2}} \\
+			 &= \frac{1}{(r^2 \sin^2 \theta + r^2 \cos^2\theta - 2 r \cos \theta + 1)^{1/2}} \\ 
+			 &= \frac{1}{\sqrt{r^2 - 2r \cos \theta + 1}} = \frac{1}{\sqrt{r^2 - 2 r \bar x + 1}}.
+\end{align*}
+
+Moreover, this $\Phi$ satisfies $\nabla^2 \Phi = 0$, where $\mathbf{r} \neq \mathbf{r}_0$.
+
+We can represent any axisymmetric solution as a sum of Legendre polynomials:
+\[
+	\frac{1}{\sqrt{r^2 - 2rx + 1}} = \sum_{\ell = 0}^{\infty} a_{\ell} P_{\ell}(x) r^{\ell}
+,\]
+with normalisation $P_\ell(1) = 1$ at $x = 1$. Therefore
+\[
+\frac{1}{1 - r} = \sum_{\ell = 0}^{\infty}a_{\ell}r^{\ell}
+,\]
+which gives $a_{\ell} = 1$. Thus we have found the generating polynomial
+\[
+	\frac{1}{\sqrt{1 - 2rx + r^2}} = \sum_{\ell = 0}^{\infty} P_{\ell}(x) r^{\ell}
+.\]
+Then, expanding the left hand side with binomial theorem, we can find $P_{\ell}(x)$. Using this, we can obtain the normalisation condition. Using this, we can obtain the normalisation condition.
+
+\newpage
+
+\part{Inhomogeneous ODEs; Fourier Transforms}%
+\label{prt:inhomogeneous_odes_fourier_transforms}
+
+\section{The Dirac Delta Function}%
+\label{sec:the_dirac_delta_function}\index{delta function}
+
+\subsection{Definition of \texorpdfstring{$\delta(x)$}{Delta function}}%
+\label{sub:definition_of_delta_function}
+
+Define a generalized function $\delta(x - \xi)$ with the following properties:
+\begin{align*}
+	\delta(x - \xi) = 0\; \forall x \neq \xi, \\
+	\int_{-\infty}^{\infty}\delta(x - \xi)\diff x = 1.
+\end{align*}
+This acts as a linear operator on an arbitrary function $f(x)$ to produce a number $f(\xi)$, that is,
+\[
+	\int_{-\infty}^{\infty} \diff x \delta(x - \xi) f(x) = f(\xi)
+,\]
+provided $f(x)$ is well-behaved at $x = \xi$ and as $x \to \pm \infty$.
+
+\begin{remark}
+	\begin{itemize}
+		\item[]
+		\item The delta function $\delta(x)$ is classified as a distribution. 
+		\item As such, $\delta(x)$ always appears in an integrand as a linear operator, where it is well-defined.
+		\item It represents a unit point source or an impulse.
+	\end{itemize}
+\end{remark}
+
+\subsubsection{Limiting Distributions}%
+\label{subsub:limiting_distributions}
+
+We can define a discrete approximation to the delta function as the limit as $n \to \infty$ of
+\[
+	\delta_n(x) =
+	\begin{cases}
+		0 & |x| > \frac{1}{n}, \\
+		n/2 & |x| \leq \frac{1}{n}.
+	\end{cases}
+.\]
+However this is not that good of an approximation. Instead, we can try the continuous approximation as $\eps \to 0$ of
+\[
+	\delta_{\eps}(x) = \frac{1}{\eps \sqrt \pi} e^{-x^2/\eps^2}
+.\]
+We can verify the properties of this approximation:
+\begin{align*}
+	\int_{-\infty}^{\infty}f(x) \delta(x) \diff x &= \lim_{\eps \to 0} \int_{-\infty}^{\infty} \frac{1}{\eps \sqrt \pi} e^{-x^2/\eps^2} f(x) \diff x \\
+						      &= \lim_{\eps \to 0}\int_{-\infty}^{\infty}\frac{1}{\sqrt \pi} e^{-y^2}f(\eps y) \diff y \\
+						      &= \lim_{\eps \to 0} \int_{-\infty}^{\infty} \diff y \frac{1}{\sqrt \pi} e^{-y^2} [f(0) + \eps y f'(0) + \cdots] \\
+						      &= f(0),
+\end{align*}
+for well-behaved $f$ at $x = 0$ and $x = \pm \infty$.
+
+We can consider further examples:
+\[
+	\delta_n(x) = \frac{\sin n x}{\pi x} = \frac{1}{2 \pi} \int_{-n}^{n} e^{ikx}\diff k,
+\]
+\[
+	\delta_n(x) = \frac{n}{2} \mathrm{sech}^2 nx
+.\]
+
+\subsection{Properties of \texorpdfstring{$\delta(x)$}{Delta function}}%
+\label{sub:properties_of_delta_function}
+
+The unit step function or Heaviside function\index{Heaviside function} is
+\[
+	H(x) =
+	\begin{cases}
+		1 & x \geq 0,\\
+		0 & x < 0,
+	\end{cases}
+\]
+which is the integral of $\delta(x)$, and therefore we can identify $H'(x) = \delta(x)$. We can verify this using limiting distributions of $\delta(x)$.
+
+Define $\delta'(x)$ using integration by parts:
+\[
+	\int_{-\infty}^{\infty}\delta'(x -\xi)f(x)\diff x = [\delta(x-\xi)f(x)]_{-\infty}^{\infty} - \int_{-\infty}^{\infty}\delta(x - \xi)f'(x)\diff x = - f'(\xi)
+,\]
+for all $f(x)$ smooth at $x = \xi$. We can verify this by considering the Gaussian approximation, then
+\[
+	\delta_{\eps}'(x) = \frac{-2x}{\eps^3 \sqrt \pi}e^{-x^2/\eps^2}
+.\]
+
+The sampling property\index{sampling property} says that
+\[
+	\int_{a}^{b}f(x) \delta(x - \xi)\diff x =
+	\begin{cases}
+		f(\xi) & a < \xi < b, \\
+		0 & \text{otherwise}.
+	\end{cases}
+\]
+Moreover, the even property\index{even property} says that
+\[
+	\int_{-\infty}^{\infty}f(x) \delta(-(x-\xi))\diff x = \int_{-\infty}^{\infty}f(x) \delta(x - \xi) \diff x
+,\]
+through a change of variables. The scaling property\index{scaling property} says
+\[
+	\int_{-\infty}^{\infty}f(x) \delta(a(x - \xi)) \diff x = \frac{1}{|a|}f(\xi)
+,\]
+again shown through a change of variables. In fact, we can extend this definition: Suppose $g(x)$ has $n$ isolated zeroes at $x_1, x_2, \ldots, x_n$ with $g'(x_i) \neq 0$. Then,
+\[
+	\delta(g(x)) = \sum_{i = 1}^{n} \frac{\delta(x - x_i)}{|g'(x_i)|}
+.\]
+Finally, the isolation property says that if $g(x)$ is continuous at $x = 0$, then $g(x) \delta(x) = g(0) \delta(x)$.
+
+\subsection{Fourier Series Expansion of Delta Function}%
+\label{sub:fourier_series_expansion_of_delta_function}
+
+Consider a complex Fourier series expansion
+\[
+	\delta(x) = \sum_{n = -\infty}^{\infty}c_n e^{in\pi x/L}, \quad c_n = \frac{1}{2L} \int_{-L}^{L} \delta(x) e^{-in\pi x/L} \diff x = \frac{1}{2L}
+.\]
+Hence, we can express the delta function
+\[
+	\delta(x) = \frac{1}{2L} \sum_{n = -\infty}^{\infty}e^{in \pi x/L}
+.\]
+Letting $f(x)$ be an arbitrary function, we can expand $f(x)$ as $f(x) = \sum d_n e^{in \pi x/L}$. The inner product of $f$ and $\delta$ is given by
+\[
+	\int_{-L}^{L}f^{\ast}(x) \delta(x) \diff x = \frac{1}{2L} \sum_{n = -\infty}^{\infty}d_n \int_{-L}^{L} e^{in \pi x/L}e^{in \pi x/L}\diff x = \sum_{n = -\infty}^{\infty} d_n = f(0)
+.\]
+The Fourier expansion of the $\delta$ function can be extended periodically to the whole real line. This infinite set of $\delta$ functions is known as the \textit{Dirac comb}\index{Dirac comb}, given by
+\[
+	\sum_{m = -\infty}^{\infty} \delta(x - 2mL) = \sum_{n = -\infty}^{\infty} e^{in \pi x/L}
+.\]
+
+\subsection{Arbitrary Eigenfunction Expansion of Delta Function}%
+\label{sub:arbitrary_eigenfunction_expansion_of_delta_function}
+
+In general, suppose $\delta(x - \zeta) = \sum a_n y_n$, with coefficients
+\[
+	a_n = \frac{\int_{a}^{n} w(x) y_n(x) \delta(x - \zeta)\diff x}{\int_{a}^{b} w(x) y_n(x)^2 \diff x} = \frac{w(\zeta)y_n(\zeta)}{\int_{a}^{b} w(x) y_n(x)^2\diff x} = w_n(\zeta) Y_n(\zeta)
+.\]
+Then, the expansion of $\delta$ is
+\[
+	\delta(x - \zeta) = w(\zeta) \sum_{n = 1}^{\infty} Y_n(\zeta) Y_n(x) = w(x) \sum_{n = 1}^{\infty} Y_n(\zeta)y_n(x)
+,\]
+from the isolation property. Hence,
+\[
+	\delta(x - \zeta) = w(x) \sum_{n = 1}^{\infty}\frac{y_n(\zeta)y_n(x)}{N_n}
+,\]
+where $N_n = \int w y_n^2 \diff x$ is the normalisation factor.
+
+\begin{exbox}
+	Consider a Fourier series for $y(0) = y(1) = 0$, with $y_n(x) = \sin n \pi x$. From the sine series coefficient expansion,
+	\[
+		\delta(x - \zeta) = 2 \sum_{n = 1}^{\infty} \sin n \pi \zeta \sin n \pi x
+	,\]
+	for $0 < \zeta < 1$.
+\end{exbox}
+
+\newpage
+
+\section{Green's Functions}%
+\label{sec:green_s_functions}
+
+\subsection{Motivation for Green's Functions}%
+\label{sub:motivation_for_green_s_functions}
+
+Consider a massive static string with tension $T$ and linear mass density $\mu$, suspended between fixed ends $y(0) = y(1) = 0$. By resolving forces, we have the time independent form
+\[
+T \frac{\Diff 2 y}{\diff x^2} - \mu g = 0
+.\]
+Integrating directly, we find that
+\[
+y = \frac{\mu g}{2T}x^2 + k_1x + k_2
+.\]
+Imposing boundary conditions,
+\[
+	y(x) = \biggl( - \frac{\mu g}{T} \biggr) \cdot \frac{1}{2} x(1 - x)
+.\]
+That was one way to obtain the solution. Alternatively, we may solve the equation for a single point mass, and superimpose the resulting solution to find the overall solution.
+
+Our single point has mass $\delta m = \mu \delta x$, and is at position $x = \zeta$. The solution to the ODE will then be two straight lines, joining $(0, 0), (1, 0)$ and the mass $(\zeta_i, y_i(\zeta_i))$. If the angle of these straight lines from the horizontal are $\theta_1, \theta_2$, we can resolve the vertical forces:
+\begin{align*}
+	0 &= T(\sin \theta_1 + \sin \theta_2) - \delta mg = T \biggl( \frac{-y_i}{\zeta_i} + \frac{-y_i}{1 - \zeta_i} \biggr) - \delta mg, \\
+	\implies y_i(\zeta_i) &= \frac{- \delta mg}{T} \zeta_i(1 - \zeta_i).
+\end{align*}
+This is a generalised sawtooth. Alternatively, we can write this as $f_i(\zeta)G(x, \zeta)$, where $f_i$ is a source term, and $G(x, \zeta)$ is the Green's function, which is the solution for a unit point source. As the differential equation is linear, we may sum the solution to find
+\[
+	y(x) = \sum_{i = 1}^{N} f_i(\zeta)G(x, \zeta_i)
+.\]
+Taking the limit,
+\[
+	f_i(\zeta) = \frac{-\delta mg}{T} = \frac{- \mu \delta x g}{T} = f(x) \diff x \implies f(x) = \frac{- \mu g}{T}
+.\]
+We can thus write
+\[
+	y(x) = \int_{0}^{1}f(\zeta)G(x, \zeta) \diff \zeta
+.\]
+If we substitute our calculated values,
+\begin{align*}
+	y(x) &= \biggl( \frac{- \mu g}{T} \biggr) \biggl[ \int_{0}^{x} \zeta(1 - x)\diff \zeta + \int_{x}^{1}x(1 - \zeta)\diff \zeta \biggr] \\
+	     &= \biggl( \frac{- \mu g}{T} \biggr) \left\{ \left[\frac{\zeta^2}{2}(1 - x)\right]_{0}^{x} + \left[x\bigl(\zeta - \frac{\zeta^2}{2} \bigr) \right]_{x}^{1} \right\} \\
+	     &= \biggl( \frac{- \mu g}{T} \biggr) \biggl( \frac{x^2}{2} (1 - x) + \frac{x}{2} - x \biggl( x - \frac{x^2}{2} \biggr) \biggr) \\
+	     &= \biggl( \frac{-\mu g}{T} \biggr) \cdot \frac{1}{2} x(1 - x),
+\end{align*}
+which is the same solution as earlier. The benefit of using Green's function is that direct integration may not be possible in all cases, and so Green's functions may have to be used.
+
+\subsection{Definition of Green's Function}%
+\label{sub:definition_of_green_s_function}
+
+Suppose we wish to solve the inhomogeneous ODE
+\[
+	\mathcal{L} y = \alpha(x) '' + \beta(x) y' + \gamma(x) y = f(x)
+,\]
+on the interval $a \leq x \leq b$, where $\alpha \not \equiv 0$ and $\alpha, \beta, \gamma$ are continuous and bounded, taking homogeneous boundary conditions $y(a) = y(b) = 0$. The Green's function for $\mathcal{L}$ is defined to be the solution for a unit point source at $x = \zeta$. That is, $G(x, \zeta)$ is the function that satisfies the boundary conditions, and
+\[
+	\mathcal{L}G(x, \zeta) = \delta(x - \zeta)
+,\]
+with $G(a, \zeta) = G(b, \zeta) = 0$. By linearity, the general solution is
+\[
+	y(x) = \int_{a}^{b} f(\zeta)G(x, \zeta) \diff \zeta
+,\]
+where $y(x)$ satisfies the homogeneous boundary conditions. Indeed,
+\[
+	\mathcal{L}y = \int_{a}^{b}\mathcal{L}G(x, \zeta)f(\zeta)\diff \zeta = \int_{a}^{b}\delta(x - \zeta)f(\zeta)\diff \zeta = f(x)
+.\]
+Hence the solution is given by the inverse operator $y = \mathcal{L}^{-1} f$, where
+\[
+	\mathcal{L}^{-1} = \int_{a}^{b} \diff \zeta G(x, \zeta)
+.\]
+We can split the Green's function into two parts:
+\[
+	G(x, \zeta) =
+	\begin{cases}
+		G_1(x, \zeta) & a \leq x < \zeta, \\
+		G_2(x, \zeta) & \zeta < x \leq b.
+	\end{cases}
+\]
+For all $x \neq \zeta$, we have $\mathcal{L}G_1 = \mathcal{L}G_2 = 0$, so the parts are homogeneous solutions. Since $G$ satisfies the homogeneous boundary conditions $G_1(a, \zeta) = G_2(b, \zeta) = 0$. Moreover, $G$ must be continuous at $x = \zeta$, so $G_1(\zeta, \zeta) = G_2(\zeta, \zeta)$.
+
+Since $\mathcal{L}G = \delta(x - \zeta)$, $G$ must have a jump condition. For a second order ODE, this implies the derivative of $G$ is discontinuous at $x = \zeta$. Thus, we must have
+	\[
+		[G']_{\zeta_{-}}^{\zeta_{+}} = \left. \frac{\diff G_2}{\diff x} \right|_{x = \zeta_{+}} - \left.\frac{\diff G_1}{\diff x} \right|_{x = \zeta_{+}} = \frac{1}{\alpha(\zeta)}
+	.\]
+
+Hence, solving
+\[
+	\mathcal{L}G(x, \zeta) = \delta(x - \zeta)
+\]
+on $a \leq x \leq b$, we have functions $G_1, G_2$ which satisfy the homogeneous equation, so $\mathcal{L}G_i = 0$. Suppose there are two independent homogeneous solutions $y_1(x), y_2(x)$ to $\mathcal{L}y = 0$. Then $G_1 = Ay_1 + By_2$ satisfies $Ay_1(a) + By_2(a) = 0$, constraining $A$ and $B$. Thus there is one complementary function $y_{-}(x)$ such that $y_{-}(a) = 0$. Similarly, we can define $y_{+}$ as a linear combination of $y_1, y_2$ with $y_{+}(b) = 0$. Letting
+\[
+G_1 = Cy_{-}, \quad G_2 = Dy_{+}
+,\]
+we impose our other boundary conditions. Since $G_1(\zeta, \zeta) = G_2(\zeta, \zeta)$, we have
+\[
+	Cy_{-}(\zeta) = Dy_{+}(\zeta)
+.\]
+Moreover, the jump condition implies
+\[
+	Dy_{+}'(\zeta) - Cy_{-}'(\zeta) = \frac{1}{\alpha(\zeta)}
+.\]
+Solving these equation, we find
+\[
+	C(\zeta) = \frac{y_{+}(\zeta)}{\alpha(\zeta) W(\zeta)}, \quad D(\zeta) = \frac{y_{-}(\zeta)}{\alpha(\zeta)W(\zeta)}
+,\]
+where $W(\zeta)$ is the Wronskian\index{Wronskian}
+\[
+	W(\zeta) = y_{-}(\zeta)y_{+}'(\zeta) - y_{+}(\zeta)y'_{-}(\zeta)
+,\]
+and is non-zero	if $y_{-}$, $y_{+}$ are linearly independent. Hence,
+\[
+	G(x, \zeta) =
+	\begin{dcases}
+		\frac{y_{-}(x)y_{+}(\zeta)}{\alpha(\zeta)W(\zeta)} & a \leq x \leq \zeta, \\
+		\frac{y_{-}(\zeta)y_{+}(x)}{\alpha(\zeta)W(\zeta)} & \zeta \leq x \leq b.
+	\end{dcases}
+\]
+
+By linearity, the solution of $\mathcal{L}y = f$ is
+\[
+	y(x) = \int_{a}^{b} G(x, \zeta)f(\zeta) \diff \zeta
+.\]
+Split this into two intervals such that $G = G_1$ for $\zeta > x$ and $G = G_2$ for $\zeta < x$: this allows us to compute
+\begin{align*}
+	y(x) &= \int_{a}^{x} G_2(x, \zeta) f(\zeta) \diff \zeta + \int_{x}^{b}G_1(x, \zeta)f(\zeta) \diff \zeta \\
+	     &= y_{+}(x) \int_{a}^{x} \frac{y_{-}(\zeta) f(\zeta)}{\alpha(\zeta)W(\zeta)}\diff \zeta + y_{-}(x) \int_{x}^{b} \frac{y_{+}(\zeta) f(\zeta)}{\alpha(\zeta)W(\zeta)} \diff \zeta.
+\end{align*}
+If $\mathcal{L}$ is in Sturm-Liouville form, $\beta = \alpha'$. Then, the denominator $\alpha(\zeta)W(\zeta)$ is constant. Notice also $G$ is symmetric, so $G(x, \zeta) = G(\zeta, x)$. Often we take $\alpha = 1$.
+
+\begin{exbox}
+	Consider $y'' - y = f(x)$ with $y(0) = y(1) = 0$. The homogeneous solutions are $y_1 = e^{x}$ and $y_2 = e^{-x}$. Imposing boundary conditions,
+	\[
+	G =
+	\begin{cases}
+		C \sinh x & 0 \leq x < \zeta, \\
+		D \sinh (1 - x) & \zeta < x \leq b.
+	\end{cases}
+	\]
+	Continuity at $x = \zeta$ implies
+	\[
+		C \sinh \zeta - D \sinh (1 - \zeta) \implies C = D \frac{\sinh (1 - \zeta)}{\sinh \zeta}
+	.\]
+	The jump condition gives
+	\[
+		-D \cosh (1 - \zeta) - C \cosh \zeta = 1
+	.\]
+	Solving simultaneously, we get
+	\[
+		C = \frac{- \sinh(1 - \zeta)}{\sinh 1}, \quad D = \frac{\sinh \zeta}{\sinh 1}
+	.\]
+	Therefore,
+	\[
+		y(x) = \frac{-\sinh(1 - x)}{\sinh 1} \int_{0}^{x} \sinh \zeta f(\zeta) \diff \zeta - \frac{\sinh x}{\sinh 1} \int_{x}^{1} \sinh (1 - \zeta)f(\zeta) \diff \zeta
+	.\]
+\end{exbox}
+
+If we are given inhomogeneous boundary conditions, we wish to find a particular integral $y_p$ that is homogeneous and which solves the inhomogeneous boundary conditions. Then subtracting this solution from the original equation, we are reduced to solving for homogeneous boundary conditions.
+
+For example, in the above $y_p=  \frac{\sinh x}{\sinh 1}$ is a homogeneous solution to $y(0) = 0$, $y(1) = 1$.
+
+\subsection{Higher-order ODEs}%
+\label{sub:higher_order_odes}
+
+Suppose $\mathcal{L}y = f(x)$, where $\mathcal{L}$ is an $n$'th order linear differential operator, and $\alpha(x)$ is the coefficient for the highest derivative. Suppose that we are given homogeneous boundary conditions. Then we can define the Green's function to be the function that solves
+\[
+	\mathcal{L}G(x, \zeta) = \delta(x - \zeta)
+,\]
+and which has properties:
+\begin{enumerate}[(i)]
+	\item $G_1$, $G_2$ are homogeneous solutions satisfying the homogeneous boundary conditions;
+	\item $G_1^{(k)}(\zeta) = G_2^{(k)}(\zeta)$ for all $k \in \{0, 1, \ldots, n-2\}$;
+	\item $G_2^{(n-1)}(\zeta_{+}) - G_1^{(n-1)}(\zeta_{-}) = \frac{1}{\alpha(z)}$.
+\end{enumerate}
+
+\subsection{Eigenfunction Expansion of Green's Functions}%
+\label{sub:eigenfunction_expansion_of_green_s_functions}
+
+Suppose $\mathcal{L}$ is in Sturm-Liouville form, with eigenfunctions $y_n(x)$ and eigenvalues $\lambda_n$. We seek an eigenfunction expansion
+\[
+	G(x, \xi) = \sum_{n = 1}^{\infty}A_n y_n(x),
+\]
+where $\mathcal{L}G = \delta(x - \xi)$. Evaluating $\mathcal{L}G$ directly,
+\begin{align*}
+	\mathcal{L}G &= \sum_{n = 1}^{\infty} A_n \mathcal{L}y_n(x) = \sum_{n = 1}^{\infty} A_n \lambda_n w(x) y_n(x) \\
+		     &= \delta(x = \xi) = \omega(x) \sum_{n = 1}^{\infty} \frac{y_n(\xi) y_n(x)}{\mathcal{N}_n}.
+\end{align*}
+Hence we have $A_n(\xi) = y_n(\xi)/(\lambda_n \mathcal{N}_n)$. Thus,
+\[
+	G(x, \xi) = \sum_{n = 1}^{\infty}\frac{y_n(\xi)y_n(x)}{\lambda_n \mathcal{N}_n} = \sum_{n = 1}^{\infty} \frac{Y_n(\xi) Y_n(x)}{\lambda_n}
+.\]
+
+\subsection{Green's Functions for Initial Value Problems}%
+\label{sub:green_s_functions_for_initial_value_problems}
+
+Suppose we want to solve $\mathcal{L}(y) = f(t)$, a second-order ODE, for $t \geq a$, subject to boundary conditions $y(a) = y'(a) = 0$.
+
+Again, we can use Green's functions $G(t, \tau)$ satisfying $\mathcal{L}G = \delta(t - \tau)$.
+
+\begin{itemize}
+	\item For $t < \tau$, $G_1 = Ay_1(t) + By_2(t)$, with boundary conditions
+		\begin{align*}
+			Ay_1(a) + By_2(a) &= 0, \\
+			Ay_1'(a) + By_2'(a) &= 0.
+		\end{align*}
+		This corresponds to $W(a) = 0$, so if $y_1, y_2$ are not linearly dependent, then $A = B = 0$ and $G_1(t, \tau) = 0$.
+	\item For $t > \tau$, by continuity, $G_2(\tau, \tau) = 0$. Hence we can choose $G_2 = D y_{+}(t)$, with $y_{+}(t) = Ay_1(t) + By_2(t)$ satisfying $y_{+}(t) = 0$.
+\end{itemize}
+
+But by the jump condition, we must have
+\[
+	[G']_{\tau_{-}}^{\tau_{+}} = G_2'(\tau, \tau) - G_1'(\tau, \tau) = D y_{+}'(\tau) = \frac{1}{\alpha(\tau)}
+.\]
+Hence we get $D(\tau) = (\alpha(\tau)y_{+}'(\tau))^{-1}$. This gives solution
+\[
+	G(t, \tau) =
+	\begin{dcases}
+		0 & t < \tau, \\
+		\frac{y_{+}(t)}{\alpha(\tau) y_{+}'(t)} & t \geq \tau.
+	\end{dcases}
+\]
+
+The IVP is
+\[
+	y(t) = \int_{a}^{t}G(t, \tau) f(\tau) \diff \tau = \int_{a}^{t} \frac{y_{+}(t) f(\tau)}{\alpha(\tau) y_{+}'(\tau)} \diff \tau
+.\]
+
+As we can see, the causality in this solution is ``built-in'': only forces which begin acting prior to a time $t$ can impact the solution at time $t$.
+
+\begin{exbox}
+	Suppose we want to solve $y'' - y = f(t)$ with $y(0) = y'(0) = 0$. Then, solving for $G(t, \tau)$:
+	\begin{itemize}
+		\item At $t < \tau$, $G_1 \equiv 0$.
+		\item At $t > \tau$, $G_2 = Ae^{t} + Be^{-t}$.
+	\end{itemize}
+	By continuity, $G_2 = D \sinh(t - \tau)$, and by the jump condition,
+	\[
+		[G']_{\tau_{-}}^{\tau_{+}} = \frac{1}{\alpha} = 1 \implies G_2'(\tau, \tau) = D \cosh(0) = 1
+	.\]
+	So $D = 1$, and the general solution is
+	\[
+		y(t) = \int_{0}^{t}f(\tau) \sinh (t - \tau) \diff \tau
+	.\]
+\end{exbox}
+
+\newpage
+
+\section{Fourier Transforms}%
+\label{sec:fourier_transforms}
+
+\subsection{Introduction}%
+\label{sub:introduction}
+
+\begin{definition}
+	The \textit{Fourier transform}\index{Fourier transform} (FT) of a function $f(x)$ is
+	\[
+		\tilde f(k) = \mathcal{F}(f)(k) = \int_{-\infty}^{\infty}f(x) e^{-ikx}\diff x
+	,\]
+	and the \textit{inverse Fourier transform} is
+	\[
+		f(x) = \mathcal{F}^{-1}(\tilde f)(x) = \frac{1}{2\pi} \int_{-\infty}^{\infty} \tilde f(k) e^{ikx}\diff k
+	.\]
+\end{definition}
+
+The \textit{Fourier inversion theorem}\index{Fourier inversion theorem} states that
+\[
+	\mathcal{F}^{-1}(\mathcal{F}(f))(x) = f(x)
+,\]
+with the sufficient condition that $f$ and $\tilde f$ are \textit{absolutely integrable}\index{absolutely integrable}
+\[
+	\int_{-\infty}^{\infty}|f(x)| \diff x = M < \infty
+.\]
+
+\begin{exbox}[Fourier Transform of Gaussian]
+	Take a Gaussian $f(x) = \frac{1}{\sigma \sqrt \pi} e^{-x^2/\sigma^2}$. Then,
+	\[
+		\tilde f(k) = \frac{1}{\sigma \sqrt \pi} \int_{-\infty}^{\infty} e^{-x^2/\sigma^2}e^{-ikx} \diff x = \frac{1}{\sigma \sqrt \pi} \int_{-\infty}^{\infty} e^{-x^2/\sigma^2} \cos kx \diff x
+	,\]
+	since the odd part $i \sin kx$ disappears. Consider the derivative of $\tilde f$:
+	\begin{align*}
+		\tilde f'(k) &= \frac{-1}{\sigma \sqrt \pi} \int_{-\infty}^{\infty} x e^{-x^2/\sigma^2} \sin kx \diff x \\
+			     &= \frac{1}{\sigma \sqrt \pi} \biggl[ \frac{\sigma^2}{2} e^{-x^2/\sigma^2} \sin kx \biggr]_{-\infty}^{\infty} - \frac{1}{\sigma \sqrt \pi} \int_{-\infty}^{\infty} \biggl( \frac{k \sigma^2}{2} e^{-x^2/\sigma^2}\biggr) \cos kx \diff x \\
+			     &= - \frac{k \sigma^2}{2} \tilde f(k).
+	\end{align*}
+	This gives $\tilde f(k) = C e^{- k^2 \sigma^2/4}$. But $k = 0$ gives $\tilde f (0) = 1$, so $C = 1$ and so
+	\[
+		\tilde f(k) = \exp \biggl( - \frac{k^2\sigma^2}{4} \biggr)
+	.\]
+	We can then show that $\mathcal{F}^{-1} \tilde f = f$.
+\end{exbox}
+
+\begin{exbox}
+	We can show that $f(x) = e^{-a|x|}$ for $a > 0$ has Fourier transform $\tilde f(k) = 2a/(a^2 + k^2)$ in two ways:
+	\begin{enumerate}[(i)]
+		\item Integrate by parts
+			\[
+			2 \int_{0}^{\infty} e^{-ax} \cos k x \diff x
+			.\]
+		\item Integrate directly
+			\[
+				\int_{0}^{\infty} e^{-(a-ik)x}\diff x + \int_{-\infty}^{0}e^{(a + ik)x}\diff x
+			.\]
+	\end{enumerate}
+	If $f(x)=  e^{-ax}$ for $x > 0$, and $0$ for $x \leq 0$, then we can show that $\tilde f(k) = (ik+a)^{-1}$.
+\end{exbox}
+
+\subsection{Fourier Transforms and Fourier Series}%
+\label{sub:fourier_transforms_and_fourier_series}
+
+We can write a Fourier series as
+\[
+	f(x) = \sum_{n = -\infty}^{\infty} c_n e^{i k_n x}
+,\]
+where $k_n = (n\pi)/2 = n \Delta k$ where $\Delta k = \pi/2$. Then,
+\[
+	c_n = \frac{1}{2L} \int_{-L}^{L} f(x) e^{-ik_n x}\diff x = \frac{\Delta k}{2 \pi} \int_{-L}^{L} f(x) e^{-ik_nx}\diff x
 .\]
 
 \newpage

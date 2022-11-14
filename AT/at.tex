@@ -1,85 +1,8 @@
 \documentclass[12pt]{article}
-\usepackage{amsmath}
-\usepackage[a4paper]{geometry}
-\usepackage{fancyhdr}
-\usepackage{tikz}
-\usepackage{amssymb}
-\usepackage{graphicx}
-\usepackage{amsthm}
-\usepackage{import}
-\usepackage{xifthen}
-\usepackage{pdfpages}
-\usepackage{transparent}
-\usepackage{adjustbox}
-\usepackage[shortlabels]{enumitem}
-\usepackage{parskip}
-\makeatletter
-\newcommand{\@minipagerestore}{\setlength{\parskip}{\medskipamount}}
-\makeatother
-\usepackage{imakeidx}
 
-\DeclareMathOperator{\Ker}{Ker}
-\DeclareMathOperator{\Img}{Im}
-\DeclareMathOperator{\rank}{rank}
-\DeclareMathOperator{\nullity}{null}
-\DeclareMathOperator{\spn}{span}
-\DeclareMathOperator{\tr}{tr}
-\DeclareMathOperator{\adj}{adj}
-\DeclareMathOperator{\id}{id}
-\DeclareMathOperator{\Sym}{Sym}
-\DeclareMathOperator{\Orb}{Orb}
-\DeclareMathOperator{\Stab}{Stab}
-\DeclareMathOperator{\ccl}{ccl}
-\DeclareMathOperator{\Aut}{Aut}
-\DeclareMathOperator{\Syl}{Syl}
-\DeclareMathOperator{\sgn}{sgn}
-\DeclareMathOperator{\Fit}{Fit}
-\DeclareMathOperator{\Ann}{Ann}
-
-
-\newcommand{\incfig}[1]{%
-	\def\svgwidth{\columnwidth}
-	\import{./figures/}{#1.pdf_tex}
-}
-\newcommand{\diff}{\mathop{}\!\mathrm{d}}
-\newcommand{\Diff}[1]{\mathop{}\!\mathrm{d}^{#1}}
-
-\setlength\parindent{0pt}
-
-\newcommand{\course}{AT }
-\newcommand{\lecnum}{}
-
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{corollary}{Corollary}[section]
-\newtheorem{lemma}{Lemma}[section]
-\newtheorem{proposition}{Proposition}[section]
-
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}[section]
-\newtheorem{example}{Example}[section]
-
-\theoremstyle{remark}
-\newtheorem*{remark}{Remark}
-
-\pagestyle{fancy}
-\fancyhf{}
-\rhead{\leftmark}
-\lhead{Page \thepage}
-\setlength{\headheight}{15pt}
-
-\newcommand{\mapsfrom}{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}
+\usepackage{ishn}
 
 \makeindex[intoc]
-
-\usepackage{hyperref}
-\hypersetup{
-    colorlinks,
-    citecolor=black,
-    filecolor=black,
-    linkcolor=black,
-    urlcolor=black
-    pdfauthor={Ishan Nath}
-}
 
 \begin{document}
 
@@ -152,18 +75,15 @@ In $\mathbb{R}$, we used the norm $|x|$. In $\mathbb{R}^2$, if we have $z = (x, 
 
 	Equivalently, $z_n \to z$ if and only if $\|z_n - z\| \to 0$.
 \end{definition}
-
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\begin{lemma}
+\begin{lemma}
 	If $(z_n)$, $(w_n)$ are sequences in $\mathbb{R}^2$ with $z_n \to z$, $w_n \to w$. Then $z_n + w_n \to z + w$.
 \end{lemma}
 
-\textbf{Proof:}
+\begin{proofbox}
 \begin{align*}
 	\|(z_n + w_n) - (z + w)\| \leq \|z_n - z\| + \|w_n - w\| \to 0 + 0 = 0.
 \end{align*}
-
-\end{adjustbox}
+\end{proofbox}
 
 In fact, given convergence in $\mathbb{R}$, convergence in $\mathbb{R}^2$ is easy.
 
@@ -171,13 +91,11 @@ In fact, given convergence in $\mathbb{R}$, convergence in $\mathbb{R}^2$ is eas
 	Let $(z_n)$ be a sequence in $\mathbb{R}^2$ and let $z \in \mathbb{R}^2$. Write $z_n = (x_n, y_n)$ and $z = (x, y)$. Then $z_n \to z$ if and only if $x_n \to x$ and $y_n \to y$.
 \end{proposition}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\textbf{Proof:}
-
+\begin{proofbox}
 First, note $|x_n - x|, |y_n - y| \leq \|z_n - z\|$, so $\|z_n - z\| \to 0$ implies $|x_n - x|, |y_n - y| \to 0$.
 
 Now, if $|x_n - x|, |y_n - y| \to 0$, then $\|z_n - z\| = \sqrt{|x_n - x|^2 + |y_n - y|^2} \to 0$.
-\end{adjustbox}
+\end{proofbox}
 
 \begin{definition}
 	A sequence $(z_n)$ in $\mathbb{R}^2$ is \textbf{bounded} if there exists $M \in \mathbb{R}$ such that for all $n$, $\|z_n\| \leq M$.
@@ -188,11 +106,11 @@ Now, if $|x_n - x|, |y_n - y| \to 0$, then $\|z_n - z\| = \sqrt{|x_n - x|^2 + |y
 	A bounded sequence in $\mathbb{R}^2$ must have a convergent subsequence.
 \end{theorem}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} Let $(z_n)$ be a bounded subsequence in $\mathbb{R}^2$. Write $z_n = (x_n, y_n)$. Now $|x_n|, |y_n| \leq \|z_n\|$, so $x_n, y_n$ are bounded in $\mathbb{R}$.
+\begin{proofbox}
+	Let $(z_n)$ be a bounded subsequence in $\mathbb{R}^2$. Write $z_n = (x_n, y_n)$. Now $|x_n|, |y_n| \leq \|z_n\|$, so $x_n, y_n$ are bounded in $\mathbb{R}$.
 
 	By Bolzano-Weierstrass, $x_n$ has a convergent subsequence, say $x_{n_j} \to x \in \mathbb{R}$. Similarly $(y_{n_j})$ is bounded, so it has a convergent subsequence $y_{n_{j_k}} \to y$. Since we know $x_{n_{j_k}} \to x$, $z_{n_{j_k}} \to z = (x, y)$.
-\end{adjustbox}
+\end{proofbox}
 
 \begin{definition}
 	A sequence $(z_n) \in \mathbb{R}^2$ is \textbf{Cauchy} if for all $\varepsilon > 0$, there exists $N$ such that for all $m, n \geq N$, $\|z_m - z_n\| < \varepsilon$.
@@ -205,9 +123,9 @@ It is easy to show a convergent sequence in $\mathbb{R}^2$ is Cauchy.
 	Any Cauchy sequence in $\mathbb{R}^2$ converges.
 \end{theorem}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} Let $(z_n)$ be a Cauchy sequence in $\mathbb{R}^2$. Write $z_n = (x_n, y_n)$. For all $m, n$, $|x_m - x_n| \leq \|z_m - z_n\|$, so $(x_n)$ is a Cauchy sequence in $\mathbb{R}$, thus it converges in $\mathbb{R}$. Similarly, $(y_n)$ converges in $\mathbb{R}$, so $(z_n)$ converges.
-\end{adjustbox}
+\begin{proofbox}
+	Let $(z_n)$ be a Cauchy sequence in $\mathbb{R}^2$. Write $z_n = (x_n, y_n)$. For all $m, n$, $|x_m - x_n| \leq \|z_m - z_n\|$, so $(x_n)$ is a Cauchy sequence in $\mathbb{R}$, thus it converges in $\mathbb{R}$. Similarly, $(y_n)$ converges in $\mathbb{R}$, so $(z_n)$ converges.
+\end{proofbox}
 
 \subsection{Convergence of Functions}%
 \label{sub:convergence_of_functions}
@@ -220,8 +138,7 @@ Let $X \subset \mathbb{R}$. Let $f_n : X \to \mathbb{R}$, and let $f : X \to \ma
 
 Although this is simple and easy to check, it doesn't preserve some `nice' properties that we want.
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{example}
+\begin{exbox}
 	In all three examples, $X = [0,1]$, and $f_n \to f$ pointwise.
 	\begin{enumerate}[1.]
 		\item We will construct $f_n$ continuous, but $f$ not. Take
@@ -262,11 +179,8 @@ Although this is simple and easy to check, it doesn't preserve some `nice' prope
 					0 & \text{otherwise}.
 				\end{cases}
 			\]
-	\end{enumerate}
-	
-\end{example}
-
-\end{adjustbox}
+	\end{enumerate}	
+\end{exbox}
 
 We consider another definition of convergence.
 
@@ -285,8 +199,8 @@ Equivalently, $f_n \to f$ uniformly if for sufficiently large $n$, $f_n - f$ is 
 	Let $X \subset \mathbb{R}$, $f_n : X \to \mathbb{R}$ be continuous, and let $f_n \to f : X \to \mathbb{R}$ uniformly. Then $f$ is continuous.
 \end{theorem}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} Let $x \in X$, and pick $\varepsilon > 0$. As $f_n \to f$ uniformly, we can find $N$ such that for all $n \geq N$ and $ \in X$,
+\begin{proofbox}
+	Let $x \in X$, and pick $\varepsilon > 0$. As $f_n \to f$ uniformly, we can find $N$ such that for all $n \geq N$ and $ \in X$,
 	\[
 		|f_n(y) - f(y)| < \varepsilon
 	.\]
@@ -296,10 +210,11 @@ Equivalently, $f_n \to f$ uniformly if for sufficiently large $n$, $f_n - f$ is 
 	.\]
 	Now let $y \in X$ with $|y - x| < \delta$. Then
 	\begin{align*}
-		|f(y) - f(x)| \leq |f(y) - f_N(y)| + |f_N(y) - f_N(x)| + |f_N(x) - f(x)| < \varepsilon + \varepsilon + \varepsilon = 3 \varepsilon.
+		|f(y) - f(x)| &\leq |f(y) - f_N(y)| + |f_N(y) - f_N(x)| + |f_N(x) - f(x)| \\
+			      &< \varepsilon + \varepsilon + \varepsilon = 3 \varepsilon.
 	\end{align*}
 	But $3\varepsilon$ can be made arbitrarily small, so $f$ is continuous.
-\end{adjustbox}
+\end{proofbox}
 
 \begin{remark}
 	This is often called a `$3\varepsilon$ proof' (or a `$\varepsilon/3$ proof').
@@ -313,8 +228,8 @@ Equivalently, $f_n \to f$ uniformly if for sufficiently large $n$, $f_n - f$ is 
 	as $n \to \infty$.
 \end{theorem}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} As $f_n \to f$ uniformly, we can pick $n$ sufficiently large such that $f_n - f$ is bounded. Also $f_n$ is bounded, so by the triangle inequality $f = (f - f_n) + f_n$ is bounded.
+\begin{proofbox}
+	As $f_n \to f$ uniformly, we can pick $n$ sufficiently large such that $f_n - f$ is bounded. Also $f_n$ is bounded, so by the triangle inequality $f = (f - f_n) + f_n$ is bounded.
 
 	Let $\varepsilon > 0$. As $f_n \to f$ uniformly, there is some $N$ such that for all $n \geq N$ and $x \in [a, b]$, we have $|f_n(x) - f(x)| < \varepsilon$. By Riemann's criterion, there is some dissection $\mathcal{D}$ of $[a, b]$ for which
 	\[
@@ -340,20 +255,17 @@ Equivalently, $f_n \to f$ uniformly if for sufficiently large $n$, $f_n - f$ is 
 								&\leq (b - a) \sup_{x \in [a, b]}|f_n(x) - f(x)| \to 0
 	\end{align*}
 	as $n \to \infty$ since $f_n \to f$ uniformly.
-\end{adjustbox}
+\end{proofbox}
 
 Unfortunately, uniform convergence cannot preserve all properties.
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{example}
+\begin{exbox}
 	Take $f_n : [-1, 1] \to \mathbb{R}$, where each $f_n$ is differentiable and $f_n \to f$ uniformly, but $f$ is not differentiable. Take
 	\[
 		f_n = \sqrt{\left( \frac{1}{n} + x^2 \right)}
 	.\]
 	Then $f_n$ is differentiable, and also uniformly converges to $f(x) = |x|$. But $f$ is not differentiable.
-\end{example}
-
-\end{adjustbox}
+\end{exbox}
 
 In fact, we need uniform convergence of the \textbf{derivatives}.
 
@@ -361,8 +273,8 @@ In fact, we need uniform convergence of the \textbf{derivatives}.
 	Let $f_n : (u, v) \mapsto \mathbb{R}$ with $f_n \to f : (u, v) \to \mathbb{R}$ pointwise. Suppose further that each $f_n$ is continuously differentiable and that $f_n' \to g : (u, v) \to \mathbb{R}$ uniformly. Then $f$ is differentiable with $f' = g$.
 \end{theorem}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} Fix $a \in (u, v)$. Let $x \in (u, v)$. By FTC, we have each $f_n'$ is integrable over $[a, x]$ and
+\begin{proofbox}
+	Fix $a \in (u, v)$. Let $x \in (u, v)$. By FTC, we have each $f_n'$ is integrable over $[a, x]$ and
 	\[
 		\int_{a}^{x}f_n' = f_n(x) - f_n(a)
 	.\]
@@ -375,7 +287,7 @@ In fact, we need uniform convergence of the \textbf{derivatives}.
 		f(x) = f(a) + \int_{a}^{x} g
 	.\]
 	By theorem 4, $g$ is continuous so by FTC, $f$ is differentiable with $f' = g$.
-\end{adjustbox}
+\end{proofbox}
 
 \begin{remark}
 	It would have sufficed to assume that $f_n(x) \to f(x)$ for a single value of $x$.
@@ -393,11 +305,11 @@ It is easy to show that a uniformly convergent sequence is uniformly Cauchy.
 	Let $(f_n)$ be a uniformly Cauchy sequence of functions $X \to \mathbb{R}$. Then $(f_n)$ is uniformly convergent.
 \end{theorem}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} Let $x \in X$, and $\varepsilon > 0$. Then there exists $N$, such that for all $m, n \geq N$ and for all $y \in X$, $|f_m(y) - f_n(y)| < \varepsilon$. In particular, $|f_m(x) - f_n(x)| < \varepsilon$, so $(f_n(x))$ is a Cauchy sequence in $\mathbb{R}$, so by GPC, it converges pointwise, say $f_n(x) \to f(x)$ as $n \to \infty$.
+\begin{proofbox}
+	Let $x \in X$, and $\varepsilon > 0$. Then there exists $N$, such that for all $m, n \geq N$ and for all $y \in X$, $|f_m(y) - f_n(y)| < \varepsilon$. In particular, $|f_m(x) - f_n(x)| < \varepsilon$, so $(f_n(x))$ is a Cauchy sequence in $\mathbb{R}$, so by GPC, it converges pointwise, say $f_n(x) \to f(x)$ as $n \to \infty$.
 
 	Let $\varepsilon > 0$. Then we can find an $N$ such that for all $m, n \geq N$ and all $y \in X$, $|f_m(y) - f_n(y)| < \varepsilon$. Fixing $y, m$ and letting $n \to \infty$, $|f_m(y) - f(y)| \leq \varepsilon$. But since $y$ is arbitrary, this shows $f_n \to f$ uniformly.
-\end{adjustbox}
+\end{proofbox}
 
 We will also try to take Bolzano-Weierstrass over to the space of functions.
 
@@ -409,8 +321,7 @@ We will also try to take Bolzano-Weierstrass over to the space of functions.
 
 We would like a uniform Bolzano-Weierstrass, saying if $(f_n)$ is a uniformly bounded sequence of functions, then it has a uniformly convergent subsequence. But this is not true.
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{example}
+\begin{exbox}
 	Take $f_n : \mathbb{R} \to \mathbb{R}$, 
 	\[
 		f_n(x) =
@@ -420,9 +331,7 @@ We would like a uniform Bolzano-Weierstrass, saying if $(f_n)$ is a uniformly bo
 		\end{cases}
 	.\]
 	Then $(f_n)$ is uniformly bounded, but if $m \neq n$, then $f_m(m) = 1$ and $f_n(m) = 0$, so $|f_m(m) - f_n(m)| = 1$, hence $(f_n)$ are not uniformly Cauchy, so cannot be uniformly convergent.
-\end{example}
-
-\end{adjustbox}
+\end{exbox}
 
 \subsection{Application to Power Series}%
 \label{sub:application_to_power_series}
@@ -448,8 +357,8 @@ However, we do have another approach. We can show that if $0 < r < R$, then we d
 	Let $\sum a_n x^{n}$ be a real power series with radius of convergence $R > 0$. Let $0 < r < R$. Then $\sum a_n x^{n}$ converges uniformly on $(-r, r)$.
 \end{lemma}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} Define $f, f_m : (-r, r) \to \mathbb{R}$ by
+\begin{proofbox}
+	Define $f, f_m : (-r, r) \to \mathbb{R}$ by
 	\[
 		f(x) = \sum_{n = 0}^{\infty} a_n x^{n}, \quad f_m(x) = \sum_{n = 0}^{m} a_n x^{n}
 	.\]
@@ -463,7 +372,7 @@ However, we do have another approach. We can show that if $0 < r < R$, then we d
 		\sup_{x \in (-r, r)}|f(x) - f_m(x)| \leq \sum_{n = m+1}^{\infty} |a_n|r^{n} \to 0
 	\]
 	as $m \to \infty$.
-\end{adjustbox}
+\end{proofbox}
 
 \begin{theorem}
 	Let $\sum a_n x^{n}$ be a real power series with radius of convergence $R > 0$. Define $f : (-R, R) \to \mathbb{R}$ by
@@ -480,8 +389,8 @@ However, we do have another approach. We can show that if $0 < r < R$, then we d
 	\end{enumerate}
 \end{theorem}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} Let $x \in (-R, R)$. Pick $r$ such that $|x| < r < R$. By the above lemma, $\sum a_n y^{n}$ converges uniformly on $(-r, r)$. But the partial sum functions are all continuous on $(-r, r)$, hence $f|_{(-r, r)}$ is continuous. Thus $f$ is a continuous function on $(-R, R)$.
+\begin{proofbox}
+	Let $x \in (-R, R)$. Pick $r$ such that $|x| < r < R$. By the above lemma, $\sum a_n y^{n}$ converges uniformly on $(-r, r)$. But the partial sum functions are all continuous on $(-r, r)$, hence $f|_{(-r, r)}$ is continuous. Thus $f$ is a continuous function on $(-R, R)$.
 
 	Moreover, $[0, x] \subset (-r, r)$ so we also have $\sum a_n y^{n}$ converges uniformly on $[0, x]$. Each partial sum on $[0, x]$ is a polynomial, so can be integrated with
 	\[
@@ -491,7 +400,7 @@ However, we do have another approach. We can show that if $0 < r < R$, then we d
 	\begin{align*}
 		\int_{0}^{x} f = \lim_{m \to \infty}\int_{0}^{x} \sum_{n = 0}^{m} a_n y^{n}\diff y = \lim_{m \to \infty} \sum_{n = 0}^{m} \frac{a_n}{n+1}x^{n+1} = \sum_{n = 0}^{\infty} \frac{a_n}{n+1}x^{n+1}.
 	\end{align*}
-\end{adjustbox}
+\end{proofbox}
 
 For differentiation, we need the following lemma:
 
@@ -499,21 +408,17 @@ For differentiation, we need the following lemma:
 	Let $\sum a_n x^{n}$ be a real power series with radius of convergence $R > 0$. Then the power series $\sum n a_n x^{n-1}$ has radius of convergence at least $R$.
 \end{lemma}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\textbf{Proof:} Let $x \in \mathbb{R}$, $0 < |x| < R$. Pick $w$ with $|x| < w < R$. Then $\sum a_n w^{n}$ is absolutely convergent, so $a_n w^{n} \to 0$. Therefore, there exists $M$ such that $|a_n w^{n}| \leq M$ for all $n$. For each $n$,
+\begin{proofbox}
+	Let $x \in \mathbb{R}$, $0 < |x| < R$. Pick $w$ with $|x| < w < R$. Then $\sum a_n w^{n}$ is absolutely convergent, so $a_n w^{n} \to 0$. Therefore, there exists $M$ such that $|a_n w^{n}| \leq M$ for all $n$. For each $n$,
 \[
 |na_n x^{n-1}| = |a_n w^{n}| \left| \frac{x}{w} \right|^{n} \frac{1}{|x|}n
 .\]
-\end{adjustbox}
-
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
 Fix $n$, let $\alpha = |x/w| < 1$, and let $c = M/|x|$, a constant. Then $|n a_n x^{n-1}| \leq c n \alpha^{n}$. By comparison test, it suffices to show $\sum n \alpha^{n}$ converges. Note
 \[
 	\left| \frac{(n+1)\alpha^{n+1}}{n \alpha^{n}} \right| = \left(1 + \frac{1}{n} \right) \alpha \to \alpha < 1
 \]
 as $n \to \infty$, so this converges by the ratio test.
-
-\end{adjustbox}
+\end{proofbox}
 
 
 \begin{theorem}
@@ -527,8 +432,8 @@ as $n \to \infty$, so this converges by the ratio test.
 	.\]
 \end{theorem}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} Let $x \in (-R, R)$. Pick $r$ with $|x| < r < R$. Then $\sum a_n y^{n}$ converges uniformly on $(-r, r)$. Moreover, the power series $\sum n a_n y^{n-1}$ had radius of convergence at least $R$, and so also converges uniformly on $(-r, r)$.
+\begin{proofbox}
+	Let $x \in (-R, R)$. Pick $r$ with $|x| < r < R$. Then $\sum a_n y^{n}$ converges uniformly on $(-r, r)$. Moreover, the power series $\sum n a_n y^{n-1}$ had radius of convergence at least $R$, and so also converges uniformly on $(-r, r)$.
 
 	The partial sum functions $f_m(y)$ are polynomials, so are differentiable with
 	\[
@@ -539,7 +444,7 @@ as $n \to \infty$, so this converges by the ratio test.
 		g(y) = \sum_{n = 1}^{\infty}n a_n y^{n-1}
 	.\]
 	Hence, $f|_{(-r, r)}$ is differentiable and for all $y \in (-r, r)$, $f'(y) = g(y)$. In particular, $f$ is differentiable at $x$ with $f'(x) = g(x)$. This gives $f$ is a differentiable function on $(-R, R)$ with derivative $g$ as desired.
-\end{adjustbox}
+\end{proofbox}
 
 \subsection{Uniform Continuity}%
 \label{sub:uniform_continuity}
@@ -554,8 +459,7 @@ Let $X \subset \mathbb{R}$. Let $f : X \mapsto \mathbb{R}$. Recall that $f$ is \
 	Clearly if $f$ is uniformly continuous, then $f$ is continuous. The converse is not true.
 \end{remark}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{example}
+\begin{exbox}
 	Consider $f : \mathbb{R} \to \mathbb{R}$ given by $f(x) = x^2$. Then $f$ is continuous as it is a polynomial. Suppose $\delta > 0$. Then,
 	\[
 		f(x + \delta) - f(x) = (x + \delta)^2 - x^2 = 2 \delta x + \delta^2 \to \infty
@@ -563,16 +467,13 @@ Let $X \subset \mathbb{R}$. Let $f : X \mapsto \mathbb{R}$. Recall that $f$ is \
 	as $x \to \infty$. So the condition fails for $\varepsilon = 1$.
 
 	Even on the bounded interval $(0, 1)$, take $f(x) = 1/x$. This is clearly continuous, but cannot be uniformly continuous as it approaches infinity as $x$ approaches 0.
-\end{example}
-
-\end{adjustbox}
+\end{exbox}
 
 \begin{theorem}
 	A continuous real-valued function on a closed bounded interval is uniformly continuous.
 \end{theorem}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} Let $f : [a, b] \to \mathbb{R}$, and suppose $f$ is continuous but not uniformly continuous. Then we can find an $\varepsilon > 0$ such that, for all $\delta > 0$, there exist $x, y \in [a, b]$ with $|x - y| < \delta$ but $|f(x) - f(y)| \geq \varepsilon$. In particular, take $\delta = 1/n$.
+\begin{proofbox} Let $f : [a, b] \to \mathbb{R}$, and suppose $f$ is continuous but not uniformly continuous. Then we can find an $\varepsilon > 0$ such that, for all $\delta > 0$, there exist $x, y \in [a, b]$ with $|x - y| < \delta$ but $|f(x) - f(y)| \geq \varepsilon$. In particular, take $\delta = 1/n$.
 
 	Thus, we can find sequence $(x_n), (y_n)$ in $[a, b]$ with $|x_n - y_n| < 1/n$ but $|f(x_n) - f(y_n)| \geq \varepsilon$. The sequence $(x_n)$ is bounded, so by Bolzano-Weierstrass it has a convergent subsequence $x_{n_j} \to x$. Since $[a, b]$ is closed, $x \in [a, b]$.
 
@@ -581,25 +482,25 @@ Let $X \subset \mathbb{R}$. Let $f : X \mapsto \mathbb{R}$. Recall that $f$ is \
 		|f(x_{n_j}) - f(y_{n_j})| \leq |f(x_{n_j}) - f(x)| + |f(x) - f(y_{n_j})| < \varepsilon
 	,\]
 	a contradiction.
-\end{adjustbox}
+\end{proofbox}
 
 \begin{corollary}
 	A continuous real-valued function on a closed bounded interval is bounded.
 \end{corollary}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} Let $f : [a, b] \mapsto \mathbb{R}$ be continuous, and so uniformly continuous. Then we can find $\delta > 0$ such that for all $x, y \in [a, b]$, $|x - y| < \delta$ implies $|f(x) - f(y)| < 1$. Let $M = \lceil (b - a)/\delta \rceil$. Then for any $x \in [a, b]$, we can find $a = x_0 \leq x_1 \leq \ldots \leq x_M = x$, with $|x_{i} - x_{i-1}< \delta$. Then we have
+\begin{proofbox}
+	Let $f : [a, b] \mapsto \mathbb{R}$ be continuous, and so uniformly continuous. Then we can find $\delta > 0$ such that for all $x, y \in [a, b]$, $|x - y| < \delta$ implies $|f(x) - f(y)| < 1$. Let $M = \lceil (b - a)/\delta \rceil$. Then for any $x \in [a, b]$, we can find $a = x_0 \leq x_1 \leq \ldots \leq x_M = x$, with $|x_{i} - x_{i-1}< \delta$. Then we have
 	\[
 		|f(x)| \leq |f(a)| + \sum_{i = 1}^{M} |f(x_i) - f(x_{i-1})| < |f(a)| + M
 	.\]
-\end{adjustbox}
+\end{proofbox}
 
 \begin{corollary}
 	A continuous real-valued function on a closed bounded interval is integrable.
 \end{corollary}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} Let $f : [a, b] \to \mathbb{R}$ be continuous, and so uniformly continuous. Let $\varepsilon > 0$. Then we can find $\delta > 0$ such that for all $x, y \in [a, b]$, $|x - y| < \delta$, we have $|f(x) - f(y)| < \varepsilon$. Let $\mathcal{D} = \{x_0 < x_1 < \ldots < x_n\}$ be a dissection such that $x_{i} - x_{i-1} < \delta$, and $i \in \{1, \ldots, n\}$. Then for any $u, v \in [x_{i-1}, x_i]$, we have $|u - v| < \delta$, so $|f(u) - f(v)| < \varepsilon$. Hence
+\begin{proofbox}
+	Let $f : [a, b] \to \mathbb{R}$ be continuous, and so uniformly continuous. Let $\varepsilon > 0$. Then we can find $\delta > 0$ such that for all $x, y \in [a, b]$, $|x - y| < \delta$, we have $|f(x) - f(y)| < \varepsilon$. Let $\mathcal{D} = \{x_0 < x_1 < \ldots < x_n\}$ be a dissection such that $x_{i} - x_{i-1} < \delta$, and $i \in \{1, \ldots, n\}$. Then for any $u, v \in [x_{i-1}, x_i]$, we have $|u - v| < \delta$, so $|f(u) - f(v)| < \varepsilon$. Hence
 	\[
 		\sup_{x \in [x_{i-1}, x_i]} f(x) - \inf_{x \in [x_{i-1}, x_i]} f(x) \leq \varepsilon
 	.\]
@@ -608,7 +509,7 @@ Let $X \subset \mathbb{R}$. Let $f : X \mapsto \mathbb{R}$. Recall that $f$ is \
 		S(f, \mathcal{D}) - s(f, \mathcal{D}) \leq \sum_{i = 1}^{n}(x_i - x_{i-1})\varepsilon = \varepsilon(b - a)
 	.\]
 	But this can be made arbitrarily small, so by Riemann's criterion, $f$ is integrable over $[a, b]$.
-\end{adjustbox}
+\end{proofbox}
 
 \newpage
 
@@ -637,10 +538,8 @@ We have seen that the triangle inequality is very useful, so we wish to preserve
 
 We could define a metric space as an ordered pair $(X, d)$, but usually it is obvious what $d$ is, so we often refer to the metric space as the set $X$.
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{example}
+\begin{exbox}
 	\begin{enumerate}[(i)]
-		\item[]
 		\item If $X = \mathbb{R}$, we have the usual metric\index{usual metric} $d(x, y) = |x - y|$.
 		\item If $X = \mathbb{R}^{n}$, we can take the Euclidean metric\index{Euclidean metric}
 			\[
@@ -654,15 +553,6 @@ We could define a metric space as an ordered pair $(X, d)$, but usually it is ob
 			\[
 				d(f, g) = \sup_{x \in Y}|f(x) - g(x)|
 			.\]
-	\end{enumerate}
-	
-\end{example}
-
-\end{adjustbox}
-
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\begin{enumerate}
-		\item[]
 			We can check the triangle inequality: if $f, g, h \in B(Y)$, then for all $x \in Y$,
 			\[
 				|f(x) - h(x)| \leq |f(x) - g(x)| + |g(x) - h(x)| \leq d(f, g) + d(g, h)
@@ -672,28 +562,24 @@ We could define a metric space as an ordered pair $(X, d)$, but usually it is ob
 				d(f, h) \leq d(f, g) + d(g, h)
 			.\]
 	\end{enumerate}
-\end{adjustbox}
-
+\end{exbox}
 
 \begin{remark}
 	Suppose $(X, d)$ is a metric space and $Y \subset X$. Then $d|_{Y}$ is a metric on $Y$. We say $Y$ with this metric is a \textbf{subspace}\index{subspace} of $X$.
 \end{remark}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{example}
+\begin{exbox}
 	\begin{enumerate}[(i)]
 		\item[]
 		\item We can take $\mathbb{Q}, \mathbb{Z}, \mathbb{N}, [0, 1]$ as subspaces of $\mathbb{R}$.
 		\item A continuous function on a bounded interval is bounded, so $\mathcal{C}([a, b])$ is a subspace of $B([a, b])$, with the uniform metric.
 		\item We can take the empty metric space $X = \emptyset$ with the empty metric.
 	\end{enumerate}
-\end{example}
-\end{adjustbox}
+\end{exbox}
 
 Moreover, we can define different metrics on the same set.
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{example}
+\begin{exbox}
 	\begin{enumerate}[(i)]
 		\item[]
 		\item We can take the $l_1$ metric on $\mathbb{R}^{n}$:
@@ -708,15 +594,6 @@ Moreover, we can define different metrics on the same set.
 			\[
 				d(f, g) = \int_{a}^{b}|f - g|
 			.\]
-	\end{enumerate}
-	
-\end{example}
-
-\end{adjustbox}
-
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{enumerate}[(i)]
-	\setcounter{enumi}{3}
 		\item If $X = \mathbb{C}$, we can define a metric
 			\[
 				d(z, w) =
@@ -749,8 +626,7 @@ Moreover, we can define different metrics on the same set.
 			.\]
 			Hence $p^{a} \mid x - z$, so $d(x, z) \leq p^{-a}$.
 \end{enumerate}
-
-\end{adjustbox}
+\end{exbox}
 
 \begin{definition}
 	Let $(X, d)$ be a metric space. Let $(x_n)$ be a sequence in $X$ and let $x \in X$. We say $(x_n)$ \textbf{converges} to $x$, and write $x_n \to x$, if\index{convergence in metric spaces} for all $\varepsilon > 0$, there exists $N$ such that for all $n \geq N$,
@@ -764,14 +640,14 @@ Moreover, we can define different metrics on the same set.
 	Limits are unique. That is, if $(X, d)$ is a metric space, $(x_n)$ is a sequence in $X$, $x, y \in X$ with $x_n \to x$ and $x_n \to y$, then $x = y$.
 \end{proposition}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\textbf{Proof:} For each $n$,
+\begin{proofbox}
+	For each $n$,
 \begin{align*}
 	d(x, y) &\leq d(x, x_n) + d(x_n, y) \leq d(x_n, x) + d(x_n, y) \\
 		&\to 0 + 0 = 0.
 \end{align*}
 So $d(x, y) \to 0$ as $n \to \infty$. But $d(x, y)$ is constant, so $d(x, y) = 0$. So $x = y$.
-\end{adjustbox}
+\end{proofbox}
 
 \begin{remark}
 	\begin{enumerate}[1.]
@@ -784,8 +660,7 @@ So $d(x, y) \to 0$ as $n \to \infty$. But $d(x, y)$ is constant, so $d(x, y) = 0
 	\end{enumerate}
 \end{remark}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{example}
+\begin{exbox}
 	Let $d$ be the Euclidean metric on $\mathbb{R}^{n}$. Then we have $x_n \to x$ if and only if the sequence converges in each coordinate in the usual way in $\mathbb{R}$. Let's consider other metrics, such as the uniform metric
 	\[
 		d_{\infty}(x, y) = \max_{i}|x_i - y_i|, \text{ then}
@@ -804,11 +679,6 @@ So $d(x, y) \to 0$ as $n \to \infty$. But $d(x, y)$ is constant, so $d(x, y) = 0
 	\[
 		d_{\infty}(x, y) \leq d_1(x, y) \leq n d_{\infty}(x, y)
 	.\]
-\end{example}
-
-\end{adjustbox}
-
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
 	Consider $X = \mathcal{C}([0, 1])$. Let $d_{\infty}$ be the uniform metric on $X$, so
 	\[
 		d_{\infty}(f, g) = \sup_{x\in[0,1]}|f(x) - g(x)|, \text{ so}
@@ -827,7 +697,7 @@ So $d(x, y) \to 0$ as $n \to \infty$. But $d(x, y)$ is constant, so $d(x, y) = 0
 	So we can prove $f_n \to f$ in $(X, d_{\infty})$ implies $f_n \to f$ in $(X, d_1)$. But the converse is not true, from our previous examples on uniform convergence.
 
 	We can also take $(X, d)$ a discrete metric. Consider a convergence sequence $x_n \to x$. Then letting $\varepsilon = 1$, the definition of convergence says for all $n \geq N$, $d(x_n, x) < 1$, so $x_n = x$. Thus $(x_n)$ is eventually constant. So in a discrete metric, $(x_n)$ converges if and only if $(x_n)$ is eventually constant.
-\end{adjustbox}
+\end{exbox}
 
 \begin{definition}
 	Let $(X, d)$ and $(Y, e)$ be metric spaces, and let $f:X \to Y$.
@@ -854,7 +724,7 @@ So $d(x, y) \to 0$ as $n \to \infty$. But $d(x, y)$ is constant, so $d(x, y) = 0
 			\[
 				e(f(x), b) \to 0 \text{ as } d(x, a) \to 0
 			,\]
-			but this is meaningless.V
+			but this is meaningless.
 		\item (i) says nothing about what happens at the point $a$ itself. For example, $f : \mathbb{R} \to \mathbb{R}$ as $f(x) = \delta_{0x}$ tends to $0$ as $x \to 0$. If we have f continuous, then $d(x, a) = 0$ implies $e(f(x), f(a)) = 0$, so we may take $0 \leq d(x, a) < \delta$.
 		\item We can rewrite (v): $f$ is continuous on $W$ if and only if $f|_{W}$ is a continuous function if and only if for all $a \in W$ and $\varepsilon > 0$, there exists $\delta > 0$ such that for all $x \in W$,
 			 \[
@@ -876,24 +746,23 @@ So $d(x, y) \to 0$ as $n \to \infty$. But $d(x, y)$ is constant, so $d(x, y) = 0
 	Let $(X, d)$, $(Y, e)$ be metric spaces. Let $f : X \to Y$ and $a \in X$. Then $f$ is continuous at $a$ if and only if whenever $(x_n)$ is a sequence in $X$ with $x_n \to a$, then $f(x_n) \to f(a)$.
 \end{proposition}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} Suppose $f$ is continuous at $a$. Let $(x_n)$ be a sequence in $X$ with $x_n \to a$. Let $\varepsilon > 0$. As $f$ is continuous at $a$ we can find $\delta > 0$ such that for all $x\in X$, $d(x, a) < \delta$ implies $e(f(x), f(a)) < \varepsilon$.
+\begin{proofbox}
+	Suppose $f$ is continuous at $a$. Let $(x_n)$ be a sequence in $X$ with $x_n \to a$. Let $\varepsilon > 0$. As $f$ is continuous at $a$ we can find $\delta > 0$ such that for all $x\in X$, $d(x, a) < \delta$ implies $e(f(x), f(a)) < \varepsilon$.
 
 	As $x_n \to x$, we can find $N$ such that for all $n \geq N$, $d(x_n, a) < \delta$. Hence, for $n \geq N$, $e(f(x), f(a)) < \varepsilon$. This gives $f(x_n) \to f(a)$.
 
 	Now suppose $f$ is not continuous at $a$. Then there is some $\varepsilon > 0$ such that for all $\delta > 0$, there exists $x \in X$ with $d(x, a) < \delta$ but $e(f(x), f(a0) \geq \varepsilon$. Take $\delta_n = 1/n$, to obtain a sequence $(x_n)$ with $d(x_n, a) < 1/n$ but $(f(x_n), f(a)) \geq \varepsilon$. Hence $x_n \to a$ but $f(x_n) \not \to f(a)$.
-\end{adjustbox}
+\end{proofbox}
 
 \begin{proposition}
 	Let $(W, c)$, $(X, d)$, $(Y, e)$ be metric spaces. Let $f : W \to X$, $g : X \to Y$ and let $a \in W$. Suppose $f$ is continuous at $a$ and $g$ is continuous at $f(a)$. Then $g \circ f$ is continuous at $a$.
 \end{proposition}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} Let $(x_n)$ be a sequence in $W$ with $x_n \to a$. Then, $f(x_n) \to f(a)$, and so also $g(f(x_n)) \to g(f(a))$. So $g \circ f$ is continuous at $a$.
-\end{adjustbox}
+\begin{proofbox}
+	Let $(x_n)$ be a sequence in $W$ with $x_n \to a$. Then, $f(x_n) \to f(a)$, and so also $g(f(x_n)) \to g(f(a))$. So $g \circ f$ is continuous at $a$.
+\end{proofbox}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{example}
+\begin{exbox}
 	\begin{enumerate}[1.]
 		\item[]
 		\item Consider $\mathbb{R} \to \mathbb{R}$ with the usual metric. This is the same metric as defined for $\mathbb{R}$ only. We know many continuous function on $f : \mathbb{R} \to \mathbb{R}$, such as polynomials, trigonometric functions, exponential functions, etc.
@@ -906,17 +775,12 @@ So $d(x, y) \to 0$ as $n \to \infty$. But $d(x, y)$ is constant, so $d(x, y) = 0
 		\item Recall that if we have the Euclidean metric, the $l_1$ metric or the $l_{\infty}$ metric on $\mathbb{R}^{n}$, then convergent sequences are the same in each case. So continuous functions $X \to \mathbb{R}^{n}$ or $\mathbb{R}^{n} \to Y$ are the same with each of these metrics.
 		\item Let $(X, d)$ be a discrete metric space and let $(Y, e)$ be any metric space. Then all functions $f : X \to Y$ are continuous. Suppose $a \in X$ and $(x_n)$ is a sequence in $X$ with $x_n \to a$. Then $(x_n)$ is eventually constant, so $f(x_n) \to f(a)$.
 	\end{enumerate}
-	
-\end{example}
-
-\end{adjustbox}
+\end{exbox}
 
 \subsection{Completeness}%
 \label{sub:completeness}
 
 We saw a version of the general principle of convergence held in each of the three examples we considered. We try to extend this to all metric spaces:
-
-\newpage
 
 \begin{definition}
 	Let $(X, d)$ be a metric space and let $(x_n)$ be a sequence in $X$. We say $(x_n)$ is \textbf{Cauchy}\index{Cauchy sequence in general metric space} if for all $\varepsilon > 0$, then there exists $N$ such that for all $m, n \geq N$, $d(x_m, d_n) < \varepsilon$.
@@ -932,10 +796,8 @@ Similarly, we can consider $\mathbb{Q}$, then this does not satisfy the general 
 	Let $(X, d)$ be a metric space. We say $X$ is \textbf{complete}\index{complete} if every Cauchy sequence in $X$ converges.
 \end{definition}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{example}
+\begin{exbox}
 	\begin{enumerate}[1.]
-		\item[]
 		\item $\mathbb{R} \setminus \{0\}$ and $\mathbb{Q}$ are not complete.
 		\item $\mathbb{R}$ with the usual metric is complete.
 		\item The general principle of convergence for $\mathbb{R}^{n}$ say $\mathbb{R}^{n}$ with the Euclidean metric is complete.
@@ -943,8 +805,7 @@ Similarly, we can consider $\mathbb{Q}$, then this does not satisfy the general 
 
 			This gives $f_n - f$ is bounded for $n$ sufficiently large. Take such an $n$, and then since $f_n$ bounded, $f = f_n - (f_n - f)$ implies $f$ is bounded, so $f \in B(X)$. Finally, $f_n \to f$ uniformly implies $d(f_n, f) \to 0$, so $f_n \to f$ in $(B(X), d)$.
 	\end{enumerate}
-\end{example}
-\end{adjustbox}
+\end{exbox}
 
 \begin{remark}
 	This is a typical example of a proof that a given space $(X, d)$ is complete:
@@ -957,14 +818,11 @@ Similarly, we can consider $\mathbb{Q}$, then this does not satisfy the general 
 	It is important to do things in this order, as we cannot talk about $d(x_n, x)$ until we known $x \in X$.
 \end{remark}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\begin{enumerate}[1.]
-		\setcounter{enumi}{4}
-	\item If $[a, b]$ is a closed interval, then $\mathcal{C}([a, b])$ with the uniform norm $d$ is complete. Indeed, let $(f_n)$ be Cauchy in $\mathcal{C}([a, b])$. Then since $\mathcal{C}([a, b]) \subset B([a, b])$, and $B([a, b])$ is complete, then $f_n \to f$ for some $f \in B([a, b])$.
+\begin{exbox}
+	If $[a, b]$ is a closed interval, then $\mathcal{C}([a, b])$ with the uniform norm $d$ is complete. Indeed, let $(f_n)$ be Cauchy in $\mathcal{C}([a, b])$. Then since $\mathcal{C}([a, b]) \subset B([a, b])$, and $B([a, b])$ is complete, then $f_n \to f$ for some $f \in B([a, b])$.
 
-		Each function is continuous, and $f_n \to f$ uniformly, so $f$ is continuous, giving $f \in \mathcal{C}([a, b])$. Finally, $f_n \to f$ uniformly gives $d(f_n, f) \to 0$.
-	\end{enumerate}
-\end{adjustbox}
+	Each function is continuous, and $f_n \to f$ uniformly, so $f$ is continuous, giving $f \in \mathcal{C}([a, b])$. Finally, $f_n \to f$ uniformly gives $d(f_n, f) \to 0$.
+\end{exbox}
 
 \begin{definition}
 	Let $(X, d)$ be a metric space and $Y \subset X$. We say $Y$ is \textbf{closed}\index{closed} if whenever $(x_n)$ is a sequence in $Y$ with $x_n \to x \in X$, then $x \in Y$.
@@ -978,21 +836,18 @@ Similarly, we can consider $\mathbb{Q}$, then this does not satisfy the general 
 	This makes sense: if $Y \subset X$, then $Y$ itself is a metric space as a subspace of $X$, so we can say $Y$ is complete.
 \end{remark}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} Let $(X, d)$ be a metric space and $Y \subset X$ with $X$ complete and $Y$ closed.
+\begin{proofbox}
+	Let $(X, d)$ be a metric space and $Y \subset X$ with $X$ complete and $Y$ closed.
 	\begin{enumerate}[(i)]
 		\item Let $(x_n)$ be a Cauchy sequence in $Y$.
 		\item Now $(x_n)$ is a Cauchy sequence in $X$, so by completeness, $x_n \to x$ for some $x \in X$.
 		\item $Y \subset X$ is closed, so $x \in Y$.
 		\item Finally, we have for each $x_n \in Y$, $x \in Y$, and $x_n \to x$ in $X$, so $d(x_n, x) \to 0$, giving $x_n \to x$ in $Y$.
 	\end{enumerate}
-	
-\end{adjustbox}
+\end{proofbox}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{enumerate}[1.]
-	\setcounter{enumi}{5}
-\item Define
+\begin{exbox}
+	Define
 	\[
 		\ell_1 = \biggl\{(x_n)_{n \geq 1} \in \mathbb{R}^{\mathbb{N}} \mid \sum_{n = 1}^{\infty} |x_n| \text{ converges} \biggr\}
 	.\]
@@ -1000,14 +855,6 @@ Similarly, we can consider $\mathbb{Q}$, then this does not satisfy the general 
 	\[
 		d((x_n), (y_n)) = \sum_{n = 1}^{\infty} |x_n - y_n|
 	.\]
-
-\end{enumerate}
-
-\end{adjustbox}
-
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{enumerate}
-	\item[]
 	Then since $\sum |x_n|$, $\sum |y_n|$ converge and $|x_n - y_n| \leq |x_n| + |y_n|$, by comparison test $\sum |x_n - y_n|$ converges, so $d$ is well-defined. It is easy to check that $d$ is a metric. Then $(l_1, d)$ is complete. Indeed, let $(x^{(n)})$ be a Cauchy sequence in $l_1$, so $(x^{(n)}_i)$ is a sequence in $\mathbb{R}$.
 
 		Then for each $i$, $(x^{(n)}_{i})$ is a Cauchy sequence in $\mathbb{R}$, since if $y, z \in l_1$, then $|y_i - z_i| \leq d(y, z)$. But $\mathbb{R}$ is complete, so we can find $x_i \in \mathbb{R}$ with $x^{(n)}_{i} \to x_i$ as $n \to \infty$. Let $x = (x_1, x_2, x_3, \ldots, ) \in \mathbb{R}^{\mathbb{N}}$.
@@ -1035,13 +882,6 @@ Similarly, we can consider $\mathbb{Q}$, then this does not satisfy the general 
 	Since the partial sums $\sum |x_i|$ are increasing and bounded above, they converge.
 
 	Finally, we need to check $x^{(n)} \to x$ as $n \to \infty$ in $l_1$, i.e. $d(x^{(n)}, x) \to 0$.
-\end{enumerate}
-
-\end{adjustbox}
-
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{enumerate}
-	\item[]
 		Note that
 		\[
 			d(x^{(n)}, x) = \sum_{i = 1}^{\infty} |x_i^{(n)} - x_i| \leq \sum_{i = 1}^{I} |x_i^{(n)} - x_i| + \sum_{i = I+1}^{\infty}|x_i^{(n)}| + \sum_{i = I+1}^{\infty}|x_i|
@@ -1073,8 +913,7 @@ Similarly, we can consider $\mathbb{Q}$, then this does not satisfy the general 
 				      &< \varepsilon + 2\varepsilon + \varepsilon = 4\varepsilon.
 		\end{align*}
 		Hence $d(x^{(n)}, x) \to 0$ as $n \to \infty$. Hence $\ell_1$ is complete.
-\end{enumerate}
-\end{adjustbox}
+\end{exbox}
 
 \begin{definition}
 	Let $(X, d)$ be a metric space and $f : X \to X$. We say $f$ is a \textbf{contraction}\index{contraction} if there exists $\lambda \in [0, 1)$ such that for all $x,y \in X$, $d(f(x), f(y)) \leq \lambda d(x, y)$.
@@ -1084,15 +923,14 @@ Similarly, we can consider $\mathbb{Q}$, then this does not satisfy the general 
 	Let $(X, d)$ be a complete, non-empty metric space and $f : X \to X$ a contraction. Then $f$ has a unique fixed point.
 \end{theorem}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} We show the existence of a fixed point. Let $\lambda \in [0, 1]$ satisfy $d(f(x), f(y)) \leq \lambda d(x, y)$. Let $x_0 \in X$, and define $x_n = f(x_{n-1})$. Let $\Delta = d(x_0, x_1)$. Then by induction, $d(x_n, x_{n+1}) \leq \lambda^{n} \Delta$. Suppose $N \leq m < n$. Then
+\begin{proofbox} We show the existence of a fixed point. Let $\lambda \in [0, 1]$ satisfy $d(f(x), f(y)) \leq \lambda d(x, y)$. Let $x_0 \in X$, and define $x_n = f(x_{n-1})$. Let $\Delta = d(x_0, x_1)$. Then by induction, $d(x_n, x_{n+1}) \leq \lambda^{n} \Delta$. Suppose $N \leq m < n$. Then
 	\[
 		d(x_m, x_n) \leq \sum_{i = m}^{n-1}d(x_i, x_{i+1}) \leq \sum_{i = 1}^{n-1} \lambda^{i} \Delta \leq \sum_{i = N}^{\infty} \lambda^{i} \Delta = \frac{\lambda^{N}\Delta}{1 - \lambda} \to 0
 	.\]
 	So for all $\varepsilon > 0$, there exists $N$, such that for all $m, n \geq N$, $d(x_m, x_n) < \varepsilon$. Then $(x_n)$ is Cauchy, so by completeness it converges, say $x_n \to x \in X$. But also $x_n = f(x_{n-1}) \to f(x)$ as f is continuous (as it is Lipschitz). So by uniqueness of limits, $f(x) = x$.
 
 	Now suppose $f(y) = y$ for some $y \in X$. Then $d(x, y) = d(f(x), f(y)) \leq \lambda d(x, y)$, with $\lambda < 1$. So $d(x, y) = 0$, i.e. $x = y$.
-\end{adjustbox}
+\end{proofbox}
 
 \begin{remark}
 	\begin{enumerate}[1.]
@@ -1102,18 +940,13 @@ Similarly, we can consider $\mathbb{Q}$, then this does not satisfy the general 
 	\end{enumerate}
 \end{remark}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{example}
+\begin{exbox}
 	Consider $f(x) = \cos x$ on $\mathbb{R}$. Suppose we want to find a solution to $f(x) = x$. Any root must lie in $[-1, 1]$, so consider $X = [-1, 1]$ with the usual metric. Then $X$ is closed and bounded, hence complete. Thinking of $f : X \to X$, then suppose $x, y \in [-1, 1]$. We have
 	\[
 	|\cos x - \cos y| = |x - y||\cos' z| = |x - y||- \sin z| \leq |x - y| \sin 1
 	.\]
-\end{example}
-\end{adjustbox}
-
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
 	But $0 \leq \sin 1 < 1$, so $\cos$ is a contraction of $[-1, 1]$. Thus by the contraction mapping theorem, $\cos$ has a unique fixed point in $[-1, 1]$. Thus $\cos x = x$ has a unique solution. To find this solution, we can apply $f$ repeatedly to a point, which exponentially converges to the root.
-\end{adjustbox}
+\end{exbox}
 
 \subsection{Sequential Compactness}%
 \label{sub:sequential_compactness}
@@ -1138,15 +971,15 @@ Recall the definition of a closed set. We say $Y \subset X$ is closed in $X$ if 
 	Let $X \subset \mathbb{R}^{n}$ with the Euclidean metric. Then $X$ is sequentially compact if and only if $X$ is closed and bounded.
 \end{theorem}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} Suppose $X$ is closed and bounded. Let $(x_n)$ be a sequence in $X$. Then $(x_n)$ is a bounded sequence in $\mathbb{R}^{n}$ so by Bolzano-Weierstrass, in $\mathbb{R}^{n}$, $x_{n_j} \to x$ for some $x \in \mathbb{R}^{n}$ and some subsequence $(x_{n_j})$ of $(x_n)$. 
+\begin{proofbox}
+	Suppose $X$ is closed and bounded. Let $(x_n)$ be a sequence in $X$. Then $(x_n)$ is a bounded sequence in $\mathbb{R}^{n}$ so by Bolzano-Weierstrass, in $\mathbb{R}^{n}$, $x_{n_j} \to x$ for some $x \in \mathbb{R}^{n}$ and some subsequence $(x_{n_j})$ of $(x_n)$. 
 
 	As $X$ is closed, $x \in X$. Hence the subsequence $(x_{n_j})$ converges in $X$. So $X$ is sequentially compact.
 
 	Suppose $X$ is not closed. Then we can find a sequence $(x-n)$ in $X$ such that in $\mathbb{R}^{n}$, $x_n \to x \in \mathbb{R}^{n}$ with $x \not \in X$. Now any subsequence $x_{n_j} \to x$ in $\mathbb{R}^{n}$. But $x \not \in X$, so $(x_{n_j})$ does not converge in $X$. Hence $X$ is not sequentially compact.
 
 	Suppose instead $X$ is not bounded. Then we can find a sequence $(x_n)$ in $X$ with $\|x_n\| \geq n$. Suppose we have a subsequence $x_{n_j}\to x \in X$. Then $\|x_{n_j}\| \to \|x\|$, but $\|x_{n_j}\| \to \infty$. So $X$ is not sequentially compact.
-\end{adjustbox}
+\end{proofbox}
 
 Consider the same problem in a general metric space. Then this does not work: consider $\mathbb{R} \setminus \{0\}$, and $X = (0, 1]$, which is closed and bounded. Then the sequence $(1/n)_{n\geq 1}$ has no convergent subsequence.
 
@@ -1176,18 +1009,15 @@ This is the relevant condition needed to extend our theorem from $\mathbb{R}^{n}
 	A metric space is sequentially compact if and only if it is complete and totally bounded.
 \end{theorem}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} Suppose $(X, d)$ is complete and totally bounded. Let $(x_n)$ be a sequence in $X$.
+\begin{proofbox}
+	Suppose $(X, d)$ is complete and totally bounded. Let $(x_n)$ be a sequence in $X$.
 
 	As $X$ is totally bounded, we can find a finite sequence $A_1 \subset X$ such that for all $x \in X$, there exists $a \in A_1$ such that $d(x, a) < 1$. In particular, there is an infinite set $N_1 \subset \mathbb{N}$ and a point $a_i \in A_i$ such that for all $n \in N_1$, $d(x_n, a_1) < 1$. Hence for all $m, n \in N_1$, $d(x_m, x_n) < 2$.
 
 	Similarly, we can find finite $A_2 \subset X$ such that for all $x \in X$, there exists $a \in A_2$ with $d(x, a) < 1/2$. In particular, there is an infinite $N_2 \subset N_1$ such that for all $n \in N_2$, $d(x_n, a_2) < 1/2$, and then for all $m, n \in N_2$, $d(x_m, x_n) < 1$.
 
 	Continue to get a sequence $N_1 \supset N_2 \supset N_3 \supset \cdots$ of infinite subset of $\mathbb{N}$ such that for all $m, n \in N_1$, we have $d(x_m, x_n) < 2/i$.
-
-\end{adjustbox}
-
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
+	
 	Pick $n_1 \in N_1$, $n_2 \in N_2$ with $n_2 > n_1$, and successively pick $n_k \in N_k$ with $n_k > n_{k-1}$. We obtain a subsequence $(x_{n_j})$ of $(x_n)$ such that for all $j$, $x_{n_j} \in N_j$. Thus if $i \leq j$, then $x_{n_i}, x_{n_j} \in N_1$, and so $d(x_{n_i}, x_{n_j}) < 2/i$. Hence $(x_{n_j})$ is a Cauchy sequence, and hence by completeness converges. Thus $X$ is sequentially compact.
 
 	Suppose now that $X$ is not complete. Then $X$ has a Cauchy sequence $(x_n)$ which doesn't converge. Suppose we have a convergent subsequence, say $x_{n_j}\to x$. Then we can prove $x_n \to x$.
@@ -1195,8 +1025,7 @@ This is the relevant condition needed to extend our theorem from $\mathbb{R}^{n}
 	Suppose instead $X$ is not totally bounded. Then there is some $\delta > 0$ such that whenever $A \subset X$ is finite, there exists $x \in X$ such that for all $a \in A$, $d(x, a) \geq \delta$.
 
 	Thus, pick $x_1 \in X$. Pick $x_2 \in X$ such that $d(x_1, x_2) \geq \delta$, pick $x_3 \in X$ such that $d(x_1, x_3), d(x_2, x_3) \geq \delta$, and continue to get a sequence $(x_n)$ in $X$ such that for all $i \neq j$, $d(x_i, x_j) \geq \delta$. Hence $(x_n)$ has no convergent subsequence.
-
-\end{adjustbox}
+\end{proofbox}
 
 
 \begin{corollary}
@@ -1216,10 +1045,8 @@ In $\mathbb{R}^{n}$, we have different concepts of distance given by Euclidean d
 	Homeomorphism is an equivalence relation.
 \end{remark}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{example}
+\begin{exbox}
 	\begin{enumerate}[1.]
-		\item[]
 		\item If $x, y \in \mathbb{R}^{n}$, then
 			\[
 				d_{\infty}(x, y) \leq d_1(x, y) \leq n d_{\infty}(x, y)
@@ -1239,9 +1066,7 @@ In $\mathbb{R}^{n}$, we have different concepts of distance given by Euclidean d
 			\]
 			by $f(x) = \tan x$. Then $f$ is a homeomorphism, but is not of type 2.
 	\end{enumerate}
-\end{example}
-
-\end{adjustbox}
+\end{exbox}
 
 \begin{proposition}
 	Let $(V, b), (W, c), (X, d), (Y, e)$ be metric spaces and $f : X \to V$, $g : Y \to W$ be homemorphisms.
@@ -1251,13 +1076,12 @@ In $\mathbb{R}^{n}$, we have different concepts of distance given by Euclidean d
 	\end{enumerate}
 \end{proposition}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\textbf{Proof:}
+\begin{proofbox}
 \begin{enumerate}[(i)]
 	\item Note $x_n \to x \implies f(x_n) \to f(x)$ as $f$ is continuous, and $f(x_n) \to f(x) \implies x_n = f^{-1}(f(x_n)) \to f^{-1}(f(x)) = x$ as $f^{-1}$ is continuous.
 	\item $h$ is continuous implies $g \circ h \circ f^{-1}$ is continuous. But $g \circ h \circ f^{-1}$ continuous implies $h = g^{-1} \circ( g \circ h \circ f^{-1}) \circ f$ is continuous.
 \end{enumerate}
-\end{adjustbox}
+\end{proofbox}
 
 We now have examples of metric spaces that look different but behave identically with respect to convergence and continuity. This begs the question: can we dispense with the notion of distance altogether?
 
@@ -1308,8 +1132,7 @@ We begin by looking at continuity in a different way.
 	\end{enumerate}
 \end{proposition}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\textbf{Proof:}
+\begin{proofbox}
 \begin{enumerate}[(i)]
 	\item Suppose $f$ is continuous at $a \in X$. Let $\mathcal{N}$ be a neighbourhood of $f(x)$. Then there exists $\varepsilon > 0$ such that $B_{\varepsilon}(f(x)) \subset \mathcal{N}$. But $f$ is continuous, so there exists $\delta > 0$ such that $B_{\delta}(a) \subset f^{-1}(B_{\varepsilon}(f(a))) \subset f^{-1}(\mathcal{N})$. So $f^{-1}(\mathcal{N})$ is a neighbourhood of $a$.
 
@@ -1319,7 +1142,7 @@ We begin by looking at continuity in a different way.
 
 		Let $a \in X$. Let $\mathcal{N} \subset Y$ be a neighbourhood of $f(a)$. Then there exists $G \subset Y$ open such that $f(a) \in G \subset \mathcal{N}$. By our assumption, $f^{-1}(G) \subset X$ is open. Now $a \in f^{-1}(G) \subset f^{-1}(\mathcal{N})$ with $f^{-1}(G)$ open, so $f^{-1}(\mathcal{N})$ is a neighbourhood of $a$. So by (i), $f$ is continuous at $a$, hence is continuous everywhere.
 \end{enumerate}
-\end{adjustbox}
+\end{proofbox}
 
 \begin{remark}
 	\begin{enumerate}[1.]
@@ -1339,11 +1162,9 @@ So $Y$ is sequentially compact. Thus if $X, Y$ are homeomorphic, then $X$ is seq
 
 Thus we can say sequential compactness is a topological property. However, completeness is not the same.
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-\begin{example}
-	We say $(0, 1)$ and $\mathbb{R}$ with the usual metric in each case are homeomorphic. But $\mathbb{R}$ is complete and $(0, 1)$ is not. So completeness is not a topological property.
-\end{example}
-\end{adjustbox}
+\begin{exbox}
+	We see $(0, 1)$ and $\mathbb{R}$ with the usual metric in each case are homeomorphic. But $\mathbb{R}$ is complete and $(0, 1)$ is not. So completeness is not a topological property.
+\end{exbox}
 
 In this case, the property of being a Cauchy sequence is not preserved by homeomorphisms.
 
@@ -1369,30 +1190,653 @@ We may ask whether there is a better way to do this.
 	$[0, 1]$ with the usual metric is compact.
 \end{proposition}
 
-\begin{adjustbox}{minipage = \columnwidth - 25.5pt, margin=1em, frame=1pt, margin=0em}
-	\textbf{Proof:} Let $\mathcal{C}$ be an open cover of $[0, 1]$. Let 
+\begin{proofbox}
+	Let $\mathcal{C}$ be an open cover of $[0, 1]$. Let 
 	\[
-		A = \{x \in [0, 1] \mid \exists \mathcal{B} \subset \mathcal{C}, [0, x] \subset \bigcup_{G \in \mathcal{B}} G \}
+		A = \{x \in [0, 1] \mid \exists \mathcal{B} \subset \mathcal{C}, [0, x] \subset \bigcup_{G \in \mathcal{B}} G, |\mathcal{B}| < \infty \}
 	.\]
 	We know there exists $G \in \mathcal{C}$ with $0 \in G$. So $0 \in A$. Clearly $A$ is bounded above by $1$, so $A$ has a supremum $\sigma = \sup A$.
 
 	As $G$ is open, there exists $\varepsilon > 0$ such that $[0, \varepsilon) = B_{\varepsilon}(0) \subset G$. So $\sigma > 0$.
 
-	Suppose $\sigma < 1$. We can find $G' \in \mathcal{C}$ with $\sigma \in G'$. As $\sigma = \sup A$, we can find $x \in A$ with $x \in G'$. So we have $\mathcal{C} \subset \mathcal{C}$ finite with
+	Suppose $\sigma < 1$. We can find $G' \in \mathcal{C}$ with $\sigma \in G'$. As $\sigma = \sup A$, we can find $x \in A$ with $x \in G'$. So we have $\mathcal{B} \subset \mathcal{C}$ finite with
 	 \[
 		 [0, x] = \bigcup_{G' \in \mathcal{B}}G'
 	.\]
 	But there exists $\varepsilon > 0$ such that $(\sigma - \varepsilon, \sigma + \varepsilon) = [B_{\varepsilon}(\sigma)]$. So
 	\[
-		[0, \sigma + \frac{\varepsilon}{2}] \subset \bigcup_{G \in \mathcal{B} \cup \{G'\}}G
+		\biggl[0, \sigma + \frac{\varepsilon}{2}\biggr] \subset \bigcup_{G \in \mathcal{B} \cup \{G'\}}G
 	.\]
 	This is a contradiction, so $\sigma = 1$. Hence we can find $G'' \in \mathcal{C}$ such that $1 \in G''$. As $G''$ is open, we can find $\varepsilon > 0$ such that $(1 - \varepsilon, 1] \subset G''$. As $1 = \sup A$, we can find $x \in A \cap (1 - \varepsilon , 1]$. This says that we have a finite $\mathcal{B} \subset \mathcal{C}$ with
 	 \[
 		 [0, x] \subset \bigcup_{G \in \mathcal{B}}G
 	.\]
 	Then $\mathcal{B} \cup \{G''\}$ is an open cover of $[0, 1]$, and so a subcover of $\mathcal{C}$. So $[0, 1]$ is compact.
-\end{adjustbox}
+\end{proofbox}
 
+\begin{theorem}
+	Let $X$ be a metric space. Then the following are equivalent:
+	\begin{enumerate}[\normalfont(i)]
+		\item $X$ is compact;
+		\item $X$ is sequentially compact;
+		\item $X$ is complete and totally bounded;
+	\end{enumerate}
+	and, if $X$ is a subspace of $\mathbb{R}^{n}$ with the Euclidean metric,
+	\begin{enumerate}[resume*]
+		\item $X \subset \mathbb{R}^{n}$ is closed and bounded.
+	\end{enumerate}
+\end{theorem}
+
+\begin{proofbox}
+	We have already shown (ii) $\iff$ (iii) (and possibly $\iff$ (iv)). So it suffices to show (i) $\iff$ (ii).
+
+		Suppose $X$ is not sequentially compact. Then there is some sequence $(x_n)$ in $X$ with no convergent subsequence. Hence for every point $a \in X$, we can find a neighbourhood of $a$, and hence an open set $G_a$ containing $a$, with only finitely many $x_n$.
+
+		Now, let $\mathcal{C} = \{G_{a} \mid a \in X\}$. This is an open cover of $X$, but if $\mathcal{D} \subset \mathcal{C}$ is finite, then $\bigcup_{G \in \mathcal{D}} G$ contains $x_n$ for only finitely many $n$. So $\mathcal{C}$ has no finite cover, and $X$ is not compact.
+
+		Now suppose $X$ is sequentially compact. Let $\mathcal{C}$ be an open cover of $X$. I claim there exists $\delta > 0$, such that for all $a \in X$, there exists $G \in \mathcal{C}$ with $B_{\delta}(a) \subset G$.
+
+		Suppose note, then for all $\delta > 0$, there exist $a \in X$ such that for all $G \in \mathcal{C}$, $B_{\delta}(a) \not \subset G$. Taking $\delta = 1/n$, we obtain a sequence $(x_n) \in X$. By sequential compactness, we can find a convergent subsequence $x_{n_j} \to a \in X$.
+
+		Pick $G \in \mathcal{C}$ such that $a \in G$. As $G$ is open, we can pick $\eps > 0$ such that $B_{\eps}(a) \subset G$. Pick $j$ sufficiently large such that $x_{n_j} \in B_{\eps/2}(a)$ and also $1/n_j < \eps/2$. Then
+		\[
+			B_{1/n_j}(x_{n_j}) \subset B_{\eps}(x) \subset G
+		.\]
+		Take $\delta$ as in the claim. As $X$ is sequentially compact, it is totally bounded, so we can find a finite set $A \subset X$, such that for all $x \in X$, there exists $a \in A$ with $d(x, a) < \delta$. That is, $X = \bigcup_{a \in A}B_{\delta}(a)$.
+
+		By choice of $\delta$, for each $a \in A$, we can pick $G_{a} \in \mathcal{C}$ such that $B_{\delta}(a) \subset G_a$. So $\{G_a \mid a \in A\}$ is a finite subcover, and $X$ is compact.
+\end{proofbox}
+
+Finally, we prove two important properties of open sets. First is a relationship between open and closed sets.
+
+\begin{proposition}
+	Let $X$ be a metric space and $G \subset X$. Then $G$ is open if and only if $F = X \setminus G$ is closed.
+\end{proposition}
+
+\begin{proofbox}
+	First suppose $F$ is not closed. Then there is a sequence $(x_n)$ in $F$ with $x_n \to x \in G$. Suppose $\mathcal{N}$ is a neighbourhood of $x$. Then there exists $N$, such that for all $n \geq N$, $x_n \in \mathcal{N}$. But for all $n$, $x_n \not \in G$. So $\mathcal{N} \not \subset G$, hence $G$ is not a neighbourhood of $x$, and $G$ is not open.
+
+	Now suppose $G$ is not open. Then there is some $x \in G$ such that for all $\eps > 0$, $B_{\eps}(x) \not \subset G$. That is, $B_{\eps}(x) \cap F \neq \emptyset$. So for $n \in \mathbb{N}$, we can pick $x_n \in B_{1/n}(x) \cap F$. Then $(x_n)$ is a sequence in $F$ with $x_n \to x \in G$. So $F$ is not closed.
+\end{proofbox}
+
+Secondly, if $X$ is a metric space, we can say a few things about the structure of the collection of all open subset of $X$.
+
+\begin{proposition}
+	Let $X$ be a metric space and let $\tau = \{G \subset X \mid G \text{ open}\}$. Then:
+	\begin{enumerate}[\normalfont(i)]
+		\item $\emptyset \in \tau$, $X \in \tau$;
+		\item If $\sigma \subset \tau$, then $\bigcup_{G \in \sigma}G \in \tau$;
+		\item If $G_1, G_2, \ldots, G_n \in \tau$, then $\bigcap_{i = 1}^{n} G_i \in \tau$.
+	\end{enumerate}
+\end{proposition}
+
+\begin{remark}
+	We need finiteness in (iii). Indeed, take $(-1/n, 1/n)$, which is open in $\mathbb{R}$. Then the intersection is $\{0\}$, which is not open.
+\end{remark}
+
+\begin{proofbox}
+	\begin{enumerate}[(i)]
+		\item True by definition.
+		\item Suppose $\sigma \subset \tau$. Let $H = \bigcup_{G \in \sigma} G$, and let $a \in H$. Then $a \in G$ for some $G \in \sigma$, so $G$ is a neighbourhood of $a$. Thus $H$ is a neighbourhood of $a$ as $G \subset H$, and so $H$ is open.
+		\item Suppose $G_1, \ldots, G_n \in \tau$, and let $J = \bigcap_{i = 1}^{n}G_i$. Suppose $a \in J$. For each $i$, $a \in G_i$, and since $G_i$ open, there exists $\delta_i > 0$ such that $B_{\delta_i}(a) \subset G_i$.
+
+			Let $\delta = \min\{\delta_1, \ldots, \delta_n\}$. Then $\delta = 0$ and
+			\[
+				B_{\delta}(a) = \bigcap_{i = 1}^{n} B_{\delta_i}(a) \subset \bigcap_{i = 1}^{n} G_i = J
+			.\]
+			So $J$ is open.
+	\end{enumerate}
+\end{proofbox}
+
+\newpage
+
+\section{Topological Spaces}%
+\label{sec:topological_spaces}
+
+Currently, we have extended our notion of continuity from $\mathbb{R}$ to general metric spaces, which are sets equipped with a distance. However, we can push this idea further, and talk about continuity without mentioning distances at all.
+
+\subsection{Definitions and Examples}%
+\label{sub:definitions_and_examples}
+
+\begin{definition}
+	A topological space\index{topological space} is a set $X$ endowed with a topology\index{topology} $\tau$ that is a subset $\tau \subset \mathcal{P}(X)$ satisfying
+	\begin{enumerate}[(i)]
+		\item $\emptyset \in \tau$ and $X \in \tau$;
+		\item If $\sigma \subset \tau$ then $\bigcup_{G \in \sigma}G \in \tau$;
+		\item If $G_1, G_2, \ldots, G_n \i \tau$, then $\bigcup_{i = 1}^{n} G_i \in \tau$.
+	\end{enumerate}
+\end{definition}
+
+\begin{remark}
+	We could replace (iii) by $G, H \in \tau \implies G \cap H \in \tau$, which is equivalent to (iii) by induction.
+\end{remark}
+
+If it is clear what the topology on a set $X$ is, we may just write $X$ is a topological space.
+
+\begin{exbox}
+	Let $(X, d)$ be a metric space, and let $\tau = \{G \subset X \mid G \text{ open}\}$. Then $\tau$ is a topology on $X$.
+
+	We say $\tau$ is the topology induced by the metric $d$.\index{induced topology}
+\end{exbox}
+
+We want to define the notion of being open, closed and continuous for topological spaces. As metric spaces are topological spaces, we have to ensure that our definitions for topological spaces don't contradict our definitions for metric spaces.
+
+\begin{definition}
+	Let $(X, \tau)$ be a topological space. We say $G \subset X$ is \textit{open}\index{open set} if $G \in \tau$. We say $F$ is \textit{closed}\index{closed} if $X \setminus F \in \tau$. We say $\mathcal{N} \subset X$ is a \textit{neighbourhood}\index{neighbourhood} of $a \in X$ if there exists $G \subset X$ open with $a \in G \subset \mathcal{N}$.
+\end{definition}
+
+\begin{definition}
+	Let $(X, \tau)$ and $(Y, \sigma)$ be another topological space, and let $f : X \to Y$. We say $f$ is \textit{continuous} if, whenever $G \subset Y$ is open, then $f^{-1}(G) \subset X$ is open.\index{continuity in topological spaces}
+
+	We say $f$ is \textit{continuous at} $a \in X$ if whenever $\mathcal{N} \subset Y$ is a neighbourhood of $f(a)$, then $f^{-1}(\mathcal{N}) \subset X$ is a neighbourhood of $a$.
+
+	We say $f$ is a \textit{homeomorphism} and $X, Y$ are \textit{homeomorphic} if $f$ is a bijection and both $f, f^{-1}$ are continuous.\index{homeomorphism}
+
+	A property if \textit{topological} if it is preserved by homeomorphisms.\index{topological}
+\end{definition}
+
+\begin{remark}
+	\begin{enumerate}[1.]
+		\item[]
+		\item If $\tau$ is induced by a metric, then this is all consistent with the metric space definitions of these concepts.
+		\item Given our definition, then $G$ open $\iff G \in \tau$. We often don' need to explicitly name the topology.
+		\item Homeomorphism is an equivalence relation.
+		\item If $a \in G$ and $G$ open, then $G$ is a neighbourhood of $a$, however neighbourhoods need not be open in general. A set $G \subset X$ is open if and only if $G$ is a neighbourhood of each of its points.
+	\end{enumerate}
+\end{remark}
+
+\begin{proposition}
+	Let $X, Y$ be topological spaces and let $f : X \to Y$. Then $f$ is continuous if and only if for all $a \in X$, $f$ is continuous at $a$.
+\end{proposition}
+
+\begin{proofbox}
+	Suppose $f$ is continuous, and let $a \in X$. Let $\mathcal{N} \subset Y$ be a neighbourhood of $f(a)$. Then there is an open set $G \subset Y$ wtih $a \in G \subset \mathcal{N}$. As $f$ is continuous, $f^{-1}(G) \subset X$ is open. Now $a \in f^{-1}(a) \subset f^{-1}(\mathcal{N})$, with $f^{-1}(a)$ open. So $f$ is continuous at $a$.
+
+	Suppose for all $a \in X$, we have $f$ continuous at $a$. Let $G \subset Y$ be open. Let $a \in f^{-1}(G)$. Then $f(a) \in G$, but $G$ is open, so $G$ is a neighbourhood of $f(a)$ Since $f$ is continuous at $a$, $f^{-1}(G)$ is a neighbourhood of $a$ in $X$.
+
+	But $a$ was arbitrary, so $^{-1}(G)$ is a neighbourhood of each of its points. Hence it is open, and $f$ is continuous.
+\end{proofbox}
+
+\begin{proposition}
+	Let $(X, \tau), (Y, \sigma), (Z, \rho)$ be topological spaces, and let $f : X \to Y$ and $g : Y \to Z$ be continuous. Then $g \circ f : X \to Z$ is continuous.
+\end{proposition}
+
+\begin{proofbox}
+	Let $G \in \rho$. As $g$ is continuous, $g^{-1}(G) \in \sigma$. As $f$ is continuous, $f^{-1}(g^{-1}(G)) \in \tau$. That is $(g \circ f)^{-1}(G) \in \tau$. So $g \circ f$ is continuous.
+\end{proofbox}
+
+\begin{exbox}
+	\begin{enumerate}[1.]
+		\item We can take the discrete topology\index{discrete topology}, by letting $X$ be an arbitrary set and $\tau = \mathcal{P}(X)$, so every set is open.
+
+			However, this is simply the topology induced by the discrete metric
+			\[
+				d(x, y) =
+				\begin{cases}
+					1 & x \neq y,\\
+					0 & x = y
+				\end{cases}
+			.\]
+			Now in $(X, d)$, then $\{x\} = B_1(x)$ is open, and so if $G \subset X$, then $G = \bigcup \{x\}$ is open.
+		\item Let $X$ be any set and let $\tau = \{\emptyset, X\}$. Then this is the indiscrete topology\index{indiscrete topology}, and is not induced by a metric if $|X| \geq 2$.
+
+			Indeed, suppose $|X| \geq 2$ and $\tau$ is induced by a metric $d$. Let $x, y \in X$ with $x \neq y$, so $d(x, y) = \delta > 0$. Then $B_{\delta}(x)$ is open with $x \in B_{\delta}(x)$ and $y \not \in B(\delta(x)$.
+		\item Let $X$ be any infinite set and let $\tau = \{G \subset X \mid X \setminus G \text{ finite}\} \cup \{\emptyset\}$. This is the cofinite topology\index{cofinite topology}, and we can check this is a topology:
+			\begin{enumerate}[(i)]
+				\item It contains $\emptyset$ and $X \setminus X = \emptyset$ is finite so $X \in \tau$.
+				\item Let $\sigma \subset \tau$. If $\sigma$ is empty or only contains $\emptyset$, then $\bigcup_{G \in \sigma} G = \emptyset \in \tau$. Otherwise, pick $H \in \sigma$ with $H \neq \emptyset$. Then $X \setminus H$ is finite, so
+					\[
+						\Biggl( X \setminus \bigcup_{G \in \sigma}G \Biggr) = \bigcap_{G \in \sigma}(X \setminus G) \subset X \setminus H
+					\]
+					is finite.
+				\item Let $G, H \in \tau.$ If $G= \emptyset$ or $M = \emptyset$, then $G \cap H = \emptyset \in \tau$. Otherwise, $X \setminus G, X \setminus H$ are finite and $(X \setminus (G \cap H)) = (X \setminus G) \cup (X \setminus H)$ is finite. So $G \cap H \in \tau$.
+			\end{enumerate}
+			So the cofinite topology is indeed a topology. Suppose that it is induced by a metric $d$. Then if $G, H$ are open an non-empty, then $G \cap H \neq \emptyset$. Now suppose $x, y \in X$ with $x \neq y$. Then $(x, y) = \delta > 0$ so $B_{\delta/2}(x), B_{\delta/2}(y)$ are non-empty disjoint open sets. So $d$ doesn't induce $\tau$.
+		\item Let $X$ be any uncountable set and let $\tau = \{G \subset X \mid X \setminus G \text{ countable}\} \cup \{\emptyset\}$. This is known as the cocountable topology\index{cocountable topology}. Similarly to the cofinite topology, this is not induced by any metric.
+	\end{enumerate}
+\end{exbox}
+
+\subsection{Sequences and Hausdorff Spaces}%
+\label{sub:sequences_and_hausdorff_spaces}
+
+\begin{definition}
+	Let $X$ be a topological space, and $(x_n)$ be a sequence in $X$, with $x \in X$. We say $(x_n)$ converges to $x$\index{convergence in topological spaces} and write $x_n \to x$ if whenever $\mathcal{N} \subset X$ is a neighbourhood of $x$, then there exists $N$ such that for all $n \geq N$, $x_n \in \mathcal{N}$.
+\end{definition}
+
+\begin{exbox}
+	\begin{enumerate}[1.]
+		\item Let $X$ be an uncountable set with the cocountable topology. Suppose $x_n \to x$. Then let $\mathcal{N} = (X \setminus\{x_n \mid n\in \mathbb{N}\}) \cup\{x\}$. Then $\mathcal{N}$ is open and $x \in \mathcal{N}$, so $\mathcal{N}$ is a neighbourhood of $x$. Then there exist $N$ such that for all $n \geq N$, $x_n \in \mathcal{N}$. This implies $x_n = x$. Thus the only convergent sequences in this space are eventually constant.
+		\item Let $X = \{1, 2, 3\}$ with the indiscrete topology. Let $x_n = i \in X$ with $i \equiv n \pmod 3$, so $x_n$ is the sequence $(1, 2, 3, 1, 2, 3, \ldots)$. Then $x_n \to 2$.
+
+			Indeed, let $\mathcal{N}$ be a neighbourhood of $2$. Then there exists $G$ open such that $2 \in G \subset \mathcal{N}$. But the only open sets are $\emptyset$ and $\{1, 2, 3\}$, so $G = \{1, 2, 3\}$. Hence $\mathcal{N} = \{1, 2, 3\}$, so for all $n$, $x_n \in \mathcal{N}$. Similarly, $x_n \to 1$ and $x_n \to 3$.
+	\end{enumerate}
+\end{exbox}
+
+Importantly, this says that the \textbf{limit of convergent subsequences may not be unique}, so we cannot write $\lim x_n$. In fact, the above proof shows that in any indiscrete space, every sequence converges to every point of the space.
+
+\begin{definition}
+	A topological space $X$ is \textit{Hausdorff}\index{Hausdorff} if whenever $x, y \in X$ with $x \neq y$, then there are disjoint open $G, H \subset X$ with $x \in G$ and $y \in H$.
+\end{definition}
+
+\begin{exbox}
+	\begin{enumerate}[1.]
+		\item Metric spaces are Hausdorff. Indeed, if $(X, d)$ is metric and $x, y \in X$ with $x \neq y$, then let $\delta = d(x, y) > 0$ and take $G = B_{\delta/2}(x)$ and $H = B_{\delta/2}(y)$.
+		\item Indiscrete spaces are not Hausdorff (assuming $|X| \geq 2$).
+		\item The cofinite topology is not Hausdorff. Let $X$ be an infinite set with the cofinite topology and let $x, y \in X$ with $x \neq y$. Let $G, H \subset X$ be open with $x \in G, y \in H$. Clearly $G, H \neq \emptyset$ so $X \setminus G, X \setminus H$ is finite and so $X \setminus (G \cap H) = (X \setminus G) \cup (X \setminus H)$ is finite. In particular, $G \cap H \neq \emptyset$.
+
+			Similarly, the cocountable topology is not Hausdorff.
+	\end{enumerate}
+\end{exbox}
+
+\begin{proposition}
+	Limits of convergent sequences in Hausdorff spaces are unique.
+\end{proposition}
+
+\begin{proofbox}
+	Let $X$ be Hausdorff, and let $a, b \in X$ and $(x_n)$ be a sequence in $X$ with $x_n \to a$ and $x_n \to b$.
+
+	Suppose $a \neq b$. Take open $G, H$ with $a \in G$, $b \in H$ and $G \cap H = \emptyset$.
+	
+	Now $G$ is a neighbourhood of $a$, so there is some $N_1$ such that $x_n \in G$ for all $n \geq N_1$. Similarly, there is some $N_2$ such that $x_n \ni H$ for all $n \geq N_2$. $Take n = \max\{N_1, N_2\}$. Then $x_n \in G \cap H = \emptyset$, which is a contradiction. So $a = b$.
+\end{proofbox}
+
+\begin{proposition}
+	Let $X, Y$ be topological spaces and let $f : X \to Y$ be continuous at $a \in X$. Let $(x_n)$ be a sequence in $X$ with $x_n \to a$. Then $f(x_n) \to f(a)$.
+\end{proposition}
+
+\begin{proofbox}
+	Let $\mathcal{N} \subset Y$ be a neighbourhood of $f(a)$. As $f$ is continuous at $a$, we know $f^{-1}(\mathcal{N})$ is a neighbourhood of $a$. As $x_n \to a$, we can find $N$ such that $x_n \in f^{-1}(\mathcal{N})$ for all $n \geq N$. Then for all $n \geq N$, $f(x_n) \in \mathcal{N}$. So $f(x_n) \to f(a)$.
+\end{proofbox}
+
+However, \textbf{the converse is not true in general}.
+
+\begin{exbox}
+	Let $X = Y = \mathbb{R}$, where $X$ has the cocountable topology and $Y$ has the usual topology. Define $f : X \to Y$ as the identity.
+
+	Suppose $x_n \to 0$ in $X$. Then for sufficiently large $n$, $x_n = 0$, and so for sufficiently large $n$, $f(x_n) = x_n = 0 = f(0)$, so $f(x_n) \to f(0)$ in $Y$.
+
+	However $(-1, 1) \subset Y$ is open and $0 \in (-1, 1)$, so $(-1, 1)$ is a neighbourhood of $0$ in $Y$. But $f^{-1}((-1, 1)) = (-1, 1) \subset X$ is not a neighbourhood of $0$ in $X$, so $f$ is not continuous at $0$.
+
+	Moreover, this is not true even if both spaces are Hausdorff. Take the above example but replace the topology on  $X$ by
+	\[
+		\sigma = \{G \subset \mathbb{R} \mid (X \setminus G) \text{ countable or } 0 \not \in G\}
+	.\]
+	This is a topology and is Hausdorff. as for $x, y \neq 0$, $\{x\}, \{y\} \in \sigma$, and for $x = 0$, $X \setminus\{y\}, \{y\} \in \sigma$.
+
+	Notice the neighbourhoods of $0$ in $\sigma$ are exactly the same in the cocountable topology. So exactly as before, $x_n \to 0$ in $X$ implies $x_n \to 0$ in $Y$, but $f$ is not continuous at $0$.
+\end{exbox}
+
+\begin{remark}
+	In a metric space, the topology is completely determined by convergence of sequences. This is not true for a general topological space. Hence we tend to focus on continuity more than convergence of sequences.
+\end{remark}
+
+\subsection{Subspaces}%
+\label{sub:subspaces}
+
+\begin{definition}
+	Let $(X, \tau)$ be a topological space and let $Y \subset X$. The \textit{subspace topology} on $Y$ is\index{subspace topology}
+	\[
+		\sigma = \{G \cap Y \mid G \in \tau\}
+	.\]
+	It is easy to see this is a topology.
+\end{definition}
+
+Since we have define a subspace of a metric space, we need to check backwards compatibility.
+
+\begin{proposition}
+	Let $X(, d)$ be a metric space with topology $\tau$ induced by $d$. Let $Y$ be a subspace of the metric space $X$. Then $Y$ has the subspace topology.
+\end{proposition}
+
+\begin{proofbox}
+	Let $\sigma$ be the topology on $Y$ induced by the metric $d\mid_{Y}$.
+
+	Suppose $G \in \tau$. Let $y \in G \cap Y$. As $y \in G$ and $G$ open in $X$, we can find $\delta > 0$ such that for all $x \in X$, $d(x, y) < \delta \implies x \in G$. Then, for all $x \in Y$, $d(x, y) < \delta \implies x \in G \cap Y$. So $G \cap Y$ is a neighbourhood of $y$.
+
+	Conversely, suppose $H \in \sigma$. For each $y \in H$, we can find $\delta_y > 0$ such that for all $x \in Y$, $d(x, y) < \delta_y \implies x \in H$. Consider the open balls
+	\[
+		B_{\delta_y}(y) = \{x \in X \mid d(x, y) = \delta_y\}
+	.\]
+	Each ball is open, and for each $y \in H$, $y \in B_{\delta_y}(y)$ and $B \delta_y(y) \cap Y \subset H$. Let $G$ be the union of these balls. Then $G$ is open and $G \cap Y = H$, so we can find $G \in \tau$ such that $G \cap Y = H$.
+\end{proofbox}
+
+\begin{proposition}
+	A subspace of a Hausdorff space is Hausdorff.
+\end{proposition}
+
+\begin{proofbox}
+	Let $(X, \tau)$ be Hausdorff, and $Y \subset X$ with $\sigma$ the subspace topology on $Y$. Let $x, y \in Y$ with $x \neq y$. As $X$ is Hausdorff, we an find $G, H \in \tau$ with $x \in G$, $y \in H$ and $G \cap H = \emptyset$. Then $G \cap Y, H \cap Y \in \sigma$ with $x \in G \cap Y$, $y \in H \cap Y$, and $(G \cap Y) \cap (H \cap Y) = \emptyset$.
+\end{proofbox}
+
+\subsection{Compactness}%
+\label{sub:compactness}
+
+\begin{definition}
+	Let $(X, \tau)$ be a topological space. An \textit{open cover}\index{open cover} of $X$ is a subset $\mathcal{C} \subset \tau$ such that $X = \bigcup_{G \in \mathcal{C}}G$. A \textit{subcover} of $\mathcal{C}$\index{subcover} is a $\mathcal{D} \subset \mathcal{C}$ which is itself an open cover.
+
+	We say $X$ is \textit{compact}\index{compact} if every open cover of $X$ has a finite subcover. We say $X$ is \textit{sequentially compact}\index{sequentially compact} if every sequence in $X$ has a convergent subsequence.
+\end{definition}
+
+It can be shown a continuous real-valued function on a sequentially compact topological space is bounded and attains its bounds.
+
+\begin{remark}
+	Here and elsewhere, if no topology is specified on $\mathbb{R}$, it is generally assumed to have the usual topology.
+\end{remark}
+
+We've seen for a metric space that compactness and sequential compactness are equivalent. This is \textbf{not true for general topological spaces}. There exist compact spaces which are not sequentially compact, and sequentially compact spaces which are not compact.
+
+Observe that compactness and sequential compactness are both topological properties. Given we want to focus on continuity rather than convergence, we will be focusing on compactness rather than sequential compactness.
+
+\begin{remark}
+	If $X$ is a topological space, we might want to say `$K$ is compact'. This is meaningful, as $K$ is a topological space with the subspace topology.
+
+	More clearly, if $\tau$ is the topology on $X$, then $K$ is compact if and only if whenever $\mathcal{C} \subset \tau$ with $K = \bigcup_{G \in \mathcal{C}}G \cap K$, then there is a finite $\mathcal{D} \subset \mathcal{C}$ such that $K = \bigcup_{G \in \mathcal{D}}G \cap K$.
+
+	Equivalently, $K$ is compact if and only if whenever $\mathcal{C} \subset \tau$ with $K \subset \bigcup_{G \in \mathcal{C}} G$, then there is a finite $\mathcal{D} \subset \mathcal{C}$ with $K \subset \bigcup_{G \in \mathcal{D}}G$. So we sometimes refer to $\mathcal{C}$ as being an open cover of $K$ (in $X$).
+\end{remark}
+
+\begin{exbox}
+	\begin{enumerate}[1.]
+		\item $[0, 1]$ with the usual topology is compact (from the Heine-Borel theorem). More generally, $S \subset \mathbb{R}^{n}$ is compact if and only if $S$ is closed and bounded.
+		\item A metric space is compact if and only if it is complete and totally bounded.
+		\item Suppose $X$ is a discrete topological space. Then $\{\{x\} \mid x \in X\}$ is an open cover. Hence $X$ is compact if and only if $X$ is finite (note any finite space is compact).
+		\item Let $X$ be indiscrete. Then the only open covers of $X$ are $\{\emptyset, X\}$ and $\{X\}$, both of which are finite. So $X$ is compact.
+	\end{enumerate}
+\end{exbox}
+
+\begin{theorem}
+	A continuous real-valued function on a compact topological space is bounded and attains its bounds.
+\end{theorem}
+
+\begin{proofbox}
+	Let $X$ be compact and $f : X \to \mathbb{R}$ be continuous. Let $G_n = f^{-1}((-n, n))$, for $n \in \mathbb{N}$. Then $\{G_n \mid n \in \mathbb{N}\}$ is an open cover of $X$, and so, as $X$ compact, there is a finite subcover $\{G_{n_1}, \ldots, G_{n_k}\}$. Note for all $x \in G_{n_i}$, $|f(x)| < n_i$. Hence for all $x \in X$, $|f(x)| < \max \{n_1, \ldots, n_k\}$, giving $f$ bounded.
+
+	Let $\sigma = \sup f(x)$, and suppose $\sigma$ is not attained by $f$. Then we can define $g : X \to \mathbb{R}$, by $g(x) = (\sigma - f(x))^{-1}$, which is well-defined and continuous. Hence $g$ is bounded. But as $\sigma = \sup f(x)$, given $\eps > 0$ we can find $x$ such that $\sigma - f(x) < \eps$, hence $g(x) > \eps^{-1}$. So $\sigma$ is attained, and similarly $\inf f(x)$ is attained.
+\end{proofbox}
+
+\begin{remark}
+	We can think of compactness as a `smallness' condition, perhaps the next best thing to being finite.
+
+	For example, a real-valued function on a finite space is bounded.
+
+	Analogously, for a continuous function on a compact space, we show boundedness by using compactness to show that the space is not `too big'.
+\end{remark}
+
+We can extend the above theorem to settings outside of $\mathbb{R}$.
+
+\begin{theorem}
+	A continuous image of a compact space is compact.
+\end{theorem}
+
+\begin{proofbox}
+	Let $f : X \to Y$ be continuous, and $X$ compact. Let $K = f(X) \subset Y$. Let $\mathcal{C}$ be an open cover of $K$ in $Y$. Then $\{f^{-1}(G) \mid G \in \mathcal{C}\}$ is an open cover of $X$, so by compactness there is a finite $\mathcal{D} \subset \mathcal{C}$ such that $\{f^{-1}(G) \mid G \in \mathcal{D}\}$ is an open cover of $X$.
+
+	Then $\mathcal{D}$ is an open cover of $K$ in $Y$. So $K$ is compact.
+\end{proofbox}
+
+\begin{remark}
+	This implies the previous theorem as compact subsets of $\mathbb{R}$ are closed and bounded.
+\end{remark}
+
+\begin{lemma}
+	\begin{enumerate}[\normalfont(i)]
+		\item A closed subset of a compact space is compact.
+		\item A compact subset of a Hausdorff space is closed.
+	\end{enumerate}
+\end{lemma}
+
+\begin{proofbox}
+	\begin{enumerate}[(i)]
+		\item Let $X$ be a compact topological space and let $F \subset X$ be closed. Let $\mathcal{C}$ be an open cover of $F$ in $X$. Then $X \setminus F$ is open, so $\mathcal{C}' = \mathcal{C} \cup \{X \setminus F\}$, then $\mathcal{C}'$ is an open cover of $X$.
+
+			Since $X$ is compact, $\mathcal{C}'$ has a finite subcover $\mathcal{D}'$. Let $\mathcal{D} = \mathcal{D}' \setminus\{X \setminus F\}$ if $X \setminus F \in \mathcal{D}'$, otherwise $\mathcal{D} = \mathcal{D}'$. Then $\mathcal{D}$ is a finite subcover of $\mathcal{C}$, so $F$ is compact.
+		\item Let $X$ be a Hausdorff space, and let $K \subset X$ be compact. We want to show $K$ is closed, i.e. $X \setminus K$ is open, so $X \setminus K$ is a neighbourhood of each of its points.
+
+			Let $y \in X \setminus K$. Given $x \in K$, $x \neq y$ so as $X$ is Hausdorff, we can find open $U_x, V_x \subset X$ with $x \in U_x$ and $y \in V_x$. Then $\{U_x \mid x \in X\}$ is an open cover of $K$ in $X$, so it has a finite subcover $\{U_{x_1}, \ldots, U_{x_n}\}$. Define $U = \bigcup_{i = 1}^{n} U_{x_i}$ and $V = \bigcap_{i = 1}^{n} V_{x_i}$. Now we have $U, V$ are open, $K \subset U$, $y \in V$ and $U \cap V = \emptyset$.
+
+			In particular, we have found an open set $V$ such that $y \in V \subset X \setminus K$. So $X \setminus K$ is a neighbourhood of each of its points, hence $K$ is closed.
+	\end{enumerate}
+\end{proofbox}
+
+\begin{theorem}
+	A continuous bijection from a compact space to a Hausdorff space is a homeomorphism.
+\end{theorem}
+
+\begin{proofbox}
+	Let $f : X \to Y$ be a continuous bijection, $X$ compact and $Y$ Hausdorff. To show $f$ is a homeomorphism, we want to show $f^{-1} : Y \to X$ is continuous.
+
+	Let $G \subset X$ be open. Then $X \setminus G$ is closed, so since $X$ is compact, $X \setminus G$ is compact. Hence $f(X \setminus G)$ is compact, and so $f(X \setminus G)$ is closed. That is, $Y \setminus f(G)$ is closed as $f$ is bijective, or $f(G)$ is open. But this gives $(f^{-1})^{-1}(G) = f(G)$ is open, so $f^{-1}$ is continuous.
+\end{proofbox}
+
+\subsection{Products}%
+\label{sub:products}
+
+We have $\mathbb{R}$ with the usual topology, and we have $\mathbb{R}^2$ with the usual topology. We would like a way to define $\mathbb{R} \times \mathbb{R}$ to be $\mathbb{R}^2$ with the Euclidean topology.
+
+In general, given $(X, \tau)$ and $(Y, \sigma)$, two topological spaces, we would like a sensible way to define a topology on $X \times Y$.
+
+In general $\tau \times \sigma$ will not be a topology, as it won't be closed under union. However, by including arbitrary unions of $\tau \times \sigma$, we can turn this into a topology. To do this, we will use the following definitions:
+
+\begin{definition}
+	A $\pi$-system on a set $X$ is a non-empty subset $\Pi \subset \mathcal{P}(X)$ such that if $A, B \in \Pi$, then $A \cap B \in \Pi$.\index{\texorpdfstring{$\pi$}{pi}-system}
+\end{definition}
+
+\begin{proposition}
+	Let $\Pi$ be a $\pi$-system on a set $X$. Then,
+	\[
+		\tau = \Biggl\{ \bigcup_{A \in \Sigma} A \mid \Sigma \in \Pi \Biggr\} \cup \{\emptyset, X\}
+	\]
+	is a topology on $X$.
+\end{proposition}
+
+\begin{proofbox}
+	Clearly $\emptyset, X \in \tau$, and $\tau$ is closed under arbitrary unions.
+
+	Now suppose $G, H \in \tau$. If $G = \emptyset, X$ or $H = \emptyset, X$, then $G \cap H \in \tau$ trivially. Otherwise, we can write
+	\[
+	G = \bigcup_{A \in \Phi} A, \quad H = \bigcup_{B \in \Theta}B
+	,\]
+	for some $\Phi, \Theta \subset \Pi$. Then,
+	\[
+		G \cap H = \bigcup_{\substack{A \in \Phi \\ B \in \Theta}} (A \cap B) = \bigcup_{C \in \Sigma} C
+	,\]
+	where $\Sigma = \{A \cap B \mid A \in \Phi, B \in \Theta\} \subset \Pi$. So $G \cap H \in \tau$.
+\end{proofbox}
+
+We call $\tau$ the topology generated by $\Pi$.
+
+\begin{proposition}
+	Let $(X, \tau)$, $(Y, \sigma)$ be topological spaces. Then $\tau \times \sigma$ is a $\pi$-system on $X \times Y$.
+\end{proposition}
+
+\begin{proofbox}
+	Note $\emptyset = \emptyset \times \emptyset \in \tau \times \sigma$, and $X \times Y \in \tau \times \sigma$.
+
+	Now suppose $A, B \in \tau \times \sigma$. We can write $A = G \times H$, $B = K \times L$ for some $G, K \in \tau$ and $H, L \in \sigma$. So,
+	\[
+		A \cap B = (G \cap K) \times(H \cap L) \in \tau \times \sigma
+	.\]
+\end{proofbox}
+
+\begin{definition}
+	Let $(X, \tau)$, $(Y, \sigma)$ be topological spaces. The \textit{product topology}\index{product topology} on $X \times Y$ is the topology generated by the $\pi$-system $\tau \times \sigma$.
+\end{definition}
+
+\begin{exbox}
+	If $X = Y = \mathbb{R}$, then the product topology on $\mathbb{R} \times \mathbb{R}$ is the Euclidean topology on $\mathbb{R}^2$.
+\end{exbox}
+
+\begin{theorem}
+	\begin{enumerate}[\normalfont(i)]
+		\item[]
+		\item A product of Hausdorff spaces is Hausdorff.
+		\item A product of compact spaces is compact.
+	\end{enumerate}
+\end{theorem}
+
+\begin{proofbox}
+	Let $(X, \tau)$, $(Y, \sigma)$ be topological spaces and let $\rho$ be the product topology on $X \times Y$.
+
+	\begin{enumerate}[(i)]
+		\item Suppose $X, Y$ are Hausdorff. Let $(x, y)$, $(z, w) \in X \times Y$ with $(x, y) \neq (z, w)$. Say $x \neq z$. As $X$ is Hausdorff, we can find $G, H \in \tau$ with $G \cap H = \emptyset$, $x \in G$, $z \in H$.
+
+			Then $G \times Y, H \times Y \in \rho$ with $(G \times Y) \cap (H \times Y) = \emptyset$ and $(x, y) \in G \times Y$, $(z, w) \in H \times Y$. So $X \times Y$ is Hausdorff.
+		\item Suppose $X, Y$ are compact. Let $\mathcal{C} \subset \rho$ be an open cover of $X \times Y$.
+
+			Fix each $x \in X$. For each $y \in Y$, there is some $G_y \in \mathcal{C}$ such that $(x, y) \in G_y$. Hence we can find $U_y \in \sigma$ and $V_y \in \tau$ such that $(x, y) \in U_y \times V_y \subset G_y$. In particular, $x \in U_y$ and $y \in V_y$.
+
+			Then $\{V_y \mid y \in Y\} \subset \sigma$ is an open cover of $Y$. As $Y$ is compact, it has a finite subcover $\{V_{y_1}, \ldots, V_{y_n}\}$.
+
+			Let $W = \bigcap_{i = 1}^{n} U_{y_i}$. Then $W$ is open in $X$ and $x \in W$. Moreover, $W \times X \subset \bigcup_{i = 1}^{n} G_{y_i}$. Doing this for all $x \in X$, we obtain $W_x = W$, $n_x = n$ and $G^{(x)}_{y_i} = G_{y_i}$, as above.
+
+			Since $\{W_x \mid x \in X\} \subset \tau$ is an open cover, it has a finite subcover $\{W_{x_1}, \ldots, W_{x_m}\}$. Now $X = \bigcup_{j = 1}^{m} W_{x_j}$, and for each $j$, $W_{x_j} \times Y \subset \bigcup_{i = 1}^{n_{x_j}}G_{y_i}^{(x_j)}$. Thus,
+			\[
+				\{G_{y_i}^{(x_j)} \mid 1 \leq j \leq m, 1 \leq i \leq n_{x_j}\}
+			\]
+			is an open cover of $X \times Y$, and hence a finite subcover of $\mathcal{C}$. So $X \times Y$ is compact.
+	\end{enumerate}
+\end{proofbox}
+
+\subsection{Quotients}%
+\label{sub:quotients}
+
+Consider the surface of a torus in $\mathbb{R}^3$. We may be interested in continuous function $T \to T$. However, such analysis is likely to be unpleasant if we do not know much about $T$.
+
+However, since we only care about continuity and convergence, replacing $T$ with a space homeomorphic to $T$, For example, taking the closed unit square $[0, 1] \times [0, 1]$ with the Euclidean topology and joining opposite sides seems to give us $T$.
+
+More formally, we can define an equivalence relation on $[0, 1] \times [0, 1]$, $\sim$, say, with equivalence classes:
+\begin{itemize}
+	\item $\{(x, y)\}$, $0 < x, y < 1$;
+	\item $\{(x, 0), (x, 1)\}$, $0 < x < 1$;
+	\item $\{(0, y), (1, y)\}$, $0 < y < 1$;
+	\item $\{(0, 0), (0, 1), (1, 0), (1, 1)\}$.
+\end{itemize}
+This is a step in the right direction, but we wish to define $T = [0,1]^2/\sim$, hence maybe there's a better way to do this.
+
+Instead, we could define an equivalence relation $\sim$ on $\mathbb{R}^2$ by $(x, y) \sim (z, w) \iff x - z, y - w \in \mathbb{Z}$. Again, hopefully we could define this to be $T$. However, we need a way to define the topology on such a space.
+
+\begin{definition}
+	Let $(X, \tau)$ be a topological space and let $\sim$ be an equivalence relation on $X$. The \textit{quotient topology} on $X/\sim$ is
+	\[
+		\rho = \{G \in X/\sim \mid q^{-1}(G) \in \tau\}
+	,\]
+	where $q : X \to X/\sim$ is the quotient map, i.e. $q(x) = [x]_{\sim}$.
+\end{definition}
+
+\begin{remark}
+	\begin{enumerate}[1.]
+		\item[]
+		\item $\rho$ is indeed a topology, using $q^{-1}(\bigcup G) = \bigcup q^{-1}(G)$ and $q^{-1}(G \cap H) = q^{-1}(G) \cap q^{-1}(H)$.
+		\item $\rho$ is the smallest topology on $X/\sim$ making the quotient map $q$ continuous.
+	\end{enumerate}
+\end{remark}
+
+\begin{exbox}
+	\begin{enumerate}[1.]
+		\item Take $\mathbb{R}$ with the usual topology and let $x \sim y$ if and only if $x - y \in \mathbb{Z}$. Then $\mathbb{R}/ \sim$ is homeomorphic to $S^{1}$, the unit circle.
+		\item Take $\mathbb{R}$ with the usual metric and let $x \sim y$ if and only if $x - y \in \mathbb{Q}$. Suppose $G \subset \mathbb{R}/ \sim$ is open and $G \neq \emptyset$. Then $q^{-1}(G)$ is open and non-empty, to contains some interval $(a, b) \subset q^{-1}(G)$ with $a \neq b$.
+
+			Now take any $x \in \mathbb{R}$. Then there exists $y \in (a, b)$ with $x - y \in \mathbb{Q}$, and so $q(x) = [x]_{\sim} = [y]_{\sim} \in G$. Hence $G = \mathbb{R}/\sim$.
+
+			So the quotient topology on $\mathbb{R}/\sim$ is the indiscrete topology. Hence quotient of metrizable spaces are not necessarily metrizable, and quotients of Hausdorff spaces are not necessarily Hausdorff.
+	\end{enumerate}
+\end{exbox}
+
+Suppose $X$ is a set and $\sim$ is an equivalence relation on $X$. Then the quotient map $q : X \to X / \sim$ is surjective. Suppose now $Y$ is also a set and $f : X \to Y$. Assume $f$ respects $\sim$, so if $x \sim y$ then $f(x) = f(y)$.
+\begin{center}
+\begin{tikzcd}[column sep = small]
+	X \arrow{rr}{f} \arrow{dr}{q}& & Y\\
+			     & X/\sim \arrow[ur, dashed, "{\bar f}"] &
+\end{tikzcd}
+\end{center}
+Then there is a unique function $\bar f : X/\sim \to Y$ such that $f = \bar f \circ q$.
+
+Indeed, we must have $\bar f([x]_{\sim}) = \bar f(q(x)) = f(x)$, so as $f$ respects $\sim$, this is well defined.
+
+\begin{exbox}
+	Suppose $G, H$ are groups and $\theta : G \to H$ is a homomorphism. Let $K = \Ker \theta$ and define $\sim$ on $G$ by $g \sim h \iff g^{-1}h \in K$. Then $G/K = G/\sim$, and we can define a map $\bar \theta$ that commutes with the projection $q : G \to G/K$:
+	\begin{center}
+		\begin{tikzcd}[column sep = small]
+			G \arrow[rr, "{\theta}"] \arrow[dr, "{q}"] & & H \\
+								 & G/K \arrow[ur, dashed, "{\bar \theta}"] &
+		\end{tikzcd}
+	\end{center}
+	We can check that $\bar \theta$ is an injective homomorphism, thus an isomorphism onto $\theta(G)$. This is simply the first isomorphism theorem.
+\end{exbox}
+
+\begin{proposition}
+	Let $(X, \tau)$ be a topological space and $\sim$ an equivalence relation on $X$. Let $\rho$ be the quotient topology on $X/\sim$. Suppose $f : X \to Y$ is a continuous function respecting $\sim$, where $(Y, \sigma)$ is a topological space.
+
+	Then there is a unique continuous function $\bar f : X/\sim \to Y$ such that $f = \bar f \circ q$, where $q$ is the quotient map.
+\end{proposition}
+
+\begin{proofbox}
+	Define $\bar f : X/\sim \to Y$ by $\bar f([x]_{\sim}) = f(x)$. This is well-defined as $f$ respect $\sim$, and bleary $\bar f \circ q = f$.
+
+	Let $G \in \sigma$, then
+	\[
+		q^{-1}(\bar f^{-1}(G)) = (\bar f \circ q)^{-1}(G) = f^{-1}(G) \in \tau
+	,\]
+	as $f$ is continuous. So by the definition of a quotient topology, $\bar f^{-1}(G) \in \rho$, hence $\bar f$ is continuous.
+
+	Finally, if $f = h \circ q$ for some $h : X / \sim \to Y$, then for all $x \in X$,
+	\[
+		h([x]_{\sim}) = h(q(x)) = f(x) = \bar f([x]_{\sim})
+	.\]
+	So $h = \bar f$.
+\end{proofbox}
+
+\begin{remark}
+	This is ultimately what makes quotients useful. Recall we can define a torus as $T = \mathbb{R}^2/\sim$, for an appropriate relation $\sim$. Then it is easier to work in $\mathbb{R}^2$ rather than a subspace of $\mathbb{R}^3$.
+
+	So instead of thinking about continuous functions on $T$, we can think about an appropriate continuous function on $\mathbb{R}^2$ respecting $\sim$.
+\end{remark}
+
+\begin{exbox}
+	Recall that we had $\mathbb{R}$ with the usual topology, and $x \sim y$ if and only if $x - y \in \mathbb{Z}$. We also have the circle $S^{1} = \{x \in \mathbb{R}^2 \mid \|x\| = 1\}$, with subspace topology induced by the Euclidean topology on $\mathbb{R}^2$.
+
+	We claimed $\mathbb{R}/\sim$ is homeomorphic to $S^{1}$. Indeed, define $f : \mathbb{R} \to S^{1}$ by
+	\[
+		f(x) = (\sin 2 \pi x, \cos 2 \pi x)
+	.\]
+	Clearly $f$ is a continuous surjection, and it respects $\sim$. Hence there is a unique continuous $\bar f : \mathbb{R} / \sim \to S^{1}$ with $\bar f \circ q = f$. Then $\bar f$ is a continuous bijection.
+
+	Since $\mathbb{R}/ \sim = q([0, 1])$ is a continuous image of a compact set it is compact. Moreover, $S^{1}$ is Hausdorff. Since any continuous bijection from a compact space to a Hausdorff space is a homeomorphism, $\bar f$ is a homeomorphism from $\mathbb{R}/\sim$ to $S^{1}$.
+\end{exbox}
+
+\subsection{Connectedness}%
+\label{sub:connectedness}
+
+Recall the \textit{intermediate value theorem}\index{intermediate value theorem}:
+\begin{center}
+	If $f : [a, b] \to \mathbb{R}$ is continuous, and $f(x) < f(b)$, then
+	\[
+		[f(a), f(b)] \subset f([a, b])
+	.\]
+	Moreover, if $c, d \in f([a, b])$ with $c < d$, then
+	\[
+		[c, d] \subset f([a, b])
+	.\]
+\end{center}
+
+This doesn't work in general. Replace $[a, b]$ with $[-1, 0) \cup (0, 1] = X$. Then define $f : X \to \mathbb{R}$ by
+\[
+	f(x) = 
+	\begin{cases}
+		1 & x < 0, \\
+		0 & x > 0.
+	\end{cases}	
+.\]
+Then $f$ is continuous on $X$, $0, 1 \in f(X)$ but $[0, 1] \not \subset f(X)$. The problem here is $[-1, 0) \cup (0, 1]$ is `disconnected' in some sense.
+
+\begin{definition}
+	A topological space $X$ is \textit{disconnected}\index{disconnected} if there exist disjoint, non-empty open sets $U, V$ with $X = U \cup V$. We say $X$ is \textit{connected}\index{connected} if $X$ is not disconnected.
+\end{definition}
+
+\begin{remark}
+	Recall that $U \subset X$ is closed if and only if its complement is open. Hence $X$ is disconnected if and only if there exist disjoint non-empty closed sets $U, V$ with $X = U \cup V$.
+
+	Analogously, $X$ is connected if and only if the only subsets of $X$ that are both open and closed are $\emptyset$ and $X$.
+\end{remark}
 
 
 \newpage

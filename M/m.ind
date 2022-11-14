@@ -1,8 +1,12 @@
 \begin{theindex}
 
+  \item absolutely integrable, \hyperpage{54}
+
+  \indexspace
+
   \item Bessel function of the first kind, \hyperpage{28}
   \item Bessel's equation, \hyperpage{28}
-  \item Bessel's inequality, \hyperpage{18}
+  \item Bessel's inequality, \hyperpage{17}
   \item boundary conditions, \hyperpage{13}
 
   \indexspace
@@ -12,17 +16,22 @@
 
   \indexspace
 
+  \item delta function, \hyperpage{43}
+  \item Dirac comb, \hyperpage{45}
   \item Dirichlet conditions, \hyperpage{6}
 
   \indexspace
 
   \item error function, \hyperpage{34}
+  \item even property, \hyperpage{45}
 
   \indexspace
 
   \item Fick's law, \hyperpage{32}
   \item Fourier coefficients, \hyperpage{5}
+  \item Fourier inversion theorem, \hyperpage{54}
   \item Fourier series, \hyperpage{4}
+  \item Fourier transform, \hyperpage{54}
 
   \indexspace
 
@@ -31,6 +40,7 @@
   \indexspace
 
   \item half-range series, \hyperpage{9}
+  \item Heaviside function, \hyperpage{44}
   \item Hermitian matrix, \hyperpage{10}
 
   \indexspace
@@ -58,7 +68,8 @@
 
   \indexspace
 
-  \item sawtooth wave, \hyperpage{5}
+  \item sampling property, \hyperpage{44}
+  \item scaling property, \hyperpage{45}
   \item see-saw wave, \hyperpage{7}
   \item self-adjoint matrix, \hyperpage{10}
   \item self-adjoint operator, \hyperpage{15}
@@ -68,5 +79,6 @@
   \indexspace
 
   \item weight function, \hyperpage{14}
+  \item Wronskian, \hyperpage{50}
 
 \end{theindex}
