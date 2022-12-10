@@ -1,41 +1,66 @@
-\indexentry{periodic function|hyperpage}{3}
-\indexentry{inner product of periodic functions|hyperpage}{3}
-\indexentry{Fourier series|hyperpage}{4}
-\indexentry{Fourier coefficients|hyperpage}{5}
-\indexentry{Dirichlet conditions|hyperpage}{6}
-\indexentry{square wave|hyperpage}{7}
-\indexentry{see-saw wave|hyperpage}{7}
-\indexentry{Parseval's theorem|hyperpage}{8}
-\indexentry{completeness relation|hyperpage}{8}
-\indexentry{half-range series|hyperpage}{9}
-\indexentry{self-adjoint matrix|hyperpage}{10}
-\indexentry{Hermitian matrix|hyperpage}{10}
-\indexentry{complementary function|hyperpage}{13}
-\indexentry{particular integral|hyperpage}{13}
-\indexentry{boundary conditions|hyperpage}{13}
-\indexentry{initial conditions|hyperpage}{13}
-\indexentry{inner product of complex-valued functions|hyperpage}{14}
-\indexentry{Sturm-Liouville form|hyperpage}{14}
-\indexentry{weight function|hyperpage}{14}
-\indexentry{self-adjoint operator|hyperpage}{15}
-\indexentry{normalized eigenfunction|hyperpage}{17}
-\indexentry{Bessel's inequality|hyperpage}{17}
-\indexentry{Legendre's equation|hyperpage}{18}
-\indexentry{Legendre polynomials|hyperpage}{19}
-\indexentry{Green's function|hyperpage}{21}
-\indexentry{normal modes|hyperpage}{23}
-\indexentry{Bessel's equation|hyperpage}{28}
-\indexentry{Bessel function of the first kind|hyperpage}{28}
-\indexentry{Neumann functions|hyperpage}{29}
-\indexentry{Fick's law|hyperpage}{32}
-\indexentry{error function|hyperpage}{34}
-\indexentry{delta function|hyperpage}{43}
-\indexentry{Heaviside function|hyperpage}{44}
-\indexentry{sampling property|hyperpage}{44}
-\indexentry{even property|hyperpage}{45}
-\indexentry{scaling property|hyperpage}{45}
-\indexentry{Dirac comb|hyperpage}{45}
-\indexentry{Wronskian|hyperpage}{50}
-\indexentry{Fourier transform|hyperpage}{54}
-\indexentry{Fourier inversion theorem|hyperpage}{54}
-\indexentry{absolutely integrable|hyperpage}{54}
+\indexentry{periodic function|hyperpage}{4}
+\indexentry{inner product of periodic functions|hyperpage}{4}
+\indexentry{Fourier series|hyperpage}{5}
+\indexentry{Fourier coefficients|hyperpage}{6}
+\indexentry{Dirichlet conditions|hyperpage}{7}
+\indexentry{square wave|hyperpage}{8}
+\indexentry{see-saw wave|hyperpage}{8}
+\indexentry{Parseval's theorem|hyperpage}{9}
+\indexentry{completeness relation|hyperpage}{9}
+\indexentry{half-range series|hyperpage}{10}
+\indexentry{self-adjoint matrix|hyperpage}{11}
+\indexentry{Hermitian matrix|hyperpage}{11}
+\indexentry{complementary function|hyperpage}{14}
+\indexentry{particular integral|hyperpage}{14}
+\indexentry{boundary conditions|hyperpage}{14}
+\indexentry{initial conditions|hyperpage}{14}
+\indexentry{inner product of complex-valued functions|hyperpage}{15}
+\indexentry{Sturm-Liouville form|hyperpage}{15}
+\indexentry{weight function|hyperpage}{15}
+\indexentry{self-adjoint operator|hyperpage}{16}
+\indexentry{normalized eigenfunction|hyperpage}{18}
+\indexentry{Bessel's inequality|hyperpage}{18}
+\indexentry{Legendre's equation|hyperpage}{19}
+\indexentry{Legendre polynomials|hyperpage}{20}
+\indexentry{Green's function|hyperpage}{22}
+\indexentry{normal modes|hyperpage}{24}
+\indexentry{Bessel's equation|hyperpage}{29}
+\indexentry{Bessel function of the first kind|hyperpage}{29}
+\indexentry{Neumann functions|hyperpage}{30}
+\indexentry{Fick's law|hyperpage}{33}
+\indexentry{error function|hyperpage}{35}
+\indexentry{delta function|hyperpage}{44}
+\indexentry{Heaviside function|hyperpage}{45}
+\indexentry{sampling property|hyperpage}{45}
+\indexentry{even property|hyperpage}{46}
+\indexentry{scaling property|hyperpage}{46}
+\indexentry{Dirac comb|hyperpage}{46}
+\indexentry{Wronskian|hyperpage}{51}
+\indexentry{Fourier transform|hyperpage}{55}
+\indexentry{Fourier inversion theorem|hyperpage}{55}
+\indexentry{absolutely integrable|hyperpage}{55}
+\indexentry{top hat|hyperpage}{58}
+\indexentry{Dirichlet discontinuous formula|hyperpage}{58}
+\indexentry{convolution|hyperpage}{58}
+\indexentry{Parseval's theorem|hyperpage}{59}
+\indexentry{resolution|hyperpage}{61}
+\indexentry{transfer function|hyperpage}{62}
+\indexentry{response function|hyperpage}{62}
+\indexentry{Nyquist frequency|hyperpage}{64}
+\indexentry{bandwidth limited|hyperpage}{64}
+\indexentry{discrete Fourier transform|hyperpage}{66}
+\indexentry{Cauchy problem|hyperpage}{68}
+\indexentry{Cauchy data|hyperpage}{68}
+\indexentry{well-posed|hyperpage}{68}
+\indexentry{characteristic curves|hyperpage}{69}
+\indexentry{principal part|hyperpage}{72}
+\indexentry{canonical form|hyperpage}{73}
+\indexentry{fundamental solution|hyperpage}{76}
+\indexentry{diffusion kernel|hyperpage}{76}
+\indexentry{source function|hyperpage}{76}
+\indexentry{Duhamel's principle|hyperpage}{78}
+\indexentry{causal fundamental solution|hyperpage}{79}
+\indexentry{free-space Green's function|hyperpage}{80}
+\indexentry{Green's identities|hyperpage}{81}
+\indexentry{Dirichlet Green's function|hyperpage}{81}
+\indexentry{method of images|hyperpage}{82}

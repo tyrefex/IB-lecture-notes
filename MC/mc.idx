@@ -5,23 +5,26 @@
 \indexentry{stochastic matrix|hyperpage}{3}
 \indexentry{independent sequences|hyperpage}{4}
 \indexentry{simple Markov property|hyperpage}{4}
-\indexentry{communicate|hyperpage}{6}
+\indexentry{communicate|hyperpage}{7}
 \indexentry{communicating classes|hyperpage}{7}
 \indexentry{closed class|hyperpage}{7}
 \indexentry{irreducible|hyperpage}{7}
 \indexentry{absorbing state|hyperpage}{7}
-\indexentry{first hitting time|hyperpage}{7}
-\indexentry{stopping time|hyperpage}{12}
-\indexentry{strong Markov property|hyperpage}{12}
-\indexentry{recurrent|hyperpage}{13}
-\indexentry{transient|hyperpage}{13}
-\indexentry{return time|hyperpage}{14}
-\indexentry{simple random walk|hyperpage}{16}
-\indexentry{probability distribution|hyperpage}{19}
-\indexentry{invariant|hyperpage}{20}
-\indexentry{stationary|hyperpage}{20}
-\indexentry{positive recurrent|hyperpage}{23}
-\indexentry{null recurrent|hyperpage}{23}
-\indexentry{time reversible|hyperpage}{26}
-\indexentry{detailed balance equation|hyperpage}{26}
-\indexentry{aperiodic|hyperpage}{29}
+\indexentry{first hitting time|hyperpage}{8}
+\indexentry{birth and death chain|hyperpage}{10}
+\indexentry{stopping time|hyperpage}{13}
+\indexentry{strong Markov property|hyperpage}{13}
+\indexentry{recurrent|hyperpage}{15}
+\indexentry{transient|hyperpage}{15}
+\indexentry{return time|hyperpage}{15}
+\indexentry{simple random walk|hyperpage}{18}
+\indexentry{probability distribution|hyperpage}{21}
+\indexentry{invariant|hyperpage}{21}
+\indexentry{stationary|hyperpage}{21}
+\indexentry{positive recurrent|hyperpage}{25}
+\indexentry{null recurrent|hyperpage}{25}
+\indexentry{time reversible|hyperpage}{28}
+\indexentry{detailed balance equation|hyperpage}{28}
+\indexentry{aperiodic|hyperpage}{31}
+\indexentry{ergodic theorem|hyperpage}{35}
+\indexentry{Poisson process|hyperpage}{37}

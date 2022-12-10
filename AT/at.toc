@@ -18,4 +18,11 @@
 \contentsline {subsection}{\numberline {3.5}Products}{44}{subsection.3.5}%
 \contentsline {subsection}{\numberline {3.6}Quotients}{47}{subsection.3.6}%
 \contentsline {subsection}{\numberline {3.7}Connectedness}{50}{subsection.3.7}%
-\contentsline {section}{Index}{51}{section*.2}%
+\contentsline {part}{II\hspace {1em}Differentiation}{56}{part.2}%
+\contentsline {section}{\numberline {4}Higher Dimensional Derivatives}{56}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Extending the Derivative}{56}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}The Mean Value Inequality}{65}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}The Second Derivative}{69}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Ordinary Differential Equations}{73}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}The Inverse Function Theorem}{75}{subsection.4.5}%
+\contentsline {section}{Index}{78}{section*.2}%

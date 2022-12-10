@@ -17,6 +17,7 @@
 \indexentry{metric|hyperpage}{14}
 \indexentry{usual metric|hyperpage}{14}
 \indexentry{Euclidean metric|hyperpage}{14}
+\indexentry{uniform metric|hyperpage}{14}
 \indexentry{subspace|hyperpage}{15}
 \indexentry{discrete metric|hyperpage}{16}
 \indexentry{convergence in metric spaces|hyperpage}{16}
@@ -48,7 +49,7 @@
 \indexentry{continuity in topological spaces|hyperpage}{36}
 \indexentry{homeomorphism|hyperpage}{37}
 \indexentry{topological|hyperpage}{37}
-\indexentry{discrete topology|hyperpage}{37}
+\indexentry{discrete topology|hyperpage}{38}
 \indexentry{indiscrete topology|hyperpage}{38}
 \indexentry{cofinite topology|hyperpage}{38}
 \indexentry{cocountable topology|hyperpage}{38}
@@ -64,3 +65,22 @@
 \indexentry{intermediate value theorem|hyperpage}{50}
 \indexentry{disconnected|hyperpage}{50}
 \indexentry{connected|hyperpage}{50}
+\indexentry{interval|hyperpage}{51}
+\indexentry{connected component|hyperpage}{52}
+\indexentry{path|hyperpage}{53}
+\indexentry{path-connected|hyperpage}{53}
+\indexentry{differentiable|hyperpage}{56}
+\indexentry{derivative|hyperpage}{56}
+\indexentry{partial derivative|hyperpage}{56}
+\indexentry{differentiable|hyperpage}{57}
+\indexentry{operator norm|hyperpage}{59}
+\indexentry{Jacobian|hyperpage}{62}
+\indexentry{chain rule|hyperpage}{63}
+\indexentry{mean value inequality|hyperpage}{65}
+\indexentry{twice-differentiable|hyperpage}{69}
+\indexentry{second derivative|hyperpage}{70}
+\indexentry{Hessian|hyperpage}{71}
+\indexentry{continuously differentiable|hyperpage}{71}
+\indexentry{local maximum|hyperpage}{71}
+\indexentry{local minimum|hyperpage}{71}
+\indexentry{inverse function theorem|hyperpage}{75}

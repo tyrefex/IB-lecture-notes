@@ -1,26 +1,34 @@
 \begin{theindex}
 
   \item absorbing state, \hyperpage{7}
-  \item aperiodic, \hyperpage{29}
+  \item aperiodic, \hyperpage{31}
+
+  \indexspace
+
+  \item birth and death chain, \hyperpage{10}
 
   \indexspace
 
   \item closed class, \hyperpage{7}
-  \item communicate, \hyperpage{6}
+  \item communicate, \hyperpage{7}
   \item communicating classes, \hyperpage{7}
 
   \indexspace
 
-  \item detailed balance equation, \hyperpage{26}
+  \item detailed balance equation, \hyperpage{28}
 
   \indexspace
 
-  \item first hitting time, \hyperpage{7}
+  \item ergodic theorem, \hyperpage{35}
+
+  \indexspace
+
+  \item first hitting time, \hyperpage{8}
 
   \indexspace
 
   \item independent sequences, \hyperpage{4}
-  \item invariant, \hyperpage{20}
+  \item invariant, \hyperpage{21}
   \item irreducible, \hyperpage{7}
 
   \indexspace
@@ -29,33 +37,34 @@
 
   \indexspace
 
-  \item null recurrent, \hyperpage{23}
+  \item null recurrent, \hyperpage{25}
 
   \indexspace
 
   \item PageRank, \hyperpage{2}
-  \item positive recurrent, \hyperpage{23}
-  \item probability distribution, \hyperpage{19}
+  \item Poisson process, \hyperpage{37}
+  \item positive recurrent, \hyperpage{25}
+  \item probability distribution, \hyperpage{21}
 
   \indexspace
 
-  \item recurrent, \hyperpage{13}
-  \item return time, \hyperpage{14}
+  \item recurrent, \hyperpage{15}
+  \item return time, \hyperpage{15}
 
   \indexspace
 
   \item simple Markov property, \hyperpage{4}
-  \item simple random walk, \hyperpage{16}
-  \item stationary, \hyperpage{20}
+  \item simple random walk, \hyperpage{18}
+  \item stationary, \hyperpage{21}
   \item stochastic matrix, \hyperpage{3}
-  \item stopping time, \hyperpage{12}
-  \item strong Markov property, \hyperpage{12}
+  \item stopping time, \hyperpage{13}
+  \item strong Markov property, \hyperpage{13}
 
   \indexspace
 
-  \item time reversible, \hyperpage{26}
+  \item time reversible, \hyperpage{28}
   \item time-homogeneous, \hyperpage{3}
-  \item transient, \hyperpage{13}
+  \item transient, \hyperpage{15}
   \item transition matrix, \hyperpage{3}
 
 \end{theindex}

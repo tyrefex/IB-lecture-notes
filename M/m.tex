@@ -1804,7 +1804,7 @@ If $\mathcal{L}$ is in Sturm-Liouville form, $\beta = \alpha'$. Then, the denomi
 	.\]
 	Solving simultaneously, we get
 	\[
-		C = \frac{- \sinh(1 - \zeta)}{\sinh 1}, \quad D = \frac{\sinh \zeta}{\sinh 1}
+		C = \frac{- \sinh(1 - \zeta)}{\sinh 1}, \quad D = - \frac{\sinh \zeta}{\sinh 1}
 	.\]
 	Therefore,
 	\[
@@ -1968,10 +1968,1088 @@ We can write a Fourier series as
 \[
 	f(x) = \sum_{n = -\infty}^{\infty} c_n e^{i k_n x}
 ,\]
-where $k_n = (n\pi)/2 = n \Delta k$ where $\Delta k = \pi/2$. Then,
+where $k_n = (n\pi)/L = n \Delta k$ where $\Delta k = \pi/L$. Then,
 \[
 	c_n = \frac{1}{2L} \int_{-L}^{L} f(x) e^{-ik_n x}\diff x = \frac{\Delta k}{2 \pi} \int_{-L}^{L} f(x) e^{-ik_nx}\diff x
 .\]
+In the Fourier series, this gives
+\[
+	f(x) = \sum_{n = -\infty}^{\infty} \frac{\Delta k}{2 \pi} e^{i k_n x} \int_{-L}^{L}f(x') e^{-ik_n x'}\diff x'
+.\]
+But we can look at this like a Riemann integral:
+\[
+	\sum_{n = -\infty}^{\infty} \Delta k g(k_n) \to \int_{-\infty}^{\infty} g(k) \diff k
+.\]
+Taking the limit $L \to \infty$, we have the following:
+\[
+f(x) = \frac{1}{2 \pi} \int_{-\infty}^{\infty} e^{ikx} \diff k \Biggr[ \int_{-\infty}^{\infty} f(x') e^{-ikx'} \diff x' \Biggr] = \mathcal{F}^{-1}(\mathcal{F}(f))(x)
+.\]
+Similar to a Fourier series, when $f(x)$ is discontinuous at $x$, the Fourier transform gives the average over the discontinuity:
+\[
+	\mathcal{F}^{-1}(\mathcal{F}(f))(x) = \frac{1}{2}(f(x_{-}) + f(x_{+}))
+.\]
+
+\subsection{Fourier Transform Properties}%
+\label{sub:fourier_transform_properties}
+
+From the definition of a Fourier transform
+\[
+	\tilde f(k) = \int_{-\infty}^{\infty} f(x) e^{-ikx}\diff x
+,\]
+we can see the following properties:
+\begin{enumerate}[1.]
+	\item Linearity: If $h(x) = \lambda f(x) + \mu g(x)$, then $\tilde h(k) = \lambda \tilde f(k) + \mu \tilde g(k)$
+	\item Translation: If $h(x) = f(x - \lambda)$, then $\tilde h (k) = e^{-i\lambda k}\tilde f(k)$.
+	\item Frequency shift: If $h(x) = e^{i \lambda x}f(x)$, then $\tilde h(k) = \tilde f(k - \lambda)$.
+	\item Scaling: If $h(x) = f(\lambda x)$, then $\tilde h(k) = |\lambda|^{-1} f(\frac{k}{\lambda})$.
+	\item Multiplication by $x$: If $h(x) = x f(x)$, then $\tilde h(k) = i \tilde f'(k)$. Indeed, this follows from
+		\[
+			\int_{-\infty}^{\infty} xf(x) e^{-ikx}\diff x = \frac{-1}{i} \frac{\diff}{\diff k} \int_{-\infty}^{\infty} f(x) e^{-ikx} \diff x
+		.\]
+	\item Derivative: If $h(x) = f'(x)$, then $\tilde h(k) = i k \tilde f(k)$. This follows from
+		\[
+			\tilde h(k) = \int_{-\infty}^{\infty} f'(x) e^{-ikx}\diff x = [f(x) e^{-ikx}]_{-\infty}^{\infty} + \int_{-\infty}^{\infty} ik f(x) e^{-ikx} \diff x
+		.\]
+	\item General duality: Taking the inverse Fourier transform and taking $x \mapsto -x$, then
+		\[
+			f(-x) = \frac{1}{2\pi} \int_{-\infty}^{\infty} \tilde f(k) e^{-ikx} \diff k
+		.\]
+		Now we can swap $k$ and $x$ to get
+		\[
+			f(-k)= \frac{1}{2\pi} \int_{-\infty}^{\infty} \tilde f(x) e^{-ikx} \diff x
+		.\]
+		Hence if $g(x) = \tilde f(x)$, then $\tilde g(k) = 2 \pi f(-k)$. Since
+		\[
+			f(-x) = \frac{1}{2\pi}\mathcal{F}(\tilde f)(x) = \frac{1}{2\pi} \mathcal{F}^2(f)(x), \quad \mathcal{F}^{4}(f)(x) = 4 \pi^2 f(x)
+		.\]
+\end{enumerate}
+
+\begin{exbox}[Top hat]
+	We find the Fourier transform for the `top hat'\index{top hat},
+	\[
+		f(x) =
+		\begin{cases}
+			1 & |x| \leq a, \\
+			0 & |x| > a.
+		\end{cases}
+	\]
+	We can calculate
+	\[
+		\tilde f(k) = \int_{-\infty}^{\infty} f(x) e^{-ikx} \diff x = \int_{a}^{a} \cos k x \diff x = \frac{2 \sin k a}{k}
+	.\]
+	The Fourier inversion theorem then says
+	\[
+	\frac{1}{\pi} \int_{-\infty}^{\infty} e^{ikx} \frac{\sin ka}{k} \diff k =
+	\begin{cases}
+		1 & |x| < a, \\
+		0 & |x| > a.
+	\end{cases}
+	\]
+	Now set $x = 0$ and take $k \to x$, to get the \textit{Dirichlet discontinuous formula}\index{Dirichlet discontinuous formula}
+	\[
+	\int_{0}^{\infty} \frac{\sin a x}{x} \diff x = \frac{\pi}{2} \sgn(a) =
+	\begin{cases}
+		\frac{\pi}{2} & a > 0, \\
+		0 & a = 0, \\
+		- \frac{\pi}{2} & a < 0.
+	\end{cases}
+	\]
+\end{exbox}
+
+\subsection{Convolutions and Pareseval's Theorem}%
+\label{sub:convolutions_and_pareseval_s_theorem}
+
+Suppose we want to multiply Fourier transforms in the frequency domain, so $\tilde h(k) = \tilde f(k) \tilde g(k)$. Then the Fourier inverse is
+\begin{align*}
+	h(x) &= \frac{1}{2\pi} \int_{-\infty}^{\infty} \tilde f(k) \tilde g(k) e^{ikx} \diff k = \frac{1}{2 \pi} \int_{-\infty}^{\infty} \Biggl( \int_{-\infty}^{\infty} f(y) e^{-iky}\diff y \Biggr) \tilde g(k) e^{ikx} \diff k \\
+	     &= \int_{-\infty}^{\infty} f(y) \Biggl( \frac{1}{2\pi} \int_{-\infty}^{\infty} \tilde g(k) e^{ik(x - y)}\diff k \Biggr) \diff y \\
+	     &= \int_{-\infty}^{\infty} f(y) g(x - y) \diff y = f \ast g(x).
+\end{align*}
+This is the definition of the \textit{convolution}\index{convolution}.
+
+By duality, we also have
+\[
+	h(x) = f(x) g(x) \iff \tilde h(k) = \frac{1}{2\pi} \int_{-\infty}^{\infty} \tilde f(p) \tilde g(k - p) \diff p
+.\]
+
+Consider $h(x) = g^{\ast}(-x)$. Then,
+\begin{align*}
+	\tilde h(k) &= \int_{-\infty}^{\infty} g^{\ast}(-x) e^{-ikx}\diff x = \Biggl[ \int_{-\infty}^{\infty} g(-x) e^{ikx} \diff x \Biggr]^{\ast} \\
+		    &= \Biggl[ \int_{-\infty}^{\infty} g(y) e^{-iky} \diff y \Biggr]^{\ast} = \tilde g^{\ast}(k).
+\end{align*}
+Substituting into the convolution theorem,
+\[
+	\int_{-\infty}^{\infty} f(y) g^{\ast}(y - x) \diff y = \frac{1}{2\pi} \int_{-\infty}^{\infty} \tilde f(k) \tilde g^{\ast}(k) e^{ikx} \diff k
+.\]
+Take $x = 0$, then if we let $y \mapsto x$ on the left hand side,
+\[
+	\int_{-\infty}^{\infty}f(x) g^{\ast}(x) \diff x = \frac{1}{2\pi} \int_{-\infty}^{\infty} \tilde f(k) \tilde g^{\ast}(k) \diff k
+.\]
+Equivalently, $\langle g, f \rangle = \frac{1}{2\pi} \langle \tilde g, \tilde f \rangle$. Now, set $g^{\ast} = f^{\ast}$ to obtain
+\[
+	\int_{-\infty}^{\infty} |f(x)|^2 \diff x = \frac{1}{2\pi} \int_{-\infty}^{\infty} |\tilde f(k)|^2 \diff k
+,\]
+which is \textit{Pareseval's theorem}\index{Parseval's theorem}
+
+\subsection{Fourier Transform of Generalized Functions}%
+\label{sub:fourier_transform_of_generalized_functions}
+
+We will apply $\mathcal{F}$ to generalized functions. These can be treated as limiting distributions for which $\mathcal{F}(f)$ has a limiting approximation, and can be shown with inner products of Schwarz functions using Parseval's theorem.
+
+\subsubsection{Dirac Delta}%
+\label{subsub:dirac_delta}
+
+Consider the inversion
+\begin{align*}
+	f(x) &= \mathcal{F}^{-1}(\mathcal{F}(f))(x) = \frac{1}{2\pi} \int_{-\infty}^{\infty} \Biggl[ \int_{-\infty}^{\infty}f(u) e^{-iku} \diff u \Biggr] e^{ikx} \diff k \\
+	     &= \int_{-\infty}^{\infty} f(u) \Biggl[ \frac{1}{2\pi} \int_{-\infty}^{\infty} e^{ik(x-u)}\diff k \Biggr] \diff u.
+\end{align*}
+Since we also know that
+\[
+	f(x) = \int_{-\infty}^{\infty}f(u) \delta(x - u) \diff u
+,\]
+we can identify
+\[
+	\delta(x - u) = \frac{1}{2\pi} \int_{-\infty}^{\infty}e^{ik(x - u)}\diff k
+.\]
+Setting $f(x) = \delta(x)$, we can get
+\[
+	\tilde f(k) = \int_{-\infty}^{\infty} \delta(x) e^{ikx} \diff x = 1
+.\]
+Now if $f(x) = 1$, we get
+\[
+	\tilde f(k) = \int_{-\infty}^{\infty} e^{-ikx} \diff x = 2 \pi \delta(k)
+.\]
+This is what we expect from the inversion theorem. More generally, if $f(x) = \delta(x - a)$,
+\[
+	\tilde f(k) = e^{-ika}
+.\]
+
+\subsubsection{Trigonometric Functions}%
+\label{subsub:trigonometric_functions}
+
+Consider $f(x) = \cos \omega x$. We can write it as a sum of two exponentials, and observe
+\[
+	\tilde f(k) = \pi (\delta(k + \omega) + \delta(k - \omega))
+.\]
+Similarly, for $f(x) = \sin \omega x$,
+\[
+	\tilde f(k) = i \pi(\delta(k+w) - \delta(k - w))
+.\]
+We can then find the inverse Fourier transform using duality.
+
+\subsubsection{Heaviside Function}%
+\label{subsub:heaviside_function}
+
+We use a subtle observation, requiring the central value $H(0) = 1/2$. Then adding two Heaviside functions,
+\[
+	H(x) + H(-x) = 1
+,\]
+for all $x$. By linearity, we can take the Fourier transform to get
+\[
+	\tilde H(k) + \tilde H(-k) = 2 \pi \delta(k)
+.\]
+Recall that the derivative of the Heaviside function is the Dirac delta function; $H'(x) = \delta(x)$. Taking the Fourier transform,
+\[
+	ik \tilde H(k) = 1
+.\]
+These are two different Fourier transforms of $H(k)$. But $k\delta(k) = 0$, so this becomes consistent if
+\[
+	\tilde H(k) = \pi \delta(k) + \frac{1}{ik}
+.\]
+From the Dirichlet discontinuous formula, formula, we can write
+\[
+	\frac{1}{2} \sgn(x) = \frac{1}{2\pi} \int_{-\infty}^{\infty} \frac{e^{ika}}{ik} \diff k
+.\]
+Hence
+\[
+	f(x) = \frac{1}{2} \sgn(x) \iff \tilde f(k) = \frac{1}{ik}
+.\]
+Hence we tend to use sign functions, rather than Heaviside functions.
+
+\subsection{Applications to Fourier Transforms}%
+\label{sub:applications_to_fourier_transforms}
+
+\subsubsection{Solving ODE's}%
+\label{subsub:solving_ode_s}
+
+Consider solving the ODE $y'' - y = f(x)$, with homogeneous boundary conditions $y \to 0$ as $x \to \pm \infty$. Taking the Fourier transform,
+\[
+	(-k^2 - 1)\tilde y = \tilde f
+.\]
+Hence we can find the solution
+\[
+	\tilde y(k) = - \frac{\tilde f(k)}{1 + k^2} = \tilde f(k) \tilde g(k), \quad \text{where } \tilde g(k) = \frac{-1}{1 + k^2}
+.\]
+The Fourier transform of this is $g(x) = - \frac{1}{2} e^{-|x|}$, hence the convolution theorem implies
+\begin{align*}
+	y(x) &= \int_{-\infty}^{\infty} f(u)g(x - u) \diff u = -\frac{1}{2} \int_{-\infty}^{\infty} f(u) e^{-|x-u|}\diff u \\
+	     &= -\frac{1}{2} \int_{-\infty}^{x} f(u) e^{u - x} \diff u - \frac{1}{2} \int_{x}^{\infty} f(u) e^{x - u}\diff u,
+\end{align*}
+which is in the form of a boundary value problem Green's function. In fact, this is the same solution given by taking the Green's function.
+
+Now suppose we want to solve a signal processing problem, given an input $\mathcal{I}(t)$ acted on by a linear operator $\mathcal{L}$ to yield the output $\mathcal{O}(t)$.
+
+The Fourier transform $\tilde{\mathcal{I}}(\omega)$ is denoted the \textit{resolution}\index{resolution}
+\[
+	\tilde{\mathcal{I}}(\omega) = \int_{-\infty}^{\infty} \mathcal{I}(t) e^{-i \omega t}\diff t
+.\]
+In the frequency domain, the action of $\mathcal{L}$ on $\mathcal{I}(t)$ means that $\tilde{\mathcal{I}}(\omega)$ is multiplied by a \textit{transfer function}\index{transfer function} $\tilde{\mathcal{R}}(\omega)$ to yield the output
+\[
+	\mathcal{O}(t) = \frac{1}{2 \pi} \int_{-\infty}^{\infty} \tilde{\mathcal{R}}(\omega) \tilde{\mathcal{O}}(\omega) e^{i\omega t} \diff \omega
+,\]
+with the \textit{response function}\index{response function} given by
+\[
+	R(t) = \frac{1}{2\pi} \int_{-\infty}^{\infty} \tilde{\mathcal{R}}(\omega) e^{i \omega t}\diff \omega
+.\]
+By the convolution theorem, the output is
+\[
+	\mathcal{O}(t) = \int_{-\infty}^{\infty} \mathcal{I}(u) \mathcal{R}(t - u) \diff u
+.\]
+We assume there is no input $\mathcal{I}(t) = 0$ for $t < 0$. By causality, there is zero output for $R(t) = 0$, $t < 0$. Hence we require $0 < u < t$:
+\[
+	\theta(t) = \int_{0}^{t} \mathcal{I}(u) \mathcal{R}(t - u) \diff u
+,\]
+which is the same form as initial value problem Green's functions.
+
+\subsection{General Transfer Functions for ODEs}%
+\label{sub:general_transfer_functions_for_odes}
+
+Suppose the input/output relation given by a general ODE is
+\[
+	\mathcal{L}\mathcal{O}(t) = \Biggl( \sum_{i = 1}^{n} a_i \frac{\Diff i}{\diff x^{i}} \Biggr) \mathcal{O}(t) = \mathcal{I}(t)
+.\]
+Take the Fourier transform:
+\[
+	(a_0 + a_i(i\omega) + a_2 (i \omega)^2 + \cdots + a_n (i \omega)^{n}) \tilde{\mathcal{O}}(\omega) = \tilde{\mathcal{I}}(\omega)
+,\]
+so the transfer function is
+\[
+	\tilde{\mathcal{R}}(\omega) = \frac{1}{a_0 + a_1(i \omega) + \cdots + a_n (i \omega)^{n}}
+.\]
+Without repeated roots, this is not hard, as we can write it as a sum using partial fraction decomposition, which all correspond to one-sided exponentials.
+
+In general, we can factorise into the product
+\[
+	\tilde{\mathcal{R}}(\omega)^{-1} = \prod_{j=1}^{J}(i \omega - c_j)^{k_j}
+.\]
+
+Using partial fraction decomposition, we can write this as
+\[
+	\tilde R(\omega) = \sum_{j = 1}^{J} \sum_{m = 1}^{k_j} \frac{\Gamma_{jm}}{(i \omega - c_j)^{m}}
+.\]
+To solve, we must invert $\frac{1}{(i \omega - a)^{m}}$, for $m \geq 1$. We know that
+\[
+	\mathcal{F}^{-1} \biggl( \frac{1}{i\omega - a} \biggr) =
+	\begin{cases}
+		e^{at}, & t > 0, \\
+		0, & t < 0,
+	\end{cases}
+\]
+for $\Re(a) < 0$. Now for $m = 2$, note that
+\[
+	i \frac{\diff}{\diff \omega} \biggl( \frac{1}{i \omega - a} \biggr) = \frac{1}{(i \omega - a)^2}
+,\]
+and moreover we have $\mathcal{F}(tf(t)) = i \tilde f'(\omega)$, so
+\[
+	\mathcal{F}^{-1} \biggl( \frac{1}{(i \omega - a)^2} \biggr) =
+	\begin{cases}
+		t e^{at}, & t > 0, \\
+		0, & t < 0.
+	\end{cases}
+\]
+By induction, we find that
+\[
+	\mathcal{F}^{-1}\biggl( \frac{1}{(i \omega - a)^{m}}\biggr) =
+	\begin{cases}
+		\frac{t^{m-1}}{(m-1)!}e^{at}, & t > 0, \\
+		0, & t < 0.
+	\end{cases}
+\]
+Therefore, the response function takes the form of
+\[
+	R(t) = \sum_{j}\sum_{m} \Gamma_{jm} \frac{t^{m-1}}{(m-1)!}e^{c_j t}
+.\]
+
+\begin{exbox}
+	We wish to solve
+	\[
+		\mathcal{L}y = y'' + 2 p y' + (p^2 + q^2)y = f(t)
+	,\]
+	with initial conditions $y(0) = y'(0) = 0$. The Fourier transform is
+	\[
+		(i \omega^2)\tilde y + 2 i p \omega \tilde y + (p^2 + q^2)\tilde y = \tilde f
+	,\]
+	so
+	\[
+	\tilde y = \frac{\tilde f}{- \omega^2 + 2 i p \omega + p^2 + q^2} = \tilde R \tilde f
+	.\]
+	Inverting with the convolution theorem,
+	\[
+		y(t) = \int_{0}^{t} R(t - \tau)f(\tau) \diff \tau
+	,\]
+	where the response is given by
+	\[
+		R(t - \tau) = \frac{1}{2\pi} \int_{-\infty}^{\infty} \frac{e^{i \omega(t - \tau)} \diff \omega}{p^2 + q^2 + 2 i p \omega - \omega^2}
+	.\]
+\end{exbox}
+
+\subsection{Discrete Fourier Transforms}%
+\label{sub:discrete_fourier_transforms}
+
+We sample a signal $h(t)$ at equal times $t_n = n \Delta$, with time-sampling $\Delta$, and values $h_n = h(t_n) = h(n \Delta)$ for $n = \ldots, -2, -1, 0, 1, 2, \ldots,$ i.e. with sampling frequency $1/\Delta$.
+
+The \textit{Nyquist frequency}\index{Nyquist frequency} is $f_c = 1/2\Delta$, which is the highest frequency that is sampled at $\Delta$.
+
+Indeed, if we have a signal with given frequency $f$, then,
+\[
+	g_f(t) = A \cos(2 \pi f t + \phi) = \frac{1}{2}(Ae^{i \phi}e^{2 \pi i ft} + Ae^{- i \phi}e^{-2 \pi i ft})
+.\]
+If we were to sample at $f = f_c$, then
+\begin{align*}
+	g_{f_c}(t_n) &= A \cos \biggl(2 \pi \biggl( \frac{1}{2 \Delta} \biggr) n \Delta + \phi \biggr) \\
+		     &= A \cos \pi n \cos \phi + A \sin n \pi \sin \phi \\
+		     &= A' \cos (2 \pi f_c t_n),
+\end{align*}
+with $A' = A \cos \phi$. So the phase and amplitude information is lost. We can identify $f_c \leftrightarrow -f_c$, and these are \textit{aliased} together.
+
+If we sample slightly above $f > f_c$, then taking $f = f_c + \delta f$, we can show that
+\[
+	g_f(t_n) = A \cos (2 \pi (f_c + \delta f)t_n + \phi) = A \cos (2 \pi (f_c - \delta f)t_n - \phi)
+.\]
+So the effect is to \textit{alias} a ghost signal to frequency $f_c - \delta f$.
+
+\subsubsection{Sampling Theorem}%
+\label{subsub:sampling_theorem}
+
+A signal $g(t)$ is \textit{bandwidth limited}\index{bandwidth limited} if it contains no frequencies above $\omega_{max} = 2 \pi f_{max}$, so $\tilde g(\omega) = 0$ for $|\omega| > \omega_{max}$. Then,
+\[
+	g(t) = \frac{1}{2\pi}\int_{-\infty}^{\infty} \tilde g(\omega) e^{i \omega t}\diff \omega = \frac{1}{2 \pi} \int_{- \omega_{max}}^{\omega_{max}} \tilde g(\omega) e^{i \omega t}\diff \omega
+.\]
+We set the sampling to satisfy the Nyquist condition, so $\Delta = 1/2f_{max}$. Then,
+\[
+	g_n = g(t_n) = \frac{1}{2\pi} \int_{-\omega_{max}}^{\omega_{max}} \tilde g(\omega) e^{i \pi n \omega/\omega_{max}} \diff \omega
+,\]
+which is a complex Fourier series coefficient. Hence, we can write
+\[
+	\tilde g_{per}(\omega) = \frac{\pi}{\omega_{max}} \sum_{n = -\infty}^{\infty} g_n e^{-i\pi n\omega/\omega_{max}}
+.\]
+However, this is a periodic function. The actual Fourier transform $\tilde g(\omega)$ is found by multiplying by the `top hat'
+\[
+	\tilde h(\omega) =
+	\begin{cases}
+		1, & |\omega| \leq \omega_{max}, \\
+		0, & \text{otherwise}.
+	\end{cases}
+\]
+Then we have $\tilde g(\omega) = \tilde g_{per}(\omega) \tilde h(\omega)$. Inverting, we get
+\begin{align*}
+	g(t) &= \frac{1}{2\pi}\int_{0\infty}^{\infty} \tilde g_{per}(\omega) \tilde h(\omega) e^{i\omega t}\diff \omega \\
+	     &= \frac{1}{2 \omega_{max}} \sum_{n = -\infty}^{\infty} g_n \int_{-\omega_{max}}^{\omega_{max}}\exp \biggl( i \omega \biggl( t - \frac{n \pi}{\omega_{max}} \biggr) \biggr) \diff \omega \\
+	     &= \sum_{n = -\infty}^{\infty} g_n \frac{\sin (\omega_{max} t - \pi n)}{\omega_{max} t - \pi n}.
+\end{align*}
+So $g(t)$ can be exactly represented after sampling at discrete times $t_n$.
+
+\subsubsection{Discrete Fourier Transform}%
+\label{subsub:discrete_fourier_transform}
+
+Suppose we have a finite number $N$ of samples, where $h_m = h(t_m) = h(m \Delta)$, $t_m = m \Delta$, and $m = 0, 1, 2, \ldots, N-1$.
+
+We want to approximate the Fourier transform for $N$ frequencies within the Nyquist frequency ($f_c = 1/2\Delta$) using equally-spaced frequencies $\Delta_f = 1/N\Delta$, in the range $-f_c \leq f \leq f_c$.
+
+We could take $f_n = n \Delta f$, with $n = - \frac{N}{2}, -\frac{N}{2} + 1, \ldots, -1, 0, 1, \ldots, \frac{N}{2}$. However this has $N+1$ frequencies, but $f_c$ and $-f_c$ are aliased.
+
+Note also that $(\frac{N}{2} + m)\Delta f$ is aliased back to $-(\frac{N}{2} - m)\Delta f$, so we choose instead $f_n = \frac{n}{N \Delta}$ with $n = 0, 1, 2, \ldots, \frac{N}{2}-1, \frac{N}{2}, \frac{N}{2} + 1, \ldots, N-1$.
+
+The \textit{discrete Fourier transform} at frequency $f_n$ becomes
+\begin{align*}
+	\tilde h (f_n) &= \int_{-\infty}^{\infty} h(t) e^{-2\pi i f_n t}\diff t \approx \Delta \sum_{n = 0}^{N-1} h_m e^{-2 \pi i f_n t_m} \\
+		       &= \Delta \sum_{m = 0}^{N-1}h_m e^{-2 \pi i mn/N} = \Delta \tilde h_d (f_n),
+\end{align*}
+where $\tilde h_d (f_n) = \tilde h_n$ is the discrete Fourier transform\index{discrete Fourier transform}.
+
+So the discrete Fourier transform matrix is $[DFT]_{mn} = e^{-2 \pi i mn/N}$, which defines the discrete Fourier transform.
+
+The inverse is its adjoint $[DFT]^{-1} = \frac{1}{n} [DFT]^{\dagger}$, and it is built from the roots of unity $\omega = e^{-2 \pi i/N}$.
+
+\begin{exbox}
+	Take $N = 4$, then $\omega = -i$, and the DFT matrix is
+	\[
+	DFT = 
+	\begin{pmatrix}
+		1 & 1 & 1 & 1 \\
+		1 & -i & -1 & i \\
+		1 & -1 & 1 & -1 \\
+		1 & i & -1 & -i
+	\end{pmatrix}
+	.\]
+	The \textit{inverse DFT} is
+	\begin{align*}
+		h_m &= h(t_m) = \frac{1}{2\pi} \int_{-\infty}^{\infty} \tilde h(\omega) e^{i \omega t_m} \diff \omega = \int_{-\infty}^{\infty}\tilde h(f) e^{2 \pi i f t_m} \diff f \\
+		    &\approx \frac{1}{\Delta N} \sum_{n = 0}^{N-1} \Delta \tilde h_d (f_n) e^{2 \pi i mn/N} \\
+		    &= \frac{1}{N} \sum_{n = 0}^{N-1} \tilde h_n e^{2 \pi i mn/N}.
+	\end{align*}
+\end{exbox}
+
+Moreover, we have Parseval's theorem for the discrete Fourier transform:
+\[
+\sum_{m = 0}^{N-1}|h_m|^2 = \frac{1}{N} \sum_{n = 0}^{N-1}|\tilde h_n|^2
+.\]
+The convolution theorem for $g_m, h_m$ is then
+\[
+c_k = \sum_{m = 0}^{N-1}g_m h_{k-m} \iff \tilde c_k = \tilde g_k \tilde h_k
+.\]
+
+\subsection{Fast Fourier Transforms}%
+\label{sub:fast_fourier_transforms}
+
+We can split the discrete Fourier transform into even ($n = 2m$) and odd ($n = 2m + 1$) parts. Then,
+\begin{align*}
+	\tilde h_k &= \sum_{n = 0}^{N-1} h_n \omega_N^{nk} = \sum_{m = 0}^{N/2 - 1} h_{2m}\omega_N^{2mk} + \sum_{m = 0}^{N/2 - 1}h_{2m+1}\omega_N^{(2m+1)k} \\
+		   &= \sum_{m = 0}^{N/2 - 1}h_{2m} (\omega_N^2)^{mk} + \omega_N^{k} \sum_{m = 0}^{N/2 - 1}h_{2m+1}(\omega_N^2)^{mk} \\
+		   &= \sum_{m = 0}^{N/2-1}h_{2m}(\omega_{N/2})^{mk} + \omega_N^{k} \sum_{m = 0}^{N/2 - 1}h_{2m+1}(\omega_{N/2})^{mk}.
+\end{align*}
+Hence instead of being $\mathcal{O}(n^2)$, by recursively halving the size, we get down to calculating the Fourier transform in $\mathcal{O}(n \log n)$.
+
+\newpage
+
+\part{PDEs on Unbounded Domains}%
+\label{prt:pdes_on_unbounded_domains}
+
+\section{Characteristics}%
+\label{sec:characteristics}
+
+\subsection{Well-Posed Cauchy Problems}%
+\label{sub:well_posed_cauchy_problems}
+
+Solving PDEs depends on the nature of the equations in combination with the boundary and/or initial data. A \textit{Cauchy problem}\index{Cauchy problem} is the PDE for $\phi$, together with the auxiliary data specified on a surface, which is called \textit{Cauchy data}\index{Cauchy data}.
+
+A Cauchy problem is \textit{well-posed}\index{well-posed} if
+\begin{enumerate}[(i)]
+	\item a solution exists;
+	\item the solution is unique;
+	\item the solution depends continuously on the auxiliary data.
+\end{enumerate}
+
+\subsection{Method of Characteristics}%
+\label{sub:method_of_characteristics}
+
+Consider a parametrised curve $C$ given by $(x(s), y(s))$ with tangent vector
+\[
+	\mathbf{v} = \biggl( \frac{\diff x(s)}{\diff s}, \frac{\diff y(s)}{\diff s} \biggr)
+.\]
+For a function $\phi(x, y)$, we can define a directional derivative
+\[
+	\frac{\diff \phi}{\diff s} \biggr|_{C} = \frac{\diff x(s)}{\diff s} \frac{\partial \phi}{\partial x} + \frac{\diff y(s)}{\diff s} \frac{\partial \phi}{\partial y} = \mathbf{v} \cdot \nabla \phi \bigr|_{C}
+.\]
+If $\mathbf{v} \cdot \nabla \phi = 0$, then $\frac{\diff \phi}{\diff s} = 0$, and $\phi$ is constant along $C$.
+
+Now suppose we have a vector field
+\[
+	\mathbf{u}= (\alpha(x, y), \beta(x, y))
+,\]
+with its family of integral curves $C$, which are non-intersecting and filling $\mathbb{R}^2$, so at a point $(x, y)$, the integral curve has a tangent vector $\mathbf{u}(x, y)$.
+
+Define a curve $B$ by $(x(t), y(t))$, transverse to $\mathbf{u}$, such that the tangent vector
+\[
+	\mathbf{w} = \biggl( \frac{\diff x(t)}{\diff t}, \frac{\diff y(t)}{\diff t} \biggr)
+\]
+is nowhere parallel to $\mathbf{u}$. We can then label each integral curve $C$ of $\mathbf{u}$ using $t$ at the intersection point with $B$, then we use $s$ to parametrise along the curve.
+
+Our integral curves $(x(s, t), y(s, t))$ satisfy
+\[
+	\frac{\diff x}{\diff s} = \alpha(x, y), \qquad \frac{\diff y}{\diff s} = \beta(x, y)
+.\]
+We can solve these to find a family of characteristic curves along which $t$ remains constant.
+
+\subsection{Characteristics of a 1st order PDE}%
+\label{sub:characteristics_of_a_1st_order_pde}
+
+Consider the first order linear PDE
+\[
+	\alpha(x, y) \frac{\partial \phi}{\partial x} + \beta(x, y) \frac{\partial \phi}{\partial y} = 0
+,\]
+with specified Cauchy data given on an initial curve $B = (x(t), y(t))$, say
+\[
+	\phi(x(t), y(t)) = f(t)
+.\]
+Note that we have
+\[
+\alpha \phi_x + \beta \phi_y = \mathbf{u} \cdot \nabla \phi = \frac{\diff \phi}{\diff s} \biggr|_{C}
+\]
+is the directional derivative along the integral curves of $\mathbf{u} = (\alpha, \beta)$, which are the \textit{characteristic curves} of the PDE\index{characteristic curves}. Now since
+\[
+\frac{\diff \phi}{\diff s} = \alpha \phi_x + \beta \phi_y = 0
+,\]
+the function $\phi(x, y)$ will be constant along the curves $C$, so the Cauchy data $f(t)$ defined on $B$ at $s = 0$ will be propagated constantly along the curves $C$ to give the solution
+\[
+	\phi(s, t) = \phi(x(s, t), y(s, t)) = f(t)
+.\]
+To obtain $\phi(x, y)$, we transform the coordinates from  $\phi(s, t)$ using $s = s(x, y)$, $t = t(x, y)$ (provided the Jacobian is non-zero) to obtain $\phi(x, y) = f(t(x, y))$.
+
+Hence, the prescription for solving these problems are as follows:
+\begin{enumerate}[1.]
+	\item Find characteristic equations $\frac{\diff x}{\diff s} = \alpha, \frac{\diff y}{\diff s} = \beta$.
+	\item Parametrise the initial conditions on $B = (x(t), y(t))$.
+	\item Solve the characteristic equations to find
+		\[
+			x = x(s, t), \qquad y = y(s, t)
+		,\]
+		subject to the initial conditions at $s = 0$,
+		\[
+			x(0, t) = x(t), \qquad y(0, t) = y(t).
+		\]
+	\item Using this, we can solve
+		\[
+		\frac{\diff \phi}{\diff s} = \alpha \phi_x + \beta \phi_y = 0
+		,\]
+		as $\phi(s, t) = f(t)$.
+	\item Invert the relations $s = s(x, y)$, $t = t(x, y)$.
+	\item Change coordinates to obtain $\phi(x, y) = f(t(x, y))$.
+\end{enumerate}
+
+\begin{exbox}
+	We wish to solve the PDE
+	\[
+	\frac{\partial \phi}{\partial x} = 0
+	,\]
+	with $\phi(0, y) = h(y)$. The solution clearly is $\phi(x, y) = h(y)$, but we will follow the prescription anyway.
+	\begin{enumerate}[1.]
+		\item We are given $\frac{\diff x}{\diff s} = \alpha = 1$, $\frac{\diff y}{\diff s} = \beta = 0$.
+		\item We are given initial conditions on the $y$-axis $(x(t), y(t)) = (0, t)$.
+		\item The solutions to the equations are $x = s + c$, $y = d$. But $s = 0$ for $x = 0$ gives $c = 0$, and $y = t$ gives $d = t$. So $x = s$, $y = t$.
+		\item $\frac{\diff \phi}{\diff s}= 0$ gives $\phi$ constant, so $\phi(s, t) = h(t)$.
+		\item We invert $s = x$, $t = y$.
+		\item Then $\phi(x, y) = h(t(x, y)) = h(y)$.
+	\end{enumerate}
+\end{exbox}
+
+\begin{exbox}
+	Now we take a more complicated PDE: we wish to solve
+	\[
+	e^{x} \phi_x + \phi_y = 0
+	,\]
+	with $\phi(x, 0) = \cosh x$.
+	\begin{enumerate}[1.]
+		\item The characteristic equations are $\frac{\diff x}{\diff s} = e^{x}$, $\frac{\diff y}{\diff s} = 1$.
+		\item The initial conditions are given on $x(t) = t$, $y(t) = 0$.
+		\item From separating the equations, $-e^{-x} = s + c$ and $y = s + d$. At $s = 0$, $x = t$ and $y = 0$, so $c = -e^{-t}$ and $d = 0$. Hence,
+			\[
+			e^{-x} = e^{-t} - s, \qquad y = s
+			.\]
+		\item Since $\frac{\diff \phi}{\diff s} = 0$, $\phi(s, t) = \cosh t$.
+		\item At $s = y$, $e^{-t} = y + e^{-x}$, so $t = - \log(y + e^{-x})$.
+		\item Hence $\phi(x, y) = \cosh[- \log(y + e^{-x})]$.
+	\end{enumerate}
+\end{exbox}
+
+Now we will consider an inhomogeneous first order PDE, such as
+\[
+	\alpha(x, y) \phi_x + \beta(x, y) \phi_y = \gamma(x, y)
+,\]
+which Cauchy data $\phi(x(t), y(t)) = f(t)$ on a curve $B$ 
+
+The characteristic curves $C$ are identical, but we now have
+\[
+	\frac{\diff \phi}{\diff s} \biggr|_{C} = \mathbf{u} \cdot \nabla \phi = \gamma(x, y)
+,\]
+with $\phi = f(t)$ at $s = 0$ on $B$. Hence $f(t)$ no longer propagates constantly, so we must solve an ODE. Hence we upgrade \textit{4.} in the prescription, to integrate $\phi(s, t)$ along $C$, before reverting to $\phi(x, y)$.
+
+\begin{exbox}
+	We wish to solve
+	\[
+	\phi_x + 2 \phi_y = ye^{x}
+	,\]
+	with $\phi = \sin x$ n $y = x$.
+	\begin{enumerate}[1.]
+		\item We have $\frac{\diff x}{\diff s} = 1$, $\frac{\diff y}{\diff s}= 2$.
+		\item We have initial conditions on $y = x$ so take $(x(t), y(t)) = (t, t)$.
+		\item We have $x = s + c$, $y = 2s + d$. At $s = 0$, $x = t = c$ and $y = t = d$, so
+			\[
+			x = s + t, \qquad y = 2s + t
+			.\]
+		\item Now we want to solve
+			\[\frac{\diff \phi}{\diff s}= \gamma = ye^{x} = (2s + t)e^{s + t},\]
+			with $\phi = \sin t$ at $s = 0$. Note that
+			\[
+				\frac{\diff}{\diff s}(2s e^{s}) = 2e^{s}+ 2se^{s}
+			,\]
+			so $\phi(s, t) = (2s - 2 + t)e^{s+t} + C$. But $\phi(0, t) = \sin t = (t - 2)e^{t} + C$, so
+			\[
+				\phi(s, t) = (2s - 2 + t)e^{s + t} + \sin t + (2 - t)e^{t}
+			.\]
+		\item We can invert $s = y - x$, $t = 2x - y$.
+		\item Hence $\phi(x, y) = (y - 2)e^{x} + (y - 2x + 2)e^{2x - y} + \sin (2x - y)$.
+	\end{enumerate}
+\end{exbox}
+
+\subsection{Second-order PDE classification}%
+\label{sub:second_order_pde_classification}
+
+In two dimensions, the general second order linear PDE is
+\begin{align*}
+	\mathcal{L} \phi = a(x, y) \frac{\partial^2 \phi}{\partial x^2} &+ 2 b(x, y) \frac{\partial^2 \phi}{\partial x \partial y} + c(x, y) \frac{\partial^2 \phi}{\partial y^2} \\
+									     &+ d(x, y) \frac{\partial \phi}{\partial x} + e(x, y) \frac{\partial \phi}{\partial y} + f(x, y) \phi(x, y) = 0
+\end{align*}
+The principal part\index{principal part} is given by
+\[
+	\sigma_p(x, y, k_x, k_y) = k^{T}Ak =
+	\begin{pmatrix}
+		k_x & k_y
+	\end{pmatrix}
+	\begin{pmatrix}
+		a(x, y) & b(x, y) \\
+		b(x, y) & c(x, y)
+	\end{pmatrix}
+	\begin{pmatrix}
+		k_x \\
+		k_y
+	\end{pmatrix}
+.\]
+The PDE is classified by the properties of the eigenvalues of $A$:
+\begin{itemize}
+	\item If $b^2 - ac < 0$ then it is \textit{elliptic} ($\lambda_1$ and $\lambda_2$ have the same sign).
+	\item If $b^2 - ac > 0$ then it is \textit{hyperbolic} ($\lambda_1$ and $\lambda_2$ have opposite sign).
+	\item If $b^2 - ac = 0$, then it is \textit{parabolic} ($\lambda_1$ or $\lambda_2$ is $0$).
+\end{itemize}
+
+\begin{exbox}
+	\begin{itemize}
+		\item The wave equation
+			\[
+			\frac{1}{c^2} \frac{\partial^2 \phi}{\partial t^2} = \frac{\partial^2 \phi}{\partial x^2}
+			\]
+			has $a = \frac{1}{c^2}$, $b = 0$ and $c = -1$, and is hyperbolic.
+		\item The Laplace equation has $a = 1$, $b = 0$ and $c = 1$, and it elliptic.
+	\end{itemize}
+\end{exbox}
+
+\subsection{Characteristic Curves}%
+\label{sub:characteristic_curves}
+
+A curve defined by $f(x, y) = \text{const}$ will be a characteristic if
+\[
+\begin{pmatrix}
+	f_x & f_y
+\end{pmatrix}
+\begin{pmatrix}
+	a & b \\
+	b & c
+\end{pmatrix}
+\begin{pmatrix}
+	f_x \\
+	f_y
+\end{pmatrix}
+= 0
+.\]
+This is the generalisation of $\nabla f \cdot \mathbf{u} = 0$. The curve can be written as $y = y(x)$. Then by the chain rule,
+\[
+\frac{\partial f}{\partial x} + \frac{\partial f}{\partial y} \frac{\diff y}{\diff x} = 0 \implies \frac{f_x}{f_y} = - \frac{\diff y}{\diff x}
+.\]
+Substituting, we obtain
+\[
+	a \biggl( \frac{\diff y}{\diff x} \biggr)^2 - 2b \frac{\diff y}{\diff x} + c = 0
+,\]
+which gives quadratic solutions
+\[
+	\frac{\diff y}{\diff x} = \frac{b \pm \sqrt{b^2 - ac}}{a}
+.\]
+\begin{itemize}
+	\item If hyperbolic, then $b^2 - ac > 0$, so we have 2 solutions.
+	\item If parabolic, then $b^2 - ac = 0$, so we have one solution.
+	\item If elliptic, then $b^2 - ac < 0$, so we have no solutions.
+\end{itemize}
+
+If we transform to characteristic coordinates $(u, v)$, we will have $a = c = 0$, so the PDE will take the \textit{canonical form}\index{canonical form}
+\[
+\frac{\partial^2 \phi}{\partial u \partial v} + \cdots = 0
+,\]
+where the only second-order term is mixed.
+
+\begin{exbox}
+	Consider
+	\[
+	-y \phi_{xx} + \phi_{yy} = 0
+	,\]
+	with $a = -y$, $b = 0$ and $c = 1$, so $b^2 - ac = y$.
+
+	This is hyperbolic for $y > 0$, elliptic for $y < 0$ and parabolic for $y = 0$. We find the characteristics for $y > 0$ satisfying
+	\[
+		\frac{\diff y}{\diff x} = \frac{b \pm \sqrt{b^2 - ac}}{a} = \pm \frac{1}{\sqrt y} \implies \sqrt y \diff y = \pm \diff x
+	\]
+	\[
+	 \implies \frac{2}{3} y^{3/2} \pm x = C_{\pm}
+	.\]
+	So the characteristic curves are $u = \frac{2}{3} y^{3/2} + x$, $v = \frac{2}{3} y^{3/2} - x$. The derivatives are
+	\begin{align*}
+		u_x &= 1, & u_y &= y^{1/2}, & v_x &= -1, & v_y &= y^{1/2}.
+	\end{align*}
+	Hence we can rewrite
+	\begin{align*}
+		\phi_x &= \phi_u - \phi_v, & \phi_y &= y^{1/2}(\phi_u + \phi_v), \\
+		\phi_{xx} &= \phi_{uu} - 2 \phi_{uv} + \phi_{vv}, & \phi_{yy} &= y(\phi_{uu} + 2 \phi_{uv} + \phi_{vv}) + \frac{1}{2y^{1/2}}(\phi_u + \phi_v).
+	\end{align*}
+	Hence we have
+	\[
+		-y \phi_{xx} + \phi_{yy} = y\biggl(4 \phi_{uv} + \frac{1}{2y^{3/2}}(\phi_u + \phi_v) \biggr)
+	.\]
+	Therefore the canonical form is
+	\[
+		\phi_{uv} + \frac{1}{6(u+v)}(\phi_u + \phi_v) = 0
+	.\]
+\end{exbox}
+
+\subsection{General Solution for the Wave Equation}%
+\label{sub:general_solution_for_the_wave_equation}
+
+We look to solve the wave equation
+\[
+\frac{1}{c^2} \frac{\partial^2 \phi}{\partial t^2} - \frac{\partial^2 \phi}{\partial x^2} = 0
+,\]
+with initial conditions $\phi(x, 0) = f(x)$, $\phi_t(x, 0) = g(x)$.
+
+We have $a = c^{-2}$, $b = 0$ and $c = -1$. Therefore the characteristic equation is
+\[
+	\frac{\diff x}{\diff t}= \frac{0 \pm \sqrt{0 + c^{-2}}}{c^{-2}} = \pm c
+,\]
+so we choose $u = x - ct$, $v = x + ct$. This yields the simple canonical form
+\[
+\frac{\partial^2 \phi}{\partial u \partial v} = 0
+.\]
+Integrating with regards to $u$, we get
+\[
+	\frac{\partial \phi}{\partial v} = F(v)
+,\]
+and integrating with respect to $v$,
+\[
+	\phi = G(u) + \int^{v} F(y) \diff y = G(u) + H(v)
+.\]
+Imposing initial conditions at $t = 0$, which is when $u = v = x$, we get
+\begin{align*}
+	\phi(x, 0) &= G(x) + H(x) = f(x), \\
+	\phi_t(x, 0) &= -c G'(x) + c H'(x) = g(x).
+\end{align*}
+Differentiating the first equation,
+\[
+	G'(x) + H'(x) = f'(x)
+.\]
+Now we can solve these simultaneous equations to get
+\[
+H'(x) = \frac{1}{2} \biggl(f'(x) + \frac{1}{c}g(x) \biggr), \qquad G'(x) = \frac{1}{2}\biggl(f'(x) - \frac{1}{c} g(x) \biggr)
+.\]
+Now we can integrate to find
+\[
+	H(x) = \frac{1}{2}(f(x) - f(0)) + \frac{1}{2c} \int_{0}^{x}g(y) \diff y, \quad G(x) = \frac{1}{2}(f(x) + f(0)) - \frac{1}{2c} \int_{0}^{x} g(y) \diff y
+.\]
+Putting these together, we find that
+\[
+	\phi(x, t) = G(x - ct) + H(x + ct) = \frac{1}{2}(f(x - ct) + f(x + ct)) + \frac{1}{2c} \int_{x-ct}^{x+ct}g(y) \diff y
+.\]
+
+Note the waves propagate at a velocity of $c$, so $\phi(x, t)$ is fully determined by the values of $f, g$ in the interval $[x-ct, x+ct]$.
+
+\newpage
+
+\section{Solving PDEs with Green's Functions}%
+\label{sec:solving_pdes_with_green_s_functions}
+
+\subsection{Diffusion Equation and Fourier Transforms}%
+\label{sub:diffusion_equation_and_fourier_transforms}
+
+Recall the heat equation for a conducting wire:
+\[
+	\frac{\partial \theta}{\partial t}(x, t) - D \frac{\partial^2 \theta}{\partial x^2}(x, t) = 0
+,\]
+with initial conditions $\theta(x, 0) = h(x)$ and boundary conditions $\theta \to 0$ as $x \to \pm \infty$. Take the Fourier transform with respect to $x$, then
+\[
+	\frac{\partial}{\partial t}\tilde \theta(k, t) = - D k^2 \tilde \theta (k, t)
+.\]
+Integrating with respect to $t$, we find
+\[
+	\tilde \theta(k, t) = C e^{-D k^2 t}
+,\]
+with initial conditions $\theta(k, 0) = \tilde h(k)$. Hence, we get
+\[
+	\tilde \theta(k, t) = \tilde h(k) e^{-D k^2 t}
+.\]
+Now $\tilde \theta$ is the product of $\tilde h$ and $e^{-Dk^2t}$, which is a Gaussian, hence using product convolution theorem,
+\begin{align*}
+	\theta(x, t) &= \frac{1}{2\pi} \int_{-\infty}^{\infty} \tilde h(k) e^{-D k^2 t} e^{ikx} \diff k = \frac{1}{\sqrt{4 \pi D t}} \int_{-\infty}^{\infty} h(u) \exp \biggl( - \frac{(x - u)^2}{4 D t} \biggr) \diff u \\
+	&= \int_{-\infty}^{\infty}h(u) S_d(x - u, t) \diff u,
+\end{align*}
+where the \textit{fundamental solution}\index{fundamental solution} is
+\[
+	S_d(x, t) = \frac{1}{\sqrt{4 \pi D t}} e^{-x^2/4Dt}
+.\]
+This is also known as the \textit{diffusion kernel}\index{diffusion kernel} or \textit{source function}\index{source function}. In the case $\theta(x, 0) = \theta_0 \delta(x)$, then
+\[
+	\theta(x, t) = \theta_0 S_d(x, t) = \frac{\theta_0}{\sqrt{4 \pi D t}} e^{- \eta^2}
+,\]
+where $\eta = x/2\sqrt{Dt}$ is the similarity parameter.
+
+\begin{exbox}[Gaussian Pulse]
+	Suppose initially we have
+	\[
+		f(x) = \sqrt{\frac{a}{\pi}} \theta_0 e^{-ax^2}
+	.\]
+	Then this implies
+	\begin{align*}
+		\theta(x, t) &= \frac{\theta_0\sqrt a}{\sqrt{4 \pi^2 D t}} \int_{-\infty}^{\infty} \!\exp \biggl[ - au^2 - \frac{(x - u)^2}{4 D t} \biggr] \diff u \\
+			     &= \frac{\theta_0 \sqrt a}{\sqrt{4 \pi^2 D t}} \int_{-\infty}^{\infty} \!\exp \biggl[ - \frac{(1 + 4 a D t)u^2 - 2 x u + x^2}{4 D t} \biggr] \diff u \\
+			     &= \frac{\theta_0 \sqrt a}{\sqrt{4 \pi^2 D t}} \int_{-\infty}^{\infty} \!\exp \biggl[ - \frac{(1 + 4aDt)}{4Dt} \biggl(u - \frac{x}{1 + 4aDt} \biggr)^2-\frac{ax^2}{1 + 4 a D t} \biggr] \diff u \\
+			     &= \theta_0 \sqrt{\frac{a}{\pi(1 + 4aDt)}} \exp \biggl[ \frac{-ax^2}{1 + 4aDt}\biggr].
+	\end{align*}
+	Here the asymptotic width spreads proportional to $\sqrt t$, and moreover the area is constant (i.e. heat energy is conserved).
+\end{exbox}
+
+\subsection{Forced Diffusion Equation}%
+\label{sub:forced_diffusion_equation}
+
+Consider the diffusion equation with a forcing term,
+\[
+	\frac{\partial \theta}{\partial t}(x, t) - D \frac{\partial^2 \theta}{\partial x^2}(x, t) = f(x, t)
+,\]
+with homogeneous initial conditions $\theta(x, 0) = 0$.
+
+We construct a 2-dimensional Green's function $G(x, t; \xi, \tau)$ such that
+\[
+	\frac{\partial G}{\partial t} - D \frac{\partial^2 G}{\partial x^2} = \delta(x - \xi) \partial(t - \tau)
+,\]
+with $G(x, 0; \xi, \tau) = 0$. Taking the Fourier transform with respect to $x$, we have
+\[
+	\frac{\partial \tilde G}{\partial t} + D k^2 \tilde G = e^{-i k \xi} \delta(t - \tau)
+.\]
+Using the multiplicative factor $e^{Dk^2t}$, we find
+\[
+	\frac{\partial}{\partial t} \bigl[ e^{Dk^2t} \tilde G \bigr] = e^{-ik\xi + Dk^2t} \delta(t - \tau)
+.\]
+Integrating with respect to $t$, using $G = 0$ at $t = 0$,
+\[
+	e^{Dk^2t} \tilde G = e^{-ik \xi} \int_{0}^{t} e^{Dk^2t'}\delta(t' - \tau) \diff t' = e^{-ik\xi} e^{Dk^2\tau}H(t - \tau)
+.\]
+Hence we find that
+\[
+	\tilde G(k, t; \xi, \tau) = H(t - \tau) e^{-ik \xi}e^{-Dk^2(t - \tau)}
+.\]
+inverting, we get the Green's function, letting $x' = x - \xi$ and $t' = t - \tau$,
+\begin{align*}
+	G(x, t;\xi, \tau) &= \frac{H(t - \tau)}{2 \pi} \int_{-\infty}^{\infty} e^{ik(x - \xi)}e^{-Dk^2(t - \tau)}\diff k \\
+			  &= \frac{H(t')}{2 \pi}\int_{-\infty}^{\infty}e^{ikx'}e^{-Dk^2t'} \diff k \\
+			  &= \frac{H(t')}{\sqrt{4 \pi D t'}}e^{-x'^2/4Dt'} \\
+			  &= H(t - \tau) S_d(x - \xi, t - \tau),
+\end{align*}
+where $S_d$ is the fundamental solution. The general solution is then
+\begin{align*}
+	\theta(x, t) &= \int_{0}^{\infty}\int_{-\infty}^{\infty}G(x, t;\xi, \tau) f(\xi, \tau) \diff \xi \diff \tau \\
+		     &= \int_{0}^{t}\int_{-\infty}^{\infty}f(u, \tau) S_d(x - u, t - \tau) \diff u \diff \tau.
+\end{align*}
+This looks very similar to the solution to the initial condition problem, and this is not a coincidence.
+
+This is an example of \textit{Duhamel's principle}\index{Duhamel's principle}, relating the solution of the forced PDE with homogeneous boundary conditions, to solutions of the homogeneous PDE with inhomogeneous boundary conditions. Recall the solution to the homogeneous PDE with initial conditions at $t = \tau$ is
+\[
+	\theta(x, t) = \int_{-\infty}^{\infty}f(u) S_d (x - u, t - \tau) \diff u
+.\]
+So the forcing term at $t = \tau$ acts as an initial condition for subsequence evolution. The integral for the forced PDE is then a superposition over all times $0 < t < \tau$.
+
+\subsection{Forced Wave Equation}%
+\label{sub:forced_wave_equation}
+
+We make the wave equation inhomogeneous. The equation is then
+\[
+	\frac{\partial^2 \phi}{\partial t^2} - c^2 \frac{\partial^2 \phi}{\partial x^2} = f(x, t)
+,\]
+with $\phi(x, 0) = 0$ and $\phi_t(x, 0) = 0$. Construct the Green's solution
+\[
+	\frac{\partial^2 G}{\partial t^2} - c^2 \frac{\partial^2 G}{\partial x^2} = \delta(x - \xi)\partial(t - \tau)
+,\]
+with $G = 0$, $G_t = 0$ at $t = 0$. Taking the Fourier transform,
+\[
+	\frac{\partial^2}{\partial t^2} \tilde G + c^2 k^2 \tilde G = e^{-ik\xi}\delta(t - \tau)
+.\]
+By inspection, we find that
+\[
+\tilde G =
+\begin{cases}
+	0 & t < \tau \\
+	e^{-ik\xi} \frac{\sin kc(t - \tau)}{kc} & t > \tau
+\end{cases} = e^{-ik\xi} \frac{\sin kc(t - \tau)}{kc} H(t - \tau).
+\]
+Inverting the Fourier transform,
+\begin{align*}
+	G(x, t;\xi, \tau) &= \frac{H(t - \tau)}{2\pi c} \int_{-\infty}^{\infty} e^{ik(t - \xi)} \frac{\sin kc(t - \tau)}{k} \diff k \\
+			  &= \frac{H(t - \tau)}{\pi c} \int_{0}^{\infty} \frac{\cos k A \sin k B}{k} \diff k \\
+			  &= \frac{H(t - \tau)}{2 \pi c}\int_{0}^{\infty} \frac{\sin k(A + B) - \sin k(A - B)}{k} \diff k \\
+			  &= \frac{H(t - \tau)}{2 \pi c}[\sgn(A + B) - \sgn(A - B)],
+\end{align*}
+where $A = x - \xi$, $B = c(t - \tau) > 0$. This is only non-zero if $|A| < B$. So the Green's function or \textit{causal fundamental solution}\index{causal fundamental solution} is
+\[
+	G(x, t; \xi, \tau) = \frac{1}{2c}H(c(t - \tau) - |x - \xi|)
+.\]
+The solution is then
+\begin{align*}
+	\phi(x, t) &= \int_{0}^{\infty}\int_{-\infty}^{\infty}f(\xi, t) G(x, t; \xi, \tau) \diff \xi \diff \tau \\
+		   &= \frac{1}{2c} \int_{0}^{t} \int_{x-c(t - \tau)}^{x+c(t + \tau)}f(\xi, \tau) \diff \xi \diff \tau.
+\end{align*}
+
+\subsection{Poisson's Equation}%
+\label{sub:poisson_s_equation}
+
+Now we look at Poisson's equation
+\[
+	\nabla^2 \phi = - \rho(\mathbf{r})
+,\]
+on some domain $D$ with Dirichlet boundary conditions $\phi = 0$ on $\partial D$.
+
+When we look at the fundamental solution, we note that the delta function $\delta(\mathbf{r})$ in $\mathbb{R}^3$ has the following properties.
+
+First, $\delta(\mathbf{r} - \mathbf{r}') = 0$ for all $\mathbf{r} \neq \mathbf{r}'$. Then,
+\[
+	\int_{D}\delta(\mathbf{r} - \mathbf{r}') \Diff3 \mathbf{r} = 
+	\begin{cases}
+		1 & \mathbf{r}' \in D, \\
+		0 & \text{otherwise}.
+	\end{cases}
+\]
+Then, similarly we have
+\[
+	\int_{D}f(\mathbf{r})\delta(\mathbf{r} - \mathbf{r}')\Diff3 \mathbf{r} = f(\mathbf{r}')
+.\]
+The \textit{free-space Green's function}\index{free-space Green's function} is defined to be
+\[
+	\nabla^2 G_{FS}(\mathbf{r}, \mathbf{r}') = \delta(\mathbf{r} - \mathbf{r}')
+,\]
+with homogeneous boundary conditions $G \to 0$ as $r \to \infty$ on $\mathbb{R}^3$. Now this is spherically symmetric, so $G(\mathbf{r}, \mathbf{r}') = G(|\mathbf{r} - \mathbf{r}'|)$. Suppose $\mathbf{r}' = 0$, so $G = G(r)$. Then integrating over a ball $B$ with radius $r$ around $\mathbf{r}' = 0$, then the LHS is
+\[
+\int_{B}\nabla^2 G_{FS} \Diff3 \mathbf{r} = \int_{S} \nabla G_{FS} \cdot \mathbf{n} \diff S = \int_{S} \frac{\partial G_{FS}}{\partial r} r^2 \diff \Omega = 4\pi r^2 \frac{\partial G_{FS}}{\partial r}
+,\]
+by the divergence theorem, and by the RHS,
+\[
+	\int_{B}\delta(\mathbf{r})\Diff3 \mathbf{r} = 1
+.\]
+Hence we have an ODE
+\[
+\frac{\partial G_{FS}}{\partial r} = \frac{1}{4 \pi r^2} \implies G_{FS} = \frac{-1}{4 \pi r} + c
+.\]
+By the homogeneous boundary conditions, $c = 0$. Hence the free-space Green's function is
+\[
+	G(\mathbf{r}, \mathbf{r}') = \frac{-1}{4\pi|\mathbf{r} - \mathbf{r}'|}
+.\]
+
+In two dimensions, we derive
+\[
+	G_2(\mathbf{r}, \mathbf{r}') = - \frac{1}{2\pi} \log(|\mathbf{r} - \mathbf{r}'|) + c_2
+.\] 
+
+\subsection{Green's Identities}%
+\label{sub:green_s_identities}
+
+We consider two scalar functions $\phi, \psi$, twice differentiable on $D$. Then,
+\begin{align*}
+	\int_{D} \nabla \cdot(\phi \nabla \psi) \Diff3 \mathbf{r} &= \int_{D}(\phi \nabla^2 \psi + \nabla \phi \cdot \nabla \psi)\Diff3 \mathbf{r} \\
+								  &= \int_{\partial D} \phi \nabla \psi \cdot \mathbf{n} \diff S,
+\end{align*}
+by the divergence theorem. This is \textit{Green's first identity}\index{Green's identities}. Now, if we switch $\phi$ and $\psi$ and subtract, we get \textit{Green's second identity}
+\[
+	\int_{\partial D} \biggl( \phi \frac{\partial \psi}{\partial n} - \psi \frac{\partial \phi}{\partial n} \biggr) \diff S = \int_{D} (\phi \nabla^2 \psi - \psi \nabla^2 \phi) \Diff3 \mathbf{r}
+.\]
+We want to integrate our Green's function over $D$. To do this, we excise a small spherical ball $B_{\eps}$ about $\mathbf{r}'$, which we may set to be $0$. Take $\phi$ that satisfies the Poisson equation (i.e. $\nabla^2 \phi = - \rho$) and $\psi = G_{FS}(\mathbf{r}, \mathbf{r}')$. Then, the RHS of Green's identity is
+\[
+	\int_{D - B_{\eps}}(\phi \nabla^2 G_{FS} - G_{FS} \nabla^2 \phi) \Diff3 \mathbf{r} = \int_{D - B_{\eps}}G_{FS} \rho \Diff3 \mathbf{r}
+,\]
+and the LHS gives
+\[
+	\int_{\partial D} \biggl( \phi \frac{\partial G_{FS}}{\partial n} - G_{FS} \frac{\partial \phi}{\partial n} \biggr) \diff S + \int_{S_{\eps}} \biggl( \phi \frac{\partial G_{FS}}{\partial n} - G_{FS} \frac{\partial \phi}{\partial n} \biggr) \diff S
+.\]
+The second integral is over a small sphere $S_{\eps}$, so we may take a limit as $\eps \to 0$. Then, it becomes
+\[
+	\biggl( \bar \phi \frac{-1}{4 \pi \eps^2} - \frac{1}{4 \pi \eps} \bar{\frac{\partial \phi}{\partial r}} \biggr) 4 \pi \eps^2
+,\]
+where we put a bar over a variable to indicate its average value. Then, as $\eps \to 0$, this value approaches $- \phi(0)$. Combining these, we get \textit{Green's third identity}
+\[
+	\phi(\mathbf{r}') = \int_{D}G_{FS}(\mathbf{r}, \mathbf{r}')(-\rho(\mathbf{r}))\Diff3 \mathbf{r} + \int_{\partial D} \biggl( \phi(\mathbf{r}) \frac{\partial G_{FS}}{\partial n}(\mathbf{r}, \mathbf{r}') - G_{FS}(\mathbf{r}, \mathbf{r}') \frac{\partial \phi}{\partial n}(\mathbf{r}) \biggr) \diff S
+.\]
+
+\subsection{Dirichlet Green's Function}%
+\label{sub:dirichlet_green_s_function}
+
+We wish to solve $\nabla^2 \phi = - \rho$ on $D$ with inhomogeneous boundary conditions $\phi(\mathbf{r}) = h(\mathbf{r})$ on $\partial D$.
+
+To solve, we introduce the Dirichlet Green's function\index{Dirichlet Green's function}, which satisfies
+\begin{enumerate}[(i)]
+	\item $\nabla^2 G(\mathbf{r}, \mathbf{r}') = 0$ for all $\mathbf{r} \neq \mathbf{r}'$;
+	\item $G(\mathbf{r}, \mathbf{r}') = 0$ on the boundary $\partial D$;
+	\item $G(\mathbf{r}, \mathbf{r}') = G_{FS}(\mathbf{r},\mathbf{r}') + H(\mathbf{r},\mathbf{r}')$ with $\nabla^2 H(\mathbf{r}, \mathbf{r}') = 0$ for all $\mathbf{r} \in D$.
+\end{enumerate}
+
+Using Green's second identity with $\phi$, $H$, we get
+\[
+	\int_{\partial D}\biggl( \phi \frac{\partial H}{\partial n} - H \frac{\partial \phi}{\partial n} \biggr) \diff S = \int_{D} H \rho \Diff3 \mathbf{r}
+.\]
+Now using $G_{FS} = G - H$ in Green's third identity,
+\[
+	\phi(\mathbf{r}') = \int_{D}(G - H)(-\rho)\Diff3 \mathbf{r} + \int_{\partial D} \biggl( \phi \frac{\partial(G - H)}{\partial n} - (G - H) \frac{\partial \phi}{\partial n}\biggr) \diff S
+.\]
+Subtracting the $H$ terms above, we get
+\[
+	\phi(\mathbf{r}') = \int_{D}G(\mathbf{r}, \mathbf{r}')(-\rho(\mathbf{r}))\Diff3 \mathbf{r} + \int_{\partial D}h(\mathbf{r}) \frac{\partial G(\mathbf{r}, \mathbf{r}')}{\partial n}\diff S
+.\]
+
+We can use Green's second identity to show that $G$ is symmetric.
+
+For Neumann boundary conditions, if we specify
+\[
+	\frac{\partial \phi}{\partial n} = k(\mathbf{r}) \text{ on } \partial D
+,\]
+we have
+\[
+	\phi(\mathbf{r}') = \int_{D}G(\mathbf{r},\mathbf{r}')(-\rho(\mathbf{r})) \Diff3 \mathbf{r} + \int_{\partial D}G(\mathbf{r}, \mathbf{r}')(-k(\mathbf{r})) \diff S
+.\]
+
+\subsection{Method of Images}%
+\label{sub:method_of_images}\index{method of images}
+
+For symmetric domains $D$, we can construct Green's functions with $G = 0$ on $\partial D$, by cancelling the boundary potential with an opposite mirror image Green's function placed outside $D$.
+
+\subsubsection{Laplace's equation on the Half-Space}%
+\label{subsub:laplace_s_equation_on_the_half_space}
+
+Suppose we want to solve $\nabla^2 \phi = 0$ on $D = \{(x, y, z) \mid z > 0\}$ with $\phi(x, y, 0) = h(x, y)$, and $\phi \to 0$ as $|\mathbf{r}| \to \infty$. Now, our regular free-space Green's function satisfies $G_{FS}(\mathbf{r}; \mathbf{r}') \to 0$ as $|\mathbf{r}| \to \infty$, but have $G_{FS} \neq 0$ at $z = 0$.
+
+To combat this, for the $G_{FS}$ at $\mathbf{r}' = (x', y', z')$, we subtract the $G_{FS}$ at $\mathbf{r}'' = (x', y', -z')$, so
+\begin{align*}
+	G(\mathbf{r}, \mathbf{r}') &= \frac{-1}{4 \pi|\mathbf{r} - \mathbf{r}'|} - \frac{-1}{4 \pi |\mathbf{r}- \mathbf{r}''|} = 0 \text{ when } z = 0,
+\end{align*}
+so on $\partial D$, $G(\mathbf{r}, \mathbf{r}') = 0$. Now we have
+\begin{align*}
+	\frac{\partial G}{\partial n} \biggr|_{z = 0} &= \frac{\partial G}{\partial z} \biggr|_{z = 0} = -\frac{1}{4\pi} \biggl( \frac{z - z'}{|\mathbf{r}-\mathbf{r}'|^3} - \frac{z + z'}{|\mathbf{r} - \mathbf{r}'|^3} \biggr) \\
+						      &= \frac{z'}{2\pi}((x - x')^2 + (y-y')^2 + z'^2)^{-3/2}.
+\end{align*}
+The solution is then
+\[
+	\Phi(x',y',z') = \frac{z'}{2\pi} \int_{-\infty}^{\infty}\int_{-\infty}^{\infty} ((x-x')^2 + (y-y')^2 + z'^2)^{-3/2} h(x, y) \diff x \diff y
+.\]
+
+\subsubsection{Wave equation on a Semi-infinite Line}%
+\label{subsub:wave_equation_on_a_semi_infinite_line}
+
+Consider $\ddot \phi - c^2 \phi'' = f(x, t)$ for $x > 0$, with Dirichlet boundary conditions $\phi(0, t) = 0$.
+
+We create a matching Green's function with an appropriate sign centred at $x = - \xi$, so
+\[
+	G(x, t; \xi, \tau) = \frac{1}{2c}H(c(t - \tau) - |x - \xi|) - \frac{1}{2c}H(c(t - \tau) - |x + \xi|)
+.\]
+Solving for $f \equiv 0$ and an initial Gaussian pulse, we get
+\[
+	\phi(x, t) = \exp [(x - \xi + ct)^2] - \exp[(-x-\xi+ct)^2]
+.\]
+The solution is a left-travelling wave, which cancels with another image at $t = \xi/c$. This emerges and travels right as the reflected wave.
+
+Hence this can be thought of in two ways:
+\begin{itemize}
+	\item The wave coming from $x < 0$ becoming visible.
+	\item The left-travelling wave reflecting and changing phase by $\pi$.
+\end{itemize}
+
 
 \newpage
 

@@ -148,6 +148,9 @@ There are several equivalent definitions for Markov chains.
 	.\end{align*}
 \end{definition}
 
+\subsection{Simple Markov Property}%
+\label{sub:simple_markov_property}
+
 \begin{theorem}[Simple Markov Property]\index{simple Markov property}
 	Suppose $X$ is $\Mkv(\lambda, P)$ with values in $I$. Let $m \in \mathbb{N}$ and $i \in I$. Then conditional on $X_m = i$, the process $(X_{m+n})_{n \geq 0}$ is $\Mkv(\delta_i, P)$ and it is independent of $X_0, \ldots, X_m$.
 \end{theorem}
@@ -294,6 +297,9 @@ Now we note (ii) iff (iii) as
 	A state $x$ is called absorbing\index{absorbing state} if $\{x\}$ is a closed class. Equivalently, if the Markov chain started from $x$, it would remain at $x$ forever.
 \end{definition}
 
+\subsection{Hitting Probabilities}%
+\label{sub:hitting_probabilities}
+
 \begin{definition}
 	For $A \subset I$, we let $T_A : \Omega \to \mathbb{N} \cup \{\infty\}$. Then we define
 	\[
@@ -364,9 +370,9 @@ Hence $x_i \geq \mathbb{P}_i(T_A \leq n)$, and since the union of these events i
 \subsection{Birth and Death chains}%
 \label{sub:birth_and_death_chains}
 
-The above example is almost a birth and death chain, with equal probability at each $i$. Here, we have $P(0, 0) = 1$, $P(i, i+1) = p_i$, $P(i, i-1) = q_i$.
+The above example is almost a birth and death chain, with equal probability at each $i$. A \textit{birth and death chain}\index{birth and death chain} is a random walk on $\mathbb{Z}_{\geq 0}$, with transition probabilities $P(0, 0) = 1$, $P(i, i+1) = p_i$, $P(i, i-1) = q_i$.
 
-We have $h_i = \mathbb{P}_i(T_0 < \infty)$, $h_0 = 1$. Then
+We look at the hitting probabilities for a birth and death chain. Let $h_i = \mathbb{P}_i(T_0 < \infty)$, $h_0 = 1$. Then,
 \[
 h_i = p_i h_{i+1} + q_i h_{i-1}
 .\]
@@ -374,17 +380,16 @@ This gives
 \[
 	p_i (h_{i+1} - h_i) = q_i(h_{i} - h_{i-1})
 .\]
-We set $u_i = h_i - h_{i-1}$. Then
+If we define $u_i = h_i - h_{i-1}$, then
 \[
 u_{i+1} = \frac{q_i}{p_i} u_i = \cdots = \prod_{k = 1}^{i} \frac{q_k}{p_k}
 ,\]
 with $u_1 = h_1 - 1$. Moreover, we have
 \[
 	h_i = \sum_{j = 1}^{i} (h_{j} - h_{j-1}) + 1 = 1 + \sum_{j = 1}^{i} u_j = 1 + u_1 + \sum_{j = 2}^{i} u_1 \prod_{k = 1}^{j-1} \frac{q_k}{p_k}
-.\]
-Hence
+,\]
 \[
-	h_i = 1 + (h_1 - 1) + (h_1 - 1) \sum_{j = 2}^{i} \prod_{k = 1}^{j-1} \frac{q_k}{p_k}
+	\implies h_i = 1 + (h_1 - 1) + (h_1 - 1) \sum_{j = 2}^{i} \prod_{k = 1}^{j-1} \frac{q_k}{p_k}
 .\]
 We will let
 \[
@@ -396,10 +401,7 @@ where $\lambda_0 = 1$. Then
 .\]
 We want $(h_i)$ to be the minimal non-negative solution, so
 \[
-	(1 - h_1) \leq \frac{1}{\sum_{j = 0}^{\infty} \lambda_j}
-,\]
-and
-\[
+	(1 - h_1) \leq \frac{1}{\sum_{j = 0}^{\infty} \lambda_j}, \qquad
 h_1 = 1 - \frac{1}{\sum_{j = 0}^{\infty} \lambda_j}
 ,\]
 by minimality. Thus if $\sum \lambda_j < \infty$, then
@@ -447,7 +449,7 @@ So $x_i \geq \mathbb{E}_i[T_A] = k_i^{A}$.
 \subsection{Strong Markov Property}%
 \label{sub:strong_markov_property}
 
-We have proven that the past and the future are independent, as the simple Markov property. This says, for $m \in \mathbb{N}$, $i \in I$, and $X \sim \Mkv(\lambda, P0$, that conditional on $X_m = i$, $(X_{n+m})_{n \geq 0}$ is $\Mkv(\delta_i, P)$, and is independent of $X_0, \ldots, X_m$.
+We have proven that the past and the future are independent, as the simple Markov property. This says, for $m \in \mathbb{N}$, $i \in I$, and $X \sim \Mkv(\lambda, P)$, that conditional on $X_m = i$, $(X_{n+m})_{n \geq 0}$ is $\Mkv(\delta_i, P)$, and is independent of $X_0, \ldots, X_m$.
 
 We look to replace the constant $m$ with a random variable.
 
@@ -502,6 +504,8 @@ This proves the Strong Markov property.
 	.\]
 	This gives $h_2 = h_1^2$, so $h_1 = 1/2 +h_1^2/2$ implies $h_1 = 1$.
 \end{exbox}
+
+\newpage
 
 \section{Transience and Recurrence}%
 \label{sec:transience_and_recurrence}
@@ -587,6 +591,9 @@ This finishes the proof.
 \end{enumerate}
 \end{proofbox}
 
+\subsection{Transient and Recurrent Classes}%
+\label{sub:transient_and_recurrent_classes}
+
 \begin{theorem}
 	If $x \leftrightarrow y$, then $x$ and $y$ are either both recurrent or both transient.
 \end{theorem}
@@ -604,7 +611,7 @@ This finishes the proof.
 \end{proofbox}
 
 \begin{corollary}
-	All sates in a communicating class are either all recurrent or all transient.
+	All states in a communicating class are either all recurrent or all transient.
 \end{corollary}
 
 \begin{theorem}
@@ -660,8 +667,8 @@ Suppose that $\mathbb{P}_x(T_y < \infty) < 1$, so $\mathbb{P}_x(T_y = \infty) > 
 This implies $y$ is transient, a contradiction.
 \end{proofbox}
 
-\section{Simple Random Walks on \texorpdfstring{$\mathbb{Z}^{d}$}{Z\^d}}%
-\label{sec:simple_random_walks_on_zd}
+\subsection{Simple Random Walks on \texorpdfstring{$\mathbb{Z}^{d}$}{Z\^d}}%
+\label{sub:simple_random_walks_on_zd}
 
 \begin{definition}
 	A simple random walk\index{simple random walk} on $\mathbb{Z}^{d}$ is a Markov chain with transition matrix
@@ -756,8 +763,13 @@ for some $A$, by Stirling's formula. So $\sum_{m} p_{00}(6m) < \infty$. But now
 So $\sum_{n} p_{00}(2n) < \infty$, giving transience.
 \end{proofbox}
 
+\newpage
+
 \section{Invariant Distributions}%
 \label{sec:invariant_distributions}
+
+\subsection{Probability Distributions}%
+\label{sub:probability_distributions}
 
 \begin{definition}
 	Let $I$ be a discrete set. Then $\lambda = (\lambda_i \mid i \in I)$ is a probability distribution if $\lambda_i \geq 0$ and $\sum_{i \in I}\lambda_i = 1$.\index{probability distribution}
@@ -819,6 +831,9 @@ Hence $\pi(j) = \sum_{i} \pi(i) P(i, j)$, or $\pi = \pi P$, where $\pi$ is a row
 
 	Since $P$ is a stochastic matrix, $1$ is always an eigenvalue. If $P$ is irreducible on a finite state sequence, then the Perron-Frobenius theorem ensures the existence of an invariant distribution.
 \end{remark}
+
+\subsection{Invariant Measures}%
+\label{sub:invariant_measures}
 
 \begin{definition}
 	For $k \in I$, define $T_k = \inf\{n \geq 1 \mid X_n = k\}$ be the first return time to $k$. Then for every state $i$, define
@@ -910,6 +925,9 @@ Thus we are interested in when this sum is finite. Note
 			       &= \mathbb{E}_k[T_k].
 \end{align*}
 So if $\mathbb{E}_k[T_k] < \infty$, then we can normalise.
+
+\subsection{Positive and Null Recurrence}%
+\label{sub:positive_and_null_recurrence}
 
 \begin{definition}
 	For $P$ irreducible and recurrent, let $T_k = \inf\{n \geq 1 \mid X_n = k\}$. Then $P$ recurrent implies $\mathbb{P}_k(T_k < \infty) = 1$.
@@ -1027,6 +1045,9 @@ If $k$ is positive recurrent, then
 	.\]
 \end{proofbox}
 
+\subsection{Detailed Balance Equation}%
+\label{sub:detailed_balance_equation}
+
 \begin{definition}
 	A Markov chain with matrix $P$ and invariant distribution $\pi$ is called \textit{(time) reversible}\index{time reversible} if $\hat P = P$, i.e for all $x, y \in I$,
 	\[
@@ -1084,7 +1105,7 @@ On the other hand, if no solution to the detailed balance equation exists, and t
 	\[
 		\pi(x) \frac{1}{d(x)} = \pi(x) P(x, y) = \pi(y) P(y, x) = \pi(y) \frac{1}{d(y)}
 	.\]
-	Taking $\nu(x) = d(x0$, then $\nu$ is an invariant measure, so
+	Taking $\nu(x) = d(x)$, then $\nu$ is an invariant measure, so
 	\[
 		\pi(x) = \frac{d(x)}{\sum d(y)} = \frac{d(x)}{2|E|}
 	\]
@@ -1146,7 +1167,208 @@ Hence, if this holds, then we can show $P$ has an invariant distribution $\pi$. 
 	So $j$ is aperiodic.
 \end{proofbox}
 
+\subsection{Convergence to Equilibrium Theorem}%
+\label{sub:convergence_to_equilibrium_theorem}
 
+\begin{theorem}
+	Let $P$ be irreducible and aperiodic with invariant distribution $\pi$. Let $X \sim \Mkv(\lambda, P)$. Then for all $y$,
+	\[
+		\mathbb{P}(X_n = y) \to \pi(y) \text{ as } n \to \infty
+	.\]
+	In particular, for all $x$ and $y$,
+	\[
+		P^{n}(x, y) \to \pi(y) \text{ as } n \to \infty
+	,\]
+	by taking $\lambda = \delta_x$.
+\end{theorem}
+
+\begin{proofbox}
+	We couple Markov chains. Let $(Y_n) \sim \Mkv(\pi, P)$, independently of $X$.
+
+	Consider $((X_n, Y_n)) \sim \Mkv(\lambda \pi, \tilde P)$, where
+	\[
+		\tilde P((x, y), (x', y')) = P(x, x') P(y, y')
+	.\]
+	Then we claim $\tilde P$ is irreducible. Indeed, $P$ is irreducible, so there exist $\ell, m$ such that
+	\[
+		P^{\ell}(x, x') >0, \qquad P^{m}(y, y') > 0
+	.\]
+	Then take $n$ sufficiently large such that $P^{n - \ell}(x', x') > 0$ and $P^{n - m}(y', y') > 0$ (by aperiodicity). Then
+	\[
+		\tilde P^{n}((x, y), (x', y')) = P^{n}(x, x') P^{n}(y, y') > 0
+	,\]
+	for all $n$ large enough.
+
+	Notice that $\tilde P$ has invariant distribution $\tilde \pi(x, y) = \pi(x) \pi(y)$. Hence $\tilde P$ is positive recurrent. For $a \in I$, we can define
+	\[
+		T = \inf\{n \geq 1 \mid (X_n, Y_n) = (a, a)\}
+	.\]
+	Then $T$ is a stopping time, and since $\tilde P$ is positive recurrent, $\mathbb{P}(T < \infty) = 1$. Now define
+	\[
+	Z_n =
+	\begin{cases}
+		X_n & n < T, \\
+		Y_n & n \geq T
+	\end{cases}
+	.\]
+	(This is the coupled Markov chain). Then we claim $Z \sim \Mkv(\lambda, P)$. Indeed, $\mathbb{P}(Z_0 = x) = \mathbb{P}(X_0 = x) = \lambda(x)$, since $T \neq 0$, and if we let $A = \{Z_{n+1} = z_{n+1}, \ldots, Z_0 = z_0\}$, then we can write
+	\begin{align*}
+		\mathbb{P}(Z_{n+1} &= y \mid Z_n = x, A) = \mathbb{P}(Z_{n+1} = y, T > n \mid Z_n = x, A) \\
+				   &+ \mathbb{P}(Z_{n+1} = y, T \leq n \mid Z_n = x, A).
+	\end{align*}
+	Now notice that
+	\begin{align*}
+		\mathbb{P}(Z_{n+1} &= y, T > n \mid Z_n = x, A) \\
+				   &= \mathbb{P}(X_{n+1} = y \mid T > n, X_n = x, A) \mathbb{P}(T > n \mid Z_n = x, A) \\
+				   &= P(x, y) \mathbb{P}(T > n \mid Z_n = x, A),
+	\end{align*}
+	by the Strong Markov property. Similarly, we can compute
+	\begin{align*}
+		\mathbb{P}(Z_{n+1} &= y , T \leq n \mid Z_n = x, A) \\
+				   &= P(x, y) \mathbb{P}(T \leq n, Z_n = x, A).
+	\end{align*}
+	Adding these up, we get
+	\[
+		\mathbb{P}(Z_{n+1} = y \mid Z_n = x, A) = P(x, y)
+	,\]
+	so $(Z_n) \sim (X_n)$. Now we want to show that $|\mathbb{P}(X_n = y) - \pi(y)| \to 0$ as $n \to \infty$.
+
+	But $Y$ is stationary, so $\mathbb{P}(Y_n = y) = \pi(y)$, and
+	\begin{align*}
+		|\mathbb{P}(X_n &= y) - \mathbb{P}(Y_n = y)| = |\mathbb{P}(Z_n = y) - \mathbb{P}(Y_n = y)| \\
+				&= |\mathbb{P}(Z_n = y, n < T) + \mathbb{P}(Z_n = y, n \geq T) - \mathbb{P}(Y_n = y)| \\
+				&= |\mathbb{P}(X_n = y, n < T) + \mathbb{P}(Y_n = y, n \geq T) - \mathbb{P}(Y_n = y)| \\
+				&= |\mathbb{P}(X_n = y, n < T) - \mathbb{P}(Y_n = y, n < T)| \leq \mathbb{P}(T > n).
+	\end{align*}
+	By taking $n \to \infty$, we get $\mathbb{P}(T > n) \to 0$, as $\mathbb{P}(T < \infty) = 1$. This gives the required result.
+\end{proofbox}
+
+\begin{theorem}
+	Let $P$ be irreducible and aperiodic. Suppose $P$ is null-recurrent. Then for all $x, y$,
+	\[
+		P^{n}(x, y) \to 0 \text{ as } n \to \infty
+	.\]
+\end{theorem}
+
+\begin{proofbox}
+	Again, consider $\tilde(P(x, y), (x', y')) = P(x, x') P(y, y')$. Then we have shown $\tilde P$ is irreducible.
+
+	We will further show that $\tilde P$ is transient. Indeed,
+	\[
+		\sum_{n} \tilde P^{n}((x, x), (y, y)) = \sum_{n} (P^{n}(x, y))^2 < \infty
+	.\]
+	Moreover $\tilde P$ is recurrent, as before. Now, since $P$ is recurrent,
+	\[
+		\nu_y(z) = \mathbb{E}_y\Biggl[\sum_{i = 1}^{T_y - 1} \mathbbm{1}(X_i = z) \Biggr]
+	\]
+	is an invariant measure. But as $P$ is null-recurrent, $\mathbb{E}_y[T_y] = \infty$, so $\nu_y(I) = \infty$.
+
+	Fix $M \in \mathbb{N}$. Since $\nu_y(I) = \infty$, we can find a finite set $A$ such that $\nu_y(A) > M$. Define
+	\[
+		\mu(x) = \frac{\nu_y(x)}{\nu_y(A)} \mathbbm{1}(x \in A)
+	.\]
+	This is a probability measure which satisfies
+	\[
+		\mu P^{n}(z) = \sum_{x} \mu(x) P^{n}(x, z) \leq \sum_{x} \frac{\nu_y(x)}{\nu_y(A)} P^{n}(x, z) = \frac{\nu_y(z)}{\nu_y(A)}
+	.\]
+	Consider $(X, Y) \sim \mu \times \delta_x$ under $\tilde P$, and $T = \inf\{n \geq 0 \mid (X_n, Y_n) = (x, x)\}$.
+
+	Since $\tilde P$ is recurrent, $\mathbb{P}(T < \infty) = 1$, so again we define
+	\[
+	Z_n =
+	\begin{cases}
+		X_n & n < T, \\
+		Y_n & n \geq T.
+	\end{cases}
+	\]
+	Then $Z_n \sim \Mkv(\mu, P)$, similar to before. We can then see that
+	\[
+		\mathbb{P}(Z_n = y) = \mu P^{n}(y) \leq \frac{\nu_y(y)}{\nu_y(A)} = \frac{1}{\nu_y(A)} < \frac{1}{M}
+	.\]
+	Therefore, we can bound
+	\begin{align*}
+		P^{n}(x, y) &= \mathbb{P}(Y_n = y) = \mathbb{P}(Y_n = y, n < T) + \mathbb{P}(Y_n = y, n \geq T) \\
+			    &\leq \mathbb{P}(T > n) + \mathbb{P}(Z_n = y) < \mathbb{P}(T > n) + \frac{1}{M}
+	\end{align*}
+	Taking $n \to \infty, \mathbb{P}(T > n) \to 0$, so $\lim P^{n}(x, y) < 1/M$. Then taking $M \to 0$, we get the desired result.
+\end{proofbox}
+
+\newpage
+
+\subsection{Ergodic Theorem}%
+\label{sub:ergodic_theorem}
+
+\begin{theorem}\index{ergodic theorem}
+	Let $P$ be irreducible with an invariant distribution $\pi$. Suppose $X_0 \sim \lambda$. Then with probability $1$, we have, for all $x \in I$,
+	\[
+		\lim_{n \to \infty} \frac{\sum_{i = 0}^{n-1} \mathbbm{1}(X_i = x)}{n} \to \pi(x)
+	.\]
+\end{theorem}
+
+\begin{proofbox}
+	Since $P$ has an invariant distribution, it is recurrent and so $T_x < \infty$.
+
+	By the strong Markov property, $(X_{T_x + n}) \sim \Mkv(\delta_x, P)$, independent of $X_0, \ldots, X_{T_x}$. Since the limit is not affected by changing the initial distribution, it suffices to consider $\lambda = \delta_x$.
+
+	Write $\nu_n(x) = \sum_{i = 0}^{n-1} \mathbbm{1}(X_i = x)$, the number of visits to $x$ by time $n-1$, and define the successive return times to $x$ by $T_x^{(0)} = 0$, and
+	\[
+		T_x^{(k+1)} = \inf\{t \geq T_x^{(k)} + 1 \mid X_t = x\}
+	.\]
+	Now, these are stopping times. Define
+	\[
+		S_x^{(k)} =
+		\begin{cases}
+			T_x^{(k)} - T_x^{(k-1)} & \text{if } T_x^{(k-1)} < \infty, \\
+			0 & \text{otherwise}.
+		\end{cases}
+	\]
+	By the strong Markov property, $(S_x^{(k)})$ are iid and have expectation
+	\[
+		\mathbb{E}[S_x^{(1)}] = \mathbb{E}_x[T_x] = \frac{1}{\pi(x)}
+	.\]
+	By definition, we have $T_x^{(\nu_n(x) - 1)} \leq n-1$, and $T_x^{(\nu_n(x))} \geq n$. Using these two inequalities,
+	\begin{align*}
+		S_x^{(1)} + \cdots + S_x^{(\nu_n(x) - 1)} &\leq n-1, \\
+		S_x^{(1)} + \cdots + S_x^{(\nu_n(x))} &\geq n, \\
+		\implies S_x^{(1)} + \cdots + S_x^{(\nu_n(x) - 1)} < n \leq &S_x^{(1)} + \cdots + S_x^{(\nu_n(x))}. \tag{$\ast$}
+	\end{align*}
+	Since $(S_x^{(k)})$ are iid and have finite expectation, by the strong law of large numbers,
+	\[
+		\frac{S_x^{(1)} + \cdots + S_x^{(k)}}{k} \to \mathbb{E}[S_x^{(1)}]
+	,\]
+	with probability 1. By recurrence, $\nu_n(x) \to \infty$ as $n \to \infty$. So, dividing through $(\ast)$ by $(\nu_n(x))$, both the left hand side and right hand side converge to $\mathbb{E}[S_x^{(1)}] = \frac{1}{\pi(x)}$, and hence
+	\[
+		\lim_{n \to \infty} \frac{n}{\nu_n(x)} \to \frac{1}{\pi(x)}, \implies \lim_{n \to \infty} \frac{\nu_n(x)}{n} = \pi(x)
+	.\]
+\end{proofbox}
+
+\newpage
+
+\section{Continuous Time Markov Chains}%
+\label{sec:continuous_time_markov_chains}
+
+We look at Markov chains $(X_t)$, for $t \in \mathbb{R}_{+}$. Let $S_x$ be the holding time at the state $x$. Then, using the Markov property,
+\begin{align*}
+	\mathbb{P}(S_x &> t + s \mid S_x > s) = \mathbb{P}(X_u = x \;\forall u \in [0, t+s] \mid X_u = x \; \forall u \in [o, s]) \\
+		       &= \mathbb{P}(X_u = x \; \forall u \in [s, t+s] \mid X_u = x \; \forall u \in [0, s]) \\
+		       &=\mathbb{P}(X_u = x \; \forall u \in [s, t+s] \mid X_s = x) \\
+		       &= \mathbb{P}_x(X_u = x \; \forall u \in [0, t]) = \mathbb{P}(S_x > t).
+\end{align*}
+
+So $S_x$ has the probability $\mathbb{P}(S_x > t + s \mid S_x > s) = \mathbb{P}(S_x > t)$, for all $s, t$. So $S_x$ has the memoryless property, which implies $S$ has the exponential distribution with some parameter.
+
+Hence we can think of a continuous time Markov chain as a discrete Markov chain, with exponential holding time.
+
+\subsection{Poisson process}%
+\label{sub:poisson_process}\index{Poisson process}
+
+Suppose $S_1, S_2, \ldots$ are iid with distribution $\mathrm{Exp}(\lambda)$. Then, let $J_i = \sum_{j = 1}^{i} S_j$. We can then define
+\[
+	X_t = i \text{ if } J_i \leq t < J_{i+1}
+.\]
+We can think of the Poisson process as $X = (J_i)_{i}$.
+
+Then, in any interval, the number of arrivals follows a Poisson distribution, hence the name.
 
 \newpage
 

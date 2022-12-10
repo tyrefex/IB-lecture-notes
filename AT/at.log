@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2022.11.4)  14 NOV 2022 00:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2022.11.4)  10 DEC 2022 15:55
 entering extended mode
 **./at.tex
 (at.tex
@@ -1070,7 +1070,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip72
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 87.
+Package hyperref Info: Option `colorlinks' set `true' on input line 88.
 \c@tcb@cnt@exbox=\count354
 )
 \at@idxfile=\write6
@@ -1244,30 +1244,29 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
  [1] [2] [3] [4]
 [5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19] [20]
 [21] [22] [23] [24] [25] [26] [27] [28] [29] [30] [31] [32] [33] [34] [35]
-
-LaTeX Warning: Command \i invalid in math mode on input line 1306.
-
 [36] [37] [38] [39] [40] [41] [42] [43] [44] [45] [46] [47] [48] [49] [50]
+[51] [52] [53] [54] [55] [56] [57] [58] [59] [60] [61] [62] [63] [64] [65]
+[66] [67] [68] [69] [70] [71] [72] [73] [74] [75] [76] [77]
 runsystem(makeindex at.idx)...executed (allowed).
 
+ (at.ind [78
 
-(at.ind) [51
-
-] (at.aux)
+])
+[79] (at.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `at.out' has not changed.
-(rerunfilecheck)             Checksum: 684C6F27B5C82E50AAFF6DD6369911BD;3234.
+(rerunfilecheck)             Checksum: 33BC73266FB0A37C6408DFBFDCCDBE1A;4545.
  ) 
 Here is how much of TeX's memory you used:
- 42888 strings out of 479334
- 971687 string characters out of 2866960
- 1445408 words of memory out of 3000000
- 59089 multiletter control sequences out of 15000+200000
- 421476 words of font info for 180 fonts, out of 3000000 for 9000
+ 43062 strings out of 479334
+ 973819 string characters out of 2866960
+ 1446073 words of memory out of 3000000
+ 59147 multiletter control sequences out of 15000+200000
+ 422475 words of font info for 191 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,15n,130p,1001b,1291s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 128i,17n,130p,1001b,1291s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX/fonts/enc/dvips/cm-super/cm-super-ts1.enc}<C:/Progra
 m Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKT
 eX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX/fonts/typ
@@ -1283,9 +1282,9 @@ ogram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/M
 iKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files/MiKTeX/fonts/
 type1/public/amsfonts/symbols/msbm10.pfb><C:/Program Files/MiKTeX/fonts/type1/p
 ublic/cm-super/sfrm1200.pfb>
-Output written on at.pdf (52 pages, 473696 bytes).
+Output written on at.pdf (80 pages, 610989 bytes).
 PDF statistics:
- 780 PDF objects out of 1000 (max. 8388607)
- 292 named destinations out of 1000 (max. 500000)
- 33093 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 1030 PDF objects out of 1200 (max. 8388607)
+ 386 named destinations out of 1000 (max. 500000)
+ 33149 words of extra memory for PDF output out of 35830 (max. 10000000)
 

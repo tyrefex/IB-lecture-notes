@@ -688,7 +688,7 @@ The time-independent Schr\"{o}dinger equation is the equation for $\chi(x)$:
 \[
 	\hat H \chi(x) = E \chi(x) \iff - \frac{\hbar^2}{2m} \frac{\partial^2 \chi(x)}{\partial x^2} + U(x) \chi(x) = E \chi(x)
 .\]
-Note that the time-independent Schr\"{o}dinger equation is an eigenvalue equation for the $\hat H$ operator, and the eigenvalues of $\hat hH$ are all possible outcomes for the measurement of the energy of the state $\psi$.
+Note that the time-independent Schr\"{o}dinger equation is an eigenvalue equation for the $\hat H$ operator (Hamiltonian)\index{Hamiltonian}, and the eigenvalues of $\hat H$ are all possible outcomes for the measurement of the energy of the state $\psi$.
 
 \subsection{Stationary states}%
 \label{sub:stationary_states}
@@ -870,7 +870,7 @@ with $T = 2\pi/\omega$ being the period. In quantum mechanics, we have the Schr\
 
 We expect to have a discrete set of eigenvalues, with either even or odd eigenfunctions. Defining the variables
 \[
-\\xi^2 = \frac{m \omega}{\hbar} x^2, \quad \eps = \frac{2E}{\hbar \omega}
+\xi^2 = \frac{m \omega}{\hbar} x^2, \quad \eps = \frac{2E}{\hbar \omega}
 ,\]
 under a change of variables, our equation becomes
 \[
@@ -1038,7 +1038,7 @@ and probability density
 ,\]
 representing the constant average density of particles. We can compute the probability current as
 \begin{align*}
-	j_k(x, t) &= -\frac{i\hbar}{2m} \biggl( \psi_k^{\ast} \frac{\partial \psi_k}{\partial x} - \psi_k \frac{\partial \psi^{\ast}_k}{\partial x} \\
+	j_k(x, t) &= -\frac{i\hbar}{2m} \biggl( \psi_k^{\ast} \frac{\partial \psi_k}{\partial x} - \psi_k \frac{\partial \psi^{\ast}_k}{\partial x} \biggr) \\
 		  &= |A|^2 \frac{\hbar k}{m} = |A|^2 \frac{p}{m},
 \end{align*}
 the average flux of particles.
@@ -1056,7 +1056,7 @@ Suppose we have a free particle, thrown at a potential barrier, between $0$ and 
 
 	Similarly, the probability that the particle is transmitted is given by the transmission coefficient\index{transmission coefficient}
 	\[
-		T = \lim_{t \to \infty} \int_{0}^{\infty} |\psi_GP(x, t)|^2\diff x
+		T = \lim_{t \to \infty} \int_{0}^{\infty} |\psi_{GP}(x, t)|^2\diff x
 	.\]
 	From construction, $R + T = 1$.
 \end{definition}
@@ -1329,9 +1329,560 @@ This is the Schwarz inequality.
 	Dropping the anti-commutator term and taking the square roots gives our result.
 \end{proofbox}
 
+\subsubsection{Consequences of the Uncertainty Theorem}%
+\label{subsub:consequences_of_the_uncertainty_theorem}
 
+We have shown that $[ \hat A, \hat B] = 0 \iff$ we can simultaneously diagonalize $A$ and $B$. But this is if and only if $A$ and $B$ can be measured simultaneously to arbitrary precision on a given state.
 
+Moreover, if we take $\hat A = \hat x$, $\hat B = \hat p$, then what we recover is \textit{Heisenberg's Uncertainty principle}\index{Heisengberg's uncertainty principle}
+\[
+	(\Delta_{\psi} x)(\Delta_{\psi} p) \geq \frac{\hbar}{2}
+.\]
+Note if $\psi = \psi_{GP}$, then at $t = 0$, we have equality in the above. This is due to the following two lemmas:
 
+\begin{lemma}
+	$\psi$ is a state of minimal uncertainty if and only if $\hat x \psi = ia \hat p \psi$, for $a \in \mathbb{R}$.
+\end{lemma}
+
+From this, we can deduce the following:
+
+\begin{lemma}
+	Minimal uncertainty occurs if and only if
+	\[
+		\psi(x) = C e^{-kx^2}
+	,\]
+	for $c \in \mathbb{C}$, and $k \in \mathbb{R}^{+}$.
+\end{lemma}
+
+\subsection{Ehrenfest Theorem}%
+\label{sub:ehrenfest_theorem}
+
+We look at the Ehrenfest theorem, which tells us the evolution of the operators over time.
+
+\begin{theorem}[Ehrenfest theorem]\index{Ehrenfest theorem}
+	The expectation value of a Hermitian operator $\hat A$ evolves according to
+	\[
+		\frac{\diff}{\diff t} \langle \hat A \rangle_{\psi} = \frac{i}{\hbar} \langle [\hat H, \hat A ] \rangle_{\psi} + \langle \frac{\partial \hat A}{\partial t} \rangle_{\psi}
+	.\]
+\end{theorem}
+
+\begin{proofbox}
+	We will integrate over parts:
+	\begin{align*}
+		\frac{\diff}{\diff t} \langle \hat A \rangle_{\psi} &= \frac{\diff}{\diff t} \int_{-\infty}^{\infty} \psi^{\ast} \hat A \psi \diff x = \int_{-\infty}^{\infty} \frac{\partial}{\partial t} (\psi^{\ast} \hat A \psi) \diff x \\
+							   &= \int_{-\infty}^{\infty} \biggl( \frac{\partial \psi^{\ast}}{\partial t} \hat A \psi + \psi^{\ast} \frac{\partial \hat A}{\partial t} \psi + \psi^{\ast} \hat A \frac{\partial \psi}{\partial t} \biggr) \diff x \\
+							   &= \frac{i}{\hbar} \int_{-\infty}^{\infty} \psi^{\ast} (\hat H \hat A - \hat A \hat H)\psi \diff x + \langle \frac{\partial \hat A}{\partial t} \rangle_{\psi} \\
+							   &= \frac{i}{\hbar} \langle [\hat H, \hat A]\rangle_{\psi} + \langle \frac{\partial \hat A}{\partial t} \rangle_{\psi}
+	\end{align*}
+\end{proofbox}
+
+\begin{exbox}
+	\begin{enumerate}[1.]
+		\item If we take $\hat A = \hat H$, then $[\hat H, \hat H] = 0$ and since $\hat H$ doesn't depend on time,
+			\[
+				\frac{\diff}{\diff t} \langle \hat H \rangle_{\psi} = 0
+			.\]
+		\item Take $\hat A = \hat p$. Then,
+			\begin{align*}
+				[\hat H, \hat p]\psi &= \biggl[ \frac{\hat p^2}{2m} + U(\hat x), \hat p \biggr] \psi = [U(\hat x), \hat p] \psi \\
+						     &= U(x) \biggl( - i \hbar \frac{\partial}{\partial x}\biggr) \psi(x, t) - \biggl( - i \hbar \frac{\partial}{\partial x}\biggr) (U(x)\psi(x, t)) \\
+						     &= - i \hbar U(x) \frac{\partial \psi}{\partial x}(x, t) + i \hbar U(x) \frac{\partial \psi}{\partial x}(x, t) + i \hbar \frac{\partial U}{\partial x}\psi(x, t) \\
+						     &= i \hbar \frac{\partial U}{\partial x} \psi(x, t).
+			\end{align*}
+			Hence we get
+			\[
+				\frac{\diff \langle \hat p \rangle_{\psi}}{\diff t} = \frac{i}{\hbar} \langle [\hat H, \hat p] \rangle_{\psi} = - \langle \frac{\partial U}{\partial X} \rangle_{\psi}
+			.\]
+			This is the quantum mechanics equivalent of Newton's second law.
+		\item If we let $\hat A = \hat x$, then
+			\begin{align*}
+				[\hat H, \hat x] &= \biggl[ \frac{\hat p^2}{2m} + U(\hat x), \hat x\biggr] = \frac{1}{2m} [\hat p^2, \hat x] \\
+						 &= \frac{1}{2m} (\hat p[\hat p, \hat x] + [\hat p, \hat x]\hat p) \\
+						 &= - \frac{i \hbar}{m} \hat p.
+			\end{align*}
+			So this gives
+			\[
+				\frac{\diff \langle \hat x \rangle_{\psi}}{\diff t}= \frac{i}{t} \langle [\hat H, \hat x[ \rangle_{\psi} = \frac{\langle \hat p \rangle_{\psi}}{m}
+			,\]
+			which is the quantum mechanics reformulation of $p = mv$, i.e. momentum is velocity times mass.
+	\end{enumerate}
+\end{exbox}
+
+\subsection{Harmonic Oscillator Revisited}%
+\label{sub:harmonic_oscillator_revisited}
+
+Remember the Hamiltonian of the harmonic oscillator is
+\[
+\hat H = \frac{\hat p^2}{2m} + \frac{1}{2} m \omega^2 \hat x^2
+,\]
+where $k = m \omega^2$ is the elastic function. To find the eigenvalues and eigenfunctions of $\hat H$, we rewrite
+\begin{align*}
+	\hat H &= \frac{1}{2m} (\hat p + i m \omega \hat x)(\hat p - i m \omega \hat x) + \frac{i \omega}{2} [\hat p, \hat x] \\
+	&= \frac{1}{2m}(\hat p + i m \omega \hat x)(\hat p - i m \omega \hat x) + \frac{\hbar \omega}{2} \hat I
+\end{align*}
+
+\begin{definition}
+	We define the linear operators
+	\[
+		\hat a = \frac{1}{\sqrt{2m}}(\hat p - i m \omega \hat x), \qquad \hat a^{\dagger} = \frac{1}{\sqrt{2m}} (\hat p + i m \omega \hat x)
+	.\]
+	Then we can rewrite the Hamiltonian as
+	\[
+	\hat H = \hat a^{\dagger}\hat a + \frac{\hbar \omega}{2} \hat I
+	.\]
+\end{definition}
+
+We can compute the value
+\begin{align*}
+	[\hat a, \hat a^{\dagger}] &= \frac{1}{2m} [\hat p - i m \omega \hat x, \hat p + i m \omega \hat x] \\
+				   &= - \frac{i m \omega}{2m} [\hat x, \hat p] + \frac{i m \omega}{2m}[\hat p, \hat x] \\
+				   &= \hbar \omega \hat I.
+\end{align*}
+
+This lets us compute
+\begin{align*}
+	[\hat H, \hat a] &= [\hat a^{\dagger} \hat a, \hat a] = - \hbar \omega \hat a, \\
+	[\hat H, \hat a^{\dagger}] &= \hbar \omega \hat a^{\dagger}.
+\end{align*}
+
+Suppose $\chi$ is an eigenfunction of $\hat H$ with eigenvalue $E$. We consider the energy of $(\hat a \chi)$:
+\begin{align*}
+	\hat H(\hat a \chi) &= [\hat H, \hat a]\chi + \hat a \hat H \chi = - \hbar \omega \hat a \chi + E \hat a \chi \\
+			    &= (E - \hbar \omega)\hat a \chi,
+\end{align*}
+so $(\hat a \chi)$ is an eigenfunction of $\hat H$ with eigenvalue $(E - \hbar \omega)$, and similarly $(\hat a^{\dagger} \chi)$ is an eigenfunction of $\hat H$ with eigenvalue $(E + \hbar \omega)$.
+
+By induction, we can prove that $(\hat a^{n} \chi)$ is an eigenfunction with eigenvalue $(E - n \hbar \omega)$, and $( \hat{a}^{\dagger n} \chi)$ is an eigenfunction with eigenvalue $(E + n \hbar \omega)$.
+
+Using the fact that the energies are non-zero, there exist an eigenfunction $\chi_0$ such that $\hat a \chi_0 = 0$. Finding $\chi_0$,
+\begin{align*}
+	\frac{1}{\sqrt{2m}} (\hat p - i m \omega \hat x) \chi_0 = 0, \\
+	- i \hbar \frac{\partial \chi_0}{\partial x} - i m \omega x \chi_0 = 0, \\
+	\chi_0(x) = C e^{-m\omega x^2/2\hbar},
+\end{align*}
+which is a Gaussian. The excited states with $E > E_0$ are the given by
+\begin{align*}
+	\chi_n &= (a^{\dagger})^{n} \chi_0 = \frac{1}{(\sqrt{2m})^{n}} (\hat p + i m \omega \hat x)^{n} \chi_0 \\
+	       &= \frac{C}{(\sqrt{2m})^{n}}\biggl(- i \hbar \frac{\partial}{\partial x} + i m \omega x \biggr)^{n} e^{-m \omega^2/2\hbar},
+\end{align*}
+with eigenvalues
+\[
+	E_n = \frac{\hbar \omega}{2} + n \hbar \omega = \biggl(n + \frac{1}{2} \biggr)\hbar \omega
+.\]
+
+\newpage
+
+\section{3D Solutions of the Schr\"{o}dinger Equation}%
+\label{sec:3d_solutions_of_the_schr"_o_dinger_equation}
+
+\subsection{TISE for Spherically Symmetric Potentials}%
+\label{sub:tise_for_spherically_symmetric_potentials}
+
+In three dimensions, the TISE is
+\[
+	- \frac{\hbar^2}{2m} \nabla^2 \chi(\mathbf{x}) + U(\mathbf{x}) \chi(\mathbf{x}) = E \chi(\mathbf{x})
+.\]
+Here, we have replaced the double derivative with the Laplacian operator $\nabla^2$.
+\begin{itemize}
+	\item In Cartesian coordinates $(x, y, z)$, the Laplacian\index{Laplacian} is
+		\[
+		\nabla^2 = \frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2} + \frac{\partial^2}{\partial z^2}
+		.\]
+	\item In spherical coordinates $(r, \theta, \phi)$, we have
+		\[
+			\nabla^2 = \frac{1}{r} \frac{\partial^2}{\partial r^2} r + \frac{1}{r^2 \sin^2 \theta} \biggl[ \sin \theta \frac{\partial}{\partial \theta} \biggl( \sin \theta \frac{\partial}{\partial \theta} \biggr) + \frac{\partial^2}{\partial \phi^2} \biggr]
+		.\]
+\end{itemize}
+
+\begin{definition}
+	A spherically symmetric potential\index{spherically symmetric potential} satisfies
+	\[
+		U(\mathbf{x}) = U(r, \theta, \phi) = U(r)
+	.\]
+\end{definition}
+
+We start by looking at even, spherically symmetric stationary states $\chi(r, \theta, \phi) = \chi(r)$. The TISE becomes
+\[
+	- \frac{\hbar^2}{2mr} \frac{\Diff2}{\diff r^2} (r\chi(r)) + U(r) \chi(r) = E \chi(r)
+,\]
+which we can write as
+\[
+	-\frac{\hbar^2}{2m} \biggl( \frac{\Diff2 \chi}{\diff r^2} + \frac{2}{r} \frac{\diff \chi}{\diff r} \biggr) + U(r) \chi = E \chi
+.\]
+The normalisation condition for $\chi$ says
+\[
+	\int_{\mathbb{R}^3}|\chi(r, \theta, \phi)|^2 \diff V < \infty \iff \int_{0}^{\infty} |\chi(r)|^2r^2 \diff r < \infty
+.\]
+Hence the eigenfunction $\chi(r)$ must go to $0$ sufficiently fast as $r \to \infty$, and behave well at $r \to 0$.
+
+We can solve the TISE by defining $\sigma(r) = r \chi(r)$. Then, in terms of $\sigma$, the TISE becomes
+\[
+	- \frac{\hbar^2}{2m} \frac{\Diff2 \sigma}{\diff r^2} + U(r) \sigma = E \sigma
+.\]
+This is just the one-dimensional TISE, defined only on $\mathbb{R}^{+}$, and with the usual normalisation conditions
+\[
+	\int_{0}^{\infty}|\sigma(r)|^2\diff r < \infty
+.\]
+If $\chi$ is to be defined, we must have $\sigma(0) = 0$ and $\sigma'(0)$ finite. Indeed, if $\sigma(r) \sim a \neq 0$ as $r \to 0$, then $\hat H$ is not Hermitian.
+
+\begin{proofbox}
+	For $\hat H$ to be Hermitian, we need $(\phi, \hat H \chi) = (\hat H \phi, \chi)$. This is
+	\begin{align*}
+		(\phi, \hat H \chi) &= \int_{0}^{\infty} r^2 \phi(r) \hat H \chi(r) \diff r = - \frac{\hbar^2}{2m} \int_{0}^{\infty} \phi \frac{\diff}{\diff r} \biggl( r^2 \frac{\diff \chi}{\diff r} \biggr) \diff r \\
+				    &= - \frac{\hbar^2}{2m} \biggl[ r^2 \phi \frac{\diff \chi}{\diff r} - r^2 \chi \frac{\diff \phi}{\diff r} \biggr] - \frac{\hbar^2}{2m} \int_{0}^{\infty} \frac{\diff}{\diff r} \biggl(r^2 \frac{\diff \phi}{\diff r} \biggr) \chi \diff r.
+	\end{align*}
+	Note the last term is simply $(\hat H \phi, \chi)$. Now if $\phi(r) \sim B \neq 0$ as $r \to 0$, then $\chi(r) \sim \frac{A}{r}$ with $A \neq 0$. So,
+	\[
+	r^2 \phi \frac{\diff \chi}{\diff r} - r^2 \chi \frac{\diff \phi}{\diff r} \not \to 0
+	,\]
+	as $r \to 0$.
+\end{proofbox}
+
+Then, we can solve over the entirety of $\mathbb{R}$ by letting $U(-r) = U(r)$, and look for odd solutions to the TISE.
+
+\begin{exbox}
+	Take the spherically symmetric potential well
+	\[
+		U(r) =
+		\begin{cases}
+			0 & r \leq a, \\
+			U_0 & r > a,
+		\end{cases}
+	\]
+	where $a, U_0$ are positive. We solve for odd $\sigma$:
+	\[
+		-\frac{\hbar^2}{2m} \frac{\Diff2 \sigma}{\diff r^2} + U(r) \sigma = E \sigma
+	.\]
+	We look for odd parity bound states with $0 \leq E \leq U_0$. Then, letting
+	\[
+		k = \sqrt{\frac{2mE}{\hbar^2}}, \qquad \bar k = \sqrt{\frac{2m(U_0 - E)}{\hbar^2}}
+	,\]
+	we find odd solutions
+	\[
+		\sigma(r) =
+		\begin{cases}
+			A \sin (kr) & |r| \leq a, \\
+			B e^{-\bar k r} & r > a, \\
+			-B e^{\bar k r} & r < -a.
+		\end{cases}
+	\]
+	The boundary conditions imply continuity of $\sigma(r)$ and $\sigma'(r)$ at $r = a$, so
+	\[
+	\begin{cases}
+		A \sin ka = B e^{-\bar k a}, \\
+		k A \cos ka = -\bar k B e^{-\bar k a}.
+	\end{cases}
+	\]
+	This gives two equations
+	\[
+		- k \cot (ka) = \bar k, \qquad k^2 + \bar k^2 = \frac{2mU_0}{\hbar^2}
+	.\]
+	Substituting $\zeta = ka$, $\eta = \bar k a$, we get $\eta = - \zeta \cot \zeta$ and $\eta^2 + \zeta^2 = r_0^2$. (insert picture)
+
+	Now if $r_0 < \frac{\pi}{2}$, then there are no solutions.
+\end{exbox}
+
+Compared to the same equation in one-dimension, there are two differences:
+\begin{enumerate}[1.]
+	\item Below a given threshold for $U_0$, there are no bound states in three dimensions.
+	\item Our solution looks like
+		\[
+			\chi(r) =
+			\begin{cases}
+				a \frac{\sin (kr)}{r} & r < a, \\
+				B \frac{e^{-\bar k r}}{r} & r \geq a.
+			\end{cases}
+		\]
+\end{enumerate}
+
+\subsection{Angular Momentum}%
+\label{sub:angular_momentum}
+
+In classical mechanics, we have an important quantity $\mathbf{L} = \mathbf{x} \times \mathbf{p}$, the \textit{angular momentum}\index{angular momentum}. This is conserved for spherically symmetric potentials, as
+\[
+\frac{\diff \mathbf{L}}{\diff t} = \mathbf{\dot x} \times \mathbf{p} + \mathbf{x} \times \mathbf{\dot p} = 0
+.\]
+This has important corollaries: in dynamics and relativity, we saw the conservation of angular momentum could take a three-dimensional problem (the two-body problem), to a one-dimensional problem.
+
+\begin{definition}
+	The \textit{angular momentum operator}\index{angular momentum operator} is defined by
+	\[
+	\mathbf{\hat L} = \mathbf{\hat x} \times \mathbf{\hat p} = -i\hbar \mathbf{x} \times \nabla
+	.\]
+	In Cartesian coordinates, this can be expressed as
+	\[
+	\hat L_i = \eps_{ijk} \hat x_j \hat p_k = -i\hbar \eps_{ijk}x_j \frac{\partial}{\partial x_k}
+	.\]
+\end{definition}
+
+Then $\hat L_i$ satisfies the following properties:
+\begin{itemize}
+	\item $\hat L_i$ is Hermitian.
+	\item $[\hat L_i, \hat L_j] \neq 0$ for $i \neq j$. Hence, different components of $\mathbf{L}$ cannot be determined simultaneously. In fact, we can prove
+		\[
+			[\hat L_i, \hat L_j] = i \hbar \eps_{ijk} \hat L_k
+		.\]
+\end{itemize}
+
+\begin{proofbox}
+	\begin{align*}
+		[\hat L_1, \hat L_2]\chi(\mathbf{x}) &= - \hbar^2 \biggl[ \biggl( x_2 \frac{\partial}{\partial x_3} - x_3 \frac{\partial}{\partial x_2} \biggr) \biggl( x_3 \frac{\partial}{\partial x_1} - x_1 \frac{\partial}{\partial x_3} \biggr) \\
+						     & \quad - \biggl( x_3 \frac{\partial}{\partial x_1} - x_1 \frac{\partial}{\partial x_3} \biggr) \biggl( x_2 \frac{\partial}{\partial x_3} - x_3 \frac{\partial}{\partial x_2} \biggr) \biggr] \chi(\mathbf{x}) \\
+						     &= - \hbar^2 \biggl(x_2 \frac{\partial}{\partial x_1} - x_1 \frac{\partial}{\partial x_2} \biggr) \chi(\mathbf{x}) \\
+						     &= i \hbar \hat L_3 \chi(\mathbf{x}).
+	\end{align*}
+\end{proofbox}
+
+\begin{definition}
+	We define the \textit{total angular momentum operator}\index{total angular momentum operator} $\hat L^2$ as
+	\[
+	\hat L^2 = \hat L_1^2 + \hat L_2^2 + \hat L_3^2
+	.\]
+\end{definition}
+
+The total angular momentum satisfies the following properties:
+\begin{itemize}
+	\item $[\hat L^2, \hat L_1] = 0$.
+	\item For $U(r)$, $[\hat L^2, \hat H] = [\hat L_i, \hat H] = 0$.
+\end{itemize}
+
+\begin{proofbox}
+	\begin{align*}
+		[\hat L_i, \hat x_j] &= [\eps_{imn}\hat x_m \hat p_n, \hat x_j] = \eps_{imn} [\hat x_m \hat p_n, \hat x_j] \\
+				     &= \eps_{imn}(\hat x_m \underbrace{[\hat p_n, \hat x_j]}_{-i\hbar\delta_{nj}} + \underbrace{[\hat x_m, \hat x_j]}_{0} \hat p_n) \\
+				     &= - i \hbar \eps_{imj} \hat x_m = i \hbar \eps_{ijm}\hat x_m, \\
+		[\hat L_i, \hat x_j^2] &= [\hat L_i, \hat x_j] \hat x_j + \hat x_j [\hat L_i, \hat x_j] \\
+				       &= i \hbar \eps_{ijm}(\hat x_m \hat x_j + \hat x_j \hat x_m) = 0.
+	\end{align*}
+	This prove that $[\hat L_i, U(r)] = 0$, as $U(r)$ is simply $U(\sqrt{\hat x_1^2 + \hat x_2^2 + \hat x_3^2})$. Similarly, we can prove
+	\begin{align*}
+		[\hat L_i, \hat p_j] &= i \hbar \eps_{ijm} \hat p_m, \\
+		[\hat L-i, \hat p^2] &= 0, \\
+		\implies [\hat L_i, \hat H] &= 0, \\
+		[\hat L^2, \hat H] &= 0.
+	\end{align*}
+\end{proofbox}
+
+We have the following observations:
+\begin{enumerate}[1.]
+	\item We can find joint eigenstates of the three operators $\{\hat H, \hat L^2, \hat L_i\}$ which form a basis of $\mathcal{H}$.
+	\item The eigenvalues of the three operators can be simultaneously measured at an arbitrary precision.
+	\item This set of operators is \textit{maximal}\index{maximal}, meaning we cannot construct another operator (other than $\hat I$) that commutes with all three.
+\end{enumerate}
+
+To find joint eigenfunction of, say $\hat L^2$ and $\hat L_3$, we can write $\mathbf{\hat L}$ is spherical coordinates:
+\begin{align*}
+	\hat L_3 &= - i \hbar \frac{\partial}{\partial \phi}, \\
+	\hat L^2 &= - \frac{\hbar^2}{\sin^2 \theta} \bigg[ \sin \theta \frac{\partial}{\partial \theta} \biggl( \sin \theta \frac{\partial}{\partial \theta} \biggr) + \frac{\partial^2}{\partial \phi^2} \biggr].
+\end{align*}
+Now, we look for joint eigenfunctions $Y(\theta, \phi) = y(\theta) X(\phi)$. Then, as it is an eigenfunction of $\hat L_3$,
+\begin{align*}
+	- i \hbar \biggl( \frac{\partial}{\partial \phi} X(\phi) \biggr) y(\theta) &= \hbar m X(\phi) y (\theta), \\
+	\implies X(\phi) &= e^{i m \phi}.
+\end{align*}
+As the wave-function is single-valued in $\mathbb{R}^3$, $X(\phi)$ must be invariant under $\phi \to \phi + 2\pi$. Hence, $m \in \mathbb{Z}$. Now, as $y(\theta)e^{im\phi}$ is an eigenfunction of $\hat L^2$, we find
+\begin{align*}
+	\frac{1}{\sin \theta}\frac{\partial}{\partial \theta} \biggl( \sin \theta \frac{\partial y}{\partial \theta} \biggr) - \frac{m^2}{\sin^2 \theta}y = - \frac{\lambda}{\hbar^2} y.
+\end{align*}
+This is the associated Legendre equation, and it has solution
+\[
+	y(\theta) = P_{l, m}(\cos \theta) = (\sin \theta)^{|m|}\frac{\Diff{|m|}}{\diff (\cos \theta)^{|m|}} P_l(\cos \theta)
+.\]
+Because $P_l(\cos \theta)$ is a polynomial is $\cos \theta$ of degree $l$, we need $-l \leq m \leq l$. This gives eigenvalues $\lambda = \hbar^2 l(l+1)$.
+
+Combining these, the joint eigenfunctions are
+\[
+	Y_{l,m}(\theta, \phi) = P_{l, m}(\cos \theta) e^{i m \phi}
+.\]
+Then the eigenvalue of $\hat L^2$ is $\hbar^2 l(l+1)$, and the eigenvalue of $\hat L_3$ is $m \hbar$.
+
+Here, $l$ and $m$ are quantum numbers that characterise the total angular momentum (as $l$), and the azimuthal  number, which is the $z$-component of angular momentum (as $m$). We write out the first few spherical harmonics:
+\begin{align*}
+	Y_{0,0}(\theta, \phi) &= \frac{1}{\sqrt{4\pi}}, & l = 0,& m = 0, \\
+	Y_{1,0}(\theta, \phi) &= \sqrt{\frac{3}{4\pi}} \cos \theta, & l = 1,& m = 0, \\
+	Y_{1, \pm 1}(\theta, \phi) &= \mp \sqrt{\frac{3}{8\pi}} \sin \theta e^{\hbar i \phi}, & l = 1,&m = \pm 1.
+\end{align*}
+All the spherical harmonics are orthonormal.
+
+\subsection{The Hydrogen Atom}%
+\label{sub:the_hydrogen_atom}
+
+Consider a nucleus of a hydrogen atom, consisting of a proton $p$ with charge $+e$, and electron $e^{-1}$ with charge $-e$, at a radius of $r$ from the proton.
+
+We model the atom by letting the proton be stationary at the origin. The force provided by the proton (the Coulomb force) is given by
+\begin{align*}
+	F_{coulomb}(r) &= - \frac{e^2}{4 \pi \eps_0} \frac{1}{r^2} = - \frac{\partial U_{coulomb}}{\partial r}, \\
+	U_{coulomb}(r) &= - \frac{e^2}{4 \pi \eps_0} \frac{1}{r}.
+\end{align*}
+This force, and hence the potential, is spherically symmetric. The Schr\"{o}dinger equation is
+\[
+	- \frac{\hbar^2}{2m_e} \nabla^2\chi(r, \theta, \phi) - \frac{e^2}{4 \pi \eps_0}\frac{1}{r} \chi(r, \theta, \phi) = E \chi(r, \theta, \phi)
+.\]
+In spherical coordinates, we can write
+\begin{align*}
+	- \hbar^2 \nabla^2 &= \frac{-\hbar^2}{r} \frac{\partial^2}{\partial r^2}r - \frac{\hbar^2}{r^2\sin^2 \theta} \biggl( \sin \theta \frac{\partial}{\partial \theta} \sin \theta \frac{\partial}{\partial \theta} + \frac{\partial^2}{\partial \phi^2} \biggr) \\
+			   &= - \frac{\hbar^2}{r} \frac{\partial^2}{\partial r^2} r + \frac{\hat L^2}{r^2}.
+\end{align*} 
+If we put this in the TDSE,
+\[
+	- \frac{\hbar^2}{2m_e} \frac{1}{r} \biggl( \frac{\partial^2}{\partial r^2} r \chi \biggr) + \frac{\hat L^2}{2m_e r^2} \chi - \frac{e^2}{4 \pi \eps_0 r} \chi = E \chi
+.\]
+Now, notice that eigenfunctions of $\hat H$ are also eigenfunctions of $\hat L^2$ and $\hat L_3$, so $\chi$ must also be an eigenfunction of $\hat L^2$, $\hat L_3$. Hence, if we write $\chi(r, \theta, \phi) = R(r) Y_{l,m}(\theta, \phi)$, then we get
+\[
+	- \frac{\hbar^2}{2m_e} \biggl( \frac{\Diff2 R}{\diff r^2} + \frac{2}{r} \frac{\diff R}{\diff r} \biggr) Y + \frac{\hbar^2}{2m_e r^2} l(l+1) + RY - \frac{e^2}{4 \pi \eps_0}RY = ERY
+.\]
+We can divide by $Y$, and end up with a one-dimensional equation for the radial part:
+\[
+	- \frac{\hbar^2}{2m} \biggl( \frac{\Diff2 R}{\diff r^2} + \frac{2}{r} \frac{\diff R}{\diff r} \biggr) + \biggl( - \frac{e^2}{4 \pi \eps_0}\frac{1}{r} + \frac{\hbar^2 l(l+1)}{2m_e r^2} \biggr)R = ER
+,\]
+which is in the form of a TISE.
+
+\subsubsection{Spherically Symmetric Solutions}%
+\label{subsub:spherically_symmetric_solutions}
+
+We first look at the solutions where $l = 0$. Then $Y_{0,0}(\theta, \phi) = (4\pi)^{-1/2}$. We solve in terms of the rescaled variables
+\[
+\nu^2 = -\frac{2mE}{\hbar^2} > 0, \qquad \beta = \frac{e^2m_e}{2\pi\eps_0\hbar^2}
+.\]
+Then $R$ satisfies
+\[
+	\frac{\Diff2 R}{\diff r^2} + \frac{2}{r} \frac{\diff R}{\diff r} + \biggl( \frac{\beta}{r} - \nu^2 \biggr)R = 0
+.\]
+\begin{remark}
+	\begin{enumerate}[(i)]
+		\item[]
+		\item The asymptotic behaviour (as $r\to \infty$) is determined by
+			\[
+				\frac{\Diff2R}{\diff r^2} - \nu^2 R = 0 \implies R(r) \sim e^{\pm r \nu}
+			.\]
+			We must have $R(r) \sim e^{-r \nu}$, by normalisability.
+		\item At $r = 0$, the eigenfunction has to be finite.
+	\end{enumerate}
+\end{remark}
+By our observation in (i), we write $R(r) = f(r) e^{- \nu r}$. Then, we get that $f$ satisfies
+\[
+	f''(r) + \frac{2}{r}(1 - \nu r)f'(r) + \frac{1}{r}(\beta - 2 \nu)f(r) = 0
+.\]
+This is a homogeneous linear ODE with a regular point at $r = 0$, so we may write it as a power series. Let
+\[
+	f(r) = r^{c} \sum_{n = 0}^{\infty} a_n r^{n}
+.\]
+Then,
+\[
+	\sum_{n = 0}^{\infty} \biggl[ a_n (c+n)(c+n-1)r^{c+n-2} + \frac{2}{r} (1 - \nu r) a_n (c+n) r^{c+n-1} + (\beta - 2 \nu) r^{c+n-1}\biggr] = 0
+.\]
+The lowest power of $r$ has coefficient
+\[
+	a_0 c(c-1) + 2 a_0 c = 0 \implies c = 0, c = -1
+.\]
+If $c = -1$, then $\chi \sim Ar^{-1}$ near $r = 0$, hence is not normalisable. So we must have $c = 0$. Then, for $n \geq 1$, we find
+\[
+	\sum_{n = 1}^{\infty} [a_n n(n+1) + a_{n-1}(\beta - 2 \nu n)]r^{n-2} = 0
+,\]
+which recursively gives
+\[
+	a_n = \frac{2 \nu n - \beta}{n(n+1)}a_{n-1}
+.\]
+Now we would like to say that these terms eventually die off, as in the case for the Hermite polynomials.
+
+\begin{proposition}
+	If $f(r) = \sum a_n r^{n}$ is infinite, then $R(r)$ is not normalisable.
+\end{proposition}
+
+\begin{proofbox}
+	The asymptotic behaviour of $f(r)$ is determined by the ratio of the coefficients, which is
+	\[
+	\frac{a_n}{a_{n-1}} \to \frac{2 \nu}{n}
+	.\]
+	This satisfies the same asymptotic behaviour as
+	\[
+		g(r) = e^{2 \nu r} = \sum_{n = 0}^{\infty} \frac{(2 \nu)^{n}}{n!}r^{n}
+	.\]
+	Now, if asymptotically $f(r) \sim e^{2 \nu r}$, then $R(r) = f(r) e^{- \nu r} \sim e^{\nu r}$, which is not normalisable. Hence, the series must terminate.
+\end{proofbox}
+
+Therefore, there exists $N > 0$ such that $a_N = 0$, and $a_{N-1} \neq 0$. Thus,
+\[
+2 \nu N - \beta = - \implies \nu = \frac{\beta}{2 N}
+.\]
+Substituting in $\nu$ and $\beta$, we get that the energies are
+\[
+E_N = - \frac{e^{4}m_e}{32 \pi^2 \eps_0^2 \hbar^2} \frac{1}{N^2}
+,\]
+which is identical to the Bohr atom.
+
+To find the eigenfunctions $R_N(r)$, we can substitute $2N \nu = \beta$, to find that
+\[
+	\frac{a_n}{a_{n-1}} = - 2 \nu \frac{N - n}{n(n+1)}
+.\]
+This can be used inductively to find $R_N$.
+
+\begin{center}
+\begin{tabular}{c|c}
+	$N$ & $R_N(r)$ \\
+	\hline
+	$1$ & $A_1 e^{-\nu r}$ \\
+	$2$ & $A_2(1 - \nu r)e^{-\nu r}$ \\
+	$3$ & $A_3(1 - 2 \nu r + \frac{2}{3} \nu^2 r^2)e^{-\nu r}$ \\
+\end{tabular}
+\end{center}
+
+In general, $R_N(r) = L_N(\nu r)e^{-\nu r}$, where $L_N$ are the \textit{Laguerre polynomials}\index{Laguerre polynomials}.
+
+\subsubsection{Asymmetric Solutions}%
+\label{subsub:asymmetric_solutions}
+
+We look at the general case, when $l \geq 0$. Then again, we have TISE
+\[
+	\frac{\Diff2 R}{\diff r^2} + \frac{2}{r}\frac{\diff R}{\diff r} + \biggl( \frac{\beta}{r} - 2 \nu - \frac{l(l+1)}{r^2}\biggr) R = 0
+.\]
+Looking at the asymptotic behaviour, we again write $R(r) = f(r) e^{- \nu r}$. Then
+\[
+	f'' + \frac{2}{r}(1 - \nu r)f' + \biggl( \frac{\beta}{r} - 2 \nu - \frac{l(l+1)}{r^2}\biggr)f = 0
+.\]
+If we write $f$ as
+\[
+	f(r) = r^{\sigma}\sum_{n = 0}^{\infty}a_nr^{n}
+.\]
+The lowest power coefficient is $r^{\sigma - 2}$, which has coefficient
+\[
+	\sigma(\sigma + 1) - l(l+1) = 0 \implies \sigma = -l-1, \sigma = l
+.\]
+However $\sigma = -l-1$ gives $R \sim r^{-l-1}$ around $r = 0$, which is not integrable, so we must have
+\[
+	f(r) = r^{l} \sum_{r = 0}^{\infty} a_n r^{n}
+.\]
+This gives recursive formula
+\[
+	a_n = \frac{2\nu(n + l) - \beta}{n(n+2l - 1)}a_{n-1}
+.\]
+As before, this is not normalisable unless there exists $n_{max} > 0$ such that $a_{n_{max}} = 0$, and $a_{n_{max}-1} \neq 0$. Hence
+\[
+	2\nu\underbrace{(n_{max} + l)}_{N} = \beta = 0 \implies 2 \nu N - \beta = 0 \implies \nu = \frac{\beta}{2N}
+.\]
+
+Again the energy values are
+\[
+E_N = - \frac{e^{4}m_e}{32 \pi^2 \eps_0^2\hbar^2} \frac{1}{N^2}
+.\]
+However, the \index{degeneracy}degeneracy, which is the number of eigenstates with same eigenvalue, is larger. If $N = n_{max} + l$, then we can take any $0 \leq l \leq N-1$ and any $-l \leq m \leq l$. This gives $N^2$ possible eigenstates.
+
+The eigenfunctions can then be written as
+\[
+	\chi_{N,l,n}(r, \theta, \phi) = R_{N,l}(r)Y_{l, m}(\theta, \phi) = r^{l}f_{N,l}(r)e^{-\nu r} Y_{l,m}(\theta, \phi)
+.\]
+Now $f_{N,l}(r)$ is a polynomial of degree $N - l - 1$, with coefficients
+\[
+	a_k = \frac{2\nu}{k} \frac{k + l - N}{k + 2l + 1}
+.\]
+These are known as the \textit{generalized Laguerre polynomials}\index{generalized Laguerre polynomials}. The eigenstates are defined by the quantum numbers
+\begin{align*}
+	N &= 0, 1, 2, \ldots, & &\text{principal quantum numbers}, \\
+	l &= 0, \ldots, N-1, & &\text{total angular momentum}, \\
+	m &= -l, \ldots, l, & &\text{azimuthal quantum numbers}.
+\end{align*}
+
+Hence, while the Bohr model accurately predicted the energies of the eigenstates, the quantization of the angular momentum was not correct, as $L^2 = l(l+1)\hbar^2$, for any $l < N$.
 \newpage
 
 \printindex

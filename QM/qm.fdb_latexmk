@@ -1,10 +1,10 @@
 # Fdb version 3
-["makeindex qm.idx"] 1668377697 "qm.idx" "qm.ind" "qm" 1668377929
-  "qm.idx" 1668377927 1594 fa17ae9b94e8fe1c869626c9f29b5f1e "pdflatex"
+["makeindex qm.idx"] 1670202063 "qm.idx" "qm.ind" "qm" 1670202502
+  "qm.idx" 1670202501 2175 272817c1bb4f763cca8fe396d3cfb611 "pdflatex"
   (generated)
   "qm.ilg"
   "qm.ind"
-["pdflatex"] 1668377916 "qm.tex" "qm.pdf" "qm" 1668377929
+["pdflatex"] 1670202489 "qm.tex" "qm.pdf" "qm" 1670202502
   "C:/Program Files/MiKTeX/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1001771820 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "C:/Program Files/MiKTeX/fonts/tfm/jknappen/ec/tcrm1200.tfm" 993058908 1444 95ffe0f19b974d50849790c8225c7ef7 ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233951848 1004 54797486969f23fa377b128694d548df ""
@@ -38,6 +38,7 @@
   "C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb" 1247593067 32734 69e00a6b65cedb993666e42eedb3d48f ""
   "C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1247593067 32726 39f0f9e62e84beb801509898a605dbd5 ""
   "C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1247593067 32569 5e5ddc8df908dea60932f3c484a54c0d ""
+  "C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb" 1247593067 32587 65067f817f408bc71a7312f3d9828a9b ""
   "C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb" 1247593067 32626 5abc8bb2f28aa647d4c70f8ea38cc0d3 ""
   "C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb" 1247593067 36118 fad905eba93cff5bce1e185fe980a177 ""
   "C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb" 1247593073 34694 870c211f62cb72718a00e353f14f254d ""
@@ -283,12 +284,12 @@
   "C:/Users/nath2/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1667597766 9397587 0c61368dc1cd167f2d2ee76183cb4bb1 ""
   "C:/Users/nath2/AppData/Local/MiKTeX/pdftex/config/pdftex.map" 1667597691 279613 fe62a258ff6d99cc2243c3a2d16aa767 ""
   "C:/Users/nath2/AppData/Roaming/MiKTeX/tex/latex/pdfcol/pdfcol.sty" 1663938824 8086 ac143843b6ea88d172677dc3ed532925 ""
-  "C:/Users/nath2/localtexmf/tex/latex/ishn/ishn.sty" 1668284998 3411 feef38090f2d525fdff0db35a38315ef ""
-  "qm.aux" 1668377928 8951 964e9cf2af3d8e4102bbd3b3775e5b1c "pdflatex"
-  "qm.ind" 1668377928 1760 d0ca4c43c52ee957296c3c367e534f21 "makeindex qm.idx"
-  "qm.out" 1668377928 6414 01ce0e0e07b75f3cfd24a00cfe2a1fe2 "pdflatex"
-  "qm.tex" 1668377916 57166 3b8c2a616ddc0aed06e3b4583b71bdc1 ""
-  "qm.toc" 1668377928 3242 909213e50e487f6499b6e56ff6635940 "pdflatex"
+  "C:/Users/nath2/localtexmf/tex/latex/ishn/ishn.sty" 1668516301 3453 bf06cc0abf7ad1090c7aeb6cd10920e6 ""
+  "qm.aux" 1670202501 11316 1572d4d53e130421707af24505738fd0 "pdflatex"
+  "qm.ind" 1670202501 2337 ff259d415ad2ce559e108301470cf3b5 "makeindex qm.idx"
+  "qm.out" 1670202501 8271 d691b5a4241cdaabf5243f5aedb0c2f9 "pdflatex"
+  "qm.tex" 1670202488 83320 697a59942458613d16547718458652a6 ""
+  "qm.toc" 1670202502 4121 ce3cb3ca3cc6dc05780d9b3b19888022 "pdflatex"
   (generated)
   "qm.aux"
   "qm.idx"

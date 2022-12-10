@@ -18,6 +18,7 @@
   \item characteristic polynomial, \hyperpage{55}
   \item column rank, \hyperpage{24}
   \item complement, \hyperpage{11}
+  \item congruent matrices, \hyperpage{71}
 
   \indexspace
 
@@ -49,12 +50,17 @@
   \indexspace
 
   \item Gauss' pivot algorithm, \hyperpage{26}
+  \item generalized eigenspace, \hyperpage{69}
   \item geometric multiplicity, \hyperpage{63}
 
   \indexspace
 
   \item image, \hyperpage{16}
   \item isomorphism, \hyperpage{15}
+
+  \indexspace
+
+  \item Jordan normal form, \hyperpage{66}
 
   \indexspace
 
@@ -74,17 +80,20 @@
 
   \indexspace
 
+  \item nilpotent, \hyperpage{67}
   \item non-degenerate bilinear form, \hyperpage{38}
   \item non-singular, \hyperpage{46}
   \item nullity, \hyperpage{17}
 
   \indexspace
 
+  \item polarization identity, \hyperpage{72}
   \item projector, \hyperpage{59}
   \item proper subspace, \hyperpage{11}
 
   \indexspace
 
+  \item quadratic form, \hyperpage{71}
   \item quotient, \hyperpage{5}
 
   \indexspace
@@ -104,9 +113,11 @@
   \item similar matrices, \hyperpage{25}
   \item singular, \hyperpage{46}
   \item span, \hyperpage{6}
+  \item spectral theorem, \hyperpage{72}
   \item Steinitz exchange lemma, \hyperpage{8}
   \item subspace, \hyperpage{4}
   \item subspace sum, \hyperpage{4}
+  \item symmetric form, \hyperpage{71}
   \item symmetric group, \hyperpage{41}
 
   \indexspace

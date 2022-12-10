@@ -1004,6 +1004,29 @@ INPUT C:\Program Files\MiKTeX\tex\generic\pgf\libraries\pgflibraryfadings.code.t
 INPUT C:\Program Files\MiKTeX\tex\generic\pgf\libraries\pgflibraryfadings.code.tex
 OUTPUT mc.pdf
 INPUT C:\Program Files\MiKTeX\tex\latex\tcolorbox\tcbposter.code.tex
+INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\graphics\keyval.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\etoolbox\etoolbox.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype-pdftex.def
+INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype-pdftex.def
+INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype-pdftex.def
+INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype-pdftex.def
+INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype.cfg
+INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype.cfg
+INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype.cfg
+INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype.cfg
+INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype.cfg
+INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype.cfg
 INPUT C:\Program Files\MiKTeX\tex\latex\pgf\frontendlayer\tikz.sty
 INPUT C:\Program Files\MiKTeX\tex\generic\pgf\libraries\pgflibraryarrows.meta.code.tex
 INPUT C:\Program Files\MiKTeX\tex\generic\pgf\libraries\pgflibraryarrows.meta.code.tex
@@ -1272,28 +1295,6 @@ INPUT C:\Program Files\MiKTeX\tex\generic\uniquecounter\uniquecounter.sty
 INPUT C:\Program Files\MiKTeX\tex\generic\bigintcalc\bigintcalc.sty
 INPUT C:\Program Files\MiKTeX\tex\generic\infwarerr\infwarerr.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\graphics\keyval.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\etoolbox\etoolbox.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype-pdftex.def
-INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype-pdftex.def
-INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype-pdftex.def
-INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype-pdftex.def
-INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype.cfg
-INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype.cfg
-INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype.cfg
-INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype.cfg
-INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype.cfg
-INPUT C:\Program Files\MiKTeX\tex\latex\microtype\microtype.cfg
 OUTPUT mc.idx
 INPUT .\mc.aux
 INPUT mc.aux
@@ -1354,6 +1355,10 @@ INPUT C:\Program Files\MiKTeX\tex\latex\base\inputenc.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\base\inputenc.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\base\inputenc.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\base\inputenc.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\microtype\mt-cmr.cfg
+INPUT C:\Program Files\MiKTeX\tex\latex\microtype\mt-cmr.cfg
+INPUT C:\Program Files\MiKTeX\tex\latex\microtype\mt-cmr.cfg
+INPUT C:\Program Files\MiKTeX\tex\latex\microtype\mt-cmr.cfg
 INPUT C:\Program Files\MiKTeX\tex\latex\graphics\color.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\hyperref\nameref.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\hyperref\nameref.sty
@@ -1403,10 +1408,6 @@ INPUT mc.out
 INPUT .\mc.out
 INPUT .\mc.out
 OUTPUT mc.out
-INPUT C:\Program Files\MiKTeX\tex\latex\microtype\mt-cmr.cfg
-INPUT C:\Program Files\MiKTeX\tex\latex\microtype\mt-cmr.cfg
-INPUT C:\Program Files\MiKTeX\tex\latex\microtype\mt-cmr.cfg
-INPUT C:\Program Files\MiKTeX\tex\latex\microtype\mt-cmr.cfg
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmr17.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmr12.tfm
@@ -1463,13 +1464,19 @@ INPUT C:\Users\nath2\AppData\Local\MiKTeX\fonts\tfm\public\bbm\bbm6.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmmi12.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmsy10.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmex10.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam10.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam10.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam7.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
-INPUT C:\Users\nath2\AppData\Local\MiKTeX\fonts\tfm\public\bbm\bbm17.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm7.tfm
+INPUT C:\Users\nath2\AppData\Local\MiKTeX\fonts\tfm\public\bbm\bbm12.tfm
 INPUT C:\Users\nath2\AppData\Local\MiKTeX\fonts\tfm\public\bbm\bbm10.tfm
+INPUT C:\Users\nath2\AppData\Local\MiKTeX\fonts\tfm\public\bbm\bbm7.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\jknappen\ec\tcrm1200.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmti8.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmti7.tfm
 INPUT .\mc.ind
 INPUT mc.ind
 INPUT .\mc.ind
@@ -1484,6 +1491,8 @@ INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx12.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx12.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmex10.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmex10.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi12.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi12.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi6.pfb

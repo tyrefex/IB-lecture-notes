@@ -45,16 +45,16 @@
 \subsection{Convergence in \texorpdfstring{$\mathbb{R}$}{R}}%
 \label{sub:convergence_in_r_}
 
-Let $(x_n)$ be a sequence in $\mathbb{R}$ and $x \in \mathbb{R}$. We say $(x_n)$ \textbf{converges}\index{convergence in $\mathbb{R}$} to $x$, and write $x_n \to x$, if for all $\varepsilon > 0$, there exists $N$ such that for all $n \geq N$, $|x_n - x| < \varepsilon$.
+Let $(x_n)$ be a sequence in $\mathbb{R}$ and $x \in \mathbb{R}$. We say $(x_n)$ \textit{converges}\index{convergence in $\mathbb{R}$} to $x$, and write $x_n \to x$, if for all $\varepsilon > 0$, there exists $N$ such that for all $n \geq N$, $|x_n - x| < \varepsilon$.
 
-In $\mathbb{R}$, one useful fact is the \textbf{triangle inequality} -- $|a+b| \leq |a| + |b|$. We also have two key theorems:
+In $\mathbb{R}$, one useful fact is the \textit{triangle inequality}: $|a+b| \leq |a| + |b|$. We also have two key theorems:
 
 \begin{theorem}[Bolzano-Weierstrass Theorem]\index{Bolzano-Weierstrass theorem}
 \item
 	A bounded sequence in $\mathbb{R}$ must have a convergent subsequence.
 \end{theorem}
 
-Recall that a sequence $(x_n)$ in $\mathbb{R}$ is \textbf{Cauchy}\index{Cauchy sequence} if for all $\varepsilon > 0$, there exists $N$, such that for all $m, n \geq N$, $|x_m - x_n| < \varepsilon$. It is easy to show every convergent sequence is Cauchy. We also have the following:
+Recall that a sequence $(x_n)$ in $\mathbb{R}$ is \textit{Cauchy}\index{Cauchy sequence} if for all $\varepsilon > 0$, there exists $N$, such that for all $m, n \geq N$, $|x_m - x_n| < \varepsilon$. It is easy to show every convergent sequence is Cauchy. We also have the following:
 
 \begin{theorem}[General Principle of Convergence]\index{general principle of convergence}
 \item
@@ -71,7 +71,7 @@ Let $(z_n)$ be a sequence in $\mathbb{R}^2$, and $z \in \mathbb{R}^2$. We wish t
 In $\mathbb{R}$, we used the norm $|x|$. In $\mathbb{R}^2$, if we have $z = (x, y)$, then we can say $\|z\| = \sqrt{x^2 + y^2}$. This also satisfies the triangle inequality\index{triangle inequality} -- $\|a + b\| \leq \|a\| + \|b\|$.
 
 \begin{definition}
-	Let $(z_n)$ be a sequence in $\mathbb{R}^2$, and $z \in \mathbb{R}^2$. We say that $(z_n)$ \textbf{converges} to $z$, and write $z_n \to z$, if for all $\varepsilon > 0$, there exists $N$ such that for all $n \geq N$, $\|z_n - z\| < \varepsilon$.
+	Let $(z_n)$ be a sequence in $\mathbb{R}^2$, and $z \in \mathbb{R}^2$. We say that $(z_n)$ \textit{converges} to $z$, and write $z_n \to z$, if for all $\varepsilon > 0$, there exists $N$ such that for all $n \geq N$, $\|z_n - z\| < \varepsilon$.
 
 	Equivalently, $z_n \to z$ if and only if $\|z_n - z\| \to 0$.
 \end{definition}
@@ -98,7 +98,7 @@ Now, if $|x_n - x|, |y_n - y| \to 0$, then $\|z_n - z\| = \sqrt{|x_n - x|^2 + |y
 \end{proofbox}
 
 \begin{definition}
-	A sequence $(z_n)$ in $\mathbb{R}^2$ is \textbf{bounded} if there exists $M \in \mathbb{R}$ such that for all $n$, $\|z_n\| \leq M$.
+	A sequence $(z_n)$ in $\mathbb{R}^2$ is \textit{bounded} if there exists $M \in \mathbb{R}$ such that for all $n$, $\|z_n\| \leq M$.
 \end{definition}
 
 \begin{theorem}[Bolzano-Weierstrass in $\mathbb{R}^2$]
@@ -113,7 +113,7 @@ Now, if $|x_n - x|, |y_n - y| \to 0$, then $\|z_n - z\| = \sqrt{|x_n - x|^2 + |y
 \end{proofbox}
 
 \begin{definition}
-	A sequence $(z_n) \in \mathbb{R}^2$ is \textbf{Cauchy} if for all $\varepsilon > 0$, there exists $N$ such that for all $m, n \geq N$, $\|z_m - z_n\| < \varepsilon$.
+	A sequence $(z_n) \in \mathbb{R}^2$ is \textit{Cauchy} if for all $\varepsilon > 0$, there exists $N$ such that for all $m, n \geq N$, $\|z_m - z_n\| < \varepsilon$.
 \end{definition}
 
 It is easy to show a convergent sequence in $\mathbb{R}^2$ is Cauchy.
@@ -133,7 +133,7 @@ It is easy to show a convergent sequence in $\mathbb{R}^2$ is Cauchy.
 Let $X \subset \mathbb{R}$. Let $f_n : X \to \mathbb{R}$, and let $f : X \to \mathbb{R}$. What does it mean for $(f_n)$ to converge to $f$?
 
 \begin{definition}\index{pointwise convergence}
-	Say $(f_n)$ \textbf{converges pointwise} to $f$, and we write $f_n \to f$ pointwise, if for all $x \in X$, $f_n(x) \to f(x)$ as $n \to \infty$.
+	Say $(f_n)$ \textit{converges pointwise} to $f$, and we write $f_n \to f$ pointwise, if for all $x \in X$, $f_n(x) \to f(x)$ as $n \to \infty$.
 \end{definition}
 
 Although this is simple and easy to check, it doesn't preserve some `nice' properties that we want.
@@ -185,7 +185,7 @@ Although this is simple and easy to check, it doesn't preserve some `nice' prope
 We consider another definition of convergence.
 
 \begin{definition}[Uniform Convergence]\index{uniform convergence}
-	Let $X \subset \mathbb{R}$, $f_n : X \to \mathbb{R}$, $f : X \to \mathbb{R}$. We say $(f_n)$ \textbf{converges uniformly} to $f$, and write $f_n \to f$ uniformly, if for all $\varepsilon > 0$, there exists $N$, such that for all $x \in X$ and all $n \geq N$, $|f_n(x) - f(x)| < \varepsilon$.
+	Let $X \subset \mathbb{R}$, $f_n : X \to \mathbb{R}$, $f : X \to \mathbb{R}$. We say $(f_n)$ \textit{converges uniformly} to $f$, and write $f_n \to f$ uniformly, if for all $\varepsilon > 0$, there exists $N$, such that for all $x \in X$ and all $n \geq N$, $|f_n(x) - f(x)| < \varepsilon$.
 \end{definition}
 
 In particular, $f_n \to f$ uniformly implies $f_n \to f$ pointwise.
@@ -267,7 +267,7 @@ Unfortunately, uniform convergence cannot preserve all properties.
 	Then $f_n$ is differentiable, and also uniformly converges to $f(x) = |x|$. But $f$ is not differentiable.
 \end{exbox}
 
-In fact, we need uniform convergence of the \textbf{derivatives}.
+In fact, we need uniform convergence of the \textit{derivatives}.
 
 \begin{theorem}
 	Let $f_n : (u, v) \mapsto \mathbb{R}$ with $f_n \to f : (u, v) \to \mathbb{R}$ pointwise. Suppose further that each $f_n$ is continuously differentiable and that $f_n' \to g : (u, v) \to \mathbb{R}$ uniformly. Then $f$ is differentiable with $f' = g$.
@@ -294,7 +294,7 @@ In fact, we need uniform convergence of the \textbf{derivatives}.
 \end{remark}
 
 \begin{definition}\index{uniformly Cauchy}
-	Let $X \subset \mathbb{R}$ and let $f_n : X \to \mathbb{R}$ for each $n \geq 1$. We say $(f_n)$ is \textbf{uniformly Cauchy} if for all $\varepsilon > 0$, there exists $N$ such that for all $m, n \geq N$ and for all $x \in X$,
+	Let $X \subset \mathbb{R}$ and let $f_n : X \to \mathbb{R}$ for each $n \geq 1$. We say $(f_n)$ is \textit{uniformly Cauchy} if for all $\varepsilon > 0$, there exists $N$ such that for all $m, n \geq N$ and for all $x \in X$,
 	\[
 		|f_m(x) - f_n(x)| < \varepsilon
 	.\]
@@ -314,9 +314,9 @@ It is easy to show that a uniformly convergent sequence is uniformly Cauchy.
 We will also try to take Bolzano-Weierstrass over to the space of functions.
 
 \begin{definition}
-	Let $X \subset \mathbb{R}$ and let $f_n : X \to \mathbb{R}$ for each $n \geq 1$. We say $(f_n)$ is \textbf{pointwise bounded}\index{pointwise bounded} if for all $x$, there exists $M$ such that for all $n$, $|f_n(x)| \leq M$.
+	Let $X \subset \mathbb{R}$ and let $f_n : X \to \mathbb{R}$ for each $n \geq 1$. We say $(f_n)$ is \textit{pointwise bounded}\index{pointwise bounded} if for all $x$, there exists $M$ such that for all $n$, $|f_n(x)| \leq M$.
 
-	We say $(f_n)$ is \textbf{uniformly bounded}\index{uniformly bounded} if there exists $M$, such that for all $x$ and $n$, $|f_n(x)| \leq M$.
+	We say $(f_n)$ is \textit{uniformly bounded}\index{uniformly bounded} if there exists $M$, such that for all $x$ and $n$, $|f_n(x)| \leq M$.
 \end{definition}
 
 We would like a uniform Bolzano-Weierstrass, saying if $(f_n)$ is a uniformly bounded sequence of functions, then it has a uniformly convergent subsequence. But this is not true.
@@ -343,7 +343,7 @@ Recall that if $\sum a_n x^{n}$ is a real power of series with radius of converg
 	\[
 	\sum_{n = 0}^{\infty}f_n
 	\]
-	\textbf{converges uniformly}\index{uniform convergence of series} if the sequence of partial sums $(F_n)$ does, where $F_n = f_0 + f_1 + \cdots + f_n$.
+	\textit{converges uniformly}\index{uniform convergence of series} if the sequence of partial sums $(F_n)$ does, where $F_n = f_0 + f_1 + \cdots + f_n$.
 \end{definition}
 
 If we can prove that $\sum a_n x^{n}$ is uniformly convergent, then we can apply earlier theorems to show differentiability. However this is not quite true, for example take
@@ -351,7 +351,7 @@ If we can prove that $\sum a_n x^{n}$ is uniformly convergent, then we can apply
 \sum_{n = 0}^{\infty} x^{n}
 .\]
 
-However, we do have another approach. We can show that if $0 < r < R$, then we do have uniform convergence on $(-r, r)$, and then given $x \in (-R, R)$, we can choose $|x| < r < R$ and use the above to show all the properties we want. This is known as the \textbf{local uniform convergence of power series}.\index{local uniform convergence of power series}
+However, we do have another approach. We can show that if $0 < r < R$, then we do have uniform convergence on $(-r, r)$, and then given $x \in (-R, R)$, we can choose $|x| < r < R$ and use the above to show all the properties we want. This is known as the \textit{local uniform convergence of power series}.\index{local uniform convergence of power series}
 
 \begin{lemma} 
 	Let $\sum a_n x^{n}$ be a real power series with radius of convergence $R > 0$. Let $0 < r < R$. Then $\sum a_n x^{n}$ converges uniformly on $(-r, r)$.
@@ -449,10 +449,10 @@ as $n \to \infty$, so this converges by the ratio test.
 \subsection{Uniform Continuity}%
 \label{sub:uniform_continuity}
 
-Let $X \subset \mathbb{R}$. Let $f : X \mapsto \mathbb{R}$. Recall that $f$ is \textbf{continuous}\index{continuity} if for all $\varepsilon > 0$ and for all $x \in X$, there exists $\delta > 0$, such that for all $y \in X$ with $|x - y| < \delta$, we have $|f(x) - f(y)| < \varepsilon$.
+Let $X \subset \mathbb{R}$. Let $f : X \mapsto \mathbb{R}$. Recall that $f$ is \textit{continuous}\index{continuity} if for all $\varepsilon > 0$ and for all $x \in X$, there exists $\delta > 0$, such that for all $y \in X$ with $|x - y| < \delta$, we have $|f(x) - f(y)| < \varepsilon$.
 
 \begin{definition}
-	We say $f$ is \textbf{uniformly continuous}\index{uniform continuity} if for all $\varepsilon > 0$, there exists $\delta > 0$, such that for all $x, y \in X$ with $|x - y| < \delta$, we have $|f(x) - f(y)| < \varepsilon$.
+	We say $f$ is \textit{uniformly continuous}\index{uniform continuity} if for all $\varepsilon > 0$, there exists $\delta > 0$, such that for all $x, y \in X$ with $|x - y| < \delta$, we have $|f(x) - f(y)| < \varepsilon$.
 \end{definition}
 
 \begin{remark}
@@ -528,7 +528,7 @@ We have seen in $\mathbb{R}$, we have a norm $|x - y|$, in $\mathbb{R}^2$ we hav
 We have seen that the triangle inequality is very useful, so we wish to preserve this property.
 
 \begin{definition}
-	A \textbf{metric space}\index{metric space} is a set $X$ endowed with a \textbf{metric}\index{metric} $d$, i.e. a function $d : X^2 \to \mathbb{R}$, satisfying:
+	A \textit{metric space}\index{metric space} is a set $X$ endowed with a \textit{metric}\index{metric} $d$, i.e. a function $d : X^2 \to \mathbb{R}$, satisfying:
 	\begin{enumerate}[(i)]
 		\item $d(x, y) \geq 0$ for all $x, y \in X$, with equality if and only if $x = y$;
 		\item $d(x, y) = d(y, x)$ for all $x, y \in X$;
@@ -549,7 +549,7 @@ We could define a metric space as an ordered pair $(X, d)$, but usually it is ob
 			\[
 				X = B(Y) = \{f : Y \to \mathbb{R} \mid f \text{ bounded}\}
 			,\]
-			with the \textbf{uniform metric}
+			with the \textit{uniform metric}\index{uniform metric}
 			\[
 				d(f, g) = \sup_{x \in Y}|f(x) - g(x)|
 			.\]
@@ -565,7 +565,7 @@ We could define a metric space as an ordered pair $(X, d)$, but usually it is ob
 \end{exbox}
 
 \begin{remark}
-	Suppose $(X, d)$ is a metric space and $Y \subset X$. Then $d|_{Y}$ is a metric on $Y$. We say $Y$ with this metric is a \textbf{subspace}\index{subspace} of $X$.
+	Suppose $(X, d)$ is a metric space and $Y \subset X$. Then $d|_{Y}$ is a metric on $Y$. We say $Y$ with this metric is a \textit{subspace}\index{subspace} of $X$.
 \end{remark}
 
 \begin{exbox}
@@ -629,7 +629,7 @@ Moreover, we can define different metrics on the same set.
 \end{exbox}
 
 \begin{definition}
-	Let $(X, d)$ be a metric space. Let $(x_n)$ be a sequence in $X$ and let $x \in X$. We say $(x_n)$ \textbf{converges} to $x$, and write $x_n \to x$, if\index{convergence in metric spaces} for all $\varepsilon > 0$, there exists $N$ such that for all $n \geq N$,
+	Let $(X, d)$ be a metric space. Let $(x_n)$ be a sequence in $X$ and let $x \in X$. We say $(x_n)$ \textit{converges} to $x$, and write $x_n \to x$, if\index{convergence in metric spaces} for all $\varepsilon > 0$, there exists $N$ such that for all $n \geq N$,
 	\[
 		d(x_n, x) < \varepsilon
 	.\]
@@ -706,7 +706,7 @@ So $d(x, y) \to 0$ as $n \to \infty$. But $d(x, y)$ is constant, so $d(x, y) = 0
 			\[
 				0 < d(x, a) < \delta \implies e(f(x), b) < \varepsilon
 			.\]
-		\item Let $a \in X$. We say $f$ is \textbf{continuous}\index{continuity in metric spaces} if $f(x) \to f(a)$ as $x \to a$.
+		\item Let $a \in X$. We say $f$ is \textit{continuous}\index{continuity in metric spaces} if $f(x) \to f(a)$ as $x \to a$.
 		\item If for all $a \in X$, $f$ is continuous, then we say $f$ is a continuous function.
 		\item We say $f$ is uniformly continuous if for all $\varepsilon > 0$, there exists $\delta > 0$ such that for all $x, y \in X$,
 			\[
@@ -783,7 +783,7 @@ So $d(x, y) \to 0$ as $n \to \infty$. But $d(x, y)$ is constant, so $d(x, y) = 0
 We saw a version of the general principle of convergence held in each of the three examples we considered. We try to extend this to all metric spaces:
 
 \begin{definition}
-	Let $(X, d)$ be a metric space and let $(x_n)$ be a sequence in $X$. We say $(x_n)$ is \textbf{Cauchy}\index{Cauchy sequence in general metric space} if for all $\varepsilon > 0$, then there exists $N$ such that for all $m, n \geq N$, $d(x_m, d_n) < \varepsilon$.
+	Let $(X, d)$ be a metric space and let $(x_n)$ be a sequence in $X$. We say $(x_n)$ is \textit{Cauchy}\index{Cauchy sequence in general metric space} if for all $\varepsilon > 0$, then there exists $N$ such that for all $m, n \geq N$, $d(x_m, d_n) < \varepsilon$.
 \end{definition}
 
 It is easy to show that if $(x_n)$ is convergent, then $(x_n)$ is Cauchy, but the converse is not true in general.
@@ -793,7 +793,7 @@ For example, let $X = \mathbb{R} \setminus \{0\}$, and let $x_n = 1/n$. Then the
 Similarly, we can consider $\mathbb{Q}$, then this does not satisfy the general principle of convergence.
 
 \begin{definition}
-	Let $(X, d)$ be a metric space. We say $X$ is \textbf{complete}\index{complete} if every Cauchy sequence in $X$ converges.
+	Let $(X, d)$ be a metric space. We say $X$ is \textit{complete}\index{complete} if every Cauchy sequence in $X$ converges.
 \end{definition}
 
 \begin{exbox}
@@ -825,7 +825,7 @@ Similarly, we can consider $\mathbb{Q}$, then this does not satisfy the general 
 \end{exbox}
 
 \begin{definition}
-	Let $(X, d)$ be a metric space and $Y \subset X$. We say $Y$ is \textbf{closed}\index{closed} if whenever $(x_n)$ is a sequence in $Y$ with $x_n \to x \in X$, then $x \in Y$.
+	Let $(X, d)$ be a metric space and $Y \subset X$. We say $Y$ is \textit{closed}\index{closed} if whenever $(x_n)$ is a sequence in $Y$ with $x_n \to x \in X$, then $x \in Y$.
 \end{definition}
 
 \begin{proposition}
@@ -916,7 +916,7 @@ Similarly, we can consider $\mathbb{Q}$, then this does not satisfy the general 
 \end{exbox}
 
 \begin{definition}
-	Let $(X, d)$ be a metric space and $f : X \to X$. We say $f$ is a \textbf{contraction}\index{contraction} if there exists $\lambda \in [0, 1)$ such that for all $x,y \in X$, $d(f(x), f(y)) \leq \lambda d(x, y)$.
+	Let $(X, d)$ be a metric space and $f : X \to X$. We say $f$ is a \textit{contraction}\index{contraction} if there exists $\lambda \in [0, 1)$ such that for all $x,y \in X$, $d(f(x), f(y)) \leq \lambda d(x, y)$.
 \end{definition}
 
 \begin{theorem}[Contraction Mapping Theorem]\index{contraction mapping theorem}
@@ -964,7 +964,7 @@ Recall that Bolzano-Weierstrass for $\mathbb{R}^{n}$ says a bounded sequence in 
 Recall the definition of a closed set. We say $Y \subset X$ is closed in $X$ if whenever $(x_n)$ is a sequence in $Y$ with $x_n \to x \in X$, then $x \in Y$.
 
 \begin{definition}
-	A metric space is \textbf{sequentially compact}\index{sequentially compact} if every sequence has a compact subsequence.
+	A metric space is \textit{sequentially compact}\index{sequentially compact} if every sequence has a compact subsequence.
 \end{definition}
 
 \begin{theorem}
@@ -1000,7 +1000,7 @@ Then $(f_n)$ is a sequence in $X$, but for all $m \neq n$, $d(f_m, f_n) = 1$. So
 In this case, our space $X$ is too big, so we can find infinitely many objects which are far apart. This calls for a stronger concept of boundedness.
 
 \begin{definition}
-	Let $(X, d)$ be a metric space. We say $X$ is \textbf{totally bounded}\index{totally bounded} if for all $\delta > 0$, we can find a finite set $A \subset X$ such that for all $x \in X$, there exists $a \in A$ such that $d(x, a) < \delta$.
+	Let $(X, d)$ be a metric space. We say $X$ is \textit{totally bounded}\index{totally bounded} if for all $\delta > 0$, we can find a finite set $A \subset X$ such that for all $x \in X$, there exists $a \in A$ such that $d(x, a) < \delta$.
 \end{definition}
 
 This is the relevant condition needed to extend our theorem from $\mathbb{R}^{n}$ to a general metric space.
@@ -1038,7 +1038,7 @@ This is the relevant condition needed to extend our theorem from $\mathbb{R}^{n}
 In $\mathbb{R}^{n}$, we have different concepts of distance given by Euclidean distance $\ell_1$ and $\ell_{\infty}$. But these all give the same concept of convergence and continuity. We want some way to visualise why these are all the same.
 
 \begin{definition}
-	Let $(X, d)$ and $(Y, e)$ be metric spaces. Let $f : X \to Y$. We say $f$ is a \textbf{homeomorphism}\index{homeomorphism} and that $X$ and $Y$ are homeomorphic\index{homeomorphic} if $f$ is a continuous bijection with continuous inverse.
+	Let $(X, d)$ and $(Y, e)$ be metric spaces. Let $f : X \to Y$. We say $f$ is a \textit{homeomorphism}\index{homeomorphism} and that $X$ and $Y$ are homeomorphic\index{homeomorphic} if $f$ is a continuous bijection with continuous inverse.
 \end{definition}
 
 \begin{remark}
@@ -1088,7 +1088,7 @@ We now have examples of metric spaces that look different but behave identically
 We begin by looking at continuity in a different way.
 
 \begin{definition}
-	Let $(X, d)$ be a metric space. Let $a \in X$ and let $\varepsilon > 0$. The \textbf{open ball}\index{open ball} of radius $\varepsilon$ about $a$ is the set
+	Let $(X, d)$ be a metric space. Let $a \in X$ and let $\varepsilon > 0$. The \textit{open ball}\index{open ball} of radius $\varepsilon$ about $a$ is the set
 	\[
 		B_{\varepsilon}(a) = \{x \in X \mid d(x, a) < \varepsilon\}
 	.\]
@@ -1103,9 +1103,9 @@ We begin by looking at continuity in a different way.
 \end{remark}
 
 \begin{definition}
-	Let $X$ be a metric space. A subset $G \subset X$ is \textbf{open}\index{open} if for all $x \in G$, there exists $\varepsilon > 0$ such that $B_{\varepsilon}(x) \subset G$.
+	Let $X$ be a metric space. A subset $G \subset X$ is \textit{open}\index{open} if for all $x \in G$, there exists $\varepsilon > 0$ such that $B_{\varepsilon}(x) \subset G$.
 
-	A subset $N \subset X$ is a \textbf{neighbourhood}\index{neighbourhood} of a point $a \in X$ if there exists an open set $G \subset X$ such that $a \in G \subset N$.
+	A subset $N \subset X$ is a \textit{neighbourhood}\index{neighbourhood} of a point $a \in X$ if there exists an open set $G \subset X$ such that $a \in G \subset N$.
 \end{definition}
 
 \begin{remark}
@@ -1183,7 +1183,7 @@ We may ask whether there is a better way to do this.
 	\[
 	X = \bigcup_{G \in \mathcal{C}}G
 	.\]
-	A subcover of $\mathcal{C}$ is an open cover $\mathcal{B}$ of $X$ with $\mathcal{B} \subset \mathcal{C}$.\index{subcover} We say $X$ is \textbf{compact}\index{compact} if every open cover of $X$ has a finite subcover.
+	A subcover of $\mathcal{C}$ is an open cover $\mathcal{B}$ of $X$ with $\mathcal{B} \subset \mathcal{C}$.\index{subcover} We say $X$ is \textit{compact}\index{compact} if every open cover of $X$ has a finite subcover.
 \end{definition}
 
 \begin{proposition}[Heine-Borel Theorem]
@@ -1303,7 +1303,7 @@ Currently, we have extended our notion of continuity from $\mathbb{R}$ to genera
 	\begin{enumerate}[(i)]
 		\item $\emptyset \in \tau$ and $X \in \tau$;
 		\item If $\sigma \subset \tau$ then $\bigcup_{G \in \sigma}G \in \tau$;
-		\item If $G_1, G_2, \ldots, G_n \i \tau$, then $\bigcup_{i = 1}^{n} G_i \in \tau$.
+		\item If $G_1, G_2, \ldots, G_n \in \tau$, then $\bigcap_{i = 1}^{n} G_i \in \tau$.
 	\end{enumerate}
 \end{definition}
 
@@ -1341,7 +1341,7 @@ We want to define the notion of being open, closed and continuous for topologica
 		\item If $\tau$ is induced by a metric, then this is all consistent with the metric space definitions of these concepts.
 		\item Given our definition, then $G$ open $\iff G \in \tau$. We often don' need to explicitly name the topology.
 		\item Homeomorphism is an equivalence relation.
-		\item If $a \in G$ and $G$ open, then $G$ is a neighbourhood of $a$, however neighbourhoods need not be open in general. A set $G \subset X$ is open if and only if $G$ is a neighbourhood of each of its points.
+		\item If $a \in G$ and $G$ open, then $G$ is a neighbourhood of $a$, however neighbourhoods need not be open in general. A set $G \subset X$ is open if and only if $G$ is a neighbourhood of each of its points (for all $a \in \mathcal{N}$, take the union of $a \in G_{a} \subset \mathcal{N}$).
 	\end{enumerate}
 \end{remark}
 
@@ -1350,11 +1350,11 @@ We want to define the notion of being open, closed and continuous for topologica
 \end{proposition}
 
 \begin{proofbox}
-	Suppose $f$ is continuous, and let $a \in X$. Let $\mathcal{N} \subset Y$ be a neighbourhood of $f(a)$. Then there is an open set $G \subset Y$ wtih $a \in G \subset \mathcal{N}$. As $f$ is continuous, $f^{-1}(G) \subset X$ is open. Now $a \in f^{-1}(a) \subset f^{-1}(\mathcal{N})$, with $f^{-1}(a)$ open. So $f$ is continuous at $a$.
+	Suppose $f$ is continuous, and let $a \in X$. Let $\mathcal{N} \subset Y$ be a neighbourhood of $f(a)$. Then there is an open set $G \subset Y$ with $f(a) \in G \subset \mathcal{N}$. As $f$ is continuous, $f^{-1}(G) \subset X$ is open. Now $a \in f^{-1}(G) \subset f^{-1}(\mathcal{N})$, with $f^{-1}(G)$ open. So $f$ is continuous at $a$.
 
 	Suppose for all $a \in X$, we have $f$ continuous at $a$. Let $G \subset Y$ be open. Let $a \in f^{-1}(G)$. Then $f(a) \in G$, but $G$ is open, so $G$ is a neighbourhood of $f(a)$ Since $f$ is continuous at $a$, $f^{-1}(G)$ is a neighbourhood of $a$ in $X$.
 
-	But $a$ was arbitrary, so $^{-1}(G)$ is a neighbourhood of each of its points. Hence it is open, and $f$ is continuous.
+	But $a$ was arbitrary, so $f^{-1}(G)$ is a neighbourhood of each of its points. Hence it is open, and $f$ is continuous.
 \end{proofbox}
 
 \begin{proposition}
@@ -1623,7 +1623,7 @@ In general $\tau \times \sigma$ will not be a topology, as it won't be closed un
 \begin{proposition}
 	Let $\Pi$ be a $\pi$-system on a set $X$. Then,
 	\[
-		\tau = \Biggl\{ \bigcup_{A \in \Sigma} A \mid \Sigma \in \Pi \Biggr\} \cup \{\emptyset, X\}
+		\tau = \Biggl\{ \bigcup_{A \in \Sigma} A \mid \Sigma \subset \Pi \Biggr\} \cup \{\emptyset, X\}
 	\]
 	is a topology on $X$.
 \end{proposition}
@@ -1717,7 +1717,7 @@ Instead, we could define an equivalence relation $\sim$ on $\mathbb{R}^2$ by $(x
 \begin{definition}
 	Let $(X, \tau)$ be a topological space and let $\sim$ be an equivalence relation on $X$. The \textit{quotient topology} on $X/\sim$ is
 	\[
-		\rho = \{G \in X/\sim \mid q^{-1}(G) \in \tau\}
+		\rho = \{G \subset X/\sim \mid q^{-1}(G) \in \tau\}
 	,\]
 	where $q : X \to X/\sim$ is the quotient map, i.e. $q(x) = [x]_{\sim}$.
 \end{definition}
@@ -1733,7 +1733,7 @@ Instead, we could define an equivalence relation $\sim$ on $\mathbb{R}^2$ by $(x
 \begin{exbox}
 	\begin{enumerate}[1.]
 		\item Take $\mathbb{R}$ with the usual topology and let $x \sim y$ if and only if $x - y \in \mathbb{Z}$. Then $\mathbb{R}/ \sim$ is homeomorphic to $S^{1}$, the unit circle.
-		\item Take $\mathbb{R}$ with the usual metric and let $x \sim y$ if and only if $x - y \in \mathbb{Q}$. Suppose $G \subset \mathbb{R}/ \sim$ is open and $G \neq \emptyset$. Then $q^{-1}(G)$ is open and non-empty, to contains some interval $(a, b) \subset q^{-1}(G)$ with $a \neq b$.
+		\item Take $\mathbb{R}$ with the usual metric and let $x \sim y$ if and only if $x - y \in \mathbb{Q}$. Suppose $G \subset \mathbb{R}/ \sim$ is open and $G \neq \emptyset$. Then $q^{-1}(G)$ is open and non-empty, so contains some interval $(a, b) \subset q^{-1}(G)$ with $a \neq b$.
 
 			Now take any $x \in \mathbb{R}$. Then there exists $y \in (a, b)$ with $x - y \in \mathbb{Q}$, and so $q(x) = [x]_{\sim} = [y]_{\sim} \in G$. Hence $G = \mathbb{R}/\sim$.
 
@@ -1836,7 +1836,1111 @@ Then $f$ is continuous on $X$, $0, 1 \in f(X)$ but $[0, 1] \not \subset f(X)$. T
 	Recall that $U \subset X$ is closed if and only if its complement is open. Hence $X$ is disconnected if and only if there exist disjoint non-empty closed sets $U, V$ with $X = U \cup V$.
 
 	Analogously, $X$ is connected if and only if the only subsets of $X$ that are both open and closed are $\emptyset$ and $X$.
+
+	Another equivalent condition is that $X$ is connected if and only if, whenever $U, V \subset X$ are open and disjoint with $X = U \cup V$, then either $U = \emptyset$ or $V = \emptyset$. Again, we could replace `open' with `closed'.
+
+	Now if $X$ is disconnected, we say that the sets $U$ and $V$ which partition $X$ \textit{disconnect} $X$.
 \end{remark}
+
+Note that connectedness is a topological property, and if $S \subset X$ and $X$ is a topological space, then $S$ is disconnected if and only if there exist open sets $U, V \subset X$ such that $S \cap U \cap V = \emptyset$, $S \subset U \cup V$, and $S \cap U \neq \emptyset$, $S \cap V \neq \emptyset$.
+
+\begin{example}
+	We don't necessarily have $U \cap V = \emptyset$ for a set $S \subset X$ to be disconnected. Indeed, consider $\mathbb{N}$ with the cofinite topology, and consider the set $\{1, 2\}$.
+
+	Then it is disconnected in $\mathbb{N}$ with sets $\mathbb{N} \setminus \{1\}$ and $\mathbb{N} \setminus \{2\}$, but these two sets intersect in $X$.
+\end{example}
+
+A natural question is to classify the connected subsets of $\mathbb{R}$.
+
+\begin{definition}
+	A subset $I \subset \mathbb{R}$ is an \textit{interval}\index{interval} if whenever $a < b < c$ with $a, c \in I$, then $b \in I$.
+\end{definition}
+
+\begin{proposition}
+	Let $I \subset \mathbb{R}$ with the usual topology. Then $I$ is connected if and only if $I$ is an interval.
+\end{proposition}
+
+\begin{proofbox}
+	Suppose $I$ is not an interval. Then we can find $a < b < c$ with $a, c \in I$ but $b \not \in I$. Then $(-\infty, b)$ and $(b, \infty)$ disconnect $I$ in $\mathbb{R}$.
+
+	Now suppose $I$ is an interval. We work in the subspace topology on $I$. Let $S \subset I$ be open, closed an non-empty. Let $a \in S$, and suppose we have $b \in I \setminus S$. We can let $b > a$.
+
+	Let $c = \sup ([a, b] \cap S)$. Then this exists, so we can find a sequence $(x_n)$ in $S$ with $x_n \to c$. But $S$ is closed in $I$, so $c \in S$. In particular $c \neq b$, so $c < b$.
+
+	But also $S$ is open in $I$, so there exists $\delta > 0$ such that $(c - \delta, c + \delta) \subset S$. Let $\delta < b - c$. Then $c + \delta/2 \in S \cap [a, b]$, which is a contradiction to our definition of $c$.
+
+	So in fact $S = I$, and $I$ is connected.
+\end{proofbox}
+
+We have another equivalent version of connectedness as follows:
+
+\begin{theorem}
+	Let $X$ be a topological space. Then $X$ is connected if and only if every continuous function $f : X \to \mathbb{Z}$ is constant.
+\end{theorem}
+
+\begin{proofbox}
+	First, suppose $X$ is connected and $f : X \to \mathbb{Z}$ is continuous. Then for any $n \in \mathbb{Z}$, $\{n\} \subset \mathbb{Z}$ is open and closed, so $f^{-1}(\{n\}) \subset X$ is open and closed, hence either $\emptyset$ or $X$. This proves $f$ is constant.
+
+	Now suppose $U, V$ disconnect $X$. Define $f : X \to \mathbb{Z}$ by
+	\[
+		f(x) =
+		\begin{cases}
+			0 & x \in U, \\
+			1 & x \in V.
+		\end{cases}
+	\]
+	Then for any $A \subset \mathbb{Z}$, $f^{-1}(A) = \emptyset, X, U$ or $V$, which is open. So $f$ is continuous and non-constant.
+\end{proofbox}
+
+\begin{remark}
+	This proposition, and the intermediate value theorem give an alternative proof of the previous proposition. Moreover, the same result holds if we replace $\mathbb{Z}$ with a non-trivial discrete space $Y$.
+\end{remark}
+
+\begin{proposition}
+	A continuous image of a connected space is connected.
+\end{proposition}
+
+\begin{proofbox}
+	Let $X$ be a connected topological space, and $Y$ be a topological space. Let $f : X \to Y$ be continuous.
+
+	Suppose $U, V \subset Y$ are open with $f(x) \subset U \cup V$ and $U \cap V \cap f(X) = \emptyset$. As $f$ is continuous, $f^{-1}(U), f^{-1}(V) \subset X$ are open. Also $X = f^{-1}(U) \cup f^{-1}(V)$ and $f^{-1}(U) \cap f^{-1}(V) = \emptyset$. As $X$ is connected, one of these sets, say $f^{-1}(U)$, is equal to $\emptyset$. Then $U \cap f(X) = \emptyset$, so $f(X)$ is connected.
+\end{proofbox}
+
+\begin{proposition}
+	A product of connected spaces is connected.
+\end{proposition}
+
+\begin{proofbox}
+	Let $(X, \tau)$ and $(Y, \sigma)$ be connected topological spaces, and let $\rho$ be the product topology on $X \times Y$.
+
+	Suppose $U, V \in \rho$ with $U \cup V = X \times Y$ and $U \cap V = \emptyset$. Fix $x \in X$. Then $\{x\} \times Y$ is homeomorphic to $Y$, in particular, it is connected. So $\{x\} \times Y \subset Y$ or $\{x\} \times Y \subset V$, otherwise they would disconnect $\{x\} \times Y$.
+
+	Let $A = \{x \in X \mid \{x\} \times Y \subset U\}$ and $B = \{x \in X \mid \{x\} \times Y \subset V\}$. Clearly $A \cap B = \emptyset$ as $U \cap V = \emptyset$, and we have proven $X = A \cup B$.
+
+	Now suppose $x \in A$, so $\{x\} \times Y \subset Y$. Then for any $y \in Y$, $(x, y) \in U$. Since $U$ is open, we can find $T \in \tau$, $S \in \sigma$ such that $(x, y) \in T \times S \subset U$. In particular, for all $w \in T$, $(w, y) \in U$, and so $\{w\} \times Y \subset U$, i.e. $w \in A$. So we have $T \in \tau$ with $x \in T \subset A$, so $A$ is a neighbourhood of $x \in X$. Hence $A$ is open.
+
+	Similarly, $B$ is open. But $X$ is connected, so either $A = \emptyset$, giving $U = \emptyset$, or $B = \emptyset$, giving $V = \emptyset$. Hence $X \times Y$ is connected.
+\end{proofbox}
+
+\begin{exbox}
+	Take $[-1, 0) \cup (0, 1]$. We have shown it is not connected. However it is a disjoint union of connected sets (by how we defined it). Moreover, if we have a proper superset of $[-1, 0)$ or $(0, 1]$ in $[-1, 0) \cup (0, 1]$, then it is disconnected.
+\end{exbox}
+
+\begin{definition}
+	Let $X$ be a topological space. A \textit{connected component}\index{connected component} of $X$ is a maximal connected subset $A$ of $X$, that is to say, $A$ is connected but if $A \subset B \subset X$ with $B$ connected, then $A = B$.
+\end{definition}
+
+\begin{theorem}
+	The connected components of a topological space $X$ form a partition of $X$.
+\end{theorem}
+
+\begin{proofbox}
+	Define an equivalence relation $\sim$ on $X$ by $x \sim y$ if and only if there exists $A \subset X$ connected with $x, y \in A$. Clearly $\sim$ is reflexive (as $\{x\}$ is connected) and symmetric, so we want to show that $\sim$ is transitive.
+
+	Suppose $x, y \in X$ with $x \sim y$ and $y \sim z$. Then there exist $A, B \subset X$ connected with $x, y \in A$ and $y, z \in B$. Note $x, z \in A \cup B$.
+
+	Suppose $U, V$ disconnect $A \cup B$ in $X$, and say $y \in U$. Pick $w \in V \cap (A \cup B)$, and say $w \in A$. Then since $y \in A$, $U, V$ disconnect $A$. So $A \cup B$ is connected, giving $x \sim z$. Hence $\sim$ is an equivalence relation.
+
+	Now we show the equivalence classes are connected themselves. Suppose $S$ is an equivalence class of $\sim$, and that $U$ and $V$ disconnect $S$. Then, we can find $x \in U \cap S$, $y \in V \cap S$. Since $x \sim y$, there is a connected $A \subset X$ with $x,y \in A$. Then for all $z \in A$, $x, z$ are connected so $x \sim z$ and $z \in S$.
+
+	So $A$ is a subset of $S$, and $U, V$ disconnect $A$, which is a contradiction. So $S$ is connected. Now suppose $S$ is not maximal, that is $S \subset T \subset X$ with $T$ connected. Let $x \in S$. Then for all $y \in T$, $x, y \in T$ with $T$ connected so $x \sim y$. Thus $T \subset S$, hence $S = T$, and $S$ is maximal.
+
+	Finally, let $R$ be a connected component, and $x, y \ni R$. As $R$ is connected, $x \sim y$. So $R$ is contained in some equivalence class $Q$. But $R \subset Q$ with $Q$ connected, so $R = Q$. Hence the equivalence classes of $\sim$ are precisely the connected components.
+\end{proofbox}
+
+\begin{remark}
+	This tells us that connected components do actually exist.
+\end{remark}
+
+Instead of defining connectedness in this way, we may choose to define it in a way that is more intuitive to understand.
+
+\begin{definition}
+	A \textit{path}\index{path} from $x$ to $y$ in a topological space $X$ is a continuous function $\phi : [0, 1] \to X$ with $\phi(0) = x$ and $\phi(1) = y$. $X$ is \textit{path-connected}\index{path-connected} if for all $x, y \in X$,ithere is a path from $x \to y$.
+\end{definition}
+
+\begin{proposition}
+	A path-connected space $X$ is connected.
+\end{proposition}
+
+\begin{proofbox}
+	Suppose $U, V$ disconnect $X$. Pick $a \in U$, $b \in V$. Let $\phi$ be a path in $X$ from $a$ to $b$. Then $U, V$ disconnect $\phi([0,1])$.
+\end{proofbox}
+
+However, the converse is not true.
+
+\begin{exbox}[Closed Topologist's Sine Curve]
+	Take the following subspace of $\mathbb{R}^2$: Let
+	\begin{align*}
+		A &= \{(0, y) \mid -1 \leq y \leq 1\},\\
+		B &= \{(x, \sin \frac{1}{x}) \mid 0 < x \leq 1\}.
+	\end{align*}
+	Let $X = A \cup B \subset \mathbb{R}^2$. We prove $X$ is connected.(insert picture)
+
+	Indeed, $A$ and $B$ are path-connected, so are connected. Suppose $U, V$ disconnect $X$ in $\mathbb{R}^2$. Then we may assume $A \subset U$, $B \subset V$. So $(0, 0) \in A \subset U$. Since $U$ is open, we have some $\delta > 0$ such that $B_{\delta}((0,0)) \subset U$. But then we can pick $n$ such that $\frac{1}{2n\pi} < \delta$, which gives $(\frac{1}{2n\pi}, 0) \in U \cap B$.
+
+	However, $X$ is not path-connected. Suppose $\phi = (\phi_1, \phi_2)$ is a path from $(0,0)$ to $(1, \sin 1)$, in $X$. Let $\sigma = \sup\{t \in [0,1]\mid\phi_1(t) = 0\}$, and let $y = \phi_2(\sigma)$. As $\phi$ is continuous, $\phi(\sigma) = (0, y)$. Choose $\delta > 0$ such that $|\sigma - t| < \delta \implies |\phi(\sigma) - \phi(t)| < 1$, and $\delta < 1 - \sigma$.
+
+	By the definition of $\sigma$, there exists $\varepsilon$ such that $\phi_1(\sigma + \varepsilon) = x > 0$. Choose $w \in (0, x)$ such that $|\sin \frac{1}{w} - y| \geq 1$. Then, by intermediate value theorem, there is some $t \in(\sigma,\sigma+\varepsilon)$ such that $\sigma_1(t) = w$.
+
+	Then  $|\sigma - t| < \delta$, but
+	\[
+		|\phi(\sigma) - \phi(t)| \geq |\phi_2(\sigma) - \phi_2(t)| = \biggl|\sin \frac{1}{w} - y\biggr| \geq 1
+	,\]
+	a contradiction.
+\end{exbox}
+
+However, we can prove the following nice proposition.
+
+\begin{proposition}
+	An open, connected subset of Euclidean space is path-connected.
+\end{proposition}
+
+\begin{proofbox}
+	Let $X \subset \mathbb{R}^{n}$ be open and connected. If $X$ is empty, we are done, so assume $X \neq \emptyset$.
+
+	Fix $a \in X$. Let
+	\[
+		U = \{x \in X \mid \text{there is a path in } X \text{ from } a \text{ to } x\}
+	.\]
+	Now $U \neq \emptyset$, as $a \in U$. Moreover, $U$ is open in $X$: Suppose $b \in U$. Then $X$ is open, so we can pick $\delta > 0$ such that $B_{\delta}(b) \subset X$. Let $\phi$ be a path from $a$ to $b$ in $X$, and let $x \in B_{\delta}(b)$. Then, define a path $\theta$ from $a$ to $x$, given by
+	\[
+		\theta(t) =
+		\begin{cases}
+			\phi(2t) & 0 \leq t \leq \frac{1}{2}, \\
+			b + 2(t - \frac{1}{2})(x - b) & \frac{1}{2} \leq t \leq 1
+		\end{cases}
+	.\]
+	So this gives $x \in X$.
+
+	Moreover, $U$ is closed in $X$. Let $b \in X \setminus U$. Choose $\delta > 0$ such that $B_{\delta}(b) \subset X$. Suppose $x \in B_{\delta}(b) \cap U$. Then,  if $\phi$ is a path from $a$ to $x$, we may define a path $\theta$ from $a$ to $b$ by
+	\[
+		\theta(t) =
+		\begin{cases}
+			\phi(2t) & 0 \leq t \leq \frac{1}{2}, \\
+			x + 2(t - \frac{1}{2})(b-x) & \frac{1}{2} \leq t \leq 1.
+		\end{cases}
+	\]
+	This is a contradiction to $b \in X \setminus U$, so $B_{\delta}(b) \subset X \setminus U$.
+
+	Hence, as $X$ is connected, $U = X$. But since the point $a$ was arbitrary, $X$ is path-connected.
+\end{proofbox}
+
+\newpage
+
+\part{Differentiation}%
+\label{prt:differentiation}
+
+\section{Higher Dimensional Derivatives}
+\label{sec:higher_dimensional_derivatives}
+
+\subsection{Extending the Derivative}
+\label{sub:extending_the_derivative}
+
+Recall that in one dimension. $f : \mathbb{R} \to \mathbb{R}$ is \textit{differentiable}\index{differentiable} at $a \in \mathbb{R}$ with \textit{derivative}\index{derivative} $A$ if
+\[
+	\frac{f(a+h) - f(a)}{h} \to A \text{ as } h \to 0
+.\]
+We write $f'(a) = A$.
+
+As we have done before, we wish to generalise this definition to functions $f : \mathbb{R}^{n} \to \mathbb{R}^{m}$.
+
+For $n = 1$, we can easily modify the above definition and get a satisfactory result. However if $n \geq 2$, then dividing by $h \in \mathbb{R}^{n}$ makes no sense. Hence we introduce the following definition.
+
+\begin{definition}
+	If $f : \mathbb{R}^{n} \to \mathbb{R}^{m}$ is a function, the $i$\textit{-th partial derivative}\index{partial derivative} of $f$ at $a \in \mathbb{R}^{n}$ is
+	\[
+		D_{i}f(a) = \lim_{h \to 0} \frac{f(a + h e_i) - f(a)}{h}
+	,\]
+	where the limit exists. Here $e_1, \ldots, e_n$ is the standard basis of $\mathbb{R}^{n}$.
+\end{definition}
+
+\begin{exbox}
+	Take a function $f : \mathbb{R}^2 \to \mathbb{R}$ by
+	\[
+		f(x, y) =
+		\begin{cases}
+			0 & xy = 0, \\
+			1 & xy \neq 0.
+		\end{cases}
+	\]
+	Then both partial derivatives exist at $(0, 0)$: Indeed, $D_1f(0, 0) = D_2f(0, 0) = 0$. But $f$ is not continuous at $(0, 0)$.
+\end{exbox}
+
+Hence we may want to look for a better definition of a derivative. Returning to functions from $\mathbb{R}$ to $\mathbb{R}$, note
+\begin{align*}
+	f'(a) = A \iff& \frac{f(a+h) - f(a)}{h} \to A & \text{ as } h &\to 0, \\
+		\iff& \frac{f(a+h) - f(a)}{h} = A + \varepsilon(h) & \text{ where } \varepsilon(h) \to 0 \text{ as } h &\to 0, \\
+			\iff& f(a+h) = f(a) + Ah + \varepsilon(h)h & \text{ where } \eps(h) \to 0 \text{ as } h &\to 0.
+\end{align*}
+
+We can now generalise this notion to higher dimensions.
+
+\begin{definition}
+	Let $f : \mathbb{R}^{n} \to \mathbb{R}^{m}$, and $a \in \mathbb{R}^{n}$. We say $f$ is \textit{differentiable}\index{differentiable} at $a$ if there is a linear map $\alpha \in \mathcal{L}(\mathbb{R}^{n}, \mathbb{R}^{m})$ such that
+	\[
+		f(a+h) = f(a) + \alpha(h) + \eps(h) \|h\|
+	,\]
+	where $\eps(h) \to 0$ as $h \to 0$.
+\end{definition}
+
+\begin{remark}
+	In this definition, $h \in \mathbb{R}^{n}$.
+\end{remark}
+
+We say that $\alpha$ is the \textit{derivative} of $f$ at $a$, and write $Df|_a = \alpha$. So if $f$ is differentiable at $a$,
+\[
+	f(a+h) = f(a) + Df|_a(h) + \eps(h)\|h\|
+,\]
+where $\eps(h) \to 0$ as $h \to 0$. But if this definition is to make any sense, then $\alpha$ must be unique.
+
+\begin{proposition}
+	Suppose $f : \mathbb{R}^{n} \to \mathbb{R}^{m}$, $a \in \mathbb{R}^{n}$ and $\alpha, \beta \in \mathcal{L}(\mathbb{R}^{n}, \mathbb{R}^{m})$. Suppose
+	\begin{align*}
+		f(a+h) &= f(a) + \alpha(h) + \eps(h) \|h\|,\\
+		f(a+h) &= f(a) + \beta(h) + \eta(h)\|h\|,
+	\end{align*}
+	with both $\eps(h),\eta(h) \to 0$ as $h \to 0$. Then $\alpha = \beta$.
+\end{proposition}
+
+\begin{remark}
+	If $f : \mathbb{R} \to \mathbb{R}^{m}$, we can write
+	\[
+		Df|_a (h) = f'(a)h
+	.\]
+\end{remark}
+
+\begin{proofbox}
+	Let $h \in \mathbb{R}^{n}$, $h \neq 0$. Then,
+	\[
+	\alpha(h) - \beta(h) = (\eta(h) - \eps(h)) \|h\|
+	.\]
+	Then, for $\lambda \in \mathbb{R}$, $\lambda \neq 0$,
+	\begin{align*}
+		\|\alpha(h) - \beta(h)\| &= \biggl\| \frac{\alpha(\lambda h) - \beta(\lambda h)}{\lambda} \biggr\| \\\
+		&= \biggl\| \frac{\eta(\lambda h) - \eps(\lambda h) \|\lambda h\|}{\lambda}\biggr\| \\
+		&= \| \eta(\lambda h) - \eps(\lambda h)\|\|h\| \to 0,
+	\end{align*}
+	as $\lambda \to 0$. Hence, $\alpha(h) = \beta(h)$, so $\alpha = \beta$.
+\end{proofbox}
+
+\begin{remark}
+	\begin{enumerate}[1.]
+		\item[]
+		\item To consider differentiability of $f$ at $a$, it only matters what happens on some neighbourhood of $a$. Hence, our definition works if instead of $f : \mathbb{R}^{n} \to \mathbb{R}^{m}$, we have $f : \mathcal{N} \to \mathbb{R}^{m}$, where $\mathcal{N} \subset \mathbb{R}^{n}$ is a neighbourhood of $a$, or in particular, $f : B_{\delta}(a) \to \mathbb{R}^{m}$, where $\delta > 0$.
+		\item We can define the $\ell_1$ and $\ell_{\infty}$ metrics on $\mathbb{R}^{n}$ by
+			\[
+			\|x\|_{1} = d_1(0, x) = \sum_{i = 1}^{n} |x_i|,
+			\]
+			\[
+			\|x\|_{\infty} = d_{\infty}(0, x) = \max_{i}|x_i|
+			.\]
+			Note that $\|x\|_1 \geq 0$ with equality of and only if $x = 0$, and
+			\[
+			\|\lambda x\|_1 = |\lambda| \|x\|_1, \qquad \|x + y\|_1 \leq \|x\|_1 + \|y\|_1
+			.\]
+			This is the same for $\|\cdot\|_{\infty}$.
+
+			We have seen that for all $x \in \mathbb{R}^{n}$,
+			\[
+			\|x\|_{\infty} \leq \|x\| \leq \sqrt n \|x\|_{\infty},
+			\]
+			\[
+			\|x\|_{\infty} \leq \|x\|_{1} \leq n \|x\|_{\infty}
+			.\]
+			So we can replace our norm $\|\cdot\|$ in the definition of the derivative with either $\|\cdot\|_{1}$ or $\|\cdots\|_{\infty}$, and the definition will be the same. This can be sometimes useful for computation.
+	\end{enumerate}
+\end{remark}
+
+Consider the vector space $\mathcal{L}(\mathbb{R}^{n}, \mathbb{R}^{m})$ of linear maps $\mathbb{R}^{n} \to \mathbb{R}^{m}$. Then $\mathcal{L}(\mathbb{R}^{n}, \mathbb{R}^{m}) \cong \mathbb{R}^{mn}$ with a standard isomorphism.
+
+So we could define the Euclidean norm of a linear map, although it is a bit unnatural. Instead, we will use the following definition.
+
+\begin{definition}
+	The \textit{operator norm}\index{operator norm} of $\mathcal{L}(\mathbb{R}^{n}, \mathbb{R}^{m})$ is defined by
+	\[
+		\|\alpha\| = \sup \{ \|\alpha x\| \mid \|x\| = 1 \}
+	.\]
+\end{definition}
+
+\begin{proposition}
+	Let $\|\cdot\|$ be the operator norm of $V = \mathcal{L}(\mathbb{R}^{n}, \mathbb{R}^{m})$. Let $\alpha, \beta \in V$. Then,
+	\begin{enumerate}[\normalfont(i)]
+		\item $\|\alpha\| \geq 0$ with equality if and only if $\alpha = 0$;
+		\item For all $\lambda \in \mathbb{R}$, $\|\lambda \alpha \| = |\lambda| \|\alpha\|$;
+		\item $\|\alpha + \beta\| \leq \|\alpha\| + \|\beta\|$;
+		\item For all $x \in \mathbb{R}^{n}$, $\|\alpha x\| \leq \|\alpha\| \|x\|$;
+		\item $\|\alpha \beta \| \leq \|\alpha\|\|\beta\|$;
+		\item If $\|\cdot\|'$ is the Euclidean norm of $V \cong \mathbb{R}^{mn}$ with the standard isomorphism, then there are constants $c, d$ such that
+			\[
+			c\|\alpha\| \leq \|\alpha\|' \leq d\|\alpha\|
+			.\]
+	\end{enumerate}
+\end{proposition}
+
+\begin{remark}
+	\begin{enumerate}[1.]
+		\item[]
+		\item A linear map from $\mathbb{R}^{n} \to \mathbb{R}^{m}$ is continuous and $\{x \in \mathbb{R}^{n} \mid \|x\| = 1\}$ is compact, so the operator norm is well-defined.
+		\item The standard is that $\|\cdot\|$ refers to the operator norm if applied to a linear map, and the Euclidean norm if applied to a point of $\mathbb{R}^{n}$, unless otherwise stated.
+	\end{enumerate}	
+\end{remark}
+
+\begin{proofbox}
+	(i) to (iii) are easy to prove.
+
+	To prove (iv), let $x \in \mathbb{R}^{n}$. If $x = 0$, then we are done. Otherwise
+	\[
+	\alpha(x) = \|x\| \alpha \biggl( \frac{x}{\|x\|}\biggr) \leq \|x\| \|\alpha\|
+	,\]
+	as $\| \frac{x}{\|x\|} \| = 1$.
+
+	Now for (v), let $x \in \mathbb{R}^{n}$ with $\|x\| = 1$. Then, by applying (iv) multiple times,
+	\[
+	\|\alpha \beta x\| \leq \|\alpha\| \|\beta x\| \leq \|\alpha \| \|\beta \| \|x\| = \|\alpha\|\|\beta\|
+	.\]
+	So $\|\alpha \beta \| \leq \|\alpha \| \|\beta \|$.
+
+	For (vi), let $x \in \mathbb{R}^{n}$ with $\|x\| = 1$. Then,
+	\[
+	\|\alpha x\| \leq \sqrt m \max_{1 \leq i \leq m} | (\alpha x)_{i} |
+	.\]
+	Let $A$ be the matrix of $\alpha$ with respect to the standard bases $e_1, \ldots, e_n$ of $\mathbb{R}^{n}$, and $f_1, \ldots, f_m$ of $\mathbb{R}^{m}$. Then,
+	\begin{align*}
+	\|\alpha x\| &\leq \sqrt m \max_{1 \leq i \leq m} \biggl| \sum_{j = 1}^{n} A_{ij} x_j \biggr| \\
+		     &\leq \sqrt m \max_{1 \leq i \leq m} \sum_{j = 1}^{n} |A_{ij}| |x_j| \\
+		     &\leq \sqrt m \max_{1 \leq i \leq m} \sum_{j = 1}^{n} \|\alpha\|' \\
+		     &= n \sqrt m \|\alpha\|'.
+	\end{align*}
+	Hence $\|\alpha\| \leq n \sqrt m \|\alpha\|'$. On the other hand, pick $i, j$ that maximize $|A_{ij}|$. Then $\|\alpha e_j\| \geq \|(\alpha e_j)_i\| = |A_{ij}|$. But then,
+	\[
+		\|\alpha\|' \leq \sqrt{mn} |A_{ij}| \leq \sqrt{mn} \|\alpha e_j\| \leq \sqrt{mn} \|\alpha\|
+	.\]
+	This prove (vi) with $d = \sqrt{mn}$, $c = \frac{1}{n\sqrt m}$.
+\end{proofbox}
+
+\begin{proposition}
+	Let $f : \mathbb{R}^{n} \to \mathbb{R}^{m}$, which is differentiable at $a \in \mathbb{R}^{n}$. Then, $f$ is continuous at $a$.
+\end{proposition}
+
+\begin{proofbox}
+	Write
+	\[
+	f(a + h) = f(a) + Df|_{a}(h) + \eps(h) \|h\|
+	,\]
+	where $\eps(h) \to 0$ as $h \to 0$. Also, $\|h\| \to 0$ as $h \to 0$, and $Df|_{a}$ is linear, so continuous, so $Df|_{a}(h) \to Df|_{a}(0) = 0$ as $h \to 0$.
+
+	Hence, $f(a + h) \to f(a)$ as $h \to 0$.
+\end{proofbox}
+
+\begin{proposition}
+	Let $f, g : \mathbb{R}^{n} \to \mathbb{R}^{m}$, and $\lambda : \mathbb{R}^{n} \to \mathbb{R}$ be differentiable at $a \in \mathbb{R}^{n}$. Then $f + g$ and $\lambda f$ are differentiable at $a$ with
+	\[
+	D(f+g)|_{a} = Df|_{a} + Dg|_a
+	,\]
+	\[
+	D(\lambda f)|_a (h) = \lambda(a) Df|_a(h) + D\lambda|_a(h) f(a)
+	.\]
+\end{proposition}
+
+\begin{proofbox}
+	We have
+	\begin{align*}
+		f(a+h) &= f(a) + Df|_a(h) + \eps(h) \|h\|, \\
+		g(a+h) &= g(a) + Dg|_a(h) + \eta(h) \|h\|, \\
+		\lambda(a+h) &= \lambda(a) + D\lambda|_a(h) + \zeta(h) \|h\|,
+	\end{align*}
+	where $\eps(h), \eta(h), \zeta(h) \to 0$ as $h \to 0$. Now,
+	\[
+		(f+g)(a+h) = (f+g)(a) + (Df|_a + Dg|_a)(h) + (\eps(h) + \eta(h))\|h\|
+	,\]
+	where $Df|_a + Dg|_a$ is linear and $\eps(h) + \eta(h) \to 0$ as $h \to 0$. Similarly, we get
+	\[
+		(\lambda f)(a+h) = (\lambda f)(a) + \lambda(a) Df|_a(h) + D\lambda|_a (h) f(a) + \xi(h) \|h\|
+	,\]
+	where $h \to \lambda(a) Df|_a(h) + f(a) D\lambda|_a(h)$ is a linear map, and
+	\begin{align*}
+		\xi(h) = \zeta(h)f(a) &+ Df|_a(h)D\lambda|_a(h) \frac{1}{\|h\|} + Df|_a(h) \zeta(h) + \lambda(a) \eps(h) \\
+		       &+ D\lambda|_a(h) \eps(h) + \eps(h) \zeta(h) \|h\| \to 0
+	\end{align*}
+	as $h \to 0$, since $\eps(h), \zeta(h) \to 0$ as $h \to 0$, $\|h\| \to 0$ as $h \to 0$, and $Df|_a, D\lambda|_a$ are linear so continuous, so they tend to $0$ as $h \to 0$. So,
+	\begin{align*}
+		\biggl\|Df|_a(h) Dg|_a(h) \frac{1}{\|h\|} \biggr\| &\leq \|Df|_a(h)\| \|D\lambda|_a(h)\| \frac{1}{\|h\|} \\
+						      &\leq \|Df|_a\|\|h\| \|D\lambda|_a\| \|h\| \frac{1}{\|h\|} \\
+						      &= \|Df|_a\| \|D\lambda|_a\| \|h\| \to 0,
+	\end{align*}
+	as $h \to 0$.
+\end{proofbox}
+
+Although we have gotten rid of partial derivatives, they can still be useful for computation.
+
+\begin{proposition}
+	Let $f : \mathbb{R}^{n} \to \mathbb{R}^{m}$ and $a \in \mathbb{R}^{n}$. Write $f =
+	\begin{pmatrix}
+		f_1 & \cdots & f_m
+	\end{pmatrix}^{T}$ where for each $i$, $f_i : \mathbb{R}^{n} \to \mathbb{R}$. Then,
+	\begin{enumerate}[\normalfont(a)]
+	\item $f$ is differentiable at $a$ if and only if each $f_i$ is differentiable at $a$, in which case
+	\[
+	Df|_a =
+	\begin{pmatrix}
+		Df_1|_a \\
+		\vdots \\
+		Df_m|_a
+	\end{pmatrix}
+	,\]
+	and
+	\item If $f$ is differentiable at $a$, and $A$ is the matrix of $Df|_a$ in terms of the standard bases, then $A_{ij} = D_j f_i(a)$.
+	\end{enumerate}
+\end{proposition}
+
+\begin{proofbox}
+	For (a), if $f$ is differentiable, write
+	\[
+	f(a+h) = f(a) + Df|_a(h) + \eps(h) \|h\|
+	,\]
+	where $\eps(h) \to 0$ as $h \to 0$. Then
+	\[
+	f_i(a+h) = f_i(a) + (Df|_a)_i(h) + \eps_i(h) \|h\|
+	,\]
+	where $(Df|_a)_i : \mathbb{R}^{n} \to \mathbb{R}$ is linear, and $|\eps_i(h)| \leq \|\eps(h)\| \to 0$ as $h \to 0$. So the $f_i$ are differentiable.
+
+	Now suppose $f_i$ is differentiable for each $i$. Then we can write
+	\[
+	f_i(a+h) = f_i(a) + Df_i|_a(h) + \eps_i(h) \|h\|
+	.\]
+	Then
+	\[
+	f(a+h) = f(a) + \alpha(h) + \eps(h) \|h\|
+	,\]
+	where $\alpha =
+	\begin{pmatrix}
+		Df_1|_a & \cdots & Df_m|_a
+	\end{pmatrix}^{T} : \mathbb{R}^{n} \to \mathbb{R}^{m}$ is linear, and
+	\[
+	\|\eps(h)\| = \Biggl\|
+	\begin{pmatrix}
+		\eps_1(h) \\
+		\vdots \\
+		\eps_m(h)
+	\end{pmatrix}
+	\Biggr\| = \sqrt{\sum_{i = 1}^{m} \eps_i(h)^2} \to 0
+	\]
+	as $h \to 0$.
+
+	Now for (b), again write
+	\[
+	f(a + h) = f(a) + Df|_a(h) + \eps(h) \|h\|
+	,\]
+	where $\eps(h) \to 0$ as $h \to 0$. Let $e_1, \ldots, e_n$ be the standard basis of $\mathbb{R}^{n}$. Then,
+	\begin{align*}
+		\frac{f(a+he_j) - f(a)}{h} &= \frac{Df|_a(h e_j) + \eps(he_j) \|he_j\|}{h} \\
+					   &= Df|_a(e_j) \pm \eps(h e_j) \to Df|_a(e_j),
+	\end{align*}
+	as $h \to 0$. So all partial derivatives of $f$ exist at $a$, and $D_jf(a) = Df|_a(e_j)$.
+\end{proofbox}
+
+\begin{definition}
+	The matrix $A$ in (b) is called the \textit{Jacobian}\index{Jacobian} matrix of $f$ at $a$.
+\end{definition}
+
+\begin{theorem}[Chain Rule]\index{chain rule}
+	Let $f : \mathbb{R}^{p} \to \mathbb{R}^{n}$ be differentiable at $a \in \mathbb{R}^{p}$, and let $g : \mathbb{R}^{n} \to \mathbb{R}^{m}$ be differentiable at $f(a) \in \mathbb{R}^{n}$. Then, $g \circ f$ is differentiable at $a$ with
+	\[
+	D(g \circ f)|_a = Dg|_{f(a)} \circ Df|_a
+	.\]
+\end{theorem}
+
+\begin{remark}
+	In principle, this makes sense.  If $f$ is approximately linear near $a$, and $g$ is approximately linear near $f(a)$, then $g \circ f$ should be approximately linear near $a$, and the linear approximation to $g \circ f$ near $a$ should be the obvious thing.
+
+	However the proof is a bit messy, we need to do a calculation to make sure that the error terms behave.
+\end{remark}
+
+\begin{proofbox}
+	Write
+	\[
+	f(a+h) = f(a) + \alpha(h) + \eps(h)\|h\|
+	,\]
+	\[
+	g(f(a) + k) = g(f(a)) + \beta(k) + \eta(k)\|k\|
+	,\]
+	where $\alpha = Df|_a$, $\beta = Dg|_{f(a)}$ are linear, and $\eps(h) \to 0$ as $h \to 0$, $\eta(k) \to 0$ as $k \to 0$. Now,
+	\begin{align*}
+		g(f(a+h)) &= g(f(a) + \alpha(h) + \eps(h)\|h\|) \\
+			  &= g(f(a)) + \beta(\alpha(h) + \eps(h)\|h\|) \\
+			  &\qquad + \eta(\alpha(h)+\eps(h)\|h\|)\bigl\|\alpha(h)+\eps(h)\|h\|\bigr\| \\
+			  &= g(f(a)) + \beta(\alpha(h)) + \zeta(h)\|h\|,
+	\end{align*}
+	where
+	\[
+	\zeta(h) = \beta(\eps(h)) + \eta(\alpha(h) + \eps(h)\|h\|) \biggl\| \frac{\alpha(h)}{\|h\|} + \eps(h) \biggr\|
+	.\]
+	Now, $\eps(h) \to 0$ as $h \to 0$ and $\beta$ is linear, so continuous, hence $\beta(\eps(h)) \to \beta(0) = 0$ as $h \to 0$.
+
+	Next, $a$ is linear, so continuous, so $\alpha(h) \to \alpha(0) = 0$ as $h \to 0$, and $\eps(h) \|h\| \to 0$ as $h \to 0$. So $\alpha(h) + \eps(h) \|h\| \to 0$ as $h \to 0$.
+
+	Now let $\eta(0) = 0$, so $\eta$ is continuous at $0$. Then $\eta(\alpha(h) + \eps(h)\|h\|) \to 0$ as $h \to 0$. Finally,
+	\begin{align*}
+		\biggl\| \frac{\alpha(h)}{\|h\|} + \eps(h) \biggr\| &\leq \frac{\|\alpha(h)\|}{\|h\|} + \|\eps(h)\| \\
+								    &\leq \frac{\|\alpha\| \|h\|}{\|h\|} + \|\eps(h)\| \\
+								    &= \|\alpha\| + \|\eps(h)\| \to \|\alpha\|,
+	\end{align*}
+	as $h \to 0$. Hence $\zeta(h) \to 0$ as $h \to 0$.
+\end{proofbox}
+
+\begin{exbox}
+	\begin{enumerate}[1.]
+		\item Suppose $f$ is constant. Then $f(a+h) = f(a) + 0 + 0 \|h\|$, so $f$ is everywhere differentiable with derivative the zero map.
+		\item Suppose $f$ is linear. Then $f(a+h) = f(a) + f(h) + 0\|h\|$, so $f$ is everywhere differentiable with $Df|_a = f$ for all $a$.
+		\item Suppose $f : \mathbb{R} \to \mathbb{R}^{n}$. As remarked earlier, for $a \in \mathbb{R}$, $f$ is differentiable in the old sense at $a$ if and only if it is differentiable in the new sense, in which case $DF|_a(h) = h f'(a)$.
+		\item Using this together with the chain rule, we get many differentiable functions, such as $f : \mathbb{R}^2 \to \mathbb{R}^2$, defined by
+			\[
+			f \biggl(
+				\begin{pmatrix}
+					x \\
+					y
+				\end{pmatrix}
+				\biggr)=
+				\begin{pmatrix}
+					e^{x+y} \\
+					\cos(xy)
+				\end{pmatrix}
+			,\]
+			which is differentiable. This is because the projection maps are differentiable, so by the chain rule
+			\[
+			f_1(z) = e^{\pi_1(z) + \pi_2(z)}, \qquad f_2(z) = \cos(\pi_1(z)\pi_2(z))
+			\]
+			are differentiable. Hence $f$ is differentiable.
+
+			The derivative of $f$ at $z$ is a linear map $\mathbb{R}^2 \to \mathbb{R}^2$. Then the matrix of the derivative is given by the partial derivatives:
+			\[
+				Df|_{(x, y)^{T}} =
+				\begin{pmatrix}
+					e^{x+y} & e^{x + y} \\
+					-y \sin (xy) & -x \sin (xy)
+				\end{pmatrix}
+			.\]
+		\item Let $\mathcal{M}_n$ be the vector space of $n \times n$ real matrices. Then $\mathcal{M}_n \cong \mathbb{R}^{n^2}$, so we can consider the differentiability of $f : \mathcal{M}_n \to \mathcal{M}_n$.
+
+			Recall that the definition is still the same if we replace the Euclidean norm by the operator norm, so write $\|\cdot\|$ for the operator norm on $\mathcal{M}_n$. Define $f : \mathcal{M}_n \to \mathcal{M}_n$ by $f(A) = A^2$. Then,
+			\[
+			f(A+H)^2 = (A+H)^2 = A^2 + (AH + HA) + H^2
+			,\]
+			where $\| \frac{H^2}{\|H\|} \| \leq \frac{\|H\|^2}{\|H\|} = \|H\| \to 0$ as $H \to 0$. So $f$ is everywhere differentiable with derivative
+			\[
+			Df|_A(H) = AH + HA
+			.\]
+		\item Consider $\det : \mathcal{M}_n \to \mathbb{R}$. Then we have
+			\begin{align*}
+				\det(I+H) &=
+				\begin{vmatrix}
+					1 + H_{11} & & H_{ij} \\
+						   & \ddots & \\
+					H_{ij} & & 1 + H_{nn}
+				\end{vmatrix}
+				\\
+					  &= 1 + \tr(H) + \eps(H) \|H\|,
+			\end{align*}
+			where $\eps(H) \|H\|$ is sum of terms with two or more $H_{ij}$'s multiplied together. Then since
+			\[
+			\biggl| \frac{H_{ij}H_{kl}}{\|H\|_2}\biggr| \leq |H_{kl}| \to 0
+			\]
+			as $H \to 0$ (where $\|\cdot\|_2$ is the Euclidean norm), we have $\eps(H) \to 0$. So $\det$ is differentiable at $I$, with derivative $D \det|_I(H) = \tr(H)$.
+
+			Now suppose $A \in \mathcal{M}_n$ is invertible. Then,
+			\begin{align*}
+				\det(A+H) &= \det(A) \det(I + A^{-1}H) \\
+					  &= (\det A) (1 + \tr(A^{-1}H) + \eps(A^{-1}H)\|A^{-1}H\|) \\
+					  &= \det A + (\det A)(\tr A^{-1}H) + (\det A)\eps(A^{-1}H)\|A^{-1}H\|.
+			\end{align*}
+			Then, since $\eps(K) \to 0$ as $K \to 0$ and
+			\[
+			\biggl| \frac{(\det A) \eps(A^{-1}H)\|A^{-1}H\|}{\|H\|}\biggr| \leq |(\det A)\eps(A^{-1}H)\|A^{-1}\| | \to 0
+			\]
+			as $H \to 0$, we have $\det$ is differentiable at $A$ with
+			\[
+			D \det|_A(H) = (\tr A^{-1}H)(\det A)
+			.\]
+	\end{enumerate}
+\end{exbox}
+
+\subsection{The Mean Value Inequality}
+\label{sub:the_mean_value_inequality}
+
+Recall that in one dimension, if $f : \mathbb{R} \to \mathbb{R}$ is differentiable with zero derivative everywhere, then $f$ is constant. To prove this, we used the mean value theorem, so if we want to replicate this result in higher dimensions, we need an analogue of the mean value theorem.
+
+\begin{theorem}[Mean Value Inequality]\index{mean value inequality}
+	Let $f : \mathbb{R}^{n} \to \mathbb{R}^{m}$. Suppose $f$ is differentiable on an open set $X \subset \mathbb{R}^{n}$ with $a, b \in X$. Suppose further that
+	\[
+		[a, b] = \{a + t(b - a) \mid 0 \leq t \leq 1\} \subset X
+	.\]
+	Then
+	\[
+	\|f(b) - f(a)\| \leq \|b - a\| \sup_{z \in (a, b)}\|Df|_z\|
+	,\]
+	where $(a, b) = [a, b] \setminus \{a, b\}$.
+\end{theorem}
+
+\begin{proofbox}
+	Define $\phi : [0, 1] \to \mathbb{R}$ by
+	\[
+	\phi(t) = f(a+t(b-a)) \cdot (f(b) - f(a))
+	.\]
+	Then $\phi = \alpha \circ f \circ \beta$, where $\beta : [0, 1] \to \mathbb{R}^{n}$ by $\beta(t) = a + t(b - a)$, and $\alpha : \mathbb{R}^{m} \to \mathbb{R}$ by $\alpha(x) = x \cdot (f(b) - f(a))$. Clearly $\phi$ is continuous on $[0, 1]$, as it is a composition of continuous functions.
+
+	Now, $\alpha$ is a linear map, so is everywhere differentiable with $D\alpha|_{x} = \alpha$. Next, $\beta([0, 1]) \subset X$, and $f$ is differentiable on $X$. Finally, if $t \in (0, 1)$, then $\beta$ is differentiable at $t$ with $\beta'(t) = b - a$. Hence by the chain rule, if $t \in (0, 1)$, then $\phi$ is differentiable at $t$, and
+	\begin{align*}
+		D\phi|_t(h) &= D\alpha|_{f(\beta(t))} (Df|_{\beta (t)} (D \beta|_t(h))) \\
+			    &= \alpha(Df_{\alpha + t(b - a)}(h(b - a))) \\
+			    &= (f(b) - f(a)) \cdot (hDf|_{a + t(b - a)}(b-a)) \\
+			    &= h((f(b) - f(a)) \cdot (Df|_{a + t(b-a)}(b - a)).
+	\end{align*}
+	Therefore,
+	\[
+	\phi'(t) = (f(b) - f(a)) \cdot Df|_{a + t(b-a)}(b-a)
+	.\]
+	So by the mean value theorem,
+	\begin{align*}
+		\|f(b) - f(a)\|^2 &= (f(b) - f(a)) \cdot f(b) - (f(b) - f(a)) \cdot f(a) \\
+				  &= \phi(1) - \phi(0) = \phi'(t) \text{ for some } t \in (0, 1) \\
+				  &= (f(b) - f(a)) \cdot Df|_{a + t(b-a)}(b - a) \\
+				  &\leq \|f(b) - f(a) \| \| Df_{a+t(b-a)}(b_a)\| \\
+				  &\leq \|f(b) - f(a)\| \|Df|_{a + t(b-a)}\| \|b - a\|.
+	\end{align*}
+	Hence,
+	\[
+	\|f(b) - f(a)\| \leq \|b - a\| \|Df|_{a+t(b-a)}\|
+	.\]
+\end{proofbox}
+
+\begin{corollary}
+	Let $X \subset \mathbb{R}^{n}$ be open and connected, and let $f : X \to \mathbb{R}^{m}$ be differentiable with $Df|_x$ the zero map for all $x \in X$. Then $f$ is constant on $X$.
+\end{corollary}
+
+\begin{proofbox}
+	By the mean value inequality, $f$ is locally constant, so for each $x \in X$, there is some $\delta > 0$ such that $B_{\delta}(x) \subset X$, and so $f$ is constant of $B_{\delta}(x)$.
+
+	Note that as $X$ is open, if $U \subset X$, then $U$ is open in $X$ if and only if $U$ is open in $\mathbb{R}^{n}$. If $X = \emptyset$, we are done. So suppose otherwise. Fix $a \in X$, and let
+	\[
+		U = \{x \in X \mid f(x) = f(a)\}
+	.\]
+	Then $U$ is non-empty, as $a \in U$, and $U$ is open, as if $b \in U$, then there is some $\delta > 0$ such that $B_{\delta}(b) \subset X$. Since $f$ is constant on $B_{\delta}(b)$, $D_{\delta}(b) \subset U$. Hence $U$ is open.
+
+	Moreover, if $b \in X \setminus U$, then there is some $\delta > 0$ such that $D_{\delta}(b) \subset X$ and $f$ is constant on $B_{\delta}(b)$, so $B_{\delta}(b) \subset X\setminus U$. So $X \setminus U$ is open in $\mathbb{R}^{n}$, hence open in $X$. So $U$ is closed in $X$.
+
+	However $X$ is connected, so $U = X$.
+\end{proofbox}
+
+We've seen that if $f$ is differentiable at $a$, then the partial derivatives all exist at $a$, and the matrix of $Df|_a$ is given by the partial derivatives. But, on the other hand, we can have all partial derivatives existing at $a$, but $f$ not differentiable at $a$.
+
+However there are some cases when the converse does hold true.
+
+\begin{theorem}
+	Let $f : \mathbb{R}^{n} \to \mathbb{R}^{m}$ and let $a \in \mathbb{R}^{n}$. Suppose there is some neighbourhood of $a$, such that the partial derivatives $D_if$ all exist and are continuous on this neighbourhood. Then $f$ is differentiable at $a$.
+\end{theorem}
+
+For simplicity, we prove this for that case $n = 2$, $m = 1$. So $f : \mathbb{R}^2 \to \mathbb{R}$.
+
+Write $a = (x, y)$, then we want to think about $f(x+h,y+k)$ for small $h, k$. Now by the definition of the partial derivatives,
+\[
+f(x+h,y+k) = f(x+h,y) + kD_2f(x+h, y) + o(k)
+,\]
+and
+\[
+f(x+h,y) = f(x, y) + hD_1f(x, y) + o(h)
+.\]
+Hence, putting these together,
+\begin{align*}
+	f(x+h,y+k) &= f(x, y) + hD_1f(x, y) + kD_2f(x+h,y) + o(h) + o(k) \\
+		   &= f(x, y) + hD_1f(x, y) + k(D_2f(x, y) + o(1)) + o(h) + o(k) \\
+		   &= f(x, y) + hD_1f(x, y) + kD_2f(x, y) + o(h) + o(k).
+\end{align*}
+So this works. Or does it?
+
+Our claim that $f(x+h, y+k) = f + kD_2f + o(h)$, is not true, as the $o(h)$ term is a function of both $h$ and $k$. If we call it $\eta(h, k)$, then we need
+\[
+	\frac{\eta(h, k)}{k} \to 0 \text{ as } (h, k) \to 0
+.\]
+But we only know that for all $h$,
+\[
+	\frac{\eta(h, k)}{k} \to 0 \text{ as } k \to 0
+,\]
+which is weaker. In fact, for our proof we need the mean value theorem.
+
+\begin{proofbox}
+	We again take the case $n = 2$, $m = 1$, so $a = (x, y)$. Take $(h, k)$ small. Then by mean value theorem,
+	\[
+	f(x+h, y+k) - f(x+h, y) = k D_2f(x+h, y+\theta_{h,k}k)
+	,\]
+	for some $\theta_{h,k} \in (0, 1)$. Then again by MVT,
+	\[
+	f(x+h, y) - f(x, y) = h D_1 f(x+\phi_h h, y)
+	,\]
+	for some $\phi_h \in (0, 1)$. Hence,
+	\[
+	f(x+h, y+k) - f(x, y) = kD_2f(x+h, y+\theta_{h,k}k) + h D_1 f(x+\phi_h h, y)
+	.\]
+	As $(h, k) \to (0, 0)$, we have $(x+h, y+ \theta_{h,k}k) \to (x, y)$, and $(x + \phi_h h, y) \to (x, y)$. By the continuity of $D_1, D_2$ at $(x, y)$, we have
+	\[
+	D_2f(x+h, y+\theta_{h,k}k) \to D_2f(x, y)
+	,\]
+	\[
+	D_1 f(x+ \phi_h h, y) \to D_1f(x, y)
+	.\]
+	Then write
+	\[
+	D_2f(x+h,y+\theta_{h,k}k) = D_2f(x,y) + \eta(h, k)
+	,\]
+	\[
+	D_1f(x+\phi_h h, y) = D_1f(x, y) + \zeta(h, k)
+	,\]
+	where $\eta(h, k), \zeta(h, k) \to 0$ as $(h, k) \to (0, 0)$. Then,
+	\[
+	f(x+h, y+k) = f(x, y) + hD_1f(x, y) + kD_2f(x, y) + h\zeta(h,k) + k\eta(h, k)
+	.\]
+	Then $(h,k) \mapsto hD_1f(x, y) + kD_2f(x, y)$ is linear, and
+	\[
+		\biggl| \frac{h \zeta(h, k) + k \eta(h, k)}{\sqrt{h^2 + k^2}} \biggr| \leq |\zeta(h,k)| + |\eta(h,k)| \to 0
+	,\]
+	as $(h, k) \to (0, 0)$. So $f$ is differentiable at $a = (x, y)$.
+\end{proofbox}
+
+\begin{remark}
+	\begin{enumerate}[1.]
+		\item[]
+		\item We only need $D_if$ to be continuous at $a$ for this proof to work.
+		\item The same proof basically works for $f : \mathbb{R}^{n} \to \mathbb{R}$ for general $n$. Then we can get $f : \mathbb{R}^{n} \to \mathbb{R}^{m}$ by looking at each $f_i : \mathbb{R}^{n} \to \mathbb{R}$.
+		\item In general, all proofs of this use mean value theorem at some point.
+	\end{enumerate}
+\end{remark}
+
+\subsection{The Second Derivative}
+\label{sub:the_second_derivative}
+
+We will start with a result on partial derivatives that is used in many courses, but not proven until now.
+
+\begin{theorem}
+	Let $f : \mathbb{R}^{n} \to \mathbb{R}^{m}$, $a \in \mathbb{R}^{n}$ and $\eps > 0$. Suppose $D_iD_jf$ and $D_jD_if$ exist on $B_{\eps}(a)$ and are continuous at $a$. Then $D_1D_jf(a) = D_jD_if(a)$.
+\end{theorem}
+
+\begin{proofbox}
+	Without loss of generality, say $m = 1$ and $n = 2$. Then let $a = (x, y)$. Define
+	\[
+	\Delta_h = f(x+h, y+h) - f(x, y+h) - f(x+h, y) + f(x, y) = g(y + h) - g(y)
+	,\]
+	where $g(t) = f(x+h, t) - f(x, t)$. Let $0 < |h| < \sqrt \eps$. Then,
+	\begin{align*}
+		\Delta_h &= h g'(y+\theta_h h) \text{ for some } \theta_h \in (0, 1) \\
+			 &= h(D_2 f(x+h, y+\theta_h h) - D_2f(x, y + \theta_h h)) \\
+			 &= h^2D_1D_2f(x+\phi_h h, y + \theta_h h) \text{ for some } \phi_h \in (0, 1).
+	\end{align*}
+	Similarly, we have $\Delta_h = h^2D_2D_1f(x+\zeta_h h, y+\xi_h h)$, for some $\zeta_h, \xi_h \in (0, 1)$. Hence,
+	\[
+	D_1 D_2(f + \phi_h h, y + \theta_h h) = D_2 D_1f(x + \zeta_h h, y + \xi_h h)
+	.\]
+	Letting $h \to 0$ and using the continuity of $D_1D_2f$ and $D_2D_1f$, we get
+	\[
+	D_1D_2f(x, y) = D_2D_1f(x, y)
+	.\]
+\end{proofbox}
+
+Before we look formally at the second derivative, we need to think about what the second derivative really means.
+
+Let $f : \mathbb{R}^{n} \to \mathbb{R}^{m}$ be everywhere differentiable. Then for each $x \in \mathbb{R}^{n}$, we have $Df|_x \in \mathcal{L}(\mathbb{R}^{n}, \mathbb{R}^{m})$. Hence we can define $F : \mathbb{R}^{n} \to \mathcal{L} (\mathbb{R}^{n}, \mathbb{R}^{m}) \cong \mathbb{R}^{nm}$ by $F(x) = Df|_x$.
+
+If $F$ is differentiable at $a \in \mathbb{R}^{n}$, then we say $f$ is \textit{twice-differentiable}\index{twice-differentiable} at $a$ and the \textit{second derivative}\index{second derivative} of $f$ at $a$ is
+\[
+D^2f|_a = DF|_a
+.\]
+If we look at $D^2f|_a$, then it is
+\[
+	D^2f|_a \in \mathcal{L}(\mathbb{R}^{n}, \mathcal{L}(\mathbb{R}^{n}, \mathbb{R}^{m})) \cong \mathrm{Bil}(\mathbb{R}^{n} \times \mathbb{R}^{n} , \mathbb{R}^{m})
+.\]
+So $D^2f|_a$ is a bilinear map from $\mathbb{R}^{n} \times \mathbb{R}^{n} \to \mathbb{R}^{m}$. If $f$ is twice differentiable at $a$, this says that
+\[
+Df|_{a+h} = Df|_a + D^2f|_a(h) + o(h)
+,\]
+or analogously,
+\[
+Df|_{a+h}(k) = Df|_a(k) + D^2f|_a(h,k) + o_k(h)
+.\]
+
+\begin{exbox}
+	Take $f : \mathcal{M}_n \to \mathcal{M}_n$ by $f(A) = A^3$. Then
+	\[
+	f(A+K) = (A+K)^3 = A^3 + (A^2K + AKA + KA^2) + o(K)
+	,\]
+	so $f$ is everywhere differentiable with
+	\[
+	Df|_A(K) = A^2K + AKA + KA^2
+	.\]
+	Now, we can compute the second derivative:
+	\begin{align*}
+		Df|_{A+H}(K) &= (A+H^2)K + (A+H)K(A+H) + K(A+H)^2 \\
+			     &= (A^2K + AKA + KA^2) \\
+			     &\qquad + (AHK + HAK + AKH + HKA + KAH + KHA) \\
+			     &\qquad + (H^2K + HKH + KH^2).
+	\end{align*}
+	So $f$ is twice differentiable at $A$ and
+	\[
+	D^2f|_A(H,K) = AHK + HAK + AKH + HKA + KAH + KHA
+	.\]
+\end{exbox}
+
+\begin{remark}
+	As with differentiability, for this definition to work, it is enough to have $f$ twice-differentiable on some neighbourhood of $a$.
+\end{remark}
+
+We have seen that $Df|_a$ is related to $D_jf(a)$. Now we would like to see how $D^2f|_a$ is related to $D_iD_jf(a)$.
+
+Suppose $f : \mathbb{R}^{n} \to \mathbb{R}$ is twice-differentiable at $a \in \mathbb{R}^{n}$. Then, with $e_1, \ldots, e_n$ the standard basis,
+\begin{align*}
+	\frac{D_jf(a+he_i) - D_jf(a)}{h} &= \frac{D^2f|_a(he_i, e_j) + o(h)}{h} \\
+					 &= D^2f|_a(e_i, e_j) + o(1) \to D^2f|_a(e_i, e_j).
+\end{align*}
+So $D_iD_jf(a) = D^2f|_a(e_i, e_j)$. Hence if $H$ is the $n \times n$ matrix representing the bilinear form $D^2f|_a$, we have
+\[
+H_{ij} = D_iD_j f(a)
+.\]
+We call $H$ the \textit{Hessian}\index{Hessian} matrix of $f$.
+
+Now if we want to generalize this to $f : \mathbb{R}^{n} \to \mathbb{R}^{m}$, we could do this for each $f_i : \mathbb{R}^{n} \to \mathbb{R}$, or we could think about the matrices whose entries are elements of $\mathbb{R}^{m}$.
+
+\begin{definition}
+	Let $f : \mathbb{R}^{n} \to \mathbb{R}^{m}$ and $a \in \mathbb{R}^{n}$. We say $f$ is \textit{continuously differentiable}\index{continuously differentiable} at $a$ if $Df|_x$ exists for all $x$ is some ball $B_{\delta}(a)$, and the function $x \mapsto Df|_x$ is continuous at $a$.
+\end{definition}
+
+If $f$ is twice differentiable at $a$, then due to the commutation of mixed derivatives, we get that $H$ is a symmetric matrix. Hence, under this condition, $D^2f|_a$ is a symmetric bilinear form.
+
+\begin{definition}
+	Let $f : \mathbb{R}^{n} \to \mathbb{R}$, $a \in \mathbb{R}^{n}$. We say $a$ is a \textit{local maximum} (resp. \textit{minimum})\index{local maximum}\index{local minimum} for $f$ if there is some $\delta > 0$ such that for all $x \in B_{\delta}(a)$, we have $f(x) \leq f(a)$ (resp. $f(x) \geq f(a)$).
+\end{definition}
+
+\begin{proposition}
+	Let $f : \mathbb{R}^{n} \to \mathbb{R}$, and let $a$ be a local maximum/minimum for $f$. Then $Df|_a$ is the zero map.
+\end{proposition}
+
+\begin{proofbox}
+	Let $u \in \mathbb{R}^{n}$. For $\lambda \neq 0 \in \mathbb{R}$, 
+	\[
+	\frac{f(a + \lambda u) - f(a)}{\lambda} = \frac{Df|_a(\lambda u) + o(\lambda)}{\lambda} \to Df|_a(u)
+	,\]
+	as $\lambda \to 0$. Assume that $a$ is a local maximum (otherwise consider $-f$). Then,
+	\[
+		\frac{f(a+\lambda u) - f(a)}{\lambda} \text{ is }
+	\begin{cases}
+		 \geq 0 & \text{if } \lambda < 0, \\
+		 \leq 0 & \text{if } \lambda > 0.
+	\end{cases}
+	\]
+	Hence $Df|_a(u) = 0$.
+\end{proofbox}
+
+Note that the converse does not hold: take $f : \mathbb{R} \to \mathbb{R}$, by $f(x) = x^3$ at $a = 0$.
+
+\begin{lemma}[Second-order Taylor Theorem]
+	Let $f : \mathbb{R}^{n} \to \mathbb{R}$ be twice-differentiable at $a \in \mathbb{R}^{n}$. Then,
+	\[
+	f(a+h) = f(a) + Df|_a(h) + \frac{1}{2} D^2f|_a(h,h) + o(\|h\|^2)
+	.\]
+\end{lemma}
+
+\begin{proofbox}
+	Define $g : [0, 1] \mapsto \mathbb{R}$ by
+	\[
+	g(t) = f(a + th) - f(a) - t Df|_a(h) - \frac{t^2}{2} D^2f|_a(h,h)
+	.\]
+	Then $g$ is continuous on $[0, 1]$, $g(0) = 0$ and $g$ is differentiable on $(0, 1)$ with derivative
+	\[
+	g'(t) = Df|_{a+th}(h) - Df|_a(h) - tD^2f_a(h, h)
+	.\]
+	Then by MVT, there exists $t \in (0, 1)$ such that $g(1) - g(0) = g'(t)$. Hence,
+	\begin{align*}
+		&\frac{|f(a+h)-f(a)-Df|_a(h) - \frac{1}{2}D^2f|_a(h,h)|}{\|h\|^2} \\
+		=& \frac{|Df|_{a+th}(h) - Df|_a(h) - tD^2f|_a(h,h)|}{\|h\|^2} \\
+		=& \frac{|D^2f|_a(th, h) + o(\|h\|^2) - tD^2f|_a(h, h)|}{\|h\|^2} \\
+		=& \frac{|o(\|h\|^2)|}{\|h\|^2} \to 0
+	\end{align*}
+	as $h \to 0$.
+\end{proofbox}
+
+\begin{theorem}
+	Let $f : \mathbb{R}^{n} \to \mathbb{R}$ and $a \in \mathbb{R}^{n}$. Suppose $f$ is twice continuously differentiable at $a$ (in particular, $D^2f|_a$ is a symmetric bilinear form) and $Df|_a = 0$. Then,
+	\begin{itemize}
+		\item If $D^2f|_a$ is positive definite, then $a$ is a local minimum.
+		\item If $D^2f|_a$ is negative definite, then $a$ is a local maximum.
+	\end{itemize}
+\end{theorem}
+
+\begin{proofbox}
+	Suppose that $D^2f|_a$ is positive definite (otherwise consider $-f$). Then with respect to some basis, $D^2f|_a$ is a diagonal matrix (as it is symmetric, hence orthogonally diagonalizable) with strictly positive elements on the leading diagonal (as it is positive definite).
+
+	Hence, for all $x \in \mathbb{R}^{n}$, $D^2f|_a(x, x) \geq \mu \|x\|^2$, where $\mu > 0$ is the least eigenvalue of $D^2f|_a$. Then, by our previous lemma,
+	\begin{align*}
+		\frac{f(a+h) - f(a)}{\|h\|^2} &= \frac{1}{2} \frac{D^2f|_a(h, h)}{\|h\|^2} + o(1) \\
+					      &\geq \frac{1}{2} \mu + o(1) \to \frac{1}{2} \mu
+	\end{align*}
+	as $h \to 0$. But $\frac{1}{2} \mu > 0$, so for $h$ sufficiently small,
+	\[
+	\frac{f(a+h) - f(a)}{\|h\|^2} > 0
+	,\]
+	so $f(a+h) - f(a) > 0$. So $a$ is a local minimum for $f$.
+\end{proofbox}
+
+\subsection{Ordinary Differential Equations}
+\label{sub:ordinary_differential_equations}
+
+\begin{lemma}
+	Let $A \subset \mathbb{R}^{n}$, $B \subset \mathbb{R}^{m}$ with $A$ compact and $B$ closed. Let $X = \mathcal{C}(A, B) = \{f : A \to B \mid f \text{ continuous}\}$, with the uniform metric
+	\[
+	d(f, g) = \sup_{x \in A}\|f(x) - g(x)\|
+	.\]
+	Then $X$ is a complete metric space.
+\end{lemma}
+
+\begin{proofbox}
+	As $A$ is compact, $d$ is well-defined. Let $(f_n)$ be a Cauchy sequence in $X$. Then $(f_n)$ is uniformly Cauchy, so uniformly convergent. Hence $f_n \to f$ uniformly for some $f : A \to \mathbb{R}^{m}$.
+
+	Then the uniform limit of continuous functions is continuous, so $f$ is continuous, and for all $x \in A$, $f_n(x) \to f(x)$, so, as $B$ is closed, $f \in X$ and $d(f_n, f) \to 0$.
+\end{proofbox}
+
+Often, we want to solve an ODE, however there is no closed-form solution. To solve, we can do one of two things:
+\begin{itemize}
+	\item Use numerical methods to approximate the solution.
+	\item Think about what the solution looks like, using phase-plane portraits.
+\end{itemize}
+
+However, this only works if the ODE has a solution. So we want a result telling us that under appropriate conditions, ODEs have unique solutions.
+
+A typical example of an ODE is
+\[
+\frac{\diff y}{\diff x} = \phi(x, y)
+,\]
+subject to $y = y_0$ when $x = x_0$. In the case $\mathbb{R} \to \mathbb{R}^{n}$, we want to solve the initial value problem
+\[
+f'(t) = \phi(t, f(t)), \qquad f(t_0) = y_0
+.\]
+
+In the sequel, we take the \textit{closed ball} of radius $\delta$ about $a$ as
+\[
+	\overline{B_{\delta}(a)} = \{x \in \mathbb{R}^{n} \mid \|x - a\| \leq \delta\}
+.\]
+
+\begin{theorem}[Lindel\"{o}f-Picard]
+	Let $a, b \in \mathbb{R}$, with $a < b$, $y_0 \in \mathbb{R}^{n}$, $\delta > 0$ and $t_0 \in (a, b)$.
+
+	Let $\phi : [a, b] \times \overline{B_{\delta}(y_0)} \to \mathbb{R}^{n}$ be continuous, and suppose there is some $K > 0$ such that for all $t \in [a, b]$ and for all $y, z \in \overline{B_{\delta}(y_0)}$,
+	\[
+	\|\phi(t, y) - \phi(t ,z)\| \leq K\|y-z\|
+	.\]
+	Then there is some $\eps > 0$ such that $[t_0 - \eps, t_0 + \eps] \subset [a, b]$, and the initial value problem
+	\[
+	f'(t) = \phi(t, f(t)), \qquad f(t_0) = y_0
+	\]
+	has a unique solution on $[t_0 - \eps, t_0 + \eps]$.
+\end{theorem}
+
+\begin{proofbox}
+	As $\phi$ is a continuous function on a compact set, we can find $M$ such that for all $t \in [a, b]$, and for all $y \in \overline{B_{\delta}(y_0)}$, $\|\phi(t, y)\| \leq M$.
+
+	Take $\eps > 0$ such that $[t_0 - \eps, t_0 + \eps] \subset [a, b]$, and let $X = \mathcal{C}([t_0 - \eps, t_0 + \eps], \overline{B_{\delta}(y_0)})$. Then $X$ is complete with the uniform metric $d$, and $X \neq \emptyset$.
+
+	For $g \in X$, define $Tg : [t_0 - \eps, t_0 + \eps] \to \mathbb{R}^{n}$ by
+	\[
+	Tg(t) = y_0 + \int_{t_0}^{t} \phi(x, f(x)) \diff x
+	.\]
+	By the fundamental theorem of calculus, $Tf = f$ if and only if $f$ is a solution to the initial value problem. To do this, we will use the contraction mapping theorem.
+
+	If $g \in X$ and $t \in [t_0 - \eps, t_0 + \eps]$, then
+	\begin{align*}
+	\|Tg(t) - y_0\| &= \biggl\| \int_{t_0}^{t} \phi(x, g(x)) \diff x \biggr\| \\
+			&= \int_{t_0}^{t}\|\phi(x, g(x))\| \diff x \\
+			&\leq M \eps.
+	\end{align*}
+	Moreover, if $g, h \in X$ and $t \in [t_0-\eps, t_0+\eps]$, then
+	\begin{align*}
+		\|Tg(t) - Th(t)\| &= \biggl\| \int_{t_0}^{t}(\phi(x, g(x)) - \phi(x, h(x)) \diff x \biggr\| \\
+				  &\leq \int_{t_0}^{t} \| \phi(x, g(x)) - \phi(x, h(x)) \| \diff x \\
+				  &\leq \int_{t_0}^{t}K\|g(x) - h(x)\| \diff x \\
+				  &\leq K \eps d(g, h).
+	\end{align*}
+	Thus, $d(Tg, Th) \leq K \eps d(g, h)$. So, by taking $\eps = \min\{ \frac{\delta}{M}, \frac{1}{2K}\}$, we have that $T$ is a contraction of $X$, and so has a unique fixed point by the contraction mapping theorem, as desired.
+\end{proofbox}
+
+\begin{remark}
+	As stated, this doesn't have not much use. This does not provide a global solution, and indeed, there may or may not be a global solution. In practice, given appropriate conditions on $\phi$, we can often patch together local solutions, however this is beyond the scope of this course.
+\end{remark}
+
+\subsection{The Inverse Function Theorem}
+\label{sub:the_inverse_function_theorem}
+
+\begin{theorem}[Inverse Function Theorem]\index{inverse function theorem}
+	Let $f : \mathbb{R}^{n} \to \mathbb{R}^{n}$ be continuously differentiable at $a \in \mathbb{R}^{n}$, with $\alpha = Df|_a$ being non-singular. Then there exist open neighbourhoods $U$ of $a$ and $V$ of $f(a)$ such that $f|_U$ is a homeomorphism of $U$ onto $V$.
+
+	Moreover, if $g : V \to U$ is the inverse of $f|_U$, then it is differentiable at $f(a)$ with
+	\[
+	Dg|_{f(a)} = \alpha^{-1}
+	.\]
+\end{theorem}
+
+\begin{proofbox}
+	Write
+	\[
+	f(a+h) = f(a) + \alpha(h) + \eps(h) \|h\|
+	,\]
+	where $\eps(h) \to 0$ as $h \to 0$. Let $\delta, \eta > 0$ such that $f$ is differentiable on $\overline{B_{\delta}(a)}$. Let $W = \overline{B_{\delta}(a)}$, $V = B_{\eta}(f(a))$.
+
+	Define $\phi : \mathbb{R}^{n} \to \mathbb{R}^{n}$ by $\phi(x) = f(x) - \alpha(x)$. Then for $x \in W$, $\phi$ is differentiable at $x$ with
+	\[
+		D\phi|_x = Df|_x - \alpha \to 0 \text{ as } x \to a
+	.\]
+	Note $W$ is a complete, non-empty metric space. Fix $y \in V$, and define $T_y : W \to \mathbb{R}^{n}$ by
+	\[
+	T_y(x) = x - \alpha^{-1}(f(x) - y)
+	.\]
+	Then, $f(x) = y \iff T_y(x) = x$. We will now show $T_y$ is a contraction. Given $x \in W$,
+	\begin{align*}
+		\|T_yx-a\| &= \|\alpha^{-1}(\alpha x - f(x) + y - \alpha(a))\| \\
+			   &= \| \alpha^{-1}(y - (f(x) - \alpha(x - a))\| \\
+			   &= \|\alpha^{-1}(y - f(a) - \eps(x - a) \|x - a\|) \| \\
+			   &\leq \|\alpha^{-1}\| (\|y - f(a)\| + \|\eps(x-a)\|\|x-a\|) \\
+			   &\leq \|\alpha^{-1}\|(\eta + \delta \|\eps(x-a)\|).
+	\end{align*}
+	For given $w, x \in W$, we have
+	\begin{align*}
+		\|T_y x - T_y w \| &= \| \alpha^{-1}(\alpha x - f(x) + f(w) - \alpha(w)) \| \\
+				   &= \|\alpha^{-1}(\phi(w) - \phi(x)) \| \\
+				   &\leq \|\alpha^{-1}\|\|\phi(w)-\phi(x)\| \\
+				   &\leq \|\alpha^{-1}\| \|w - x\| \sup_{z \in W}\|D\phi|_z\|,
+	\end{align*}
+	by the mean value inequality. Pick $\delta > 0$ sufficiently small such that for all $x \in \overline{B_{\delta}(a)}$, we have
+	\[
+	\|\eps(x - a)\| \leq \frac{1}{2\|\alpha^{-1}\|}, \qquad \sup_{z \in W}\|D\phi|_z\| < \frac{1}{\|\alpha^{-1}\|}
+	.\]
+	We can do this as $\eps(x - a) \to 0, D\phi|_x \to 0$ as $x \to a$. Moreover, we can take $\eta = \frac{\delta}{2}$.
+
+	Then, for each $y \in V$, we have, for all $x \in W$, $\|T_yx - a\| \leq \delta$, and for all $x, w \in W$, $\|T_yx - T_yw\| \leq K\|w - x\|$, where $K < 1$ is a constant.
+
+	So $T_y$ is a contraction of $W$, so by the contraction mapping theorem, it has a unique fixed point $x_y \in T_y(W) \subset B_{\delta}(a)$. That is, for each $y \in V$, there is a unique $x \in W$ with $f(x) = y$, and $x \in B_{\delta}(a)$.
+
+	Let $U$ be the set of all such $x$, and let $h = f|_{B_{\delta}(a)}$. Then $U = h^{-1}(V)$, so $U$ is open in $B_{\delta}(a)$. But $B_{\delta}(a)$ is open in $\mathbb{R}^{n}$, so $U$ is open in $\mathbb{R}^{n}$.
+
+	So now we have open neighbourhoods $U$ of $a$ and $V$ of $f(a)$ such that $f$ maps $U$ bijectively onto $V$. Now it remains to show that the inverse function is continuous.
+
+	Let $X = \mathcal{C}(V, W)$. As $W$ is bounded, we have $X$ is a complete, non-empty metric space with the uniform metric. Define $S : X \to X$ by
+	\begin{align*}
+		(Sg)(y) &= g(y) - \alpha^{-1}(f(g(y)) - y) \\
+			&= T_y(g(y)).
+	\end{align*}
+	Given $g, h \in X$ and $y \in V$, we have
+	\begin{align*}
+		\|(Sg)(y) - (Sh)(y)\| &= \|T_y(g(y)) - T_y(h(y))\| \\
+				      &\leq K\|g(y) - h(y)\| \leq Kd(g, h),
+	\end{align*}
+	so $d(Sg, Sh) \leq K d(g, h)$. So $S$ is a contraction of $X$, and has a unique fixed point $g$. By the definition of $S$, for each $y \in V$, we have $g(y)$ is the unique $x \in W$ with $f(x) = y$.
+
+	Hence $g = (f|_U)^{-1}$. But $g \in X$, so $(f|_U)^{-1}$ is continuous, and then $f|_U$ is a homeomorphism from $U$ onto $V$.
+\end{proofbox}
 
 
 \newpage

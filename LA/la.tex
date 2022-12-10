@@ -2561,31 +2561,31 @@ In other words $\alpha$ is diagonalizable if and only if there exist distinct $(
 	.\]
 	Define the projector\index{projector}
 	\[
-		\mathbb{T}_j = q_j(\alpha) \in L(V)
+		\Pi_j = q_j(\alpha) \in L(V)
 	.\]
 	Then we have
 	\begin{align*}
-		\sum_{j = 1}^{k} \mathbb{T}_j = \sum_{j = 1}^{k} q_j(\alpha) = \Biggl( \sum_{j = 1}^{k} q_j \Biggr) (\alpha) = \id
+		\sum_{j = 1}^{k} \Pi_j = \sum_{j = 1}^{k} q_j(\alpha) = \Biggl( \sum_{j = 1}^{k} q_j \Biggr) (\alpha) = \id
 	\end{align*}
 	This means for any vector $v \in V$,
 	\[
-		v = q(\alpha)(v) = \sum_{j = 1}^{k} \mathbb{T}_j(v) = \sum_{j = 1}^{k} q_j(\alpha)(v)
+		v = q(\alpha)(v) = \sum_{j = 1}^{k} \Pi_j(v) = \sum_{j = 1}^{k} q_j(\alpha)(v)
 	.\]
 	Now if we pick $j \in \{1, \ldots, k\}$, then
 	 \[
 		 (\alpha - \lambda_j \id) q_j(\alpha)(v) = \frac{1}{\prod_{i \neq j}(\lambda_j - \lambda_i)} p(\alpha)(v) = 0
 	.\]
-	Thus for all $j \in \{1, \ldots, k\}$, $(\alpha - \lambda_j \id)\mathbb{T}_j(v) = 0$, so $\mathbb{T}_j(v) \in V_{\lambda_j}$ for all $v$. Now for all $v \in V$,
+	Thus for all $j \in \{1, \ldots, k\}$, $(\alpha - \lambda_j \id)\Pi_j(v) = 0$, so $\Pi_j(v) \in V_{\lambda_j}$ for all $v$. Now for all $v \in V$,
 	\[
-		v = \sum_{j = 1}^{k} \mathbb{T}_j(v) \implies V = \sum_{j = 1}^{k}V_{\lambda_j}.
+		v = \sum_{j = 1}^{k} \Pi_j(v) \implies V = \sum_{j = 1}^{k}V_{\lambda_j}.
 	\]
 	Now we prove the sum is direct. Indeed, let $v \in V_{\lambda_j} \cap (\sum_{i \neq j} V_{\lambda_i})$. Then since $v \in V_{\lambda_j}$,
 	\[
-		\mathbb{T}_j(v) = q_j(\alpha)(v) = \prod_{i \neq j} \frac{\alpha - \lambda_i \id}{\lambda_i - \lambda_j} (v) = \prod_{i \neq j} \frac{(\lambda_j - \lambda_i)v}{\lambda_j - \lambda_i} = v
+		\Pi_j(v) = q_j(\alpha)(v) = \prod_{i \neq j} \frac{\alpha - \lambda_i \id}{\lambda_i - \lambda_j} (v) = \prod_{i \neq j} \frac{(\lambda_j - \lambda_i)v}{\lambda_j - \lambda_i} = v
 	.\]
 	Now if $v \in \sum_{i \neq j} V_{\lambda_i}$, then note for $v \in V_{\lambda_i}$, then $\alpha(v) = \lambda_i v$ so
 	\[
-		\mathbb{T}_j(\alpha) = q_j(\alpha)(v) = \prod_{i \neq j} \frac{\alpha - \lambda_i \id}{\lambda_j - \lambda_i}(v) = 0
+		\Pi_j(\alpha) = q_j(\alpha)(v) = \prod_{i \neq j} \frac{\alpha - \lambda_i \id}{\lambda_j - \lambda_i}(v) = 0
 	.\]
 	Hence if $v \in V_{\lambda_j}\cap (\sum_{i \neq j} V_{\lambda_i})$, then $v = 0$. Hence $V$ is a direct sum of eigenspaces, meaning it can be diagonalized.
 \end{proofbox}
@@ -2766,6 +2766,464 @@ As a corollary, $m_{\alpha} \mid \chi_{\alpha}$.
 	.\]
 	Since $A$ is triangular $\chi_{A}(t) = (t - 1)^2(t - 2)$. Hence $m_{A}$ is either $(t - 1)^2(t - 2)$ or $(t - 1)(t - 2)$. We can check that $(A - I)(A - 2I) = 0$, so $m_{A} = (t - 1)(t - 2)$, and $A$ is diagonalizable.
 \end{exbox}
+
+\begin{exbox}
+	Take the Jordan block
+	\[
+	J_{\lambda} =
+	\begin{pmatrix}
+		 \lambda & 1 & \cdots & 0 \\
+		 0 & \lambda & \ddots & 0 \\
+		 \vdots & \vdots & \ddots & \vdots \\
+		 0 & 0 & \cdots & \lambda
+	\end{pmatrix}
+	\]
+	Then $g_{\lambda} = 1$, but $a_{\lambda} = n$.
+\end{exbox}
+
+\begin{lemma}
+	Take $K = \mathbb{C}$, and $\dim V = n$. For $\alpha \in L(V)$, the following are equivalent:
+	\begin{enumerate}[\normalfont(i)]
+		\item $\alpha$ is diagonalizable;
+		\item For all $\lambda$ eigenvalues of $\alpha$, $a_{\lambda} = g_{\lambda}$;
+		\item For all $\lambda$ eigenvalues of $\alpha$, $c_{\lambda} = 1$.
+	\end{enumerate}
+\end{lemma}
+
+\begin{proofbox}
+	We have shown (i) $\iff$ (iii), so we show (i) $\iff$ (ii).
+
+		Indeed, let $(\lambda_1, \ldots, \lambda_k)$ be the distinct eigenvalues of $\alpha$. We showed that $\alpha$ is diagonalizable if and only if $V = \bigoplus V_{\lambda_i}$. However, we can compute the dimensions of both sides:
+		\[
+		\dim V = n = \deg \chi_{\alpha} = \sum_{i = 1}^{k} a_{\lambda_i}
+		,\]
+		\[
+		\dim \bigoplus_{i = 1}^{k} V_{\lambda_i} = \sum_{i = 1}^{k} g_{\lambda_i}
+		.\]
+		Since we know the sum is always direct, we know $\alpha$ is diagonalizable if and only if
+		\[
+		\sum_{i = 1}^{k}a_{\lambda_i} = \sum_{i = 1}^{k} g_{\lambda_i}
+		.\]
+		But we know that $g_{\lambda_i} \leq a_{\lambda_i}$, so for this to hold, we must have $a_{\lambda_i} = g_{\lambda_i}$.
+\end{proofbox}
+
+\newpage
+
+\section{Jordan Normal Form}%
+\label{sec:jordan_normal_form}
+
+For this section, we will take $K = \mathbb{C}$.
+
+\begin{definition}
+	Let $A \in M_n(\mathbb{C})$. We say that $A$ is in \textit{Jordan Normal Form}\index{Jordan normal form} if it is a block diagonal matrix:
+	\[
+	A =
+	\begin{pmatrix}
+		J_{n_1}(\lambda_1) & 0 & \cdots & 0 \\
+		0 & J_{n_2}(\lambda_2) & \cdots & 0 \\
+		\vdots & \vdots & \ddots & \vdots \\
+		0 & 0 & \cdots & J_{n_k}(\lambda_k)
+	\end{pmatrix}
+	,\]
+	where
+	\begin{itemize}
+		\item $k \geq 1$, $k$ an integer.
+		\item $n_1, \ldots, n_k$ are integers, with
+			\[
+			\sum_{i = 1}^{k} n_i = n
+			.\]
+		\item $\lambda_i \in \mathbb{C}$, $1 \leq i \leq k$, \textbf{not necessarily distinct}.
+		\item The Jordan block $J_{m}(\lambda)$ is an $m \times m$ matrix with $\lambda$ on the main diagonal and $1$'s on the subdiagonal above: that is,
+			\[
+				J_{m}(\lambda) =
+			\begin{pmatrix}
+				 \lambda & 1 & \cdots & 0 \\
+				 0 & \lambda & \ddots & 0 \\
+				 \vdots & \vdots & \ddots & \vdots \\
+				 0 & 0 & \cdots & \lambda
+			\end{pmatrix}
+			.\] 
+	\end{itemize}
+\end{definition}
+
+\begin{theorem}
+	Every matrix $A \in M_n(\mathbb{C})$ is similar to a matrix in Jordan Normal Form, and is unique up to ordering the Jordan blocks.
+\end{theorem}
+
+\begin{exbox}
+	Consider the case $n = 2$. Then the possible Jordan normal forms are
+	\[
+	\begin{pmatrix}
+		\lambda_1 & 0 \\
+		0 & \lambda_2
+	\end{pmatrix}
+	, \quad
+	\begin{pmatrix}
+		\lambda & 0 \\
+		0 & \lambda
+	\end{pmatrix}
+	, \quad
+	\begin{pmatrix}
+		\lambda & 1 \\
+		0 & \lambda
+	\end{pmatrix}
+	.\]
+	The first has minimal polynomial $m = (t - \lambda_1)(t - \lambda_2)$, the second has minimal polynomial $m = (t - \lambda)$, and the third has minimal polynomial $m = (t - \lambda)^2$.
+
+	In the case $n = 3$, it gets a bit more complicated:
+	\begin{align*}
+		A &= \begin{pmatrix}
+			\lambda_1 & 0 & 0 \\
+			0 & \lambda_2 & 0 \\
+			0 & 0 & \lambda_3
+		\end{pmatrix},& m &= (t - \lambda_1)(t - \lambda_2)(t - \lambda_3), \\
+			A &= \begin{pmatrix}
+			\lambda_1 & 0 & 0 \\
+			0 & \lambda_2 & 0 \\
+			0 & 0 & \lambda_2
+		\end{pmatrix},& m &= (t - \lambda_1)(t - \lambda_2), \\
+		A &= \begin{pmatrix}
+			\lambda_1 & 0 & 0 \\
+			0 & \lambda_2 & 1 \\
+			0 & 0 & \lambda_2
+		\end{pmatrix},& m &= (t - \lambda_1)(t - \lambda_2)^2, \\
+		A &= \begin{pmatrix}
+			\lambda & 0 & 0 \\
+			0 & \lambda & 0 \\
+			0 & 0 & \lambda
+		\end{pmatrix},& m &= (t - \lambda), \\
+		A &= \begin{pmatrix}
+			\lambda & 0 & 0 \\
+			0 & \lambda & 1 \\
+			0 & 0 & \lambda
+		\end{pmatrix},& m &= (t - \lambda)^2, \\
+		A &= \begin{pmatrix}
+			\lambda & 1 & 0 \\
+			0 & \lambda & 1 \\
+			0 & 0 & \lambda
+		\end{pmatrix},& m &= (t - \lambda)^3.
+	\end{align*}
+\end{exbox}
+
+Note that given the Jordan normal form, we can quickly compute $a_{\lambda}$, $g_{\lambda}$ and $c_{\lambda}$. Indeed, let $m \geq 2$ and consider $J_m(\lambda)$. Then,
+\begin{align*}
+	J_m - \lambda \id &= 
+	\begin{pmatrix}
+		0 & 1 & \cdots & 0 \\
+		\vdots & \vdots & \ddots & \vdots \\
+		0 & 0 & \cdots & 1 \\
+		0 & 0 & \cdots & 0
+	\end{pmatrix}, \\
+	(J_m - \lambda \id)^2 &=
+	\begin{pmatrix}
+		0 & 0 & 1 & \cdots & 0 \\
+		\vdots & \vdots & \vdots & \ddots & \vdots \\
+		0 & 0 & 0 & \cdots & 1 \\
+		0 & 0 & 0 & \cdots & 0 \\
+		0 & 0 & 0 & \cdots & 0
+	\end{pmatrix}, \\
+	(J_m - \lambda \id)^{k} &=
+	\begin{pmatrix}
+		0 & I_{m-k} \\
+		0 & 0
+	\end{pmatrix}.
+\end{align*}
+Hence for $k = m$, we get $(J_m - \lambda \id)^{m} = 0$. So $(J_m - \lambda \id)$ is \textit{nilpotent} of order $m$\index{nilpotent} (this means $u^{m} = 0$ but $u^{m-1} \neq 0$).
+
+In Jordan normal form, we can compute:
+\begin{itemize}
+	\item $a_{\lambda}$, as this is simply the sum of the sizes of blocks with eigenvalue $\lambda$, which equals the number of $\lambda$'s on the diagonal.
+	\item $g_{\lambda} = \dim \Ker(A - \lambda \id)$, which is the number of blocks with eigenvalue $\lambda$, as only the first entry of each Jordan block corresponds to an eigenvalue of $\lambda$.
+	\item $c_{\lambda}$, as $(J_m - \lambda \id)$ is nilpotent of order $m$, so $c_{\lambda}$ will be the size of the largest block with eigenvalue $\lambda$.
+\end{itemize}
+
+\begin{exbox}
+	Take the matrix
+	\[
+	A =
+	\begin{pmatrix}
+		0 & -1 \\
+		1 & 2
+	\end{pmatrix}
+	.\]
+	Suppose we want to find its Jordan normal form. Then,
+	\begin{enumerate}[(i)]
+		\item We calculate the characteristic polynomial $\chi_{A}(t) = (t - 1)^2$, so the only eigenvalue is $\lambda = 1$. Since $A - \id \neq 0$, we known $m_{A}(t) = (t - 1)^2$, and so the Jordan normal form will be a Jordan block of size $2$.
+		\item We find the eigenvectors:
+			\[
+			A - \id =
+			\begin{pmatrix}
+				-1 & -1 \\
+				-1 & -1
+			\end{pmatrix}
+			\]
+			So the kernel of $A - \id$ is spanned by one vector, $v_1 = (1, -1)^{T}$. We also look for a (non-unique) $v_2$ such that $(A - \id)v_2 = v_1$, and we can find $v_2 = (-1, 0)^{T}$ works.
+	\end{enumerate}
+	Hence, in the basis $\mathcal{B} = (v_1, v_2)$,
+	\[
+	A_{\mathcal{B}} =
+	\begin{pmatrix}
+		1 & 1 \\
+		0 & 1
+	\end{pmatrix}
+	= \id +
+	\begin{pmatrix}
+		0 & 1 \\ 
+		0 & 0
+	\end{pmatrix}
+	.\]
+	Hence, we can write
+	\[
+	A =
+	\begin{pmatrix}
+		1 & -1 \\
+		-1 & 0
+	\end{pmatrix}
+	\begin{pmatrix}
+		1 & 1 \\
+		0 & 1
+	\end{pmatrix}
+	\begin{pmatrix}
+		1 & -1 \\
+		-1 & 0
+	\end{pmatrix}^{-1}
+	.\]
+\end{exbox}
+
+\begin{theorem}
+	Let $V$ be a finite dimensional $\mathbb{C}$-vector space, and $\alpha \in L(V)$. Then write
+	\[
+		m_{\alpha}(t) = (t - \lambda_1)^{c_1} \cdots (t - \lambda_k)^{c_k}
+	.\]
+	We can then write
+	\[
+	V = \bigoplus_{j = 1}^{k}V_j
+	,\]
+	where $V_j$ is not the eigenspace of $\lambda_j$, but the \textit{generalized eigenspace}\index{generalized eigenspace} $V_j = \Ker[(\alpha - \lambda_j \id)^{c_j}]$.
+\end{theorem}
+
+\begin{remark}
+	If $\alpha$ is diagonalizable, then $c_j = 1$, so this gives our previous criterion for diagonalizability.
+\end{remark}
+
+\begin{proofbox}
+	Recall the projectors; we show they are explicit. Indeed, let
+	\[
+		p_j(t) = \prod_{i \neq j}(t - \lambda_i)^{c_i}
+	.\]
+	Then the $p_j$ have no common factor, so by Euclid's algorithm, we can find polynomials $q_1, \ldots, q_k$ such that
+	\[
+	\sum_{i = 1}^{k} p_i q_i = 1
+	.\]
+	Then define the projectors
+	\[
+		\Pi_j = q_j p_j (\alpha)
+	.\]
+	Then by our lemma,
+	\[
+		\id = \sum_{j = 1}^{k} q_j p_j (\alpha) = \sum_{j = 1}^{k} \Pi_j(\alpha)
+	.\]
+	Hence, for all $v \in V$, we get
+	\[
+		v = \sum_{j = 1}^{k} \Pi_j(v)
+	.\]
+	Recall that $m_{\alpha}(\alpha) = 0$, where
+	\[
+		m_{\alpha} = \prod_{j = 1}^{k}(t - \lambda_j)^{c_{\lambda_j}}
+	.\]
+	Hence,
+	\[
+		0 = m_{\alpha}(\alpha) = (\alpha - \lambda_j \id)^{c_{\lambda_j}} \Pi_j
+	.\]
+	So for all $v \in V$, $\Pi_j(v) \in V_j$. So we get the sum
+	\[
+	V = \sum_{j = 1}^{k} V_j
+	.\]
+	Finally, we need to show that the sum is direct. Indeed, note $\Pi_i \Pi_j = 0$ if $i \neq j$, so $\Pi_i= \Pi_i ( \sum \Pi_j) = \Pi_i^2$. Hence, on $V_{i}$, $\Pi_i$ is the identity.
+
+	Now suppose there exists
+	\[
+	v = \sum_{i \neq j} v_j
+	,\]
+	and $v \in V_i$. Then applying $\Pi_i$,
+	\[
+	v = \sum_{i \neq j} 0
+	.\]
+	Hence $v = 0$, and the sum is direct.
+\end{proofbox}
+
+\newpage
+
+\section{Bilinear Forms}%
+\label{sec:bilinear_forms}
+
+Recall a bilinear for is a linear mapping $\phi : V \times V \to K$, where $V$ is a finite-dimensional $K$-vector space. If $\mathcal{B}$ is a basis of $V$, then
+\[
+	[\phi]_{\mathcal{B}} = [\phi]_{\mathcal{B}\mathcal{B}} = (\phi(e_i, e_j))_{i,j}
+.\]
+
+\begin{lemma}
+	If $\phi : V \times V \to K$ is bilinear, and $\mathcal{B}, \mathcal{B}'$ are two bases of $V$, then letting $P = [\id]_{\mathcal{B}',\mathcal{B}}$, we have
+	\[
+		[\phi]_{\mathcal{B}} = P^{T}[\phi]_{\mathcal{B}}P
+	.\] 
+\end{lemma}
+
+Indeed, this is a special case of lemma 10.1 (insert reference).
+
+\begin{definition}
+	For $A, B \in M_n(K)$, we say $A$ and $B$ are \textit{congruent}\index{congruent matrices} if and only if there exists an invertible matrix $P$ such that $A = P^{T}BP$.
+\end{definition}
+\begin{remark}
+	This defines an equivalence relation.
+\end{remark}
+
+\begin{definition}
+	A bilinear form $\phi$ on $V$ is \textit{symmetric}\index{symmetric form} if $\phi(u, v) = \phi(v, u)$, for all $u, v \in V$.
+\end{definition}
+\begin{remark}
+	If $A \in M_n(K)$, we say that $A$ is symmetric if and only if $A = A^{T}$, so $a_{ij} = a_{ji}$.
+
+	Then $\phi$ is symmetric if and only if $[\phi]_{\mathcal{B}}$ is symmetric in any basis $\mathcal{B}$ of $V$.
+
+	Note if we want to represent $\phi$ by a diagonal matrix, then $\phi$ must be symmetric.
+\end{remark}
+
+\begin{definition}
+	A map $Q : V \to K$ is a \textit{quadratic form}\index{quadratic form} if there exists a bilinear form $\phi : V \times V \to K$ such that for all $u \in V$,
+	\[
+		Q(u) = \phi(u, u)
+	.\]
+\end{definition}
+\begin{remark}
+	Let $\mathcal{B} = (e_i)$, and $A = [\phi]_{\mathcal{B}}$.
+
+	Then writing $u = \sum_{i = 1}^{n} x_i e_i$,
+	\begin{align*}
+		Q(u) &= \phi(u, u) = \phi \Biggl( \sum_{i = 1}^{n} x_i e_i, \sum_{i = 1}^{n} x_i e_i \Biggr) \\
+		     &= \sum_{i = 1}^{n} \sum_{j = 1}^{n} x_i x_j \underbrace{\phi(e_i, e_j)}_{a_{ij}} \\
+		     &= \sum_{i = 1}^{n} \sum_{j = 1}^{n} x_i x_j a_{ij} = X^{T}AX.
+	\end{align*}
+
+	So we have $Q(u) = X^{T}AX$. Moreover, note we can replace $A$ with $\frac{1}{2}(A + A^{T})$ and preserve $Q$:
+	\begin{align*}
+		X^{T}AX &= \sum_{i,j = 1}^{n} a_{ij} x_i x_j = \sum_{i,j = 1}^{n} a_{ji}x_i x_j = \frac{1}{2} \sum_{i,j = 1}^{n} (a_{ij} + a_{ji})x_i x_j \\
+			&= \frac{1}{2}X^{T}(A + A^{T})X.
+	\end{align*}
+\end{remark}
+
+\begin{proposition}
+	If $Q : V \times V \to K$ is a quadratic form, then there exists a unique symmetric bilinear form $\phi : V \times V \to K$ such that for all $u \in V$, $Q(u) = \phi(u, u)$.
+\end{proposition}
+
+\begin{proofbox}
+	Let $\psi$ be a bilinear form on $V$ such that $Q(u) = \psi(u, u)$, for all $u \in V$. Define
+	 \[
+		 \phi(u, v) = \frac{1}{2}(\psi(u, v) + \psi(v,u))
+	.\]
+	Then $\phi$ is symmetric, and $\phi(u, u) = \psi(u, u) = Q(u)$. This proves the existence of a symmetric $\phi$.
+
+	Now let $\phi$ be a symmetric bilinear form such that $\phi(u, u) = Q(u)$. Then,
+	\begin{align*}
+		Q(u + v) &= \phi(u + v, u + v) = \phi(u, u) + \phi(u, v) + \phi(v, u) + \phi(v, v) \\
+			 &= Q(u) + 2 \phi(u, v) + Q(v),
+	\end{align*}
+	\[
+		\implies \phi(u, v) = \frac{1}{2} \bigl[Q(u+v) - Q(u) - Q(v)\bigr]
+	.\]
+	This is known as the \textit{polarization identity}\index{polarization identity}.
+\end{proofbox}
+
+\begin{theorem}[Spectral theorem]\index{spectral theorem}
+	Let $\phi : V \times V \to K$ be a symmetric bilinear form. Then there exists a basis $\mathcal{B}$ of $V$ such that $[\phi]_{\mathcal{B}}$ is diagonal.
+\end{theorem}
+
+\begin{proofbox}
+	We will only look at the case when $\dim V$ is finite. Here, we will proceed by induction on the dimension $n$. Note $n = 1$ is trivial.
+
+	Suppose that the theorem holds for all dimensions less than $n$. Let $\phi : V \times V \to K$ be a symmetric bilinear form. Then if $\phi(u, u) = 0$ for all $u \in V$, then $\phi$ is identically zero by the polarization identity.
+
+	Hence we may pick $u \in V \setminus \{0\}$ such that $\phi(u, u) \neq 0$. Let $e_1 = u$. We define
+	\[
+		U = (\langle e_1 \rangle)^{\perp} = \{v \in V \mid \phi(e_1, v) = 0\} = \Ker \{ \phi(e_1: \cdot) : V \to K\}
+	.\]
+	By the rank-nullity theorem,
+	\[
+	\dim V = n = 1 + \dim U
+	,\]
+	as the rank of $\phi(e_1, \cdot)$ is exactly 1, since it is non-zero at $e_1$.
+
+	We now prove that $U + \langle e_1 \rangle = U \oplus \langle e_1 \rangle$. Indeed, if $v \in \langle e_1 \rangle \cap U$, then $v = \lambda e_1$, and $\phi(e_1, v) = 0$. But then,
+	\[
+		0 = \phi(e_1, \lambda e_1) = \lambda \underbrace{\phi(e_1, e_1)}_{\neq 0}
+	,\]
+	so $\lambda = 0$, and $v = 0$. This gives $V = U \oplus \langle e_1 \rangle$.
+
+	Now complete to a basis $\mathcal{B} = (e_1, \ldots, e_n)$ of $V$. Then,
+	\[
+		[\phi]_{\mathcal{B}} = 
+		\begin{pmatrix}
+			\phi(e_1, e_1) & 0 & \cdots & 0 \\
+			0 & & & \\
+			\vdots & & A' & \\
+			0 & & &
+		\end{pmatrix}
+	,\]
+	since $e_2, \ldots, e_n \in U$, so $\phi(e_1, e_2) = \cdots = \phi(e_1, e_n) = 0$. Now $A' = (\phi(e_i, e_j))_{2 \leq i, j \leq n}$, so $(A')^{T} = A'$.
+
+	Consider $\phi|_{U} : U \times U \to K$, which is bilinear and symmetric and matrix $A'$ in $\mathcal{B}' = (e_2, \ldots, e_n)$. By the induction hypothesis, we can find $(e_2', \ldots, e_n') = \mathcal{B}''$, a basis of $U$ in which $[\phi|_{U}]_{\mathcal{B}''}$ is diagonal.
+
+	Hence, we get $[\phi]_{(e_1, e_2', \ldots, e_n')}$ is diagonal.
+\end{proofbox}
+
+\begin{exbox}
+	Take $V = \mathbb{R}^3$, and the quadratic form
+	 \begin{align*}
+		 Q(x_1, x_2, x_3) &= x_1^2 + x_2^2 + 2x_3^2 + 2x_1 x_2 + 2x_1 x_3 - 2x_2 x_3 \\
+				  &= X^{T}AX, \\
+		 A &=
+		 \begin{pmatrix}
+			 1 & 1 & 1 \\
+			 1 & 1 & -1 \\
+			 1 & -1 & 2
+		 \end{pmatrix}.
+	\end{align*}
+	We have two ways that we can diagonalize this:
+	\begin{itemize}
+		\item Follow the above proof, use induction.
+		\item Complete the square:
+			\begin{align*}
+				Q(x_1, x_2, x_3) &= x_1^2 + x_2^2 + 2x_3^2 + 2x_1x_2 + 2x_1x_3 - 2x_2 x_3 \\
+						 &= (x_1 + x_2 + x_3)^2 + x_3^2 - 4x_2 x_3 \\
+						 &= (\underbrace{x_1 + x_2 + x_3}_{x_1'})^2 + (\underbrace{x_3 - 2x_2}_{x_2'})^2 - (\underbrace{2x_2}_{x_3'})^2.
+			\end{align*}
+			Then if $P$ is the change of basis matrix from $(x_1', x_2', x_3')$ to $(x_1, x_2, x_3)$,
+			\[
+			P^{T}AP =
+			\begin{pmatrix}
+				1 & 0 & 0 \\
+				0 & 1 & 0 \\
+				0 & 0 & -1
+			\end{pmatrix}
+			.\]
+			To find $P$, we have
+			\[
+				\begin{pmatrix}
+					x_1' \\
+					x_2' \\
+					x_3'
+				\end{pmatrix}
+				=
+				\begin{pmatrix}
+					1 & 1 & 1 \\
+					0 & -2 & 1 \\
+					0 & -2 & 0
+				\end{pmatrix}
+				= P^{-1}
+			.\]
+	\end{itemize}
+\end{exbox}
+
 
 \newpage
 

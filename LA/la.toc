@@ -26,4 +26,6 @@
 \contentsline {section}{\numberline {16}Diagonalisation Matrix and Minimal Polynomial}{58}{section.16}%
 \contentsline {subsection}{\numberline {16.1}Minimal Polynomials}{61}{subsection.16.1}%
 \contentsline {section}{\numberline {17}Cayley-Hamilton Theorem}{63}{section.17}%
-\contentsline {section}{Index}{65}{section*.2}%
+\contentsline {section}{\numberline {18}Jordan Normal Form}{66}{section.18}%
+\contentsline {section}{\numberline {19}Bilinear Forms}{71}{section.19}%
+\contentsline {section}{Index}{75}{section*.2}%
