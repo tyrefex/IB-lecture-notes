@@ -2,76 +2,112 @@
 \indexentry{subspace|hyperpage}{4}
 \indexentry{subspace sum|hyperpage}{4}
 \indexentry{quotient|hyperpage}{5}
-\indexentry{span|hyperpage}{6}
+\indexentry{span|hyperpage}{5}
 \indexentry{finite dimension|hyperpage}{6}
-\indexentry{linear independence|hyperpage}{7}
-\indexentry{basis|hyperpage}{7}
+\indexentry{linear independence|hyperpage}{6}
+\indexentry{basis|hyperpage}{6}
 \indexentry{Steinitz exchange lemma|hyperpage}{8}
-\indexentry{dimension|hyperpage}{10}
+\indexentry{dimension|hyperpage}{8}
 \indexentry{proper subspace|hyperpage}{11}
 \indexentry{direct sum|hyperpage}{11}
 \indexentry{complement|hyperpage}{11}
-\indexentry{linear map|hyperpage}{14}
-\indexentry{isomorphism|hyperpage}{15}
-\indexentry{kernel|hyperpage}{16}
-\indexentry{image|hyperpage}{16}
-\indexentry{rank|hyperpage}{17}
-\indexentry{nullity|hyperpage}{17}
-\indexentry{rank-nullity theorem|hyperpage}{17}
-\indexentry{matrix|hyperpage}{18}
-\indexentry{change of basis matrix|hyperpage}{21}
-\indexentry{equivalent matrices|hyperpage}{22}
-\indexentry{column rank|hyperpage}{24}
-\indexentry{row rank|hyperpage}{24}
-\indexentry{endomorphism|hyperpage}{25}
-\indexentry{similar matrices|hyperpage}{25}
-\indexentry{elementary column operation|hyperpage}{25}
-\indexentry{elementary row operation|hyperpage}{25}
-\indexentry{elementary matrices|hyperpage}{25}
-\indexentry{Gauss' pivot algorithm|hyperpage}{26}
-\indexentry{row echelon form|hyperpage}{26}
-\indexentry{dual space|hyperpage}{28}
-\indexentry{linear form|hyperpage}{28}
-\indexentry{dual basis|hyperpage}{28}
-\indexentry{annihilator|hyperpage}{30}
-\indexentry{dual map|hyperpage}{30}
-\indexentry{bidual|hyperpage}{33}
-\indexentry{double dual|hyperpage}{33}
-\indexentry{reflexive space|hyperpage}{33}
-\indexentry{bilinear form|hyperpage}{36}
-\indexentry{scalar product|hyperpage}{36}
-\indexentry{matrix of bilinear form|hyperpage}{36}
-\indexentry{non-degenerate bilinear form|hyperpage}{38}
-\indexentry{rank of bilinear form|hyperpage}{38}
-\indexentry{trace|hyperpage}{40}
-\indexentry{trace of endomorphism|hyperpage}{40}
-\indexentry{symmetric group|hyperpage}{41}
-\indexentry{transposition|hyperpage}{41}
-\indexentry{signature|hyperpage}{41}
-\indexentry{sign|hyperpage}{41}
-\indexentry{determinant|hyperpage}{41}
-\indexentry{volume form|hyperpage}{42}
-\indexentry{multilinear|hyperpage}{42}
-\indexentry{alternate|hyperpage}{43}
-\indexentry{singular|hyperpage}{46}
-\indexentry{non-singular|hyperpage}{46}
-\indexentry{determinant of a linear map|hyperpage}{47}
-\indexentry{adjugate|hyperpage}{51}
-\indexentry{diagonalisable|hyperpage}{53}
-\indexentry{triangulable|hyperpage}{53}
-\indexentry{eigenvalue|hyperpage}{53}
-\indexentry{eigenvector|hyperpage}{53}
-\indexentry{eigenspace|hyperpage}{53}
-\indexentry{characteristic polynomial|hyperpage}{55}
-\indexentry{projector|hyperpage}{59}
-\indexentry{Cayley-Hamilton theorem|hyperpage}{63}
-\indexentry{algebraic multiplicity|hyperpage}{63}
-\indexentry{geometric multiplicity|hyperpage}{63}
-\indexentry{Jordan normal form|hyperpage}{66}
-\indexentry{nilpotent|hyperpage}{67}
-\indexentry{generalized eigenspace|hyperpage}{69}
-\indexentry{congruent matrices|hyperpage}{71}
-\indexentry{symmetric form|hyperpage}{71}
-\indexentry{quadratic form|hyperpage}{71}
-\indexentry{polarization identity|hyperpage}{72}
-\indexentry{spectral theorem|hyperpage}{72}
+\indexentry{linear map|hyperpage}{13}
+\indexentry{isomorphism|hyperpage}{14}
+\indexentry{kernel|hyperpage}{15}
+\indexentry{image|hyperpage}{15}
+\indexentry{rank|hyperpage}{16}
+\indexentry{nullity|hyperpage}{16}
+\indexentry{rank-nullity theorem|hyperpage}{16}
+\indexentry{matrix|hyperpage}{17}
+\indexentry{change of basis matrix|hyperpage}{20}
+\indexentry{equivalent matrices|hyperpage}{21}
+\indexentry{column rank|hyperpage}{22}
+\indexentry{row rank|hyperpage}{22}
+\indexentry{endomorphism|hyperpage}{23}
+\indexentry{similar matrices|hyperpage}{23}
+\indexentry{elementary column operation|hyperpage}{23}
+\indexentry{elementary row operation|hyperpage}{23}
+\indexentry{elementary matrices|hyperpage}{23}
+\indexentry{Gauss' pivot algorithm|hyperpage}{24}
+\indexentry{row echelon form|hyperpage}{24}
+\indexentry{dual space|hyperpage}{26}
+\indexentry{linear form|hyperpage}{26}
+\indexentry{dual basis|hyperpage}{26}
+\indexentry{annihilator|hyperpage}{28}
+\indexentry{dual map|hyperpage}{28}
+\indexentry{bidual|hyperpage}{31}
+\indexentry{double dual|hyperpage}{31}
+\indexentry{reflexive space|hyperpage}{31}
+\indexentry{trace|hyperpage}{34}
+\indexentry{trace of endomorphism|hyperpage}{34}
+\indexentry{symmetric group|hyperpage}{34}
+\indexentry{transposition|hyperpage}{34}
+\indexentry{signature|hyperpage}{35}
+\indexentry{sign|hyperpage}{35}
+\indexentry{determinant|hyperpage}{35}
+\indexentry{volume form|hyperpage}{36}
+\indexentry{multilinear|hyperpage}{36}
+\indexentry{alternate|hyperpage}{36}
+\indexentry{singular|hyperpage}{39}
+\indexentry{non-singular|hyperpage}{39}
+\indexentry{determinant of a linear map|hyperpage}{40}
+\indexentry{adjugate|hyperpage}{43}
+\indexentry{Cramer's rule|hyperpage}{44}
+\indexentry{diagonalisable|hyperpage}{45}
+\indexentry{triangulable|hyperpage}{45}
+\indexentry{eigenvalue|hyperpage}{45}
+\indexentry{eigenvector|hyperpage}{45}
+\indexentry{eigenspace|hyperpage}{45}
+\indexentry{characteristic polynomial|hyperpage}{47}
+\indexentry{projector|hyperpage}{50}
+\indexentry{Cayley-Hamilton theorem|hyperpage}{53}
+\indexentry{algebraic multiplicity|hyperpage}{54}
+\indexentry{geometric multiplicity|hyperpage}{54}
+\indexentry{Jordan normal form|hyperpage}{56}
+\indexentry{nilpotent|hyperpage}{58}
+\indexentry{generalized eigenspace|hyperpage}{59}
+\indexentry{bilinear form|hyperpage}{61}
+\indexentry{scalar product|hyperpage}{61}
+\indexentry{matrix of bilinear form|hyperpage}{61}
+\indexentry{left kernel|hyperpage}{62}
+\indexentry{right kernel|hyperpage}{62}
+\indexentry{non-degenerate bilinear form|hyperpage}{63}
+\indexentry{rank of bilinear form|hyperpage}{63}
+\indexentry{congruent matrices|hyperpage}{64}
+\indexentry{symmetric form|hyperpage}{64}
+\indexentry{quadratic form|hyperpage}{64}
+\indexentry{polarization identity|hyperpage}{65}
+\indexentry{signature|hyperpage}{69}
+\indexentry{Sylvester's law|hyperpage}{69}
+\indexentry{positive definite|hyperpage}{69}
+\indexentry{positive semi-definite|hyperpage}{69}
+\indexentry{negative definite|hyperpage}{69}
+\indexentry{negative semi-definite|hyperpage}{69}
+\indexentry{standard inner product|hyperpage}{71}
+\indexentry{antilinear|hyperpage}{71}
+\indexentry{sesquilinear form|hyperpage}{71}
+\indexentry{Hermitian|hyperpage}{72}
+\indexentry{Sylvester's law|hyperpage}{73}
+\indexentry{skew symmetric|hyperpage}{74}
+\indexentry{antisymmetric|hyperpage}{74}
+\indexentry{inner product|hyperpage}{75}
+\indexentry{inner product space|hyperpage}{75}
+\indexentry{norm|hyperpage}{76}
+\indexentry{Cauchy-Schwarz|hyperpage}{76}
+\indexentry{triangle inequality|hyperpage}{77}
+\indexentry{orthogonal|hyperpage}{77}
+\indexentry{orthonormal|hyperpage}{77}
+\indexentry{Parseval's identity|hyperpage}{78}
+\indexentry{Gram-Schmidt|hyperpage}{78}
+\indexentry{orthogonal|hyperpage}{80}
+\indexentry{unitary|hyperpage}{80}
+\indexentry{orthogonal direct sum|hyperpage}{80}
+\indexentry{orthogonal complement|hyperpage}{80}
+\indexentry{projection operator|hyperpage}{80}
+\indexentry{self-adjoint|hyperpage}{84}
+\indexentry{isometry|hyperpage}{84}
+\indexentry{unitary|hyperpage}{84}
+\indexentry{orthogonal group|hyperpage}{85}
+\indexentry{unitary group|hyperpage}{86}
+\indexentry{spectral theorem|hyperpage}{87}
+\indexentry{spectral theorem|hyperpage}{88}

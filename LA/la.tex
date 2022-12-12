@@ -107,12 +107,12 @@ We know how to
 				\mathbb{R}^{X} = \{f : X \to \mathbb{R}\}
 			.\]
 			Then $\mathbb{R}^{X}$ is an $\mathbb{R}$ vector space.
-		\item Take $M_{n, m}(F)$, the set of $n \times m$ $F$ valued matrices. Then $M_{n, m}(F)$ is a $F$ vector space.
+		\item Take $\mathcal{M}_{n, m}(F)$, the set of $n \times m$ $F$ valued matrices. Then $\mathcal{M}_{n, m}(F)$ is a $F$ vector space.
 \end{enumerate}
 \end{exbox}
 
 \begin{remark}
-	The axiom of scalar multiplication implies that for all $v \in V$, $0 \cdot v = \mathbf{0}$.
+	The axiom of scalar multiplication implies that for all $v \in V$, $0 \cdot v = 0$.
 \end{remark}
 
 \begin{definition}[Subspace]\index{subspace}
@@ -127,7 +127,7 @@ Note if $V$ is an $F$ vector space, and $U \leq V$, then $U$ is an $F$ vector sp
 
 \begin{exbox}
 	\begin{enumerate}[(i)]
-		\item Take $V = \mathbb{R}^{\mathbb{R}}$, the space of functions $f : \mathbb{R} \to \mathbb{R}$. Let $\mathcal{C}(\mathbb{R})$ be the space of continuous function $f : \mathbb{R} \to \mathbb{R}$. Then $\mathcal{C}(\mathbb{R}) \leq \mathbb{R}^{\mathbb{R}}$.
+		\item Take $V = \mathbb{R}^{\mathbb{R}}$, the space of functions $f : \mathbb{R} \to \mathbb{R}$. Let $\mathcal{C}(\mathbb{R})$ be the space of continuous functions $f : \mathbb{R} \to \mathbb{R}$. Then $\mathcal{C}(\mathbb{R}) \leq \mathbb{R}^{\mathbb{R}}$.
 		\item Take the elements of $\mathbb{R}^3$ which sum up to $t$. This is a subspace if and only if $t = 0$.
 	\end{enumerate}	
 \end{exbox}
@@ -143,7 +143,7 @@ Note that the union of two subspaces is generally not a subspace, as it is usual
 \end{proofbox}
 
 \begin{definition}[Sum of subspaces]\index{subspace sum}
-	Let $V$ be an $F$ vector space. Let $U, W \leq V$. Then the \textbf{sum} of $U$ and $W$ is the set
+	Let $V$ be an $F$ vector space. Let $U, W \leq V$. Then the \textit{sum} of $U$ and $W$ is the set
 	\[
 		U + W = \left\{ u + w \mid (u, w) \in U \times W \right\}
 	.\]
@@ -175,11 +175,8 @@ Note that the union of two subspaces is generally not a subspace, as it is usual
 	$V/U$ is an $F$ vector space.
 \end{proposition}
 
-\newpage
-
-\section{Spans, Linear Independence and the Steinitz Exchange Lemma}%
-\sectionmark{Spans, LI and the SEL}
-\label{sec:spans_linear_independence_and_the_steinitz_exchange_lemma}
+\subsection{Spans, Linear Independence and the Steinitz Exchange Lemma}%
+\label{sub:spans_linear_independence_and_the_steinitz_exchange_lemma}
 
 \begin{definition}[Span of a family of vectors]\index{span}
 	Let $V$ be a $F$ vector space. Let $S \subset B$ be a subset. We define
@@ -238,11 +235,11 @@ By convention, we let $\langle \emptyset \rangle = \{0\}$.
 \end{exbox}
 
 \begin{definition}
-	Let $V$ be a $F$ vector space. Let $S'$ be a subset of $V$. We may say that $S$ \textbf{spans} $V$ if $\langle S \rangle = V$.
+	Let $V$ be a $F$ vector space. Let $S'$ be a subset of $V$. We may say that $S$ \textit{spans} $V$ if $\langle S \rangle = V$.
 \end{definition}
 
 \begin{definition}[Finite dimension]\index{finite dimension}
-	Let $V$ be a $F$ vector space. We say that $V$ is \textbf{finite dimensional} if it is spanned by a finite set.
+	Let $V$ be a $F$ vector space. We say that $V$ is \textit{finite dimensional} if it is spanned by a finite set.
 \end{definition}
 
 \begin{exbox}
@@ -254,7 +251,7 @@ By convention, we let $\langle \emptyset \rangle = \{0\}$.
 \end{exbox}
 
 \begin{definition}[Independence]\index{linear independence}
-	We say that $(v_1, \ldots, v_n)$, elements of $V$ are \textbf{linearly independent} if
+	We say that $(v_1, \ldots, v_n)$, elements of $V$ are \textit{linearly independent} if
 	\[
 	\sum_{i = 1}^{n} \lambda_i v_i = 0 \implies \lambda_i = 0 \, \forall i
 	.\]
@@ -263,7 +260,7 @@ By convention, we let $\langle \emptyset \rangle = \{0\}$.
 \begin{remark}
 	\begin{enumerate}[1.]
 		\item[]
-		\item We also say that the family $(v_1, \ldots, v_n)$ is \textbf{free}.
+		\item We also say that the family $(v_1, \ldots, v_n)$ is \textit{free}.
 		\item Equivalently, $(v_1, \ldots, v_n)$ are not linearly independent if one of these vectors is a linear combination of the remaining $(n-1)$.
 		\item If $(v_i)$ is free, then $v_i = 0$ for all $i$.
 	\end{enumerate}
@@ -271,7 +268,7 @@ By convention, we let $\langle \emptyset \rangle = \{0\}$.
 \end{remark}
 
 \begin{definition}[Basis]\index{basis}
-	A subset $S$ of $V$ is a \textbf{basis} of $V$ if and only if
+	A subset $S$ of $V$ is a \textit{basis} of $V$ if and only if
 	\begin{enumerate}[(i)]
 		\item $\langle S' \rangle = V$,
 		\item $S$ is linearly independent.
@@ -359,13 +356,11 @@ Hence,
 Iterating this process, we eventually get $l = m$, which then proves $m \leq n$.
 \end{proofbox}
 
-\newpage
-
-\section{Basis, Dimension and Direct Sums}%
-\label{sec:basis_dimension_and_direct_sums}
+\subsection{Basis, Dimension and Direct Sums}%
+\label{sub:basis_dimension_and_direct_sums}
 
 \begin{corollary}
-	Let $V$ be a finite dimensional vector space over $F$. Then any two bases of $V$ have the same number of vectors, called the \textbf{dimension}\index{dimension} of $V$.
+	Let $V$ be a finite dimensional vector space over $F$. Then any two bases of $V$ have the same number of vectors, called the \textit{dimension}\index{dimension} of $V$.
 \end{corollary}
 
 \begin{proofbox}
@@ -387,7 +382,17 @@ Iterating this process, we eventually get $l = m$, which then proves $m \leq n$.
 \end{corollary}
 
 \begin{proofbox}
-	Exercise (fill this in).
+	Take a basis $\mathcal{B}$ of $V$. Then as $V$ has dimension $n$, $\mathcal{B}$ has $n$ elements.
+	\begin{enumerate}[(i)]
+		\item If $(v_1, \ldots, v_m)$ is free, then from the Steinitz Exchange lemma, as $\mathcal{B}$ is generating, $m \leq n$. Moreover, if we have equality, then $(v_1, \ldots, v_n)$ spans $V$, so $(v_1, \ldots, v_m)$ is a basis.
+		\item If $(w_1, \ldots, w_k)$ is spanning, then from the Steinitz Exchange lemma, as $\mathcal{B}$ is free, $n \leq k$.
+
+			If we have equality, assume that $(w_1, \ldots, w_n)$ is not a basis; hence they are not free, so there exist $\lambda_i \in F$, not all $0$, such that
+			\[
+			\lambda_1 w_1 + \cdots + \lambda_n w_n = 0
+			.\]
+			Reorder such that $\lambda_1 \neq 0$. Then, $\langle w_1, w_2, \ldots, w_n \rangle = \langle w_2, \ldots, w_n \rangle$, so $(w_2, \ldots, w_n)$ is spanning. However, this is a spanning set of size $n-1$, which is a contradiction.
+	\end{enumerate}
 \end{proofbox}
 
 \begin{proposition}
@@ -427,7 +432,25 @@ Iterating this process, we eventually get $l = m$, which then proves $m \leq n$.
 \end{proposition}
 
 \begin{proofbox}
-	Let $(u_1, u_2, \ldots, u_l)$ be a basis of $U$. As $U \leq V$, we can extend this to a basis $(u_1, \ldots, u_l, w_{l+1}, \ldots, w_{n})$ of $V$. Then we show that $(w_{l+1} + U, \ldots, w_{n} + U)$ is a basis of $V/U$. (Fill this in).
+	Let $(u_1, u_2, \ldots, u_l)$ be a basis of $U$. As $U \leq V$, we can extend this to a basis $(u_1, \ldots, u_l, w_{l+1}, \ldots, w_{n})$ of $V$. Then we show that $(w_{l+1} + U, \ldots, w_{n} + U)$ is a basis of $V/U$.
+
+	Indeed, they are free: if $\sum_{i = l+1}^{n} \lambda_i (w_i + U) = 0 + U$, then
+	\[
+	\sum_{i = l+1}^{n} (\lambda_i w_i) + U = 0 + U,
+	\]
+	so $\sum_{i = l+1}^{n} (\lambda_i w_i) \in U$. But if $W = \langle w_{l+1}, \ldots, w_n\rangle$, then $U \oplus W = V$, so $U \cap W = 0$. Hence $\sum_{i=l+1}^{n} (\lambda_i w_i) = 0$, giving $\lambda_i = 0$ for all $i$, as $w_i$ is a basis of $W$.
+
+	Moreover, they span $V/U$: if $v + U \in V/U$, then we can write
+	\[
+	v = \sum_{i = 1}^{l} \lambda_i u_i + \sum_{i = l+1}^{n} \lambda_i w_i
+	.\]
+	Then, as $u_i \in U$,
+	\[
+	v + U = \Biggl(v - \sum_{i = 1}^{l} \lambda_i u_i \Biggr) + U = \Biggl( \sum_{i = l+1}^{n} \lambda_i w_i\Biggr) + U = \sum_{i = l+1}^{n} \lambda_i (w_i + U)
+	,\]
+	proving $(w_{l+1} + U, \ldots, w_n + U)$ span $V/U$.
+
+	Hence $\dim(V/U) = n - l = \dim V - \dim U$, as desired.
 \end{proofbox}
 
 \begin{remark}
@@ -525,12 +548,11 @@ with the convention that $\{v\} \cup \{v\} = \{v, v\}$.
 
 \newpage
 
-\section{Linear maps, Isomorphisms and the Rank-Nullity Theorem}%
-\sectionmark{Linear maps, Isomorphism and Rank-Nullity}
-\label{sec:linear_maps_isomorphism_and_the_rank_nullity_theorem}
+\section{Linear Maps}%
+\label{sec:linear_maps}
 
 \begin{definition}[Linear map]\index{linear map}
-	Let $V, W$ be vector spaces over $F$. A map $\alpha : V \to W$ is \textbf{linear} if and only if for all $\lambda_1, \lambda_2 \in F$ and $v_1, v_2 \in V$, we have
+	Let $V, W$ be vector spaces over $F$. A map $\alpha : V \to W$ is \textit{linear} if and only if for all $\lambda_1, \lambda_2 \in F$ and $v_1, v_2 \in V$, we have
 	\[
 		\alpha(\lambda_1 v_1 + \lambda_2 v_2) = \lambda_1 \alpha(v_1) + \lambda_2 \alpha(v_2)
 	.\]
@@ -579,7 +601,7 @@ This is unique as $\mathcal{B}$ is a basis.
 Often, to define a linear map, we define its value on a basis and extend by linearity. As a corollary, if $\alpha_1, \alpha_2 : V \to W$ are linear and agree on a basis of $V$, they are equal.
 
 \begin{definition}[Isomorphism]\index{isomorphism}
-	Let $V, W$ be vector spaces over $F$. A map $\alpha : V \to W$ is called an \textbf{isomorphism} if and only if $\alpha$ is linear and bijective. If such an $\alpha$ exists, we say $V \cong W$.
+	Let $V, W$ be vector spaces over $F$. A map $\alpha : V \to W$ is called an \textit{isomorphism} if and only if $\alpha$ is linear and bijective. If such an $\alpha$ exists, we say $V \cong W$.
 \end{definition}
 
 \begin{remark}
@@ -716,7 +738,7 @@ Hence $\lambda_1 w_1 + \lambda_2 w_2 \in \Img \alpha$.
 \end{theorem}
 
 \begin{proofbox}
-	We have proven that $U/Ker \alpha \cong \Img \alpha$, but we have already proven $\dim U/Ker \alpha = \dim U - r(\alpha)$, which proves the theorem.
+	We have proven that $U/\Ker \alpha \cong \Img \alpha$, but we have already proven $\dim U/\Ker \alpha = \dim U - r(\alpha)$, which proves the theorem.
 \end{proofbox}
 
 \begin{lemma}
@@ -730,45 +752,43 @@ Hence $\lambda_1 w_1 + \lambda_2 w_2 \in \Img \alpha$.
 
 This follows immediately from the rank-nullity theorem.
 
-\newpage
-
-\section{Linear maps and Matrices}%
-\label{sec:linear_maps_and_matrices}
+\subsection{Linear maps and Matrices}%
+\label{sub:linear_maps_and_matrices}
 
 \begin{definition}
 	If $V, W$ are vector spaces over $F$, then
 	\[
-		L(V, W) = \{\alpha : V \to W \text{ linear}\}
+		\mathcal{L}(V, W) = \{\alpha : V \to W \text{ linear}\}
 	.\]
 \end{definition}
 
 \begin{proposition}
-	$L(V, W)$ is a vector space over $F$ with
+	$\mathcal{L}(V, W)$ is a vector space over $F$ with
 	\[
 		(\alpha_1 + \alpha_2)(v) = \alpha_1(v) + \alpha_2(v)
 	,\]
 	\[
 		(\lambda \alpha)(v) = \lambda \alpha 9v)
 	.\]
-	Moreover, if $V$ and $W$ are finite dimensional, then so is $L(V, W)$, and
+	Moreover, if $V$ and $W$ are finite dimensional, then so is $\mathcal{L}(V, W)$, and
 	\[
-		\dim L(V, W) = \dim V \dim W
+		\dim \mathcal{L}(V, W) = \dim V \dim W
 	.\]
 \end{proposition}
 
 \begin{definition}
 	An $m \times n$ matrix\index{matrix} over $F$ is an array with $m$ rows and $n$ columns with entries in $F$, $A = (a_{ij})$. Define
 	\[
-		M_{m, n}(F) = \{\text{set of } m \times n \text{ matrices over } F\}
+		\mathcal{M}_{m, n}(F) = \{\text{set of } m \times n \text{ matrices over } F\}
 	.\]
 \end{definition}
 
 \begin{proposition}
-	$M_{m, n}(F)$ is a vector space over $F$, and $\dim M_{m, n}(F) = mn$
+	$\mathcal{M}_{m, n}(F)$ is a vector space over $F$, and $\dim \mathcal{M}_{m, n}(F) = mn$
 \end{proposition}
 
 \begin{proofbox}
-	Let $E_{ij}$ be the matrix with $a_{xy} = \delta_{xi}\delta_{yj}$. Then $(E_{ij})$ is a basis of $M_{m, n}(F)$, as
+	Let $E_{ij}$ be the matrix with $a_{xy} = \delta_{xi}\delta_{yj}$. Then $(E_{ij})$ is a basis of $\mathcal{M}_{m, n}(F)$, as
 	\[
 		N = (a_{ij}) = \sum_{i, j}a_{ij} E_{ij}
 	,\]
@@ -839,13 +859,13 @@ Then
 \end{proofbox}
 
 \begin{proposition}
-If $V$ and $W$ are vector spaces over $F$, and $\dim V = n$, $\dim W = m$, then $L(V, W) \cong M_{m, n}(F)$, so $\dim L(V, W) = m \times n$.
+If $V$ and $W$ are vector spaces over $F$, and $\dim V = n$, $\dim W = m$, then $\mathcal{L}(V, W) \cong \mathcal{M}_{m, n}(F)$, so $\dim \mathcal{L}(V, W) = m \times n$.
 \end{proposition}
 
 \begin{proofbox}
 	Fix $\mathcal{B}, \mathcal{C}$ bases of $V$ and $W$. We show
 \begin{align*}
-	\theta : L(V, W) &\to M_{m, n}(F) \\
+	\theta : \mathcal{L}(V, W) &\to \mathcal{M}_{m, n}(F) \\
 	\alpha &\mapsto [\alpha]_{\mathcal{B}, \mathcal{C}}
 \end{align*}
 is an isomorphism.
@@ -871,10 +891,8 @@ is an isomorphism.
 	\] 
 \end{remark}
 
-\newpage
-
-\section{Change of Basis and Equivalent Matrices}%
-\label{sec:change_of_basis_and_equivalent_matrices}
+\subsection{Change of Basis and Equivalent Matrices}%
+\label{sub:change_of_basis_and_equivalent_matrices}
 
 Let $\alpha : V \to W$ with $\mathcal{B}$ and $\mathcal{C}$ bases of $V, W$. Then
 \[
@@ -901,13 +919,10 @@ if $\alpha(Y) \leq Z$. Moreover, we can show $\alpha$ induces a homomorphism
 \end{align*}
 This is well-defined as $\alpha(v) \in Z$ for $v \in Y$, and $[\bar \alpha]_{\mathcal{B}'', \mathcal{C}''} = C$.
 
-\subsection{Change of Basis}%
-\label{sub:change_of_basis}
-
 Consider $\alpha : V \to W$, where $V$ has two bases $\mathcal{B} = \{v_1, \ldots, v_n\}$ and $\mathcal{B}' = \{v_1', \ldots, v_n'\}$ and $W$ has two bases $\mathcal{C} = \{w_1, \ldots, w_n\}$ and $\mathcal{C}' = \{w_1', \ldots, w_m'\}$. We aim to find the relation between $[\alpha]_{\mathcal{B}, \mathcal{C}}$ and $[\alpha]_{\mathcal{B}', \mathcal{C}'}$.
 
 \begin{definition}
-	The change of basis matrix\index{change of basis matrix} from $\mathcal{B}'$ to $\mathcal{B}$ is $P = (p_{ij})$ given by
+	The \textit{change of basis matrix}\index{change of basis matrix} from $\mathcal{B}'$ to $\mathcal{B}$ is $P = (p_{ij})$ given by
 	\[
 		P = ([v_1']_{\mathcal{B}}, \ldots, [v_n']_{\mathcal{B}}) = [\id]_{\mathcal{B}', \mathcal{B}}
 	.\]
@@ -958,11 +973,11 @@ But since this is true for any $v \in V$, we get $QA' = AP$, so $A' = Q^{-1}AP$.
 \end{proofbox}
 
 \begin{definition}[Equivalent matrices]\index{equivalent matrices}
-	Two matrices $A, B \in M_{m, n}(F)$ are equivalent if $A' = Q^{-1}AP$, where $Q \in M_{m, m}$ and $P \in M_{n, n}$ are invertible.
+	Two matrices $A, B \in \mathcal{M}_{m, n}(F)$ are equivalent if $A' = Q^{-1}AP$, where $Q \in \mathcal{M}_{m, m}$ and $P \in \mathcal{M}_{n, n}$ are invertible.
 \end{definition}
 
 \begin{remark}
-	This defines an equivalence relation on $M_{m, n}(F)$, as
+	This defines an equivalence relation on $\mathcal{M}_{m, n}(F)$, as
 	\begin{itemize}
 		\item $A = I_m^{-1}AI_n$,
 		\item If $A' = Q^{-1}AP$, then $A = (Q^{-1})^{-1}A' P^{-1}$,
@@ -1040,7 +1055,7 @@ But since this is true for any $v \in V$, we get $QA' = AP$, so $A' = Q^{-1}AP$.
 \end{corollary}
 
 \begin{definition}
-	For $a \in M_{m, n}(F)$, the column rank\index{column rank} $r_c(A)$ of $A$ is the dimension of the span of the column vectors of $A$ in $F^{m}$. Similarly, the row rank\index{row rank} is the column rank of $A^{T}$.
+	For $a \in \mathcal{M}_{m, n}(F)$, the column rank\index{column rank} $r_c(A)$ of $A$ is the dimension of the span of the column vectors of $A$ in $F^{m}$. Similarly, the row rank\index{row rank} is the column rank of $A^{T}$.
 \end{definition}
 
 \begin{remark}
@@ -1088,10 +1103,8 @@ hence are equivalent.
 	Hence $r_c(A^{T}) = r = r_c(A)$.
 \end{proofbox}
 
-\newpage
-
-\section{Elementary operations and Elementary Matrices}%
-\label{sec:elementary_operations_and_elementary_matrices}
+\subsection{Elementary operations and Elementary matrices}%
+\label{sub:elementary_operations_and_elementary_matrices}
 
 This is a special case of the change of basis formula, when $\alpha : V \to V$ is a map from a vector space to itself, called an endomorphism.\index{endomorphism} Suppose $\mathcal{B} = \mathcal{C}$ and $\mathcal{B}' = \mathcal{C}'$, and $P$ is the change of basis matrix from $\mathcal{B}'$ to $\mathcal{B}$. Then
 \[
@@ -1143,7 +1156,7 @@ Iterating with $\tilde A$, a strictly smaller matrix, eventually gives
 	0 & 0
 \end{pmatrix} = Q^{-1}AP
 .\]
-A variation of this is known as \textbf{Gauss' pivot algorithm}\index{Gauss' pivot algorithm}. If we only use row operations, we can reach the row-echelon form of the matrix\index{row echelon form}:
+A variation of this is known as \textit{Gauss' pivot algorithm}\index{Gauss' pivot algorithm}. If we only use row operations, we can reach the row-echelon form of the matrix\index{row echelon form}:
 \begin{itemize}
 	\item Assume that $a_{i1} \neq 0$ for some $i$.
 	\item Swap rows $i$ and $1$.
@@ -1152,9 +1165,6 @@ A variation of this is known as \textbf{Gauss' pivot algorithm}\index{Gauss' piv
 	\item Iterate over all columns.
 \end{itemize}
 This procedure is what is usually done when solving a system of linear equations.
-
-\subsection{Representation of Square Invertible Matrix}%
-\label{sub:representation_of_square_invertible_matrix}
 
 \begin{lemma}
 	If $A$ is an $n \times n$ square invertible matrix, then we can obtain $I_n$ using either only row or column elementary operations.
@@ -1185,20 +1195,20 @@ This gives $A E_1 \ldots E_c = I_n$, or $A^{-1} = E_1 \ldots E_c$. This is an al
 
 \newpage
 
-\section{Dual Spaces and Dual Maps}%
-\label{sec:dual_spaces_and_dual_maps}
+\section{Dual Spaces}%
+\label{sec:dual_spaces}
 
 \begin{definition}
 	$V$ is a $F$-vector space. We say $V^{\ast}$ is the dual of $V$ if
 	\[
-		V^{\ast} = L(V, F) = \{ \alpha : V \to F \text{ linear}\}
+		V^{\ast} = \mathcal{L}(V, F) = \{ \alpha : V \to F \text{ linear}\}
 	.\]\index{dual space}
 	If $\alpha : V \to F$ is linear, then we say $\alpha$ is a linear form.\index{linear form}
 \end{definition}
 
 \begin{exbox}
 	\begin{enumerate}[(i)]
-		\item $\tr : M_{n, n}(F) \to F$ is a linear map, so $\tr \in M_{n,n}^{\ast}(F)$.
+		\item $\tr : \mathcal{M}_{n, n}(F) \to F$ is a linear map, so $\tr \in \mathcal{M}_{n,n}^{\ast}(F)$.
 		\item Let $f : [0, 1] \to \mathbb{R}$ by $x \mapsto f(x)$, and $Tf : \mathcal{C}^{\infty}([0,1], \mathbb{R}) \to \mathbb{R}$ by
 			\[
 				\phi \mapsto \int_{0}^{1} f(x)\phi(x)\diff x
@@ -1305,12 +1315,12 @@ This is very different in infinite dimensions.
 \end{proofbox}
 
 \begin{definition}
-	Let $V, W$ be vector spaces over $F$, and let $\alpha \in L(V, W)$. Then the map
+	Let $V, W$ be vector spaces over $F$, and let $\alpha \in \mathcal{L}(V, W)$. Then the map
 	\begin{align*}
 		\alpha^{\ast} : W^{\ast} &\to V^{\ast} \\
 		\varepsilon &\mapsto \varepsilon \circ \alpha
 	\end{align*}
-	is an element of $L(W^{\ast}, V^{\ast}$. This is known as the dual map of $\alpha$.\index{dual map}
+	is an element of $\mathcal{L}(W^{\ast}, V^{\ast})$. This is known as the \textit{dual map} of $\alpha$.\index{dual map}
 \end{definition}
 
 \begin{proofbox}
@@ -1324,7 +1334,7 @@ Similarly, if $\lambda \in F$, then
 \[
 	\alpha^{\ast}(\lambda \theta) = \lambda \alpha^{\ast}(\theta)
 .\]
-Hence $\alpha^{\ast} \in L(W^{\ast}, V^{\ast})$.
+Hence $\alpha^{\ast} \in \mathcal{L}(W^{\ast}, V^{\ast})$.
 \end{proofbox}
 
 \begin{proposition}
@@ -1358,12 +1368,10 @@ Hence $\alpha^{\ast} \in L(W^{\ast}, V^{\ast})$.
 	This gives $a_{rs} = m_{sr}$, as desired.
 \end{proofbox}
 
-\newpage
+\subsection{Properties of the Dual Map}%
+\label{sub:properties_of_the_dual_map}
 
-\section{Properties of the Dual Map}%
-\label{sec:properties_of_the_dual_map}
-
-Recall if $V, W$ are vector spaces over $F$, and $\alpha \in L(V, W)$, then we can construct a dual map
+Recall if $V, W$ are vector spaces over $F$, and $\alpha \in \mathcal{L}(V, W)$, then we can construct a dual map
 \begin{align*}
 	\alpha^{\ast} : W^{\ast} &\to V^{\ast} \\
 	\varepsilon &\mapsto \varepsilon \circ \alpha
@@ -1391,11 +1399,8 @@ Consider $\mathcal{E}^{\ast} = (\varepsilon_1, \ldots, \varepsilon_n)$ and $\mat
 .\]
 \end{proofbox}
 
-\subsection{Properties of the Dual Map}%
-\label{sub:properties_of_the_dual_map}
-
 \begin{lemma}
-	Let $V, W $ be vector spaces over $F$. Let $\alpha \in L(V, W)$ and $\alpha^{\ast} \in L(W^{\ast}, V^{\ast})$. Then
+	Let $V, W $ be vector spaces over $F$. Let $\alpha \in \mathcal{L}(V, W)$ and $\alpha^{\ast} \in \mathcal{L}(W^{\ast}, V^{\ast})$. Then
 	\begin{enumerate}[\normalfont(i)]
 		\item $\Ker(\alpha^{\ast}) = (\Img \alpha)^{\circ}$. Hence $\alpha^{\ast}$ is injective if and only if $\alpha$ is surjective.
 		\item $\Img \alpha^{\ast} \leq (\Ker \alpha)^{\circ}$ with equality if $V, W$ are finite dimensional. Hence in this case, $\alpha^{\ast}$ is injective if and only if $\alpha$ is injective.
@@ -1434,11 +1439,11 @@ There are many problems where the understanding of $\alpha^{\ast}$ is simpler th
 \subsection{Double Dual}%
 \label{sub:double_dual}
 
-If $V$ is a vector space over $F$, then $V^{\ast} = L(V, F)$.
+If $V$ is a vector space over $F$, then $V^{\ast} = \mathcal{L}(V, F)$.
 
-We define the \textbf{bidual}\index{bidual}\index{double dual} as
+We define the \textit{bidual}\index{bidual}\index{double dual} as
 \[
-	V^{\ast \ast} = (V^{\ast})^{\ast} = L(V^{\ast}, F)
+	V^{\ast \ast} = (V^{\ast})^{\ast} = \mathcal{L}(V^{\ast}, F)
 .\]
 This is a very important space in infinite dimension. In general, there is no obvious connection between $V$ and $V^{\ast}$. However, there is a large class of function spaces such that
 \[
@@ -1485,7 +1490,7 @@ In infinite dimension, under certain assumption (e.g. Banach space) we can show 
 \end{proofbox}
 
 \begin{lemma}
-	Let $V$ be a finite dimensional vector space over $K$, and let $U \leq V$. Then
+	Let $V$ be a finite dimensional vector space over $F$, and let $U \leq V$. Then
 	\[
 	\hat U = U^{\circ \circ}
 	.\]
@@ -1513,7 +1518,7 @@ In infinite dimension, under certain assumption (e.g. Banach space) we can show 
 \end{remark}
 
 \begin{lemma}
-	Let $V$ be a finite dimensional vector space over $K$. Let $U_1, U_2 \leq V$. Then,
+	Let $V$ be a finite dimensional vector space over $F$. Let $U_1, U_2 \leq V$. Then,
 	\begin{enumerate}[\normalfont(i)]
 		\item $(U_1 + U_2)^{\circ} = U_1^{\circ} \cap U_2^{\circ}$,
 		\item $(U_1 \cap U_2)^{\circ} = U_1^{\circ} + U_2^{\circ}$.
@@ -1537,187 +1542,18 @@ In infinite dimension, under certain assumption (e.g. Banach space) we can show 
 
 \newpage
 
-\section{Bilinear Forms}%
-\label{sec:bilinear_forms}
-
-\begin{definition}
-	Let $U, V$ be vector spaces over $K$. Then
-	\[
-	\phi : U \times V \to K
-	\]
-	is a \textbf{bilinear form}\index{bilinear form} if it is linear in both components.
-\end{definition}
-
-\begin{exbox}
-	\begin{enumerate}[(i)]
-		\item[]
-		\item Take $V \times V^{\ast} \to K$ by $(v, \theta) \mapsto \theta(v)$.
-		\item The scalar product\index{scalar product} on $U = V = \mathbb{R}^{n}$ is $\psi : \mathbb{R}^{n} \times \mathbb{R}^{n} \to \mathbb{R}$ by
-			\[
-				\left(
-					\begin{pmatrix}
-						x_1 \\
-						\vdots \\
-						x_n
-					\end{pmatrix},
-					\begin{pmatrix}
-						y_1 \\
-						\vdots \\
-						y_n
-					\end{pmatrix}
-				\right)
-				\mapsto  \sum_{i = 1}^{n} x_i y_i
-			.\]
-		\item If $U = V = \mathcal{C}([0, 1], \mathbb{R})$, then we can define
-			\[
-				\phi(f, g) = \int_{0}^{1}f(t)g(t) \diff t
-			.\]
-			This can be thought of as an infinite dimensional scalar product.
-	\end{enumerate}
-\end{exbox}
-
-\begin{definition}
-	Let $\mathcal{B} = (e_1, \ldots, e_m)$ be a basis of $U$, and $\mathcal{C} = (f_1, \ldots, f_n)$ be a basis of $V$. If $\phi : U \times V \to F$ is a bilinear form, then the matrix of $\phi$ with respect to $\mathcal{B}$ and $\mathcal{C}$\index{matrix of bilinear form} is
-	\[
-		[\phi]_{\mathcal{B}, \mathcal{C}} = (\phi(e_i, f_j))
-	.\]
-\end{definition}
-
-\begin{lemma}
-	\[
-		\phi(u, v) = [u]_{\mathcal{B}}^{T} [\phi]_{\mathcal{B}, \mathcal{C}} [v]_{\mathcal{C}}
-	.\]
-\end{lemma}
-
-\begin{proofbox}
-	Let
-\[
-u = \sum_{i = 1}^{m} \lambda_i e_i, \quad v = \sum_{j = 1}^{n} \mu_ij f_j
-.\]
-Since $\phi$ is a bilinear form,
-\begin{align*}
-	\phi(u, v) &= \phi \Biggl( \sum_{i = 1}^{m} \lambda_i e_i, \sum_{j = 1}^{n} \mu_j e_j \Biggr) = \sum_{i = 1}^{m}\sum_{j = 1}^{n} \lambda_i \mu_j \phi(e_i, f_j) \\
-		   &= [u]_{\mathcal{B}}^{T}[\phi]_{\mathcal{B}, \mathcal{C}}[v]_{\mathcal{C}}.
-\end{align*}
-\end{proofbox}
-
-\begin{remark}
-	$[\phi]_{\mathcal{B},\mathcal{C}}$ is the only matrix satisfying this property.
-\end{remark}
-
-\begin{definition}
-	$\phi: U \times V \to K$ a bilinear form determines two linear maps:
-	\begin{align*}
-		\phi_L : U \to V^{\ast}& \\
-		\phi_L(u) : V &\to K \\
-			      v &\mapsto \phi(u, v)\\
-			      \phi_R : V \to U^{\ast}& \\
-			      \phi_R(v) : U &\to K \\
-			      u &\mapsto \phi(u, v)
-	\end{align*}
-\end{definition}
-
-\begin{lemma}
-	Let $\mathcal{B} = (e_1, \ldots, e_m)$ a basis of $U$, and $\mathcal{B}^{\ast} = (\varepsilon_1, \ldots, \varepsilon_m)$ a dual basis of $U^{\ast}$, Similarly, let $\mathcal{C} = (f_1, \ldots, f_n)$ be a basis of $V$, and $\mathcal{C}^{\ast} (\eta_1, \ldots, \eta_n)$ a dual basis of $V^{\ast}$.
-
-	Let $A = [\phi]_{\mathcal{B}, \mathcal{C}}$. Then,
-	\begin{align*}
-		[\phi_R]_{\mathcal{C}, \mathcal{B}^{\ast}} &= A, \\
-		[\phi_L]_{\mathcal{B}, \mathcal{C}^{\ast}} &= A^{T}.
-	\end{align*}
-\end{lemma}
-
-\begin{proofbox}
-	We have $\phi_L(e_i, f_j) = \phi(e_i, f_j) = A_{ij}$, and so
-	\[
-		\phi_L(e_i) = \sum A_{ij} \eta_j
-	.\]
-	Similarly, $\phi_R(f_j)(e_i) = \phi(e_i, f_j) = A_{ij}$, so
-	\[
-		\phi_R(f_{j}) = \sum A_{ij} \varepsilon_i
-	.\]
-	This naturally gives our result.
-\end{proofbox}
-
-\begin{definition}
-	Let $\Ker \phi_L$ be the left kernel of $\phi$, and $\Ker \phi_R$ be the right kernel of $\phi$.
-
-	We say that $\phi$ is non-degenerate\index{non-degenerate bilinear form} if $\Ker \phi_L = \{0\}$ and $\Ker \phi_R = \{0\}$. Otherwise, we say that $\phi$ is degenerate.
-\end{definition}
-
-\begin{lemma}
-	Let $U, V$ be finite dimensional, $\mathcal{B}, \mathcal{C}$ bases of $U$ and $V$, and $\phi: U \times V \to K$ a bilinear form. Let $A = [\phi]_{\mathcal{B}, \mathcal{C}}$.
-
-	Then $\phi$ is non-degenerate if and only if $A$ is invertible.
-\end{lemma}
-
-\begin{corollary}
-	If $\phi$ is non-degenerate, then $\dim U = \dim V$.
-\end{corollary}
-
-\begin{proofbox}
-	$\phi$ is non-degenerate if and only if $\Ker \phi_L = \{0\}$ and $\Ker \phi_R = \{0\}$. But this implies $\nullity (A^{T}) = 0$ and $\nullity (A) = 0$, hence by rank-nullity theorem, we must have $\rank (A^{T}) = \dim U$, and $\rank (A) = \dim V$. But this gives $A$ invertible and $\dim U = \dim V$.
-\end{proofbox}
-
-\begin{remark}
-	Taking $\phi : \mathbb{R}^{n} \times \mathbb{R}^{n} \to \mathbb{R}$ by the scalar product, then $\phi$ is non-degenerate, as in the standard basis $\mathcal{B}$,
-	\[
-		[\phi]_{\mathcal{B}, \mathcal{B}} = I_n
-	.\]
-\end{remark}
-
-\begin{corollary}
-	When $U$ and $V$ are finite dimensional, then choosing a non-degenerate bilinear form $\phi: U \times V \to K$ is equivalent to choosing an isomorphism $\phi_L : U \to V^{\ast}$.
-\end{corollary}
-
-\begin{definition}
-	If $T \subset U$, we define
-	\[
-		T^{\perp} = \{v \in V \mid \phi(t, v) = 0 \, \forall t \in T\}
-	.\]
-	Similarly, if $S \subset V$, then
-	\[
-		^{\perp}S = \{u \in U \mid \phi(u, s) = 0 \, \forall s \in S\}
-	.\]
-\end{definition}
-
-\begin{proposition}
-	Let $\mathcal{B}, \mathcal{B}'$ be two bases of $U$, and $P = [\id]_{\mathcal{B}', \mathcal{B}}$, and $\mathcal{C}, \mathcal{C}'$ two bases of $V$, and $Q = [\id]_{\mathcal{C}', \mathcal{C}}$, then if $\phi: U \times V \to K$ is a bilinear form, then
-	\[
-		[\phi]_{\mathcal{B}', \mathcal{C}'} = P^{T} [\phi]_{\mathcal{B}, \mathcal{C}} Q
-	.\]
-\end{proposition}
-
-\begin{proofbox}
-	We have
-\[
-	\phi(u, v) = [u]_{\mathcal{B}}^{T} [\phi]_{\mathcal{B}, \mathcal{C}}[v]_{\mathcal{C}} = (P[u]_{\mathcal{B}'})^{T}[\phi]_{\mathcal{B},\mathcal{C}}(Q[v]_{\mathcal{C}'}) = [u]_{\mathcal{B}'}^{T} (P^{T} [\phi]_{\mathcal{B}, \mathcal{C}} Q)[v]_{\mathcal{C}'}
-,\]
-which implies $P^{T}[\phi]_{\mathcal{B}, \mathcal{C}}Q = [\phi]_{\mathcal{B}', \mathcal{C}'}$.
-\end{proofbox}
-
-\begin{definition}
-	The rank of $\phi$ ($\rank \phi$) is the rank of any matrix representing $\phi$.\index{rank of bilinear form}
-\end{definition}
-
-This is true as $\rank (P^{T}AQ) = \rank A$, if $P$ and $Q$ are invertible.
-
-Note we could have equivalently defined $\rank \phi = \rank \phi_L = \rank \phi_R$.
-
-\newpage
-
 \section{Determinant and Traces}%
 \label{sec:determinant_and_traces}
 
 \begin{definition}
-	If $A \in M_{n}(K)$, we define the trace\index{trace} of $A$ as
+	If $A \in \mathcal{M}_{n}(F)$, we define the trace\index{trace} of $A$ as
 	\[
 	\tr A = \sum_{i = 1}^{n} A_{ii}
 	.\]
 \end{definition}
 
 \begin{remark}
-	The map $M_n(K) \to K$ by $A \mapsto \tr A$ is linear.
+	The map $\mathcal{M}_n(F) \to F$ by $A \mapsto \tr A$ is linear.
 \end{remark}
 
 \begin{lemma}
@@ -1755,11 +1591,6 @@ Note we could have equivalently defined $\rank \phi = \rank \phi_L = \rank \phi_
 	.\]
 \end{proofbox}
 
-\newpage
-
-\section{Determinants}%
-\label{sec:determinants}
-
 \subsection{Permutations and Transposition}%
 \label{sub:permutations_and_transposition}
 
@@ -1782,7 +1613,7 @@ The signature\index{signature}\index{sign} is a map
 \end{align*}
 
 \begin{definition}
-	For $A \in M_{n}(K)$, and $A = (a_{ij})$, we define the determinant of $A$\index{determinant} as
+	For $A \in \mathcal{M}_{n}(F)$, and $A = (a_{ij})$, we define the determinant of $A$\index{determinant} as
 	\[
 		\det A = \sum_{\sigma S_n}\varepsilon(\sigma)a_{\sigma(1) 1} a_{\sigma(2) 2} \cdots a_{\sigma(n) n}
 	.\]
@@ -1846,15 +1677,15 @@ The signature\index{signature}\index{sign} is a map
 Our definition of $\det A$ has seemingly come out of nowhere. We want some reason to take this as our definition.
 
 \begin{definition}
-	A volume form\index{volume form} on $K^{n}$ is a function
+	A volume form\index{volume form} on $F^{n}$ is a function
 	\[
-		\underbrace{K^{n} \times \cdots \times K^{n}}_{n \text{ times}} \to K
+		\underbrace{F^{n} \times \cdots \times F^{n}}_{n \text{ times}} \to F
 	,\]
 	such that
 	\begin{enumerate}[(i)]
-		\item It is multilinear,\index{multilinear} so for any $1 \leq i \leq n$, and all $(v_1, \ldots, v_{i-1}, v_{i+1}, \ldots, v_n) \in (K^{n})^{n-1}$, we want the map
+		\item It is multilinear,\index{multilinear} so for any $1 \leq i \leq n$, and all $(v_1, \ldots, v_{i-1}, v_{i+1}, \ldots, v_n) \in (F^{n})^{n-1}$, we want the map
 			\begin{align*}
-				K^{n} &\to K \\
+				F^{n} &\to F \\
 				v &\mapsto d(v_1, \ldots, v_{i-1}, v, v_{i+1}, \ldots, v_n)
 			\end{align*}
 			to be linear.
@@ -1865,12 +1696,12 @@ Our definition of $\det A$ has seemingly come out of nowhere. We want some reaso
 	\end{enumerate}
 \end{definition}
 
-Then we want to show that there is in fact only one volume form on $K^{n} \times \cdots \times K^{n}$ given by the determinant: If $A = (a_{ij}) = (A^{(1)} \mid \ldots \mid A^{(n)})$, then we denote
+Then we want to show that there is in fact only one volume form on $F^{n} \times \cdots \times F^{n}$ given by the determinant: If $A = (a_{ij}) = (A^{(1)} \mid \ldots \mid A^{(n)})$, then we denote
 \[
 	\det A = \det(A^{(1)}, \ldots, A^{(n)})
 .\]
 \begin{lemma}
-	$K^{n} \times \cdots \times K^{n} \to K$ by $(A^{(1)}, \ldots, A^{(n)}) \mapsto \det A$ is a volume form.
+	$F^{n} \times \cdots \times F^{n} \to F$ by $(A^{(1)}, \ldots, A^{(n)}) \mapsto \det A$ is a volume form.
 \end{lemma}
 
 \begin{proofbox}
@@ -1915,13 +1746,13 @@ Then we want to show that there is in fact only one volume form on $K^{n} \times
 This follows as $\sigma$ is a product of transpositions.
 
 \begin{theorem}
-	Let $d$ be a volume form on $K^{n}$, and let $A = (A^{(1)}, \ldots, A^{(n)})$. Then,
+	Let $d$ be a volume form on $F^{n}$, and let $A = (A^{(1)}, \ldots, A^{(n)})$. Then,
 	\[
 		d(A^{(1)}, \ldots, A^{(n)}) = d(e_1, \ldots, e_n) \det A
 	.\]
 \end{theorem}
 
-Hence, up to a constant, $\det$ is the only volume form on $K^{n}$.
+Hence, up to a constant, $\det$ is the only volume form on $F^{n}$.
 
 \begin{proofbox}
 	\begin{align*}
@@ -1942,20 +1773,18 @@ Hence, up to a constant, $\det$ is the only volume form on $K^{n}$.
 	$\det$ is the only volume form such that $d(e_1, \ldots, e_n) = 1$.
 \end{corollary}
 
-\newpage
-
-\section{Some Properties of Determinants}%
-\label{sec:some_properties_of_determinants}
+\subsection{Some Properties of Determinants}%
+\label{sub:some_properties_of_determinants}
 
 \begin{lemma}
-	If $A, B \in M_{n}(F)$, then 
+	If $A, B \in \mathcal{M}_{n}(F)$, then 
 	\[
 		\det (AB) = (\det A)(\det B)
 	.\]
 \end{lemma}
 
 \begin{proofbox}
-	Pick $A$. Consider the map $d_a : \underbrace{K^{n} \times \cdots \times K^{n}}_{n} \to K$ defined by
+	Pick $A$. Consider the map $d_a : \underbrace{F^{n} \times \cdots \times F^{n}}_{n} \to F$ defined by
 	\[
 		d_A(v_1, \ldots, v_n) = \det(Av_1, \ldots, Av_n)
 	.\]
@@ -1976,7 +1805,7 @@ Hence, up to a constant, $\det$ is the only volume form on $K^{n}$.
 \end{proofbox}
 
 \begin{definition}
-	For $A \in M_n(K)$, we say that
+	For $A \in \mathcal{M}_n(F)$, we say that
 	\begin{enumerate}[(i)]
 		\item $A$ is singular if $\det A = 0$,\index{singular}
 		\item $A$ is non-singular if $\det A \neq 0$.\index{non-singular}
@@ -2000,7 +1829,7 @@ Hence, up to a constant, $\det$ is the only volume form on $K^{n}$.
 \end{remark}
 
 \begin{theorem}
-	Let $A \in M_n(K)$. Then the following are equivalent:
+	Let $A \in \mathcal{M}_n(F)$. Then the following are equivalent:
 	\begin{enumerate}[\normalfont(i)]
 		\item $A$ is invertible;
 		\item $A$ is non-singular;
@@ -2048,7 +1877,7 @@ Hence, up to a constant, $\det$ is the only volume form on $K^{n}$.
 \end{definition}
 
 \begin{theorem}
-	$\det : L(V, V) \to K$ satisfies
+	$\det : \mathcal{L}(V, V) \to F$ satisfies
 	\begin{enumerate}[\normalfont(i)]
 		\item $\det \id = 1$;
 		\item $\det(\alpha \circ \beta) = (\det \alpha) (\det \beta)$;
@@ -2064,13 +1893,13 @@ Hence, up to a constant, $\det$ is the only volume form on $K^{n}$.
 \label{sub:determinant_of_block_matrices}
 
 \begin{lemma}
-	For $A \in M_{k}(K)$, $B \in M_{\ell}(K)$, and $C \in M_{k, \ell}(K)$, let
+	For $A \in \mathcal{M}_{k}(F)$, $B \in \mathcal{M}_{\ell}(F)$, and $C \in \mathcal{M}_{k, \ell}(F)$, let
 	\[
 	M =
 	\begin{pmatrix}
 		A & C \\
 		0 & B
-	\end{pmatrix} \in M_n(K)
+	\end{pmatrix} \in \mathcal{M}_n(F)
 	.\]
 	Then, $\det M = (\det A)(\det B)$.
 \end{lemma}
@@ -2130,24 +1959,19 @@ However, note that in general,
 	In 3 dimensions, $(a, b, c) \mapsto (a \times b) \cdot c$ is a volume form. Thus we can show $\det(a, b, c) = (a \times b) \cdot c$.
 \end{remark}
 
-\newpage
-
-\section{Adjugate Matrix}%
-\label{sec:adjugate_matrix}
+\subsection{Adjugate Matrix}%
+\label{sub:adjugate_matrix}
 
 Observe by swapping two columns in $A = (A^{(1)}, \ldots, A^{(n)})$, the determinant alternates parity. Using the fact that $\det A = \det (A^{T})$, we can see that swapping two rows also changes the parity of the determinant.
-
-\subsection{Column expansion and Adjugate Matrix}%
-\label{sub:column_expansion_and_adjugate_matrix}
 
 It is hard to compute the determinant using our current definitions. Using column expansion, we can reduce the computation of $n \times n$ determinants to $(n-1) \times (n-1)$ determinants.
 
 \begin{definition}
-	Let $A \in M_n(K)$. Pick $i, j \in \{1, \ldots, n\}$. We define $A_{\widehat{ij}} \in M_{n-1}(K)$, obtained by removing the $i$'th row and $j$'th column from $A$.
+	Let $A \in \mathcal{M}_n(F)$. Pick $i, j \in \{1, \ldots, n\}$. We define $A_{\widehat{ij}} \in \mathcal{M}_{n-1}(F)$, obtained by removing the $i$'th row and $j$'th column from $A$.
 \end{definition}
 
 \begin{lemma}
-	Let $A \in M_n(K)$.
+	Let $A \in \mathcal{M}_n(F)$.
 	\begin{enumerate}[\normalfont(i)]
 		\item Pick $1 \leq j \leq n$, then:
 			\[
@@ -2207,11 +2031,11 @@ It is hard to compute the determinant using our current definitions. Using colum
 \end{proofbox}
 
 \begin{definition}
-	Let $A \in M_n(K)$. The adjugate matrix $\adj A$ is the $n \times n$ matrix with $(i, j)$ entry given by $(-1)^{i+j}\det(A_{\widehat{ji}})$.\index{adjugate}
+	Let $A \in \mathcal{M}_n(F)$. The adjugate matrix $\adj A$ is the $n \times n$ matrix with $(i, j)$ entry given by $(-1)^{i+j}\det(A_{\widehat{ji}})$.\index{adjugate}
 \end{definition}
 
 \begin{theorem}
-	Let $A \in M_n(K)$. Then,
+	Let $A \in \mathcal{M}_n(F)$. Then,
 	\[
 		(\adj A) A = (\det A)I_n
 	.\]
@@ -2235,8 +2059,8 @@ It is hard to compute the determinant using our current definitions. Using colum
 	\end{align*}
 \end{proofbox}
 
-\begin{proposition}
-	Let $A \in M_n(K)$ be invertible, and $b \in K^{n}$. Then the unique solution to $Ax = b$ is given by
+\begin{proposition}[Cramer's rule]\index{Cramer's rule}
+	Let $A \in \mathcal{M}_n(F)$ be invertible, and $b \in F^{n}$. Then the unique solution to $Ax = b$ is given by
 	\[
 		x_i = \frac{1}{\det A} \det(A_{\hat i b})
 	,\]
@@ -2246,7 +2070,7 @@ It is hard to compute the determinant using our current definitions. Using colum
 Algorithmically, this avoids computing $A^{-1}$.
 
 \begin{proofbox}
-	If $A$ is invertible, then there exists unique $x \in K^{n}$ with $Ax = b$. Let $x$ be this solution, then
+	If $A$ is invertible, then there exists unique $x \in F^{n}$ with $Ax = b$. Let $x$ be this solution, then
 	\begin{align*}
 		\det(A_{\hat i b}) &= \det(A^{(1)}, \ldots, A^{(i-1)}, b, A^{(i+1)}, \ldots, A^{(n)}) \\
 				   &= \det (A^{(1)}, \ldots, A^{(i-1)}, Ax, A^{(i+1)}, \ldots, A^{(n)}) \\
@@ -2261,10 +2085,10 @@ Algorithmically, this avoids computing $A^{-1}$.
 
 \newpage
 
-\section{Eigenvectors, Eigenvalues and Triangular Matrices}%
-\label{sec:eigenvectors_eigenvalues_and_triangular_matrices}
+\section{Eigenvectors and Eigenvalues}%
+\label{sec:eigenvectors_and_eigenvalues}
 
-Here, we set up towards our goal of the diagonalisation of endomorphisms. Let $V$ be a vector space over $K$, and $\dim V = n < +\infty$. Then recall $\alpha : V \to V$ linear is an endomorphism of $V$.
+Here, we set up towards our goal of the diagonalization of endomorphisms. Let $V$ be a vector space over $F$, and $\dim V = n < \infty$. Then recall $\alpha : V \to V$ linear is an endomorphism of $V$.
 
 We want to find a basis $\mathcal{B}$ of $V$ such that in this basis,
 \[
@@ -2276,13 +2100,13 @@ Recall that for another basis $\mathcal{B}'$ of $V$, the change of basis matrix 
 \[
 	[\alpha]_{\mathcal{B}'} = P^{-1}[\alpha]_{\mathcal{B}}P
 .\]
-Equivalently, given a matrix $A \in M_n(K)$, we want to find whether it is conjugate to a matrix with a ``simple'' form.
+Equivalently, given a matrix $A \in \mathcal{M}_n(F)$, we want to find whether it is conjugate to a matrix with a ``simple'' form.
 
 \begin{definition}
 	\begin{enumerate}[(i)]
 		\item[]
-		\item $\alpha \in L(V)$ is \textit{diagonalisable}\index{diagonalisable} if there exists a basis $\mathcal{B}$ of $V$ such that $[\alpha]_{\mathcal{B}}$ is diagonal.
-		\item $\alpha \in L(V)$ is \textit{triangulable}\index{triangulable} if there exists a basis $\mathcal{B}$ of $V$ such that $[\alpha]_{\mathcal{B}}$ is triangular:
+		\item $\alpha \in \mathcal{L}(V)$ is \textit{diagonalizable}\index{diagonalisable} if there exists a basis $\mathcal{B}$ of $V$ such that $[\alpha]_{\mathcal{B}}$ is diagonal.
+		\item $\alpha \in \mathcal{L}(V)$ is \textit{triangulable}\index{triangulable} if there exists a basis $\mathcal{B}$ of $V$ such that $[\alpha]_{\mathcal{B}}$ is triangular:
 			\[
 				[\alpha]_{\mathcal{B}}=
 				\begin{pmatrix}
@@ -2296,20 +2120,20 @@ Equivalently, given a matrix $A \in M_n(K)$, we want to find whether it is conju
 \end{definition}
 
 \begin{remark}
-	A matrix is diagonalisable (resp. triangulable) if and only if it is conjugate to a diagonal (resp. triangular) matrix.
+	A matrix is diagonalizable (resp. triangulable) if and only if it is conjugate to a diagonal (resp. triangular) matrix.
 \end{remark}
 
 \begin{definition}
 	\begin{enumerate}[(i)]
 		\item[]
-		\item $\lambda \in K$ is an \textit{eigenvalue}\index{eigenvalue} of $\alpha \in L(V)$ if there exists $v \in V\setminus\{0\}$ such that $\alpha(v) = \lambda v$.
-		\item $v \in V$ is an \textit{eigenvector}\index{eigenvector} of $\alpha \in L(V)$ if and only if $v \neq 0$ and there exists $\lambda \in K$ such that $\alpha(v) = \lambda v$.
-		\item $V_{\lambda} = \{v \in V \mid \alpha(v) = \lambda v\} \leq V$ is the \textit{eigenspace}\index{eigenspace} associated to $\lambda \in K$.
+		\item $\lambda \in F$ is an \textit{eigenvalue}\index{eigenvalue} of $\alpha \in \mathcal{L}(V)$ if there exists $v \in V\setminus\{0\}$ such that $\alpha(v) = \lambda v$.
+		\item $v \in V$ is an \textit{eigenvector}\index{eigenvector} of $\alpha \in \mathcal{L}(V)$ if and only if $v \neq 0$ and there exists $\lambda \in F$ such that $\alpha(v) = \lambda v$.
+		\item $V_{\lambda} = \{v \in V \mid \alpha(v) = \lambda v\} \leq V$ is the \textit{eigenspace}\index{eigenspace} associated to $\lambda \in F$.
 	\end{enumerate}
 \end{definition}
 
 \begin{lemma}
-	Let $\alpha \in L(V)$ and $\lambda \in K$. Then
+	Let $\alpha \in \mathcal{L}(V)$ and $\lambda \in F$. Then
 	\[
 		\lambda \text{ is an eigenvalue of } \alpha \iff \det(\alpha - \lambda \id) = 0
 	.\]
@@ -2337,15 +2161,15 @@ Equivalently, given a matrix $A \in M_n(K)$, we want to find whether it is conju
 \subsection{Polynomials}%
 \label{sub:polynomials}
 
-We will look at how polynomials interact with $\alpha \in L(V)$. First, if $K$ is a field, and
+We will look at how polynomials interact with $\alpha \in \mathcal{L}(V)$. First, if $F$ is a field, and
 \[
 	f(t) = a_n t^{n} + a_{n-1} t^{n-1} + \cdots + a_1 t + a_0
 ,\]
-with $a_i \in K$, then $n$ is the largest exponent such that $a_n \neq 0$. We say $n = \deg f$. Then, we can easily show
+with $a_i \in F$, then $n$ is the largest exponent such that $a_n \neq 0$. We say $n = \deg f$. Then, we can easily show
 \[
 	\deg(f + g) \leq \max\{\deg f, \deg g\}, \quad \deg(fg) = \deg f + \deg g
 .\]
-Define $K[t]$ as the ring of polynomials with coefficients in $K$. Then $\lambda$ is a root of $f(t) \iff f(\lambda) = 0$.
+Define $F[t]$ as the ring of polynomials with coefficients in $F$. Then $\lambda$ is a root of $f(t) \iff f(\lambda) = 0$.
 
 \begin{lemma}
 	If $\lambda$ is a root of $f$, then $t - \lambda$ divides $f$.
@@ -2379,7 +2203,7 @@ This follows from the above corollary on $f_1 - f_2$.
 This will be proved in complex analysis.
 
 \begin{definition}
-	Let $\alpha \in L(V)$. The \textit{characteristic polynomial}\index{characteristic polynomial} of $\alpha$ is
+	Let $\alpha \in \mathcal{L}(V)$. The \textit{characteristic polynomial}\index{characteristic polynomial} of $\alpha$ is
 	\[
 		\chi_{\alpha}(t) = \det(A - t \id)
 	.\]
@@ -2406,11 +2230,11 @@ This will be proved in complex analysis.
 \end{remark}
 
 \begin{theorem} 
-	$\alpha \in L(V)$ is triangulable if and only if $\chi_\alpha$ can eb written as a product of linear factors over $K$:
+	$\alpha \in \mathcal{L}(V)$ is triangulable if and only if $\chi_\alpha$ can eb written as a product of linear factors over $F$:
 	\[
 		\chi_\alpha(t) = c \prod_{i = 1}^{n} (t - \lambda_i)
 	.\]
-	In particular, over $K = \mathbb{C}$, any matrix is triangulable.
+	In particular, over $F = \mathbb{C}$, any matrix is triangulable.
 \end{theorem}
 
 \begin{proofbox}
@@ -2439,7 +2263,7 @@ This will be proved in complex analysis.
 
 	By assumption let $\chi_{\alpha}(t)$ have a root $\lambda$. Then note $\chi_{\alpha}(\lambda) = 0 \iff \lambda$ is an eigenvalue of $\alpha$. Let $U=  V_{\lambda}$ be the associated eigenspace, and note $\{0\} \subsetneq U$.
 
-		Let $(v_1, \ldots, v_k)$ be a basis of $U$, and complete to a basis $(v_1, \ldots, v_k, v_{k+1}, \ldots, v_n)$ of $V$. Let $\spn(v_{k+1}, \ldots, v_n) = W$, then $V = U \oplus W$. In $\mathcal{B}$, we have
+		Let $(v_1, \ldots, v_k)$ be a basis of $U$, and complete to basis $(v_1, \ldots, v_k, v_{k+1}, \ldots, v_n)$ of $V$. Let $\spn(v_{k+1}, \ldots, v_n) = W$, then $V = U \oplus W$. In $\mathcal{B}$, we have
 		\[
 			[\alpha]_{\mathcal{B}} =
 			\begin{pmatrix}
@@ -2471,7 +2295,7 @@ This will be proved in complex analysis.
 \end{proofbox}
 
 \begin{lemma}
-	If $V$ is $n$-dimensional over $K = \mathbb{R}, \mathbb{C}$, and $\alpha \in L(V)$, then if $\chi_{\alpha}(t) = (-1)^{n}t^{n} + c_{n-1}t^{n-1} + \cdots + c_0$, we have
+	If $V$ is $n$-dimensional over $F = \mathbb{R}, \mathbb{C}$, and $\alpha \in \mathcal{L}(V)$, then if $\chi_{\alpha}(t) = (-1)^{n}t^{n} + c_{n-1}t^{n-1} + \cdots + c_0$, we have
 	\[
 		c_0 = \det A = \det \alpha, \quad c_{n-1} = (-1)^{n-1} \tr A
 	.\]
@@ -2480,7 +2304,7 @@ This will be proved in complex analysis.
 \begin{proofbox}
 	We known $\chi_{\alpha}(t) = \det(a - t \id)$, so $\chi_{\alpha}(0) = \det \alpha = c_0$.
 
-	Say that $K = \mathbb{C}$. We known $\alpha$ is triangulable over $\mathbb{C}$, so
+	Say that $F = \mathbb{C}$. We known $\alpha$ is triangulable over $\mathbb{C}$, so
 	\begin{align*}
 		\chi_{\alpha}(t) &= \det
 		\begin{pmatrix}
@@ -2493,29 +2317,27 @@ This will be proved in complex analysis.
 	\end{align*}
 \end{proofbox}
 
-\newpage
-
-\section{Diagonalisation Matrix and Minimal Polynomial}%
-\label{sec:diagonalisation_matrix_and_minimal_polynomial}
+\subsection{Diagonalization Matrix}%
+\label{sub:diagonalization_matrix}
 
 \begin{definition}
-	Pick $p(t)$, a polynomial over $K$, with $p(t) = a_n t^{n} + \cdots + a_1 t + a_0$ Hence if $A \in M_n(K)$, then $A^{m} \in M_n(K)$, and we define
+	Pick $p(t)$, a polynomial over $F$, with $p(t) = a_n t^{n} + \cdots + a_1 t + a_0$ Hence if $A \in \mathcal{M}_n(F)$, then $A^{m} \in \mathcal{M}_n(F)$, and we define
 	\[
-		p(A) = a_n A^{n} + \cdots + a_1 A + a_n \id \in M_n(K)
+		p(A) = a_n A^{n} + \cdots + a_1 A + a_n \id \in \mathcal{M}_n(F)
 	.\]
-	Similarly, for $\alpha \in L(V)$, we can define
+	Similarly, for $\alpha \in \mathcal{L}(V)$, we can define
 	\[
 		p(\alpha) = a_n \alpha^{n} + \cdots + a_1 \alpha + a_n \id
 	.\]
 \end{definition}
 
 \begin{theorem}
-	Let $V$ be a vector space over $K$, with $\dim V < \infty$, and $\alpha \in L(V)$.
+	Let $V$ be a vector space over $F$, with $\dim V < \infty$, and $\alpha \in \mathcal{L}(V)$.
 
 	Then $\alpha$ is diagonalizable if and only if there exists a polynomial which is a product of distinct linear factors such that $p(\alpha) = 0$.
 \end{theorem}
 
-In other words $\alpha$ is diagonalizable if and only if there exist distinct $(\lambda_1, \ldots, \lambda_k)$, with $\lambda_j \in K$, such that
+In other words $\alpha$ is diagonalizable if and only if there exist distinct $(\lambda_1, \ldots, \lambda_k)$, with $\lambda_j \in F$, such that
 \[
 	p(\alpha) = (\alpha - \lambda_1 \id) \cdots (\alpha - \lambda_k \id) = 0
 .\]
@@ -2529,7 +2351,7 @@ In other words $\alpha$ is diagonalizable if and only if there exist distinct $(
 	\[
 		p(\alpha) = \Biggl[ \prod_{j = 1}^{k} (\alpha - \lambda_j \id) \Biggr] (v) = 0
 	\]
-	for all $v \in \mathcal{B}$. But since $\mathcal{B}$ is a basis, then by linearity, for all $v \in K$, $p(\alpha)(v) = 0$, so $p(\alpha) = 0$.
+	for all $v \in \mathcal{B}$. But since $\mathcal{B}$ is a basis, then by linearity, for all $v \in F$, $p(\alpha)(v) = 0$, so $p(\alpha) = 0$.
 
 	Now suppose $p(\alpha) = 0$ for 
 	\[
@@ -2561,7 +2383,7 @@ In other words $\alpha$ is diagonalizable if and only if there exist distinct $(
 	.\]
 	Define the projector\index{projector}
 	\[
-		\Pi_j = q_j(\alpha) \in L(V)
+		\Pi_j = q_j(\alpha) \in \mathcal{L}(V)
 	.\]
 	Then we have
 	\begin{align*}
@@ -2599,14 +2421,14 @@ In other words $\alpha$ is diagonalizable if and only if there exist distinct $(
 \end{remark}
 
 \begin{exbox}
-	For $A \in M_n(K)$, with $A$ having finite order $m$, then $A$ is diagonalizable, as $A$ is a root of
+	For $A \in \mathcal{M}_n(F)$, with $A$ having finite order $m$, then $A$ is diagonalizable, as $A$ is a root of
 	\[
 		t^{m}- 1 = \prod_{j = 1}^{m}(t - \zeta_m^{j})
 	.\]
 \end{exbox}
 
 \begin{theorem}
-	For $\dim V < +\infty$ and $\alpha, \beta \in L(V)$ diagonalizable, then $\alpha, \beta$ are simultaneously diagonalizable if and only if $\alpha$ and $\beta$ commute.
+	For $\dim V < +\infty$ and $\alpha, \beta \in \mathcal{L}(V)$ diagonalizable, then $\alpha, \beta$ are simultaneously diagonalizable if and only if $\alpha$ and $\beta$ commute.
 \end{theorem}
 
 \begin{proofbox}
@@ -2635,14 +2457,14 @@ In other words $\alpha$ is diagonalizable if and only if there exist distinct $(
 \label{sub:minimal_polynomials}
 
 \begin{proposition}[Euclidean Algorithm for Polynomials]
-	Let $a, b$ be polynomials over $K$, with $b \neq 0$. Then there exist polynomials $q, r$ over $K$ with $\deg r < \deg b$ and $a = qb + r$.
+	Let $a, b$ be polynomials over $F$, with $b \neq 0$. Then there exist polynomials $q, r$ over $F$ with $\deg r < \deg b$ and $a = qb + r$.
 \end{proposition}
 
 \begin{definition}
-	Let $V$ be a finite-dimensional vector space over $K$, and let $\alpha \in L(V)$. The \textit{minimal polynomial} $m_{\alpha}$ of $\alpha$ is the unique non-zero polynomial with smallest degree such that $m_{\alpha}(\alpha) = 0$.
+	Let $V$ be a finite-dimensional vector space over $F$, and let $\alpha \in \mathcal{L}(V)$. The \textit{minimal polynomial} $m_{\alpha}$ of $\alpha$ is the unique non-zero polynomial with smallest degree such that $m_{\alpha}(\alpha) = 0$.
 \end{definition}
 
-The existence and uniqueness of a minimal polynomial can be seen as such. If $\dim V = n$, then we known $\dim L(V) = n^2$, so $(\id, \alpha, \ldots, \alpha^{n^2})$ cannot be free. Hence there is some combination
+The existence and uniqueness of a minimal polynomial can be seen as such. If $\dim V = n$, then we known $\dim \mathcal{L}(V) = n^2$, so $(\id, \alpha, \ldots, \alpha^{n^2})$ cannot be free. Hence there is some combination
 \[
 a_{n^2}\alpha^{n^2} + \cdots + a_1 \alpha + a_0 = 0
 .\]
@@ -2669,13 +2491,11 @@ Hence by minimality of $m_{\alpha}$, $r = 0$, and $m_{\alpha} \mid p$. But this 
 	Let $p(t) = (t - 1)^2$, then $p(A) = p(B) = 0$. So their minimal polynomial is only $t - 1$ or $(t - 1)^2$. From this, we can check $m_{A} = t - 1$and $m_{B} = (t - 1)^2$. In particular, $B$ is not diagonalizable.
 \end{exbox}
 
-\newpage
-
-\section{Cayley-Hamilton Theorem}%
-\label{sec:cayley_hamilton_theorem}
+\subsection{Cayley-Hamilton Theorem}%
+\label{sub:cayley_hamilton_theorem}
 
 \begin{theorem}[Cayley-Hamilton Theorem]\index{Cayley-Hamilton theorem}
-	Let $V$ be a finite dimensional $K$ vector space, and $\alpha \in L(V)$ with characteristic polynomial $\chi_{\alpha}(t) = \det(\alpha - t \id)$. Then
+	Let $V$ be a finite dimensional $F$ vector space, and $\alpha \in \mathcal{L}(V)$ with characteristic polynomial $\chi_{\alpha}(t) = \det(\alpha - t \id)$. Then
 	\[
 		\chi_{\alpha}(\alpha) = 0
 	.\]
@@ -2684,7 +2504,7 @@ Hence by minimality of $m_{\alpha}$, $r = 0$, and $m_{\alpha} \mid p$. But this 
 As a corollary, $m_{\alpha} \mid \chi_{\alpha}$.
 
 \begin{proofbox}
-	We solve over $K = \mathbb{C}$. Take a basis $\mathcal{B} = \{v_1, \ldots, v_n\}$ for which $[\alpha]_{\mathcal{B}}$ is triangular, i.e.
+	We solve over $F = \mathbb{C}$. Take a basis $\mathcal{B} = \{v_1, \ldots, v_n\}$ for which $[\alpha]_{\mathcal{B}}$ is triangular, i.e.
 	\[
 		[\alpha]_{\mathcal{B}} = 
 		\begin{pmatrix}
@@ -2705,7 +2525,7 @@ As a corollary, $m_{\alpha} \mid \chi_{\alpha}$.
 \end{proofbox}
 
 \begin{definition}[Multiplicity]
-	For a finite-dimensional vector space $V$ and $\alpha \in L(V)$, let $\lambda$ be an eigenvalue of $\lambda$. Then
+	For a finite-dimensional vector space $V$ and $\alpha \in \mathcal{L}(V)$, let $\lambda$ be an eigenvalue of $\lambda$. Then
 	\[
 		\chi_{\alpha}(t) = (t - \lambda)^{a_{\lambda}}q(t)
 	,\]
@@ -2717,7 +2537,7 @@ As a corollary, $m_{\alpha} \mid \chi_{\alpha}$.
 \end{remark}
 
 \begin{lemma}
-	For an eigenvalue $\lambda$ of $\alpha \in L(V)$, then $1 \leq g_{\lambda} \leq a_{\lambda}$.
+	For an eigenvalue $\lambda$ of $\alpha \in \mathcal{L}(V)$, then $1 \leq g_{\lambda} \leq a_{\lambda}$.
 \end{lemma}
 
 \begin{proofbox}
@@ -2743,7 +2563,7 @@ As a corollary, $m_{\alpha} \mid \chi_{\alpha}$.
 \end{proofbox}
 
 \begin{lemma}
-	For $\lambda$ an eigenvalue of $\alpha \in L(V)$, let $c_{\lambda}$ be the multiplicity of $\lambda$ as a root of $m_{\alpha}$. Then $1 \leq c_{\lambda} \leq a_{\lambda}$.
+	For $\lambda$ an eigenvalue of $\alpha \in \mathcal{L}(V)$, let $c_{\lambda}$ be the multiplicity of $\lambda$ as a root of $m_{\alpha}$. Then $1 \leq c_{\lambda} \leq a_{\lambda}$.
 \end{lemma}
 
 \begin{proofbox}
@@ -2782,7 +2602,7 @@ As a corollary, $m_{\alpha} \mid \chi_{\alpha}$.
 \end{exbox}
 
 \begin{lemma}
-	Take $K = \mathbb{C}$, and $\dim V = n$. For $\alpha \in L(V)$, the following are equivalent:
+	Take $F = \mathbb{C}$, and $\dim V = n$. For $\alpha \in \mathcal{L}(V)$, the following are equivalent:
 	\begin{enumerate}[\normalfont(i)]
 		\item $\alpha$ is diagonalizable;
 		\item For all $\lambda$ eigenvalues of $\alpha$, $a_{\lambda} = g_{\lambda}$;
@@ -2807,15 +2627,13 @@ As a corollary, $m_{\alpha} \mid \chi_{\alpha}$.
 		But we know that $g_{\lambda_i} \leq a_{\lambda_i}$, so for this to hold, we must have $a_{\lambda_i} = g_{\lambda_i}$.
 \end{proofbox}
 
-\newpage
+\subsection{Jordan Normal Form}%
+\label{sub:jordan_normal_form}
 
-\section{Jordan Normal Form}%
-\label{sec:jordan_normal_form}
-
-For this section, we will take $K = \mathbb{C}$.
+For this section, we will take $F = \mathbb{C}$.
 
 \begin{definition}
-	Let $A \in M_n(\mathbb{C})$. We say that $A$ is in \textit{Jordan Normal Form}\index{Jordan normal form} if it is a block diagonal matrix:
+	Let $A \in \mathcal{M}_n(\mathbb{C})$. We say that $A$ is in \textit{Jordan Normal Form}\index{Jordan normal form} if it is a block diagonal matrix:
 	\[
 	A =
 	\begin{pmatrix}
@@ -2847,7 +2665,7 @@ For this section, we will take $K = \mathbb{C}$.
 \end{definition}
 
 \begin{theorem}
-	Every matrix $A \in M_n(\mathbb{C})$ is similar to a matrix in Jordan Normal Form, and is unique up to ordering the Jordan blocks.
+	Every matrix $A \in \mathcal{M}_n(\mathbb{C})$ is similar to a matrix in Jordan Normal Form, and is unique up to ordering the Jordan blocks.
 \end{theorem}
 
 \begin{exbox}
@@ -2991,7 +2809,7 @@ In Jordan normal form, we can compute:
 \end{exbox}
 
 \begin{theorem}
-	Let $V$ be a finite dimensional $\mathbb{C}$-vector space, and $\alpha \in L(V)$. Then write
+	Let $V$ be a finite dimensional $\mathbb{C}$-vector space, and $\alpha \in \mathcal{L}(V)$. Then write
 	\[
 		m_{\alpha}(t) = (t - \lambda_1)^{c_1} \cdots (t - \lambda_k)^{c_k}
 	.\]
@@ -3057,22 +2875,186 @@ In Jordan normal form, we can compute:
 \section{Bilinear Forms}%
 \label{sec:bilinear_forms}
 
-Recall a bilinear for is a linear mapping $\phi : V \times V \to K$, where $V$ is a finite-dimensional $K$-vector space. If $\mathcal{B}$ is a basis of $V$, then
+\begin{definition}
+	Let $U, V$ be vector spaces over $F$. Then
+	\[
+	\phi : U \times V \to F
+	\]
+	is a \textit{bilinear form}\index{bilinear form} if it is linear in both components.
+\end{definition}
+
+\begin{exbox}
+	\begin{enumerate}[(i)]
+		\item[]
+		\item Take $V \times V^{\ast} \to F$ by $(v, \theta) \mapsto \theta(v)$.
+		\item The scalar product\index{scalar product} on $U = V = \mathbb{R}^{n}$ is $\psi : \mathbb{R}^{n} \times \mathbb{R}^{n} \to \mathbb{R}$ by
+			\[
+				\left(
+					\begin{pmatrix}
+						x_1 \\
+						\vdots \\
+						x_n
+					\end{pmatrix},
+					\begin{pmatrix}
+						y_1 \\
+						\vdots \\
+						y_n
+					\end{pmatrix}
+				\right)
+				\mapsto  \sum_{i = 1}^{n} x_i y_i
+			.\]
+		\item If $U = V = \mathcal{C}([0, 1], \mathbb{R})$, then we can define
+			\[
+				\phi(f, g) = \int_{0}^{1}f(t)g(t) \diff t
+			.\]
+			This can be thought of as an infinite dimensional scalar product.
+	\end{enumerate}
+\end{exbox}
+
+\begin{definition}
+	Let $\mathcal{B} = (e_1, \ldots, e_m)$ be a basis of $U$, and $\mathcal{C} = (f_1, \ldots, f_n)$ be a basis of $V$. If $\phi : U \times V \to F$ is a bilinear form, then the matrix of $\phi$ with respect to $\mathcal{B}$ and $\mathcal{C}$\index{matrix of bilinear form} is
+	\[
+		[\phi]_{\mathcal{B}, \mathcal{C}} = (\phi(e_i, f_j))
+	.\]
+\end{definition}
+
+\begin{lemma}
+	\[
+		\phi(u, v) = [u]_{\mathcal{B}}^{T} [\phi]_{\mathcal{B}, \mathcal{C}} [v]_{\mathcal{C}}
+	.\]
+\end{lemma}
+
+\begin{proofbox}
+	Let
+\[
+u = \sum_{i = 1}^{m} \lambda_i e_i, \quad v = \sum_{j = 1}^{n} \mu_ij f_j
+.\]
+Since $\phi$ is a bilinear form,
+\begin{align*}
+	\phi(u, v) &= \phi \Biggl( \sum_{i = 1}^{m} \lambda_i e_i, \sum_{j = 1}^{n} \mu_j e_j \Biggr) = \sum_{i = 1}^{m}\sum_{j = 1}^{n} \lambda_i \mu_j \phi(e_i, f_j) \\
+		   &= [u]_{\mathcal{B}}^{T}[\phi]_{\mathcal{B}, \mathcal{C}}[v]_{\mathcal{C}}.
+\end{align*}
+\end{proofbox}
+
+\begin{remark}
+	$[\phi]_{\mathcal{B},\mathcal{C}}$ is the only matrix satisfying this property.
+\end{remark}
+
+\begin{definition}
+	$\phi: U \times V \to F$ a bilinear form determines two linear maps:
+	\begin{align*}
+		\phi_L : U \to V^{\ast}& \\
+		\phi_L(u) : V &\to F \\
+			      v &\mapsto \phi(u, v)\\
+			      \phi_R : V \to U^{\ast}& \\
+			      \phi_R(v) : U &\to F \\
+			      u &\mapsto \phi(u, v)
+	\end{align*}
+\end{definition}
+
+\begin{lemma}
+	Let $\mathcal{B} = (e_1, \ldots, e_m)$ a basis of $U$, and $\mathcal{B}^{\ast} = (\varepsilon_1, \ldots, \varepsilon_m)$ a dual basis of $U^{\ast}$, Similarly, let $\mathcal{C} = (f_1, \ldots, f_n)$ be a basis of $V$, and $\mathcal{C}^{\ast} (\eta_1, \ldots, \eta_n)$ a dual basis of $V^{\ast}$.
+
+	Let $A = [\phi]_{\mathcal{B}, \mathcal{C}}$. Then,
+	\begin{align*}
+		[\phi_R]_{\mathcal{C}, \mathcal{B}^{\ast}} &= A, \\
+		[\phi_L]_{\mathcal{B}, \mathcal{C}^{\ast}} &= A^{T}.
+	\end{align*}
+\end{lemma}
+
+\begin{proofbox}
+	We have $\phi_L(e_i, f_j) = \phi(e_i, f_j) = A_{ij}$, and so
+	\[
+		\phi_L(e_i) = \sum A_{ij} \eta_j
+	.\]
+	Similarly, $\phi_R(f_j)(e_i) = \phi(e_i, f_j) = A_{ij}$, so
+	\[
+		\phi_R(f_{j}) = \sum A_{ij} \varepsilon_i
+	.\]
+	This naturally gives our result.
+\end{proofbox}
+
+\begin{definition}
+	Let $\Ker \phi_L$ be the \textit{left kernel}\index{left kernel} of $\phi$, and $\Ker \phi_R$ be the \textit{right kernel}\index{right kernel} of $\phi$.
+
+	We say that $\phi$ is non-degenerate\index{non-degenerate bilinear form} if $\Ker \phi_L = \{0\}$ and $\Ker \phi_R = \{0\}$. Otherwise, we say that $\phi$ is degenerate.
+\end{definition}
+
+\begin{lemma}
+	Let $U, V$ be finite dimensional, $\mathcal{B}, \mathcal{C}$ bases of $U$ and $V$, and $\phi: U \times V \to F$ a bilinear form. Let $A = [\phi]_{\mathcal{B}, \mathcal{C}}$.
+
+	Then $\phi$ is non-degenerate if and only if $A$ is invertible.
+\end{lemma}
+
+\begin{corollary}
+	If $\phi$ is non-degenerate, then $\dim U = \dim V$.
+\end{corollary}
+
+\begin{proofbox}
+	$\phi$ is non-degenerate if and only if $\Ker \phi_L = \{0\}$ and $\Ker \phi_R = \{0\}$. But this implies $\nullity (A^{T}) = 0$ and $\nullity (A) = 0$, hence by rank-nullity theorem, we must have $\rank (A^{T}) = \dim U$, and $\rank (A) = \dim V$. But this gives $A$ invertible and $\dim U = \dim V$.
+\end{proofbox}
+
+\begin{remark}
+	Taking $\phi : \mathbb{R}^{n} \times \mathbb{R}^{n} \to \mathbb{R}$ by the scalar product, then $\phi$ is non-degenerate, as in the standard basis $\mathcal{B}$,
+	\[
+		[\phi]_{\mathcal{B}, \mathcal{B}} = I_n
+	.\]
+\end{remark}
+
+\begin{corollary}
+	When $U$ and $V$ are finite dimensional, then choosing a non-degenerate bilinear form $\phi: U \times V \to F$ is equivalent to choosing an isomorphism $\phi_L : U \to V^{\ast}$.
+\end{corollary}
+
+\begin{definition}
+	If $T \subset U$, we define
+	\[
+		T^{\perp} = \{v \in V \mid \phi(t, v) = 0 \, \forall t \in T\}
+	.\]
+	Similarly, if $S \subset V$, then
+	\[
+		^{\perp}S = \{u \in U \mid \phi(u, s) = 0 \, \forall s \in S\}
+	.\]
+\end{definition}
+
+\begin{proposition}
+	Let $\mathcal{B}, \mathcal{B}'$ be two bases of $U$, and $P = [\id]_{\mathcal{B}', \mathcal{B}}$, and $\mathcal{C}, \mathcal{C}'$ two bases of $V$, and $Q = [\id]_{\mathcal{C}', \mathcal{C}}$, then if $\phi: U \times V \to F$ is a bilinear form, then
+	\[
+		[\phi]_{\mathcal{B}', \mathcal{C}'} = P^{T} [\phi]_{\mathcal{B}, \mathcal{C}} Q
+	.\]
+\end{proposition}
+
+\begin{proofbox}
+	We have
+\[
+	\phi(u, v) = [u]_{\mathcal{B}}^{T} [\phi]_{\mathcal{B}, \mathcal{C}}[v]_{\mathcal{C}} = (P[u]_{\mathcal{B}'})^{T}[\phi]_{\mathcal{B},\mathcal{C}}(Q[v]_{\mathcal{C}'}) = [u]_{\mathcal{B}'}^{T} (P^{T} [\phi]_{\mathcal{B}, \mathcal{C}} Q)[v]_{\mathcal{C}'}
+,\]
+which implies $P^{T}[\phi]_{\mathcal{B}, \mathcal{C}}Q = [\phi]_{\mathcal{B}', \mathcal{C}'}$.
+\end{proofbox}
+
+\begin{definition}
+	The rank of $\phi$ ($\rank \phi$) is the rank of any matrix representing $\phi$.\index{rank of bilinear form}
+\end{definition}
+
+This is true as $\rank (P^{T}AQ) = \rank A$, if $P$ and $Q$ are invertible.
+
+Note we could have equivalently defined $\rank \phi = \rank \phi_L = \rank \phi_R$.
+
+Recall a bilinear form is a linear mapping $\phi : V \times V \to F$, where $V$ is a finite-dimensional $F$-vector space. If $\mathcal{B}$ is a basis of $V$, then
 \[
 	[\phi]_{\mathcal{B}} = [\phi]_{\mathcal{B}\mathcal{B}} = (\phi(e_i, e_j))_{i,j}
 .\]
 
 \begin{lemma}
-	If $\phi : V \times V \to K$ is bilinear, and $\mathcal{B}, \mathcal{B}'$ are two bases of $V$, then letting $P = [\id]_{\mathcal{B}',\mathcal{B}}$, we have
+	If $\phi : V \times V \to F$ is bilinear, and $\mathcal{B}, \mathcal{B}'$ are two bases of $V$, then letting $P = [\id]_{\mathcal{B}',\mathcal{B}}$, we have
 	\[
 		[\phi]_{\mathcal{B}} = P^{T}[\phi]_{\mathcal{B}}P
 	.\] 
 \end{lemma}
 
-Indeed, this is a special case of lemma 10.1 (insert reference).
+Indeed, this is a special case of lemma 6.1.
 
 \begin{definition}
-	For $A, B \in M_n(K)$, we say $A$ and $B$ are \textit{congruent}\index{congruent matrices} if and only if there exists an invertible matrix $P$ such that $A = P^{T}BP$.
+	For $A, B \in \mathcal{M}_n(F)$, we say $A$ and $B$ are \textit{congruent}\index{congruent matrices} if and only if there exists an invertible matrix $P$ such that $A = P^{T}BP$.
 \end{definition}
 \begin{remark}
 	This defines an equivalence relation.
@@ -3082,7 +3064,7 @@ Indeed, this is a special case of lemma 10.1 (insert reference).
 	A bilinear form $\phi$ on $V$ is \textit{symmetric}\index{symmetric form} if $\phi(u, v) = \phi(v, u)$, for all $u, v \in V$.
 \end{definition}
 \begin{remark}
-	If $A \in M_n(K)$, we say that $A$ is symmetric if and only if $A = A^{T}$, so $a_{ij} = a_{ji}$.
+	If $A \in \mathcal{M}_n(F)$, we say that $A$ is symmetric if and only if $A = A^{T}$, so $a_{ij} = a_{ji}$.
 
 	Then $\phi$ is symmetric if and only if $[\phi]_{\mathcal{B}}$ is symmetric in any basis $\mathcal{B}$ of $V$.
 
@@ -3090,7 +3072,7 @@ Indeed, this is a special case of lemma 10.1 (insert reference).
 \end{remark}
 
 \begin{definition}
-	A map $Q : V \to K$ is a \textit{quadratic form}\index{quadratic form} if there exists a bilinear form $\phi : V \times V \to K$ such that for all $u \in V$,
+	A map $Q : V \to F$ is a \textit{quadratic form}\index{quadratic form} if there exists a bilinear form $\phi : V \times V \to F$ such that for all $u \in V$,
 	\[
 		Q(u) = \phi(u, u)
 	.\]
@@ -3113,7 +3095,7 @@ Indeed, this is a special case of lemma 10.1 (insert reference).
 \end{remark}
 
 \begin{proposition}
-	If $Q : V \times V \to K$ is a quadratic form, then there exists a unique symmetric bilinear form $\phi : V \times V \to K$ such that for all $u \in V$, $Q(u) = \phi(u, u)$.
+	If $Q : V \times V \to F$ is a quadratic form, then there exists a unique symmetric bilinear form $\phi : V \times V \to F$ such that for all $u \in V$, $Q(u) = \phi(u, u)$.
 \end{proposition}
 
 \begin{proofbox}
@@ -3134,18 +3116,18 @@ Indeed, this is a special case of lemma 10.1 (insert reference).
 	This is known as the \textit{polarization identity}\index{polarization identity}.
 \end{proofbox}
 
-\begin{theorem}[Spectral theorem]\index{spectral theorem}
-	Let $\phi : V \times V \to K$ be a symmetric bilinear form. Then there exists a basis $\mathcal{B}$ of $V$ such that $[\phi]_{\mathcal{B}}$ is diagonal.
+\begin{theorem}
+	Let $\phi : V \times V \to F$ be a symmetric bilinear form. Then there exists a basis $\mathcal{B}$ of $V$ such that $[\phi]_{\mathcal{B}}$ is diagonal.
 \end{theorem}
 
 \begin{proofbox}
 	We will only look at the case when $\dim V$ is finite. Here, we will proceed by induction on the dimension $n$. Note $n = 1$ is trivial.
 
-	Suppose that the theorem holds for all dimensions less than $n$. Let $\phi : V \times V \to K$ be a symmetric bilinear form. Then if $\phi(u, u) = 0$ for all $u \in V$, then $\phi$ is identically zero by the polarization identity.
+	Suppose that the theorem holds for all dimensions less than $n$. Let $\phi : V \times V \to F$ be a symmetric bilinear form. Then if $\phi(u, u) = 0$ for all $u \in V$, then $\phi$ is identically zero by the polarization identity.
 
 	Hence we may pick $u \in V \setminus \{0\}$ such that $\phi(u, u) \neq 0$. Let $e_1 = u$. We define
 	\[
-		U = (\langle e_1 \rangle)^{\perp} = \{v \in V \mid \phi(e_1, v) = 0\} = \Ker \{ \phi(e_1: \cdot) : V \to K\}
+		U = (\langle e_1 \rangle)^{\perp} = \{v \in V \mid \phi(e_1, v) = 0\} = \Ker \{ \phi(e_1: \cdot) : V \to F\}
 	.\]
 	By the rank-nullity theorem,
 	\[
@@ -3171,7 +3153,7 @@ Indeed, this is a special case of lemma 10.1 (insert reference).
 	,\]
 	since $e_2, \ldots, e_n \in U$, so $\phi(e_1, e_2) = \cdots = \phi(e_1, e_n) = 0$. Now $A' = (\phi(e_i, e_j))_{2 \leq i, j \leq n}$, so $(A')^{T} = A'$.
 
-	Consider $\phi|_{U} : U \times U \to K$, which is bilinear and symmetric and matrix $A'$ in $\mathcal{B}' = (e_2, \ldots, e_n)$. By the induction hypothesis, we can find $(e_2', \ldots, e_n') = \mathcal{B}''$, a basis of $U$ in which $[\phi|_{U}]_{\mathcal{B}''}$ is diagonal.
+	Consider $\phi|_{U} : U \times U \to F$, which is bilinear and symmetric and matrix $A'$ in $\mathcal{B}' = (e_2, \ldots, e_n)$. By the induction hypothesis, we can find $(e_2', \ldots, e_n') = \mathcal{B}''$, a basis of $U$ in which $[\phi|_{U}]_{\mathcal{B}''}$ is diagonal.
 
 	Hence, we get $[\phi]_{(e_1, e_2', \ldots, e_n')}$ is diagonal.
 \end{proofbox}
@@ -3224,6 +3206,1094 @@ Indeed, this is a special case of lemma 10.1 (insert reference).
 	\end{itemize}
 \end{exbox}
 
+\subsection{Sylvester's Law}
+\label{sub:sylvesters_law}
+
+Recall the previous theorem:
+
+\begin{theorem}
+	If $\dim V < \infty$, and $\phi : V \times V \to F$ is a symmetric bilinear form, then there exists a basis $\mathcal{B}$ of $V$ in which $[\phi]_{\mathcal{B}}$ is diagonal.
+\end{theorem}
+
+We get the following corollary:
+
+\begin{corollary}
+	By taking $F = \mathbb{C}$, we get that if $\phi$ is a symmetric bilinear form on $V$, then there exists a basis $\mathcal{B}$ of $V$ such that
+	\[
+		[\phi]_{\mathcal{B}} =
+		\begin{pmatrix}
+			I_r & 0 \\
+			0 & 0
+		\end{pmatrix}
+	,\]
+	where $r = \rank(\phi)$.
+\end{corollary}
+
+\begin{proofbox}
+	Pick a basis $\mathcal{E} = (e_1, \ldots, e_n)$ such that
+	\[
+		[\phi]_{\mathcal{E}} =
+		\begin{pmatrix}
+			a_1 & & 0 \\
+			    & \ddots & \\
+			0 & & a_n
+		\end{pmatrix}
+	.\]
+	Then we can reorder the $a_i$ such that $a_i \neq 0$ for $1 \leq i \leq r$, and $a_i = 0$ for $i > r$.
+
+	To finish, for $i \leq r$, let $\sqrt{a_i}$ be a choice of complex square root of $a_i$. Then, we can define
+	\[
+	v_i =
+	\begin{cases}
+		\frac{e_i}{\sqrt a_i} & 1 \leq i \leq r,\\
+		e_i & i > r.
+	\end{cases}
+	\]
+	Hence, letting $\mathcal{B} = (v_1, \ldots, v_r, e_{r+1}, \ldots, e_n)$, we get
+	\[
+		[\phi]_{\mathcal{B}} =
+		\begin{pmatrix}
+			I_r & 0 \\
+			0 & 0
+		\end{pmatrix}
+	.\]
+\end{proofbox}
+
+\begin{corollary}
+	Every symmetric matrix of $\mathcal{M}_n(\mathbb{C})$ is congruent to a unique matrix of the form
+	\[
+	\begin{pmatrix}
+		I_r & 0 \\
+		0 & 0
+	\end{pmatrix}
+	.\]
+\end{corollary}
+
+For $F = \mathbb{R}$, we would like to say the same thing, however over $\mathbb{R}$ we cannot take complex square roots. However, we get the following, weaker corollary.
+
+\begin{corollary}
+	Let $F = \mathbb{R}$. Then if $\dim V < \infty$, and $\phi$ is a symmetric bilinear form on $V$, then there exists a basis $\mathcal{B}$ of $V$ such that
+	\[
+		[\phi]_{\mathcal{B}} =
+		\begin{pmatrix}
+			I_p & & 0 \\
+			    & -I_q & \\
+			0 & & 0
+		\end{pmatrix}
+	,\]
+	where $p, q \geq 0$ and $p + q = \rank(\phi)$.
+\end{corollary}
+
+\begin{proofbox}
+	Let $\mathcal{E} = (e_1, \ldots, e_n)$ be a basis of $V$ such that
+	\[
+		[\phi]_{\mathcal{E}} =
+		\begin{pmatrix}
+			a_1 & & 0 \\
+			    & \ddots & \\
+			0 & & a_n
+		\end{pmatrix}
+	,\]
+	for $a_i \in \mathbb{R}$. Then we can reorder $a_i$ such that $a_i > 0$ for $1 \leq i \leq p$, $a_i < 0$ for $p+1 \leq i \leq p+q$, and $a_i = 0$ for $i \geq p+q$.
+
+	We can define
+	\[
+	v_i =
+	\begin{cases}
+		\frac{e_i}{\sqrt a_i} & 1 \leq i \leq p, \\
+		\frac{e_i}{\sqrt{|a_i|}} & p+1 \leq i \leq p+q, \\
+		e_i & i > p+q.
+	\end{cases}
+	\]
+	Then over $\mathcal{B} = (v_1, \ldots, v_n)$, $[\phi]_{\mathcal{B}}$ has the required form.
+\end{proofbox}
+
+\begin{definition}[Signature]
+	For a symmetric bilinear form $\phi$ over a finite-dimensional vector space $V$, we define the \textit{signature}\index{signature} as
+	\[
+	s(\phi) = p - q
+	.\]
+	Similarly, we can define the signature of a quadratic form.
+\end{definition}
+
+For this definition to make sense, $p - q$ must not depend on the basis.
+
+\begin{theorem}[Sylvester's Law of Inertia]\index{Sylvester's law}
+	Let $F = \mathbb{R}$, and $\dim V < \infty$. If $\phi$ is a symmetric bilinear form on $V$, then if $\phi$ is represented by
+	\begin{align*}
+		[\phi]_{\mathcal{B}} &= 
+		\begin{pmatrix}
+			I_p & & 0 \\
+			    & -I_q & \\
+			0 & & 0
+		\end{pmatrix}
+		, \\
+		[\phi]_{\mathcal{B}'} &=
+		\begin{pmatrix}
+			I_{p'} & & 0 \\
+			       & -I_{q'} & \\
+			0 & & 0
+		\end{pmatrix},
+	\end{align*}
+	then $p = p'$ and $q = q'$.
+\end{theorem}
+
+\begin{definition}
+	Let $\phi$ be a symmetric bilinear form on a real valued vector space $V$. We say that
+	\begin{enumerate}[(i)]
+		\item $\phi$ is \textit{positive definite}\index{positive definite} if for all $u \in V \setminus \{0\}$ $\phi(u, u) > 0$,
+		\item $\phi$ is \textit{positive semi-definite}\index{positive semi-definite} if for all $u \in V$, $\phi(u, u) \geq 0$,
+		\item $\phi$ is \textit{negative definite}\index{negative definite} if for all $u \ni V \setminus \{0\}$, $\phi(u, u) < 0$,
+		\item $\phi$ is \textit{negative semi-definite}\index{negative semi-definite} if for all $u \in V$, $\phi(u, u) \leq 0$.
+	\end{enumerate}
+\end{definition}
+
+\begin{exbox}
+	Consider the matrix
+	\[
+	\begin{pmatrix}
+		I_p & 0 \\
+		0 & 0
+	\end{pmatrix}
+	,\]
+	over an $n$-dimensional vector space. Then this is positive definite for $p = n$, and positive semi-definite for all $p \leq n$.
+\end{exbox}
+
+Using this definition, we can prove Sylvester's law.
+
+\begin{proofbox}
+	In order to prove that $p$ is independent of the choice of the basis, we show that $p$ is the largest dimension of a subspace on which $\phi$ is positive definite. Then this implies the theorem.
+
+	Indeed, say $\mathcal{B} = (v_1, \ldots, v_n)$, in which
+	\[
+		[\phi]_{\mathcal{B}} =
+		\begin{pmatrix}
+			I_p & & 0\\
+			    & I_q & \\
+			0 & & 0
+		\end{pmatrix}.
+	\]
+	If we let $X = \langle v_1, \ldots, v_p \rangle$, then $\phi$ is positive definite on $X$. Indeed, if $u = \sum_{i = 1}^{p} \lambda_i v_i$, then
+	\begin{align*}
+		Q(u) &= \phi(u, u) = \phi \Biggl( \sum_{i = 1}^{p} \lambda_i v_i, \sum_{i = 1}^{p} \lambda_i v_i \Biggr) \\
+		     &= \sum_{i,j = 1}^{p} \lambda_i \lambda_j \phi(v_i, v_j) \\
+		     &= \sum_{i = 1}^{p} \lambda_i^2 > 0
+	\end{align*}
+	for $u \neq 0$.
+
+	Now suppose that $\phi$ is positive definite when restricted to another subspace $X'$. Let $X = \langle v_1, \ldots, v_p \rangle$, and $Y = \langle v_{p+1}, \ldots, v_n \rangle$. Then $\phi$ is negative semi-definite on $Y$. But this implies $X' \cap Y = \{0\}$, so $Y + X' = Y \oplus X'$, and so $\dim Y + \dim X' \leq n$, giving $\dim X' \leq p$.
+\end{proofbox}
+
+\begin{remark}
+	We did not need to show this for our proof, but we can show $q$ is the largest dimension of a subspace in which $\phi$ is negative definite.
+\end{remark}
+
+We have seen earlier that the (right) kernel of a bilinear form $\phi$ is
+\[
+	U = \Ker \phi_R = \{v \in V \mid \forall u \in V, \phi(u, v) = 0\}
+.\]
+
+Then we know $\dim U + \rank(\phi) = n$. For $F = \mathbb{R}$, then from Sylvester's law, there is a subspace $T$ of dimension $n - (p+q) + \min \{p, q\}$ such that $\phi|_T = 0$, by pairing up respective elements of $P = \langle v_1, \ldots, v_p \rangle$ and $Q = \langle v_{p+1}, \ldots, v_{p+q} \rangle$.
+
+Moreover, we can show that this is the largest dimension of a subspace $T'$ on which $\phi|_{T' \times T'} = 0$.
+
+\subsection{Sesquilinear Forms}
+\label{sub:sesquilinear_forms}
+
+\begin{definition}
+	For $F = \mathbb{C}$, the \textit{standard inner product}\index{standard inner product} on $\mathbb{C}^{n}$ for
+\[
+x =
+\begin{pmatrix}
+	x_1 \\
+	\vdots \\
+	x_n
+\end{pmatrix}
+, y =
+\begin{pmatrix}
+	y_1 \\
+	\vdots \\
+	y_n
+\end{pmatrix}
+,\]
+is
+\[
+\langle x, y \rangle = \sum_{i = 1}^{n} x_i \overline{y_i}
+.\]
+In particular,
+\[
+\|x\|^2 = \langle x, x \rangle = \sum_{i = 1}^{n} |x_i|^2
+.\]
+\end{definition}
+
+Note that $(x, y) \mapsto \langle x, y \rangle$ is \textbf{not a bilinear form}: for $\lambda \in \mathbb{C}$,
+\begin{align*}
+	\langle \lambda x, y \rangle &= \sum_{i = 1}^{n} \lambda x_i \overline{y_i} = \lambda \langle x, y \rangle, \\
+	\langle x, \lambda y \rangle &= \sum_{i = 1}^{n} x_i \overline{\lambda y_i} = \overline{\lambda} \langle x, y \rangle.
+\end{align*}
+Instead, it is \textit{antilinear}\index{antilinear} with respect to the second coordinate.
+
+Similar to the standard inner product over $\mathbb{R}$, we can extend this concept to arbitrary antilinear forms.
+
+\begin{definition}
+	Let $V, W$ be $\mathbb{C}$-vector spaces. A \textit{sesquilinear form}\index{sesquilinear form} $\phi$ is a function $\phi : V \times W \to \mathbb{C}$ such that
+	\begin{enumerate}[(i)]
+		\item $\phi(\lambda_1v_1 + \lambda_2v_2, w) = \lambda_1 \phi(v_1, w) + \lambda_2 \phi(v_2, w)$ (i.e. it is linear in the first variable),
+		\item $\phi(v, \lambda_1w_1 + \lambda_2w_2) = \overline{\lambda_1}\phi(v, w_1) + \overline{\lambda_2}\phi(v, w_2)$ (i.e. it is antilinear in the second variable).
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}
+	For $\mathcal{B} = (v_1, \ldots, v_m)$ and $\mathcal{C} = (w_1, \ldots, w_n)$, bases of $V$ and $W$, then
+	\[
+		[\phi]_{\mathcal{B},\mathcal{C}} = (\phi(v_i, w_j))
+	\]
+	is an $m \times n$ matrix.
+\end{definition}
+
+\begin{lemma}
+	$\phi(v, w) = [v]_{\mathcal{B}}^{T}[\phi]_{\mathcal{B},\mathcal{C}}\overline{[w]_{\mathcal{C}}}$.
+\end{lemma}
+
+\begin{proofbox}
+	Exercise.
+\end{proofbox}
+
+\begin{lemma}
+	Let $\mathcal{B}, \mathcal{B}'$ be bases for $V$, and $\mathcal{C},\mathcal{C}'$ be basis for $W$ Let $P = [\id]_{\mathcal{B}',\mathcal{B}}$ and $Q = [\id]_{\mathcal{C}',\mathcal{C}}$. Then,
+	\[
+		[\phi]_{\mathcal{B}',\mathcal{C}} = P^{T}[\phi]_{\mathcal{B},\mathcal{C}} \overline{Q}
+	.\]
+\end{lemma}
+
+\begin{proofbox}
+	Exercise.
+\end{proofbox}
+
+\subsection{Hermitian Forms}
+\label{sub:hermitian_forms}
+
+\begin{definition}
+	Let $V$ be a finite dimensional $\mathbb{C}$-vector space. A sesquilinear form $\phi : V \times V \to \mathbb{C}$ is called \textit{Hermitian}\index{Hermitian} if
+	\[
+		\forall (u, v) \in U \times V, \qquad \phi(u, v) = \overline{\phi(v, u)}
+	.\]
+\end{definition}
+
+\begin{remark}
+	If $\phi$ is Hermitian, then $\phi(u, u) = \overline{\phi(u, u)}$, so $\phi(u, u) \in \mathbb{R}$. In particular, this allow us to define positive or negative definite Hermitian forms.
+\end{remark}
+
+\begin{lemma}
+	A sesquilinear form $\phi : V \times V \to \mathbb{C}$ is Hermitian if and only if for all bases $\mathcal{B}$ of $V$,
+	\[
+		[\phi]_{\mathcal{B}} = \overline{[\phi]_{\mathcal{B}}^{T}}
+	.\]
+\end{lemma}
+
+\begin{proofbox}
+	If $A = [\phi]_{\mathcal{B}} = (a_{ij})$ where $\mathcal{B} = (e_1, \ldots, e_n)$, then $a_{ij} = \phi(e_i, e_j)$. Then,
+	\[
+	a_{ji} = \phi(e_j, e_i) = \overline{\phi(e_i, e_j)} = \overline{a_{ij}}
+	.\]
+	Thus, $[\phi]_{\mathcal{B}}^{T} = \overline{[\phi]_{\mathcal{B}}}$.
+
+	Conversely, if $[\phi]_{\mathcal{B}} = A$, where $A = \overline{A^{T}}$, then if
+	\[
+	u = \sum_{i = 1}^{n} \lambda_i e_i, \qquad v = \sum_{i = 1}^{n} \mu_i e_i
+	,\]
+	then we have
+	\begin{align*}
+		\phi(u, v) &= \phi \Biggl( \sum_{i = 1}^{n} \lambda_i e_i , \sum_{i = 1}^{n} \mu_i e_i \Biggr) \\
+			   &= \sum_{i,j = 1}^{n} \lambda_i \overline{\mu_j} \phi(e_i, e_j) = \sum_{i, j = 1}^{n} \lambda_i \overline{\mu_j} a_{ij},
+	\end{align*}
+	and we can similarly compute
+	\begin{align*}
+		\overline{\phi(v, u)} &= \overline{\phi \Biggl( \sum_{i = 1}^{n} \mu_i e_i, \sum_{i = 1}^{n} \lambda_i e_i \Biggr)} \\
+		&= \overline{\sum_{i,j = 1}^{n} \mu_i \overline{\lambda_j}\phi(e_i, e_j)} = \sum_{i,j = 1}^{n} \overline{\mu_i}\lambda_i \overline{a_{ij}} \\
+		&= \sum_{i, j = 1}^{n} \lambda_i \overline{\mu_j} \overline{a_{ji}} = \sum_{i, j = 1}^{n}\lambda_i \overline{\mu_j} a_{ij}.
+	\end{align*}
+	Hence $\phi(u, v) = \overline{\phi(v, u)}$.
+\end{proofbox}
+
+Similar to real symmetric matrices, we have the polarization identity for Hermitian matrices.
+
+\begin{proposition}
+	A Hermitian for $\phi$ on a complex vector space $V$ is entirely determined by its $Q : V \to \mathbb{R}$ by $u \mapsto \phi(u, u)$, by the formula
+	\[
+		\phi(u, v) = \frac{1}{4} [Q(u+v) - Q(u-v) + iQ(u+iv) - iQ(u-iv)]
+	.\]
+\end{proposition}
+
+\begin{proofbox}
+	Exercise. (Just check).
+\end{proofbox}
+
+\begin{theorem}[Sylvester's Law for Hermitian Forms]\index{Sylvester's law}
+	Let $V$ be a finite-dimensional $\mathbb{C}$-vector space, and $\phi : V \times V \to \mathbb{C}$ a Hermitian form on $V$. Then, there exists a basis $\mathcal{B} = (v_1, \ldots, v_n)$ of $V$ such that
+	\[
+		[\phi]_{\mathcal{B}} =
+		\begin{pmatrix}
+			I_p & & 0 \\
+			    & -I_q & \\
+			0 & 0
+		\end{pmatrix}
+	,\]
+	where $p$ and $q$ depend only on $\phi$.
+\end{theorem}
+
+\begin{proofbox}
+	(Sketch: this is nearly identical to the real case).
+
+	We prove existence first. If $\phi \equiv 0$, we are done. Otherwise, assume $\phi \neq 0$, then the polarization identity ensures that there exists $e_1$ such that $\phi(e_1, e_1) \neq 0$. Then rescaling $v_1 = \frac{e_1}{\sqrt{\phi(e_1, e_1)|}}$, we have $\phi(v_1, v_1) = \pm 1$.
+
+	Then considering the orthogonal complement $W = \{ w \in V \mid \phi(v_1, w) = 0\}$, we get $V = \langle v_1 \rangle \oplus W$. By induction on the dimension, as $\phi|_{W}$ is Hermitian on $W \times W$, we get the required form.
+
+	To show uniqueness, we show $p$ is the maximal dimension of a subspace on which $\phi$ is positive definite. This can be done exactly in the same way as for real symmetric matrices.
+\end{proofbox}
+
+\subsection{Skew Symmetric Real Valued Forms}
+\label{sub:skew_symmetric_real_valued_forms}
+
+\begin{definition}
+	A bilinear form $\phi : V \times V \to \mathbb{R}$ is \textit{skew symmetric}\index{skew symmetric} or \textit{antisymmetric}\index{antisymmetric} if
+	\[
+	\forall (u, v) \in U \times V, \qquad \phi(u, v) = - \phi(v, u)
+	.\]
+\end{definition}
+
+\begin{remark}
+	\begin{enumerate}[(i)]
+		\item[]
+		\item Letting $v = u$, $\phi(u, u) = - \phi(u, u)$, so $\phi(u, u) = 0$.
+		\item For all bases $\mathcal{B}$ of $V$, $[\phi]_{\mathcal{B}} = - [\phi]_{\mathcal{B}}^{T}$.
+		\item If $A \in \mathcal{M}_n(\mathbb{R})$, then
+			\[
+			A = \frac{1}{2}(A + A^{T}) + \frac{1}{2}(A - A^{T})
+			.\]
+	\end{enumerate}
+\end{remark}
+
+\begin{theorem}[Sylvester's law for Skew Symmetric Forms]
+	Let $V$ be a finite dimensional $\mathbb{R}$-vector space, and $\phi : V \times V \to \mathbb{R}$ be a skew symmetric bilinear form. Then there exists a basis $\mathcal{B}$ of $V$, say
+	\[
+	\mathcal{B} = (v_1, w_1, v_2, w_2, \ldots, v_m, w_m, v_{2m+1}, v_{2m+2}, \ldots, v_n)
+	,\]
+	such that
+	\[
+		[\phi]_{\mathcal{B}} =
+		\begin{pmatrix}
+			0 & 1 & 0 & 0 & \cdots & 0 & 0 & 0 & \cdots & 0 \\
+			-1 & 0 & 0 & 0 & \cdots & 0 & 0 & 0 & \cdots & 0 \\
+			0 & 0 & 0 & 1 & \cdots & 0 & 0 & 0 & \cdots & 0 \\
+			0 & 0 & -1 & 0 & \cdots & 0 & 0 & 0 & \cdots & 0 \\
+			\vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+			0 & 0 & 0 & 0 & \cdots & 0 & 1 & 0 & \cdots & 0 \\
+			0 & 0 & 0 & 0 & \cdots & -1 & 0 & 0 & \cdots & 0 \\
+			0 & 0 & 0 & 0 & \cdots & 0 & 0 & 0 & \cdots & 0 \\
+			\vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+			0 & 0 & 0 & 0 & \cdots & 0 & 0 & 0 & \cdots & 0
+		\end{pmatrix}
+	.\]
+\end{theorem}
+
+\begin{corollary}
+	Skew symmetric matrices have an even rank.
+\end{corollary}
+
+\begin{proofbox}
+	(Sketch).
+
+	We proceed by induction on the basis of $V$. If $\phi = 0$, we are done, so assume $\phi \neq 0$. Then, there exist $v_1, w_1$ such that $\phi(v_1, w_1) \neq 0$. After scaling, we can let $\phi(v_1, w_1) = 1$, and $\phi(w_1, v_1) = -1$.
+
+	Then $v_1, w_1$ are linearly independent, as $\phi(v_1, \lambda v_1) = \lambda \phi(v_1, v_1) = 0$. Define $U = \langle v_1, w_1 \rangle$, and define the orthogonal complement $W = \{ v \in V \mid \phi(v_1, v) = \phi(w_1, v) = 0\}$. Then $V = U \oplus W$, so applying the induction hypothesis gives us the required conclusion.
+\end{proofbox}
+
+\subsection{Inner Product Spaces}
+\label{sub:inner_product_spaces}
+
+We have seen that for positive definite bilinear forms, we can define a scalar product, and a norm.
+
+These have a generalization to infinite dimensional space, named \textit{Hilbert Spaces} after their progenitor.
+
+\begin{definition}
+	Let $V$ be a vector space over $\mathbb{R}$ (resp. $\mathbb{C}$). An \textit{inner product}\index{inner product} is a positive definite, symmetric (resp. Hermitian) form $\phi$ on $V$. Then $V$ is called a real (resp. complex) \textit{inner product space}\index{inner product space}.
+\end{definition}
+
+Over inner product spaces, we simplify $\phi(u, v)$ as $\langle u, v \rangle$.
+
+\begin{exbox}
+	\begin{enumerate}[(i)]
+		\item Take $V = \mathbb{R}^{n}$. Then for
+			\[
+			x =
+			\begin{pmatrix}
+				x_1 \\
+				\vdots \\
+				x_n
+			\end{pmatrix}
+			, \qquad y =
+			\begin{pmatrix}
+				y_1 \\
+				\vdots \\
+				y_n
+			\end{pmatrix}
+			,\]
+			we have inner product
+			\[
+				\langle x, y \rangle = \sum_{i = 1}^{n} x_i y_i
+			.\]
+		\item Take $V = \mathbb{C}^{n}$. Then we have inner product
+			\[
+			\langle x, y\rangle = \sum_{i = 1}^{n} x_i \overline{y_i}
+			.\]
+		\item If $V = \mathcal{C}([0, 1], \mathbb{C})$, i.e. the space of continuous functions $f : [0, 1] \to \mathbb{C}$, then we have inner product
+			\[
+			\langle f, g \rangle = \int_{0}^{1}f(t) \overline{g(t)} \diff t
+			.\]
+			This is known as the $L^{2}$ scalar product.
+	\end{enumerate}
+	We can check these all form inner products. In particular, $\langle u, u \rangle = 0 \implies u = 0$, due to the positive definite assumption.
+\end{exbox}
+
+\subsection{Gram-Schmidt}
+\label{sub:gram_schmidt}
+
+We work with a vector space $V$ over $\mathbb{R}$ or $\mathbb{C}$ with inner product $\langle \cdot, \cdot \rangle$.
+
+Define the \textit{norm}\index{norm} of $v \in V$ as
+\[
+	\|v\| = \sqrt{\langle v, v \rangle}
+,\]
+and as the inner product is positive definite, $\|v\| = 0 \iff v = 0$. This gives a notion of length in $V$.
+
+\begin{lemma}[Cauchy-Schwarz]\index{Cauchy-Schwarz}
+	For $u, v \in V$,
+	\[|\langle u, v \rangle| \leq \|u\|\|v\|.\]
+	Moreover, equality holds if and only if $u$ and $v$ are collinear.
+\end{lemma}
+
+\begin{proofbox}
+	For $F = \mathbb{R}$ or $\mathbb{C}$, let $t \in F$. Then,
+	\begin{align*}
+		0 &\leq \|tu-v\|^2 = \langle tu-v, tu-v\rangle \\
+		  &= t \overline{t}\langle u, u \rangle - t \langle u, v \rangle - \overline{t} \langle v, u \rangle + \langle v, v\rangle \\
+		  &= |t|^2\|u\|v^2 - 2 \Re (t \langle u, v \rangle) + \|v\|^2.
+	\end{align*}
+	Set $t = \frac{\langle u, v \rangle}{\|u\|^2}$, assuming $u \neq 0$. Then,
+	\begin{align*}
+		0 &\leq \frac{|\langle u, v \rangle|^2}{\|u\|^{4}}\|u\|^2 - 2 \Re \biggl( \frac{|\langle u, v \rangle|^2}{\|u\|^2} \biggr) + \|v^2\|, \\
+		0 &\leq \|v\|^2 - \frac{|\langle u, v \rangle|^2}{\|u\|^2}, \\
+		|\langle u, v \rangle|^2 \leq \|u\|^2\|v\|^2,
+	\end{align*}
+	as required. Then equality holds when $tu-v = 0$, so when $u, v$ are collinear.
+\end{proofbox}
+
+\begin{corollary}[Triangle inequality]\index{triangle inequality}
+	$\|u + v\| \leq \|u\| + \|v\|$.
+\end{corollary}
+
+\begin{proofbox}
+	We square both sides:
+	\begin{align*}
+		\|u+v\|^2 &= \langle u + v, u + v \rangle = \|u\|^2 + 2 \Re (\langle u, v \rangle) + \|v\|^2 \\
+			  &\leq \|u\|^2 + 2 \|u\|\|v\| + \|v\|^2 \\
+			  &= (\|u\| + \|v\|)^2.
+	\end{align*}
+\end{proofbox}
+
+\begin{definition}
+	A set $(e_1, \ldots, e_k)$ of non-zero vectors of $V$ is
+	\begin{enumerate}[(i)]
+		\item \textit{orthogonal}\index{orthogonal} if $\langle e_i, e_j \rangle = 0$ for $i \neq j$,
+		\item \textit{orthonormal}\index{orthonormal} if $\langle e_i, e_j \rangle = \delta_{ij}$, where
+			\[
+			\delta_{ij} =
+			\begin{cases}
+				1 & i = j, \\
+				0 & i \neq j.
+			\end{cases}
+			\]
+	\end{enumerate}
+\end{definition}
+
+\begin{lemma}
+	If $(e_1, \ldots, e_k)$ is orthogonal, then
+	\begin{enumerate}[\normalfont(i)]
+		\item the family is free;
+		\item if $v = \sum_{j = 1}^{k} \lambda_j e_j$, then
+			\[
+			\lambda_j = \frac{\langle v, e_j \rangle}{\|e_j\|^2}
+			.\]
+	\end{enumerate}
+\end{lemma}
+
+\begin{proofbox}
+	To show (i), first say $\sum_{j = 1}^{k} \lambda_j e_j = 0$. Then,
+	\[
+	0 = \biggl\langle \sum_{j = 1}^{k} \lambda_j e_j, e_i \biggr\rangle = \sum_{j = 1}^{k} \lambda_j \langle e_j, e_i \rangle = \lambda_i \|e_i\|^2
+	,\]
+	for all $1 \leq i \leq k$, so the family is free.
+
+	Similarly if $v = \sum_{i = 1}^{k} \lambda_i e_i$, then
+	\begin{align*}
+		\langle v, e_j \rangle &= \sum_{i = 1}^{k} \lambda_i \langle e_i, e_j \rangle = \lambda_j \|e_j\|^2, \\
+		\implies \lambda_j &= \frac{1}{\|e_j\|^2} \langle v, e_j \rangle.
+	\end{align*}
+\end{proofbox}
+
+\begin{lemma}[Parseval's identity]\index{Parseval's identity}
+	If $V$ is a finite dimensional inner product space, and $(e_1, \ldots, e_n)$ is an orthonormal basis, then
+	\[
+	\langle u, v \rangle = \sum_{i = 1}^{n} \langle u, e_i \rangle \overline{\langle v, e_i \rangle}
+	.\]
+	In particular, in an orthonormal basis,
+	\[
+	\|v\|^2 = \langle v, v \rangle = \sum_{i = 1}^{n} |\langle v, e_i \rangle|^2
+	,\]
+	where $\langle v, e_i \rangle$ are the coordinates of $v$:
+	\[
+	v = \sum_{i = 1}^{n} \langle v, e_i \rangle e_i
+	.\]
+\end{lemma}
+
+\begin{proofbox}
+	Suppose that
+	\[
+	u = \sum_{i = 1}^{n} \langle u, e_i \rangle e_i, \qquad v = \sum_{i = 1}^{n} \langle v, e_i \rangle e_i
+	.\]
+	Then,
+	\begin{align*}
+		\langle u, v \rangle = \biggl\langle \sum_{i = 1}^{n} \langle u, e_i \rangle e_i, \sum_{i = 1}^{n} \langle v, e_i \rangle e_i \biggr\rangle = \sum_{i = 1}^{n} \langle u, e_i \rangle \overline{\langle v, e_i \rangle}.
+	\end{align*}
+\end{proofbox}
+
+\begin{theorem}[Gram-Schmidt Orthogonalization]\index{Gram-Schmidt}
+	Let $V$ be an inner product space, $I$ a countable set and $(v_i)_{i \in I}$ linearly independent.
+
+	Then there exists a sequence $(e_i)_{i \in I}$ of orthonormal vectors such that
+	\[
+	\spn \langle v_1, \ldots, v_k \rangle = \spn \langle e_1, \ldots, e_k \rangle
+	,\]
+	for all $k \geq 1$. In particular, for finite dimensional vector spaces, this proves the existence of an orthonormal basis.
+\end{theorem}
+
+\begin{proofbox}
+	We proceed by induction. on $k$.
+
+	For $k = 1$, since $v_1 \neq 0$, we can take $e_1 = \frac{v_1}{\|v_1\|}$.
+
+	Now, suppose we have constructed $(e_1, \ldots, e_k)$, and we want to find $e_{k+1}$. Then, define
+	\[
+	e_{k+1}' = v_{k+1} - \sum_{i = 1}^{k}\langle v_{k+1}e_i \rangle e_i
+	.\]
+	We show that $e_{k+1}'$ non-zero, otherwise
+	\[v_{k+1} \in \langle e_1 ,\ldots, e_k \rangle = \langle v_1, \ldots, v_k\rangle,\]
+	contradicting our assumption $(v_i)$ is free. Now we prove $e_{k+1}'$ is orthogonal to $e_j$. Indeed,
+	\begin{align*}
+		\langle e_{k+1}', e_j \rangle &= \biggl\langle v_{k+1} - \sum_{i = 1}^{k} \langle v_{k+1}, e_i \rangle e_i, e_j \biggr\rangle \\
+					      &= \langle v_{k+1}, e_j \rangle - \langle v_{k+1}, e_j \rangle = 0.
+	\end{align*}
+	Moreover, it is clear that
+	\[
+	\langle v_1, \ldots, v_{k+1} \rangle = \langle e_1, \ldots, e_k, e_{k+1}'\rangle
+	.\]
+	All that is left to do is to normalise $e_{k+1}'$, which can be done by taking
+	\[
+	e_{k+1} = \frac{e_{k+1}'}{\|e_{k+1}'\|}
+	.\]
+\end{proofbox}
+
+\begin{corollary}
+	If $V$ is a finite dimensional inner product space, then any orthonormal set of vectors can be extended to an orthonormal basis of $V$.
+\end{corollary}
+
+\begin{proofbox}
+	Pick $(e_1, \ldots, e_k)$ orthonormal. Then they are linearly independent, so we can extend to a basis $(e_, \ldots, e_k, v_{k+1}, \ldots, v_n)$ to the basis of $V$. Applying Gram-Schmidt to this set, and noticing there is no need to modify $e_i$ for $1 \leq i \leq k$, we get a basis $(e_1, \ldots, e_k, e_{k+1}, \ldots, e_n)$ an orthonormal basis of $V$.
+\end{proofbox}
+
+\begin{remark}
+	If $A \in \mathcal{M}_n(\mathbb{R})$, then $A$ has orthonormal columns vectors if and only if
+	\[
+	A^{T}A = I
+	.\]
+	Similarly, if $A \in \mathcal{M}_n(\mathbb{C})$, then $A$ has orthonormal column vectors if and only if
+	\[
+	A^{T}\overline{A} = I
+	.\]
+\end{remark}
+
+\begin{definition}
+	\begin{enumerate}[(i)]
+		\item[]
+		\item A matrix $A \in \mathcal{M}_n(\mathbb{R})$ is \textit{orthogonal}\index{orthogonal} if
+		\[
+		A^{T}A = I
+		.\]
+	\item A matrix $A \in \mathcal{M}_n(\mathbb{C})$ is \textit{unitary}\index{unitary} if
+		\[
+		A^{T}\overline{A} = I
+		.\]
+	\end{enumerate}
+\end{definition}
+
+\begin{proposition}
+	For $A \in \mathcal{M}_n(\mathbb{R})$ (resp. $\mathcal{M}_n(\mathbb{C})$, then $A$ can be written as $RT$, where
+	\begin{itemize}
+		\item $T$ is upper triangular,
+		\item $R$ is orthogonal (resp. unitary).
+	\end{itemize}
+\end{proposition}
+
+\begin{proofbox}
+	Exercise (apply Gram-Schmidt to the column vectors of $A$).
+\end{proofbox}
+
+\subsection{Orthogonal Complement and Projection}
+\label{sub:orthogonal_complement_and_projection}
+
+\begin{definition}
+	Let $V$ be an inner product space, and $V_1, V_2 \leq V$. We say that $V$ is the \textit{orthogonal direct sum}\index{orthogonal direct sum} of $V_1$ and $V_2$ if
+	\begin{enumerate}[(i)]
+		\item $V = V_1 \oplus V_2$,
+		\item For all $(v_1, v_2) \in V_1 \times V_2$, $\langle v_1, v_2 \rangle = 0$.
+	\end{enumerate}
+\end{definition}
+
+\begin{remark}
+	For $v \in V_1 \cap V_2$,
+	\[
+	\|v\|^2 = \langle v , v \rangle = 0 \implies v = 0
+	.\]
+\end{remark}
+
+\begin{definition}
+	Let $V$ be an inner product space, and $W \leq V$. Then we define the \textit{orthogonal complement}\index{orthogonal complement} of $W$ as
+	\[
+		W^{\perp} = \{ v \in V \mid \langle v, w \rangle = 0 \, \forall w \in W\}
+	.\]
+\end{definition}
+
+\begin{lemma}
+	Let $V$ be a finite dimensional inner product space, and $W \leq V$. Then $V$ is the orthogonal direct sum of $W$ and $W^{\perp}$.
+\end{lemma}
+
+To prove this, we introduce the following definition.
+
+\begin{definition}
+	Suppose $V = U \oplus W$, so $U$ is a complement of $W$ in $V$. We define
+	\begin{align*}
+		\Pi : V &\to W \\
+		v = u + w &\mapsto w
+	\end{align*}
+	We say $\Pi$ is the \textit{projection operator}\index{projection operator} onto $W$.
+\end{definition}
+
+\begin{remark} 
+	$\id - \pi$ is a projection onto $U$.
+\end{remark}
+
+If $V$ is an inner product space and $W$ is finite dimensional, then we can choose $U = W^{\perp}$, for which $\Pi$ is explicit.
+
+\begin{lemma}
+	Let $V$ be an inner product space. Let $W \leq V$, with $W$ finite dimensional. Let $(e_1, \ldots, e_k)$ be an orthonormal basis of $W$. Then,
+	\begin{enumerate}[\normalfont(i)]
+		\item $\Pi(v) = \sum_{i = 1}^{k} \langle v, e_i \rangle e_i$, for all $v \in V$, and $V$ is the orthogonal direct sum of $W$ and $W^{\perp}$,
+		\item  For all $v \in V$ and $w \in W$ 
+			\[
+			\|v - \Pi(v)\| \leq \|v - w\|
+			,\]
+			with equality if and only if $w = \Pi(v)$.
+	\end{enumerate}
+\end{lemma}
+
+\begin{remark}
+	This has an infinite dimensional generalization: instead of taking $V$ an inner product space, we can let $V$ be a Hilbert space, and instead of letting $W$ be finite dimensional, we can say that $W$ is closed.
+
+	Geometrically, this says that $\Pi(v)$ is the closest point on $W$ to $v$.
+\end{remark}
+
+\begin{proofbox}
+	For (i), we have $W = \spn \langle e_1, \ldots, e_k \rangle$, where the $(e_i)$ are orthonormal. We can define
+	\[
+	\Pi(v) = \sum_{i = 1}^{k}\langle v, e_i \rangle e_i
+	.\]
+	Then, notice that
+	\[
+		v = \underbrace{\Pi(v)}_{\in W} + (v -  \Pi(v))
+	,\]
+	so we wish to show that $v - \Pi(v) \in W^{\perp}$, but notice
+	\begin{align*}
+		& v - \Pi(v) \in W^{\perp} \\
+		\iff & \forall w \in W, \quad \langle v - \pi(v), w \rangle = 0 \\
+		\iff & \forall 1 \leq j \leq k, \quad \langle v - \Pi(v), e_j \rangle = 0.
+	\end{align*}
+	Computing for all $e_j$,
+	\begin{align*}
+		\langle v - \Pi(v), e_j \rangle &= \biggl \langle v - \sum_{i = 1}^{k} \langle v, e_i \rangle e_i, e_j \biggr\rangle \\
+						&= \langle v, e_j \rangle - \langle v, e_j \rangle = 0,
+	\end{align*}
+	which shows that $v - \Pi(v) \in W^{\perp}$. Hence, since $v = \Pi(v) + (v - \Pi(v))$, $V = W + W^{\perp}$, and we known $W \cap W^{\perp} = \{0\}$, so $V$ is the orthogonal direct sum of $W$ and $W^{\perp}$.
+
+	For (ii), let $w \in W$. Then,
+	\begin{align*}
+		\|v - w\|^2 &= \|v - \Pi(v) + \Pi(v) - w\|^2 \\
+			    &= \langle v - \Pi(v) + \Pi(v) - w, v - \Pi(v) + \Pi(v) - w \rangle \\
+			    &= \|v - \Pi(v)\|^2 + \|\Pi(v) - w\|^2 \geq \|v - \Pi(v)\|^2,
+	\end{align*}
+	with equality if and only if $w = \Pi(v)$.
+\end{proofbox}
+
+\newpage
+
+\section{Adjoint Map}
+\label{sec:adjoint_map}
+
+\begin{definition}
+	Let $V, W$ be finite dimensional inner product spaces, and let $\alpha \in \mathcal{L}(V, W)$. Then, there exists a \emph{unique} linear map $\alpha^{\ast} : W \to V$ such that for all $(v, w) \in V \times W$,
+	\[
+	\langle \alpha(v), w \rangle = \langle v, \alpha^{\ast}(w) \rangle
+	.\]
+	Moreover, if $\mathcal{B}$ and $\mathcal{C}$ are orthonormal bases of $V$ and $W$, then
+	\[
+		[\alpha^{\ast}]_{\mathcal{C},\mathcal{B}} = \overline{[\alpha]_{\mathcal{B},\mathcal{C}}^{T}}
+	.\]
+\end{definition}
+
+\begin{proofbox}
+	This is a computation. Let $\mathcal{B} = (v_1, \ldots, v_n)$ and $\mathcal{C} = (w_1, \ldots, w_m)$. Then, letting $A = [\alpha]_{\mathcal{B},\mathcal{C}} = (a_{ij})$, if we let $[\alpha^{\ast}]_{\mathcal{C},\mathcal{B}} = \overline{A^{T}} = C = (c_{ij})$, then $c_{ij} = \overline{a_{ij}}$. We compute
+	\begin{align*}
+		\biggl\langle \alpha \biggl( \sum_{i=1}^{n} \lambda_i v_i \biggr), \sum_{j=1}^{m} \mu_j w_j \biggr\rangle &= \biggl \langle \sum_{i,k} \lambda_i a_{ki} w_k, \sum_{j = 1}^{m} \mu_j w_j \biggr \rangle \\
+															  &= \sum_{i,j} \lambda_i a_{ji} \overline{\mu_j}.
+	\end{align*}
+	Similarly, we can compute
+	\begin{align*}
+	\biggl\langle \sum_{i = 1}^{n} \lambda_i v_i, \alpha^{\ast} \biggl( \sum_{j = 1}^{m} \mu_j w_j \biggr) \biggr \rangle &= \biggl \langle \sum_{i=1}^{n} \lambda_i v_i, \sum_{j, k} \mu_j c_{kj} v_k \biggr \rangle \\
+															      &= \sum_{ij} \lambda_i \overline{c_{ij}} \overline{\mu_j}.
+	\end{align*}
+	Then as $\overline{c_{ij}} = a_{ji}$, these give the same results, proving the existence of $\alpha^{\ast}$.
+
+	Now, the proof of uniqueness follows by computing $\alpha^{\ast}(w_j)$: for all $1 \leq i \leq n$,
+	\begin{align*}
+		\langle v_i, \alpha^{\ast}(w_j) \rangle &= \langle \alpha(v_i), w_j \rangle \\
+							&= \biggl \langle \sum_{k = 1}^{m} a_{ki}w_k, w_j \biggr \rangle = a_{ji},
+	\end{align*}
+	so  $\langle \alpha^{\ast}(w_j), v_i \rangle = \overline{a_{ji}}$, giving
+	\[
+	\alpha^{\ast}(w_j) = \sum_{i = 1}^{n} \overline{a_{ji}} v_i
+	.\]
+	This uniquely determines $\alpha^{\ast}$ by linearity.
+\end{proofbox}
+
+\begin{remark}
+	Notice that we use the same notation $\alpha^{\ast}$ for the adjoint of $\alpha$, and for the dual of $\alpha$.
+
+	Indeed, if $V, W$ are real product spaces and $\alpha \in \mathcal{L}(V, W)$, then defining
+	\begin{align*}
+		\psi_{R,V} : V &\to V^{\ast} \\
+		v &\mapsto \langle \cdot, v \rangle, \\
+		\psi_{R,W} : W &\to W^{\ast} \\
+		w &\mapsto \langle \cdot, w \rangle,
+	\end{align*}
+	then $\phi_{R,V}$ and $\phi_{R,W}$ are isomorphisms, and the adjoint map of $\alpha$ is given by
+	\[
+		\begin{tikzcd}
+			W \arrow[r, "{\psi_{R, W}}", swap] & W^{\ast} \arrow[r, "{\text{dual of } \alpha}", swap] & V^{\ast} \arrow[r, "{\psi_{R,V}^{-1}}", swap] & V
+		\end{tikzcd}
+	\] 
+\end{remark}
+
+\subsection{Self-adjoint Maps and Isometries}
+\label{sub:self_adjoint_maps_and_isometries}
+
+\begin{definition}
+	Let $V$ be a finite dimensional inner product space, and $\alpha \in \mathcal{L}(V)$. Let $\alpha^{\ast} \in \mathcal{L}(V)$ be the adjoint map. Then,
+	\begin{enumerate}[(i)]
+		\item $\alpha$ is \textit{self-adjoint}\index{self-adjoint} if
+			\[
+			\forall (v, w) \in V \times V, \langle \alpha v, w \rangle = \langle v, \alpha w \rangle \iff \alpha = \alpha^{\ast}
+		.\]
+		Over $\mathbb{R}$, we say $\alpha$ is symmetric, and over $\mathbb{C}$, we say $\alpha$ is Hermitian.
+	\item $\alpha$ is an \textit{isometry}\index{isometry} if
+		\[
+		\forall (v, w) \in V \times W, \langle \alpha v, \alpha w \rangle = \langle v, w \rangle \iff \alpha^{\ast} = \alpha^{-1}
+		.\]
+		Over $\mathbb{R}$, we say $\alpha$ is orthogonal, and over $\mathbb{C}$ we say $\alpha$ is unitary\index{unitary}.
+	\end{enumerate}
+\end{definition}
+
+\begin{proofbox}
+	We show that these conditions are indeed equivalent. The equivalence for self-adjoint maps is clear for definition, so we look at isometries.
+
+	First, we show that $\langle \alpha v, \alpha w \rangle = \langle v, w \rangle$ for all $v, w$ is equivalent to $\alpha$ invertible and $\alpha^{\ast} = \alpha^{-1}$.
+
+	First, assume $\langle \alpha v, \alpha w \rangle = \langle v, w \rangle$ for all $v, w \in V$. Then setting $v = w$,
+	\[
+	\|\alpha v\|^2 = \langle \alpha v, \alpha v \rangle = \langle v, v \rangle = \|v\|^2
+	.\]
+	Hence $\alpha$ preserves the norm, so $\Ker \alpha = \{0\}$. As $V$ is finite dimensional, $\alpha$ is bijective, hence $\alpha^{-1}$ is well defined. Now, for all $v, w \in V$,
+	\[
+	\langle v, \alpha^{\ast}w \rangle = \langle \alpha v, w \rangle = \langle \alpha v, \alpha(\alpha^{-1} w) \rangle = \langle v, \alpha^{-1}(w)\rangle
+	.\]
+	Since this holds for all $v$, $\alpha^{\ast}(w) = \alpha^{-1}(w)$, and as this holds for all $w$, $\alpha^{\ast} = \alpha^{-1}$.
+
+	The converse is similar: if $\alpha^{\ast} = \alpha^{-1}$, then
+	\[
+	\langle \alpha v, \alpha w \rangle = \langle v, \alpha^{\ast} \alpha w \rangle = \langle v, w \rangle
+	.\]
+\end{proofbox}
+
+\begin{remark}
+	Using the polarization identity, one can show that
+	\[
+		\alpha \text{ is an isometry} \iff \forall v \in V, \|\alpha(v)\| = \|v\|
+	.\]
+	Indeed, one direction is easy to see. For the other direction, if $\|\alpha(v)\| = \|v\|$, define a new inner product by
+	\[
+		(v, w) = \langle \alpha v, \alpha w \rangle
+	.\]
+	Then $(\cdot, \cdot)$ is linear (resp. antilinear) as $\alpha$ is linear, positive definite as for $v \neq 0$, $(v, v) = \langle \alpha v, \alpha v \rangle = \langle v, v \rangle > 0$, and symmetric (resp. Hermitian) as $\langle \cdot, \cdot \rangle$ is Hermitian.
+
+	Now $(v, v) = \langle v, v \rangle$ for all $v$, so by the polarization identity, $(v, w) = \langle v, w \rangle$ for all $v, w$. Hence
+	\[
+		\langle \alpha v, \alpha w \rangle = (v, w) = \langle v, w \rangle
+	,\]
+	so $\alpha$ is an isometry.
+\end{remark}
+
+\begin{lemma}
+	Let $V$ be a finite dimensional real (resp. complex) inner product space. Then $\alpha \in \mathcal{L}(V)$ is:
+	\begin{enumerate}[\normalfont(i)]
+		\item self adjoint if and only if, in any orthonormal basis $\mathcal{B}$ of $V$, $[\alpha]_{\mathcal{B}}$ is symmetric (resp. Hermitian),
+		\item an isometry if and only if in any orthonormal basis $\mathcal{B}$ of $V$, $[\alpha]_{\mathcal{B}}$ is orthogonal (resp. unitary).
+	\end{enumerate}
+\end{lemma}
+
+\begin{proofbox}
+	If $\mathcal{B}$ is an orthonormal basis, then $[\alpha^{\ast}]_{\mathcal{B}} = \overline{[\alpha]_{\mathcal{B}}^{T}}$.
+	\begin{itemize}
+		\item If $\alpha$ is self-adjoint, then $\overline{[\alpha]_{\mathcal{B}}^{T}} = [\alpha]_{\mathcal{B}}$.
+		\item If $\alpha$ is an isometry, then $\overline{[\alpha]_{\mathcal{B}}^{T}} = [\alpha]_{\mathcal{B}}^{-1}$.
+	\end{itemize}
+\end{proofbox}
+
+\begin{definition}
+	Let $V$ be a finite dimensional inner product space over $F$.
+	\begin{itemize}
+		\item If $F = \mathbb{R}$, then we denote
+			\[
+				\mathrm{O}(V) = \{\alpha \in \mathcal{L}(V) \mid \alpha \text{ is an isometry}\}
+			\]
+			as the \textit{orthogonal group}\index{orthogonal group} of $V$.
+		\item If $F = \mathbb{C}$, then we denote
+			\[
+				\mathrm{U}(V) = \{ \alpha \in \mathcal{L}(V) \mid \alpha \text{ is an isometry}\}
+			\]
+			as the \textit{unitary group}\index{unitary group} of $V$.
+	\end{itemize}
+\end{definition}
+
+\begin{remark}
+	For $V$ finite dimensional, and $(e_1, \ldots, e_n)$ an orthonormal basis, then
+	\begin{itemize}
+		\item For $F = \mathbb{R}$, there is a bijection
+			\begin{align*}
+				\mathrm{O}(V) &\to \{\text{orthonormal bases of } V\} \\
+				\alpha &\mapsto (\alpha(e_1), \ldots, \alpha(e_n)).
+			\end{align*}
+		\item This also holds for $F = \mathbb{C}$: there is a bijection
+			\begin{align*}
+				\mathrm{U}(V) &\to \{\text{orthonormal bases of } V\} \\
+				\alpha &\mapsto (\alpha(e_1), \ldots, \alpha(e_n)).
+			\end{align*}
+	\end{itemize}
+\end{remark}
+
+\subsection{Spectral Theory for Self Adjoint Maps}
+\label{sub:spectral_theory_for_self_adjoint_maps}
+
+Spectral theory is the study of the \textit{spectrum} of operators. This is very useful notion that comes up in further mathematics, physics (especially quantum mechanics), and is true for infinite dimensional Hilbert spaces.
+
+\begin{lemma}
+	Let $V$ be a finite dimensional inner product space. Let $\alpha \in \mathcal{L}(V)$ be self adjoint. Then,
+	\begin{enumerate}[\normalfont(i)]
+		\item $\alpha$ has real eigenvalues,
+		\item The eigenvalues of $\alpha$ with respect to different eigenvalues are orthogonal.
+	\end{enumerate}
+\end{lemma}
+
+\begin{proofbox}
+	For (i), take $v \in V \setminus \{0\}$, and $\lambda \in \mathbb{C}$ such that $\alpha v = \lambda v$. Then,
+	\begin{align*}
+		\lambda \|v\|^2 &= \langle \lambda v, v \rangle = \langle \alpha v, v \rangle \\
+				&= \langle v, \alpha^{\ast} v \rangle = \langle v, \alpha v \rangle \\
+				&= \langle v, \lambda v \rangle = \overline{\lambda} \|v\|^2.
+	\end{align*}
+	Since $v \neq 0$, $\|v\| \neq 0$, so $\lambda = \overline{\lambda}$, and so $\lambda in \mathbb{R}$.
+
+	Now, for (ii) take two distinct eigenvalues $\lambda, \mu$ with eigenvectors $v, w$ respectively, so $\alpha v = \lambda v$, $\alpha w = \mu w$, with $\lambda, \mu \in \mathbb{R}$, $v, w \neq 0$ and $\lambda \neq mu$. Then,
+	\begin{align*}
+		\lambda \langle v, w\rangle &= \langle \lambda v, w \rangle = \langle \alpha v , w \rangle \\
+					    &= \langle v, \alpha^{\ast} w \rangle = \langle v, \alpha w \rangle \\
+					    &= \langle v, \mu w \rangle = \overline{\mu}\langle v, w \rangle \\
+					    &= \mu \langle v, w \rangle.
+	\end{align*}
+	But as $\lambda \neq \mu$, we have $\langle v, w \rangle = 0$.
+\end{proofbox}
+
+This lemma leads us to the main proof of this part.
+
+\begin{theorem}[Spectral theorem for self adjoint maps]\index{spectral theorem}
+	Let $V$ be a finite dimensional inner product space. Let $\alpha \in \mathcal{L}(V)$ be self adjoint. Then $V$ has an orthonormal basis of eigenvectors of $\alpha$.
+\end{theorem}
+
+\begin{proofbox}
+	We argue by induction on the dimension on $V$. Now $n = 1$ is trivial, so assume $n > 1$.
+
+	Let $\mathcal{B}$ be any orthonormal basis of $V$, and say $A = [\alpha]_{\mathcal{B}}$. By the fundamental theorem of algebra, $\chi_A(t)$ has a complex root, which is an eigenvalue of $\alpha$. Since $\alpha = \alpha^{\ast}$, this eigenvalue is real. Let $\lambda \in \mathbb{R}$ be this eigenvalue.
+
+	Pick an eigenvector $v_1 \in V \setminus \{0\}$, such that $\|v_1\| = 1$, and let $U = \langle v_1 \rangle^{\perp} \leq V$.
+
+	Then, $U$ is stable by $\alpha$. Indeed, let $u \in U$, then
+	\begin{align*}
+		\langle \alpha u, v_1 \rangle &= \langle u, \alpha^{\ast} v_1 \rangle = \langle u, \alpha v_1 \rangle \\
+					      &= \langle u, \lambda v_1 \rangle = \lambda \langle u, v_1 \rangle = 0.
+	\end{align*}
+	This implies we may consider $\alpha|_U \in \mathcal{L}(U)$, which is also self adjoint. Then, as $\dim U = \dim V - 1 = n - 1$, by the induction hypothesis, there exists $(v_2, \ldots, v_n)$, which is an orthonormal basis of eigenvectors for $\alpha|_U$.
+
+	Thus, $(v_1, v_2, \ldots, v_n)$ is an orthonormal basis of $V$, consisting of eigenvectors of $\alpha$.
+\end{proofbox}
+
+\begin{corollary}
+	Let $V$ be a finite dimensional inner product space. If $\alpha \in \mathcal{L}(V)$ is self adjoint, then $V$ is the direct sum of all the eigenspaces of $\alpha$.
+\end{corollary}
+
+\subsection{Spectral Theory for Unitary Maps}
+\label{sub:spectral_theoery_for_unitary_maps}
+
+\begin{lemma}
+	Let $V$ be a complex inner product space, and let $\alpha \in \mathcal{L}(V)$ be unitary. Then,
+	\begin{enumerate}[\normalfont(i)]
+		\item All the eigenvalues of $\alpha$ lie on the unit circle,
+		\item Eigenvalues corresponding to distinct eigenvalues are orthogonal.
+	\end{enumerate}
+\end{lemma}
+
+\begin{proofbox}
+	For (i), let $\lambda \in \mathbb{C}$ be an eigenvalue, and $v$ be a non-zero eigenvector of $\lambda$. Then $\lambda \neq 0$, otherwise $\alpha$ is not invertible, hence not unitary. Then,
+	\begin{align*}
+		\lambda\|v\|^2 &= \lambda \langle v, v \rangle = \langle \lambda v, v \rangle \\
+			       &= \langle \alpha v, v \rangle = \langle v, \alpha^{\ast} v \rangle \\
+			       &= \langle v, \alpha^{-1} v \rangle = \langle v, \lambda^{-1} v \rangle \\
+			       &= \overline{\lambda^{-1}} \|v\|^2.
+	\end{align*}
+	Hence as $\|v\|^2 \neq 0$, $\lambda \overline{\lambda} = 1$, so $|\lambda| = 1$.
+
+	For (ii), let $\lambda, \mu$ be eigenvalues with non-zero eigenvectors $v, w$ respectively. Then,
+	\begin{align*}
+		\lambda \langle v, w \rangle &= \langle \lambda v, w \rangle = \langle \alpha v, w \rangle \\
+					     &= \langle v, \alpha^{\ast} w \rangle = \langle v, \alpha^{-1} w \rangle \\
+					     &= \langle v, \mu^{-1} w \rangle = \overline{\mu^{-1}} \langle v, w \rangle \\
+					     &= \mu \langle v, w \rangle.
+	\end{align*}
+	As $\lambda \neq \mu$, we get $\langle v, w \rangle = 0$.
+\end{proofbox}
+
+\begin{theorem}[Spectral theorem for unitary maps]\index{spectral theorem}
+	Let $V$ be a finite dimensional complex inner product space, and let $\alpha \in \mathcal{L}(V)$ be unitary. Then $V$ has an orthonormal basis made of eigenvectors of $\alpha$.
+\end{theorem}
+
+Equivalently, a unitary map on a Hermitian inner product space can be diagonalized in an orthonormal basis.
+
+\begin{proofbox}
+	We proceed as in the other proof of the spectral theorem, by induction on the dimension $n$. $n = 1$ is easy to check, so assume $n > 1$.
+
+	Pick any orthonormal basis $\mathcal{B}$ of $V$, and let $A = [\alpha]_{\mathcal{B}}$. By the fundamental theorem of algebra, $\chi_A(t)$ has a complex root, so $\alpha$ has a complex eigenvalue $\lambda$, with $|\lambda| = 1$ as $\alpha$ is unitary.
+
+	Then, fix an eigenvector of $\lambda$, $v_1 \in V \setminus \{0\}$ with $\|v_1\| = 1$. Let $U = \langle v_1 \rangle^{\perp}$, then we claim $U$ is stable by $\alpha$. Indeed, for $u \in U$,
+	\begin{align*}
+		\langle \alpha u, v_1 \rangle &= \langle u, \alpha^{-1} v_1 \rangle = \langle u, \alpha^{-1}v_1 \rangle \\
+					      &= \langle u, \lambda^{-1} v_1 \rangle = \overline{\lambda^{-1}} \langle u, v_1 \rangle = 0.
+	\end{align*} 
+	Hence, we can consider $\alpha|_U \in \mathcal{L}(U)$ which is unitary, so by the induction hypothesis, $\alpha|_U$ is diagonalizable in an orthonormal basis $(v_2, \ldots, v_n)$. Hence, $(v_1, \ldots, v_n)$ is an orthonormal basis of $V$ made of eigenvectors of $\alpha$.
+\end{proofbox}
+
+\begin{remark}
+	This proof only worked as we were working over the complex numbers, which allowed us to use the fundamental theorem of algebra to deduce that $\alpha$ had an eigenvalue.
+
+	In general, a real valued orthonormal matrix \textbf{cannot be diagonalized} over $\mathbb{R}$. Take, for example, the rotation matrices
+	\[
+	A = \begin{pmatrix}
+		\cos \theta & - \sin \theta \\
+		\sin \theta & \cos \theta
+	\end{pmatrix}
+	.\]
+	Then $A$ has eigenvalues $\lambda = e^{\pm i \theta}$, which in general are not real.
+\end{remark}
+
+\subsection{Application to Bilinear Forms}
+\label{sub:application_to_bilinear_forms}
+
+We have seen in the previous section that, for self adjoint or unitary maps in a finite dimensional inner product space, we can diagonalize them over an orthonormal basis.
+
+We can reformulate these statements in terms of bilinear forms.
+
+\begin{corollary}
+	Let $A \in \mathcal{M}_n(\mathbb{R})$ (resp. $\mathbb{C}$) be a symmetric (resp. Hermitian) matrix. Then there is an orthogonal (resp. unitary) matrix such that $P^{T}AP$ (resp. $P^{\dagger}AP$) is diagonal with real valued entries.
+\end{corollary}
+
+\begin{proofbox}
+	Let $\langle \cdot, \cdot \rangle$ be the standard inner product over $\mathbb{R}^{n}$ (resp. $\mathbb{C}^{n}$). Then $A \in \mathcal{L}(\mathbb{R}^{n})$ (resp. $\mathcal{L}(\mathbb{C}^{n})$) is self adjoint, hence we can find an orthonormal basis such that $A$ is diagonal in this basis, say $(v_1, \ldots, v_n)$.
+
+	Let $P =
+	\begin{pmatrix}
+		v_1 & \cdots & v_n
+	\end{pmatrix}
+	$. Then $P$ is orthogonal (resp. unitary), so $P^{T}P = I$ (resp. $P^{\dagger}P = I$), and we get
+	\[
+		PP^{T}AP (\text{or } P^{\dagger}AP) = P^{-1}AP = D =
+		\begin{pmatrix}
+			\lambda_1 & & 0 \\
+				  & \ddots & \\
+				 0 & & \lambda_n
+		\end{pmatrix}
+	,\]
+	and we known $\lambda_i$ are real, as they are the eigenvalues of a self-adjoint operator.
+\end{proofbox}
+
+\begin{corollary}
+	Let $V$ be a finite dimensional real (resp. complex) inner product space. Let $\phi : V \times V \to F$ be a symmetric (resp. Hermitian) bilinear form. Then there is an orthonormal basis of $V$ such that $\phi$ in this basis is represented by a diagonal matrix.
+\end{corollary}
+
+\begin{proofbox}
+	Let $\mathcal{B}$ be any orthonormal basis of $V$, and let $A = [\phi]_{\mathcal{B}}$. Then, since $A^{T} = A$, there exists an orthogonal (resp. unitary) matrix $P$ such that $P^{T}AP$ (resp. $P^{\dagger}AP$) is a diagonal matrix $D$.
+
+	Let $v_i$ be the $i$'th row of $P^{T}$ (resp. $P^{\dagger}$), then $(v_1, \ldots, v_n)$ form an orthonormal basis $\mathcal{B}'$ of $V$, and $[\phi]_{\mathcal{B}'} = D$.
+\end{proofbox}
+
+\begin{remark}
+	The entries of $D$ are the eigenvalues of $A$. Moreover $s(A)$ is the number of positive eigenvalues of $A$, minus the number of negative eigenvalues of $A$.
+\end{remark}
+
+\begin{corollary}[Simultaneous Diagonalization]
+	Let $V$ be a finite dimensional real (resp. complex) vector space. Let $\phi, \psi : V \times V \to F$, where $\phi, \psi$ are both bilinear, symmetric (resp. Hermitian) forms.
+
+	Assuming $\phi$ is positive definite, then there exists a basis $(v_1, \ldots, v_n)$ of $V$ with respect to which both $\phi$ and $\psi$ are represented by a diagonal matrix.
+\end{corollary}
+
+\begin{proofbox}
+	As $\phi$ is positive definite, it induces a scalar product on $V$, so $V$ equipped with $\phi$ is a finite dimensional inner product space:
+	\[
+	\langle u, v \rangle = \phi(u, v)
+	.\]
+	Hence there exists an orthonormal (with respect to $\phi$) basis of $V$ in which $\psi$ is represented by a diagonal matrix. Observe that $\phi$ in this basis is represented by the identity matrix, so both matrices of $\phi$ and $\psi$ in $\mathcal{B}$ are diagonal.
+\end{proofbox}
+
+\begin{corollary}
+	Let $A, B \in \mathcal{M}_n(\mathbb{R})$ (resp. $\mathcal{M}_n(\mathbb{C})$) are both symmetric (resp. Hermitian). Assume for all $x \neq 0$, $\overline{x}^{T} A x > 0$. Then, there exists $Q \in \mathcal{M}_n(\mathbb{R})$ (resp. $\mathcal{M}_n(\mathbb{C})$) invertible, such that both $Q^{T}AQ$ and $Q^{T}BQ$ (resp. $Q^{\dagger}AQ$ and $Q^{\dagger}BQ$) are diagonal.
+\end{corollary}
+
+This is a direct consequence of the simultaneous diagonalization of operators.
 
 \newpage
 
