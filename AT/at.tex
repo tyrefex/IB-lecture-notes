@@ -2163,13 +2163,13 @@ So we could define the Euclidean norm of a linear map, although it is a bit unna
 \end{definition}
 
 \begin{proposition}
-	Let $\|\cdot\|$ be the operator norm of $V = \mathcal{L}(\mathbb{R}^{n}, \mathbb{R}^{m})$. Let $\alpha, \beta \in V$. Then,
+	Let $\|\cdot\|$ be the operator norm of $V = \mathcal{L}(\mathbb{R}^{n}, \mathbb{R}^{m})$. Let $\alpha, \beta \in V$, and $\gamma \in \mathcal{L}(\mathbb{R}^{k}, \mathbb{R}^{n})$. Then,
 	\begin{enumerate}[\normalfont(i)]
 		\item $\|\alpha\| \geq 0$ with equality if and only if $\alpha = 0$;
 		\item For all $\lambda \in \mathbb{R}$, $\|\lambda \alpha \| = |\lambda| \|\alpha\|$;
 		\item $\|\alpha + \beta\| \leq \|\alpha\| + \|\beta\|$;
 		\item For all $x \in \mathbb{R}^{n}$, $\|\alpha x\| \leq \|\alpha\| \|x\|$;
-		\item $\|\alpha \beta \| \leq \|\alpha\|\|\beta\|$;
+		\item $\|\alpha \gamma \| \leq \|\alpha\|\|\gamma\|$, with appropriate operator norms;
 		\item If $\|\cdot\|'$ is the Euclidean norm of $V \cong \mathbb{R}^{mn}$ with the standard isomorphism, then there are constants $c, d$ such that
 			\[
 			c\|\alpha\| \leq \|\alpha\|' \leq d\|\alpha\|
@@ -2194,11 +2194,11 @@ So we could define the Euclidean norm of a linear map, although it is a bit unna
 	,\]
 	as $\| \frac{x}{\|x\|} \| = 1$.
 
-	Now for (v), let $x \in \mathbb{R}^{n}$ with $\|x\| = 1$. Then, by applying (iv) multiple times,
+	Now for (v), let $x \in \mathbb{R}^{k}$ with $\|x\| = 1$. Then, by applying (iv) multiple times,
 	\[
-	\|\alpha \beta x\| \leq \|\alpha\| \|\beta x\| \leq \|\alpha \| \|\beta \| \|x\| = \|\alpha\|\|\beta\|
+	\|\alpha \gamma x\| \leq \|\alpha\| \|\gamma x\| \leq \|\alpha \| \|\gamma \| \|x\| = \|\alpha\|\|\gamma\|
 	.\]
-	So $\|\alpha \beta \| \leq \|\alpha \| \|\beta \|$.
+	So $\|\alpha \gamma \| \leq \|\alpha \| \|\gamma\|$.
 
 	For (vi), let $x \in \mathbb{R}^{n}$ with $\|x\| = 1$. Then,
 	\[
@@ -2620,7 +2620,7 @@ which is weaker. In fact, for our proof we need the mean value theorem.
 We will start with a result on partial derivatives that is used in many courses, but not proven until now.
 
 \begin{theorem}
-	Let $f : \mathbb{R}^{n} \to \mathbb{R}^{m}$, $a \in \mathbb{R}^{n}$ and $\eps > 0$. Suppose $D_iD_jf$ and $D_jD_if$ exist on $B_{\eps}(a)$ and are continuous at $a$. Then $D_1D_jf(a) = D_jD_if(a)$.
+	Let $f : \mathbb{R}^{n} \to \mathbb{R}^{m}$, $a \in \mathbb{R}^{n}$ and $\eps > 0$. Suppose $D_iD_jf$ and $D_jD_if$ exist on $B_{\eps}(a)$ and are continuous at $a$. Then $D_iD_jf(a) = D_jD_if(a)$.
 \end{theorem}
 
 \begin{proofbox}

@@ -2383,31 +2383,31 @@ In other words $\alpha$ is diagonalizable if and only if there exist distinct $(
 	.\]
 	Define the projector\index{projector}
 	\[
-		\Pi_j = q_j(\alpha) \in \mathcal{L}(V)
+		\pi_j = q_j(\alpha) \in \mathcal{L}(V)
 	.\]
 	Then we have
 	\begin{align*}
-		\sum_{j = 1}^{k} \Pi_j = \sum_{j = 1}^{k} q_j(\alpha) = \Biggl( \sum_{j = 1}^{k} q_j \Biggr) (\alpha) = \id
+		\sum_{j = 1}^{k} \pi_j = \sum_{j = 1}^{k} q_j(\alpha) = \Biggl( \sum_{j = 1}^{k} q_j \Biggr) (\alpha) = \id
 	\end{align*}
 	This means for any vector $v \in V$,
 	\[
-		v = q(\alpha)(v) = \sum_{j = 1}^{k} \Pi_j(v) = \sum_{j = 1}^{k} q_j(\alpha)(v)
+		v = q(\alpha)(v) = \sum_{j = 1}^{k} \pi_j(v) = \sum_{j = 1}^{k} q_j(\alpha)(v)
 	.\]
 	Now if we pick $j \in \{1, \ldots, k\}$, then
 	 \[
 		 (\alpha - \lambda_j \id) q_j(\alpha)(v) = \frac{1}{\prod_{i \neq j}(\lambda_j - \lambda_i)} p(\alpha)(v) = 0
 	.\]
-	Thus for all $j \in \{1, \ldots, k\}$, $(\alpha - \lambda_j \id)\Pi_j(v) = 0$, so $\Pi_j(v) \in V_{\lambda_j}$ for all $v$. Now for all $v \in V$,
+	Thus for all $j \in \{1, \ldots, k\}$, $(\alpha - \lambda_j \id)\pi_j(v) = 0$, so $\pi_j(v) \in V_{\lambda_j}$ for all $v$. Now for all $v \in V$,
 	\[
-		v = \sum_{j = 1}^{k} \Pi_j(v) \implies V = \sum_{j = 1}^{k}V_{\lambda_j}.
+		v = \sum_{j = 1}^{k} \pi_j(v) \implies V = \sum_{j = 1}^{k}V_{\lambda_j}.
 	\]
 	Now we prove the sum is direct. Indeed, let $v \in V_{\lambda_j} \cap (\sum_{i \neq j} V_{\lambda_i})$. Then since $v \in V_{\lambda_j}$,
 	\[
-		\Pi_j(v) = q_j(\alpha)(v) = \prod_{i \neq j} \frac{\alpha - \lambda_i \id}{\lambda_i - \lambda_j} (v) = \prod_{i \neq j} \frac{(\lambda_j - \lambda_i)v}{\lambda_j - \lambda_i} = v
+		\pi_j(v) = q_j(\alpha)(v) = \prod_{i \neq j} \frac{\alpha - \lambda_i \id}{\lambda_i - \lambda_j} (v) = \prod_{i \neq j} \frac{(\lambda_j - \lambda_i)v}{\lambda_j - \lambda_i} = v
 	.\]
 	Now if $v \in \sum_{i \neq j} V_{\lambda_i}$, then note for $v \in V_{\lambda_i}$, then $\alpha(v) = \lambda_i v$ so
 	\[
-		\Pi_j(\alpha) = q_j(\alpha)(v) = \prod_{i \neq j} \frac{\alpha - \lambda_i \id}{\lambda_j - \lambda_i}(v) = 0
+		\pi_j(\alpha) = q_j(\alpha)(v) = \prod_{i \neq j} \frac{\alpha - \lambda_i \id}{\lambda_j - \lambda_i}(v) = 0
 	.\]
 	Hence if $v \in V_{\lambda_j}\cap (\sum_{i \neq j} V_{\lambda_i})$, then $v = 0$. Hence $V$ is a direct sum of eigenspaces, meaning it can be diagonalized.
 \end{proofbox}
@@ -2835,15 +2835,15 @@ In Jordan normal form, we can compute:
 	.\]
 	Then define the projectors
 	\[
-		\Pi_j = q_j p_j (\alpha)
+		\pi_j = q_j p_j (\alpha)
 	.\]
 	Then by our lemma,
 	\[
-		\id = \sum_{j = 1}^{k} q_j p_j (\alpha) = \sum_{j = 1}^{k} \Pi_j(\alpha)
+		\id = \sum_{j = 1}^{k} q_j p_j (\alpha) = \sum_{j = 1}^{k} \pi_j(\alpha)
 	.\]
 	Hence, for all $v \in V$, we get
 	\[
-		v = \sum_{j = 1}^{k} \Pi_j(v)
+		v = \sum_{j = 1}^{k} \pi_j(v)
 	.\]
 	Recall that $m_{\alpha}(\alpha) = 0$, where
 	\[
@@ -2851,19 +2851,19 @@ In Jordan normal form, we can compute:
 	.\]
 	Hence,
 	\[
-		0 = m_{\alpha}(\alpha) = (\alpha - \lambda_j \id)^{c_{\lambda_j}} \Pi_j
+		0 = m_{\alpha}(\alpha) = (\alpha - \lambda_j \id)^{c_{\lambda_j}} \pi_j
 	.\]
-	So for all $v \in V$, $\Pi_j(v) \in V_j$. So we get the sum
+	So for all $v \in V$, $\pi_j(v) \in V_j$. So we get the sum
 	\[
 	V = \sum_{j = 1}^{k} V_j
 	.\]
-	Finally, we need to show that the sum is direct. Indeed, note $\Pi_i \Pi_j = 0$ if $i \neq j$, so $\Pi_i= \Pi_i ( \sum \Pi_j) = \Pi_i^2$. Hence, on $V_{i}$, $\Pi_i$ is the identity.
+	Finally, we need to show that the sum is direct. Indeed, note $\pi_i \pi_j = 0$ if $i \neq j$, so $\pi_i= \pi_i ( \sum \pi_j) = \pi_i^2$. Hence, on $V_{i}$, $\pi_i$ is the identity.
 
 	Now suppose there exists
 	\[
 	v = \sum_{i \neq j} v_j
 	,\]
-	and $v \in V_i$. Then applying $\Pi_i$,
+	and $v \in V_i$. Then applying $\pi_i$,
 	\[
 	v = \sum_{i \neq j} 0
 	.\]
@@ -3276,9 +3276,9 @@ For $F = \mathbb{R}$, we would like to say the same thing, however over $\mathbb
 	\[
 		[\phi]_{\mathcal{B}} =
 		\begin{pmatrix}
-			I_p & & 0 \\
-			    & -I_q & \\
-			0 & & 0
+			I_p & 0 & 0 \\
+			   0 & -I_q & 0 \\
+			0 & 0 & 0
 		\end{pmatrix}
 	,\]
 	where $p, q \geq 0$ and $p + q = \rank(\phi)$.
@@ -3323,16 +3323,16 @@ For this definition to make sense, $p - q$ must not depend on the basis.
 	\begin{align*}
 		[\phi]_{\mathcal{B}} &= 
 		\begin{pmatrix}
-			I_p & & 0 \\
-			    & -I_q & \\
-			0 & & 0
+			I_p & 0 & 0 \\
+			   0 & -I_q & 0 \\
+			0 & 0 & 0
 		\end{pmatrix}
 		, \\
 		[\phi]_{\mathcal{B}'} &=
 		\begin{pmatrix}
-			I_{p'} & & 0 \\
-			       & -I_{q'} & \\
-			0 & & 0
+			I_{p'} & 0 & 0 \\
+			      0 & -I_{q'} & 0 \\
+			0 & 0 & 0
 		\end{pmatrix},
 	\end{align*}
 	then $p = p'$ and $q = q'$.
@@ -3343,7 +3343,7 @@ For this definition to make sense, $p - q$ must not depend on the basis.
 	\begin{enumerate}[(i)]
 		\item $\phi$ is \textit{positive definite}\index{positive definite} if for all $u \in V \setminus \{0\}$ $\phi(u, u) > 0$,
 		\item $\phi$ is \textit{positive semi-definite}\index{positive semi-definite} if for all $u \in V$, $\phi(u, u) \geq 0$,
-		\item $\phi$ is \textit{negative definite}\index{negative definite} if for all $u \ni V \setminus \{0\}$, $\phi(u, u) < 0$,
+		\item $\phi$ is \textit{negative definite}\index{negative definite} if for all $u \in V \setminus \{0\}$, $\phi(u, u) < 0$,
 		\item $\phi$ is \textit{negative semi-definite}\index{negative semi-definite} if for all $u \in V$, $\phi(u, u) \leq 0$.
 	\end{enumerate}
 \end{definition}
@@ -3368,9 +3368,9 @@ Using this definition, we can prove Sylvester's law.
 	\[
 		[\phi]_{\mathcal{B}} =
 		\begin{pmatrix}
-			I_p & & 0\\
-			    & I_q & \\
-			0 & & 0
+			I_p & 0 & 0\\
+			   0 & I_q & 0 \\
+			0 & 0 & 0
 		\end{pmatrix}.
 	\]
 	If we let $X = \langle v_1, \ldots, v_p \rangle$, then $\phi$ is positive definite on $X$. Indeed, if $u = \sum_{i = 1}^{p} \lambda_i v_i$, then
@@ -3519,7 +3519,7 @@ Similar to the standard inner product over $\mathbb{R}$, we can extend this conc
 Similar to real symmetric matrices, we have the polarization identity for Hermitian matrices.
 
 \begin{proposition}
-	A Hermitian for $\phi$ on a complex vector space $V$ is entirely determined by its $Q : V \to \mathbb{R}$ by $u \mapsto \phi(u, u)$, by the formula
+	A Hermitian form $\phi$ on a complex vector space $V$ is entirely determined by its quadratic form $Q : V \to \mathbb{R}$, $u \mapsto \phi(u, u)$, by the formula
 	\[
 		\phi(u, v) = \frac{1}{4} [Q(u+v) - Q(u-v) + iQ(u+iv) - iQ(u-iv)]
 	.\]
@@ -3534,9 +3534,9 @@ Similar to real symmetric matrices, we have the polarization identity for Hermit
 	\[
 		[\phi]_{\mathcal{B}} =
 		\begin{pmatrix}
-			I_p & & 0 \\
-			    & -I_q & \\
-			0 & 0
+			I_p & 0 & 0 \\
+			    0 & -I_q & 0 \\
+			0 & 0 & 0
 		\end{pmatrix}
 	,\]
 	where $p$ and $q$ depend only on $\phi$.
@@ -3883,65 +3883,65 @@ To prove this, we introduce the following definition.
 \begin{definition}
 	Suppose $V = U \oplus W$, so $U$ is a complement of $W$ in $V$. We define
 	\begin{align*}
-		\Pi : V &\to W \\
+		\pi : V &\to W \\
 		v = u + w &\mapsto w
 	\end{align*}
-	We say $\Pi$ is the \textit{projection operator}\index{projection operator} onto $W$.
+	We say $\pi$ is the \textit{projection operator}\index{projection operator} onto $W$.
 \end{definition}
 
 \begin{remark} 
 	$\id - \pi$ is a projection onto $U$.
 \end{remark}
 
-If $V$ is an inner product space and $W$ is finite dimensional, then we can choose $U = W^{\perp}$, for which $\Pi$ is explicit.
+If $V$ is an inner product space and $W$ is finite dimensional, then we can choose $U = W^{\perp}$, for which $\pi$ is explicit.
 
 \begin{lemma}
 	Let $V$ be an inner product space. Let $W \leq V$, with $W$ finite dimensional. Let $(e_1, \ldots, e_k)$ be an orthonormal basis of $W$. Then,
 	\begin{enumerate}[\normalfont(i)]
-		\item $\Pi(v) = \sum_{i = 1}^{k} \langle v, e_i \rangle e_i$, for all $v \in V$, and $V$ is the orthogonal direct sum of $W$ and $W^{\perp}$,
+		\item $\pi(v) = \sum_{i = 1}^{k} \langle v, e_i \rangle e_i$, for all $v \in V$, and $V$ is the orthogonal direct sum of $W$ and $W^{\perp}$,
 		\item  For all $v \in V$ and $w \in W$ 
 			\[
-			\|v - \Pi(v)\| \leq \|v - w\|
+			\|v - \pi(v)\| \leq \|v - w\|
 			,\]
-			with equality if and only if $w = \Pi(v)$.
+			with equality if and only if $w = \pi(v)$.
 	\end{enumerate}
 \end{lemma}
 
 \begin{remark}
 	This has an infinite dimensional generalization: instead of taking $V$ an inner product space, we can let $V$ be a Hilbert space, and instead of letting $W$ be finite dimensional, we can say that $W$ is closed.
 
-	Geometrically, this says that $\Pi(v)$ is the closest point on $W$ to $v$.
+	Geometrically, this says that $\pi(v)$ is the closest point on $W$ to $v$.
 \end{remark}
 
 \begin{proofbox}
 	For (i), we have $W = \spn \langle e_1, \ldots, e_k \rangle$, where the $(e_i)$ are orthonormal. We can define
 	\[
-	\Pi(v) = \sum_{i = 1}^{k}\langle v, e_i \rangle e_i
+	\pi(v) = \sum_{i = 1}^{k}\langle v, e_i \rangle e_i
 	.\]
 	Then, notice that
 	\[
-		v = \underbrace{\Pi(v)}_{\in W} + (v -  \Pi(v))
+		v = \underbrace{\pi(v)}_{\in W} + (v -  \pi(v))
 	,\]
-	so we wish to show that $v - \Pi(v) \in W^{\perp}$, but notice
+	so we wish to show that $v - \pi(v) \in W^{\perp}$, but notice
 	\begin{align*}
-		& v - \Pi(v) \in W^{\perp} \\
+		& v - \pi(v) \in W^{\perp} \\
 		\iff & \forall w \in W, \quad \langle v - \pi(v), w \rangle = 0 \\
-		\iff & \forall 1 \leq j \leq k, \quad \langle v - \Pi(v), e_j \rangle = 0.
+		\iff & \forall 1 \leq j \leq k, \quad \langle v - \pi(v), e_j \rangle = 0.
 	\end{align*}
 	Computing for all $e_j$,
 	\begin{align*}
-		\langle v - \Pi(v), e_j \rangle &= \biggl \langle v - \sum_{i = 1}^{k} \langle v, e_i \rangle e_i, e_j \biggr\rangle \\
+		\langle v - \pi(v), e_j \rangle &= \biggl \langle v - \sum_{i = 1}^{k} \langle v, e_i \rangle e_i, e_j \biggr\rangle \\
 						&= \langle v, e_j \rangle - \langle v, e_j \rangle = 0,
 	\end{align*}
-	which shows that $v - \Pi(v) \in W^{\perp}$. Hence, since $v = \Pi(v) + (v - \Pi(v))$, $V = W + W^{\perp}$, and we known $W \cap W^{\perp} = \{0\}$, so $V$ is the orthogonal direct sum of $W$ and $W^{\perp}$.
+	which shows that $v - \pi(v) \in W^{\perp}$. Hence, since $v = \pi(v) + (v - \pi(v))$, $V = W + W^{\perp}$, and we known $W \cap W^{\perp} = \{0\}$, so $V$ is the orthogonal direct sum of $W$ and $W^{\perp}$.
 
 	For (ii), let $w \in W$. Then,
 	\begin{align*}
-		\|v - w\|^2 &= \|v - \Pi(v) + \Pi(v) - w\|^2 \\
-			    &= \langle v - \Pi(v) + \Pi(v) - w, v - \Pi(v) + \Pi(v) - w \rangle \\
-			    &= \|v - \Pi(v)\|^2 + \|\Pi(v) - w\|^2 \geq \|v - \Pi(v)\|^2,
+		\|v - w\|^2 &= \|v - \pi(v) + \pi(v) - w\|^2 \\
+			    &= \langle v - \pi(v) + \pi(v) - w, v - \pi(v) + \pi(v) - w \rangle \\
+			    &= \|v - \pi(v)\|^2 + \|\pi(v) - w\|^2 \geq \|v - \pi(v)\|^2,
 	\end{align*}
-	with equality if and only if $w = \Pi(v)$.
+	with equality if and only if $w = \pi(v)$.
 \end{proofbox}
 
 \newpage
@@ -4016,9 +4016,9 @@ If $V$ is an inner product space and $W$ is finite dimensional, then we can choo
 		Over $\mathbb{R}$, we say $\alpha$ is symmetric, and over $\mathbb{C}$, we say $\alpha$ is Hermitian.
 	\item $\alpha$ is an \textit{isometry}\index{isometry} if
 		\[
-		\forall (v, w) \in V \times W, \langle \alpha v, \alpha w \rangle = \langle v, w \rangle \iff \alpha^{\ast} = \alpha^{-1}
+		\forall (v, w) \in V \times V, \langle \alpha v, \alpha w \rangle = \langle v, w \rangle \iff \alpha^{\ast} = \alpha^{-1}
 		.\]
-		Over $\mathbb{R}$, we say $\alpha$ is orthogonal, and over $\mathbb{C}$ we say $\alpha$ is unitary\index{unitary}.
+		Over $\mathbb{R}$, we say $\alpha$ is orthogonal,\index{orthogonal map} and over $\mathbb{C}$ we say $\alpha$ is unitary\index{unitary map}.
 	\end{enumerate}
 \end{definition}
 
@@ -4129,7 +4129,7 @@ Spectral theory is the study of the \textit{spectrum} of operators. This is very
 				&= \langle v, \alpha^{\ast} v \rangle = \langle v, \alpha v \rangle \\
 				&= \langle v, \lambda v \rangle = \overline{\lambda} \|v\|^2.
 	\end{align*}
-	Since $v \neq 0$, $\|v\| \neq 0$, so $\lambda = \overline{\lambda}$, and so $\lambda in \mathbb{R}$.
+	Since $v \neq 0$, $\|v\| \neq 0$, so $\lambda = \overline{\lambda}$, and so $\lambda \in \mathbb{R}$.
 
 	Now, for (ii) take two distinct eigenvalues $\lambda, \mu$ with eigenvectors $v, w$ respectively, so $\alpha v = \lambda v$, $\alpha w = \mu w$, with $\lambda, \mu \in \mathbb{R}$, $v, w \neq 0$ and $\lambda \neq mu$. Then,
 	\begin{align*}
