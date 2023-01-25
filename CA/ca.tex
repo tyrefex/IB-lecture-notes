@@ -1,0 +1,233 @@
+%%% TO DO %%%
+% implement siunitx package and change units
+
+\documentclass[12pt]{article}
+
+\usepackage{ishn}
+
+\makeindex[intoc]
+
+\begin{document}
+
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+	\begin{center}
+		\vspace*{1em}
+		\Huge
+		\textbf{IB Complex Analysis}
+
+		\vspace{1em}
+		\large
+		Ishan Nath, Lent 2023
+
+		\vspace{1.5em}
+
+		\Large
+
+		Based on Lectures by Prof. Holly Krieger
+
+		\vspace{1em}
+
+		\large
+		\today
+	\end{center}
+	
+\end{titlepage}
+\hypersetup{pageanchor=true}
+
+\tableofcontents
+
+\newpage
+
+\section{Complex Differentiation}
+\label{sec:complex_differentiation}
+
+Our goal in this course is to study the theory of complex-valued differentiable functions in one complex variable. Example include:
+\begin{itemize}
+	\item Polynomials $p(z) = a_dz^{d} + \cdots + a_1 z + a_0$, with coefficients in $\mathbb{R}, \mathbb{Q}, \mathbb{Z}$ or $\mathbb{C}$.
+	\item The infinite series
+		\[
+		\sum_{n = 1}^{\infty} \frac{1}{n^{z}}
+		,\]
+		which we showed convergence for $z$ having real part greater than $1$.
+	\item Harmonic functions\index{harmonic function} $u(x, y) : \mathbb{R}^2 \to \mathbb{R}$, $u_{xx} + u_{yy} = 0$.
+\end{itemize}
+
+In this course, we make the convention that $\theta = \arg(z) \in [0, 2\pi)$.
+
+\subsection{Basic Notions}
+\label{sub:basic_notions}
+
+\begin{itemize}
+	\item $U \subset \mathbb{C}$ is \emph{open}\index{open} if for all $u \in U$, there exists $\eps > 0$ such that
+		\[
+			\Delta(x, \eps) = \{z \in \mathbb{C} \mid |z - u| < \eps\} \subset U
+		.\]
+	\item A \emph{path}\index{path} in $U \subset \mathbb{C}$ is a continuous map $\gamma : [a, b] \to U$. We say the path is $C^{1}$ if $\gamma'$ exists and is continuous (we take one-sided derivatives at the endpoints).
+
+		$\gamma$ is \emph{simple}\index{simple} if it is injective.
+	\item $U \subset \mathbb{C}$ is \emph{path-connected}\index{path-connected} if for all $z, w \in U$, there exists a path in $U$ with endpoints at $z, w$.
+\end{itemize}
+\begin{remark}
+	If $U$ is open, and $z, w \in U$ are connected by a path $\gamma$ in $U$, then there exists a path $\gamma$ in $U$ connected $z, w$ consisting of finitely many horizontal and vertical segments.
+\end{remark}
+
+\begin{definition}
+	A \emph{domain}\index{domain} is a non-empty, open, path-connected subset of $\mathbb{C}$.
+\end{definition}
+
+\begin{definition}
+	\begin{enumerate}[(i)]
+		\item[]
+		\item $f : U \to \mathbb{C}$ is \emph{differentiable}\index{complex differentiable} at $u \in U$ if
+			\[
+			f'(u) = \lim_{z \to u} \frac{f(z) - f(u)}{z - u}
+			\]
+			exists.
+		\item $f : U \to \mathbb{C}$ is \emph{holomorphic}\index{holomorphic} at $u \in U$ if there exists $\eps > 0$ such that $f$ is differentiable at $z$, for all $z \in \Delta(u, \eps)$. We may also call such a function \emph{analytic}\index{analytic}.
+		\item $f : \mathbb{C} \to \mathbb{C}$ is \emph{entire}if it is holomorphic everywhere.
+	\end{enumerate}
+\end{definition}
+
+\begin{remark}
+	All differentiation rules (sum, products, ...) in $\mathbb{R}$ hold, by the same proofs.
+\end{remark}
+
+Identifying $\mathbb{C}$ with $\mathbb{R}^2$, we may write $f : U \to \mathbb{C}$ as $f(x+iy) = u(x,y) + iv(x, y)$, where $u, v$ are the real and imaginary parts of $f$.
+
+From analysis and topology, recall that $u : U \to \mathbb{R}$ as a function of two real variables if $(\mathbb{R}^2)$ differentiable at $(c, d) \in \mathbb{R}^2$with $Du|_{(c,d)} = (\lambda, \mu)$ if
+\[
+	\frac{u(x,y) - u(c,d) - [\lambda(x-c) + \mu(y-d)]}{\sqrt{(x-c)^2 + (y-d)^2}} \to 0
+,\]
+as $(x, y) \to (c, d)$. However, \textbf{this is a weaker condition} than differentiability over $\mathbb{C}$.
+
+\begin{proposition}[Cauchy-Riemann equations]\index{Cauchy-Riemann equations}
+	Let $f : U \to \mathbb{C}$ on an open set $U \subset \mathbb{C}$. Then $f$ is differentiable at $w = c+id \in U$ if and only if, writing $f = u + iv$, we have $u, v$ are $\mathbb{R}^2$-differentiable at $(c, d)$, and
+	\begin{align*}
+		u_{x} &= v_y, & u_y &= -v_x.
+\end{align*}
+\end{proposition}
+
+\begin{proofbox}
+	$f$ is differentiable at $w$ if and only if $f'(w) = p + iq$ exists, so
+	\[
+	\lim_{z \to w}\frac{f(z) - f(w) - (z - w)(p + iq)}{|z - w| = 0}
+	.\]
+	Writing $f = u + iv$ and considering the real and imaginary parts in the quotient above, this holds if and only if
+	\[
+		\lim_{(x, y) \to (c, d)} \frac{u(x, y) - u(c, d) - [p(x-c) - q(y-d)]}{\sqrt{(x - c)^2 + (y - d)^2}} = 0
+	,\]
+	and
+	\[
+		\lim_{(x, y) \to (c, d)} \frac{v(x, y) - v(c, d) - [q(x-c) + p(y-d)]}{\sqrt{(x-c)^2+(y-d)^2}} = 0
+	.\]
+	This holds if and only if $u, v$ are $\mathbb{R}^2$-differentiable at $(c, d)$, and $u_x = v_y$, $u_y = -v_x$.
+\end{proofbox}
+
+\begin{remark}
+	If the partial $u_x, u_y, v_x, v_y$ exist and are continuous on $U$, then $u, v$ are differentiable on $U$. So it suffices to check the partials exist and are continuous, and the Cauchy-Riemann equations hold to deduce complex differentiability.
+\end{remark}
+
+\begin{exbox}
+	\begin{enumerate}
+		\item Take $f(z) = \overline{z}$. Then $f$ has $u(x, y) = x$ and $v(x, y) = -y$, so $u_x = 1$, $v_y = -1$. So $f(z) = \overline{z}$ is not holomorphic or differentiable anywhere.
+		\item Any polynomial $p(z) = a_d z^{d} + \cdots + a_1z + a_0$, with $a_i \in \mathbb{C}$ is entire.
+		\item Rational function\index{rational functions}, which are quotients of polynomials $\frac{p(z)}{q(z)}$ are holomorphic on the open set $\mathbb{C}\setminus\{\text{zeroes of } q\}$.
+	\end{enumerate}
+\end{exbox}
+
+Note that $f = u + iv$ satisfying the Cauchy-Riemann equations at a point does not mean it is differentiable at that point.
+
+Some proofs in regular analysis have natural extensions to complex analysis. For example, if $f : U \to \mathbb{C}$ on a domain $U$ with $f'(z) = 0$ on $U$, then $f$ is constant on $U$.
+
+Now we ask: why are we interested in complex analysis?
+\begin{itemize}
+	\item Unlike $\mathbb{R}^2$ differentiable functions, holomorphics functions are very constrained. For example, if $f$ is entire and bounded (so $|f(z)| < M$ for all $z \in \mathbb{C}$), then $f$ is constant. Contrast with $\sin$, for example.
+	\item We will see that $f$ holomorphic on a domain $U$ has holomorphic derivative on $U$. This implies that $f$ is infinitely differentiable, as are $u$ and $v$.
+\end{itemize}
+In particular, we can differentiate the Cauchy-Riemann equations to get
+\[
+u_{xx} = v_{yx} = v_{xy} = -u_{yy}
+,\]
+so $u_{xx} + u_{yy} = 0$, and similarly $v_{xx} + v_{yy} = 0$. Hence the real and imaginary parts of a holomorphic function are harmonic.
+
+Let $f : U \to \mathbb{C}$ be a holomorphic function on an open set $U_1$ and $w \in U$ with $f'f(w) \neq 0$. We want to look at the geometric behaviour of $f$ at $w$.
+
+In fact, we claim $f$ is \emph{conformal}\index{conformal} at $w$. Let $\gamma_1, \gamma_2$ be $C^{1}$-paths through $w$, say $\gamma_1, \gamma_2 : [-1,1] \to U_1$, such that $\gamma_1(0) = \gamma_2(0) = w$, and $\gamma_i'(0) \neq 0$. If we write $\gamma_j(t) = w + r_j(t) = e^{i \theta_j(t)}$, then we have
+\[
+\arg(\gamma_j'(z)) = \theta_j(0)
+,\]
+and the argument of the image line is
+\[
+\arg((f \circ \gamma_j)'(0)) = \arg(\gamma_j'(0) f'(\gamma_j(0))) = \arg(\gamma_j'(0)) + \arg(f'(w)) + 2 \pi n
+,\]
+where crucially we use $\gamma_j'(0) f'(\gamma_j(0)) \neq 0$, so the direction of $\gamma_j$ at $w$ under the application of $f$ is rotated by $\arg(f'(w))$. This is independent of $\gamma_j$. Since the angle between $\gamma_1$ and $\gamma_2$ is the difference of the arguments $f$ preserves the angle. This is what it means to be conformal.
+
+\begin{definition}
+	Let $U, V$ be domains in $\mathbb{C}$. A map $f : U \to V$ is a \emph{conformal equivalence}\index{conformal equivalence} of $U$ and $V$ if $f$ is a bijective holomorphic map with $f'(z) \neq 0$, for all $z \in U$.
+\end{definition}
+
+\begin{remark}
+	\begin{enumerate}[1.]
+		\item[]
+		\item Using the real inverse function theorem, one can show if $f : U \to V$ is a holomorphic bijection of open sets with $f'(z) \neq 0$ for all $z \in U$, then the inverse of $f$ is also holomorphic, so also conformal by the chain rule. So conformally equivalent domains are equal from the perspective of the functions $f$.
+		\item We will later see than being injective and holomorphic on a domain implies $f'(z) \neq 0$ for all $z \in U$, so this requirement is redundant.
+	\end{enumerate}	
+\end{remark}
+
+\begin{exbox}
+	\begin{enumerate}[1.]
+		\item Any change of coordinates: on $\mathbb{C}$, take $f(z) = az + b$, for $a \neq 0$ and $b$, which is a conformal equivalence $\mathbb{C} \to \mathbb{C}$. More generally, a M\"{o}bius map
+			\[
+			f(z) = \frac{az + b}{cz + d},
+			\]
+			for $ad - bc \neq 0$, is a conformal equivalence from the Riemann sphere to itself. This can eb seen as adding a point at infinity to make a sphere $\mathbb{C}_{\infty}$ (or gluing two copies of the unit disc with coordinates $z$ and $\frac{1}{z}$).
+
+			If $f : \mathbb{C}_{\infty} \to \mathbb{C}_{\infty}$ is continuous, then
+			\begin{itemize}
+				\item if $f(\infty) = \infty$, then $f$ is holomorphic at $\infty$ if and only if $g(z) = \frac{1}{f(\frac{1}{z})}$ is holomorphic at $0$.
+				\item If $f(\infty) \neq \infty$, then $f$ is homolorphic at $\infty$ if and only if $f(\frac{1}{z})$ is holomorphic at $0$.
+				\item If $f(a) = \infty$ for $a \in \mathbb{C}$, then $f$ is holomorphic at $a$ if and only if $\frac{1}{f(z)}$ is holomorphic at $a$.
+			\end{itemize}
+			We can then think of M\"{o}bius maps as change of coordinates for the sphere.
+
+			Choosing $z_1 \to 0$, $z_2 \to \infty$, $z_3 \to 1$ defined a M\"{o}bius map
+			\[
+			f(z) = \frac{z - z_1}{z - z_2} \cdot \frac{z_3 - z_2}{z_3 - z_1}
+			,\]
+			for distinct $z_1, z_2, z_3 \in \mathbb{C}$.
+		\item For $n \in \mathbb{N}$, $f(z) = z^{n}$ is a conformal equivalence from the sector $\{z \in \mathbb{C}^{\times} \mid 0 < \arg z < \frac{\pi}{n}\}$ to the upper half plane $\mathbb{H} = \{z \in \mathbb{C} \mid \Im z > 0\}$.
+		\item The M\"{o}bius map $f(z) = \frac{z-i}{z+i}$ is a conformal equivalence between $\mathbb{H}$ and $D(0,1)$. We can compute $f'(z) \neq 0$ on $\mathbb{H}$, and
+			\begin{align*}
+				z \in \mathbb{H} & \iff |z-i| < |z+i| \iff |f(z)) < 1.
+			\end{align*}
+			Note that $f^{-1}(w) = -i \frac{w+1}{w-1}$.
+		\item We can use these examples to write down conformal equivalences. Let $U_1$ be the upper half semicircle, and $U_2$ the lower half plane. Considering $g(z) = \frac{z+1}{z-1}$, we know that sends $D(0,1)$ to the left half-plane, so it sends $U_1$ to the upper left quadrant.
+
+			Then, the upper left quadrant if mapped by the squaring map to $U_2$. So $f(z) = (\frac{z+1}{z-1})^2$ is a conformal equivalence from $U_1 \to U_2$.
+	\end{enumerate}
+\end{exbox}
+
+These are all examples of the deep \emph{Riemann mapping theorem}\index{Riemann mapping theorem}:
+
+\begin{theorem}[Riemann mapping theorem]
+	Let $U \subset \mathbb{C}$ be a proper domain which is simply connected. Then there exists a conformal equivalence between $U$ and $D(0,1)$.
+\end{theorem}
+
+Here, \emph{simply connected}\index{simply connected} means a subset $U \subset \mathbb{C}$ which is path-connected, and contractible: any loop in $U$ can be contracted to a point. So any continuous path $\gamma : S^{1} \to U$ extends to a continuous map $\hat \gamma : D(0,1) \to U_1$ with $\hat \gamma|_{S_1} = \gamma$.
+
+In fact any domain bounded by a simple closed curve is simply connected, so all of these are conformally equivalent to $D(0,1)$.
+
+\begin{exbox}
+	We look at a domains in the Riemann sphere, with bounded and connected complement. This is simply connected as a subset of $\mathbb{C}_{\infty}$.
+
+	Now, the Mandelbrot set is bounded and connected, so the complement of the Mandelbrot set is simply connected in $\mathbb{C}_{\infty}$.
+\end{exbox}
+
+
+
+\newpage
+
+\printindex
+
+\end{document}

@@ -1,0 +1,268 @@
+%%% TO DO %%%
+
+\documentclass[12pt]{article}
+
+\usepackage{ishn}
+\usepackage{relsize}
+\DeclareMathOperator{\hash}{\sharp}% connected sum
+
+\makeindex[intoc]
+
+\begin{document}
+
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+	\begin{center}
+		\vspace*{1em}
+		\Huge
+		\textbf{IB Geometry}
+
+		\vspace{1em}
+		\large
+		Ishan Nath, Lent 2023
+
+		\vspace{1.5em}
+
+		\Large
+
+		Based on Lectures by Prof. Gabriel Paternain
+
+		\vspace{1em}
+
+		\large
+		\today
+	\end{center}
+	
+\end{titlepage}
+\hypersetup{pageanchor=true}
+
+\tableofcontents
+
+\newpage
+
+\section{Surfaces}
+\label{sec:surfaces}
+
+\begin{definition}
+	A \emph{topological surface}\index{topological surface} is a topological space $\Sigma$ such that
+	\begin{enumerate}[(a)]
+		\item for all $p \in \Sigma$, there is an open neighbourhood $p \in U \subset \Sigma$ such that $U$ is homeomorphic to $\mathbb{R}^2$, or a disc $D^2 \subset \mathbb{R}^2$, with its usual Euclidean topology.
+		\item $\Sigma$ is Hausdorff and second countable.
+	\end{enumerate}
+\end{definition}
+
+\begin{remark}
+	\begin{enumerate}
+		$\mathbb{R}^2 \simeq D(0,1) = \{x \in \mathbb{R}^2 \mid \|x\| \leq 1\}$.
+		\item A space $X$ is \emph{Hausdorff}\index{Hausdorff} if for $p \neq q$ in $X$, there exist disjoint open sets $U, V$ with $p \in U, q \in V$.
+
+			A space is \emph{second countable}\index{second countable} if it has a countable base, i.e there exist open sets $\{U_i\}_{i \in \mathbb{N}}$, such that every open set is a union of some of the $U_i$.
+
+			The key point of defining surfaces is point (a), point (b) is for ruling out surfaces that are too weird.
+		\item If $X$ is Hausdorff or second countable, then so are subspaces of $X$. Moreover Euclidean space has these properties (to show it is second countable, consider open balls $B(c, r)$ with $c \in \mathbb{Q}^{n} \subset \mathbb{R}^{n}$, and $r \in \mathbb{Q}_{+} \subset \mathbb{R}_{+}$).
+	\end{enumerate}
+\end{remark}
+
+\begin{exbox}
+	\begin{enumerate}[(i)]
+		\item The plane $\mathbb{R}^2$.
+		\item Any open set in $\mathbb{R}^2$ is a surface, i.e. $R^2 \setminus Z$ where $Z$ is closed is a surface.
+		\item Graphs of functions. Suppose $f : \mathbb{R}^2 \to \mathbb{R}$ is continuous. Then the graph of $f$ is
+			\[
+				\Gamma_f = \{(x, y, f(x, y)) \mid (x, y) \in \mathbb{R}^2\}
+			.\]
+			This is a subspace of $\mathbb{R}^3$, so we can endow it with the subspace topology. We claim it is a subspace homeomorphic to $\mathbb{R}^2$.
+	\end{enumerate}
+	Recall that if $X, Y$ are topological spaces, then the product topology $X \times Y$ has a basis of open sets $U \times V$, where $U \subset X$, $V \subset Y$ are open
+
+	A feature is that if $g : Z \to X \times Y$ is continuous if and only if $\Pi_x \circ g : Z \to X$ and $\Pi_y \circ g : Z \to Y$ are continuous, where $\Pi_x$, $\Pi_y$ are the canonical projectors.
+	\begin{enumerate}[resume*]
+		\item[]We can now show that if $f : X \to Y$ is continuous, then $\Gamma_f \subset X \times Y$ is homeomorphic to $X$, as $s(x) = (x,f(x))$ is a continuous function from $X$ to $\Gamma_f$, $\Pi_x|_{\Gamma_f}$ and $s$ are inverse homeomorphisms.
+
+		In particular, for our example $\Gamma_f \simeq \mathbb{R}^2$. So any $f : \mathbb{R}^2 \to \mathbb{R}$ continuous produces a surface $\Gamma_f$.
+	\item The sphere: $S^2 = \{(x, y, z) \in \mathbb{R}^3 \mid x^2 + y^2 + z^2 = 1\}$ (with the subspace topology). To show this is a surface, we can consider the stereographic projection $\Pi_{+}: S^2 \setminus\{(0,0,1)\} \to \mathbb{R}^2$:
+			\[
+				(x, y, z) \mapsto \biggl( \frac{x}{1-z}, \frac{y}{1-z} \biggr)
+			.\]
+	Then $\Pi_{+}$ is continuous and has an inverse
+	\[
+		(u, v) \mapsto \biggl( \frac{2u}{u^2 + v^2 + 1}, \frac{2v}{u^2 + v^2 + 1}, \frac{u^2 + v^2 - 1}{u^2 + v^2 + 1} \biggr)
+	.\]
+	So $\Pi_{+}$ is a continuous bijection with continuous inverse, and hence a homeomorphism.
+
+	Similarly, taking a stereographic projection from the south pole $\Pi_{-} : S^2 \setminus \{(0, 0, -1)\} \to \mathbb{R}^2$, by
+	\[
+		(x, y, z) \mapsto \biggl( \frac{x}{1+z}, \frac{y}{1+z} \biggr)
+	\]
+	is another homeomorphism. Hence $S^2$ is a topological surface, as the open sets $S^2 \setminus \{(0, 0, 1)\}$ and $S^2 \setminus \{(0, 0, -1)\}$ cover $S^2$, and it is Hausdorff and second countable as it is a subspace of $\mathbb{R}^3$.
+\item The \emph{real projective plane}\index{real projective plane}. The group $\mathbb{Z}_2$ acts on $S^{2}$ by homeomorphisms, via the antipodal map
+	\begin{align*}
+		a : S^2 &\to S^2 \\
+		a(x, y, z) &\mapsto (-x, -y, -z)
+	\end{align*}
+	\end{enumerate}
+\end{exbox}
+\begin{definition}
+	The real projective plane is the quotient of $S^2$ by identifying every point with its antipodal image:
+	\[
+	\mathbb{RP}^2 = S^2/\mathbb{Z}_2 = S^2/\sim
+	.\]
+\end{definition}
+
+\begin{lemma}
+	As a set, $\mathbb{RP}^2$ is naturally in bijection with the set of straight lines through $0$.
+\end{lemma}
+
+This is because any straight line through $0 \in \mathbb{R}^3$ intersects $S^2$ in exactly a pair of antipodal points, and each such pair determines a straight line.
+
+\begin{lemma}
+	$\mathbb{RP}^2$ is a topological surface with the quotient topology.
+\end{lemma}
+
+Recall the quotient topology: given the quotient map $q : X \to Y$, we say $V \subset Y$ is open if and only if $q^{-1}(V) \subset X$ is open in $X$.
+
+\begin{proofbox}
+	First we show that $\mathbb{RP}^2$ is Hausdorff. If $[p] \neq [q] \in \mathbb{RP}^2$, then $\pm p$, $\pm q$ are distinct, antipodal pairs.
+
+	We take open discs centred on $p$ and $q$ and their antipodal images, such that no two discs intersect. The images of these discs give open images of $[p]$ and $[q]$ in $\mathbb{RP}^2$. Indeed, $q(B_{\delta}(p))$ is open since $q^{-1}(q(B_{\delta}(p))) = B_{\delta}(p) \cup (-B_{\delta}(p))$.
+
+	Now we show $\mathbb{RP}^2$ is second countable. Let $U$ be a countable base of $S^2$, and let $\overline{U} = \{q(u) \mid u \in U\}$. Then $q(u)$ is open, as $q(u) = u \cup (-u)$, and $\overline{U}$ is clearly countable as $U$ is.
+
+	Take $V \subset \mathbb{RP}^2$ open. By definition, $q^{-1}(V)$ is open, so let $q^{-1}(V) = \bigcup U_{\alpha}$, for $U_{\alpha} \in U$. Then
+	\[
+	V = q(q^{-1}(V)) = q\biggl( \bigcup_{\alpha} U_{\alpha}\biggr) = \bigcup_{\alpha}q(U_{\alpha})
+	.\]
+
+	Finally, let $p \in S^2$ and $[p] \in \mathbb{RP}^2$ be its image. Let $\overline{D}$ be a small closed disc neighbourhood of $p \in S^2$, so that $q|_{\overline{D}}$ is injective and continuous, and has image a Hausdorff space.
+
+	Now recall that a countinuous bijection from a compact space to a Hausdorff space is a homeomorphism.
+
+	So $q|_{\overline{D}} : \overline{D} \to q(\overline{D)}$ is a homeomorphism. This induces a homeomorphism
+	\[
+	q|_D : D \to q(D) \subset \mathbb{RP}^2
+	,\]
+	where $D$ is an open disc contained in $\overline{D}$. So $[p] \in q(D)$ has an open neighbourhood in $\mathbb{RP}^2$ homeomorphic to an open disc.
+\end{proofbox}
+
+\begin{exbox}
+	We continue looking at examples of surfaces.
+	\begin{enumerate}[(i)]
+		\setcounter{enumi}{5}
+		\item Let $S^{1}=  \{z \in \mathbb{C} \mid |z| = 1\}$. Then the \emph{torus}\index{torus} is $S^{1} \times S^{1}$ with the subspace topology of $\mathbb{C}^2$ (this is the same as taking the product topology).
+	\end{enumerate}
+\end{exbox}
+
+\begin{lemma}
+	The torus is a topological surface.
+\end{lemma}
+
+\begin{proofbox}
+	We consider the map
+	\begin{align*}
+		\mathbb{R}^2 &\overset{e}{\to} S^{1} \times S^{1} \subset \mathbb{C} \times \mathbb{C} \\
+		(s, t) & \mapsto (e^{2\pi i s}, e^{2 \pi i t}).
+	\end{align*}
+	We can view this map using the following diagram:
+	\begin{center}
+		\begin{tikzcd}[column sep = small]
+		\mathbb{R}^2 \arrow[r, "e"] \arrow[d,"q"] & S^{1} \times S^{1} \\
+		\mathbb{R}^2/\mathbb{Z}^2 \arrow[ru, "{\hat e}", dashed] &
+	\end{tikzcd}
+	\end{center}
+	There is an equivalence relation on $\mathbb{R}^2$ given by translating by $\mathbb{Z}^2$. Now consider the map
+	\[
+		[0,1]^2 \injto \mathbb{R}^2 \overset{q}{\to} \mathbb{R}^2/\mathbb{Z}^2
+	\]
+	is onto, so $\mathbb{R}^2/\mathbb{Z}^2$ is compact. Now note that $\hat e$ is a continuous bijection, so since it is onto a Hausdorff space, it is a homeomorphism.
+
+	Similar to $\mathbb{RP}^2$, for $[p] \in q(p)$, take a small closed disc $\overline{D} \subset \mathbb{R}^2$ such that, for all $(m, n) \in \mathbb{Z}^2$, $\overline{D} \cap (\overline{D} + (m, n)) = \emptyset$.
+
+	Then $e|_{\overline{D}}$ and $q|_{\overline{D}}$ are injective. Now restricting to an open disc as before, we get an open disc as a neighbourhood of $[p]$, so $S^{1} \times S^{1}$ is a topological surface.
+\end{proofbox}
+
+Another viewpoint for a torus is by imposing on $[0,1]^2$ the equivalence relations
+\begin{align*}
+	(x, 0) &\sim (x, 1), & (0, y) &\sim (1, y).
+\end{align*}
+
+\begin{exbox}
+	We look at yet another example of a surface.
+	\begin{enumerate}[(i)]
+		\setcounter{enumi}{6}
+		\item Let $P$ be a planar Euclidean polyon. Assume that the edges are oriented and paired, and for simplicity assume the Euclidean lengths of $e$ and $\hat e$ are equal if $\{e, \hat e\}$ are paired.
+
+			Label by letters, and describe the orientation by a sign of $\pm$ relative to the clockwise orientation in $\mathbb{R}^2$.
+
+			More precisely, if $\{e, \hat e\}$ are paired edges, there is a unique isometry from $e$ to $\hat e$ respecting their orientations, say
+			\[
+			f_{e \hat e} : e \to \hat e
+			.\]
+			These maps generate an equivalence relation on $P$, where we identify $x \in \partial P$ with $f_{e \hat e}(x)$ whenever $x \in e$.
+	\end{enumerate}
+\end{exbox}
+
+\begin{lemma}
+	$P/\sim$ (with the quotient topology) is a topological surface.
+\end{lemma}
+
+\begin{proofbox}
+	We begin by looking at a special case of the torus $T^2$ as $[0,1]^2/\sim$. Then if $p$ is an interior point, we pick $\delta > 0$ small such that $\overline{B_{\delta}(p)}$ lies in the interior of the polygon $P$. Now we argue as before: the quotient map is injective on $\overline{B_{\delta}(p)}$ and is a homeomorphism on its interior.
+
+	Now suppose $p$ is on an edge of $P$, but not a vertex. The idea is to take the two points in $q^{-1}(p)$, take half discs around them, and join them up to form a disc.
+
+	Say $p = (0, y_0) \sim (1, y_0) = p'$. Take $\delta$ small enough so the half discs of radius $\delta$ do not meet the vertices and don't intersect. Let $U$ be the half disc around $p$ and $V$ the half disc around $p'$.
+
+	Define a map as follows:
+	\begin{align*}
+		U : (x, y) &\overset{f_u}{\to} (x, y - y_0), \\
+		V : (x, y) & \overset{f_v}{\to} (x - 1, y - y_0).
+	\end{align*}
+	We want to show these maps glue well together. To do this, we use the following fact:
+
+	If $X = A \cup B$, $A$ and $B$ are closed, and $f : A \to Y$ and $g : B \to Y$ are continuous and $f|_{A \cap B} = g|_{A \cap B}$, then they define a continuous map on $X$.
+
+	Now $f_u$ and $f_v$ are continuous on $U, V \subset [0,1]^2$, so they induce continuous maps on $q(U)$ and $q(V)$.
+
+	In $T^2$, the intersection of the discs overlap on the paired edges, but our maps agree, so they are compatible with the equivalence relation. Hence $f_u$ and $f_v$ give a continuous map on an open image of $[p] \in T^2$ to $\mathbb{R}^2$. By the usual argument, we can show if $[p] \in T^2$ lies on an edge of $P$ it has a neighbourhood homeomorphic to a disc.
+
+	Finally, we look at a vertex of $[0,1]^2$. In the image, there is really only one vertex. To find a homeomorphism to the open disc, we can take four quarter circles at each corner, and glue them appropriately.
+
+	For a general polygon, it is a similar idea. Interior and edge points are done analogously to $T^2$. For vertices, it is a bit different. We have different equivalence classes of vertices caused by orienting the edges in different ways.
+
+	If $v$ is a vertex of $P$ with $k$ vertices in its equivalence class, then we have $k$ sectors in $P$. Any sector can be identified with out favourite sector in $\mathbb{R}^2$, i.e. $(r, \theta) \in \mathbb{R}^2$ with $0 \leq r < \delta$ and $\theta \in [0, 2\pi/k]$. Gluing these together, we get an open disc as a neighbourhood of $v$.
+
+	This works unless $k = 1$, in which case we have two paired edges coming into or out of a vertex in $P$. But this is homeomorphic to a cone, which is homeomorphic to a disc.
+
+	These neighbourhoods of points in $P/\sim$ show that $P$ is locally homeomorphic to a disc, and we can easily check that $P/\sim$ is Hausdorff and second countable.
+\end{proofbox}
+
+\begin{exbox}
+	One more example now.
+	\begin{enumerate}[(i)]
+		\setcounter{enumi}{7}
+		\item We now consider connecting surfaces. Given topological surfaces $\Sigma_1$ and $\Sigma_2$, we can remove an open disc from each, and glue the resulting boundary circles.
+
+			Explicitly, we take $\Sigma \setminus D_1 \cup \Sigma_2 \setminus D_2$ as a disjoint union, and impose the quotient relation
+			\[
+			\theta \in \partial D_1 \sim \theta \in \partial D_2
+			,\]
+			where $\theta$ parametrizes $S^{1} = \partial D_i$.
+
+			The result $\Sigma_1 \hash \Sigma_2$ is called the \emph{connected sum}\index{connected sum} of $\Sigma_1$ and $\Sigma_2$.
+
+			In principle, this depends on the choices of discs, and it takes some effort to prove that it is well-defined.
+	\end{enumerate}
+\end{exbox}
+
+\begin{lemma}
+	The connected sum $\Sigma_1 \hash \Sigma_2$ is a topological surface.
+\end{lemma}
+
+We will not prove this lemma in this course.
+
+
+\newpage
+
+\printindex
+
+\end{document}

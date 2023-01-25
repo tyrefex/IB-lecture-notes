@@ -1,0 +1,306 @@
+%%% TO DO %%%
+% implement siunitx package and change units
+
+\documentclass[12pt]{article}
+
+\usepackage{ishn}
+\usepackage{siunitx}
+\usepackage{etoolbox}
+
+\makeindex[intoc]
+
+\begin{document}
+\robustify\dots
+\sisetup{input-digits = 0123456789\dots}
+
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+	\begin{center}
+		\vspace*{1em}
+		\Huge
+		\textbf{IB Electromagnetism}
+
+		\vspace{1em}
+		\large
+		Ishan Nath, Lent 2023
+
+		\vspace{1.5em}
+
+		\Large
+
+		Based on Lectures by Prof. Gordon Ogilvie
+
+		\vspace{1em}
+
+		\large
+		\today
+	\end{center}
+	
+\end{titlepage}
+\hypersetup{pageanchor=true}
+
+\tableofcontents
+
+\newpage
+
+\section{Introduction}
+\label{sec:introduction}
+
+\subsection{Charges and Currents}
+\label{sub:charges_and_currents}
+
+\emph{Electric charge}\index{electric charge} is a physical property of elementary particles. It is:
+\begin{itemize}
+	\item Positive, negative or zero.
+	\item Quantized (an integer multiple of the \emph{elementary charge} $e$).
+	\item Conserved (even if particles are created or destroyed).
+\end{itemize}
+
+By convention, the electron has charge $-e$, the proton has charge $+e$, and the neutron has charge $0$.
+
+On macroscopic scales, the number of particles is so large that charge can be considered to have continuous \emph{electric charge density}\index{electric charge density} $\rho(\mathbf{x},t)$. The total charge in a volume $V$ is then
+\[
+Q = \int_{V} \rho \diff V
+.\]
+
+The \emph{electric current density}\index{electric charge density} $\mathbf{J}(\mathbf{x}, t)$ is the flux of electric charge per unit area. The current flowing through a surface $S$ is
+\[
+I = \int_{S} \mathbf{J} \cdot \diff \mathbf{S}
+.\]
+
+Consider a time-independent volume $V$ with boundary $S$. Since charge is conserved, we have
+\begin{align*}
+	\frac{\diff Q}{\diff t} &= -I, \\
+	\frac{\diff}{\diff t} \int_{V} \rho \diff V + \int_{S} \mathbf{J} \cdot d \mathbf{S} &= 0, \\
+	\int_{V} \biggl( \frac{\partial \rho}{\partial t} + \nabla \cdot \mathbf{J} \biggr) \diff V &= 0.
+\end{align*}
+Since this is true for any $V$, we must have
+\[
+\frac{\partial \rho}{\partial t} + \nabla \cdot \mathbf{J} = 0
+.\]
+
+This \emph{equation of charge conservation}\index{equation of charge conservation} has the typical form of a conservation law.
+
+The discrete charge distribution of a single particle of charge $q_i$, and position vector $\mathbf{x}_i(t)$ is
+\begin{align*}
+	\rho &= q_i \delta( \mathbf{x} - \mathbf{x}_i(t)), \\
+	\mathbf{J} &= q_i \mathbf{\dot x}_i \delta(\mathbf{x} - \mathbf{x}_i(t)).
+\end{align*}
+For $N$ particles, it is
+\begin{align*}
+	\rho &= \sum_{i = 1}^{N} q_i \delta(\mathbf{x} - \mathbf{x}_i(t)), \\
+	\mathbf{J} &= \sum_{i = 1}^{N} q_i \mathbf{\dot x}_i \delta(\mathbf{x} - \mathbf{x}_i(t)).
+\end{align*}
+We can verify that these distributions satisfy the charge conservation equation.
+
+\subsection{Fields and Forces}
+\label{sub:fields_and_forces}
+
+Electromagnetism is a \emph{field theory}\index{field theory}. Charged particles interact not directly, but by generating fields around them that are experienced by other charged particles.
+
+In general, we have two time-dependent vector fields: the \emph{electric field}\index{electric field} $\mathbf{E}(\mathbf{x}, t)$, and the \emph{magnetic field}\index{magnetic field} $\mathbf{B}(\mathbf{x}, t)$.
+
+The \emph{Lorentz force}\index{Lorentz force} on a particle of charge $q$ and velocity $\mathbf{v}$ is
+\[
+\mathbf{F} = q(\mathbf{E} + \mathbf{v} \times \mathbf{B})
+.\]
+
+\subsection{Maxwell's equations}
+\label{sub:maxwells_equations}
+
+In this course we will explore some consequences of \emph{Maxwell's equations}\index{Maxwell's equations}
+\begin{align*}
+	\nabla \cdot \mathbf{E} &= \frac{\rho}{\epsilon_0}, & \nabla \cdot \mathbf{B} &= 0, \\
+	\nabla \times \mathbf{E} &= - \frac{\partial \mathbf{B}}{\partial t}, & \nabla \times \mathbf{B} &= \mu_0 \biggl( \mathbf{J} + \epsilon_0 \frac{\partial \mathbf{E}}{\partial t} \biggr).
+\end{align*}
+Some properties of Maxwell's equations are:
+\begin{itemize}
+	\item They are coupled linear PDE's in space and time.
+	\item They involve two positive constants: $\epsilon_0$ (vacuum permittivity)\index{vacuum permittivity}, and $\mu_0$ (vacuum permeability)\index{vacuum permeability}.
+	\item Charges $(\rho)$ and currents $(\mathbf{J})$ are the sources of the electromagnetic fields.
+	\item Each equation has an equivalent integral form, related via the divergence theorem of Stokes' theorem.
+	\item These are the vacuum equations that apply on microscopic scales (or in a vacuum). A related macroscopic version applies in media (for examples air).
+	\item The equations are consistent with each other and with charge conservation. For example, $\nabla \cdot (M3) = \frac{\partial}{\partial t}(M2)$, and
+		\[
+		\frac{\partial \rho}{\partial t} + \nabla \cdot \mathbf{J} = \frac{\partial}{\partial t} (\epsilon_0 \nabla \cdot \mathbf{E}) + \nabla \cdot \biggl(- \epsilon_0 \frac{\partial \mathbf{E}}{\partial t} + \frac{1}{\mu_0} \nabla \times \mathbf{B} \biggr) = 0
+		.\]
+\end{itemize}
+
+\subsection{Units}
+\label{sub:units}
+
+The SI unit of electric charge is the coulomb (\unit{\coulomb}). The elementary charge is (exactly)
+\[
+	e = \qty{1.602176634e-19}{\coulomb}
+.\]
+The SI unit of electric current is the ampere, or amp (\unit{\ampere}), equal to \qty{1}{\coulomb\per\second}.
+
+The SI base units needed in electromagnetism are:
+\begin{itemize}
+	\item[] second (\unit{\second})
+	\item[] metre (\unit{\metre})
+	\item[] kilogram (\unit{\kilogram})
+	\item[] ampere (\unit{\ampere})
+\end{itemize}
+
+From the Lorentz force law, we can see that the units of $\mathbf{E}$ and $\mathbf{B}$ must be
+\begin{center}
+	\unit{\kilogram\metre\per\second\cubed\per\ampere} and \unit{\kilogram\per\second\squared\per\ampere}.
+\end{center}
+The latter is also called the tesla (\unit{\tesla}). From Maxwell's equations, we can work out the units of $\epsilon_0$ and $\mu_0$. The experimentally determined values are
+\begin{align*}
+	\epsilon_0 &= \qty{8.854\dots e-12}{\per\kilogram\per\metre\cubed\second\tothe{4}\ampere\squared} \\
+	\mu_0 &= \qty{1.256\dots e-6}{\kilogram\metre\per\second\squared\per\ampere\squared}\\
+	      &\approx 4 \pi \times 10^{-7}\, \unit{\kilogram\metre\per\second\squared\per\ampere\squared}.
+\end{align*}
+
+The speed of light is (exactly)
+\[
+	c = \frac{1}{\sqrt{\mu_0 \eps_0}} = \qty{299792458}{\metre\per\second} \approx \qty{3e8}{\metre\per\second}
+.\]
+
+\newpage
+
+\section{Electrostatics}
+\label{sec:electrostatics}
+
+In a time-independent situation, Maxwell's equations reduce to
+\begin{align*}
+	\nabla \cdot \mathbf{E} &= \frac{\rho}{\epsilon_0}, & \nabla \times \mathbf{E} &= \mathbf{0}, \\
+	\nabla \cdot \mathbf{B} &= 0, & \nabla \times \mathbf{B} &= \mu_0 \mathbf{J}.
+\end{align*}
+Since $\mathbf{E}$ and $\mathbf{B}$ are decoupled, we can study them separately.
+
+\emph{Electrostatics}\index{electrostatics} is the study of the electric field generated by a stationary charge distribution
+\begin{align*}
+	\nabla \cdot \mathbf{E} = \frac{\rho}{\epsilon_0}, & \nabla \times \mathbf{E} &= \mathbf{0}.
+\end{align*}
+
+\subsection{Gauss' Law}
+\label{sub:gauss_law}
+
+Consider a closed surface $S$ enclosing a volume $V$. Integrating (M1) over $V$ and using the divergence theorem, we obtain \emph{Gauss' law}\index{Gauss' law}
+\[
+\int_{S} \mathbf{E} \cdot \diff \mathbf{S} = \frac{Q}{\epsilon_0}
+,\]
+where $Q = \int_{V} \rho \diff V$ is the total charge in $V$.
+
+Gauss' law is the integral version of (M1) and is valid generally. This says that the electric flux of a closed surface is proportional to the total charge enclosed.
+
+In special situations, we can use Gauss' law together with symmetry to deduce $\mathbf{E}$ from $\rho$. By choosing the \emph{Gaussian surface}\index{Gaussian surface} $S$ appropriately.
+
+\subsubsection{Spherical Symmetry}
+\label{subsub:spherical_symmetry}
+
+Consider a spherically symmetric charge distribution, $\rho(r)$ in spherical polar coordinates, with total charge $Q$ contained within an outer radius $R$.
+
+To have spherical symmetry, the electric field should have the form
+\[
+	\mathbf{E} = E(r) \mathbf{e}_r
+.\]
+This will satisfy (M3'), as required. To find $E(r)$, we apply Gauss' law to a sphere of radius $r$. If $r > R$, then
+\[
+\int_{S}\mathbf{E}\cdot \diff \mathbf{S} = E(r) \int_{S} \mathbf{e}_r \cdot \diff \mathbf{S} = E(r) \int_{S} \diff S = E(r) \, 4 \pi r^2 = \frac{Q}{\epsilon_0}
+.\]
+Thus, outside of the sphere of radius $R$,
+\[
+\mathbf{E} = \frac{Q}{4 \pi \epsilon_0 r^2}\mathbf{e}_r
+.\]
+So the external electric field of a spherically symmetric body depends only on the total charge.
+
+The Lorentz force on a particle of charge $q$ in $r > R$ is
+\[
+\mathbf{F} = q \mathbf{E} = \frac{Qq}{4 \pi \epsilon_0 r^2} \mathbf{e}_r
+.\]
+This is the \emph{Coulomb force}\index{Coulomb force} between charged particles. The force is repulsive if the charges have the same sign $(Qq > 0)$ and attractive if they have opposite signs $(Qq < 0)$.
+
+If we take the limit $R \to 0$, we obtain the electric field of a \emph{point charge}\index{point charge} $Q$, corresponding to
+\[
+\rho = Q \delta(\mathbf{x})
+.\]
+
+There is a close analogy between the Coulomb force and the gravitational force between massive particles,
+\[
+	\mathbf{F} = - \frac{GMm}{r^2} \mathbf{e}_r
+.\]
+Both involve an inverse-square law, and the product of the charges/masses. However,
+\begin{itemize}
+	\item While gravity is always attractive, electric forces can be repulsive or attractive.
+	\item Gravity is very much weaker than the Coulomb force, e.g. for two protons the ratio of the electric to gravitational forces is
+		\[
+		\frac{e^2}{4 \pi \epsilon_0 G m_p^2} \approx 10^{36}
+		.\]
+		On the atomic scale, gravity is irrelevant. But positive and negative charges balance so accurately that on the planetary scale, gravity is dominant.
+\end{itemize}
+
+\subsubsection{Cylindrical Symmetry}
+\label{subsub:cylindrical_symmetry}
+
+Consider a cylindrically symmetric charge distribution $\rho(r)$ in cylindrical polar coordinates, with total charge $\lambda$ per unit length, contained within an outer radius $R$.
+
+To have cylindrical symmetry,
+\[
+\mathbf{E} = E(r) \mathbf{e}_r
+.\]
+To find  $E(r)$ we apply Gauss' law to a cylinder of radius $r$ and arbitrary length $L$. Again, we consider $r > R$. Then, since only the curved part of the cylinder contributes to the flux,
+\[
+\int_{S}\mathbf{E} \cdot \diff \mathbf{S} = E(r) \int_{S}\mathbf{e}_r \cdot \diff \mathbf{S} = E(r) \int_{S} \diff S = E(r) 2 \pi r L = \frac{\lambda L}{\epsilon_0}
+.\]
+Thus, we get
+\[
+\mathbf{E} = \frac{\lambda}{2 \pi \epsilon_0 r} \mathbf{e_r}
+.\]
+In the limit $R \to 0$, we obtain the electric field of a \emph{line charge}\index{line charge} $\lambda$ per unit length, corresponding to
+\[
+\rho = \lambda \delta(x) \delta(y)
+.\]
+
+\subsubsection{Planar Symmetry}
+\label{subsub:planar_symmetry}
+
+We consider a planar charge distribution $\rho(z)$ in Cartesian coordinates, with total charge $\sigma$ per unit area, contained within a region $-d < z < d$ of thickness $2d$. We assume reflectional symmetry, so $\rho(z)$ is even.
+
+To have planar symmetry, we need
+\[
+\mathbf{E} = E(z) \mathbf{e}_z
+,\]
+which will satisfy (M3'). Reflectional symmetry implies $E(-z) = -E(z)$. To find $E(z)$ for $z > 0$, apply Gauss' law to a ``Gaussian pillbox'' of height $2z$ and arbitrary area $A$. If $z > d$, then
+\[
+\int_{S}\mathbf{E} \cdot \diff \mathbf{S} = E(z)A - E(-z)A = 2E(z)A = \frac{\sigma A}{\epsilon_0}
+.\]
+Thus,
+\[
+\mathbf{E} =
+\begin{cases}
+	\frac{\sigma}{2 \epsilon_0} \mathbf{e}_z & z > d, \\
+	-\frac{\sigma}{2 \epsilon_0} \mathbf{e}_z & $z < -d$.
+\end{cases}
+\]
+In the limit $d \to 0$, we obtain the electric field of a \emph{surface charge}\index{surface charge} $\sigma$ per unit area, corresponding to
+\[
+\rho = \sigma \delta(z)
+.\]
+
+\subsubsection{Surface Charge and Discontinuity}
+\label{subsub:surface_charge_and_discontinuity}
+
+Let $\mathbf{n}$ be a unit vector normal to the charged surface, pointing from region 1 to region 2. In our example, $\mathbf{n} = \mathbf{e}_z$.
+
+The discontinuity in $\mathbf{E}$ is given by
+\[
+	[\mathbf{n} \cdot \mathbf{E}] = \frac{\sigma}{\epsilon_0}
+,\]
+where $\sigma$ is the surface charge density, and
+\[
+	[X] = X_2 - X_1
+\]
+denotes a discontinuity. The tangential components are continuous (they are both 0), so
+\[
+	[\mathbf{n} \times \mathbf{E}] = \mathbf{0}
+.\]
+
+\newpage
+
+\printindex
+
+\end{document}

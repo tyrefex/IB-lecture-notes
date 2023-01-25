@@ -1,0 +1,369 @@
+%%% TO DO %%%
+
+
+\documentclass[12pt]{article}
+
+\usepackage{ishn}
+
+\makeindex[intoc]
+
+\begin{document}
+
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+	\begin{center}
+		\vspace*{1em}
+		\Huge
+		\textbf{IB Statistics}
+
+		\vspace{1em}
+		\large
+		Ishan Nath, Lent 2023
+
+		\vspace{1.5em}
+
+		\Large
+
+		Based on Lectures by Dr. Sergio Bacallado
+
+		\vspace{1em}
+
+		\large
+		\today
+	\end{center}
+	
+\end{titlepage}
+\hypersetup{pageanchor=true}
+
+\tableofcontents
+
+\newpage
+
+\section{Introduction}
+\label{sec:introduction}
+
+\emph{Statistics} is the science of making informed decisions. It can include:
+\begin{itemize}
+	\item Design of experiments,
+	\item Graphical exploration of data,
+	\item Formal statistical inference (part of Decision theory),
+	\item Communication of results.
+\end{itemize}
+
+Let $X_1, X_2, \ldots, X_n$ be independent observations from a distribution $f(x\mid\theta)$, with parameter $\theta$. We wish to make inferences about the value of $\theta$ from $X_1, X_2, \ldots, X_n$. Such inference can include:
+\begin{itemize}
+	\item Estimating $\theta$,
+	\item Quantifying uncertainty in estimates,
+	\item Testing a hypothesis about $\theta$.
+\end{itemize}
+
+\subsection{Probability Review}
+\label{sub:probability_review}
+
+Let $\Omega$ be the \emph{sample space}\index{sample space} of outcomes in an experiment. A measurable subset of $\Omega$ is called an \emph{event}\index{event}. We denote the set of events as $\mathcal{F}$.
+
+A function $\mathbb{P} : \mathcal{F} \to [0, 1]$ is called a \emph{probability measure}\index{probability measure} if:
+\begin{itemize}
+	\item $\mathbb{P}(\emptyset) = 0$,
+	\item $\mathbb{P}(\Omega) = 1$,
+	\item $\mathbb{P}(\bigcup_{i} A_i) = \sum_{i} \mathbb{P}(A_i)$, if $(A_i)$ are disjoint and countable.
+\end{itemize}
+
+A \emph{random variable}\index{random variable} is a (measurable) function $X : \Omega \to \mathbb{R}$.
+
+The \emph{distribution function}\index{distribution function} of $X$ is
+\[
+F_X(x) = \mathbb{P}(X \leq x)
+.\]
+A \emph{discrete random variable}\index{discrete random variable} takes values in a countable subset $E \subset \mathbb{R}$, and its \emph{probability mass function}\index{probability mass function} or pmf is $p_X(x) = \mathbb{P}(X = x)$.
+
+We say $X$ has \emph{continuous} distribution\index{continuous random variable} if it has a \emph{probability density function}\index{probability density function} or pdf, satisfying
+\[
+\mathbb{P}(X \in A) = \int_{A}f_X(x) \diff x
+,\]
+for any measurable $A$. The \emph{expectation}\index{expectation} of $X$ is defined
+\[
+\mathbb{E}[X] =
+\begin{cases}
+	\sum_{x \in X}x \cdot p_X(x) & X \text{ discrete}, \\
+	\int x \cdot f_X(x) \diff x & X \text{ continuous}.
+\end{cases}
+\]
+If $g : \mathbb{R} \to \mathbb{R}$, then
+\[
+\mathbb{E}[g(x)] = \int g(x) f_X(x) \diff x
+.\]
+The \emph{variance}\index{variance} of $X$ is
+\[
+\Var(X) = \mathbb{E}[(X - \mathbb{E}[X])^2]
+.\]
+We say that $X_1, X_2, \ldots, X_n$ are \emph{independent}\index{independence} if for all $x_1, x_2, \ldots, x_n$,
+ \[
+\mathbb{P}(X_1 \leq x_1, \ldots, X_n \leq x_n) = \mathbb{P}(X_1 \leq x_1) \cdots \mathbb{P}(X_n \leq x_n)
+.\]
+If the variables have probability density functions, then
+\[
+f_X(x) = \prod_{i = 1}^{n}f_{X_i}(x_i)
+,\]
+where $X$ is the vector of variables $(X_1, \ldots, X_n)$ and $x$ is the vector $(x_1, \ldots, x_n)$.
+
+Importantly, if $a_1, \ldots, a_n \in \mathbb{R}$,
+\[
+\mathbb{E}[a_1 X_1 + \cdots + a_n X_n] = a_1 \mathbb{E}[X_1] + \cdots + a_n \mathbb{E}[X_n]
+.\]
+Moreover,
+\[
+\Var(a_1 X_1 + \cdots + a_n X_n) = \sum_{i,j}a_{i}a_j \Cov(X_i, X_j)
+.\]
+Here the \emph{covariance}\index{covariance} of $X_i$ and $X_j$ is
+\[
+\Cov(X_i, X_j) = \mathbb{E}[(X_i - \mathbb{E}[X_i])(X_j - \mathbb{E}[X_j])]
+.\]
+If $X = (X_1, \ldots, X_n)^{T}$ and $\mathbb{E}[X] = (\mathbb{E}[X_1], \ldots, \mathbb{E}[X_n])$, then the linearity of expectation can be rewritten as
+\[
+\mathbb{E}[a^{T}X] = a^{T}\mathbb{E}[X]
+,\]
+and moreover
+\[
+\Var(a^{T}X) = a^{T} \Var(X) a
+,\]
+where $\Var(X)$ is the \emph{covariance matrix}: $(\Var(X))_{ij} = \Cov(X_i, X_j)$.
+
+\subsection{Moment Generating Functions}
+
+The \emph{moment generating function} of a variable $X$ is
+\[
+M_X(t) = \mathbb{E}[e^{tx}]
+.\]
+This may only exist for $t$ in some neighbourhood of $0$. The important properties of MGFs is that
+\[
+	\mathbb{E}[X^{n}] = \frac{\Diff{n}}{\diff t^{n}} M_X(0)
+,\]
+and from this we obtain $M_X = M_Y \iff F_x = F_y$.
+
+MGFs also make it easy to find the distribution function of sums of iid variables.
+
+\begin{exbox}
+	Let $X_1, \ldots, X_n$ be iid $\Poisson(\mu)$. Then
+	\begin{align*}
+		M_{X_1}(t) &= \mathbb{E}[e^{tX_1}] = \sum_{x = 0}^{\infty} e^{tx} \cdot \frac{e^{-\mu}\mu^{x}}{x!} \\
+			   &= e^{-\mu} \sum_{x = 0}^{\infty} \frac{(e^{t}\mu)^{x}}{x!} = e^{-\mu}e^{\mu \exp(t)} = e^{-\mu(1-e^{t})}.
+	\end{align*}
+	If $S_n = X_1 + \cdots + X_n$, then
+	\begin{align*}
+		M_{S_n}(t) &= \mathbb{E}[e^{t(X_1 + \cdots + X_n)}] = \prod_{i=1}^{n}\mathbb{E}[e^{tX_i}] \\
+			   &= e^{-\mu(1-e^{t})n}
+	\end{align*}
+	This is the same as a $\Poisson(\mu n)$ MGF, so $S_n \sim \Poisson(\mu \cdot n)$.
+\end{exbox}
+
+\subsection{Limit Theorems}
+\label{sub:limit_theorems}
+
+We list some important limit theorems, starting with the \emph{weak law of large numbers}\index{weak law of large numbers} (WLLN). This says if $X_1, \ldots, X_n$ are iid with $\mathbb{E}[X_1] = \mu$, then let $\overline{X_n} = \frac{1}{n} \sum_{i = 1}^{n}X_i$ be the sample mean. WLLN says that for all $\eps > 0$,
+\[
+\mathbb{P}(|\overline{X_n} - \mu| > \eps) \to 0
+,\]
+as $n \to \infty$.
+
+The \emph{strong law of large numbers}\index{strong law of large numbers} (SLLN) says a stronger result, namely
+\[
+\mathbb{P}(\overline{X_n} \to \mu) = 1
+,\]
+i.e. $\overline{X_n}$ converges to $\mu$ almost surely.
+
+The \emph{central limit theorem}\index{central limit theorem} is another important limit theorem. If we take
+\[
+Z_n = \frac{\sqrt n (\overline{X_n} - \mu)}{\sigma}
+,\]
+where $\sigma^2 = \Var(X_i)$, then $Z_n$ is ``approximately'' $N(0,1)$ as $n \to \infty$.
+
+What this means is that $\mathbb{P}(Z_n \leq z) \to \Phi(z)$ as $n \to \infty$ for all $z \in \mathbb{R}$, where $\Phi$ is the distribution function of a $N(0,1)$ variable.
+
+\subsection{Conditioning}
+\label{sub:conditioning}
+
+Let $X$ and $Y$ be discrete random variables. Their \emph{joint pmf}\index{joint probability mass function} is
+\[
+p_{X,Y}(x, y) = \mathbb{P}(X = x, Y = y)
+.\]
+The \emph{marginal pmf}\index{marginal probability mass function} is
+\[
+p_X(x) = \mathbb{P}(X = x) = \sum_{y \in Y}p_{X,Y}(x, y)
+.\]
+The \emph{conditional pmf}\index{conditional probability mass function} of $X$ given $Y = y$ is
+\[
+p_{X\mid Y}(x\mid y) = \mathbb{P}(X = x \mid Y = y) = \frac{\mathbb{P}(X = x, Y = y)}{\mathbb{P}(Y = y)} = \frac{p_{X,Y}(x, y)}{p_Y(y)}
+.\]
+This is defined to be $0$ if $p_Y(y) = 0$.
+
+For continuous random variables $X$, $Y$, the \emph{joint pdf}\index{joint probability density function} $f_{X,Y}$ has
+\[
+\mathbb{P}(X \leq x', y \leq y') = \int_{-\infty}^{x'}\int_{-\infty}^{y'} f_{X,Y}(x,y) \diff y \diff x
+.\]
+The \emph{marginal pdf}\index{marginal probability density function} of $Y$ is
+\[
+f_Y(y) = \int_{-\infty}^{\infty}f_{X,Y}(x,y) \diff x
+.\]
+The \emph{conditional pdf}\index{conditional probability density function} of $X$ given $Y$ is
+\[
+f_{X\mid Y}(x \mid y) = \frac{f_{X,Y}(x, y)}{f_Y(y)}
+.\]
+
+The \emph{conditional expectation}\index{conditional expectation} is given by
+\[
+\mathbb{E}[X \mid Y] =
+\begin{cases}
+	\sum_{x} x \cdot p_{X \mid Y}(x \mid y) & X,Y \text{ discrete},\\
+	\int_{-\infty}^{\infty}x \cdot f_{X\mid Y}(x\mid y) \diff x & X,Y \text{ continuous}.
+\end{cases}
+\]
+This is a random variable, which is a function of $Y$. The \emph{tower property}\index{tower property} says that
+\[
+\mathbb{E}[\mathbb{E}[X \mid Y]] = \mathbb{E}[X]
+.\]
+Hence we can write the variance of $X$ as follows:
+\begin{align*}
+	\Var(X) &= \mathbb{E}[X^2] - (\mathbb{E}[X])^2 \\
+		&= \mathbb{E}[\mathbb{E}[X^2 \mid Y]] - (\mathbb{E}[\mathbb{E}[X \mid Y]])^2 \\
+		&= \mathbb{E}[\mathbb{E}[X^2\mid Y] - (\mathbb{E}[X \mid Y])^2] + \mathbb{E}[\mathbb{E}[X\mid Y]^2] - \mathbb{E}[\mathbb{E}[X\mid Y]]^2 \\
+		&= \mathbb{E}[\Var(X\mid Y)] + \Var(\mathbb{E}[X\mid Y]).
+\end{align*}
+
+\subsection{Change of Variables}
+\label{sub:change_of_variables}
+
+The \emph{change of variables}\index{change of variables} formula is as follows:
+
+Let $(x, y) \mapsto (u, v)$ be a differentiable bijection. Then,
+\begin{align*}
+	f_{U,V}(u,v) = f_{X,Y}(x(u,v),y(u,v)) \cdot |\!\det J|, \\
+	J = \frac{\partial (x, y)}{\partial (u, v)} =
+	\begin{pmatrix}
+		\partial x/\partial u & \partial x/\partial v \\
+		\partial y/\partial u & \partial y/\partial v
+	\end{pmatrix}.
+\end{align*}
+
+\subsection{Important Distributions}
+\label{sub:important_distributions}
+
+$X \sim \Negbin(k, p)$ if $X$ models the time in successive iid $\Ber(p)$ trials to achieve $k$ successes. If $k = 1$, this is the same as a geometric distribution.
+
+$X \sim \Poisson(\lambda)$ is the limit of $\Bin(n, \lambda/n)$ random variables, as $n \to \infty$.
+
+If $X_i \sim \Gamma(\alpha_i,\lambda)$ for $i = 1, \ldots, n$ with $X_1, \ldots, X_n$ independent, then if $S_n = X_1 + \cdots + X_n$,
+\begin{align*}
+	M_{S_n}(t) &= \prod_{i = 1}^{n} M_{X_i}(t) = \biggl( \frac{\lambda}{\lambda - 1} \biggr)^{\alpha_1 + \cdots + \alpha_n}
+\end{align*}
+which is the mgf of a $\Gamma(\sum \alpha_i, \lambda)$ random variable. Hence $S_n \sim \Gamma(\sum \alpha_i, \lambda)$.
+
+Also, if $X \sim \Gamma(a, \lambda)$, then for any $b \in (0, \infty)$, $bX \sim \Gamma(a, \lambda/b)$.
+
+Special cases of the Gamma distribution include $\Gamma(1, \lambda) = \Exp(\lambda)$, and $\Gamma(\frac{k}{2}, \frac{1}{2}) = \chi_k^2$, the Chi-squared distribution with $k$ degrees of freedom. This can be thought of as the sum of $k$ independent squared $N(0,1)$ random variables.
+
+\newpage
+
+\section{Estimation}
+\label{sec:estimation}
+
+Suppose we observe data $X_1, X_2, \ldots, X_n$, which are iid from some pdf (or pmf) $f_X(x \mid \theta)$, with $\theta$ unknown. We let $X = (X_1, \ldots, X_n)$.
+
+\begin{definition}
+	An \emph{estimator}\index{estimator} is a statistic or a function of the data $T(X) = \hat \theta$, which we use to approximate the true parameter $\theta$. The distribution of $T(X)$ is called the \emph{sampling distribution}\index{sampling distribution}.
+\end{definition}
+
+\begin{exbox}
+	If $X_1, \ldots, X_n$ are iid $N(\mu, 1)$, we can define an estimator for the mean as
+	\[
+	\hat \mu = T(X) = \frac{1}{n} \sum_{i = 1}^{n}X_i
+	.\]
+	The sampling distribution of $\hat \mu$ is $N(\mu, \frac{1}{n})$.
+\end{exbox}
+
+\begin{definition}
+	The \emph{bias}\index{bias} of $\hat \theta = T(X)$ is
+	\[
+	\bias(\hat \theta) = \mathbb{E}_\theta[\hat \theta] - \theta
+	.\]
+\end{definition}
+
+\begin{remark}
+	In general, the bias is a function of $\theta$, even if the notation $\bias(\hat \theta)$ does not make that explicit.
+\end{remark}
+
+\begin{definition}
+	We say that $\hat \theta$ is \emph{unbiased}\index{unbiased estimator} if $\bias(\hat \theta) = 0$ for all $\theta \in \Theta$.
+\end{definition}
+
+\begin{exbox}
+	Out previous estimator 
+	\[
+	\hat \mu = \frac{1}{n} \sum_{i = 1}^{n}X_i
+	\]
+	is unbiased because $\mathbb{E}_\mu[\hat \mu] = \mu$ for all $\mu \in \mathbb{R}$.
+\end{exbox}
+
+\begin{definition}
+	The \emph{mean squared error}\index{mean squared error} (mse) of $\hat \theta$ is
+	\[
+	\mse(\hat \theta) = \mathbb{E}_\theta[(\hat \theta - \theta)^2]
+	.\]
+\end{definition}
+
+Like the bias, the mean squared error of $\hat \theta$ is a function of $\theta$.
+
+\subsection{Bias-Variance Decomposition}
+\label{sub:bias_variance_decomposition}
+
+We can write the mean squared error as
+\begin{align*}
+	\mse(\hat \theta) &= \mathbb{E}_\theta[(\hat \theta - \theta)^2] = \mathbb{E}_\theta[(\hat \theta - \mathbb{E}_\theta[\hat \theta] + \mathbb{E}_\theta[\hat \theta] - \theta)^2] \\
+			  &= \Var_{\theta}(\hat \theta) + \bias^2(\hat \theta) + 2\underbrace{[\mathbb{E}_\theta[(\hat \theta - \mathbb{E}_\theta[\hat \theta])]]}_{0}(\mathbb{E}_\theta[\hat \theta] - \theta).
+\end{align*}
+
+The two terms on the right hand side are non-negative, so there is a trade off between bias and variance.
+
+\begin{exbox}
+	Let $X \sim \Bin(n, \theta)$, where $n$ is known, and we wish to estimate $\theta$. The standard estimator is
+	\[
+	T_u = \frac{X}{n}, \quad \mathbb{E}_\theta[T_u] = \frac{\mathbb{E}_\theta[X]}{n} = \theta
+	.\]
+	Hence $T_u$ is unbiased. We can also calculate the mean squared error as
+	\begin{align*}
+		\mse(T_u) &= \Var_\theta(T_u) = \frac{\Var_\theta(X)}{n^2} = \frac{n\theta(1-\theta)}{n^2} = \frac{\theta(1-\theta)}{n}.
+	\end{align*}
+	Consider a second estimator
+	\[
+	T_B = \frac{X+1}{n+2} = w\frac{X}{n} + (1-w)\frac{1}{2}
+	,\]
+	for $w = \frac{n}{n+2}$. In this case $T_B$ is interpolating between our unbiased estimator, and the constant estimator. The bias of $T_B$ is
+	\[
+	\bias(T_B) = \mathbb{E}_\theta[T_B] - \theta = \mathbb{E}[\frac{X+1}{n+2}] - \theta = \frac{1}{n+2} - \frac{2}{n+2}\theta
+	.\]
+	This is not equal to zero for all but one value of $\theta$. Hence, $T_B$ is biased. We can also calculate the variance
+	\begin{align*}
+		\Var_{\theta}(T_B) &= \frac{1}{(n+2)^2}n\theta(1-\theta) - w^2 \frac{\theta(1-\theta)}{n}, \\
+		\mse(T_B) &= \Var_{\theta}(T_B) + \bias^2(T_B) \\
+			  &= w^2\frac{\theta(1-\theta)}{n} + (1-w)^2 \biggl(\frac{1}{2} - \theta\biggr)^2.
+	\end{align*}
+	Hence the $\mse$ of the biased estimator is a weighted average of the $\mse$ of the unbiased estimator, and a parabola. For $\theta$ around $1/2$, the biased estimator has a lower $\mse$ than the unbiased estimator.
+\end{exbox}
+
+The message here is that our prior judgements about $\theta$ affect our choice of estimator, and unbiasedness is not always desirable.
+
+\begin{exbox}
+	Suppose $X \sim \Poisson(\lambda)$. We wish the estimate $\theta = \mathbb{P}(X = 0)^2 = e^{-2\lambda}$. For an estimator $T(X)$ to be unbiased, we must have for all $\lambda$,
+	\begin{align*}
+		\mathbb{E}_\lambda[\hat \theta] &= \sum_{x = 0}^{\infty}T(x) \frac{e^{-\lambda} \lambda^{x}}{x!} = e^{-2 \lambda} = \theta \\
+						&\iff \sum_{x = 0}^{\infty}T(x) \frac{\lambda^{x}}{x!} = e^{-\lambda} = \sum_{x = 0}^{\infty}(-1)^{x} \frac{\lambda^{x}}{x!}.
+	\end{align*}
+	For this to hold for all $\lambda \geq 0$, we should take $T(X) = (-1)^{X}$. But this estimator makes no sense.
+\end{exbox}
+
+
+\newpage
+
+\printindex
+
+\end{document}
