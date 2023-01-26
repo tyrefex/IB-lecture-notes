@@ -361,6 +361,154 @@ The message here is that our prior judgements about $\theta$ affect our choice o
 	For this to hold for all $\lambda \geq 0$, we should take $T(X) = (-1)^{X}$. But this estimator makes no sense.
 \end{exbox}
 
+\subsection{Sufficiency}
+\label{sub:sufficiency}
+
+Suppose $X_1, \ldots, X_n$ are iid random variables from a distribution with pdf (or pmf) $f_X(\cdot \mid \theta)$. Let $X = (X_1, \ldots, X_n)$.
+
+The question is: is there a statistic $T(X)$ which contains all the information in $X$ needed to estimate $\theta$?
+
+\begin{definition}
+	A statistic $T$ is \emph{sufficient}\index{sufficiency} for $\theta$ if the conditional distribution of $X$ given $T(X)$ does not depend on $\theta$.
+\end{definition}
+
+Note $\theta$ and $T(X)$ may be vector-valued.
+
+\begin{exbox}
+	Let $X_1, \ldots, X_n$ be iid $\Ber(\theta)$ for $\theta \in [0,1]$. Then,
+	\begin{align*}
+		f_X(\cdot \mid \theta) = \prod_{i = 1}^{n} \theta^{x_i} (1 - \theta)^{1 - x_i} = \theta^{x_1 + \cdots + x_n}(1 - \theta)^{n - x_1 - \cdots - x_n}.
+	\end{align*}
+	This only depends on $X$ through
+	 \[
+	T(X) = \sum_{i = 1}^{n} x_i
+	.\]
+	Indeed, for $x$ with $x_1 + \cdots + x_n = t$,
+	\begin{align*}
+		f_{X \mid T = t}(x \mid T(x) = t) &= \frac{\mathbb{P}_\theta(X = x, T(X) = t)}{\mathbb{P}_\theta(T(X) = t)} = \frac{\mathbb{P}_\theta(X=x)}{\mathbb{P}\theta(T(x) = t)} \\
+						  &= \frac{\theta^{x_1 + \cdots + x_n}(1 - \theta)^{n - x_1 - \cdots - x_n}}{\binom{n}{t}\theta^{t}(1 - \theta)^{n-t}} = \binom{n}{t}^{-1},
+	\end{align*}
+	and otherwise this probability is $0$. As this doesn't depend on $\theta$, $T(X)$ is sufficient for $\theta$.
+\end{exbox}
+
+\begin{theorem}[Factorization criterion]\index{factorization criterion}
+	$T$ is sufficient for $\theta$ if and only if
+	\[
+	f_X(x \mid \theta) = g(T(x), \theta) \cdot h(x)
+	,\]
+	for suitable functions $g, h$.
+\end{theorem}
+
+\begin{proofbox}
+	We only do the discrete case.
+
+	Suppose that $f_X(x\mid \theta) = g(T(x),\theta) h(x)$. If $T(x) = t$, then
+	\begin{align*}
+		f_{X \mid T=t}(x \mid T = t) &= \frac{\mathbb{P}_\theta(X = x, T(X) = t)}{\mathbb{P}_\theta(T(X) = t)} \\
+					       &= \frac{g(T(x), \theta)h(x)}{\sum_{T(x') = t} g(T(x'),\theta) h(x')} \\
+					       &= \frac{g(t, \theta)}{g(t, \theta)} \cdot \frac{h(x)}{\sum_{T(x') = t} h(x')}.
+	\end{align*}
+	This doesn't depend on $\theta$, so $T(X)$ is sufficient. Conversely, if $T(X)$ is sufficient, then
+	\begin{align*}
+		\mathbb{P}_\theta(X = x) &= \mathbb{P}_\theta(X=x, T(X) = t) \\
+					 &= \underbrace{\mathbb{P}_\theta(T(X) = t)}_{g(t, \theta)} \cdot \underbrace{\mathbb{P}_\theta(X = x \mid T(X) = t)}_{h(x)}.
+	\end{align*}
+	Therefore the pmf of $X$ factorizes.
+\end{proofbox}
+
+\begin{exbox}
+	Return to our example from before, where $X_1, \ldots, X_n$ are iid $\Ber(\theta)$. Then
+	\[
+	f_X(x \mid \theta) = \theta^{x_1+ \cdots + x_n} (1 - \theta)^{n - x_1 - \cdots - x_n}
+	.\]
+	Hence if we take $g(t, \theta) = \theta^{t}(1-\theta)^{n-t}$, and $h(x) = 1$, we immediately get that $T(X) = \sum x_i$ is sufficient.
+\end{exbox}
+
+\begin{exbox}
+	Let $X_1, \ldots, X_n$ be iid $U([0, \theta])$, for $\theta > 0$. Then,
+	\begin{align*}
+		f_X(x\mid \theta) &= \prod_{i = 1}^{n} \frac{1}{\theta} \mathbbm{1}(X_i \in [0, \theta]) \\
+				  &= \underbrace{\frac{1}{\theta^{n}} \mathbbm{1} (\max_{i} x_i \leq \theta)}_{g(T(x), \theta)} \underbrace{\mathbbm{1} (\min_{i} x_i \geq 0)}_{h(x)}.
+	\end{align*}
+	Hence $T(x) = \max_{i} x_i$ is a sufficient statistic for $\theta$.
+\end{exbox}
+
+\subsection{Minimal Sufficiency}
+\label{sub:minimal_sufficiency}
+
+Sufficient statistics are not unique. Indeed, any one-to-one function of a sufficient statistic is also sufficient. Also $T(X) = X$ is always sufficient, but not very useful.
+
+\begin{definition}
+	A sufficient statistic $T$ is \emph{minimal sufficient}\index{minimal sufficiency} if it is a function of any other sufficient statistic, so if $T'$ is also sufficient, then
+	\[
+	T'(x) = T'(y) \implies T(x) = T(y)
+	,\]
+	for all $x, y$ in our space.
+\end{definition}
+
+By this definition, any two minimal sufficient statistics $T, T'$ are in bijection with each other, so
+\[
+T(x) = T(y) \iff T'(x) = T'(y)
+.\]
+
+\begin{theorem}
+	Suppose that $T(X)$ is a statistic such that
+	\[
+	\frac{f_X(x \mid \theta)}{f_X(y \mid \theta)}
+	\]
+	is constant as a function of $\theta$, if and only if $T(x) = T(y)$. Then $T$ is minimal sufficient.
+\end{theorem}
+
+Let $x \overset{1}{\sim} y$ if
+\[
+\frac{f_X(x \mid \theta)}{f_X(y \mid \theta)}
+\]
+is constant in $\theta$. It is easy to check that $\overset{1}{\sim}$ is an equivalence relation.
+
+Similarly, for a given statistic $T$, $x \overset{2}{\sim} y$ if $T(x) = T(y)$ defines another equivalence relation.
+
+The condition of the theorem says that $\overset{1}{\sim}$ and $\overset{2}{\sim}$ are the same for minimal sufficient statistics.
+
+\begin{remark}
+	We can always construct a statistic $T$ which is constant on the equivalence classes of $\overset{1}{\sim}$, which by the theorem is minimal sufficient.
+\end{remark}
+
+\begin{proofbox}
+	For any value of $T$, let $z_t$ be a representative from the equivalence class
+	\[
+		\{x \mid T(x) = t\}
+	.\]
+	Then,
+	\[
+	f_X(x \mid \theta) = f_X(z_{T(x)}\mid \theta) \frac{f_X(x, \theta)}{f_X(z_{T(x)} \mid \theta)}
+	.\]
+	This is exactly in the form $g(T(x), t) h(x)$, so by the factorization criterion $T$ is sufficient.
+
+	To prove that $T$ is minimal, take any other sufficient statistic $S$. We want to show that if $S(x) = S(y)$, then $T(x) = T(y)$.
+
+	By the factorization criterion, there are functions $g_s, h_s$ such that
+	\[
+	f_X(x, \theta) = g_s(S(x), \theta) h_s(x)
+	.\]
+	Suppose $S(x) = S(y)$. Then the ratio
+	\[
+	\frac{f_X(x \mid \theta)}{f_X(y \mid \theta)} = \frac{g_s(S(x), \theta) h_s(x)}{g_s(S(y), \theta) h_s(y)} = \frac{h_s(x)}{h_s(y)}
+	,\]
+	is independent of $\theta$. Hence $x \overset{1}{\sim} y$. By the hypothesis, we get that $T(x) = T(y)$.
+\end{proofbox}
+
+\begin{remark}
+	Sometimes the range of $X$ depends on $\theta$. In this case we can interpret
+	\[
+		\frac{f_X(x \mid \theta)}{f_Y(y \mid \theta)} \text{ constant in } \theta
+	,\]
+	to mean that
+	\[
+	f_X(x \mid \theta) = c(x, y) f_X(y \mid \theta)
+	,\]
+	for some function $c$ which does not depend on $\theta$.
+\end{remark}
+
 
 \newpage
 

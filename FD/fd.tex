@@ -314,6 +314,120 @@ is parallel to the contours of $\Psi$. Hence the contours of the Stokes stream $
 
 \newpage
 
+\section{Dynamics of Inviscid Flow}
+\label{sec:dynamics_of_inviscid_flow}
+
+\subsection{Surface and Volume Forces}
+\label{sub:surface_and_volume_forces}
+
+There are two types of force which act on a fluid:
+\begin{enumerate}[(i)]
+	\item Those proportional to the volume, like gravity.
+	\item Those proportional to the surface area, like pressure or \emph{viscous stress}, which is the friction between moving fluid and moving material, whether a boundary or another fluid.
+\end{enumerate}
+We look at these individually.
+
+\begin{enumerate}[(i)]
+	\item For \emph{volume} or \emph{body forces}\index{volume force}\index{body force}, we denote the force on a small volume element as $\mathbf{f}(\mathbf{x},t)\, \delta V$. Often, $\mathbf{f}$ is \emph{conservative}with potential energy per unit volume $\chi$, and hence $\mathbf{f} = - \nabla \chi$.
+
+		The most common case for us is gravity; here $\mathbf{f} \, \delta V = \rho \mathbf{g} \, \delta V$, with $\chi = \rho g z$, where $\mathbf{g} = (0, 0, g)$.
+	\item For a \emph{surface force}\index{surface force}, we consider a small element of area $\mathbf{n} \, \delta A$.
+
+		Denote the surface force exerted by the outside on the inside by $\bm{\tau}(\mathbf{x}, t ; \mathbf{n}) \, \delta A$, where $\bm{\tau}$ is the \emph{stress}\index{stress} acting on the area element. Note that the stress $\bm{\tau}$ depends on the orientation $\mathbf{n}$.
+
+		By Newton's third law, the surface force exerted by the inside on the outside is
+		\[
+		- \bm{\tau}(\mathbf{x}, t;\mathbf{n}) = \bm{\tau}(\mathbf{x}, t; \mathbf{n})
+		.\]
+		We defer discussion of viscous stresses to chapter 3. In fact, in many phenomena the viscous stresses are negligible and the fluid behaves as if it is \emph{inviscid}\index{inviscid} (frictionless).
+\end{enumerate}
+
+
+\begin{figure}[h]
+	\centering
+	\caption{Surface force on a small area $\delta A$}
+	\label{fig:surface_force}
+	\begin{tikzpicture}
+		\draw (0,0) circle [x radius = 1,y radius = 2];
+		\draw [->, thick] (0,0) -- +(2,0);
+		\draw [->, thick, red] (-1,0) -- +(-1.5,0);
+		\node at (-2,-1) {$\bm{\tau} = - p \mathbf{n}$};
+		\node at (3, 1) {outside};
+		\node at (-3, 1) {inside};
+		\node [right] at (2,0) {$\mathbf{n}\, \delta A$};
+	\end{tikzpicture}
+\end{figure}
+
+For inviscid fluids, the stress $\bm{\tau}$ acting across $\mathbf{n} \, \delta A$ has no tangential component, and has magnitude independent of the orientation:
+\[
+\bm{\tau}(\mathbf{x},t;\mathbf{n}) = - p(\mathbf{x},t)\mathbf{n}
+,\]
+where $p$ is the pressure. Note the sign: the outside pushes on the inside in the direction $- \mathbf{n}$.
+
+\subsection{The Euler Momentum Equation}
+\label{sub:the_euler_momentum_equation}
+
+Consider an arbitrary volume $V$, fixed in space, bounded by surface $\partial V$ with an outward normal $\mathbf{n}$.
+
+The momentum $\int_{V} p \mathbf{u}\diff V$ inside $V$ can change due to:
+\begin{enumerate}[(i)]
+	\item Flow of momentum across the boundary $\partial V$,
+	\item Volume/body forces,
+	\item Surface Forces.
+\end{enumerate}
+
+Recall the volume out across $\delta A$ in time $\delta t$ is $\mathbf{n} \, \delta A \cdot \mathbf{u} \, \delta t$, and the momentum out is $\rho \mathbf{u} (\mathbf{u} \cdot \mathbf{n} \, \delta A \delta t)$. Hence,
+\[
+\frac{\diff}{\diff t} \int_{V} \rho \mathbf{u} \diff V = - \int_{\partial V} \rho \mathbf{u}(\mathbf{u} \cdot \mathbf{n}) \diff A + \int_{\partial V} (- p \mathbf{n}) \diff A + \int_{V} \mathbf{f} \diff V
+.\]
+
+Here $\rho u_i u_j$ is the momentum flux, a second order tensor. We can rewrite this in terms of components as
+\begin{align*}
+	\frac{\diff}{\diff t} \int_{V} \rho u_i \diff V &= - \int_{\partial V} (\rho u_i u_j) n_j \diff A - \int_{\partial V} p n_i \diff A + \int_{V} f_i \diff V \\
+	\iff \int_{V} \frac{\partial}{\partial t} (\rho u_i) \diff V &= - \int_{V} \frac{\partial}{\partial x_j} (\rho u_i u_j) \diff V - \int_{V} \frac{\partial f}{\partial x_i} \diff V + \int_{V} f_i \diff V.
+\end{align*}
+Since $V$ is arbitrary, we obtain
+\[
+\frac{\partial}{\partial t}(\rho u_i) + \frac{\partial}{\partial x_j}(\rho u_i u_h) = - \frac{\partial f}{\partial x_i} + f_i
+.\]
+The left hand side can be expanded as
+\begin{align*}
+	LHS &= u_i \biggl( \frac{\partial \rho}{\partial t} + \frac{\partial}{\partial x_j} (\rho u_j)\biggr) + \rho \frac{\partial u_i}{\partial t} + \rho u_j \frac{\partial u_i}{\partial x_j} \\
+	    &= \rho \biggl(\frac{\partial}{\partial t} + \mathbf{u} \cdot \nabla\biggr) u_i,
+\end{align*}
+due to mass conservation. What we are left with is the material derivative, so we get
+\[
+\rho \frac{D \mathbf{u}}{D t} = - \nabla p + \mathbf{f}
+.\]
+This is the \emph{Euler momentum equation}\index{Euler momentum equation}.
+
+The Euler momentum equation also has a dynamic boundary condition, which says that the stress $\bm{\tau}$ exerted on the fluid by the boundary is $-p \mathbf{n}$.
+
+\begin{exbox}
+	Consider a bent hose pipe with steady uniform flow $U$ in and out, with constant cross-sectional area $A$. We neglect gravity (so $\mathbf{f} = 0$).
+
+	From the momentum integral equation, the momentum inside the volume is unchanging, and $\mathbf{f} = 0$, so this simplifies to
+	\[
+		\int_{\rm{walls}} [\rho \mathbf{u}(\mathbf{u} \cdot \mathbf{n}) + p \mathbf{n}] \diff A + \int_{\rm{ends}} [\rho \mathbf{u} (\mathbf{u} \cdot \mathbf{n}) + p \mathbf{n}] \diff A = 0
+	.\]
+	We know that
+	\[
+		\int_{\rm{walls}} [\rho \mathbf{u}(\mathbf{u} \cdot \mathbf{n}) + p \mathbf{n}] \diff A = \int_{\rm{walls}} p \mathbf{n} \diff A
+	,\]
+	as the walls are rigid, so $\mathbf{u} \cdot \mathbf{n} = 0$. This is simply the force by the fluid on the pipe. Moreover, on the ends
+	\[
+		\int_{\rm{ends}}[\rho \mathbf{u}(\mathbf{u} \cdot \mathbf{n}) + p \mathbf{n}] \diff A = A [p_1 \mathbf{n}_1 + \rho(-U \mathbf{n}_1)(-U) + p_2 \mathbf{n}_2 + \rho(U \mathbf{n}_2)U]
+	.\]
+	In fact we get $p_1 = p_2$. Hence the force on the pipe is
+	\[
+	-A (p + \rho U^2)(\mathbf{n}_1 + \mathbf{n}_2)
+	.\]
+	The $\rho U^2$ contribution comes from the change in momentum flux: the fluid in changes direction.
+\end{exbox}
+
+
+\newpage
+
 \printindex
 
 \end{document}
