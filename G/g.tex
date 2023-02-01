@@ -3,12 +3,24 @@
 \documentclass[12pt]{article}
 
 \usepackage{ishn}
-\usepackage{relsize}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{patterns.meta}
 \DeclareMathOperator{\hash}{\sharp}% connected sum
+\usepackage{caption}
+\usepackage{subcaption}
 
 \makeindex[intoc]
 
 \begin{document}
+
+\tikzset{middlearrow/.style={
+        decoration={markings,
+            mark= at position 0.5 with {\arrow{#1}} ,
+        },
+        postaction={decorate}
+    }
+}
 
 \hypersetup{pageanchor=false}
 \begin{titlepage}
@@ -185,6 +197,18 @@ Another viewpoint for a torus is by imposing on $[0,1]^2$ the equivalence relati
 	(x, 0) &\sim (x, 1), & (0, y) &\sim (1, y).
 \end{align*}
 
+\begin{figure}[h]
+	\centering
+	\caption{Identification of a Torus}
+	\label{fig:torus}
+	\begin{tikzpicture}
+		\draw[middlearrow={<}] (45:3) -- (135:3); 
+		\draw[middlearrow={<<}] (135:3) -- (225:3);
+		\draw[middlearrow={>}] (225:3) -- (315:3);
+		\draw[middlearrow={>>}] (315:3) -- (45:3);
+	\end{tikzpicture}
+\end{figure}
+
 \begin{exbox}
 	We look at yet another example of a surface.
 	\begin{enumerate}[(i)]
@@ -204,6 +228,21 @@ Another viewpoint for a torus is by imposing on $[0,1]^2$ the equivalence relati
 \begin{lemma}
 	$P/\sim$ (with the quotient topology) is a topological surface.
 \end{lemma}
+
+\begin{figure}[h]
+	\centering
+	\caption{Orientation of Edges of a Hexagon}
+	\label{fig:hexagon}
+	\begin{tikzpicture}
+		\draw[middlearrow={<}] (0:3) -- (60:3); 
+		\draw[middlearrow={<<}] (60:3) -- (120:3);
+		\draw[middlearrow={>>>}] (120:3) -- (180:3);
+		\draw[middlearrow={>>}] (180:3) -- (240:3);
+		\draw[middlearrow={>>>}] (240:3) -- (300:3);
+		\draw[middlearrow={>}] (300:3) -- (0:3);
+	\end{tikzpicture}
+\end{figure}
+
 
 \begin{proofbox}
 	We begin by looking at a special case of the torus $T^2$ as $[0,1]^2/\sim$. Then if $p$ is an interior point, we pick $\delta > 0$ small such that $\overline{B_{\delta}(p)}$ lies in the interior of the polygon $P$. Now we argue as before: the quotient map is injective on $\overline{B_{\delta}(p)}$ and is a homeomorphism on its interior.
@@ -259,6 +298,304 @@ Another viewpoint for a torus is by imposing on $[0,1]^2$ the equivalence relati
 \end{lemma}
 
 We will not prove this lemma in this course.
+
+\begin{figure}[h]
+	\centering
+	\caption{Octagon}
+	\label{fig:octagon}
+	\begin{tikzpicture}
+		\draw[middlearrow={<<}] (22.5:3) -- (67.5:3); 
+		\draw[middlearrow={<}] (67.5:3) -- (112.5:3);
+		\draw[middlearrow={>>>>}] (112.5:3) -- (157.5:3);
+		\draw[middlearrow={>>>}] (157.5:3) -- (202.5:3);
+		\draw[middlearrow={<<<<}] (202.5:3) -- (247.5:3);
+		\draw[middlearrow={<<<}] (247.5:3) -- (292.5:3);
+		\draw[middlearrow={>>}] (292.5:3) -- (337.5:3);
+		\draw[middlearrow={>}] (337.5:3) -- (22.5:3);
+		\draw[blue,dashed] (112.5:3) -- (292.5:3);
+	\end{tikzpicture}
+\end{figure}
+
+As another example the octagon is homeomorphic to a double torus: cutting along the blue line reveals two copies of a torus, which are joined together.
+
+\begin{figure}[h]
+	\centering
+	\caption{Identification of $\mathbb{RP}^2$}
+	\label{fig:square_rp2}
+	\begin{subfigure}{.5\textwidth}
+		\centering
+	\begin{tikzpicture}
+		\draw[middlearrow={<<}] (45:3) -- (135:3);
+		\node[draw] at (45:3) {};
+		\draw[middlearrow={<}] (135:3) -- (225:3);
+		\draw[fill,red] (135:3) circle (0.1);
+		\draw[middlearrow={<<}] (225:3) -- (315:3);
+		\node[draw] at (225:3) {};
+		\draw[middlearrow={<}] (315:3) -- (45:3);
+		\draw[fill,red] (315:3) circle (0.1);
+	\end{tikzpicture}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+	\begin{tikzpicture}
+		\draw[middlearrow={<}] (0:2.5) to[out=90,in=0] (90:2.5); 
+		\draw[fill] (0:2.5) circle (0.075);
+		\draw[middlearrow={<<}] (90:2.5) to[out=180,in=90] (180:2.5);
+		\draw[fill] (90:2.5) circle (0.075);
+		\draw[middlearrow={<}] (180:2.5) to[out=-90,in=180] (270:2.5);
+		\draw[fill] (180:2.5) circle (0.075);
+		\draw[middlearrow={<<}] (270:2.5) to[out=0,in=-90] (0:2.5);
+		\draw[fill] (270:2.5) circle (0.075);
+		\draw[red, dashed] (60:2.5) -- (240:2.5);
+		\node[above right,red] at (60:2.5) {$\theta$};
+		\node[below left,red] at (240:2.5) {$-\theta$};
+	\end{tikzpicture}
+	\end{subfigure}
+\end{figure}
+
+Similarly, we can find $\mathbb{RP}^2$ as the quotient of a square: this can be seem by morphing it into a circle with antipodes identified, which is then homeomorphic to $\mathbb{RP}^2$, seen by `squishing down' $\mathbb{RP}^2$ or projecting it onto a plane.
+
+\begin{figure}[h]
+	\centering
+	\caption{Squishing down $\mathbb{RP}^2$}
+	\label{fig:squish_rp2}
+	\begin{subfigure}{.5\textwidth}
+		\centering
+	\begin{tikzpicture}
+		\draw (0,0) circle (2.5);
+		\draw (-2.5,0) arc(180:360:2.5 and 0.5);
+		\draw[dashed] (2.5,0) arc(0:180:2.5 and 0.5);
+		\draw[red, dashed] (60:2.5) -- (240:2.5);
+		\node[above right,red] at (60:2.5) {$x$};
+		\node[below left,red] at (240:2.5) {$-x$};
+	\end{tikzpicture}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+	\begin{tikzpicture}
+		\draw (0:2.5) to[out=90,in=0] (90:2.5) to[out=180,in=90] (180:2.5);
+		\draw (-2.5,0) arc(180:360:2.5 and 0.5);
+		\draw[dashed] (2.5,0) arc(0:180:2.5 and 0.5);
+		\draw[blue, dashed] (40:0.75) -- (220:0.75);
+		\node[above right,blue] at (40:0.75) {$\theta$};
+		\node[below left,blue] at (220:0.75) {$-\theta$};
+	\end{tikzpicture}
+	\end{subfigure}
+\end{figure}
+
+\subsection{Triangulation and Euler Characteristic}
+\label{sub:triangulation_and_euler_characteristic}
+
+\begin{definition}
+	A \emph{subdivision}\index{subdivision} of a compact topological surface $\Sigma$ comprises of:
+	\begin{enumerate}[(i)]
+		\item a finite set $V$ of \emph{vertices}\index{vertex},
+		\item a finite collection of edges $E + \{e_i : [0,1] \to \Sigma\}$ such that
+			\begin{itemize}
+				\item for all $i$, $e_i$ is a continuous injection on its interior and $e_i^{-1}(V) = \{0, 1\}$,
+				\item $e_i$ and $e_j$ have disjoint images except perhaps at their endpoints in $V$.
+			\end{itemize}
+		\item We require that each connected component of
+			\[
+				\Sigma \setminus \Biggl( \bigcup_{i} e_i ([0,1]) \cup V \Biggr)
+			\]
+			is homeomorphic to an open disc, called a \emph{face}\index{face}.
+	\end{enumerate}
+	Hence the closure of a face $\overline{F} \setminus F$ has boundary lying in
+	\[
+		\bigcup_{i} e_i ([0,1]) \cup V
+	.\]
+	A subdivision is a \emph{triangulation}\index{triangulation} if every closed face (closure of a face) contains exactly three edges, and two closed faces are disjoint, meet in exactly one edge or just one vertex.
+\end{definition}
+
+\begin{exbox}
+	A cube displays a subdivision of $S^2$, and a tetrahedron displays a triangulation of $S^2$.
+
+	Moreover figure~\ref{fig:torus} displays a subdivision of $T^2$, with one vertex, two edges and one face.
+
+	In figure~\ref{fig:torus_triangulation}, only the right triangulation is a valid triangulation: in the left figure, the two triangles share more than one edge.
+
+	As well, figure~\ref{fig:s2_subdivision} is a degenerate subdivision of the sphere, with one vertex, no edges and one face.
+\end{exbox}
+
+\begin{figure}[h]
+	\centering
+	\caption{Triangulations of the Torus}
+	\label{fig:torus_triangulation}
+	\begin{subfigure}{0.5\textwidth}
+		\centering
+	\begin{tikzpicture}
+		\draw[middlearrow={<}] (45:3) -- (135:3); 
+		\draw[middlearrow={<<}] (135:3) -- (225:3);
+		\draw[middlearrow={>}] (225:3) -- (315:3);
+		\draw[middlearrow={>>}] (315:3) -- (45:3);
+		\draw (45:3) -- (225:3);
+	\end{tikzpicture}
+	\caption{Invalid}
+	\end{subfigure}%
+	\begin{subfigure}{0.5\textwidth}
+		\centering
+	\begin{tikzpicture}
+		\draw[middlearrow={<}] (45:3) -- (135:3); 
+		\draw[middlearrow={<<}] (135:3) -- (225:3);
+		\draw[middlearrow={>}] (225:3) -- (315:3);
+		\draw[middlearrow={>>}] (315:3) -- (45:3);
+		\draw (45:3) -- (225:3);
+		\draw (2.12,0.7) -- (-2.12,0.7);
+		\draw (2.12,-0.7) -- (-2.12,-0.7);
+		\draw (0.7,2.12) -- (0.7,-2.12);
+		\draw (-0.7,2.12) -- (-0.7,-2.12);
+		\draw (-2.12,0.7) -- (-0.7,2.12);
+		\draw (-2.12,-0.7) -- (0.7,2.12);
+		\draw (-0.7,-2.12) -- (2.12, 0.7);
+		\draw (0.7,-2.12) -- (2.12, -0.7);
+	\end{tikzpicture}
+	\caption{Valid}
+	\end{subfigure}%
+\end{figure}
+
+\begin{figure}
+	\centering
+	\caption{Subdivision of $S^2$ }
+	\label{fig:s2_subdivision}
+	\begin{tikzpicture}
+		\draw (0,0) circle (2.5);
+		\draw (-2.5,0) arc(180:360:2.5 and 0.5);
+		\draw[dashed] (2.5,0) arc(0:180:2.5 and 0.5);
+		\draw[fill] (0,2.5) circle (0.1);
+	\end{tikzpicture}
+\end{figure}
+
+\begin{definition}
+	The \emph{Euler characteristic}\index{Euler characteristic} of a subdivision is
+	\[
+	|V| - |E| + |F|
+	.\]
+\end{definition}
+
+\begin{theorem}
+	\begin{enumerate}[\normalfont(i)]
+		\item[]
+		\item Every compact topological surface admits subdivisions and triangulations.
+		\item The Euler characteristic, denoted $\chi(\Sigma)$, does not depend on the subdivision and defined a topological invariant of the surface.
+	\end{enumerate}
+\end{theorem}
+
+\begin{remark}
+	This is hard to prove, particularly (ii). There are cleaner approaches to this (seen in algebraic topology).
+\end{remark}
+
+\begin{exbox}
+	\begin{enumerate}[1.]
+		\item $\chi(S^2) = 2$.
+		\item $\chi(T^2) = 0$.
+		\item Let $\Sigma_1, \Sigma_2$ be compact topological spaces, and we form $\Sigma_1 \hash \Sigma_2$. We remove open discs $D_i \subset \Sigma_i$ which is a face of a triangulation in each surface. Hence,
+			\[
+			\chi(\Sigma_1 \hash \Sigma_2) = \chi(\Sigma_1) + \chi(\Sigma_2) - 2
+			.\]
+			In particular if $\Sigma_g$ is a surface with $g$ holes, i.e.
+			\[
+			\Sigma_g = \hash_{i = 1}^{g} T^2
+			,\]
+			then $\chi(\Sigma_g) = 2 - 2g$. $g$ is called the \emph{genus}\index{genus}.
+	\end{enumerate}
+\end{exbox}
+
+\newpage
+
+\section{Abstract Smooth Surfaces}
+\label{sec:abstract_smooth_surfaces}
+
+\begin{definition}
+	A pair $(U, \varphi)$ where $U \subset \Sigma$ is open and $\varphi : U \to V \subset \mathbb{R}^2$ is called a \emph{chart}\index{chart}.
+
+	The inverse $\sigma = \varphi^{-1} : V \to U \subset \Sigma$ is called a \emph{local parametrization}\index{local parametrization} of $\Sigma$.
+\end{definition}
+
+\begin{definition}
+	A collection of charts
+	\[
+		\{ (U_i, \varphi_i)_{i \in I}\}
+	\]
+	such that
+	\[
+	\bigcup_{i \in I} U_i = \Sigma
+	\]
+	is called an \emph{atlas}\index{atlas} of $\Sigma$.
+\end{definition}
+
+\begin{exbox}
+	\begin{enumerate}[1.]
+	\item If $Z \subset \mathbb{R}^2$ is closed, then $\mathbb{R}^2 \setminus Z$ is a topological surface with an atlas with one chart: $(\mathbb{R}^2 \setminus Z, \varphi = \id)$.
+	\item For $S^2$ we have an atlas with 2 charts: the two stereographic projections.
+	\end{enumerate}
+\end{exbox}
+
+\begin{definition}
+	Let $(U_i, \varphi_i)$ for $i = 1, 2$ be two charts containing $p \in \Sigma$. The map
+	\[
+	\varphi_2 \circ \varphi_1^{-1}|_{\varphi_1(U_1 \cap U_2)}
+	\]
+	is called the \emph{transition map}\index{transition map} between charts.
+\end{definition}
+
+Note that
+\[
+	\varphi_1(U_1 \cap U_2) \overset{\varphi_2 \circ \varphi_1^{-1}}{\to} \phi_2(U_1 \cap U_2)
+\]
+is a \emph{homeomorphism}.
+
+\begin{figure}[h]
+	\centering
+	\caption{Transition Map on $S^2$}
+	\label{fig:transition_map}
+	\begin{tikzpicture}
+		\draw (0,0) circle (2.5);
+		\draw (-2.5,0) arc(180:360:2.5 and 0.5);
+		\draw[dashed] (2.5,0) arc(0:180:2.5 and 0.5);
+		\draw (-0.5,1.5) circle (0.5 and 0.3);
+		\draw (-0.1,1.6) circle (0.2 and 0.5);
+		\begin{scope}
+			\clip (-0.5,1.5) circle (0.5 and 0.3);
+			\draw[pattern = {north west lines}] (-0.1,1.6) circle (0.2 and 0.5);
+		\end{scope}
+		\draw [->] (-0.7, 1.1) -- (-2, -3);
+		\draw [->] (0.15, 1.2) -- (1.8, -3);
+		\draw (-2,-4.5) circle (1);
+		\begin{scope}
+			\clip (-2,-4.5) circle (1);
+			\draw[pattern = {north west lines}] (-2,-5.5) rectangle +(3,3);
+		\end{scope}
+		\draw (2,-4.5) circle (1);
+		\begin{scope}
+			\clip (2,-4.5) circle (1);
+			\draw[pattern = {north east lines}] (2,-5.5) rectangle +(-3,3);
+		\end{scope}
+		\draw[->] (-0.5, -4.5) -- (0.5, -4.5);
+		\node[left] at (-0.85,1.8) {$U_1$};
+		\node[right] at (0.1,2.1) {$U_2$};
+		\node[right] at (-1.5,-1.5) {$\varphi_1$};
+		\node[left] at (1.25,-1.5) {$\varphi_2$};
+		\node[below] at (0,-4.5) {$\varphi_2 \circ \varphi_1^{-1}$};
+	\end{tikzpicture}
+\end{figure}
+
+Recall if $V \subset \mathbb{R}^{n}$ and $V' \subset \mathbb{R}^{m}$ are open, a map $f : V \to V'$ is called \emph{smooth}\index{smooth} if it is infinitely differentiable, so it has continuous partial derivatives of all orders.
+
+A homeomorphism $f : V \to V'$ is called a \emph{diffeomorphism}\index{diffeomorphism} if it is smooth and it has a smooth inverse.
+
+\begin{definition}
+	An \emph{abstract smooth surface}\index{abstract smooth surface} $\Sigma$ is a topological surface with an atlas of charts $\{U_i, \varphi_i)\}$ such that all transition maps are diffeomorphisms.
+\end{definition}
+
+\begin{exbox}
+	\begin{enumerate}[1.]
+		\item The atlas of two charts with stereographic projections gives $S^2$ the structure of an abstract smooth surface.
+		\item The torus $T^2 = \mathbb{R}^2 / \mathbb{Z}^2$ is an abstract smooth surface. Recall that we obtained charts from (the inverses of) the projection restricted to small discs in $\mathbb{R}^2$.
+
+			Here the transition maps are translations, so $T^2$ inherits the structure of a smooth surface.
+	\end{enumerate}
+\end{exbox}
 
 
 \newpage

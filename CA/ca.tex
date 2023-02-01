@@ -85,7 +85,7 @@ In this course, we make the convention that $\theta = \arg(z) \in [0, 2\pi)$.
 			\]
 			exists.
 		\item $f : U \to \mathbb{C}$ is \emph{holomorphic}\index{holomorphic} at $u \in U$ if there exists $\eps > 0$ such that $f$ is differentiable at $z$, for all $z \in \Delta(u, \eps)$. We may also call such a function \emph{analytic}\index{analytic}.
-		\item $f : \mathbb{C} \to \mathbb{C}$ is \emph{entire}if it is holomorphic everywhere.
+		\item $f : \mathbb{C} \to \mathbb{C}$ is \emph{entire} if it is holomorphic everywhere.
 	\end{enumerate}
 \end{definition}
 
@@ -224,6 +224,287 @@ In fact any domain bounded by a simple closed curve is simply connected, so all 
 	Now, the Mandelbrot set is bounded and connected, so the complement of the Mandelbrot set is simply connected in $\mathbb{C}_{\infty}$.
 \end{exbox}
 
+Recall the following facts about functions defined by power series, or sequences of functions:
+
+\begin{enumerate}[1.]
+	\item A sequence $(f_n)$ of functions \emph{converges uniformly}\index{uniform convergence} to a function $f$ on some set $S$ if for all $\eps > 0$, there exists $N \in \mathbb{N}$ such that for all $n \geq N$ and for all $x \in S$,
+		\[
+		|f_n(x) - f(x)| < \eps
+		.\]
+	\item The uniform limit of continuous functions is continuous.
+	\item The \emph{Weierstrass M-test}\index{Weierstrass M-test}: if there exists $M_n \in \mathbb{R}$ for all $n$ such that $0 \leq |f_n(x)| \leq M_n$ for all $x \in S$, then
+		\[
+			\sum_{n = 1}^{\infty}M_n  \infty \implies \sum_{n = 1}^{\infty}f_n(x) \text{ converges uniformly on $S$ as $N \to \infty$}
+		.\]
+	\item Let $(c_n)$ be complex numbers, and fix $a \in \mathbb{C}$. Then there exists unique $R \in [0, \infty]$ such that the function
+		\[
+		z \mapsto \sum_{n = 1}^{\infty}c_n (z - a)^{n}
+		\]
+		converges absolutely if $|z - a| < R$, and diverges if $|z-a| > R$. If $0 < r < R$, then the series converges uniformly in $\Delta(a, r)$. $R$ is the \emph{radius of convergence}\index{radius of convergence} of the series. We can compute
+		\[
+			R = \sup\{r \geq 0 \mid |c_n|r^{n} \to 0\}
+		,\]
+		or
+		\[
+		R = \frac{1}{\lambda}, \qquad \lambda = \limsup_{n \to \infty} |c_n|^{1/n}
+		.\]
+\end{enumerate}
+
+\begin{theorem} 
+	\[
+	f(z) = \sum_{n = 0}^{\infty} c_n(z - a)^{n}
+	\]
+	is a complex power series with radius of convergence $R$. Then,
+	\begin{enumerate}[\normalfont(i)]
+		\item $f$ is holomorphic on $\Delta(a, R)$.
+		\item $f$ has derivative
+			\[
+			f'(z) = \sum_{n = 1}^{\infty} n c_n (z - a)^{n-1}
+			,\]
+			with radius of convergence $R$ about $a$.
+		\item $f$ has derivatives of all orders on $\Delta(a, R)$, and $f^{(n)}(a) = n! c_n$.
+	\end{enumerate}
+\end{theorem}
+
+\begin{proofbox}
+	We can let $a = 0$ by change of variables $z \to z - a$. Consider the series
+	\[
+	\sum_{n = 1}^{\infty}n c_n z^{n-1}
+	.\]
+	Since $|n c_n| \geq |c_n|$, the radius of convergence of this series is no larger than $R$. If $0 < R_1 < R$, then for $|z| < R_1$, we have
+	\[
+	|n c_n z^{n-1}| = n |c_n| R_1^{n-1} \frac{|z|^{n-1}}{R_1^{n-1}}
+	,\]
+	and
+	\[
+	n \biggl( \frac{|z|}{R_1} \biggr)^{n-1} \to 0
+	.\]
+	Applying the M-test with $M_n = c_n R_1^{n-1}$, we have the convergence of the series. So the series has radius of convergence $R$.
+
+	Now for $|z|, |w| < R$, we need to consider
+	\[
+	\frac{f(z) - f(w)}{z - w}
+	.\]
+	Taking the partial sums,
+	\[
+		\sum_{n = 0}^{N} c_n \frac{z^{n} - w^{n}}{z - w} = \sum_{n = 0}^{N} c_n \Biggl( \sum_{j = 0}^{n-1} z^{j}w^{n-1-j}\Biggr)
+	.\]
+	For $|z|, |w| < \rho < R$, we have
+	\[
+	\biggl| c_n \Biggl( \sum_{j = 0}^{n-1} z^{j} w^{n-1-j} \Biggr) \biggr| \leq |c_n| n \rho^{n-1}
+	.\]
+	Hence the partial sums converge uniformly on $\{(z, w) \mid |z|, |w| < \rho\}$. So the series converges to a continuous limit on $\{|z|, |w| < R\}$, say $g(z, w)$. When $z \neq w$, we know
+	\[
+	g(z, w) = \frac{f(z) - f(w)}{z - w}
+	.\]
+	When $z = w$, we have
+	\[
+	g(w, w) = \sum_{n = 0}^{\infty} n c_n w^{n-1}
+	.\]
+	Hence by the continuity of $g$, this proves (i) and (ii). Then (iii) follows from a simple induction.
+\end{proofbox}
+
+\begin{corollary}
+	Suppose $0 < \rho < R$, where $R$ is the radius of convergence of the complex power series
+	\[
+	f(z) = \sum_{n = 0}^{\infty}c_n (z - a)^{n}
+	,\]
+	and $f(z) = 0$ for all $z \in D(a, \rho)$. Then $f \equiv 0$ on $D(a, R)$.
+\end{corollary}
+
+\begin{proofbox}
+	Since $f \equiv 0$ on $D(a, \rho)$, we have $f^{(n)}(a) = 0$ for all $n$. Hence $c_n = 0$ for all $n$, so $f \equiv 0$ on $D(a, R)$.
+\end{proofbox}
+
+\subsection{Exponential and Logarithm}
+\label{sub:exponential_and_logarithm}
+
+We define the complex exponential
+\[
+e^{z} = \exp(z) = \sum_{n = 0}^{\infty} \frac{z^{n}}{n!}
+.\]
+
+The complex exponential has the following properties:
+\begin{enumerate}[1.]
+	\item It has radius of convergence $\infty$, so the function is entire, and we have $\frac{\diff}{\diff z} e^{z} = e^{z}$.
+	\item For all $z, w \in \mathbb{C}$, $e^{z+w} = e^{z} e^{w}$, and $e^{z} \neq 0$.
+
+		This follows from setting $F(z) = e^{z+w}e^{-z}$, then taking the derivative,
+		\[
+		F'(z) = e^{z+w}e^{-z} - e^{z+w}e^{-z} = 0
+		,\]
+		so $F$ is constant. Since $e^{0} = 1$, $F(z) = e^{w}$, and $e^{z+w} = e^{z}e^{w}$. Since $e^{z}e^{-z} = e^{0} = 1$, $e^{z} \neq 0$.
+	\item Let $z = x + iy$. Then $e^{z} = e^{x + iy} = e^{x}e^{iy}$. But $e^{iy} = \cos y + i \sin y$, and note that $|e^{iy}| = 1$, so
+		\[
+		e^{z} = e^{x} (\cos y + i \sin y)
+		,\]
+		and $|e^{z}| = e^{x}$, so $e^{z} = 1$ if and only if $x = 0$ and $y = 2 \pi k$ for $k \in \mathbb{Z}$. In fact, for all $w \in \mathbb{C}^{\times}$, there exist infinitely many $z \in \mathbb{C}$ such that $e^{z} = w$, differing by integer multiples of $2 \pi i$.
+\end{enumerate}
+
+\begin{definition}
+	Let $U \subset \mathbb{C}^{\times}$ be an open set. We say a continuous function $\lambda : U \to \mathbb{C}$ is a \emph{branch of the logarithm}\index{branch of the logarithm} if for all $z \in U$, $\exp(\lambda(z)) = z$.
+\end{definition}
+
+\begin{exbox}
+	Let $U = \mathbb{C} \setminus \mathbb{R}_{\leq 0}$. Define $\log : U \to \mathbb{C}$ by
+	\[
+	\log(z) = \ln|z| + i \theta
+	,\]
+	where $\theta = \arg (z)$, and $\theta \in (-\pi, \pi)$. This is the \emph{principal branch of the logarithm}\index{principal branch of the logarithm}.
+\end{exbox}
+
+\begin{proposition}
+	$\log(z)$ is holomorphic on $\mathbb{C}\setminus \mathbb{R}_{\leq 0}$ with derivative $\frac{1}{z}$. Moreover, if $|z| < 1$, then
+	\[
+	\log(1+z) = \sum_{n = 1}^{\infty} \frac{(-1)^{n-1} z^{n}}{n}
+	.\]
+\end{proposition}
+
+\begin{proofbox}
+	As an inverse to $e^{z}$ and by the chain rule, we have $\log z$ is holomorphic with $\frac{\diff}{\diff z}\log z = \frac{1}{z}$, We have
+	\[
+	\frac{\diff}{\diff z} \log (1 + z) = \frac{1}{z+1} = 1 - z + z^2 - z^3 + z^{4} - \cdots
+	,\]
+	which is the derivative of
+	\[
+	\sum_{n = 1}^{\infty} \frac{(-1)^{n-1} z^{n}}{n}
+	.\]
+	So $\log(1+z)$ agrees with this series up to a constant. Since $\log(1) = 0$, the equality holds.
+\end{proofbox}
+
+If $\alpha \in \mathbb{C}$, we can define $z^{\alpha} = \exp(\alpha \log z)$. This gives a definition of $z^{\alpha}$ on $\mathbb{C}\setminus \mathbb{R}_{\leq 0}$. We can compute that $\frac{\diff}{\diff z} z^{\alpha} = \alpha z^{\alpha - 1}$.
+
+It is not necessarily true that $z^{\alpha}w^{\alpha} = (zw)^{\alpha}$. Take $\alpha = \frac{1}{2}$, then
+\[
+z^{1/2} = \exp \biggl( \frac{1}{2} \log z \biggr) = \exp \biggl( \frac{1}{2} \ln|z| + \frac{1}{2} i \theta \biggr)
+,\]
+for $\theta \in (-\pi, \pi)$. Hence the argument of $z^{1/2}$ is in $(-\frac{\pi}{2}, \frac{\pi}{2})$.
+
+\subsection{Contour Integration}
+\label{sub:contour_integration}
+
+If $f : [a, b] \to \mathbb{C}$ is continuous, we define
+\[
+\int_{a}^{b} f(t) \diff t = \int_{a}^{b} \Re(f(t)) \diff t + i \int_{a}^{b} \Im(f(t)) \diff t
+.\]
+
+\begin{proposition}
+	Let $f : [a, b] \to \mathbb{C}$ be continuous. Then,
+	\[
+	\biggl| \int_{a}^{b} f(t) \diff t \biggr| \leq (b - a)\sup_{a \leq t \leq b} |f(t)|
+	,\]
+	with equality if and only if $f$ is constant.
+\end{proposition}
+
+\begin{proofbox}
+	Write $M = \sup_{a \leq t \leq b}|f(t)|$, and $\theta = \arg(\int_{a}^{b} f(t) \diff t)$. Then
+	\begin{align*}
+		\biggl| \int_{a}^{b}f(t) \diff t \biggr| &= e^{-i \theta} \int_{a}^{b} f(t) \diff t = \int_{a}^{b} e^{-i \theta} f(t) \diff t \\
+							 &= \int_{a}^{b} \Re(e^{-i \theta}f(t)) \diff t \\
+							 &\leq \int_{a}^{b} |f(t)| \diff t \leq M(b - a).
+	\end{align*}
+	If we have equality, then $|f(t)| = M$, and $\arg f(t) = \theta$, so $f$ is constant.
+\end{proofbox}
+
+\begin{definition}
+	Let $\gamma : [a, b] \to \mathbb{C}$ be a $C^{1}$-smooth curve. Then we define the arc-length of $\gamma$ to be
+	\[
+		\rm{length}(\gamma) = \int_{a}^{b} |\gamma'(t)| \diff t
+	.\]
+	We say $\gamma$ is \emph{simple}\index{simple} if $\gamma(t_1) = \gamma(t_2) \iff t_1 = t_2$ or $\{t_1, t_2\} = \{a, b\}$. If $\gamma$ is simple, then $\rm{length}(\gamma)$ is the length of the image of $\gamma$.
+\end{definition}
+
+\begin{definition}
+	Let $f : U \to \mathbb{C}$ be continuous, with $U$ open, and $\gamma : [a, b] \to U$ be a $C^{1}$-smooth curve. Then the integral of $f$ along $\gamma$ is
+	\[
+	\int_{\gamma} f(z) \diff z = \int_{a}^{b} f(\gamma(t)) \gamma'(t) \diff t
+	.\]
+\end{definition}
+
+This integral satisfies the following properties:
+\begin{enumerate}[1.]
+	\item Linearity:
+		\[
+		\int_{\gamma} c_1 f_1 + c_2 f_2 \diff z = c_1 \int_{\gamma}f_1 \diff z + c_2 \int_{\gamma} f_2 \diff z
+		.\]
+	\item Additivity: if $a < a' < b$, then
+		\[
+			\int_{\gamma|_{[a,a']}}f(z) \diff z + \int_{\gamma|_{[a',b]}}f(z) \diff z = \int_{\gamma} f(z) \diff z
+		.\]
+	\item Inverse path: if $(- \gamma)(t) = \gamma(-t)$ on $[-b, -a]$, then
+		\[
+		\int_{-\gamma}f(z) \diff z = - \int_{\gamma} f(z) \diff z
+		.\]
+	\item Independence of parametrization: if $\phi : [a', b'] \to [a, b]$ is $C^{1}$-smooth with $\phi(a') = a$, $\phi(b') = b$ and $\delta = \gamma \circ \phi$, then
+		\[
+		\int_{\delta}f(z) \diff z = \int_{\gamma} f(z) \diff z
+		.\]
+		This lets us assume that $\gamma : [0, 1] \to U$.
+\end{enumerate}
+
+We can loosen the restriction that $\gamma$ is $C^{1}$-smooth and allow it to be piecewise $C^{1}$-smooth, i.e. there exist $a = a_0 < a_1 < \cdots < a_n = b$ such that $\gamma_i = \gamma|_{[a_{i-1},a_i]}$ is $C^{1}$-smooth. Define then
+\[
+\int_{\gamma}f(z) \diff z = \sum_{i = 1}^{n} \int_{\gamma_i}f(z) \diff z
+.\]
+
+\begin{remark}
+	Any piecewise $C^{1}$-smooth curve can be reparametrized to be $C^{1}$: for such a $\gamma$ as above, replace $\gamma_i$ by $\gamma_i \circ h_i$ where $h_i$ is monotonic $C^{1}$-smooth bijection with endpoint derivative $0$.
+
+	So $C^{1}$-smooth paths can have corners, for example
+	\[
+	\gamma(t) =
+	\begin{cases}
+		1 + i \sin (\pi t) & t \in [0, \frac{1}{2}], \\
+		\sin(\pi t) + i & t \in [\frac{1}{2}, 1].
+	\end{cases}
+	\]
+\end{remark}
+
+We say a ``curve'' is a piecewise $C^{1}$-smooth path, and a ``contour'' is a simple \emph{closed} piecewise $C^{1}$-smooth path, where closed means the endpoints are equal.
+
+\begin{proposition}
+	For any continuous $f : U \to \mathbb{C}$ with $U$ open, and any curve $\gamma : [a, b] \to U$,
+	\[
+		\biggl| \int_{\gamma}f(z) \diff z \biggr| \leq \rm{length}(\gamma) \sup_{z \in \gamma}|f(z)|
+	.\]
+\end{proposition}
+
+\begin{proofbox}
+	
+	\begin{align*}
+		\biggl| \int_{\gamma}f(z) \diff z \biggr| &= \biggl| \int_{a}^{b} f(\gamma(t)) \gamma'(t) \diff t \biggr| \\
+							  &\leq \int_{a}^{b} |f(\gamma(t)) \gamma'(t)| \diff t \\
+							  &\leq \sup_{z \in \gamma}|f(z)| \rm{length}(\gamma).
+	\end{align*}
+\end{proofbox}
+
+\begin{proposition}
+	If $f_n : U \to \mathbb{C}$ for $n \in \mathbb{N}$ and $f : U \to \mathbb{C}$ are continuous, and $\gamma : [a, b] \to U$ is a curve in $U$ with $f_n \to f$ uniformly on $\gamma$, then
+	\[
+	\int_{\gamma}f_n(z) \diff z \to \int_{\gamma}f(z) \diff z
+	,\]
+	as $n \to \infty$.
+\end{proposition}
+
+\begin{proofbox}
+	By uniform convergence, $\sup_{z \in \gamma}|f(z) - f_n(z)| \to 0$ as $n \to \infty$. So by the previous proposition,
+	\begin{align*}
+		\biggl| \int_{\gamma}f(z) \diff z - \int_{\gamma}f_n(z) \diff z \biggr| &\leq \rm{length}(\gamma) \sup_{\gamma}|f - f_n| \\
+											&\to 0
+	\end{align*}
+	as $n \to \infty$.
+\end{proofbox}
+
+\begin{exbox}
+	Let $f_n(z) = z^{n}$ for $n \in \mathbb{Z}$ on $C^{\times} = U$, and $\gamma : [0, 2\pi] \to U$ with $\gamma(t) = e^{it}$. Then,
+	\[
+	\int_{\gamma}f_n(z) \diff z = \int_{0}^{2\pi} e^{n i t} i e^{it} \diff t = i \int_{0}^{2\pi} e^{(n+1)it} \diff t =
+	\begin{cases}
+		2 \pi i & n = -1, \\
+		0 & n \neq -1.
+	\end{cases}
+	\]
+\end{exbox}
 
 
 \newpage

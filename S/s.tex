@@ -509,6 +509,101 @@ The condition of the theorem says that $\overset{1}{\sim}$ and $\overset{2}{\sim
 	for some function $c$ which does not depend on $\theta$.
 \end{remark}
 
+\begin{exbox}
+	Suppose that $X_1, \ldots, X_n$ are iid $N(\mu, \sigma^2)$, with parameters $(\mu, \sigma^2)$ unknown. Then,
+	\begin{align*}
+	\frac{f_X(x \mid t)}{f_X(y \mid t)} &= \frac{(2 \pi \sigma^2)^{-n/2} \exp (-\frac{1}{2 \sigma^2} \sum (x_i - \mu)^2)}{(2 \pi \sigma^2)^{-n/2} \exp (-\frac{1}{2 \sigma^2} \sum (y_i - \mu)^2)} \\
+					    &= \exp \biggl[ - \frac{1}{2 \sigma^2} \biggl(\sum x_i^2 - \sum y_i^2\biggr) + \frac{\mu}{\sigma^2} \biggl(\sum x_i - \sum y_i\biggr) \biggr].
+	\end{align*}
+	Hence if $\sum x_i^2 = \sum y_i^2$ and $\sum x_i = \sum y_i$, this ratio does not depend on $(\mu, \sigma^2)$. The converse is also true: if the ratio does not depend on $(\mu, \sigma^2)$, then we must have $\sum x_i^2 = \sum y_i^2$ and $\sum x_i = \sum y_i$. By the theorem, $T(x) = (\sum x_i^2, \sum x_i)$ is minimal sufficient.
+
+	Recall that bijections of $T$ are also minimal sufficient. A more common way of expressing a minimal sufficient statistic in this model is $S(X) = (\bar X, S_{x x})$, where
+	\[
+	\bar X = \frac{1}{n} \sum_{i} X_i, \qquad S_{x x} = \sum_{i} (X_i - \bar X)^2
+	.\]
+	In this example, $(\mu, \sigma^2)$ and $T(X)$ are both 2-dimensional. In general, the parameter and sufficient statistic can have different dimensions.
+
+	For example, if $X_1, \ldots, X_n$ are iid $N(\mu, \mu^2)$, where $\mu \geq 0$, then the minimal sufficient statistic is $S(X) = (\bar X, S_{x x})$.
+\end{exbox}
+
+\subsection{Rao-Blackwell Theorem}
+\label{sub:rao_blackwell_theorem}
+
+So far we have written $\mathbb{E}_{\theta}$ and $\mathbb{P}_{\theta}$ to denote the expectations and probabilities in the model where $X_1, \ldots, X_n$ are iid drawn from $f_X(\cdot \mid \theta)$. From now on, we drop the subscript $\theta$.
+
+\begin{theorem}[Rao-Blackwell Theorem]\index{Rao-Blackwell theorem}
+	Let $T$ be a sufficient statistic for $\theta$. Let $\tilde \theta$ be some estimator for $\theta$, with $\mathbb{E}[\tilde \theta^2] < \infty$ for all $\theta$. Define a new estimator $\hat \theta = \mathbb{E}[\tilde \theta \mid T(X)]$. Then, for all $\theta$,
+	\[
+	\mathbb{E}[(\hat \theta - \theta)^2] \leq \mathbb{E}[(\tilde \theta - \theta)^2]
+	,\]
+	with equality if and only if $\tilde \theta$ is a function of $T(X)$.
+\end{theorem}
+
+\begin{remark}
+	$\hat \theta$ is a valid estimator, as it does not depend on $\theta$, only on $X$, as $T$ is sufficient:
+	\[
+	\hat \theta (T(x)) = \int \tilde \theta(x) f_{X|T}(x|T) \diff x
+	,\]
+	where neither $\tilde \theta$ nor the conditional distribution depend on $\theta$.
+\end{remark}
+
+The message is that we can improve the mean squared error of any estimator $\tilde \theta$ by taking a conditional expectation given $T(X)$.
+
+\begin{proofbox}
+	By the tower property,
+	\[
+	\mathbb{E}[\hat \theta] = \mathbb{E}[\mathbb{E}[\tilde \theta \mid T]] = \mathbb{E}[\tilde \theta]
+	.\]
+	So $\bias(\hat \theta) = \bias(\tilde \theta)$ for all $\theta$. By the conditional variance formula,
+	\begin{align*}
+		\Var(\tilde \theta) &= \mathbb{E}[\Var(\tilde \theta \mid T)] + \Var(\mathbb{E}[\tilde \theta \mid T]) \\
+				    &= \mathbb{E}[\Var(\tilde \theta \mid T)] + \Var(\hat \theta).
+	\end{align*}
+	Hence $\Var (\tilde \theta) \geq \Var (\hat \theta)$ for all $\theta$. Hence $\mse(\tilde \theta) \geq \mse(\hat \theta)$.
+
+	Note that $\Var(\tilde \theta \mid T) > 0$ with some positive probability unless $\tilde \theta$ is a function of $T(X)$. So $\mse(\tilde \theta) > \mse(\hat \theta)$ unless $\tilde \theta$ is a function of $T(X)$.
+\end{proofbox}
+
+\begin{exbox}
+	Say $X_1, \ldots, X_n$ are iid $\Poisson(\lambda)$. We wish to estimate $\theta = \mathbb{P}(X_1 = 0) = e^{-\lambda}$. Then
+	\begin{align*}
+		f_X(x \mid \lambda) &= \frac{e^{-n \lambda}\lambda^{x_1 + \cdots + x_n}}{x_1! \cdots x_n!} \\
+				    &= \frac{\theta^{n} (- \log \theta)^{x_1 + \cdots + x_n}}{x_1! \cdots x_n!}
+	\end{align*}
+	Letting $h(x) = 1/(x_1! \cdots x_n!)$, $g(T(x), \theta) = \theta^{n}(- \log \theta)^{T(x)}$, by the factorization criterion, $T(x) = \sum x_i$ is a sufficient statistic.
+	Let $\tilde \theta = \mathbbm{1}(X_i = 0)$. This is unbiased, but only uses one observation $X_1$. Using Rao-Blackwell, we can find
+	\begin{align*}
+		\hat \theta &= \mathbb{E}[\tilde \theta \mid T = t] = \mathbb{P}\biggl(X_1 = 0 \biggm| \sum_{i= 1}^{n} X_i = t\biggr) \\
+			    &= \frac{\mathbb{P}(X_1 = 0, X_1 + \cdots + X_n = t)}{\mathbb{P}(X_1 + \cdots + X_n = t)} = \frac{\mathbb{P}(X_1 = 0, X_2 + \cdots + X_n = t)}{\mathbb{P}(X_1 + \cdots + X_n = t)} \\
+			    &= \frac{\mathbb{P}(X_1 = 0) \mathbb{P}(X_2 + \cdots + X_n = t)}{\mathbb{P}(X_1 + \cdots + X_n = t)} = \frac{e^{-\lambda} \mathbb{P}(\Poisson((n-1) \lambda) = t)}{\mathbb{P}(\Poisson(n \lambda) = t)} \\
+			    &= \frac{e^{-n \lambda} ((n-1)\lambda)^{t}/t!}{e^{-n \lambda} (n \lambda)^{t}/t!} = \biggl( 1 - \frac{1}{n} \biggr)^{t}.
+	\end{align*}
+	So $\hat \theta = (1 - \frac{1}{n})^{x_1 + \cdots + x_n}$ is an estimator which by the Rao-Blackwell theorem has $\mse(\hat \theta) < \mse(\tilde \theta)$.
+
+	As $n \to \infty$,
+	\[
+		\hat \theta = \biggl(1 - \frac{1}{n} \biggr)^{n \bar x} \overset{n \to \infty}{\to} e^{-\bar x}
+	,\]
+	and by the strong law of large numbers
+	\[
+	\bar x \to \mathbb{E}[X_1] = \lambda
+	.\]
+	so $\hat \theta \to e^{-\lambda}$.
+\end{exbox}
+
+\begin{exbox}
+	Let $X_1, \ldots, X_n$ be iid $U([0, \theta])$ where $\theta$ is unknown and $\theta \geq 0$. Then recall $T(X) = \max_{i} X_i$ is sufficient for $\theta$.
+
+	Let $\tilde \theta = 2 X_1$, which is unbiased. Then,
+	\begin{align*}
+		\hat \theta &= \mathbb{E}[\tilde \theta \mid T = t] = 2 \mathbb{E}[X_1 \mid \max_{i} X_i = t] \\
+			    &= 2 \mathbb{E}[X_1 \mid \max_{i} X_i = t, \max_{i} X_i = X_1] \mathbb{P}(\max_{i} X_i = X_1 \mid \max_{i} X_i = t) \\
+			    &+ 2 \mathbb{E}[X_1 \mid \max_{i}X_i = t, \max_{i} X_i \neq X_1] \mathbb{P}(\max_{i}X_i \neq X_1 \mid \max_{i}X_i = t) \\
+			    &= \frac{2t}{n} + \frac{2(n-1)}{n} \mathbb{E}[X_1 \mid X_1 \leq t, \max_{i>1} X_i = t] = \frac{2t}{n} + \frac{2(n-1)}{n} \frac{t}{2} = \frac{n+1}{n} t.
+	\end{align*}
+	So $\hat \theta = \frac{n+1}{n} \max_{i} X_i$ is a valid estimator with $\mse(\hat \theta) < \mse(\tilde \theta)$.
+\end{exbox}
+
 
 \newpage
 
