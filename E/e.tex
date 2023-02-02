@@ -4,6 +4,8 @@
 \documentclass[12pt]{article}
 
 \usepackage{ishn}
+\usetikzlibrary{patterns}
+\usetikzlibrary{patterns.meta}
 \usepackage{caption}
 \usepackage{subcaption}
 
@@ -363,7 +365,7 @@ This consists of two equal and opposite charge at difference positions. Without 
 	\label{fig:electric_dipole}
 	\vspace{1em}
 	\begin{tikzpicture}
-		\draw [->, thick](0,0) -- (0,2);
+		\draw [|-|, thick](0,0) -- (0,2);
 		\node [draw,circle] at (-0.75,2) {$+q$};
 		\node [draw,circle] at (-0.75,0) {$-q$ };
 		\node [right] at (0,1) {$d$};
@@ -378,7 +380,7 @@ Applying Taylor's theorem to a scalar field, we get
 \[
 f(\mathbf{x} + \mathbf{h}) = f(\mathbf{x}) + (\mathbf{h} \cdot \nabla) f(\mathbf{x}) + \frac{1}{2} (\mathbf{h} \cdot \nabla)^2 f(\mathbf{x}) + \mathcal{O}(|\mathbf{h}|^3)
 ,\]
-so applying this to out potential (and letting $|\mathbf{x}| = r$,)
+so applying this to our potential (and letting $|\mathbf{x}| = r$,)
 \begin{align*}
 	\Phi(\mathbf{x}) &= \frac{q}{4 \pi \epsilon_0} \biggl( -\frac{1}{r} + \frac{1}{r} - (\mathbf{d} \cdot \nabla) \frac{1}{r} + \mathcal{O}(|\mathbf{d}|^2)\biggr) \\
 			 &= \frac{q}{4 \pi \epsilon_0} \frac{\mathbf{d} \cdot \mathbf{x}}{|\mathbf{x}|^3} + \mathcal{O}(|\mathbf{d}|^2).
@@ -517,6 +519,176 @@ The first three multipole moments are the:
 
 For $r \gg R$, $\Phi$ and $\mathbf{E}$ look increasingly like those of a point charge $Q$ unless $Q = 0$, in which case they look like those of a point dipole, unless $\mathbf{p} = 0$, etc.
 
+\subsection{Electrostatic Energy}
+\label{sub:electrostatic_energy}\index{electrostatic energy}
+
+The work done against the electric force $\mathbf{F} = q \mathbf{E}$ in bringing a particle of charge $q$ from infinity (where we assume $\Phi = 0$) to $\mathbf{x}$ is
+\[
+- \int_{\infty}^{\mathbf{x}} \mathbf{F} \cdot \diff \mathbf{x} = +q \int_{\infty}^{\mathbf{x}} \nabla \Phi \cdot \diff \mathbf{x} = q \Phi (\mathbf{x})
+.\]
+
+Consider assembling a configuration of $N$ point charges one by one. Particle $i$ of charge $q_i$ is brought from $\infty$ to $\mathbf{x}_i$, while the previous particles remain fixed.
+\begin{enumerate}[label = Particle \arabic*.]
+	\item There is no work involved, so $W_1 = 0$.
+	\item
+		\[
+		W_1 = q_2 \biggl( \frac{q}{4 \pi \epsilon_0 |\mathbf{x}_2 - \mathbf{x}_1|} \biggr)
+		.\]
+	\item
+		\[
+		W_3 = q_3 \biggl( \frac{q_1}{4 \pi \epsilon_0 |\mathbf{x}_3 - \mathbf{x}_1|} + \frac{q_2}{4 \pi \epsilon_0|\mathbf{x}_3 - \mathbf{x}_2|} \biggr)
+		,\]
+\end{enumerate}
+and so on. The total work done is
+\[
+U = \sum_{i = 1}^{N} W_i = \sum_{i = 2}^{N} \sum_{j = 1}^{i-1} \frac{q_i q_j}{4 \pi \epsilon_0 |\mathbf{x}_i - \mathbf{x}_j|}
+.\] 
+This can be rewritten as
+\[
+	U = \frac{1}{2} \sum_{i = 1}^{N}\sum_{\substack{j=1\\j\neq i}}^{N} \frac{q_i q_j}{4 \pi \epsilon_0|\mathbf{x}_i - \mathbf{x}_j|}
+,\]
+or
+\[
+U = \frac{1}{2} \sum_{i = 1}^{N} q_i \Phi(\mathbf{x}_i)
+.\]
+
+Generalizing to a continuous charge distribution $\rho(\mathbf{x})$, occupying a finite volume $V$,
+\[
+U = \frac{1}{2} \int_{V} \rho(\mathbf{x}) \Phi(\mathbf{x}) \Diff3 \mathbf{x} = \frac{1}{2} \int_{V} \rho \Phi \diff V
+.\]
+Using (M1) we have
+\begin{align*}
+	U &= \frac{1}{2} \int_{V} (\epsilon_0 \nabla \cdot \mathbf{E}) \Phi \diff V = \frac{\epsilon_0}{2} \int_{V} (\nabla \cdot (\Phi \mathbf{E}) - \mathbf{E} \cdot \nabla \Phi) \diff V \\
+	  &= \frac{\epsilon_0}{2} \int_{S} \phi \mathbf{E} \cdot \diff \mathbf{S} + \int_{V} \frac{\epsilon_0|\mathbf{E}|^2}{2} \diff V
+.\end{align*}
+
+Let $S = \partial V$ be a sphere of radius $R \to \infty$. Then $\Phi = \mathcal{O}(R^{-1})$, and $\mathbf{E} = \mathcal{O}(R^{-2})$ on $S$, while the area of $S$ is $\mathcal{O}(R^2)$, so the area integral is $\mathcal{O}(R^{-1})$ and goes to zero as $R \to \infty$. Thus,
+\[
+U = \int \frac{\epsilon_0 |\mathbf{E}|^2}{2} \diff V
+,\]
+integrated over all space.
+
+This implies that energy is stored in the electric field, even in a vacuum.
+
+Any of the expression for $U$ suggest that the self-energy of a point charge is infinite. We can discard this as it is unchanging and causes no force.
+
+\subsection{Conductors}
+\label{sub:conductors}
+
+In an \emph{conductor}\index{conductor} such as a metal, some charges (usually electrons) can move freely. In electrostatics we require
+\[
+	\mathbf{E} = \mathbf{0}, \qquad \Phi = \rm{constant}
+\]
+inside a conductor, hence $\rho = 0$. Otherwise free charges would move in response to the electric force and a current would flow.
+
+A surface charge density $\rho$ can exist on the surface of a conductor, which is an equipotential.
+
+Taking a normal $\mathbf{n}$ to the point of the conductor, the condition
+\[
+	[\mathbf{n} \cdot \mathbf{E}] = \frac{\sigma}{\epsilon_0} \implies \mathbf{n} \cdot \mathbf{E} = \frac{\sigma}{\epsilon_0}
+\]
+immediately outside the conductor.
+
+The constant potential of a conductor can be set by connecting it to a battery or another conductor. An \emph{earthed} (or \emph{grounded}) conductor is connected to the ground, usually taken as $\Phi = 0$.
+
+To find $\Phi(\mathbf{x})$ and $\mathbf{E}(\mathbf{x})$ due to a charge distribution $\rho(\mathbf{x})$ in the presence of conductors with surfaces $S_i$ and potentials $\Phi_i$, we solve Poisson's equation
+\[
+- \nabla^2 \Phi = \frac{\rho}{\epsilon_0}
+,\]
+with Dirichlet boundary conditions $\Phi = \Phi_i$ on $S_i$. The solution depends linearly on $\rho$ and $\{\Phi_i\}$.
+
+\begin{exbox}
+	Consider a point charge $q$ at position $(0,0,h)$ in a half-space $z > 0$, bounded by an earthed conducting wall ($\Phi = 0$ on $z = 0$).
+
+	By the method of images, the solution in $z > 0$, is identical to that of a dipole, with image charge $-q$ at $(0, 0, -h)$.
+
+	This is as the wall coincides with an equipotential of the dipole. The induced surface charge density on the wall can be worked out from
+	\[
+	\frac{\sigma}{\epsilon_0} = \mathbf{n} \cdot \mathbf{E} = E_z = - \frac{qh}{4 \pi \epsilon_0 (r^2 + h^2)^{3/2}}
+	,\]
+	where $r = \sqrt{x^2 + y^2}$. The total induced surface charge is
+	\[
+	\int_{0}^{\infty} \sigma 2 \pi r \diff r = - q h \int_{0}^{\infty} \frac{r \diff r}{(r^2 + h^2)^{3/2}} = -q
+	.\]
+\end{exbox}
+
+\begin{figure}[h]
+	\centering
+	\caption{Point Charge and Wall}
+	\label{fig:point_charge_and_wall}
+	\begin{tikzpicture}
+		\draw[fill] (0,2) circle (0.05);
+		\draw[fill] (0,-2) circle (0.05);
+		\draw (-5,0) -- (5,0);
+		\draw[<->] (0,0.1) -- (0,1.85);
+		\draw[<->] (0,-0.1) -- (0,-1.85);
+		\node[right] at (0,1) {$h$};
+		\node[right] at (0,-1) {$h$};
+		\node[right] at (0,2) {$+q$};
+		\node[right] at (0,-2) {$-q$};
+		\draw (0.15, 1.85) -- (1.85,0.1);
+		\node[below] at (0.925,0) {$r$};
+		\draw[->] (2.5,0.1) -- (2.5,0.8);
+		\node[above] at (2.5,0.8) {\small$z>0$};
+		\node[right] at (5,0) {\small$z=0$};
+	\end{tikzpicture}
+\end{figure}
+
+A simple \emph{capacitor}\index{capacitor} consists of two separated conductors carrying charges $\pm Q$.
+
+If the potential difference (voltage) between them is $V$, then the capacitance\index{capacitance} is defined by
+\[
+C = \frac{Q}{V}
+,\]
+and depends only on the geometry, because $\Phi$ depends linearly on $Q$.
+
+\begin{exbox}
+	Consider two infinite parallel plates separated by $d$. Let the plate surfaces be at $z = 0$, $z = d$, and have surface charge densities $\pm \sigma$. Then, $\mathbf{E} = E \mathbf{e}_z$ with $E = \sigma/\epsilon_0$ constant for $0 < z < d$.
+
+	Then $\Phi = - Ez + \rm{constant}$ and $V = Ed$.
+
+	The same solution holds approximately for parallel plates of area $A \gg d^2$ if end-effects are neglected. So,
+	\[
+	C = \frac{Q}{V} \approx \frac{\sigma A}{E d} \approx \frac{\epsilon_0 A}{d}
+	.\]
+	The electrostatic energy stored in the capacitor is
+	\[
+	U = \int \frac{\epsilon_0 |\mathbf{E}|^2}{2} \diff V \approx \frac{\epsilon_0 E^2}{2} A d \approx \frac{1}{2} CV^2
+	.\]
+	In general,
+	\[
+	U = \frac{1}{2} CV^2 = \frac{Q^2}{2C}
+	.\]
+	The work done in moving an element of charge $\delta Q$ from one plate to another is $\delta W = V \delta Q$. So the total work done is
+	\[
+	\int_{0}^{Q} \frac{Q'}{C} \diff Q' = \frac{Q^2}{2C}
+	.\]
+	Or we can use
+	\[
+	U = \frac{1}{2} \int \rho \Phi \diff V = \frac{1}{2} Q \Phi_{+} - \frac{1}{2} Q \Phi_{-} = \frac{1}{2} Q V
+	.\]
+\end{exbox}
+
+\begin{figure}[h]
+	\centering
+	\caption{Capacitors}
+	\label{fig:capacitors}
+	\begin{tikzpicture}
+		\draw (-5, -2) -- (5, -2);
+		\draw (-5, 2) -- (5, 2);
+		\draw[->] (-3, -1) -- (-3, 1);
+		\draw[->] (-1, -1) -- (-1, 1);
+		\draw[->] (1, -1) -- (1, 1);
+		\draw[->] (3, -1) -- (3, 1);
+		\node[left] at (-5,-2) {$+\sigma$};
+		\node[left] at (-5,2) {$-\sigma$};
+		\node[right] at (5,-2) {$z=0$};
+		\node[right] at (5,2) {$z=d$};
+		\fill[pattern = north west lines] (-5,2) rectangle +(10,0.5);
+		\fill[pattern = north east lines] (-5,-2) rectangle +(10,-0.5);
+		\node at (0,0) {$\mathbf{E}$};
+	\end{tikzpicture}
+\end{figure}
 \newpage
 
 \printindex
