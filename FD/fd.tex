@@ -3,6 +3,7 @@
 \documentclass[12pt]{article}
 
 \usepackage{ishn}
+\usetikzlibrary{decorations.markings}
 \usepackage{siunitx}
 \usepackage{etoolbox}
 \usepackage{caption}
@@ -13,6 +14,14 @@
 \begin{document}
 \robustify\dots
 \sisetup{input-digits = 0123456789\dots}
+
+\tikzset{middlearrow/.style={
+        decoration={markings,
+            mark= at position 0.5 with {\arrow{#1}} ,
+        },
+        postaction={decorate}
+    }
+}
 
 \hypersetup{pageanchor=false}
 \begin{titlepage}
@@ -617,14 +626,13 @@ p_1 = p_0 + \rho u_1^2 \biggl( \frac{A_1}{A_0} - 1 \biggr) \biggl( \frac{A_1}{A_
 
 Now consider a water jet hitting an oblique wall. We will consider a two-dimensional case, where we neglect gravity. Assume the cross section of the incoming fluid is $u$, and has speed $U$, and the area going up is $a_2$, and going down is $a_1$.
 
-
-
 \begin{figure}[h]
 	\centering%do later
 	\caption{Oblique Wall}
 	\label{fig:oblique_wall}
 	\begin{tikzpicture}
 			\draw [-] (1, -3) -- (7, 1);
+			\draw [-] (3.5,-0.5) -- (4.75,-0.5);
 			\draw [-] (0, 0) to (3,0) to[out=0,in=-150] (6,1.25);
 			\draw [-] (0, -1) to (2.5, -1)[out=0,in=30] to (0.5, -2.95);
 			\node at (0, 0.5) {$u$};
@@ -642,6 +650,121 @@ Now consider a water jet hitting an oblique wall. We will consider a two-dimensi
 At the contact point of the stream and the wall, there will be pressure $p > p_a$, implying there is a force.
 
 Using Bernoulli on the surface streamline where $p = p_a$ is constant, then the speed is constant along the streamline. Hence far from the impact where flow is uniform and $p = p_a$, we have $u = U$, so by mass conservation, $aU = a_1U + a_2U$.
+
+The momentum integral equation applied to this gives
+\[
+\frac{\diff}{\diff t} \int_{V} \rho \mathbf{u} \diff V = - \int_{\partial V} \rho \mathbf{u} (\mathbf{u} \cdot \mathbf{n}) + p \mathbf{n} \diff A + \int_{V} \mathbf{f} \diff V
+.\]
+
+THe time derivative is 0, as the flow is steady, and we neglect gravity. Hence we get
+\[
+\int_{\partial V} \rho \mathbf{u} (\mathbf{u} \cdot \mathbf{n}) + p \mathbf{n} \diff A
+.\]
+
+Note that $p = p_a$ apart from near the impact, and $\mathbf{u} \cdot \mathbf{n} = 0$ apart from the ends. Hence, the component parallel to the plane going upwards is
+\[
+-\rho U^2 a \cos \beta + p U^2 a_2 - p U^2 a_1
+,\]
+which we can solve (using conservation of mass) to get
+\[
+a_2 = a \frac{1 + \cos \beta}{2}, \qquad q_1 = a \frac{1 - \cos \beta}{2}
+.\]
+The component perpendicular to the plane is
+\[
+\frac{1}{2} \rho U^2 a \sin \beta = \int_{\partial V} p \mathbf{n} \diff A = \int_{\partial V} (p - p_a)\mathbf{n} \diff A
+,\]
+which is the force on the wall.
+
+\subsection{Hydrostatic Pressure and Archimedes Principle}
+\label{sub:hydrostatic_pressure_and_archimedes_principle}
+
+If $\mathbf{u} = 0$, then by Euler,
+\[
+0 = - \nabla p + \rho \mathbf{g} = - \nabla (p + \chi)
+,\]
+\[
+	\implies p + \chi = \mathrm{constant} \implies p = p_0 - pgz
+.\]
+This is the \emph{hydrostatic pressure}\index{hydrostatic pressure}.
+
+We can also calculate the pressure force on a submerged body with $\mathbf{u} = 0$, in a fluid with density $\rho_{f}$:
+\begin{align*}
+	\mathbf{F} = - \int p \mathbf{n} \diff A = - \int (p_0 - \rho g z) \mathbf{n} \diff A = - \int \nabla (p_0 - \rho g z) \diff V = \rho_{f} g \mathbf{\hat z} V.
+\end{align*}
+
+Hence \emph{Archimedes principle}\index{Archimedes principle} says the upthrust or buoyancy is the weight of the fluid displaced.
+
+For $\mathbf{u} \neq 0$ and constant $\rho$ everywhere, we can write $p = p_0 - \rho g z + p'$, and get
+\[
+\rho \frac{D \mathbf{u}}{D t} = - \nabla p'
+.\]
+Here $p'$ is the \emph{dynamic}\index{dynamic pressure} or \emph{modified} pressure. This is the variation due to the motion after subtracting the hydrostatic balance.
+
+We can ignore gravity if there are no density variations and no free surfaces. If there is a free surface between air and water, then since $\rho_{\rm{water}} \neq \rho_{\rm{air}}$, gravity has an effect, leading to waves.
+
+\subsection{Vorticity}
+\label{sub:vorticity}\index{vorticity}
+
+Vorticity is defined by
+\[
+\bm{\omega} = \nabla \times \mathbf{u}
+.\]
+This is another way to talk about the angular momentum of the fluid.
+
+\begin{enumerate}
+	\item If $\mathbf{u} = \bm{\Omega} \times \mathbf{x}$, this is solid-body rotation, and gives $\bm{\omega} = 2 \bm{\Omega}$.
+	\item If $\mathbf{u} = (0, \gamma_x, 0)$, this is a simple shear, and gives $\bm{\omega} = (0, 0, \gamma)$.
+	\item If $\mathbf{u} = (0, \frac{\kappa}{2 \pi r}, 0)$ in cylindrical polars, this is known as a line vortex with $\bm{\omega} = \mathbf{0}$ except at $r = 0$. Indeed, doing the line integral around the singularity gives
+		\[
+		\oint_{r = a} \mathbf{u} \cdot \diff \mathbf{l} = \int_{0}^{2 \pi} \frac{R}{2 \pi r} r \diff \theta = R
+		,\]
+		but using Stokes' theorem gives
+		\[
+		\oint_{r = a} \mathbf{u} \cdot \diff \mathbf{l} = \int_{r < a} \bm{w} \cdot \mathbf{\hat z} \diff A
+		,\]
+		hence we get $\bm{\omega} = (0, 0, \kappa \delta(r))$.
+\end{enumerate}
+
+\subsubsection{Interpretation of Vorticity}
+\label{subsub:interpretation_of_vorticity}
+
+Consider a material line element $\delta \mathbf{l}$, moving with the fluid.
+
+\begin{figure}[h]
+	\centering%do later
+	\caption{Line Element}
+	\label{fig:line_element}
+	\begin{tikzpicture}
+		\draw [middlearrow={>}, blue] (0,0) -- (0,2);
+		\draw [middlearrow={>}, red] (0,0) -- (3,-1);
+		\draw [middlearrow={>}, blue] (3,-1) -- (4,3);
+		\draw [middlearrow={>}, red] (0,2) -- (4,3);
+		\node[below] at (0,0) {\small $\mathbf{x}$};
+		\node[left] at (0,1) {\small $\delta \mathbf{l}(t)$};
+		\node[below] at (3,-1) {\small $\mathbf{x}+\mathbf{u}(\mathbf{x},t)\delta t$};
+		\node[right] at (3.5,1) {\small $\delta \mathbf{l}(t + \delta t)$};
+		\node[above] at (0,2) {\small $\mathbf{x} + \delta \mathbf{l}$};
+		\node[right] at (4,3) {\small $\mathbf{x} + \delta \mathbf{l} + \mathbf{u}(\mathbf{x} + \delta \mathbf{l}, t) \delta t$};
+	\end{tikzpicture}
+\end{figure}
+
+Then $\delta \mathbf{l} \to \delta \mathbf{l} + (\delta \mathbf{l} \cdot \nabla) \mathbf{u} \delta t$, or
+\[
+\frac{\diff}{\diff t} \delta \mathbf{l} = (\delta \mathbf{l} \cdot \nabla) \mathbf{u}
+.\]
+Hence the tensor $\partial u_i/\partial x_j$ determines the rate of change of $\delta \mathbf{l}$. We can write
+\[
+\frac{\partial u_i}{\partial x_j} = \frac{1}{2} \biggl( \frac{\partial u_i}{\partial x_j} + \frac{\partial u_j}{\partial x_i} \biggr) + \frac{1}{2} \biggl( \frac{\partial u_i}{\partial x_j} - \frac{\partial u_j}{\partial x_i} \biggr) = e_{ij} + \frac{1}{2} \eps_{jik} \omega_{k}
+.\]
+
+
+The local rotation of line elements due to the second term is
+\[
+\frac{1}{2} \eps_{jik}\omega_k \delta l_j = \frac{1}{2} (\bm{w} \times \delta \mathbf{l})
+.\]
+The local motion due to the first term is called the \emph{strain rate}, which gives zero angular velocity averaged over all orientation $\delta \mathbf{l}$. $\mathbf{e}$ is symmetric and traceless when $\nabla \cdot \mathbf{u} = 0$.
+
+Note that $\frac{1}{2} \bm{\omega}$ gives the rate of rotation of blobs, not whether the blobs are going in circles.
 
 \newpage
 

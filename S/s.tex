@@ -604,6 +604,155 @@ The message is that we can improve the mean squared error of any estimator $\til
 	So $\hat \theta = \frac{n+1}{n} \max_{i} X_i$ is a valid estimator with $\mse(\hat \theta) < \mse(\tilde \theta)$.
 \end{exbox}
 
+\subsection{Maximum Likelihood Estimation}
+\label{sub:maximum_likelihood_estimation}
+
+Let $X = (X_1, \ldots, X_n)$ have joint pdf (or pmf) $f_X(X \mid \theta)$.
+
+\begin{definition}
+	The likelihood function is
+	\[
+	L : \theta \mapsto f_X(X \mid \theta)
+	.\]
+\end{definition}
+
+The \emph{maximum likelihood estimator}\index{maximum likelihood estimator} is any value of $\theta$ maximizing $L(\theta)$.
+
+If $X_1, \ldots, X_n$ are iid each with pdf (or pmf) $f_X(\cdot \mid \theta)$, then
+\[
+L(\theta) = \prod_{i=1}^{n} f_X(x_i \mid \theta)
+.\]
+We will denote the logarithm
+\[
+\ell(\theta) = \log L (\theta) = \sum_{i = 1}^{n} \log f_X(x_i \mid \theta)
+.\]
+
+\begin{exbox}
+	If $X_1, \ldots, X_n$ are iid $\Ber(\theta)$, then
+	\[
+	\ell(\theta) = \Biggl(\sum x_i\Biggr) \log \theta = \Biggl(n - \sum_{x_i} \Biggr) \log(1 - \theta)
+	,\]
+	and the derivative
+	\[
+	\frac{\partial \ell}{\partial \theta} = \frac{\sum x_i}{\theta} - \frac{n - \sum x_i}{1 - \theta}
+	.\]
+	This is zero if and only if $\theta = \frac{1}{n} \sum x_i = \bar X$.
+
+	Hence $\bar X$ is the maximum likelihood estimator for $\theta$, and is unbiased as $\mathbb{E}[\bar X] = 0$.
+\end{exbox}
+
+\begin{exbox}
+	If $X_1, \ldots, X_n$ are iid $N(\mu, \sigma^2)$, then
+	\[
+	\log (\mu, \sigma^2) = - \frac{n}{2} \log(2 \pi) - \frac{n}{2} \log \sigma^2 - \frac{1}{2 \sigma^2} \sum_{i = 1}^{n} (x_i - \mu)^2
+	.\]
+	This is maximized when $\partial \ell/\partial \mu = \partial \ell/\partial \sigma^2 = 0$. First, we get
+	\[
+	\frac{\partial \ell}{\partial \mu} = - \frac{1}{\sigma^2} \sum_{i = 1}^{n}(x_i - \mu)
+	,\]
+	which is equal to zero when $\mu = \bar X$. Then
+	\[
+	\frac{\partial \ell}{\partial \sigma^2} = - \frac{n}{2 \sigma^2} + \frac{1}{2 \sigma^{4}} \sum_{i = 1}^{n} (x_i - \mu)^{2}
+	.\]
+	This is zero when
+	\[
+	\sigma^2 = \frac{1}{n} \sum_{i = 1}^{n} (x_i - \bar x)^2 = \frac{1}{n} S_{x x}
+	.\]
+	Hence $(\hat \mu, \hat \sigma^2) = (\bar X, S_{x x}/n)$ give the maximum likelihood estimator in this model.
+
+	Note that $\hat \mu = \bar X$ is unbiased. Now we want to see if $\hat \sigma^2$ is biased. We could compute it directly, but later in the course we will show that
+	\[
+	\frac{S_{x x}}{\sigma^2} = \frac{n \hat \sigma^2}{\sigma^2} \sim \chi^2_{n-1}
+	,\]
+	hence
+	\[
+	\mathbb{E}[\hat \sigma^2] = \mathbb{E}[\chi^2_{n-1}] \frac{\sigma^2}{n} = \frac{n-1}{n} \sigma^2 \neq \sigma^2
+	,\]
+	which is biased, but asymptotically unbiased.
+\end{exbox}
+
+\begin{exbox}
+	Let $X_1, \ldots, X_n$ be iid $U([0,\theta])$. Then
+	\[
+		L(\theta) = \frac{1}{\theta^{n}} \mathbbm{1}(\max_{i} X_i \leq \theta)
+	.\]
+	We can see from the plot that $\hat \theta_{\rm{mle}} = \max_{i} X_i$ is the maximum likelihood estimator for $\theta$. We also started from an unbiased estimator, and using Rao-Blackwellization we found an estimator
+	\[
+	\hat \theta = \frac{n+1}{n} \max_i X_i
+	.\]
+	This is also unbiased. So in this model the mle is biased as
+	\[
+		\mathbb{E}[[\hat \theta_{\rm{mle}}] = \mathbb{E}\biggl[ \frac{n+1}{n} \hat \theta \biggr] = \frac{n}{n+1} \theta
+	,\]
+	however it is asymptotically unbiased.
+\end{exbox}
+
+The maximum likelihood estimator has the following properties:
+
+\begin{enumerate}[1.]
+	\item If $T$ is a sufficient statistic, then the maximum likelihood estimator is a function of $T(X)$. By the factorization criterion,
+		\[
+		L(\theta) = g(T(X), \theta) h(X)
+		.\]
+		If $T(x) = T(y)$, then the likelihood function with data $x$ and $y$ is the same up to a multiplicative constant. Hence the maximum likelihood estimator in each case is the same.
+	\item If  $\phi = h(\theta)$ where $h$ is a bijection, then the maximum likelihood estimator of $\phi$ is
+		\[
+		\hat \phi = h(\hat \theta)
+		,\]
+		where $\hat \theta$ is the maximum likelihood estimator of $\theta$.
+	\item Asymptotically, we have normality. This says $\sqrt n (\hat \theta - \theta)$ is approximately normal with mean $0$ when $n$ is large. Under some regularity conditions, for a measurable set $A$,
+		\[
+			\mathbb{P}(\sqrt n (\hat \theta - \theta) \in A) \overset{n \to \infty}{\to} \mathbb{P}(Z \in A)
+		,\]
+		where $Z \sim N(0, \Sigma)$. This holds for all regular values of $\theta$.
+
+		Here $\Sigma$ is some function of $\ell$, and there is a theorem (Cramer-Rao) which says this is the smallest variance attainable.
+	\item Sometimes, if the maximum likelihood estimator is not available analytically, we can find it numerically.
+\end{enumerate}
+
+\subsection{Confidence Intervals}
+\label{sub:confidence_intervals}
+
+\begin{definition}
+	A $(100 \cdot \gamma)$\% \emph{confidence interval}\index{confidence interval} for a parameter $\theta$ is a random interval $(A(X), B(X))$ such that
+	\[
+	\mathbb{P}(A(X) \leq \theta \leq B(X)) = \gamma
+	,\]
+	for all values of $\theta$.
+\end{definition}
+
+The frequentist interpretation of the confidence interval is:
+\begin{center}
+	There exists some fixed true parameter $\theta$. We repeat the experiment many times. On average, $100 \cdot \gamma$\% of the time the interval $(A(X), B(X))$ contains $\theta$.
+\end{center}
+
+The incorrect interpretation is:
+\begin{center}
+	Having observed $X = x$, there is a probability $\gamma$ that $\theta$ is in $(A(x), B(x))$.
+\end{center}
+
+\begin{exbox}
+	Let $X_1, \ldots, X_n$ be iid $N(\theta, 1)$. To find a 95\% confidence interval for $\theta$, we know that
+	\[
+	\bar X = \frac{1}{n} \sum_{x_i} \sim N\biggl(\theta, \frac{1}{n} \biggr)
+	.\]
+	Hence
+	\[
+		Z = \sqrt{n}(\bar X - \theta) \sim N(0,1)
+	.\]
+	$Z$ has this distribution for all $\theta$. Then let $z_1, z_2$ be any two numbers such that $\Phi(z_2) - \Phi(z_1) = 0.95$. Then,
+	\[
+	\mathbb{P}(z_1 \leq \sqrt n (\bar X - \theta) \leq z_2) = 0.95
+	.\]
+	Rearranging,
+	\[
+	\mathbb{P}\biggl( \bar X - \frac{z_2}{\sqrt n} \leq \theta \leq \bar X - \frac{z_1}{\sqrt n} \biggr) = 0.95
+	.\]
+	Therefore $(\bar X - \frac{z_2}{\sqrt{n}}, \bar X - \frac{z_1}{\sqrt n})$ is a 95\% confidence interval.
+
+	There are multiple ways to choose $z_1, z_2$. Usually we minimise the width of the interval, which is achieved by $z_1 = \Phi^{-1} (0.025), z_2 = \Phi^{-1}(0.975)$.
+\end{exbox}
+
 
 \newpage
 

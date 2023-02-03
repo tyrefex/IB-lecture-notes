@@ -783,6 +783,129 @@ We return to theorem~\ref{thm:smoothness}, which we can now prove.
 	By the inverse function theorem, this is locally invertible, so if we let $\phi = \Pi_{xy} \circ \sigma$, then $\Sigma$ is the graph of $(x, y, \sigma_3(\phi^{-1}(x, y)))$.
 \end{proofbox}
 
+Using this, we can find many examples of smooth surfaces in $\mathbb{R}^3$.
+
+\begin{exbox}
+	\begin{enumerate}[1.]
+		\item The \emph{ellipsoid}\index{ellipsoid} $E \subset \mathbb{R}^3$ is $f^{-1}(0)$ for $f : \mathbb{R}^3 \to \mathbb{R}$ satisfying
+			\[
+			f(x, y, z) = \frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2} - 1
+			.\]
+			For all $p \in E = f^{-1}(0)$, $Df|_p \neq 0$, so $E$ is a smooth surface in $\mathbb{R}^3$.
+		\item Let $\gamma : [a, b] \to \mathbb{R}^3$ be a smooth map with image in the $xz$-plane, so
+			\[
+			\gamma(t) = (f(t), 0, g(t))
+			.\]
+			Assume $\gamma$ is injective, with $\gamma'(t) \neq 0$. Rotating this around the $z$-axis, we get a surface of revolution with allowable parametrization %to do: insert image
+			\[
+			\sigma(u, v) = (f(u) \cos v, f(u) \sin v, g(u))
+			.\]
+			For $(u, v) \in [a, b] \times [\theta, \theta + 2 \pi)$ for $\theta \in [0, 2\pi]$ fixed, $\sigma$ is a homeomorphism onto its image. Indeed,
+			\begin{align*}
+				\sigma_u &= (f' \cos v, f' \sin v, g'), \\
+				\sigma_v &= (-f \sin v, f \cos v, 0).
+			\end{align*}
+			Moreover,
+			\[
+			\| \sigma_u \times \sigma_v \|^2 = f^2 (f'^2 + g'^2) \neq 0
+			,\]
+			proving $\sigma$ is allowable.
+	\end{enumerate}
+\end{exbox}
+
+\subsection{Orientability}
+\label{sub:orientability}
+
+Consider $V, V' \subset \mathbb{R}^2$ open, with $f : V \to V'$ a diffeomorphism. Then at any $x \in V$,
+\[
+	Df|_x \in \GL(2,\mathbb{R})
+.\]
+
+Let $\GL^{+}(2, \mathbb{R}) \subset \GL(2, \mathbb{R})$ be the subgroup of matrices of positive determinant.
+
+\begin{definition}
+	We say that $f$ is \emph{orientation preserving}\index{orientation preserving} if $Df|_x \in \GL^{+}(2, \mathbb{R})$ for all $x \in V$.
+\end{definition}
+
+\begin{definition}
+	An abstract smooth surface $\Sigma$ is \emph{orientable}\index{orientability} if it admits an atlas such that the transition maps are orientation preserving diffeomorphisms of open sets of $\mathbb{R}^2$.
+
+	A choice of such atlas is an \emph{orientation}of $\Sigma$, and we say that $\Sigma$ is \emph{oriented}.
+\end{definition}
+
+\begin{lemma}
+	If $\Sigma_1, \Sigma_2$ are abstract smooth surfaces, and they are diffeomorphic, then $\Sigma_1$ is orientable if and only if $\Sigma_2$ is orientable.
+\end{lemma}
+
+\begin{proofbox}
+	Suppose $f : \Sigma_1 \to \Sigma_2$ is a diffeomorphism and $\Sigma_2$ is orientable and equipped with an oriented atlas.
+
+	Consider the atlas on $\Sigma_1$ given by
+	\[
+		(f^{-1}U, \psi \circ f|_{f^{-1}U})
+	,\]
+	where $(U, \psi)$ is a chart of $\Sigma_2$. The transition function between two such charts is exactly the transition function in the $\Sigma_2$ atlas.
+
+	The transition function between two such charts is exactly the transition function in the $\Sigma_2$-atlas.
+\end{proofbox}
+
+\begin{remark}
+	\begin{enumerate}[1.]
+		\item[]
+		\item There is no sensible classification of all smooth or topological surfaces, for example $\mathbb{R}^2 \setminus Z$ for $Z$ closed.
+
+			By contrast, compact smooth surfaces up to diffeomorphism are classified by Euler characteristic and orientability.
+		\item There is a definition of orientation preserving homeomorphism that needs some algebraic topology.
+
+			The M\"{o}bius band is the surface in figure~\ref{fig:mobius_band}. It turns out that abstract smooth surfaces are orientable if and only if it contains no subsurface homeomorphic to the M\"{o}bius band.
+
+			So we can say that a topological surface is orientable if and only if it contains no subsurface homeomorphic to a M\"{o}bius band.
+		\item We get other structures by demanding the transition maps to be such that
+			\[
+			D(\varphi_1 \varphi_2^{-1})|_x \in G \subset \GL(2,\mathbb{R})
+			.\]
+			For example, we can take $G = \GL(1, \mathbb{C}) \subset \GL(2, \mathbb{R})$, which give \emph{Riemann surfaces}\index{Riemann surfaces}.
+	\end{enumerate}
+\end{remark}
+
+\begin{figure}[h]
+	\centering
+	\caption{M\"{o}bius band}
+	\label{fig:mobius_band}
+	\begin{tikzpicture}
+		\draw[dashed] (45:3) -- (135:3); 
+		\draw[middlearrow={<}] (135:3) -- (225:3);
+		\draw[dashed] (225:3) -- (315:3);
+		\draw[middlearrow={<}] (315:3) -- (45:3);
+	\end{tikzpicture}
+\end{figure}
+
+\begin{exbox}
+	\begin{enumerate}[1.]
+		\item If we take $S^2$ with the atlas of the two stereographic projection, we can compute the transition map as
+			\[
+				(u, v) \mapsto \biggl( \frac{u}{u^2 + v^2}, \frac{v}{u^2 + v^2} \biggr)
+			,\]
+			on $\mathbb{R}^2 \setminus \{0\}$. This is orientation preserving.
+		\item In $T^2$, the transition maps are translations of $\mathbb{R}^2$, so $T^2$ is oriented.
+	\end{enumerate}
+\end{exbox}
+
+For surfaces in $\mathbb{R}^3$, we would like ot have orientability dictated by some ambient feature.
+
+\begin{definition}
+	Let $\Sigma \subset \mathbb{R}^3$ be a smooth surface, and $p \in \Sigma$. Fix an allowable parametrization $\sigma : V \to U \subset \Sigma$, $\sigma(0) = p$.
+
+	Then, the \emph{tangent plane}\index{tangent plane} $T_p \Sigma$ of $\Sigma$ at $p$ is the image of $D\sigma|_{0}$, as a subset of $\mathbb{R}^3$. This is a 2d vector subspace of $\mathbb{R}^3$.
+
+	The \emph{affine tangent plane}\index{affine tangent plane} of $\Sigma$ at $p$ is $p + T_p \Sigma \subset \mathbb{R}^3$.
+\end{definition}
+
+\begin{lemma}
+	$T_p \Sigma$ is well-defined, so it is independent of the choice of allowable parametrization near $p$.
+\end{lemma}
+
+
 
 \newpage
 

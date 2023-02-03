@@ -61,7 +61,7 @@ In this course, we make the convention that $\theta = \arg(z) \in [0, 2\pi)$.
 \begin{itemize}
 	\item $U \subset \mathbb{C}$ is \emph{open}\index{open} if for all $u \in U$, there exists $\eps > 0$ such that
 		\[
-			\Delta(x, \eps) = \{z \in \mathbb{C} \mid |z - u| < \eps\} \subset U
+			D(x, \eps) = \{z \in \mathbb{C} \mid |z - u| < \eps\} \subset U
 		.\]
 	\item A \emph{path}\index{path} in $U \subset \mathbb{C}$ is a continuous map $\gamma : [a, b] \to U$. We say the path is $C^{1}$ if $\gamma'$ exists and is continuous (we take one-sided derivatives at the endpoints).
 
@@ -84,7 +84,7 @@ In this course, we make the convention that $\theta = \arg(z) \in [0, 2\pi)$.
 			f'(u) = \lim_{z \to u} \frac{f(z) - f(u)}{z - u}
 			\]
 			exists.
-		\item $f : U \to \mathbb{C}$ is \emph{holomorphic}\index{holomorphic} at $u \in U$ if there exists $\eps > 0$ such that $f$ is differentiable at $z$, for all $z \in \Delta(u, \eps)$. We may also call such a function \emph{analytic}\index{analytic}.
+		\item $f : U \to \mathbb{C}$ is \emph{holomorphic}\index{holomorphic} at $u \in U$ if there exists $\eps > 0$ such that $f$ is differentiable at $z$, for all $z \in D(u, \eps)$. We may also call such a function \emph{analytic}\index{analytic}.
 		\item $f : \mathbb{C} \to \mathbb{C}$ is \emph{entire} if it is holomorphic everywhere.
 	\end{enumerate}
 \end{definition}
@@ -240,7 +240,7 @@ Recall the following facts about functions defined by power series, or sequences
 		\[
 		z \mapsto \sum_{n = 1}^{\infty}c_n (z - a)^{n}
 		\]
-		converges absolutely if $|z - a| < R$, and diverges if $|z-a| > R$. If $0 < r < R$, then the series converges uniformly in $\Delta(a, r)$. $R$ is the \emph{radius of convergence}\index{radius of convergence} of the series. We can compute
+		converges absolutely if $|z - a| < R$, and diverges if $|z-a| > R$. If $0 < r < R$, then the series converges uniformly in $D(a, r)$. $R$ is the \emph{radius of convergence}\index{radius of convergence} of the series. We can compute
 		\[
 			R = \sup\{r \geq 0 \mid |c_n|r^{n} \to 0\}
 		,\]
@@ -256,13 +256,13 @@ Recall the following facts about functions defined by power series, or sequences
 	\]
 	is a complex power series with radius of convergence $R$. Then,
 	\begin{enumerate}[\normalfont(i)]
-		\item $f$ is holomorphic on $\Delta(a, R)$.
+		\item $f$ is holomorphic on $D(a, R)$.
 		\item $f$ has derivative
 			\[
 			f'(z) = \sum_{n = 1}^{\infty} n c_n (z - a)^{n-1}
 			,\]
 			with radius of convergence $R$ about $a$.
-		\item $f$ has derivatives of all orders on $\Delta(a, R)$, and $f^{(n)}(a) = n! c_n$.
+		\item $f$ has derivatives of all orders on $D(a, R)$, and $f^{(n)}(a) = n! c_n$.
 	\end{enumerate}
 \end{theorem}
 
@@ -505,6 +505,151 @@ We say a ``curve'' is a piecewise $C^{1}$-smooth path, and a ``contour'' is a si
 	\end{cases}
 	\]
 \end{exbox}
+
+\begin{theorem}[Fundamental Theorem of Calculus]\index{fundamental theorem of calculus}
+	If $f : U \to \mathbb{C}$ is a continuous function on open $U \subset \mathbb{C}$ with $F' = f$ an antiderivative of $f$ in $U$, then for any curve $\gamma : [a, b] \to U$,
+	\[
+	\int_{\gamma}f(z) \diff z = F(\gamma(b)) - F(\gamma(a))
+	.\]
+	In particular, if $\gamma$ is closed then $\int_{\gamma} f = 0$.
+\end{theorem}
+
+\begin{proofbox}
+	\[
+	\int_{\gamma}f(z) \diff z = \int_{a}^{b} f(\gamma'(t)) \gamma'(t) \diff t = \int_{a}^{b} (F \circ \gamma)'(t) \diff t = F(\gamma(b)) - F(\gamma(a))
+	.\]
+\end{proofbox}
+
+Note that in the $z \mapsto z^{-1}$ integral computation, from the fundamental theorem of calculus there does not exist a branch of the logarithm on any neighbourhood around $0$.
+
+The surprising thing is that the converse of this is true.
+
+\begin{theorem}
+	Let $f : D \to C$ be continuous on a domain $D$. If $\int_{\gamma}f = 0$ for all closed curves $\gamma$ in $D$, then there exists a holomorphic $F : D \to \mathbb{C}$ with $F' = f$.
+\end{theorem}
+
+\begin{proofbox}
+	Fix $a \in D$. If $w \in D$, choose any curve $\gamma_w : [0,1] \to D$ with $\gamma_w(0) = a$, $\gamma_w(1) = w$. Define
+	\[
+	F(w) = \int_{\gamma_w}f(z) \diff z
+	.\]
+
+	Find $r_w > 0$ such that $D(w, r_w) \subset D$. For $|h| < r$, let $\delta_h : [0,1] \to D$ be the line segment from $w$ to $w+h$. Then,
+	\[
+	F(w+h) = \int_{\gamma_{w+h}}f(z) \diff z = \int_{\gamma_w + \delta_h} f(z) \diff z
+	.\]
+	So
+	\[
+		F(w+h) = F(w) + \int_{\delta_h}f(z) \diff z = F(w) + hf(w) + \int_{\delta_h}f(z) - f(w) \diff z
+	.\]
+	Hence
+	\begin{align*}
+		\biggl| \frac{F(w+h) - F(w)}{h} - f(w) \biggr| &= \biggl|\frac{1}{h} \int_{\delta_h} f(z) - f(w) \diff z \biggr| \\
+							       &\leq \frac{\mathrm{length}(\delta_h)}{|h|} \sup_{\delta_h}|f(z) - f(w)| \\
+							       &\leq \sup_{z \in D(w, r_w)} |f(z) - f(w)| \to 0,
+	\end{align*}
+	as $r_w \to 0$. So $F'(w) = f(w)$.
+\end{proofbox}
+
+\begin{definition}
+	An open subset $U \subset \mathbb{C}$ is \emph{convex}\index{convex} if for all $a, b \in U$, the line segment between $a$ and $b$ is in $U$. $U$ is \emph{starlike}\index{starlike} (or starshaped) if there exists $a \in U$ such that for all $b \in U$, the line segment from $a$ to $b$ is in $U$.
+\end{definition}
+
+Note that disks are a subset of convex sets, which are a subset of starlike sets, which are a subset of domains.
+
+We can simplify the previous theorem as follows:
+
+\begin{lemma}
+	Suppose $U$ is a starlike domain, and $f : U \to \mathbb{C}$ is continuous with $\int_{\partial T} f(z) \diff z = 0$ for all triangles $T$ in $U$. Then, $f$ has an antiderivative in $U$.
+\end{lemma}
+
+\begin{proofbox}
+	This is exactly the same as the previous proof, except we stipulate $\gamma_w$ are straight lines from a basepoint $a$.
+\end{proofbox}
+
+\begin{theorem}[Cauchy's theorem for Triangles]
+	If $f : U \to \mathbb{C}$ is holomorphic on open $U \subset \mathbb{C}$, and $T \subset U$ is a triangle in $U$, then
+	\[
+	\int_{\partial T}f(z) \diff z = 0
+	.\]
+\end{theorem}
+
+We adopt the notion that curves are oriented anticlockwise.
+
+\begin{proofbox}
+	We can name
+	\[
+		\biggl| \int_{\partial T}f(z) \diff z \biggr| = I, \qquad L = \mathrm{length}(\partial T)
+	.\]
+	We subdivide $T$ by bisecting the sides, to obtain $T_1, T_2, T_3$ and $T_4$. Hence, since
+	\[
+	\partial T_1 + \partial T_2 + \partial T_3 = \partial T - \partial T_4
+	,\]
+	we find
+	\[
+	\int_{\partial T}f(z) \diff z = \sum_{i = 1}^{4} \int_{\partial T_i} f(z) \diff z
+	.\]
+	By the triangle inequality, there exists $i \in \{1, 2, 3, 4\}$ such that 
+	\[
+	\biggl| \int_{\partial T_i} f(z) \diff z \biggr| \geq \frac{1}{4} I
+	.\]
+	Call this triangle $T^{(1)}$ and $\mathrm{length}(\partial T^{(1)}) = \frac{L}{2}$.
+
+	Continuing this way, we get
+	\[
+		T \supset T^{(1)} \supset T^{(2)} \supset T^{(3)} \supset \cdots
+	\]
+	These triangles have $\mathrm{length}(T^{(n)}) = \frac{L}{2^{n}} \to 0$, and
+	\[
+	\biggl| \int_{\partial T^{(n)}} f(z) \diff z \biggr| \geq \frac{1}{4^{n}}I
+	.\]
+	Since the lengths tend to $0$, we get
+	\[
+		\bigcap_{n = 1}^{\infty}T^{(n)} = \{w\}
+	,\]
+	a single point. Note that $z, 1$ have holomorphic derivatives. Hence we can bound
+	\[
+	\frac{1}{4^{n}}I \leq \biggl| \int_{\partial T^{(n)}} f(z) \diff z \biggr| = \biggl| \int_{\partial T^{(n)}} f(z) - f(w) - (z - w)f'(w) \diff z \biggr|
+	.\]
+	Since $f$ is differentiable at $w$, there $\delta > 0$ such that for all $\eps > 0$,
+	\[
+	|w - z| < \delta \implies |f(z) - f(w) - (z - w)f'(w)| < \eps|z - w|
+	.\]
+	So for $n \gg 1$, we have
+	\[
+	\biggl| \int_{\partial T^{(n)}} f(z) - f(w) - (z-w)f'(w) \diff z \biggr| \leq \frac{L}{2^{n}} \sup_{z \in \partial T^{(n)}}|z - w| \cdot \eps
+	.\]
+	So
+	\[
+	\frac{I}{4^{n}} \leq \frac{L}{2^{n}} \cdot \frac{L}{2^{n}} \eps,\qquad I \leq L^2 \eps
+	.\]
+	Letting $\eps \to 0$, we get $I = 0$.
+\end{proofbox}
+
+\begin{theorem}
+	Let $S \subset U$ be a finite set and $f : U \to \mathbb{C}$ be continuous on $U$ and holomorphic on $U \setminus S$. Then $\int_{\partial T} f = 0$ for all triangles $T \in U$.
+\end{theorem}
+
+\begin{proofbox}
+	Using the triangle subdivision, assume that $S = \{a\}$, for $a \in T$. If $a \in T' \subset T$ for another triangle $T'$, then by the triangular subdivision and the previous theorem,
+	\[
+	\int_{\partial T} f = \int_{\partial T'} f
+	,\]
+	since $f$ is holomorphic on $T \setminus T'$. Hence,
+	\begin{align*}
+		\biggl| \int_{\partial T}f(z) \diff z \biggr| &= \biggl| \int_{\partial T'} f(z) \diff z \biggr| \leq \mathrm{length}(T') \sup_{\partial T'}|f| \\
+							      &\leq \mathrm{length}(T') \sup_{T}|f|,
+	\end{align*}
+	so letting $\mathrm{length}(T') \to 0$, we have $\int_{\partial T} f = 0$.
+\end{proofbox}
+
+\begin{theorem}[Cauchy's theorem in a Disk]\index{Cauchy's theorem}
+	Let $D$ be any disk (or any starlike domain), and $f : D \to \mathbb{C}$ a continuous function, holomorphic away from at most a finite set of points in $D$. Then, $\partial_{\gamma} f = 0$ for any closed curve $\gamma$ in $D$.
+\end{theorem}
+
+\begin{proofbox}
+	By our previous theorem and the converse of FTC for starlike domains, there exists an antiderivative $F$ for $f$ in $D$. So by the fundamental theorem of calculus, Cauchy's theorem follows.
+\end{proofbox}
 
 
 \newpage
