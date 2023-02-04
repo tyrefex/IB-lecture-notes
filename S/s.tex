@@ -753,6 +753,116 @@ The incorrect interpretation is:
 	There are multiple ways to choose $z_1, z_2$. Usually we minimise the width of the interval, which is achieved by $z_1 = \Phi^{-1} (0.025), z_2 = \Phi^{-1}(0.975)$.
 \end{exbox}
 
+To find a confidence interval, we can do the following:
+\begin{enumerate}
+	\item Find some quantity $R(X, \theta)$ such that the $\mathbb{P}_{\theta}$ distribution of $R(X,\theta)$ does not depend on $\theta$. This is called a \emph{pivot}\index{pivot}.
+
+		For example, we chose $Z = \sqrt n (\bar X - \mu) \sin N(0,1)$.
+	\item Write down a probabilistic statement about the pivot of the form
+		\[
+		\mathbb{P}(c_1 \leq R(x, \theta) \leq c_2) = \gamma
+		,\]
+		by using quantiles $c_1, c_2$ of the distribution of $R(X,\theta)$ (typically $N(0,1)$ or $\chi^2_{p}$).
+	\item Rearrange the inequalities to leave $\theta$ in the middle.
+\end{enumerate}
+
+\begin{proposition}
+	If $T$ is a monotone increasing function $T : \mathbb{R} \to \mathbb{R}$, and $(A(X), B(X))$ is a $100 \cdot \gamma$\% confidence interval for $\theta$, then $(T(A(X)), T(B(X)))$ is a confidence interval for $T(\theta)$.
+\end{proposition}
+
+\begin{remark}
+	When $\theta$ is a vector, we talk about confidence sets.
+\end{remark}
+
+\begin{exbox}
+	Let $X_1, \ldots, X_n$ be iid $N(0, \sigma^2)$. We want to find a $95$\% confidence interval for $\sigma^2$.
+
+	Note that $\frac{X_i}{\sigma} \sim N(0,1)$, so using all the data points,
+	\[
+	R(X, \sigma^2) = \sum_{i=1}^{n} \frac{X_i^2}{\sigma^2} \sim \chi^2_n
+	\]
+	is a pivot. Let $c_1 = F_{\chi^2_n}^{-1}(0.025)$, $c_2 = F_{\chi^2_n}^{-1}(0.975)$. Then,
+	\[
+	\mathbb{P}(c_1 \leq R(X, \sigma^2) \leq c_2) = 0.95
+	.\]
+	Rearranging,
+	\[
+	\mathbb{P}\biggl( \frac{\sum x_i^2}{c_2} \leq \sigma^2 \leq \frac{\sum x_i^2}{c_1} \biggr) = 0.95
+	.\]
+	Hence $[\sum x_i^2/c_2, \sum x_i^2/c_1]$ is a $95$\% confidence interval $\sigma^2$.
+
+	Applying the proposition, $[\sqrt{\sum x_i^2/c_2}, \sqrt{\sum x_i^2/c_1}]$ is a $95$\% confidence interval for $\sigma$.
+\end{exbox}
+
+\begin{exbox}
+	Let $X_1, \ldots, X_n$ be $\Ber(p)$, for $n$. To find an approximate $95$\% for confidence interval $p$.
+
+	Recall that the maximum likelihood estimator for $p$ is
+	\[
+	\hat p = \frac{1}{n} \sum_{i = 1}^{n} X_i
+	.\]
+	By the central limit theorem, when $n$ is large, $\hat p$ is approximately $N(p, \frac{p(1-p)}{n})$. Hence,
+	\[
+		\sqrt n \frac{(\hat p - p)}{\sqrt{p(1-p)}} \sim N(0,1)
+	,\]
+	approximately. If $z = \Phi^{-1}(0.975)$, then
+	\[
+		\mathbb{P}\biggl( - z \leq \frac{\sqrt n (\hat p - p)}{\sqrt{p(1-p)}} \leq z \biggr) \approx 0.95
+	.\]
+	Rearranging this is tricky. Instead, we argue that $n \to \infty$, $\hat p(1 - \hat p) \to p(1-p)$. So replacing this in the denominator,
+	\[
+		\mathbb{P}\biggl( - z \leq \frac{\sqrt n (\hat p - p)}{\sqrt{\hat p(1- \hat p)}} \leq z \biggr) \approx 0.95
+	.\]
+	Rearranging this, we get
+	\[
+		\mathbb{P}\biggl( \hat p - z \frac{\sqrt{\hat p (1 - \hat p)}}{\sqrt n} \leq p \hat p + z \frac{\sqrt{\hat p (1 - \hat p)}}{\sqrt n} \biggr) \approx 0.95
+	.\]
+	Hence this is an approximate $95$\% confidence interval for $p$.
+
+	Note that $z \approx 1.96$ and $\sqrt{\hat p(1 - \hat p)} \leq \frac{1}{2}$ for all $\hat p \in (0, 1)$. So a conservative confidence interval is $[\hat p \pm 1.96 \cdot \frac{1}{2} \cdot \frac{1}{\sqrt{n}}]$.
+\end{exbox}
+
+\subsection{Interpreting Confidence Intervals}
+\label{sub:interpreting_confidence_intervals}
+
+Suppose $X_1, X_2$ are iid $U[\theta-\frac{1}{2}, \theta+\frac{1}{2}]$. We find a sensible $50$\% confidence interval for $\theta$. Consider
+\begin{align*}
+	\mathbb{P}(\theta \text{ between } X_1, X_2) &= \mathbb{P}(\min(X_1,X_2) \leq \theta \leq \max(X_1,X_2)) \\
+						     &= \mathbb{P}(X_1 \leq \theta \leq X_2) + \mathbb{P}(X_2 \leq \theta \leq X_1) \\
+						     &= \frac{1}{4} + \frac{1}{4} = \frac{1}{2}.
+\end{align*}
+Hence we can immediately conclude that $(\min(X_1, X_2), \max(X_1,X_2))$ is a $50$\% confidence interval for $\theta$.
+
+This does not mean for specific $X_1 = x_1$, $X_2 = x_2$ the value $\theta$ lies in $(\min(x_1,x_2), \max(x_1,x_2))$ with probability $\frac{1}{2}$: consider when $|x_1 - x_2| > \frac{1}{2}$.
+
+In this case, we can be sure that $\theta$ is in $(\min(x_1, x_2), \max(x_1, x_2))$, as the value $\theta$ can be at most distance $\frac{1}{2}$ from $x_1$ and $x_2$.
+
+However the frequentist interpretation makes sense: if we repeat the experiment many times, we see $\theta \in (\min(X_1, X_2), \max(X_1,X_2))$ exactly $50$\% of the time. We cannot say, given a specific observation that we are $50$\% certain that $\theta$ is in the confidence interval.
+
+\newpage
+
+\section{Bayesian Inference}
+\label{sec:bayesian_inference}
+
+So far, we have assumed there is some true parameter $\theta$. That data $X$ has pdf (or pmf) $f_X(\cdot \mid \theta)$.
+
+Bayesian analysis is a different framework, where we treat $\theta$ as a random variable, taking values in $\Theta$.
+
+We begin by assigning to $\theta$ a \emph{prior distribution}\index{prior distribution} $\pi(\theta)$, which represents the opinions or information about $\theta$ before seeing on any data.
+
+Conditional on $\theta$, the data $X$ has pdf (or pmf) $f_X(x\mid\theta)$. Having observed a specific value of $X = x$, this information is combined with the prior to form the \emph{posterior distribution}\index{posterior distribution} $\pi(\theta \mid x)$, which is the conditional distribution of $\theta$ given $X = x$. By Bayes' rule,
+\[
+\pi(\theta \mid x) = \frac{\pi(\theta) \cdot f_X(x \mid \theta)}{f_X(x)}
+,\]
+where $f_X(x)$ is the marginal probability of $X$, and
+\[
+f_X(x) =
+\begin{cases}
+	\int_{\Theta} f_X(x \mid \theta) \pi(\theta) \diff \theta & \theta \text{ continuous}, \\
+	\sum_{\Theta} f_X(x \mid \theta) \pi(\theta) & \theta \text{ discrete}.
+\end{cases}
+\]
+
 
 \newpage
 
