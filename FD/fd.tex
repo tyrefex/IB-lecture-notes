@@ -4,6 +4,9 @@
 
 \usepackage{ishn}
 \usetikzlibrary{decorations.markings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{patterns.meta}
+\usetikzlibrary{arrows.meta}
 \usepackage{siunitx}
 \usepackage{etoolbox}
 \usepackage{caption}
@@ -150,7 +153,7 @@ with initial conditions $\mathbf{x} = \mathbf{x}_0$ at $t = 0$. The set of pathl
 		\addplot [mark = *] coordinates {(1,0)};
 		\addplot [domain = 2:3, smooth, ->] {(x-2) * (x-2)};
 		\addplot [mark = *] coordinates {(2,0)};
-	\end{axis}
+		\end{axis}
 	\end{tikzpicture}
 \end{figure}
 
@@ -624,7 +627,7 @@ Then we can show that
 p_1 = p_0 + \rho u_1^2 \biggl( \frac{A_1}{A_0} - 1 \biggr) \biggl( \frac{A_1}{A_0} \biggr)
 .\]
 
-Now consider a water jet hitting an oblique wall. We will consider a two-dimensional case, where we neglect gravity. Assume the cross section of the incoming fluid is $u$, and has speed $U$, and the area going up is $a_2$, and going down is $a_1$.
+Now consider a water jet hitting an oblique wall. We will consider a two-dimensional case, where we neglect gravity. Assume the cross section of the incoming fluid is $a$, and has speed $U$, and the area going up is $a_2$, and going down is $a_1$.
 
 \begin{figure}[h]
 	\centering%do later
@@ -656,7 +659,7 @@ The momentum integral equation applied to this gives
 \frac{\diff}{\diff t} \int_{V} \rho \mathbf{u} \diff V = - \int_{\partial V} \rho \mathbf{u} (\mathbf{u} \cdot \mathbf{n}) + p \mathbf{n} \diff A + \int_{V} \mathbf{f} \diff V
 .\]
 
-THe time derivative is 0, as the flow is steady, and we neglect gravity. Hence we get
+The time derivative is 0, as the flow is steady, and we neglect gravity. Hence we get
 \[
 \int_{\partial V} \rho \mathbf{u} (\mathbf{u} \cdot \mathbf{n}) + p \mathbf{n} \diff A
 .\]
@@ -667,7 +670,7 @@ Note that $p = p_a$ apart from near the impact, and $\mathbf{u} \cdot \mathbf{n}
 ,\]
 which we can solve (using conservation of mass) to get
 \[
-a_2 = a \frac{1 + \cos \beta}{2}, \qquad q_1 = a \frac{1 - \cos \beta}{2}
+a_2 = a \frac{1 + \cos \beta}{2}, \qquad a_1 = a \frac{1 - \cos \beta}{2}
 .\]
 The component perpendicular to the plane is
 \[
@@ -711,19 +714,23 @@ Vorticity is defined by
 .\]
 This is another way to talk about the angular momentum of the fluid.
 
-\begin{enumerate}
-	\item If $\mathbf{u} = \bm{\Omega} \times \mathbf{x}$, this is solid-body rotation, and gives $\bm{\omega} = 2 \bm{\Omega}$.
-	\item If $\mathbf{u} = (0, \gamma_x, 0)$, this is a simple shear, and gives $\bm{\omega} = (0, 0, \gamma)$.
-	\item If $\mathbf{u} = (0, \frac{\kappa}{2 \pi r}, 0)$ in cylindrical polars, this is known as a line vortex with $\bm{\omega} = \mathbf{0}$ except at $r = 0$. Indeed, doing the line integral around the singularity gives
-		\[
-		\oint_{r = a} \mathbf{u} \cdot \diff \mathbf{l} = \int_{0}^{2 \pi} \frac{R}{2 \pi r} r \diff \theta = R
-		,\]
-		but using Stokes' theorem gives
-		\[
-		\oint_{r = a} \mathbf{u} \cdot \diff \mathbf{l} = \int_{r < a} \bm{w} \cdot \mathbf{\hat z} \diff A
-		,\]
-		hence we get $\bm{\omega} = (0, 0, \kappa \delta(r))$.
-\end{enumerate}
+\begin{exbox}
+
+	\begin{enumerate}
+		\item If $\mathbf{u} = \bm{\Omega} \times \mathbf{x}$, this is solid-body rotation, and gives $\bm{\omega} = 2 \bm{\Omega}$.
+		\item If $\mathbf{u} = (0, \gamma_x, 0)$, this is a simple shear, and gives $\bm{\omega} = (0, 0, \gamma)$.
+		\item If $\mathbf{u} = (0, \frac{\kappa}{2 \pi r}, 0)$ in cylindrical polars, this is known as a line vortex with $\bm{\omega} = \mathbf{0}$ except at $r = 0$. Indeed, doing the line integral around the singularity gives
+			\[
+			\oint_{r = a} \mathbf{u} \cdot \diff \mathbf{l} = \int_{0}^{2 \pi} \frac{R}{2 \pi r} r \diff \theta = R
+			,\]
+			but using Stokes' theorem gives
+			\[
+			\oint_{r = a} \mathbf{u} \cdot \diff \mathbf{l} = \int_{r < a} \bm{w} \cdot \mathbf{\hat z} \diff A
+			,\]
+			hence we get $\bm{\omega} = (0, 0, \kappa \delta(r))$.
+	\end{enumerate}
+
+\end{exbox}
 
 \subsubsection{Interpretation of Vorticity}
 \label{subsub:interpretation_of_vorticity}
@@ -765,6 +772,676 @@ The local rotation of line elements due to the second term is
 The local motion due to the first term is called the \emph{strain rate}, which gives zero angular velocity averaged over all orientation $\delta \mathbf{l}$. $\mathbf{e}$ is symmetric and traceless when $\nabla \cdot \mathbf{u} = 0$.
 
 Note that $\frac{1}{2} \bm{\omega}$ gives the rate of rotation of blobs, not whether the blobs are going in circles.
+
+\subsubsection{Vorticity Equation}
+\label{subsub:vorticity_equation}
+
+Start with the identity
+\[
+\rho \biggl( \frac{\partial \mathbf{u}}{\partial t} + (\mathbf{u} \cdot \nabla) \mathbf{u} \biggr) = - \nabla p + \mathbf{f}
+.\]
+Assuming that $\rho$ is constant and $\mathbf{f}$ is conservative, if we take the earlier vector identity
+\[
+	(\mathbf{u} \cdot \nabla) \mathbf{u} = \nabla \biggl( \frac{1}{2} u^2 \biggr) - \mathbf{u} \times \bm{\omega}
+,\]
+hence taking the curls
+\[
+\rho \biggl( \frac{\partial \bm{\omega}}{\partial t} - \nabla \times (\mathbf{u} \times \bm{\omega}  \biggr) = 0
+.\]
+The second vector equation gives
+\[
+\nabla \times (\mathbf{u} \times \bm{\omega}) = (\bm{\omega} \cdot \nabla) \mathbf{u} - \mathbf{u} \cdot \nabla \bm{\omega}
+.\]
+Hence we get
+\[
+\frac{D \bm{\omega}}{D t} = \frac{\partial \bm{\omega}}{\partial t} + (\mathbf{u} \cdot \nabla) \bm{\omega} = (\bm{\omega} \cdot \nabla) \mathbf{u}
+.\]
+Hence moving with the fluid, $\bm{\omega}$ changes if $\mathbf{u}$ changes in the direction of $\bm{\omega}$.
+
+\subsubsection{Vorticity Stretching}
+\label{subsub:vorticity_stretching}
+
+Compare the equations
+\[
+\frac{\diff}{\diff t} \delta \mathbf{l} = (\delta \mathbf{l} \cdot \nabla) \mathbf{u}, \qquad \frac{D \bm{\omega}}{D t} = (\bm{\omega} \cdot \nabla)\mathbf{u}
+.\]
+Moving with the fluid, $\bm{\omega}$ changes just like a material line element $\delta \mathbf{l}$ initially aligned with $\bm{\omega}$. In particular, if $\delta \mathbf{l}$ gets longer, then $\bm{\omega}$ gets bigger. This is just conservation of angular momentum.
+
+For example, consider a uniformly rotating fluid cylinder. If over time the fluid stretches, then from mass conservation and angular momentum,
+\begin{align*}
+	a_1^2 \ell_1 &= a_2^2 \ell_2 & a_1^{6} \ell_1 \omega_1 &= a_2^{6} \ell_2 \omega_2,
+\end{align*}
+Rearranging, we get
+\[
+	\omega_2 = \omega_1 \frac{\ell_2}{\ell_1}
+.\]
+So $\bm{\omega}$ increases as fluid stretches in the direction of existing vorticity. This is called \emph{vortex stretching}\index{vortex stretching}, or the ballerina effect.
+
+\begin{figure}[h]
+	\centering
+	\caption{Vortex Stretching}
+	\label{fig:vortex_stretching}
+	\begin{tikzpicture}
+		\draw (2, -3) -- (2, 3);
+		\draw (4, -3) -- (4, 3);
+		\draw (3,3) circle (1 and 0.3);
+		\draw (2,-3) arc (180:360:1 and 0.3);
+		\draw (3,3) -- (3.5,3.258);
+		\node[below] at (3.5, 3.203) {\small $a_2$};
+		\draw (-4, -1.5) -- (-4, 1.5);
+		\draw (0, -1.5) -- (0, 1.5);
+		\draw (-2,1.5) circle (2 and 0.6);
+		\draw (-4,-1.5) arc (180:360:2 and 0.6);
+		\draw (-2,1.5) -- (-1,2.016);
+		\node[below] at (-1,1.916) {\small $a_1$};
+		\draw[|-|] (-4.2,-1.5) -- (-4.2,1.5);
+		\node[left] at(-4.2,0) {\small $\ell_1$};
+		\draw[|-|] (4.2,-3) -- (4.2,3);
+		\node[right] at(4.2,0) {\small $\ell_2$};
+		\draw[->] (0.5,0) -- (1.5,0);
+		\draw[->] (-2,1.5) -- (-2,2.5);
+		\draw[->] (3, 3) -- (3, 4);
+		\draw[->] (-2, 1.9) + (120:0.4 and 0.12) arc (120:420:0.4 and 0.12);
+		\node[above right] at (-2, 2) {\small $\omega_1$};
+		\draw[->] (3, 3.6) + (120:0.4 and 0.12) arc (120:420:0.4 and 0.12);
+		\node[above right] at (3, 3.6) {\small $\omega_2$};
+	\end{tikzpicture}
+\end{figure}
+
+\begin{exbox}
+	If we have
+	\[
+	\mathbf{u} = \biggl( - \frac{1}{2} \beta_x, - \frac{1}{2} \beta_y, \beta_z \biggr) + \Omega(t)(y, -x, 0)
+	,\]
+	then we can check
+	\[
+	\bm{\omega} = (0, 0, 2 \Omega)
+	.\]
+	Hence from
+	\[
+	\frac{\partial \bm{\omega}}{\partial t} + (\mathbf{u} \cdot \nabla) \bm{\omega} = (\bm{\omega} \cdot \nabla)\mathbf{u}
+	,\]
+	looking at the $z$-component, we get
+	\[
+	2 \dot \Omega = \Omega \beta
+	,\]
+	or $\Omega \propto e^{\beta t}$.
+\end{exbox}
+
+\subsubsection{Circulation}
+\label{subsub:circulation}
+
+The \emph{circulation}\index{circulation} around a closed curve $\Gamma$ is defined by
+\[
+C(\Gamma) = \oint_{\Gamma} \mathbf{u} \cdot \diff \mathbf{l} = \int_{S} \bm{\omega} \cdot \diff \mathbf{S}
+,\]
+by Stokes' theorem. For example, a line vortex 
+\[
+\mathbf{u} = \biggl(0, \frac{\kappa}{2 \pi r}, 0 \biggr)
+\]
+has circulation $\kappa$ for any circle $r = a$.
+
+One further result about circulation is Kelvin's circulation theorem.\index{Kelvin's circulation theorem} This says if $\Gamma(t)$ is a material curve, i.e. one that is moving with the fluid, then
+\[
+	\frac{\diff}{\diff t}[C(\Gamma)] = \oint \biggl( \frac{D \mathbf{u}}{Dt} \diff \mathbf{l} + \mathbf{u} \cdot \frac{\diff}{\diff t} \delta \mathbf{l} \biggr) = 0
+.\]
+This can be seen by rewriting $Du/Dt$ using the Euler momentum equation, and noticing $\diff \delta\mathbf{l}/\diff t = (\mathbf{u} \cdot \nabla) \delta \mathbf{l}$:
+\begin{align*}
+	\frac{\diff}{\diff t} \oint_{\Gamma} \mathbf{u} \cdot \diff \mathbf{l} &= \oint_{\Gamma} \frac{Du}{Dt} \cdot \delta \mathbf{l} + \mathbf{u} \cdot \frac{\diff}{\diff t} \delta \mathbf{l} \\
+									   &= \oint_{\Gamma} - \nabla \biggl( \frac{p + \chi}{p} \biggr) \cdot \diff \mathbf{l} + \mathbf{u} \cdot (\delta \mathbf{l} \cdot \nabla) \mathbf{u} \\
+									   &= \biggl[ - \frac{p + \chi}{p} + \frac{1}{2} u^2 \biggr]_{\Gamma} = 0.
+\end{align*}
+
+
+Hence above, $C = \pi a^2(2 \Omega)$ is constant.
+
+\newpage
+
+\section{Introduction to Viscous Flow}
+\label{sec:introduction_to_viscous_flow}
+
+Chapter 2 was all about \emph{inviscid} flow.
+
+We neglected friction (viscous stresses) between layers of fluid or boundaries. Inviscid fluid exerted only a normal stress $-p \mathbf{n}$. The forces $- \nabla p + \mathbf{f}$ were balanced by $\rho \cdot D\mathbf{u}/Dt$. If $\mathbf{f} = - \nabla \chi$, we also found that the energy and angular momentum are conserved.
+
+With viscous flow, we will find:
+
+Velocity gradients give rise to viscous stresses (friction), and fluids also exert tangential (shear) stresses on boundaries. In the momentum equation, we will have another term, and there is dissipation of energy and diffusion of vorticity.
+
+\subsection{Plane Couette Flow and Viscosity}
+\label{sub:plane_couette_flow_and_viscosity}
+
+\begin{figure}[h]
+	\centering
+	\caption{Couette Flow}
+	\label{fig:couette_flow}
+	\begin{tikzpicture}
+		\draw (-5, -2) -- (5, -2);
+		\draw (-5, 2) -- (5, 2);
+		\draw[red, ->] (-3, -1.5) -- (-2.5, -1.5);
+		\draw[red, ->] (-3, -0.5) -- (-1.5, -0.5);
+		\draw[red, ->] (-3, 0.5) -- (-0.5, 0.5);
+		\draw[red, ->] (-3, 1.5) -- (0.5, 1.5);
+		\node[right] at (5,-2) {\small $u=0$};
+		\draw[->] (5.1,2.1) -- (5.5,2.1);
+		\node[right] at (5.4,2.1) {\small $U$};
+		\draw[<->] (-5.2, -2) -- (-5.2, 2);
+		\node[left] at (-5.2, 0) {$h$};
+		\fill[pattern = north west lines] (-5,2) rectangle +(10,0.2);
+		\fill[pattern = north east lines] (-5,-2) rectangle +(10,-0.2);
+	\end{tikzpicture}
+\end{figure}
+
+\emph{Couette flow}\index{Couette flow} is steady flow between parallel plates driven only by the motion of the top plate. We can find experimentally that for simple (Newtonian) fluids, that
+\begin{enumerate}[(i)]
+	\item Fluid velocity is $U$ on the top plate and $0$ on the bottom plate.
+	\item Velocity varies linearly between these values.
+	\item The tangential force per unit area $\tau_s$ required to move the top plate is proportional to $\frac{U}{h}$.
+\end{enumerate}
+
+Write $\tau_s = \mu \frac{U}{h}$, where $\mu$ is the \emph{dynamic viscosity}\index{dynamic viscosity} of the fluid. Later we will also use the \emph{kinematic viscosity}\index{kinematic viscosity} $\nu = \frac{\mu}{\rho}$.
+
+By considering a slab of fluid $a < y < b$ as a Couette flow, we can deduce that the tangential shear stress exerted by the positive side on the negative side of a surface $y = \mathrm{constant}$ is
+\[
+	\tau_s = \mu \frac{\partial u}{\partial n}
+.\]
+
+\begin{figure}[h]
+	\centering
+	\caption{Partial Couette Flow}
+	\label{fig:partial_couette_flow}
+	\begin{tikzpicture}
+		\draw (-5, -2) -- (5, -2);
+		\draw (-5, 2) -- (5, 2);
+		\draw[red, ->] (-3, -1.5) -- (-2.5, -1.5);
+		\draw[red, ->] (-3, -0.5) -- (-1.5, -0.5);
+		\draw[dashed] (-3.1,-2) -- (-3.1,2);
+		\draw[dashed] (-5, -0.25) -- (5, -0.25);
+		\draw[red] (-2.8,-2) -- (1.2,2);
+		\node[right] at (5,-2) {\small $u=0$};
+		\node[right] at (5,2) {\small $U$};
+		\draw[<->] (-5.2, -2) -- (-5.2, 2);
+		\node[left] at (-5.2, 0) {$h$};
+		\fill[pattern = north west lines] (-5,2) rectangle +(10,0.2);
+		\fill[pattern = north east lines] (-5,-2) rectangle +(10,-0.2);
+		\draw[->] (4, -0.25) -- +(0,0.4);
+		\node[above] at (4,0.15) {\small $\mathbf{n}$};
+		\draw[->] (4.5, -0.25) -- +(0,-0.4);
+		\node[below] at (4.5,-0.65) {\small $\mathbf{n}$};
+		\draw[-{Straight Barb[left]}, red] (2,-0.15) -- (3,-0.15);
+		\node[above, red] at (2.5,-0.15) {\small $\tau_s$};
+		\draw[-{Straight Barb[left]}, red] (3,-0.35) -- (2,-0.35);
+		\node[below, red] at (2.5,-0.35) {\small $\tau_s$};
+	\end{tikzpicture}
+\end{figure}
+
+Thus the fluid exerts a shear stress $\mu \frac{\partial u}{\partial y}$ on the bottom plate and $- \mu \frac{\partial u}{\partial y}$ on the top plate.
+
+\subsection{2D Parallel Viscous Flow}
+\label{sub:2d_parallel_viscous_flow}
+
+We look at the steady case with $\mathbf{f} = 0$. Since it is steady, there is no acceleration, and hence the forces exerted by the surrounding fluid on the dashed rectangle must balance.
+
+\begin{figure}[h]
+	\centering
+	\caption{2D Parallel Viscous Flow}
+	\label{fig:2d_viscous_flow}
+	\begin{tikzpicture}
+		\begin{axis}
+			[
+			xmin = 0,
+			xmax = 5,
+			axis lines = none
+			]
+		\addplot [domain = 0.3:5, smooth] {x*x*0.1};
+		\end{axis}
+		\draw[->] (0,1) -- (1,1);
+		\draw[->] (0,2) -- (3,2);
+		\draw[->] (0,3) -- (4.5,3);
+		\draw[->] (0,4) -- (5.5,4);
+		\draw[->] (0,5) -- (6.2,5);
+		\draw[dashed] (-3,1.5) rectangle +(10,3);
+		\draw[red,->] (5,1.5) -- +(0,-0.4);
+		\node[red, below] at (5,1.1) {\small $\mathbf{n}$};
+		\draw[red,->] (7,2.5) -- +(0.4,0);
+		\node[red,right] at (7.4,2.5) {\small $\mathbf{n}$};
+		\draw[red,->] (5,4.5) -- +(0,0.4);
+		\node[red, above] at (5,4.9) {\small $\mathbf{n}$};
+		\draw[red,->] (-3,3.5) -- +(-0.4,0);
+		\node[red, left] at (-3.4,3.5) {\small $\mathbf{n}$};
+		\node[right] at (7,4.5) {\small $y + \delta y$};
+		\node[right] at (7,1.6) {\small $y$};
+		\node[below] at (7,1.5) {\small $x+\delta x$};
+		\node[below] at (-3,1.5) {\small $x$};
+		\node at (8,3) {\small $p(x+\delta x)$};
+		\node at (-3.5,3) {\small $p(x)$};
+		\node at (1,0) {\small $u(y)$};
+	\end{tikzpicture}
+\end{figure}
+
+In the $x$-direction,
+\[
+p(x) \delta y - p(x + \delta x)\delta y + \mu \frac{\partial u}{\partial y} \biggr|_{y + \delta y} \delta x - \mu \frac{\partial u}{\partial y}|_y \delta x = 0
+.\]
+Dividing by $\delta x \delta y$, we can take the limit to get
+\[
+- \frac{\partial p}{\partial x} + \mu \frac{\partial^2 u}{\partial y^2} = 0
+.\]
+Similarly, in the $y$-direction,
+\[
+- \frac{\partial p}{\partial y} = 0
+.\]
+
+For 2D unsteady parallel viscous flow with $\mathbf{u} = (u(y, t), 0, 0)$ and body force $\mathbf{f} = (f_x, f_y, 0)$, we get
+\begin{align*}
+	\rho \frac{\partial u}{\partial t} &= - \frac{\partial p}{\partial x} + \mu \frac{\partial^2 u}{\partial y^2} + f_x, \\
+	0 &= - \frac{\partial p}{\partial y} + f_y.
+\end{align*}
+Note our independence of $\mathbf{u}$ on $x$ means $\nabla \cdot \mathbf{u} = 0$ 
+
+It has been verified experimentally (down to molecular scales) that at a rigid boundary, viscous fluids satisfy the \emph{no-slip boundary condition}\index{no-slip boundary condition}
+\begin{center}
+	the tangential component of the fluid velocity must equal that of the boundary.
+\end{center}
+
+We can combine this with the mass conserving kinematic boundary condition
+\[
+\mathbf{u} = \mathbf{U}
+.\]
+
+\begin{figure}[h]
+	\centering
+	\caption{Pois\'{e}uille Flow}
+	\label{fig:poiseuille_flow}
+	\begin{tikzpicture}
+		\draw (-5, -2) -- (5, -2);
+		\draw (-5, 2) -- (5, 2);
+		\draw[red, ->] (-2, -1.5) -- (-1.5, -1.5);
+		\draw[red, ->] (-2, -0.5) -- (-0.5, -0.5);
+		\draw[red, ->] (-2, 0.5) -- (-0.5, 0.5);
+		\draw[red, ->] (-2, 1.5) -- (-1.5, 1.5);
+		\draw[->] (0, 0) -- (1, 0);
+		\node[right] at (1, 0) {$u(y)$};
+		\node[right] at (5,-2) {\small $y = h$};
+		\node[right] at (5,2) {\small $y = 0$};
+		\node[left] at (-4, 0) {\small $p_1 > p_0$};
+		\node[right] at (5, 0) {\small $p_0$};
+		\fill[pattern = north west lines] (-5,2) rectangle +(10,0.2);
+		\fill[pattern = north east lines] (-5,-2) rectangle +(10,-0.2);
+ 		\draw[red]   plot[smooth,domain=-2:2] ({-0.5*(\x)^2}, \x);
+	\end{tikzpicture}
+\end{figure}
+
+\begin{exbox}[Pois\'{e}uille Flow]
+	Consider steady flow in a channel driven by a pressure gradient. We know $\frac{\partial p}{\partial y} = 0$, so $p = p(x)$. As it is steady,
+	\[
+	\mu \frac{\partial^2 u}{\partial y^2} = \frac{\diff p}{\diff x} = - G
+	,\]
+	and by no-slip, $u(0) = u(h) = 0$. Hence we can determine
+	\[
+	u = \frac{G}{2\mu} y(h - y)
+	.\]
+	This determines a parabolic flow profile. The flux is
+	\[
+	q = \int_{0}^{h} u \diff y = \frac{G h^3}{12 \mu}
+	.\]
+	The overall force balance is
+	\[
+	G h - \mu \frac{\partial u}{\partial u} \biggr|_{0} + \mu \frac{\partial u}{\partial y} \biggr|_{L} = 0
+	.\]
+\end{exbox}
+
+\begin{figure}[h]
+	\centering
+	\caption{Viscous Flow down a Slope}
+	\label{fig:viscous_slope}
+	\begin{tikzpicture}
+		\draw[rotate around={-10:(5,-2)}] (-5, -2) -- (5, -2);
+		\draw[rotate around={-10:(5,-2)}] (-5, 0) -- (5, 0);
+		\draw[red, ->, rotate around={-10:(5,-2)}] (-2, -1.5) -- (-1.5, -1.5);
+		\draw[red, ->, rotate around={-10:(5,-2)}] (-2, -0.5) -- (-0.5, -0.5);
+		\draw[red, ->, rotate around={-10:(5,-2)}] (1, -1.8) -- (2.5,-1.8);
+		\node[red, right, rotate around={-10:(5,-2)}] at (2.1,-1.9) {\small $x$};
+		\draw[red, ->, rotate around={-10:(5,-2)}] (1, -1.8) -- (1,-0.3);
+		\node[red, right, rotate around={-10:(5,-2)}] at (1,-0.5) {\small $y$};
+ 		\draw[red, rotate around={-10:(5,-2)}]  plot[smooth,domain=-2:0] ({-0.5*(\x)^2}, \x);
+%		\node[right] at (5,-2) {\small $y = h$};
+%		\node[right] at (5,2) {\small $y = 0$};
+		\fill[pattern = north east lines, rotate around={-10:(5,-2)}] (-5,-2) rectangle +(10,-0.2);
+		\node[right] at (5, -2) {\small $y = 0$};
+		\node[right] at (5.5,0) {\small $y = h$};
+		\draw (0,-2.2) -- (5,-2.2);
+		\draw (5,-2.2) + (170:4) arc (170:180:4);
+		\node at (2,-1.9) {\small $\alpha$};
+		\node at (3,1) {\small $p = p_a$};
+		\draw[->] (-4,-1) -- (-4, -1.7);
+		\node[right] at (-4,-1.6) {\small $\mathbf{g}$};
+	\end{tikzpicture}
+\end{figure}
+
+\begin{exbox}
+	We consider viscous flow down a slope, driven by gravity. Assume that $p_{\mathrm{air}}$ is uniform. Then the shear stress exerted by the air is negligible.
+
+	Take coordinates parallel and perpendicular to the plane. Then the force is $\mathbf{f} = (\rho g \sin \alpha, - \rho g \cos \alpha)$. For the perpendicular force,
+	\[
+	\frac{\partial p}{\partial y} = \rho g \cos \alpha,
+	\]
+	which when combined with $p = p_{a}$ at $y = h$ gives
+	\[
+	p = p_a + \rho g \cos \alpha (h - y)
+	,\]
+	hence $\frac{\partial p}{\partial h} = 0$. Now the parallel force gives
+	\[
+	\mu \frac{\partial^2 u}{\partial y^2} = - \rho g \sin \alpha
+	.\]
+	Then taking $u(0) = 0$ due to no-slip and $\mu \frac{\partial u}{\partial y} |_h = 0$ as there is no shear stress, we get
+	\[
+	u = \frac{\rho g \sin \alpha}{2 \mu} y(2h - y)
+	.\]
+\end{exbox}
+
+%Lecture 8
+
+\subsubsection{Boundary Conditions at an Interface}
+\label{subsub:boundary_conditions_at_an_interface}
+
+Consider two fluid in parallel viscous flow:
+\begin{figure}[h]
+	\centering
+	\caption{Fluids in Parallel Viscous Flow}
+	\label{fig:parallel_viscous_fluids}
+	\begin{tikzpicture}
+		\draw (-5, 0) -- (5, 0);
+		\node[right] at (5, 0) {\small $y = h$};
+		\draw (0,0) -- (3,2);
+		\draw (0,0) -- (1,-2);
+		\node at (-2, 1) {\small $\mu_1$};
+		\node at (-2, -1) {\small $\mu_2$};
+		\node at (3, 1) {\small $u_1(y)$};
+		\node at (3, -1) {\small $u_2(y)$};
+	\end{tikzpicture}
+\end{figure}
+At $y = h$, the boundary of their interface, by the no-slip condition we have $u_1 = u_2$. Hence,
+\begin{align*}
+	\mu_1 \frac{\partial u_1}{\partial y} &= \mu_2 \frac{\partial u_2}{\partial y}, & p_1 &= p_2
+.\end{align*}
+These are the \emph{continuity of stress}\index{continuity of stress} conditions.
+
+\subsection{Unsteady Parallel Viscous Flow and Viscous Diffusion}
+\label{sub:unsteady_parallel_viscous_flow_and_viscous_diffusion}
+
+Consider a semi-infinite fluid domain $y > 0$, initially at rest, with no applied pressure gradient and $\mathbf{f} = 0$.
+
+At $t = 0$, the boundary of $(y, 0)$ starts to move with velocity $(U, 0)$.
+
+\begin{figure}[h]
+	\centering
+	\caption{Impulsively Started Flat Plate}
+	\label{fig:impulsive_plate}
+	\begin{tikzpicture}
+		\draw (-5, -2) -- (5, -2);
+		\draw[red, ->] (-1, -1.5) -- (2.5, -1.5);
+		\draw[red, ->] (-1, -0.5) -- (0.5, -0.5);
+		\draw[red, ->] (-1, 0.5) -- (-0.5, 0.5);
+		\draw[red, ->] (-1, 1.5) -- (-0.75, 1.5);
+		\draw (-1,-2) -- (-1, 2);
+		\draw[->] (5.1,-2.1) -- (5.5,-2.1);
+		\node[right] at (5.4,-2.1) {\small $U$};
+		\fill[pattern = north east lines] (-5,-2) rectangle +(10,-0.2);
+		\draw[red, ->] (-4, -1.8) -- (-2.5,-1.8);
+		\node[red, right] at (-2.7,-1.5) {\small $x$};
+		\draw[red, ->] (-4, -1.8) -- (-4,-0.3);
+		\node[red, right] at (-4,-0.5) {\small $y$};
+	\end{tikzpicture}
+\end{figure}
+
+Then the change in velocity is subject to the following equations:
+\begin{align*}
+	\rho \frac{\partial u}{\partial t} = - \frac{\partial p}{\partial x} + \mu \frac{\partial^2 u}{\partial y^2} + f_x,
+\end{align*}
+as well as initial conditions $u = 0$ at $t = 0$, far-field condition $u = 0$ as $y \to \infty$, and no-slip condition $u = U$ at $y = 0$, $t > 0$.
+
+In the above expression, the first and last term cancel, and we find that the velocity satisfies the \emph{diffusion equation}\index{diffusion equation}
+\[
+\frac{\partial u}{\partial t} = \nu \frac{\partial^2 u}{\partial y^2}
+.\]
+Here we are using the kinematic viscosity $\nu = \frac{\mu}{\rho}$, which can be thought of as a measure of diffusivity for momentum (or for viscosity, as we will see later).
+
+From the Methods course, we have many ways of attacking the diffusion equation (e.g. separation of variables, Fourier transforms, Green's functions), which we will use in the example sheet.
+
+Here there is not externally imposed length scale for $y$, since $0 < y < \infty$. However to find a solution we need a length scale! The equation
+\[
+\frac{\partial u}{\partial t} = \nu \frac{\partial^2 u}{\partial y^2}
+\]
+suggests that $y \sim (\nu t)^{1/2}$, hence letting $u = U f(\eta)$, where
+\[
+	\eta = \frac{y}{(\nu t)^{1/2}} \implies \frac{\partial \eta}{\partial t} = -\frac{1}{2} \frac{\partial}{\partial t}
+,\]
+we can find that $f$ satisfies the equation
+\[
+- \frac{1}{2} \frac{\eta}{t} U f' = \nu \frac{1}{\nu t} U f''
+,\]
+which we can then solve as
+\begin{align*}
+	f'' = -\frac{1}{2} \eta f' &\implies - \frac{1}{2} \eta = \frac{f''}{f'} \\
+				   &\implies -\frac{1}{4} \eta^2 = \log f' + \mathrm{constant} \\
+				   &\implies f = A + B \int_{\eta}^{\infty} e^{-\frac{1}{4} \eta'^2}\diff \eta'.
+\end{align*}
+Since $f(\infty) = 0$, we get $A = 0$, and $f(0) = 1$ gives $B = \pi^{-1/2}$, which simplifies to
+\[
+	u = U \erf \biggl( \frac{y}{2 \sqrt{vt}} \biggr)
+.\]
+Hence at all times, the shape of the flow is similar, but with growing width as $(vt)^{1/2} \to \infty$.
+
+From dimensional analysis, we could also conclude that $\frac{y}{u t}$ and $\frac{y u}{\nu}$ are dimensionless, but the equations show that these are not relevant. Instead the scaling argument is better!
+
+Below are the kinematic and dynamic viscosities of some fluids.
+\begin{center}
+	\begin{tabular}{cccc}
+		& $\rho$ & $\mu$ & $\nu$ \\
+		Water & \qty{1e3}{\kilogram \meter \tothe{-3}} & \qty{1e-3}{\pascal \second} & \qty{1e-6}{\meter \squared \per \second} \\
+		Air & \qty{1}{\kilogram \metre \tothe{-3}} & \qty{2 e-5}{\pascal \second} & \qty{2 e-5}{\meter \squared \per \second} \\
+		Golden Syrup & \qty{1.4e3}{\kilogram \meter \tothe{-3}} & \qty{200}{\pascal \second} & \qty{0.14}{\meter \squared \per \second}
+	\end{tabular}
+\end{center}
+Since $\nu_{\mathrm{air}} \approx 10 \nu_{\mathrm{water}}$, momentum spreads faster and further in air.
+
+Moreover since the shear stress exerted by a fluid (as in the plate) is
+\[
+	\tau_s = \mu \frac{\partial u}{\partial y} = - \mu \frac{u}{(vt)^{1/2}}f'(0) = - \frac{\mu U}{\sqrt{\pi \nu t}}
+,\]
+and we have
+\[
+	\frac{\mu}{\sqrt{\nu}}\biggr|_{\mathrm{water}} \approx 100 \frac{\mu}{\sqrt{\nu}}\biggr|_{\mathrm{air}}
+,\]
+water exerts a much bigger stress.
+
+If we add a stationary boundary at $y = h$, then we have two relevant length scales: $h$ and $(\nu t)^{1/2}$.
+
+\begin{figure}[h]
+	\centering
+	\caption{Started and Steady Plates}
+	\label{fig:started_and_steady}
+	\begin{tikzpicture}
+		\draw (-5, -2) -- (5, -2);
+		\draw (-5, 2) -- (5, 2);
+		\node[right] at (5,2.1) {\small $u=0$};
+		\draw[->] (5.1,-2.1) -- (5.5,-2.1);
+		\node[right] at (5.4,-2.1) {\small $U$};
+		\draw[<->] (-5.2, -2) -- (-5.2, 2);
+		\node[left] at (-5.2, 0) {$h$};
+		\fill[pattern = north west lines] (-5,2) rectangle +(10,0.2);
+		\fill[pattern = north east lines] (-5,-2) rectangle +(10,-0.2);
+		\draw[->] (0, 0) -- (1, 0);
+		\node[right] at (1, 0) {$u(y)$};
+	\end{tikzpicture}
+\end{figure}
+
+If we have $h \gg (\nu t)^{1/2}$, then we expect the boundary to have little (exponentially small) effect on the previous solution.
+
+However as $t \to \infty$, we expect to approach steady Couette flow, with a linear profile. Deviations from this steady state decay like $e^{-kt}$, with $k \propto \frac{\nu}{h^2}$, and are small for $\nu t \gg h^2$.
+
+The characteristic timescale is $T = \frac{h^2}{\nu}$ for diffusion across the cell. If $t \ll T$, then the effects of viscosity are confined to the bounding layers with $\delta \sim (vt)^{1/2}$.
+
+If we have a single oscillating boundary, then there is an imposed timescale $\frac{1}{\omega}$ during which velocity variations can diffuse with $\delta \sim (\frac{\nu}{\omega})^{1/2}$.
+
+\begin{figure}[h]
+	\centering
+	\caption{Oscillating Boundary}
+	\label{fig:oscillating}
+	\begin{tikzpicture}
+		\draw (-1.5, 0) -- (8.5, 0);
+		\draw (3.5,0) -- (3.5, 4);
+		\fill[pattern = north east lines] (-1.5,0) rectangle +(10,-0.2);
+		\draw[red, <->] (2.5, -0.7) -- (4.5,-0.7);
+		\node[red, right] at (4.5, -0.7) {\small $U \cos \omega t$};
+		\begin{axis}
+			[
+			xmin = -5,
+			xmax = 5,
+			ymin = 0,
+			ymax = 4,
+			axis lines = none
+			]
+		\addplot [domain = 0:3, smooth, red] (cos(4 * deg(x)) * (x+1)^(-1), x);
+		\end{axis}
+		\draw[<->] (2, 0.1) -- (2,2);
+		\node[left] at (2, 1) {\small $\delta \sim (\frac{\nu}{w})^{1/2}$};
+	\end{tikzpicture}
+\end{figure}
+
+%Lecture 9
+
+Adding a stationary boundary to the oscillating boundary gives two timescales $\frac{\nu}{h^2}$ and $\frac{1}{\omega}$, and two length scales $(\frac{\nu}{\omega})^{1/2}$ and $h$. Hence we can determine a dimensionless parameter
+\[
+S = \frac{\omega h^2}{\nu}
+,\]
+which is the \emph{Stokes number}\index{Stokes number}.
+
+$S \gg 1$ looks like example the oscillating boundary with $\delta \approx (\nu/w)^{1/2} \ll h$. $S \ll 1$ looks like Couette flow (linear profile) with amplitude $U(t)$.
+
+These examples illustrate that the inviscid solution ($\nu \approx 0$, so $u = 0$ and slipping at boundary) is not uniformly the same as the limit of a ``small'' viscosity (where smallness means $\nu \ll \frac{h^2}{t}$ or $\omega h^2$), but the viscous effects are only felt in the boundary layers $\delta \ll h$.
+
+\subsection{The Navier-Stokes Equation}
+\label{sub:the_navier_stokes_equation}
+
+In part II, it is shown that
+\[
+	\bm{\tau}(\mathbf{x}, t ; \mathbf{n}) = - p \mathbf{n} + \mu[(\mathbf{n} \cdot \nabla) \mathbf{u} + (\nabla \mathbf{u}) \cdot \mathbf{n}],
+\]
+and hence the flow satisfies the \emph{Navier-Stokes equation}\index{Navier-Stokes equation}
+\[
+\rho \frac{D \mathbf{u}}{Dt} = - \nabla p + \mu \nabla^2 \mathbf{u} + \mathbf{f}
+,\]
+and $\nabla \cdot \mathbf{u} = 0$. This reduces to the Euler equation if $\mu = 0$, and is parallel to the viscous flow equations if $\mathbf{u} = (u(y,t),0,0)$.
+
+\subsubsection{The Reynolds Number}
+\label{subsub:the_reynolds_number}
+
+Suppose a flow has a characteristic lengthscale $L$ and velocity scale $U$ 
+
+%E.g. picture
+
+Assume the characteristic timescale $T$ is $\frac{L}{U}$ (or the flow is steady) and let the characteristic scale of the pressure differences be denoted by $P$.
+
+We can estimate the scale of the terms in the Navier-Stokes equation as
+\begin{align*}
+	\frac{\partial \mathbf{u}}{\partial t} + \mathbf{u} \cdot \nabla \mathbf{u} &= - \frac{1}{\rho} \nabla p + \nu \nabla^2 \mathbf{u} \\
+	\frac{U}{L/U}\qquad  \frac{U^2}{L} &\qquad \frac{p}{\rho L} \qquad  \frac{\nu U}{L^2} \\
+	1\quad :\quad 1\quad  &: \quad \frac{p}{\rho U^2}\: : \: \frac{\nu}{LU} \equiv \frac{1}{R_e}
+\end{align*}
+The \emph{Reynolds number} $\Rey = \frac{UL}{\nu}$ is a dimensionless parameter describing the relative importance of inertia and viscosity:
+\[
+\frac{p D \mathbf{u}/Dt}{\mu \nabla^2 \mathbf{u}} \sim \Rey
+.\]
+\begin{itemize}
+	\item If $\Rey \ll 1$, then we expect
+		\[
+		\rho \frac{D \mathbf{u}}{Dt} \ll \mu \nabla^2 \mathbf{u}
+		,\]
+		so inertia is negligible, and we can approximate the Navier-Stokes equation by the Stokes equations\index{Stokes equations}
+		\[
+		0 = - \nabla p + \mu \nabla^2 \mathbf{u} + \mathbf{f}, \qquad \nabla \cdot \mathbf{u} = 0.
+		\]
+		Scaling for pressure is $p \sim \frac{\mu U}{L}$, like the viscous stress.
+	\item If $\Rey \gg 1$, we expect
+		\[
+		\mu \nabla^2 \mathbf{u} \ll \rho \frac{D \mathbf{u}}{Dt}
+		,\]
+		and hence viscosity is negligible (except perhaps in thin boundary layers at rigid boundaries). We can approximate the Navier-Stokes equation by the Euler equation
+		\[
+		\rho \frac{D \mathbf{u}}{Dt} = - \nabla p + \mathbf{f}
+		,\]
+		outside the boundary layer. Pressure scaling is $p \sim \rho U^2$, like Bernoulli.
+\end{itemize}
+
+For large Reynolds numbers, and on timescale $L/U$, viscous diffusion affects the velocity over a distance
+\[
+\delta \sim \biggl( v \frac{L}{U} \biggr)^{1/2}, \qquad \frac{\delta}{L} \sim \biggl( \frac{v}{LU}\biggr)^{1/2} = \frac{1}{\Rey^{1/2}}
+.\]
+
+\subsection{Stagnation Point Flow}
+\label{sub:stagnation_point_flow}
+
+\begin{figure}[h]
+	\centering
+	\caption{Stagnation Point}
+	\label{fig:stagnation_point}
+	\begin{tikzpicture}
+		\fill[pattern = north east lines] (-5,0) rectangle +(10,-0.2);
+		\draw (0, 0) -- +(0,4);
+		\draw[dashed] (0:1) arc (0:180:1);
+		\draw[dashed] (0:2) arc (0:180:2);
+		\draw[dashed] (0:3) arc (0:180:3);
+		\draw[dashed] (0:4) arc (0:180:4);
+		\draw[red, ->]   plot[smooth,domain=0.25:5] (\x, {1/(\x)});
+		\draw[red, ->]   plot[smooth,domain=0.25:5] (-1 * \x, {1/(\x)});
+		\draw[red, ->]   plot[smooth,domain=1:5] (\x, {4/(\x)});
+		\draw[red, ->]   plot[smooth,domain=1:5] (-1 * \x, {4/(\x)});
+		\draw[fill] (0,0) circle (0.05);
+	\end{tikzpicture}
+\end{figure}
+
+Consider the 2D inviscid incompressible flow with $\mathbf{u} = (Ex, -Ey)$ for $y > 0$. Then $\psi = Exy$, and by Bernoulli,
+\[
+p = p_0 - \frac{1}{2} \rho E^2(x^2 + y^2)
+.\]
+This solves $\rho (\mathbf{u} \cdot \nabla)\mathbf{u} = - \nabla p$, with $v = 0$ on $y = 0$.
+
+This also satisfies the Navier-Stokes equations, but not the viscous no-slip boundary condition because $u = 0$ if $y = 0$ is a rigid boundary. Fortunately, we can find an exact solution. Guessing
+\[
+\psi = Ex f(y) \implies \mathbf{u} = (E_x f', -Ef)
+,\]
+we want $f(0) = f'(0) = 0$ and $f(y) \approx y$ as $y \to \infty$. Substituting into
+\[
+	(\mathbf{u} \cdot \nabla)\mathbf{u} = - \frac{1}{\rho} \nabla p + \nu \nabla^2 \mathbf{u}
+,\]
+the $x$-component gives
+\begin{align*}
+	\biggl(E_x f' \frac{\partial}{\partial x} - E f \frac{\partial}{\partial y}\biggr) E_x f' &= - \frac{1}{\rho} \frac{\partial p}{\partial x} + \nu \biggl( \frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2} \biggr) (E_x f') \\
+	\implies E^2 x(f'^2 - ff'') &= - \frac{1}{\rho} \frac{\partial p}{\partial u} + \nu E_x f'''.
+\end{align*}
+Similarly, the $y$-component gives
+\[
+	E^2 f' f = - \frac{1}{\rho} \frac{\partial p}{\partial y} - \nu E f''
+.\]
+Taking the $x$ derivative of this equation gives
+\[
+\frac{\partial^2 p}{\partial x \partial y} = 0 \implies p = X(x) + Y(y)
+.\]
+Then from the first equation,
+\[
+\frac{\partial p}{\partial x} \propto x, \qquad f' \to 1 \implies X(x) = p_0 - \frac{1}{2} \rho E^2 x^2
+.\]
+Hence
+\[
+f'^2 - ff'' = 1 + \frac{\nu}{E} f'''
+.\]
+Rescaling, $f(y) = \delta F(\eta)$, where $\eta = \frac{y}{\delta}$ and $\delta = (\frac{\nu}{E})^{1/2}$. So,
+\[
+	F''' = F'^2 - FF'' - 1, \qquad F(0) = F'(0) = 0, \qquad F'(1) \overset{y \to \infty}{\to} 1
+.\]
+We can solve this numerically.
 
 \newpage
 

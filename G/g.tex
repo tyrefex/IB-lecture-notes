@@ -390,7 +390,7 @@ Similarly, we can find $\mathbb{RP}^2$ as the quotient of a square: this can be 
 	A \emph{subdivision}\index{subdivision} of a compact topological surface $\Sigma$ comprises of:
 	\begin{enumerate}[(i)]
 		\item a finite set $V$ of \emph{vertices}\index{vertex},
-		\item a finite collection of edges $E + \{e_i : [0,1] \to \Sigma\}$ such that
+		\item a finite collection of edges $E = \{e_i : [0,1] \to \Sigma\}$ such that
 			\begin{itemize}
 				\item for all $i$, $e_i$ is a continuous injection on its interior and $e_i^{-1}(V) = \{0, 1\}$,
 				\item $e_i$ and $e_j$ have disjoint images except perhaps at their endpoints in $V$.
@@ -609,7 +609,7 @@ A homeomorphism $f : V \to V'$ is called a \emph{diffeomorphism}\index{diffeomor
 
 Note if this holds for one chart at $p$, then it holds for all charts at $p$, as
 \[
-f \circ \varphi^{-1} = f \circ \varphi_2^{\-1} \circ (\varphi_2 \circ \varphi_1^{-1})
+f \circ \varphi_1^{-1} = f \circ \varphi_2^{-1} \circ (\varphi_2 \circ \varphi_1^{-1})
 ,\]
 and $(\varphi_2 \circ \varphi_1^{-1})$ is a diffeomorphism.
 
@@ -622,7 +622,7 @@ Again, if $f$ is smooth at $p$, then the smoothness of the local representation 
 \end{definition}
 
 \begin{definition}
-	If $Z \subset \mathbb{R}^{n}$ is an arbitrary subset, we say that $f : Z \to \mathbb{R}^{m}$ is smooth near $p \in Z$ if there exists open $B$ with $p\ in B \subset \mathbb{R}^{n}$ and smooth $F : B \to \mathbb{R}^{m}$ such that
+	If $Z \subset \mathbb{R}^{n}$ is an arbitrary subset, we say that $f : Z \to \mathbb{R}^{m}$ is smooth near $p \in Z$ if there exists open $B$ with $p \in B \subset \mathbb{R}^{n}$ and smooth $F : B \to \mathbb{R}^{m}$ such that
 	\[
 	F|_{B \cap Z} = f|_{B \cap Z}
 	.\]
@@ -714,7 +714,7 @@ having full rank means that, permuting coordinates if necessary, we can assume t
 
 	Write $G(x, y) = (\varphi(x,y), \psi(x, y))$. Then,
 	\[
-	F \circ G(x, y) = (\varphi(x, y) f(\varphi(x, y), \psi(x,y))) = (x, y)
+	F \circ G(x, y) = (\varphi(x, y), f(\varphi(x, y), \psi(x,y))) = (x, y)
 	.\]
 	Hence $\varphi(x, y) = x$, $f(x, \psi(x, y)) = y$. Thus, $f(x, y) = 0 \iff y = \psi(x, 0)$.
 
@@ -891,12 +891,12 @@ Let $\GL^{+}(2, \mathbb{R}) \subset \GL(2, \mathbb{R})$ be the subgroup of matri
 	\end{enumerate}
 \end{exbox}
 
-For surfaces in $\mathbb{R}^3$, we would like ot have orientability dictated by some ambient feature.
+For surfaces in $\mathbb{R}^3$, we would like to have orientability dictated by some ambient feature.
 
 \begin{definition}
 	Let $\Sigma \subset \mathbb{R}^3$ be a smooth surface, and $p \in \Sigma$. Fix an allowable parametrization $\sigma : V \to U \subset \Sigma$, $\sigma(0) = p$.
 
-	Then, the \emph{tangent plane}\index{tangent plane} $T_p \Sigma$ of $\Sigma$ at $p$ is the image of $D\sigma|_{0}$, as a subset of $\mathbb{R}^3$. This is a 2d vector subspace of $\mathbb{R}^3$.
+	Then, the \emph{tangent plane}\index{tangent plane} $T_p \Sigma$ of $\Sigma$ at $p$ is the image of $D\sigma|_{0}$, as a subset of $\mathbb{R}^3$. This is a 2D vector subspace of $\mathbb{R}^3$.
 
 	The \emph{affine tangent plane}\index{affine tangent plane} of $\Sigma$ at $p$ is $p + T_p \Sigma \subset \mathbb{R}^3$.
 \end{definition}
@@ -905,6 +905,880 @@ For surfaces in $\mathbb{R}^3$, we would like ot have orientability dictated by 
 	$T_p \Sigma$ is well-defined, so it is independent of the choice of allowable parametrization near $p$.
 \end{lemma}
 
+\begin{proofbox}
+	Let $\sigma : V \to U \subset \Sigma$, $\tilde \sigma : \tilde V \to \tilde U \subset E$, with $\sigma(0) = \tilde \sigma(0) = p$ be two parametrizations near $p$.
+
+	Since $\sigma^{-1} \circ \tilde \sigma$ is a transition map,
+	\[
+	\tilde \sigma = \sigma \circ (\sigma^{-1} \circ \tilde \sigma)
+	.\]
+	As $D(\sigma^{-1} \circ \tilde \sigma)|_0$ is an isomorphism, we get $\img(D \tilde \sigma|_0) = \img(D \sigma|_0)$.
+\end{proofbox}
+
+\begin{definition}
+	Let $\Sigma \subset \mathbb{R}^3$ be a smooth surface. The \emph{normal direction}\index{normal direction} at $p$ is $(T_p \Sigma)^{\perp}$.
+\end{definition}
+
+At each $p \in \Sigma$, we have two unit normal vectors.
+
+\begin{definition}
+	A smooth surface in $\mathbb{R}^3$ is \emph{two-sided}\index{two-sided} if it admits a continuous global choice of unit normal vectors.
+\end{definition}
+
+\begin{lemma}
+	A smooth surface in $\mathbb{R}^3$ is orientable with its abstract smooth surface structure if and only if it is two-sided.
+\end{lemma}
+
+\begin{proofbox}
+	Let $\sigma : V \to U \subset \Sigma$ be allowable, with $\sigma(0) = p$. Define the \emph{positive} unit normal with respect to $\sigma$ at $p$ as the unique $n_{\sigma}(p)$ such that
+	\[
+		\{\sigma_u, \sigma_v, n_{\sigma}(p)\}, \qquad \{e_1, e_2, e_3\}
+	\]
+	induce the same orientation in $\mathbb{R}^3$ (i.e. they are related by a change of basis matrix with positive determinant). Explicitly,
+	\[
+	n_{\sigma}(p) = \frac{\sigma_u \times \sigma_v}{\| \sigma_u \times \sigma_v \|}
+	.\]
+	Let $\tilde \sigma$ be another allowable parametrization at $p$, and suppose $\Sigma$ is orientable as an abstract smooth surface with $\sigma$ and $\tilde \sigma$ belonging to the same oriented atlas.
+
+	Again, we can write $\sigma = \tilde \sigma \circ \varphi$, where $\varphi = \tilde \sigma^{-1} \circ \sigma$. Then
+	\[
+	D \varphi|_0 =
+	\begin{pmatrix}
+		\alpha & \beta \\
+		\gamma & \delta
+	\end{pmatrix}
+	.\]
+	By the chain rule, we have
+	\begin{align*}
+		\sigma_u &= \alpha \tilde \sigma_{\tilde u} + \gamma \tilde \sigma_{\tilde v}, \\
+		\sigma_v &= \beta \tilde \sigma_{\tilde u} + \delta \tilde \sigma_{\tilde v}.
+	\end{align*}
+	Hence we get
+	\[
+	\sigma_u \times \sigma_v = \det (D\phi|_0) \tilde \sigma_{\tilde u} \times \tilde \sigma_{\tilde v}
+	.\]
+	So the positive unit normal at $p$ does not depend on the parametrization. Since $n_{\sigma}(p)$ is continuous, $\Sigma$ is two-sided.
+
+	Conversely, if $\Sigma$ is two-sided, we have a global choice of $n$, so we can consider the subatlas of the smooth atlas such that we have charts $(U, \varphi)$, where $\varphi^{-1} = \sigma$ and $\{\sigma_u, \sigma_v, n\}$ is an oriented basis of $\mathbb{R}^3$.
+
+	Then from the above formula, the transition maps between such charts are orientation preserving, so $\Sigma$ is orientable.
+\end{proofbox}
+
+\begin{remark}
+	Give a curve $\gamma : (-\eps, \eps) \to \mathbb{R}^3$, smooth with image in $\Sigma$ and with $\gamma(0) = p$, we can write
+	\[
+	\gamma(t) = \sigma(u(t), v(t))
+	.\]
+	Differentiating,
+	\[
+	\sigma'(0) = D\sigma|_0 (u'(0), v'(0))
+	.\]
+	This is on the tangent plane. Hence
+	\[
+		T_p\Sigma = \{\gamma'(0) \mid \gamma \text{ smooth on } \Sigma\}
+	.\]
+\end{remark}
+
+\begin{exbox}
+	\begin{enumerate}
+		\item Take $S^2 \subset \mathbb{R}^3$. Then the obvious unit normal at $p$ is $p$.
+
+			To prove this, take any $\gamma : (-\eps, \eps) \to S^2$, with $\gamma(0) = p$. Since $|\gamma(t)|^2 = 1$, differentiating at $t = 0$,
+			\[
+			2 \langle \gamma'(0), p \rangle = 0 \implies (T_p S^2)^{\perp} = \mathbb{R} p
+			.\]
+			Therefore we can take $n(p) = p$, and this is continuous so $S^2$ is two-sided.
+		\item The M\"{o}bius band is constructed as follows: start with the unit circle in the $xy$-plane, and take an open interval of length 1. Rotate this line in the $cz$-plane as we move around the circle, such that it has rotated by $\theta/2$ after moving an angle $\theta$.
+
+			After a full turn, the segment returns to its original position but with the endpoints inverted. We can describe the surface with
+			\[
+			\sigma(t, \theta) = ((1 - t \sin \theta/2)\cos \theta, (1 - t \sin \theta/2) \sin \theta, t \cos \theta/2)
+			,\]
+			where $(t, \theta)$ belongs to
+			\[
+				V_1 = \{t \in (-1/2, 1/2), \theta \in (0, 2 \pi)]
+			,\]
+			or
+			\[
+				V)2 = \{t \in (-1/2, 1/2), \theta \in (-\pi, \pi)\}
+			.\]
+			We can check that if $\sigma_i$ is $\sigma$ on $V_i$, then $\sigma_i$ is allowable. A computation shows that
+			\[
+			\sigma_{t} \times \sigma_{\theta}(0, \theta) = (- \cos \theta \cos \theta/2, - \sin \theta \cos \theta/2, - \sin \theta/2)
+			.\]
+			As $\theta \to 0^{+}$, $n_{\theta} = (-1, 0, 0)$, but as $\theta \to 2\pi^{-}$, $n_{\theta} = (1, 0, 0)$. Hence the M\"{o}bius band is not two-sided.
+	\end{enumerate}
+\end{exbox}
+
+\newpage
+
+\section{Surfaces in 3-space}
+\label{sec:surfaces_in_3_space}
+
+Let $\gamma : (a, b) \to \mathbb{R}^3$ be smooth. The length of $\gamma$ is
+\[
+L(\gamma) = \int_{a}^{b} \|\gamma'(t)\| \diff t
+.\]
+If $s: (A, B) \to (a, b)$ is monotone increasing, and we let $\tau(t) = \gamma(s(t))$, then
+\[
+L(\tau) = \int_{A}^{B} \|\tau'(t)\| \diff t = \int_{A}^{B} \|\gamma'(s(t)) \| s'(t) \diff t = \int_{a}^{b} \|\gamma'(s)\| \diff s = L(\gamma)
+.\]
+
+\begin{lemma}
+	If $\gamma : (a, b) \to \mathbb{R}^3$ and $\gamma'(t) \neq 0$ for all $t$, then $\gamma$ can be parametrized by arc-length, i.e. by a parameter $s$ such that $\|\gamma'(s)\| = 1$ for all $s$.
+\end{lemma}
+
+Let $\Sigma \subset \mathbb{R}^3$ be a smooth surface, and $\sigma : V \to U \subset \Sigma$ be allowable. If $\gamma : (a, b) \to U$ is smooth, write
+\[
+\gamma(t) = \sigma(u(t), v(t))
+.\]
+Then we have
+\[
+\gamma'(t) = \sigma_u u'(t) + \sigma_v v'(t)
+.\]
+Therefore,
+\[
+\|\gamma'(t)\|^2 = E(u'(t))^2 + 2F u'(t) v'(t) + G (v'(t))^2
+.\]
+Where
+\begin{align*}
+	E &= \langle \sigma_u, \sigma_u \rangle = \|\sigma_u \|^2, \\
+	F &= \langle \sigma_u, \sigma_v \rangle = \langle \sigma_v, \sigma_u \rangle, \\
+	G &= \langle \sigma_v, \sigma_v \rangle = \|\sigma_v \|^2.
+\end{align*}
+They are defined only on $\sigma$, and not $\gamma$.
+
+\begin{definition}
+	The \emph{first fundamental form}\index{first fundamental form} (FFF) in the parametrization $\sigma$ is the expression
+	\[
+	E \diff u^2 + 2F \diff u \diff v + G \diff v^2
+	.\]
+	This satisfies
+	\[
+		L(\gamma) = \int_{a}^{b} \sqrt{E u'^2 + 2F u'v' + Gv'^2} \diff t
+	,\]
+	where $\gamma(t) = \sigma(u(t), v(t))$.
+\end{definition}
+
+\begin{remark}
+	The first fundamental form is sometimes defined as the quadratic form in $T_p \Sigma$, given by the restriction of the standard inner product in $\mathbb{R}^3$:
+	\[
+	I_p(w) = |w|^2 = \langle w, w \rangle_{\mathbb{R}^3}
+	.\]
+	After picking $\sigma$ with $\sigma(0) = p$ and after writing $w = D\sigma|_0 (u', v')$, we have
+	\[
+	I_p(w) = E u'^2 + 2 F u'v' + G v'^2
+	.\]
+	This is an example of a \emph{Riemannian metric}\index{Riemannian metric}.
+\end{remark}
+
+\begin{exbox}
+	The $xy$-plane $\mathbb{R}^3$ is parametrized as $\sigma(u, v) = (u, v, 0)$, so $\sigma_u = (1, 0, 0)$, $\sigma_v = (0, 1, 0)$, and the first fundamental form is $\diff u^2 + \diff v^2$. Here $E = G = 1$, $F = 0$.
+
+	In polar coordinates, $\sigma(r, \theta) = (r \cos \theta, r \sin \theta, 0)$. Then we have
+	\begin{align*}
+		\sigma_r &= (\cos \theta, \sin \theta, 0),\\
+		\sigma_{\theta} &= (- r \sin \theta, r \cos \theta, 0).
+	\end{align*}
+	The first fundamental form is $\diff r^2 + r^2 \diff \theta^2$. Here $E = 1$, $F = 0$ and $G = r^2$.
+\end{exbox}
+
+\begin{definition}
+	Let $\Sigma, \Sigma' \subset \mathbb{R}^3$ be smooth surfaces. We say that $\Sigma$ and $\Sigma'$ are \emph{isometric}\index{isometry} if there exists $f : \Sigma \to \Sigma'$ a diffeomorphism such that for every smooth curve $\gamma : (a, b) \to \Sigma$,
+	\[
+	L_{\Sigma}(\gamma) = L_{\Sigma'}(f \circ \gamma)
+	.\]
+\end{definition}
+
+\begin{exbox}
+	If $\Sigma' = f(\Sigma)$, where $f : \mathbb{R}^3 \to \mathbb{R}^3$ is a linear motion, i.e.
+	\[
+	f(x) = Ax + b
+	\]
+	where $A \in \mathsf{O}(3)$ and $b \in \mathbb{R}^3$, then $f : \Sigma \to \Sigma'$ is an isometry because
+	\[
+	|(f \circ \gamma)'(t)| = |A \gamma'(t)| = |\gamma'(t)|
+	.\]
+	Hence the lengths of curves are preserved.
+\end{exbox}
+
+Often we are interested in local statements.
+
+\begin{definition}
+	$\Sigma, \Sigma'$ are \emph{locally isometric}\index{locally isometric} near points $p \in \Sigma$ and $p' \in \Sigma'$, if there exist open neighbourhoods $p \in U \subset \Sigma$ and $p' \in U' \subset \Sigma'$, which are isometric.
+\end{definition}
+
+\begin{lemma}
+	$\Sigma, \Sigma' \subset \mathbb{R}^3$ are locally isometric near $p \in \Sigma$ and $p' \in \Sigma'$ if and only if there exist allowable parametrizations
+	\begin{align*}
+		\sigma : V &\to U \subset E, \\
+		\sigma' : V &\to U' \subset \Sigma',
+	\end{align*}
+	for which the first fundamental forms are equal in $V$.
+\end{lemma}
+
+\begin{proofbox}
+	We know (by definition) that the first fundamental form of $\sigma$ determines the length of all curves on $\sigma(V) = U$.
+
+	If we have $\sigma$ and $\sigma'$ as in the lemma, then $\sigma' \circ \sigma^{-1} : U \to U'$ is an isometry, since
+	\begin{align*}
+		\biggl| \frac{\diff}{\diff t}\sigma' \circ \sigma^{-1} \circ \gamma \biggr|^2 &= \biggl|\frac{\diff}{\diff t} \sigma'(u(t), v(t)) \biggr|^2 \\
+											      &= E' \dot u^2 + 2F' \dot u \dot v + G' \dot v^2 \\
+											      &= E\dot u^2 + 2 F \dot u \dot v + G \dot v^2 \\
+											      &= \biggl| \frac{\diff}{\diff t} \gamma(t)\biggr|^2.
+	\end{align*}
+	Hence $L(\sigma' \circ \sigma^{-1} \circ \gamma) = L(\gamma)$.
+
+	For the converse, we will show first that the lengths of curves in $U$ determine the first fundamental form of $\sigma$. Indeed, suppose
+	\[
+	\sigma : B(0, \delta) \to U
+	,\]
+	with $\sigma(0) = p$. Then take a curve $\gamma_\eps : [0, \eps] \to U$ with $t \mapsto \sigma(t, 0)$. Then,
+	\[
+		\frac{\diff}{\diff \eps}L(\gamma_\eps) = \frac{\diff}{\diff \eps} \int_{0}^{\eps} \sqrt{E(t, 0)} \diff t = \sqrt{E(\eps, 0)}
+	.\]
+	So the length of the curve determines $E(0,0)$. Similarly, $\chi_\eps : t \mapsto \sigma(0, t)$ determines $G(0,0)$ and $\lambda_\eps : t \mapsto \sigma(t,t)$ gives $\sqrt{(E+2F+G)(0,0)}$, so knowing $E$ and $G$, we get $F$.
+
+	So if $f : U \to U'$ is a local isometry, take any allowable parametrization $\sigma' : V \to U'$. Then $\sigma = f^{-1} \circ \sigma'$ is such that the first fundamental forms of $\sigma$ and $\sigma'$ agree.
+\end{proofbox}
+
+\begin{exbox}
+	Take a cone: with $u > 0$ and $v \in (0, 2\pi)$, we get
+	\[
+	\sigma(u, v) = (au \cos v, a u \sin v, u)
+	.\]
+	This parametrizes the complement of one line of the cone. The first fundamental form is $(1+a^2)\diff u^2 + a^2 u^2 \diff v^2$.
+
+	Cutting open the cone and unfolding it, we get a plane sector of angle $\theta_0 = \frac{2\pi a}{\sqrt{1 + a^2}}$. Parametrize the plane sector by
+	\[
+		\sigma(r, \theta) = \biggl(\sqrt{1+a^2} r \cos \biggl( \frac{a \theta}{\sqrt{1+a^2}}\biggr), \sqrt{1+a^2} r \sin \biggl(\frac{a \theta}{\sqrt{1+a^2}} \biggr), 0 \biggr)
+	.\]
+	This holds for $r > 0$ and $\theta \in (0, 2\pi)$. We can check that the first fundamental form is $(1+a^2)\diff r^2 + r^2 a^2 \diff \theta^2$. So the cone is locally isometric to the plane.
+\end{exbox}
+
+\begin{lemma}
+	Let $\sigma, \tilde \sigma$ be allowable parametrizations with transition map $f : \tilde \sigma^{-1} \circ \sigma$, with first fundamental forms
+	\[
+	\begin{pmatrix}
+		E & F \\
+		F & G
+	\end{pmatrix}
+	, \qquad
+	\begin{pmatrix}
+		\tilde E & \tilde F \\
+		\tilde F & \tilde G
+	\end{pmatrix}
+	.\]
+	Then these are related by
+	\[
+	\begin{pmatrix}
+		E & F \\
+		F & G
+	\end{pmatrix}
+	=
+	(Df)^{T}
+	\begin{pmatrix}
+		\tilde E & \tilde F \\
+		\tilde F & \tilde G
+	\end{pmatrix}
+	Df
+	.\]
+\end{lemma}
+
+\begin{proofbox}
+	We have
+	\begin{align*}
+		\begin{pmatrix}
+			E & F \\
+			F & G
+		\end{pmatrix}
+		&=
+		\begin{pmatrix}
+			\sigma_u \cdot \sigma_u & \sigma_u \cdot \sigma_v \\
+			\sigma_v \cdot \sigma_u & \sigma_v \cdot \sigma_v
+		\end{pmatrix}
+		= (D \sigma)^{T} D \sigma.
+	\end{align*}
+	Since $\sigma = \tilde \sigma \circ f$, we have $D \sigma = D \tilde \sigma D f$, so this equals
+	\[
+		(D \tilde \sigma D f)^{T} (D \tilde \sigma D f) = (Df)^{T} (D \tilde \sigma)^{T} D \tilde \sigma D f
+	.\]
+\end{proofbox}
+
+\subsection{Angles}
+\label{sub:angles}
+
+For two vectors $v, w\in \mathbb{R}^3$, we can define the angle between them as $\theta \in [0, \pi]$ satisfying $v \cdot w = |v||w| \cos \theta$.
+
+Similarly, if $v, w \in T_p \Sigma$, we can define
+\[
+\cos \theta = \frac{v \cdot w}{|v||w|}
+.\]
+Here $w=  D\sigma|_0(w_0)$, $v = D\sigma|_0(v_0)$. We can therefore easily calculate
+\[
+v \cdot w = v_0^{T}
+\begin{pmatrix}
+	E & F \\
+	F & G
+\end{pmatrix}
+w_0
+.\]
+So therefore, we can compute the angles using the first fundamental form of $\sigma$.
+
+\begin{lemma}
+	$\sigma$ is \emph{conformal}\index{conformal} (preserves angles) exactly when $E = G$, and $F = 0$.
+\end{lemma}
+
+\begin{proofbox}
+	Consider curves $\alpha(t) = (u(t), v(t))$ in $V$, and $\tilde \alpha(t) = (\tilde u(t), \tilde v(t))$, satisfying $\alpha(0) = \tilde \alpha(0) \in V$.
+
+	The curves $\sigma \circ \alpha$ and $\sigma \circ \tilde \alpha$ meet at $p$ with angle $\theta$, given by
+	\[
+		\cos \theta = \frac{E \dot u \dot{\tilde u} + F(\dot u \dot{\tilde v} + \dot{\tilde u}\dot v) + G \dot v \dot{\tilde v}}{(E \dot u^2 + 2 F \dot u \dot v + G \dot v^2)^{1/2}(E \dot{\tilde u}^2 + 2 F \dot{\tilde u} \dot{\tilde v} + G \dot{\tilde v}^2)^{1/2}}
+	.\]
+	If $\sigma$ is conformal at $\alpha(t) = (t, 0)$, $\tilde \alpha(t) = (0,t)$ meeting at angle $\pi/2$ in $V$ we get that
+	\[
+	0 = F
+	.\]
+	Similarly, using $\alpha(t) = (t, t)$ and $\tilde \alpha(t) = (t, -t)$, we get $E = G$.
+
+	Conversely, if $\sigma$ is such that $E = G$ and $F = 0$, then with respect to $\sigma$, the first fundamental form is just
+	\[
+	\rho(\diff u^2 + \diff v^2)
+	.\]
+	Hence, we get
+	\[
+		\cos \theta = \frac{\dot u \dot{\tilde u} + \dot v \dot{\tilde v}}{(\dot u^2 + \dot v^2)^{1/2}(\dot{\tilde u}^2 + \dot{\tilde v}^2)^{1/2}}
+	.\]
+	This shows that angles do not change.
+\end{proofbox}
+
+\subsection{Areas}
+\label{sub:areas}
+
+Recall that the area of a parallelogram spanned by vectors $v$ and $w$ is
+\[
+|v \times w| = (|v|^2|w|^2 - (v \cdot w)^2)^{1/2}
+.\]
+Suppose we have $\sigma : V \to U$, with $\sigma(0) = p$, and consider $\sigma_u, \sigma_v \in T_p \Sigma$.
+
+They span a parallelogram in $T_p \Sigma$ of area
+\[
+	(|\sigma_u|^2|\sigma_v|^2 - (\sigma_u \cdot \sigma_v)^2)^{1/2} = \sqrt{EG - F^2}
+.\]
+\begin{definition}
+	We define the \emph{area}\index{area} of $U$ as
+	\[
+		\int_{V} \sqrt{EG - F^2} \diff u \diff v
+	.\]
+\end{definition}
+
+To show this is independent of parametrization, suppose $\sigma : V \to U$ and $\tilde \sigma : \tilde V \to U$ are allowable parametrizations. Then if $\varphi = \sigma^{-1} \circ \tilde \sigma$ is a transition map, by our previous lemma,
+\[
+\begin{pmatrix}
+	\tilde E & \tilde F \\
+	\tilde F & \tilde G
+\end{pmatrix}
+ = (D \varphi)^{T}
+ \begin{pmatrix}
+	 E & F \\
+	 F & G
+ \end{pmatrix}
+ D \varphi
+.\]
+Taking the determinants, we get
+\[
+	\sqrt{\tilde E \tilde G - \tilde F^2} = |\det (D \varphi)| \sqrt{EG - F^2}
+.\]
+Now the change of variables between $V$ and $\tilde V$ gives
+\[
+	\int_{\tilde V} \sqrt{\tilde E \tilde G - \tilde F^2} \diff \tilde u \diff \tilde v = \int_{V} \sqrt{EG - F^2} \diff u \diff v
+.\]
+This shows that the area of $U$ is intrinsic, and well-defined.
+
+\begin{exbox}
+	Consider the graph
+	\[
+		\Sigma = \{(u, v, f(u, v)) \mid (u, v) \subset \mathbb{R}^2\}
+	\]
+	with $f : \mathbb{R}^2 \to \mathbb{R}$ smooth, and with obvious parametrization $\sigma(u, v) = (u, v, f(u, v))$. Then $\sigma_u = (1, 0, f_u)$, $\sigma_v = (0, 1, f_v)$. This gives
+	\[
+	EG - F^2 = 1 + f_u^2 + f_v^2
+	.\]
+	Therefore, if $U_R \subset \Sigma$ is $\sigma(B(0,R))$, then
+	\[
+		\area(U_R) = \int_{B(0,R)} \sqrt{1 + f_u^2 + f_v^2} \diff u \diff v \geq \pi R^2
+	,\]
+	with equality only if $f_u = f_v = 0$, i.e. $f$ is constant.
+
+	Hence the projection from $\Sigma$ to $\mathbb{R}^2_{xy}$ is not area preserving, unless $\Sigma$ is a plane parallel to $\mathbb{R}^2_{xy}$.
+\end{exbox}
+
+Contrast this to the theorem from Archimedes, which says the horizontal radius projection (with centre the $z$-axis) from $S^2$ to the cylinder is area-preserving.
+
+\subsection{Second Fundamental Form}
+\label{sub:second_fundamental_form}
+
+Let's try to measure how much $\Sigma \subset \mathbb{R}^3$ deviates from its own tangent planes. Taking $\sigma : V \to U \subset \Sigma$ and using Taylor's theorem
+\begin{align*}
+	\sigma(u+h, v+l) &= \sigma(u, v) + h \sigma_u(u, v) + l \sigma_v(u, v)  \\
+			 &\quad + \frac{1}{2} [ h^2 \sigma_uu(u,v) + 2hl \sigma_{uv}(u,v) + l^2\sigma_{vv}(u,v)] + \mathcal{O}(h^3, l^3),
+\end{align*}
+where $(h, l)$ are small enough so that $(u, v)$ and $(u+h, v+l) \in V$.
+
+Taking a projection in the normal direction,
+\[
+	\langle n, \sigma(u+h,v+l)-\sigma(u,v)\rangle = \frac{1}{2}[\langle n, \sigma_{uu} \rangle h^2 + 2 \langle n, \sigma_{uv} \rangle hl + \langle n, \sigma_{vv} l^2] + \mathcal{O}(h^3, l^3)
+.\]
+\begin{definition}
+	The \emph{second fundamental form}\index{second fundamental form} of $\Sigma \subset \mathbb{R}^3$ in the parametrization $\sigma$ is the quadratic form:
+	\[
+	L \diff u^2 + 2 M \diff u \diff v + N \diff v^2
+	,\]
+	where
+	\begin{align*}
+		L &= \langle n, \sigma_{uu}\rangle, \\
+		M &= \langle n, \sigma_{uv} \rangle, \\
+		N &= \langle n, \sigma_{vv} \rangle,
+	\end{align*}
+	and
+	\[
+		n = \frac{\sigma_u \times \sigma_v}{\| \sigma_u \times \sigma_v\|}
+	.\]
+\end{definition}
+
+\begin{lemma}
+	Let $V$ be connected and $\sigma : V \to U \subset \Sigma$ such that the second fundamental form vanishes identically. Then $U$ lies in an affine plane in $\mathbb{R}^3$.
+\end{lemma}
+
+\begin{proofbox}
+	Recall that $\langle n, \sigma_u \rangle = \langle n, \sigma_v \rangle = 0$. Hence, differentiating,
+	\begin{align*}
+		\langle n_u, \sigma_u \rangle + \langle n, \sigma_{uu} \rangle &= 0, \\
+		\langle n_v, \sigma_v \rangle + \langle n, \sigma_{vv} \rangle &= 0, \\
+		\langle n_v, \sigma_u \rangle + \langle n, \sigma_{uv} \rangle &= 0.
+	\end{align*}
+	Hence we can alternatively write
+	\begin{align*}
+		L &= \langle n, \sigma_{uu} \rangle = - \langle n_u, \sigma_u \rangle, \\
+		M &= \langle n, \sigma_{uv} \rangle = - \langle n_v, \sigma_u \rangle = - \langle n_u, \sigma_v \rangle, \\
+		N &= \langle n, \sigma_{vv} \rangle = - \langle n_v, \sigma_v \rangle.
+	\end{align*}
+	So if the second fundamental form vanishes, then $n_u$ is orthogonal to $\sigma_u$ and $\sigma_v$. But we also know that $\langle n, n \rangle = 1$, so $n_u$ is orthogonal to $\{n, \sigma_u, \sigma_v\}$. However, these form a basis, so $n_u = 0$. Similarly, $n_v = 0$.
+
+	So $n$ is constant (as $V$ is connected, using the mean value inequality). This implies that $\langle \sigma, n \rangle$ is constant, and $U$ is contained in a plane as desired.
+\end{proofbox}
+
+Recall that the first fundamental form in the parametrization $\sigma$ was
+\[
+	(D \sigma)^{T} D \sigma =
+	\begin{pmatrix}
+		E & F \\
+		F & G
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		\sigma_u \cdot \sigma_u & \sigma_u \cdot \sigma_v \\
+		\sigma_v \cdot \sigma_u & \sigma_v \cdot \sigma_v
+	\end{pmatrix}
+.\]
+Analogously, the second fundamental form can be written as
+\[
+-(Dn)^{T} D \sigma =
+\begin{pmatrix}
+	L & M \\
+	M & N
+\end{pmatrix}
+=
+\begin{pmatrix}
+	n_u \cdot \sigma_u & n_u \cdot \sigma_v \\
+	n_v \cdot \sigma_u & n_v \cdot \sigma_v
+\end{pmatrix}
+,\]
+using the alternative expressions for $L$, $M$ and $N$ in the previous proof.
+
+So if $\sigma: V \to U$, $\tilde \sigma : \tilde V \to U$ are two parametrizations with transition map $\varphi : \tilde V \to V$ with $\varphi = \sigma^{-1} \circ \tilde \sigma$, then
+\[
+n_{\tilde \sigma}(\tilde u, \tilde v) = \pm n_{\sigma}(\varphi(\tilde u, \tilde v))
+,\]
+where the sign depends on $\det (D \varphi)$, due to out discussion on orientability. Hence
+\[
+\begin{pmatrix}
+	\tilde L & \tilde M \\
+	\tilde M & \tilde N
+\end{pmatrix}
+= - (D n_{\tilde \sigma})^{T}D \tilde \sigma = \pm (D \varphi)^{T}
+\begin{pmatrix}
+	L & M \\
+	M & N
+\end{pmatrix}
+D \varphi
+.\]
+
+\begin{exbox}
+	The cylinder has $\sigma(u, v) = (a \cos u, a \sin u, v)$. Note that $\sigma_{uv} = \sigma_{vv} = 0$, so $M = N$.
+	
+	We can check that $\sigma_{uu} = (-a \cos u, -a \sin u, 0)$ and $n = (\cos u, \sin u, v)$, so $L = -a$ and the second fundamental form is
+	\[
+	\begin{pmatrix}
+		-a & 0 \\
+		0 & 0
+	\end{pmatrix}
+	.\]
+\end{exbox}
+
+\begin{definition}
+	Let $\Sigma \subset \mathbb{R}^3$ be a smooth oriented surface. The \emph{Gauss map}\index{Gauss map} is
+	\[
+	n : \Sigma \to S^2
+	\]
+	is the map $p \to n(p)$, where $n(p)$ is the unit normal vector at $p$, defined by the orientation of $\Sigma$.
+\end{definition}
+
+\begin{lemma}
+	The Gauss map $n : \Sigma \to S^2$ is smooth.
+\end{lemma}
+
+\begin{proofbox}
+	Smoothness can be checked locally. If $\sigma : V \to U$ is allowable and compatible with the orientation, then at $\sigma(u, v) = p \in \Sigma$ satisfies
+	\[
+	n(\sigma(u, v)) = \frac{\sigma_{u} \times \sigma_v}{\| \sigma_u \times \sigma_v\|}
+	,\]
+	where $n \circ \sigma : V \to S^2$ is smooth, since $\sigma$ is.
+\end{proofbox}
+
+Note that $T_p\Sigma = T_{n(p)}S^2$. Thus, we can view
+\[
+Dn|_p : T_p \Sigma \to T_{n(p)} S^2 = T_p \Sigma
+,\]
+as the differential of the Gauss map. We can also view $Dn|_p$ acting on tangent vectors in terms of curves: if $\gamma : (-\eps, \eps) \to \Sigma$ has $\gamma(0) = p$ and $\gamma'(0) = v$, then
+\[
+Dn|_p(v) = Dn|_p(\gamma'(0)) = (n \circ \gamma)'(0)
+.\]
+Recall the first fundamental form $\fff_p : T_p \Sigma \times T_p \Sigma \to \mathbb{R}$, by
+\[
+\fff_p(v, w) = \langle v, w \rangle_{\mathbb{R}^3}
+.\]
+
+\begin{lemma}
+	$D_n|_p : T_p \Sigma \to T_p \Sigma$ is self-adjoint with respect to $\fff_p$, i.e.
+	\[
+	\fff_p(Dn|_p(v), w) = \fff_p(v, Dn|_p(w))
+	.\]
+\end{lemma}
+
+\begin{proofbox}
+	Take $\sigma$ a parametrization with $\sigma(0) = p$. Then $\{\sigma_u, \sigma_v\}$ is a basis of $T_p \Sigma$.
+
+	To prove the map is self-adjoint, it suffices to check that
+	\[
+		\langle Dn|_p(\sigma_u), \sigma_v \rangle = \langle n_u, \sigma_v \rangle \overset{\ast}{=} \langle \sigma_u, n_v \rangle = \langle \sigma_u, Dn|_p(\sigma_v) \rangle
+	.\]
+	This is true, as if we parametrize $n$ as $n(\sigma(u,v))$, then
+	\[
+	n_u = Dn|_p(\sigma_u), \qquad n_v = Dn|_p(\sigma_v)
+	.\]
+	Now since
+	\[
+	\langle n, \sigma_u \rangle = \langle n, \sigma_v \rangle = 0
+	,\]
+	differentiating the first with respect to $v$ gives
+	\[
+	\langle n_v, \sigma_u \rangle + \langle n, \sigma_{uv} \rangle = 0
+	,\]
+	and differentiating the second with respect to $u$ gives
+	\[
+	\langle n_u, \sigma_v \rangle + \langle u, \sigma_{vu} \rangle = 0
+	.\]
+\end{proofbox}
+
+Let's try to find the matrix $Dn|_p$ in the basis $\{\sigma_u, \sigma_v\}$:
+\begin{align*}
+	n_u &= Dn|_p(\sigma_u) = a_{11} \sigma_u + a_{21} \sigma_v, \\
+	n_v &= Dn|_p(\sigma_v) = a_{12} \sigma_u + a_{22} \sigma_v.
+\end{align*}
+Taking the product of these equations with $\sigma_u$ and $\sigma_v$, we find
+\[
+-
+\begin{pmatrix}
+	L & M \\
+	M & N
+\end{pmatrix}
+=
+\begin{pmatrix}
+	E & F \\
+	F & G
+\end{pmatrix}
+\begin{pmatrix}
+	a_{11} & a_{12} \\
+	a_{21} & a_{22}
+\end{pmatrix}
+,\]
+or if $Q$ is the second fundamental form matrix, $P$ is the first fundamental form matrix, then our matrix satisfies
+\[
+Q = -PA = -A^{T}P
+.\]
+If $v = D\sigma|_0(\hat v)$ and $w = D\sigma|_0(\hat w)$, then
+\begin{align*}
+	\hat v^{T}
+	\begin{pmatrix}
+		L & M \\
+		M & N
+	\end{pmatrix}
+	\hat w &= - v^{T}
+	\begin{pmatrix}
+		E & F \\
+		F & G
+	\end{pmatrix}
+	\begin{pmatrix}
+		a_{11} & a_{12} \\
+		a_{21} & a_{22}
+	\end{pmatrix}
+	w \\
+	       &= \fff_p(v, -Dn|_p(w)) = \fff_p(-Dn|_p(v),w).
+\end{align*}
+Then the second fundamental form has an intrinsic form given by the symmetric bilinear form
+\[
+\sff_p : T_p \Sigma \times T_p \Sigma \to \mathbb{R}
+,\]
+given by
+\[
+	\sff_p(v, w) = \mathrm{I}_p(-Du|_p(v), w)
+.\]
+\begin{definition}
+	Let $\Sigma \subset \mathbb{R}^3$ be a smooth surface. The \emph{Gauss curvature}\index{Gauss curvature}\index{curvature} $K : \Sigma \to \mathbb{R}$ of $\Sigma$ is the function
+	\[
+	p \mapsto \det(Dn|_p)
+	.\]
+\end{definition}
+
+\begin{remark}
+	This is always well-defined, even if $\Sigma$ is not oriented; we can always choose a local expression of $n$. If we replace it by $-n$, the determinant will not change (since $Dn|_p$ is two-dimensional).
+\end{remark}
+
+If we pick $\sigma$, then using the formula
+\[
+-
+\begin{pmatrix}
+	L & M \\
+	M & N
+\end{pmatrix}
+=
+\begin{pmatrix}
+	E & F \\
+	F & G
+\end{pmatrix}
+\begin{pmatrix}
+	a_{11} & a_{12} \\
+	a_{21} & a_{22}
+\end{pmatrix}
+,\]
+and taking the determinant, we get
+\[
+LN - M^2 = (EG-F^2)K, \implies K = \det(A) = \frac{LN-M^2}{EG - F^2}
+.\]
+
+\begin{exbox}
+	We look at a cylinder again. We have already calculated the second fundamental form in $\sigma(u, v) = (a \cos u, a \sin u, v)$ to be
+	\[
+	\begin{pmatrix}
+		-a & 0 \\
+		0 & 0
+	\end{pmatrix}
+	.\]
+	Hence since the determinant is $0$, we get $K(p) = 0$ for all $p$.
+
+	Indeed, the Gauss map is from $\Sigma$ to the equator of $S^2$, so if $\gamma : (-\eps, \eps) \to \Sigma$ is a vertical curve, then $Dn|_p(\gamma'(0)) = (n \circ \gamma)'(0) = 0$, hence $\det (Dn|_p) = 0$.
+\end{exbox}
+
+\begin{definition}
+	$\Sigma$ is said to be \emph{flat}\index{flat} if $K = 0$ on $\Sigma$.
+\end{definition}
+
+\begin{exbox}
+	If $\Sigma$ is a graph of a smooth function $f$, then it is easy to check that
+	\[
+	E = 1+f_u^2,\, G = 1+f_v^2,\, F = f_uf_v, \, EG-F^2 = 1 + f_u^2 + f_v^2
+	,\]
+	\[
+		L = \frac{f_{uu}}{\sqrt{EG-F^2}}, \; M = \frac{f_{uv}}{\sqrt{EG-F^2}}, \; N = \frac{f_{uv}}{\sqrt{EG-F^2}}
+	,\]
+	\[
+	K = \frac{f_{uu}f_{vv} - f_{uv}^2}{(1+f_u^2+f_v^2)^2}
+	.\]
+	So the curvature depends on the Hessian of $f$.
+\end{exbox}
+
+\begin{definition}
+	Let $\Sigma \subset \mathbb{R}^3$, $p \in \Sigma$. We say that $p$ is:
+	\begin{itemize}
+		\item \emph{elliptic}\index{elliptic} if $K(p) > 0$,
+		\item \emph{hyperbolic}\index{hyperbolic} if $K(p) < 0$,
+		\item \emph{parabolic}\index{parabolic} if $K(p) = 0$.
+	\end{itemize}
+\end{definition}
+
+\begin{exbox}
+	\begin{enumerate}
+		\item Looking at the graph $f(u, v) = \frac{u^2+v^2}{2}$, then at $(0,0)$,
+			\[
+			K(0,0,0) = 1
+			.\]
+			Hence the point is elliptic.
+		\item Looking at the graph $f(u, v) = \frac{u^2 - v^2}{2}$, at $(0, 0)$,
+			\[
+			K(0,0,0) = -1
+			.\]
+			Hence the point is hyperbolic.
+	\end{enumerate}
+\end{exbox}
+
+\begin{lemma}
+	\begin{enumerate}[\normalfont(a)]
+		\item[]
+		\item In a sufficiently small neighbourhood of an elliptic point $p$, $\Sigma$ lies entirely on one side of the affine tangent plane $p + T_p\Sigma$.
+		\item In a sufficiently small neighbourhood of a hyperbolic, $\Sigma$ meets both sides of its affine tangent plane.
+	\end{enumerate}
+\end{lemma}
+
+\begin{proofbox}
+	Take a parametrization $\sigma$. Near $p$,
+	\[
+	K = \frac{LN-M^2}{EG-F^2}
+	,\]
+	and $EG-F^2 > 0$. Recall also that if
+	\[
+	w = n \sigma_n + l \sigma_v \in T_p \Sigma
+	,\]
+	then $\frac{1}{2} \sff_p(w, w)$ measured the distance from $\sigma(h, l)$ to $p + T_p \Sigma$ measured in the inner product space with positive normal:
+	\[
+	\frac{1}{2} (Lh^2 + 2Mhl + Nl^2) = \mathcal{O}(h^3,l^3)
+	.\]
+	If $p$ is elliptic, then
+	\[
+	\begin{pmatrix}
+		L & M \\ M & N
+	\end{pmatrix}
+	\]
+	has eigenvalues of the same sign, so it positive or negative definite at $p$. Hence in a neighbourhood of $p$, this signed distance only has one sign locally.
+
+	If $p$ is hyperbolic, then $\sff_p$ is indefinite, so $\Sigma$ meets both sides of $p + T_p\Sigma$.
+\end{proofbox}
+
+\begin{remark}
+	If $p$ is parabolic, we cannot conclude either.
+
+	Take a cylinder. Then all points lie on the side of the tangent plane. 
+
+	But if we take parametrization $\sigma(u, v) = (u, v, u^3 - 3v^2u)$, then at $p = \sigma(0,0)$, $K(p) = 0$, but locally $\Sigma$ meets both sides of its tangent plane (this is known as the \emph{Monkey saddle}).
+\end{remark}
+
+%lecture 13
+
+\begin{proposition}
+	Let $\Sigma$ be a compact surface in $\mathbb{R}^3$. Then $\Sigma$ has an elliptic point.
+\end{proposition}
+
+\begin{proofbox}
+	$\Sigma$ compact means $\Sigma \in \overline{B(0,R}$, for some $R$ large enough. Decrease $R$ to the minimal such value, so that some point $p$ is on the boundary of $B(0,R)$.
+
+	Up to applying a rotation and translation, we may assume that the point of contact is on the $z$-axis.
+
+	Locally near $p$, we can view $\Sigma$ as the graph of a smooth function $f$, such that
+	\[
+		f - \sqrt{R^2 - u^2 - v^2} \leq 0.
+	\]
+	We have $f : V \to \mathbb{R}$, with $V$ open in $\mathbb{R}^2$. Since $f$ has a local maximum at $(0,0)$, $f_v = f_u = 0$ at $(0,0)$. Now let
+	\[
+		F(u,v) = f(u, v) - \sqrt{R^2 - u^2 - v^2} \leq 0.
+	\]
+	An easy computation shows that $F_u = F_v = 0$ at $(0,0)$. Moreover,
+	\begin{align*}
+		F_{uu} &= f_{uu} + 1/R, \\
+		F_{uv} &= f_{uv}, \\
+		F_{vv} &= f_{vv} + 1/R,
+	\end{align*}
+	hence by a Taylor expansion and using the fact that $0$ is a local maximum
+	\[
+		(f_{uu} + 1/R)h^2 + 2f_{uv}hl + (f_{vv} + 1/R)l^2 \leq 0,
+	\]
+	for small enough $h, l$. Rearranging,
+	\[
+	f_{uu}h^2 + 2f_{uv} hl + f_{vv}l^2 \leq -\frac{1}{R}(h^2+l^2),
+	\]
+	hence we get
+	\[
+	\begin{pmatrix}
+		L & M \\
+		M & N
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		f_{uu} & f_{uv} \\
+		f_{uv} & f_{vv}
+	\end{pmatrix}
+	\]
+	is negative definite at $(0,0)$. Since at $(0,0)$, $E = G = 1$ and $F = 0$, $K(p) > 0$.
+\end{proofbox}
+
+\begin{theorem}
+	Let $\Sigma \subset \mathbb{R}^3$, $p \in \Sigma$ with $K(p) \neq 0$. Let $U \subset \Sigma$ be a small open neighbourhood of $p$.
+
+	Consider a sequence $p \in A_i \subset U \subset \Sigma$, such that the $A_i$ ``shrink'' to $p$, in the sense that for all $\eps > 0$, $A_i \subset B(p, \eps)$, for all $i$ large enough.
+
+	Then,
+	\[
+	|K(p)| = \lim_{i \to \infty} \frac{\area_{S^2}(n(A_i))}{\area_{\Sigma}(A_i)},
+	\]
+	i.e. the Gauss curvature is an infinitesimal measure of how much the Gauss map $n$ distorts areas.
+\end{theorem}
+
+\begin{proofbox}
+	This is all local, so take $\sigma : V \to U$ with $\sigma(0) = p$, and let $V_i = \sigma^{-1}(A_i) \subset V$ be open. Since $A_i$ shrink to $p$,
+	\[
+		\bigcap_{i \geq 1} V_i = \{(0,0)\}.
+	\]
+	Moreover we have
+	\begin{align*}
+		\area_{\Sigma}(A_i) &= \int_{V_i} \sqrt{EG-F^2} \diff u \diff v \\
+				    &= \int_{V_i} \|\sigma_u \times \sigma_v\| \diff u \diff v.
+	\end{align*}
+	Now $n \circ \sigma : V \to S^2 \subset \mathbb{R}^2$ has differential $Dn|_p \circ D\sigma|_0$, which has rank $2$ since $K(p) \neq 0$.
+
+	Thus $n \circ \sigma$ defines an allowable parametrization in an open neighbourhood of $n(p) \subset S^2$ by the inverse function theorem. Thus,
+	\[
+	\area_{S^2}(n(A_i)) = \int_{V_i} \|n_u \times n_v \| \diff u \diff v,
+	\]
+	as $\|n_u \times n_v\| = \|Dn(\sigma_u) \times Dn(\sigma_v)\|$. Recall from the last lecture that
+	\begin{align*}
+		Dn(\sigma_u) &= a_{11} \sigma_u + a_{21} \sigma_v \\
+		Dn(\sigma_v) &= a_{12} \sigma_u + a_{22} \sigma_v
+	\end{align*}
+	hence
+	\begin{align*}
+		Dn(\sigma_u) \times Dn(\sigma_v) &= (a_{11} \sigma_u + a_{21} \sigma_v) \times (a_{12}\sigma_u + a_{22}\sigma_v) \\
+						 &= (a_{11}a_{22} - a_{12}a_{21})(\sigma_u \times \sigma_v)  = K(p)(\sigma_u \times \sigma_v),
+	\end{align*}
+	so
+	\begin{align*}
+		\area_{S^2}(n(A_i)) &= \int_{V_i} \|n_u \times n_v\| \diff u \diff v = \int_{V_i}|\det Du|\|\sigma_u \times \sigma_v\| \diff u \diff v \\
+				    &= \int_{V_i}|K(u,v)|\|\sigma_u \times \sigma_v\| \diff u \diff v.
+	\end{align*}
+	Since $K$ is continuous, given $\eps > 0$, there exists $\delta > 0$ such that $|K(u,v) - K(0,0)| < \eps$ for all $(u, v) \in B((0,0), \delta) \subset V$. So if $i \geq i_0$, we have
+	\[
+	|K(p)| - \eps \leq |K(u,v)| \leq |K(p)| + \eps.
+	\]
+	Hence,
+	\begin{align*}
+		(|K(p)|-\eps)\int_{V_i} \|\sigma_u \times \sigma_v\| \diff u \diff v &\leq \int_{V_i}|K(u,v)|\|\sigma_u \times \sigma_v\| \diff u \diff v \\
+										     &\leq (|K(p)| + \eps) \int_{V_i} \|\sigma_u \times \sigma_v\| \diff u \diff v,
+	\end{align*}
+	which when dividing gives
+	\[
+	|K(p)| - \eps \leq \frac{\area_{S^2}(n(A_i))}{\area_{\Sigma}(A_i)}\leq |K(p)| + \eps,
+	\]
+	for all $i \geq i_0$.
+\end{proofbox}
 
 
 \newpage

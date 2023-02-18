@@ -1,5 +1,4 @@
 %%% TO DO %%%
-% implement siunitx package and change units
 
 \documentclass[12pt]{article}
 
@@ -234,7 +233,7 @@ Recall the following facts about functions defined by power series, or sequences
 	\item The uniform limit of continuous functions is continuous.
 	\item The \emph{Weierstrass M-test}\index{Weierstrass M-test}: if there exists $M_n \in \mathbb{R}$ for all $n$ such that $0 \leq |f_n(x)| \leq M_n$ for all $x \in S$, then
 		\[
-			\sum_{n = 1}^{\infty}M_n  \infty \implies \sum_{n = 1}^{\infty}f_n(x) \text{ converges uniformly on $S$ as $N \to \infty$}
+			\sum_{n = 1}^{\infty}M_n < \infty \implies \sum_{n = 1}^{\infty}f_n(x) \text{ converges uniformly on $S$ as $N \to \infty$}
 		.\]
 	\item Let $(c_n)$ be complex numbers, and fix $a \in \mathbb{C}$. Then there exists unique $R \in [0, \infty]$ such that the function
 		\[
@@ -644,12 +643,502 @@ We adopt the notion that curves are oriented anticlockwise.
 \end{proofbox}
 
 \begin{theorem}[Cauchy's theorem in a Disk]\index{Cauchy's theorem}
-	Let $D$ be any disk (or any starlike domain), and $f : D \to \mathbb{C}$ a continuous function, holomorphic away from at most a finite set of points in $D$. Then, $\partial_{\gamma} f = 0$ for any closed curve $\gamma$ in $D$.
+	Let $D$ be any disk (or any starlike domain), and $f : D \to \mathbb{C}$ a continuous function, holomorphic away from at most a finite set of points in $D$. Then, $\int_{\partial_{\gamma}} f = 0$ for any closed curve $\gamma$ in $D$.
 \end{theorem}
 
 \begin{proofbox}
 	By our previous theorem and the converse of FTC for starlike domains, there exists an antiderivative $F$ for $f$ in $D$. So by the fundamental theorem of calculus, Cauchy's theorem follows.
 \end{proofbox}
+
+\begin{theorem}[Cauchy's integral formula]\index{Cauchy's integral formula}
+	Let $U \subset \mathbb{C}$ be a domain, $f : U \to \mathbb{C}$ holomorphic, and $\overline{D(a, r)} \subset U$. Then for all $z \in D(a, r)$,
+	\[
+	f(z) = \frac{1}{2 \pi i} \int_{\partial D(a, r)} \frac{f(w)}{w - z} \diff w
+	.\]
+\end{theorem}
+
+\begin{proofbox}
+	Define an auxiliary function
+	\[
+	g(w) = 
+	\begin{cases}
+		\frac{f(w) - f(z)}{w - z} - f'(z) & w \neq z, \\
+		0 & w = z.
+	\end{cases}
+	\]
+	Then $g$ is continuous at $z$ and homomorphic on $D(a, r)$, except possibly at $z$. Find $r_1 > 0$ such that $\overline{D(a,r)} \subset D(a, r_1) \subset U$. Applying Cauchy's theorem to $g$ on $D(a, r_1)$ with curve $\gamma = \partial D(a, r)$, we get
+	\[
+	\int_{\partial D(a, r)}g(w) \diff w = 0 \iff \int_{\partial D(a,r)}\frac{f(w)}{w - z} \diff w = \int_{\partial D(a, r)} \frac{f(z)}{w - z} \diff w
+	.\]
+	We can expand $\frac{1}{w - z}$ as
+	\[
+		\frac{1}{w - z} = \frac{1}{(w - a)[1 - \frac{z - a}{w - a}]} = \sum_{n = 0}^{\infty} \frac{(z - a)^{n}}{(w - a)^{n+1}}
+	.\]
+	Hence we get
+	\[
+		\int_{\partial D(a, r)}\frac{f(z)}{w - z} \diff w = \sum_{n = 0}^{\infty} \Biggl[ f(z) (z - a)^{n} \int_{\partial D(a, r)} \frac{1}{(w - a)^{n+1}} \diff w \Biggr]
+	.\]
+	The latter integral vanishes unless $n = 0$, which gives
+	\[
+	\int_{\partial D(a, r)} \frac{f(w)}{w - z} = 2 \pi i f(z)
+	.\]
+\end{proofbox}
+
+\begin{corollary}[Mean Value Property]
+	If $f : U \to \mathbb{C}$ is holomorphic on a domain $U$, and $\overline{D(a, r)} \subset U$, then
+	\[
+	f(a) = \int_{0}^{1} f(a + re^{2 \pi i t}) \diff t
+	.\]
+\end{corollary}
+
+\begin{proofbox}
+	We can apply Cauchy's integral formula, with $t \mapsto a + re^{2 \pi i t}$ on $[0, 1]$ for $\partial D(a, r)$.
+\end{proofbox}
+
+We can use Cauchy's integral formula to obtain the following:
+
+\begin{corollary}[Local Maximum Principle]
+	Let $f : D(a, r) \to \mathbb{C}$ be holomorphic. If $|f(z)| \leq |f(a)|$ for all $z \in D(a, r)$, then $f$ is constant.
+\end{corollary}
+
+\begin{proofbox}
+	By the mean value property, for all $0 < \rho < r$,
+	\[
+	|f(a)| = \Biggl| \int_{0}^{1} f(a + \rho e^{2 \pi i t})\diff t \Biggr| \leq \sup_{|z - a| = \rho}|f(z)| = |f(a)|
+	.\]
+	Since we have equality, we have $|f(z)| = |f(a)|$ for all $|z - a| = \rho$. So $|f|$ is a constant function on $D(a, r)$, hence $f$ is constant on $D(a, r)$.
+\end{proofbox}
+
+\begin{theorem}[Liouville's theorem]\index{Liouville's theorem}
+	Every bounded entire function is constant.
+\end{theorem}
+
+\begin{proofbox}
+	Say $|f(z)| \leq M$ for $f$ entire. Take $R \gg 1$, then for any $0 < |z| < \frac{R}{2}$ by Cauchy's integral formula,
+	\begin{align*}
+	|f(z) - f(0)| &= \frac{1}{2 \pi} \Biggl| \int_{\partial D(0, r)} f(w) \biggl[\frac{1}{w - z} - \frac{1}{w} \biggr] \diff w \Biggr| \\
+		      &= \frac{1}{2 \pi} \Biggl| \int_{\partial D(0, r)} f(w) \frac{z}{(w - z)w} \diff w \Biggr| \\
+		      &\leq \frac{1}{2 \pi} \cdot 2 \pi R \cdot \sup_{w \in \partial D(0, R)}|f(w)| \cdot |z| \cdot \frac{1}{R \cdot \frac{R}{2}} \\
+		      & \leq M |z| \frac{1}{R/2} \to 0
+	\end{align*}
+	as $R \to \infty$, so $f(z) = f(0)$. Hence $f$ is constant.
+\end{proofbox}
+
+\begin{corollary}[Fundamental Theorem of Algebra]\index{fundamental theorem of algebra}
+	Every non-constant polynomial with complex coefficients has a root in $\mathbb{C}$.
+\end{corollary}
+
+\begin{proofbox}
+	If $p(z) = a_d z^{d} + a_{d-1} z^{d-1} + \cdots + a_0$ has no root in $\mathbb{C}$, then $f(z) = \frac{1}{p(z)}$ is entire.
+
+	As $p(z)$is non-constant, we have $a_d \neq 0$and $d \geq 1$. So
+	\[
+	\frac{p(z)}{z^{d}} = a_d + a_{d-1} \cdot \frac{1}{z} + \cdots + a_n \frac{1}{z^{d}}
+	\]
+	shows that $|p(z)| \to \infty$ as $|z| \to \infty$. Hence $|f(z)| \to 0$ as $|z| \to \infty$ 
+
+	Hence there exists $R > 0$ such that for all $z \not \in D(0, R)$, $|f(z)| \leq 1$, but $M = \max_{z \in \overline{D(0,R)}} |f(z)|$. Then $|f|$ is bounded by $\max\{1, M\}$, and so by Liouville's theorem is constant. Therefore $p$ must be constant.
+\end{proofbox}
+
+\begin{theorem}
+	Let $f : D(a, r) \to \mathbb{C}$ be holomorphic. Then $f$ is represented by convergent power series on $D(a, r)$:
+	\[
+	f(z) = \sum_{n = 0}^{\infty} c_n (z - a)^{n}
+	,\]
+	with
+	\[
+	c_n = \frac{f^{(n)}(a)}{n!} = \frac{1}{2 \pi i} \int_{\partial D(a, \rho)} \frac{f(w)}{(w - a)^{n+1}} \diff w
+	,\]
+	for $0 < \rho < r$.
+\end{theorem}
+
+\begin{proofbox}
+	For $|z - a| < \rho < r$, Cauchy's integral formula gives
+	\begin{align*}
+		f(z) &= \frac{1}{2 \pi i} \int_{\partial D(a, \rho)} \frac{f(w)}{w - z} \diff w \\
+		     &= \frac{1}{2 \pi i} \int_{\partial D(a, \rho)}f(w) \sum_{n = 0}^{\infty} \frac{(z - a)^{n}}{(w - a)^{n+1}} \diff w \\
+		     &= \sum_{n = 0}^{\infty}\Biggl[ \frac{1}{2 \pi i} \int_{\partial D(a, \rho)}f(w) \frac{1}{(w - a)^{n+1}} \diff w \Biggr] (z - a)^{n},
+	\end{align*}
+	proving the theorem.
+\end{proofbox}
+
+\begin{remark}
+	\begin{enumerate}
+		\item[]
+		\item Holomorphic functions therefore have derivatives of all orders, which are holomorphic themselves.
+		\item This shows holomorphic functions are exactly the analytic functions.
+	\end{enumerate}
+\end{remark}
+
+\begin{corollary}[Morera's theorem]
+	Let $D$ be a disk and $f : D \to \mathbb{C}$ be continuous such that $\int_{\gamma} f = 0$ for all closed curves $\gamma$ in $D$. Then $f$ is holomorphic.
+\end{corollary}
+
+\begin{proofbox}
+	By the converse of the fundamental theorem of calculus, there exists holomorphic $F$ on $D$ with $F' = f$. So $f$ is holomorphic.
+\end{proofbox}
+
+\begin{corollary}
+	Let $f_u : U \to \mathbb{C}$ be holomorphic functions on a domain $U$, and $f_n \to f$ uniformly on $U$ (note is is sufficient for uniform convergence on compact subsets on $U$). Then $f$ is holomorphic on $U$, and
+	\[
+	f'(z) = \lim_{n \to \infty} f_n'(x)
+	.\]
+\end{corollary}
+
+\begin{proofbox}
+	Since $U$ is a union of open disks, it suffices to work with $D(z, \eps) \subset U$. Given $\gamma$, a closed curve in $D(z, \eps)$, since $\int_{\gamma}f_n \to \int_{\gamma}f$, and we know $\int_{\gamma} f_n = 0$, we get $\int_{\gamma} f = 0$.
+
+	Since $f$ is continuous on $D(z, \eps)$, Morera's theorem applies, so $f$ is holomorphic on $D(z, \eps)$.
+
+	Recall the Taylor expansion computation for $0 < \rho < \eps$:
+	\[
+	f^{(n)}(z) = \frac{n!}{2 \pi i} \int_{\partial D(z, \rho)} \frac{f(\xi)}{(\xi - z)^{n+1}} \diff \xi
+	.\]
+	Hence we get
+	\begin{align*}
+		|f'(z) - f_n'(z)| &= \frac{1}{2 \pi} \Biggl| \int_{\partial D(x, \rho} \frac{f(\xi)}{(\xi - z)^2} - \frac{f_n(\xi)}{(\xi - z)^2} \diff \xi \Biggr| \\
+				  &\leq \rho \cdot \frac{1}{\rho^2} \sup_{\zeta \in \partial D(x, \rho)} |f(\xi) - f_n(\xi)| \to 0,
+	\end{align*}
+	as $n \to \infty$. Hence $f'(z) = \lim f_n'(z)$.
+\end{proofbox}
+
+\begin{remark}
+	Note $f$ need not be nonconstant, for example take $f_n(z) = z^{n}$ on $D(0, r)$, with $0 < r < 1$. Then $f_n \to 0$ uniformly.
+\end{remark}
+
+\begin{corollary}
+	If $f : U \to \mathbb{C}$ is continuous on a domain $U$, and holomorphic on $U \setminus S$ for some finite set $S$, then $f$ is holomorphic on $U$.
+\end{corollary}
+
+\begin{proofbox}
+	If $a \in S$, find $D(a, r) \subset U$ an open disk. Then by Cauchy's theorem on a disk, $\int_{\gamma} f = 0$ for any closed curve $\gamma$ in $D(a, r)$. By Morera's theorem, $f$ is holomorphic on $D(a, r)$.
+
+	Since this holds for all $a$, $f$ is holomorphic on $U$.
+\end{proofbox}
+
+Let $f : D(a, R) \to \mathbb{C}$ be holomorphic, so
+\[
+f(z) = \sum_{n = 0}^{\infty} c_n(z - a)^{n}
+\]
+on $D(a, R)$. If $f \not \equiv 9$, then some $c_n$ is non-zero. Let
+\[
+	m = \min\{n \in \mathbb{N}_{0} \mid c_n \neq 0\}
+.\]
+If $m > 0$, then we say $f$ has a zero of order $m$ at $a$. In this case, we can write
+\[
+f(z) = (z - a)^{m} g(z)
+,\]
+where $g(z)$ is holomorphic on $D(a, R)$, and $g(a) \neq 0$.
+
+\begin{theorem}[Principle of Isolated Zeroes]
+	If $f : D(a, R) \to \mathbb{C}$ is holomorphic, and not identically 0, then there exists $0 < r < R$ such that $f(z) \neq 0$ on $0 < |z - a| < r$.
+\end{theorem}
+
+\begin{proofbox}
+	If $f(a) \neq 0$, then $f(z) \neq 0$ on $D(a, r)$ for some $0 < r < R$ by continuity of $f$.
+
+	If $f$ has a zero of order $m$ at $a$, write $f(z) = (z - a)^{m} g(z)$, where $g(a) \neq 0$ and $g$ is holomorphic.
+
+	By the continuity of $g$, there exists $0 < r < R$ such that $g(z) \neq 0$ for all $z \in D(a, r)$. Hence $f(z) \neq 0$ for all $0 < |z - a| < r$.
+\end{proofbox}
+
+\begin{remark}
+	\begin{enumerate}
+		\item[]
+		\item This says there is no accumulation point of the zero set of a holomorphic map inside its domain, unless it is everywhere $0$.
+		\item It is possible for the zeroes of a holomorphic map to accumulate outside its domain: consider
+			\[
+			\sin z = \frac{e^{iz} - e^{-iz}}{2i}
+			,\]
+			which has zeroes at $z = n \pi$. Hence $\sin (\frac{1}{z})$ has zeroes accumulating at $0$, on the boundary of its domain $\mathbb{C}^{\times}$.
+		\item Another application: since $\cos^2 z + \sin^2 z = 1$ holds for all $z \in \mathbb{R}$, then $\cos^2z + \sin^2 z - 1$ is entire with $\mathbb{R}$ contained in its zero set. Hence $\cos^2 z + \sin^2z = 1$ for all $z \in \mathbb{C}$.
+	\end{enumerate}
+\end{remark}
+
+\begin{proposition}[Identity Theorem for holomorphic functions]
+	Let $f, g : U \to \mathbb{C}$ be holomorphic on a domain $U$. Let $S = \{z \in U \mid f(z) = g(z)\}$. If $S$ has a non-isolated point, then $f(z) = g(z)$ for all $z \in U$.
+\end{proposition}
+
+\begin{proofbox}
+	Define $h(z) = f(z) - g(z)$. This is holomorphic on $U$. Now suppose $w$ is non-isolated in $S$. Then for $\eps > 0$ with $D(w, \eps) \subset U$, by the principle of isolated zeroes, $h = 0$ on $D(w, \eps)$.
+
+	Given $z \in U$, let $\gamma : [0, 1] \to U$ be a path with $\gamma(0) = w$, $\gamma(1) = z$. Consider the set
+	\[
+		T = \{t \in [0, 1] \mid h^{(n)}(\gamma(t)) = 0 \text{ for all } n \geq 0\}
+	.\]
+	Note that $T$ is closed by definition. Moreover, since $h = 0$ on $D(w, \eps)$, we get that $T$ is non-empty, as $0 \in T$. Now define
+	\[
+		t_0 = \sup\{t \in [0, 1] \mid [0,t] \subset T\}
+	.\]
+	Then $T$ is closed an non-empty, so $t_0 \in T$. Since $h^{(n)}(\gamma(t_0)) = 0$ for all $n \geq 0$, $h \equiv 0$ on a neighbourhood of $\gamma(t_0)$, contradicting the maximality if $t_0$, unless $t_0 = 1$.
+
+	Hence $h(\gamma(1)) = 0$, or $h(z) = 0$, as desired.
+\end{proofbox}
+
+\begin{definition}
+	Let $U \subset V \subset \mathbb{C}$ be domains, and $f : U \to \mathbb{C}$ is holomorphic. $g : V \to \mathbb{C}$ is an \emph{analytic continuation} of $f$ if:
+	\begin{enumerate}
+		\item $g$ is holomorphic on $V$, and
+		\item $g|_U = f$.
+	\end{enumerate}
+\end{definition}
+
+\begin{exbox}
+	The series
+	\[
+	\sum_{n \geq 1} = \frac{(-1)^{n+1}}{n} z^{n}
+	.\]
+	Converges on $D(0, 1)$, and takes the value $\log(1+z)$ on $D(0, 1)$. So $\log(1+z)$ is an analytic continuation of this series, to the domain $\mathbb{C} \setminus (-\infty, -1]$.
+
+	Moreover the series
+	\[
+	\sum_{n \geq 0} z^{n}
+	\]
+	has radius of convergence $1$ about $a = 0$, and on $D(0, 1)$ we it takes the value $\frac{1}{1-z}$. Hence $\frac{1}{1-z}$ is an analytic continuation of the series to $\mathbb{C}\setminus\{1\}$.
+\end{exbox}
+
+\begin{corollary}[Global maximum principle]
+	Let $U \subset \mathbb{C}$ be a bounded domain, and let $\overline{U}$ be its closure. If $f : \overline{U} \to \mathbb{C}$ is continuous and $f$ is holomorphic on $U$, then $|f|$ attains its maximum on $\overline{U} \setminus U$.
+\end{corollary}
+
+\begin{proofbox}
+	As $U$ is bounded, then $\overline{U}$ is bounded, hence as $f$ is continuous $|f|$ attains a maximum on $\overline{U}$, say $M$.
+
+	If $|f(z_0)| = M$ for $z_0 \in U$, then by the local maximum principle, $f \equiv f(z_0)$ on any disk $D(z_0, r) \subset U$. By the identity theorem, $f \equiv f(z_0)$ on $U$, hence $f \equiv f(z_0)$ on $\overline{U}$.
+
+	Thus $M$ is achieved by $|f|$ on $\overline{U} \setminus U$.
+\end{proofbox}
+
+Our goal is to generalize the Cauchy integral formula by allowing more general closed curves for integration.
+
+However, we cannot hope that Cauchy's integral formula works for any closed curve: consider a curve $\gamma'$ given by going around a closed disk $\gamma$ twice. Then immediately
+\[
+\int_{\gamma'}f \diff z = 2 \int_{\gamma}f \diff z
+.\]
+Hence we need to deal with the notion of ``winding around'' a point more than once. Quantifying this notion, we will see this is the only issue to generalizing Cauchy's integral formula.
+
+Our first hope is that we can count the crossing of some slit in the plane. However this doesn't work as we can cross infinitely often. But this cannot happen for every direction!
+
+\begin{theorem}
+	Let $\gamma : [a, b] \to \mathbb{C} \setminus \{w\}$ be a continuous curve. Then there exists a continuous function $\theta : [a, b] \to \mathbb{R}$ with $\gamma(t) = w + r(t) e^{i \theta (t)}$, with $r(t) = |\gamma(t) - w|$.
+\end{theorem}
+
+\begin{proofbox}
+	By translation, we can translate to assume $w = 0$. Moreover, since
+	\[
+	\arg \gamma(t) = \arg \frac{\gamma(t)}{|\gamma(t)|}
+	,\]
+	so dividing by the modulus of $\gamma$, we can assume $|\gamma(t)| = 1$ for all $t \in [a, b]$.
+
+	Notice that if $\gamma \subset \mathbb{C} \setminus \mathbb{R}_{\leq 0}$, then $t \mapsto \arg (\gamma(t))$ (using the principal argument), gives a continuous choice of $\theta$. More generally, if $\gamma$ lies in any slit plane
+	\[
+		\mathbb{C} \setminus \{ z \mid z/e^{i\alpha} \subset \mathbb{R}_{\leq 0}\}
+	,\]
+	then $\theta(t) = \alpha + \arg(z/e^{i\alpha})$ will do.
+
+	Our strategy is to subdivide $\gamma$ so that the pieces lie in slit planes, and so we can make $\theta$ continuous on the pieces.
+
+	Since $\gamma$ is continuous on $[a, b]$, it is uniformly continuous, so there exists $\eps > 0$ such that $|s - t| < \eps$ implies $|\gamma(s) - \gamma(t)| < 2$. Subdividing $a = a_0 < a_1 < \cdots < a_{n-1} < a_n = b$ with $a_{j+1} - a_{j} < 2 \eps$, then
+	\[
+	\biggl| \gamma(t) - \gamma \biggl( \frac{a_{j+1} - a_j}{2} \biggr) \biggr| < 2
+	,\]
+	for all $t \in [a_{j}, a_{j+1}]$. Hence $\gamma([a_{j-1}, a_j])$ lies in a slit plane, and we can define $\theta_j$ a continuous choice of argument for $\gamma|_{[a_{j-1}, a_j]}$, for all $j \in \{1, \ldots, n\}$. Then
+	\[
+	\gamma(a_j) = e^{i \theta_j (a_j)} = e^{i \theta_{j+1}(a_j)}
+	.\]
+	Since this is true, $\theta_{j+1}(a_j) = \theta_j(a_j) + 2 \pi n_j$ for some $n_j \in \mathbb{C}$. Modifying each of $\theta_j$ for $j \geq 2$ by a suitable integer multiple of $2 \pi$ ensures that the $\theta_j$ fit together to a continuous choice of $\theta$ on $[a, b]$.
+\end{proofbox}
+\begin{remark}
+	$\theta$ is not unique, since $\theta(t) + 2 \pi n$ is also valid for all $n \in \mathbb{Z}$. But if $\theta_1, \theta_2$ are two functions as in the theorem, then $\theta_1 - \theta_2$ is continuous, but takes values in the discrete set $2 \pi \mathbb{Z}$, hence is constant.
+\end{remark}
+
+\begin{definition}
+	Let $\gamma : [a, b] \to \mathbb{C}$ be a closed curve, and $w \not \in \gamma$. The \emph{winding number}\index{winding number} or \emph{index}\index{index} of $\gamma$ about $w$ is
+	\[
+	I(\gamma;w) = \frac{\theta(b) - \theta(a)}{2 \pi}
+	,\]
+	where $\gamma(t) = w + r(t) e^{i \theta(t)}$ with $\theta$ continuous.
+\end{definition}
+
+\begin{lemma}
+	Let $\gamma : [a, b] \to \mathbb{C} \setminus \{w\}$ be a closed curve. Then
+	\[
+	I(\gamma; w) = \frac{1}{2 \pi i} \int_{\gamma} \frac{\diff z}{z - w}
+	.\]
+\end{lemma}
+
+\begin{proofbox}
+	Note $\gamma$ is piecewise $C^{1}$, so $r(t)$ and $\theta(t)$ are piecewise $C^{1}$ as well, where $\gamma(t) = w + r(t) e^{i \theta(t)}$. So
+	\begin{align*}
+		\int_{\gamma} \frac{\diff z}{z - w} &= \int_{a}^{b} \frac{\gamma'(t)}{\gamma(t) - w} \diff t = \int_{a}^{b} \frac{r'(t)}{r(t)} + i \theta'(t) \diff t \\
+						    &= [\log r(t) + i \theta(t)]_{t = a}^{t = b} = 2 \pi i I(\gamma, w),
+	\end{align*}
+	since $\gamma$ is closed and $\theta(b) - \theta(a) = 2 \pi I(\gamma, w)$.
+\end{proofbox}
+
+\begin{proposition}
+	If $\gamma : [0, 1] \to D(a, R)$ is a closed curve, then for all $w \not \in D(a, R)$, $I(\gamma; w) = 0$.
+\end{proposition}
+
+\begin{proofbox}
+	Consider the M\"{o}bius maps
+	\[
+	z \mapsto \frac{z - w}{a - w}
+	.\]
+	This takes $a \mapsto 1$, $w \mapsto 0$ so $D(a, R) \mapsto D(1, r)$ for some $r < 1$, as it is an affine map. So then $D(a, R)$ is contained in the slit plane
+	\[
+		\mathbb{C} \setminus \{z \mid \frac{z - w}{a - w} \in \mathbb{R}_{\leq 0} \}
+	.\]
+	Hence there is a branch of $\arg(z - w)$ defined on $D(a, R)$, and so
+	\[
+	I(\gamma; w) = \frac{\arg(\gamma(1) - w) - \arg(\gamma(0) - w)}{2 \pi} = 0
+	.\]
+\end{proofbox}
+
+\begin{definition}
+	Let $U \subset \mathbb{C}$ be open. Then a closed curve $\gamma$ in $U$ is \emph{homologous to zero}\index{homologous to zero} in $U$ if, for all $w \not \in U$, $I(\gamma; w) = 0$.
+
+	$U$ is \emph{simply connected}\index{simply connected} if every closed curve in $U$ is homologous to zero.
+\end{definition}
+
+\begin{remark}
+	For $U$ open, this is equivalent to the homotopy definition of simply connected.
+\end{remark}
+
+\begin{exbox}
+	\begin{enumerate}
+		\item Any disk is simply connected, by the previous proposition.
+		\item Any punctured disk $D(a, R) \setminus \{a\}$ is not simply connected, since curves can wind around $a$.
+		\item Any annulus is not simply connected.
+	\end{enumerate}
+\end{exbox}
+
+\begin{theorem}[General Cauchy's Integral Formula]
+	Let $f : U \to \mathbb{C}$ be holomorphic on a domain $U$, and $\gamma$ in a closed curve homologous to zero in $U$. Then for all $w \in U \setminus \gamma$,
+	\[
+	I(\gamma ; w) f(w) = \frac{1}{2 \pi i} \int_{\gamma} \frac{f(z)}{z - w} \diff z
+	,\]
+	and in particular,
+	\[
+	\int_{\gamma}f(z) \diff z = 0
+	.\]
+\end{theorem}
+
+\begin{proofbox}
+	Notice applying the first equality to $g(z) = f(z)(z-w)$ gives $\int_{\gamma} f = 0$. So it suffices to prove the first statement.
+
+	We have by the previous lemma that
+	\[
+	I(\gamma;w)f(w) = \frac{1}{2 \pi i} \int_{\gamma} \frac{f(w)}{z - w} \diff z
+	,\]
+	so we want to show that
+	\[
+	\frac{1}{2 \pi i} \int_{\gamma} \frac{f(z) - f(w)}{z - w} \diff z = 0
+	,\]
+	for all $w \in U\setminus \gamma$. Consider the function
+	\[
+	g(z, w) =
+	\begin{cases}
+		\frac{f(z) - f(w)}{z - w} & z \neq w, \\
+		f'(w) & z = w.
+	\end{cases}
+	\]
+	This is a continuous function on $U \times U$, and we wish to show that
+	\[
+	\int_{\gamma}g(z, w) \diff z = 0
+	,\]
+	for all $w \in U \setminus \gamma$. Consider the auxiliary function $h$ on $\mathbb{C}$,
+	\[
+	h(w)=
+	\begin{cases}
+		\int_{\gamma} g(\zeta, w) \diff \zeta & w \in U, \\
+		\int_{\gamma} \frac{f(\zeta)}{\zeta - w} \diff \zeta & w \in C\setminus \gamma, I(\gamma;w) = 0.
+	\end{cases}
+	\]
+	Call the latter set $V$. If $w \in U \cap V$, then
+	\[
+	\int_{\gamma}g(\zeta, w) \diff \zeta = \int_{\gamma} \frac{(f(\zeta) - f(w)}{\zeta - w} \diff \zeta = \int_{\gamma} \frac{f(\zeta)}{\zeta - w} \diff \zeta,
+	\]
+	so $h$ is well-defined. For any disk $D(0,R)$ with $\gamma \subset D(0,R)$, we have that $I(\gamma;w) = 0$ for all $w \not \in D(0,R)$. In fact, $\gamma$ is homologous to zero in $U$, so $U \cup V = \mathbb{C}$. So we have
+	\[
+	|h(w)| = \biggl| \int_{\gamma} \frac{f(\zeta)}{\zeta - w} \diff \zeta \biggr| \leq \frac{\len(\gamma) \sup |f(\zeta)|}{|w| - R} \to 0,
+	\]
+	as $|w| \to \infty$. Then we claim $h$ is holomorphic on $\mathbb{C}$. If so, then $h$ is bounded as $|h(w)| \to 0$. Hence it is constant by Liouville's theorem, taking the value $0$ on the entirety of $\mathbb{C}$, which finishes the proof. We use the following:
+
+	\begin{lemma}
+		Let $U \subset \mathbb{C}$ be open, and $\phi : U \times [a, b] \to \mathbb{C}$ be continuous with $z \mapsto \phi(z, s)$ holomorphic on $U$ for every $s \in [a, b]$. Then,
+		\[
+		g(z) = \int_{a}^{b} \phi(z, s) \diff s
+		\]
+		is holomorphic on $U$.
+	\end{lemma}
+	
+	The proof of this is using Morera's. Without loss of generality, $U$ is a disk. Then for any closed curve $\gamma : [0,1] \to U$, then
+	\begin{align*}
+		\int_{\gamma}g(z) \diff z &= \int_{0}^{1} \Biggl[ \int_{a}^{b} \phi(\gamma(t), s) \diff s \Biggr] \gamma'(t) \diff t \\
+					  &= \int_{a}^{b} \Biggl[ \int_{0}^{1} \phi(\gamma(t), s)\gamma'(t) \diff t \Biggr] \diff s,
+	\end{align*}
+	where we swap the order of integration by Fubini's theorem: suppose $f : [a, b] \times [c, d] \to \mathbb{C}$ is a continuous function. Then we have
+	\[
+	\int_{a}^{b} \Biggl( \int_{c}^{d} f(x,y) \diff y \Biggr) \diff x = \int_{c}^{d}\Biggl( \int_{a}^{b} f(x,y) \diff x \Biggr) \diff y.
+	\]
+	This clearly holds if $f$ is constant, so it also holds when $f$ is a step function. Since $[a, b] \times [c \times d]$ is closed and bounded, $f$ is uniformly continuous. So $f$ is a uniform limit of step functions, and we can exchange the order as claimed.
+
+	Now, back to our proof of the lemma. We have
+	\[
+		\int_{\gamma}g(z) \diff z = \int_{a}^{b} \Biggl[ \int_{\gamma} \phi(z, s) \diff z \Biggr] \diff s.
+	\]
+	Since $z \mapsto \Phi(z, s)$ is holomorphic, this is $0$ by Cauchy's theorem on a disk. So,
+	\[
+	\int_{\gamma} g(z) \diff z = 0,
+	\]
+	and by Morera's, $g$ is holomorphic as claimed.
+
+	Therefore, proving this lemma, we get $h$ is holomorphic as claimed and the generalized Cauchy integral formula follows.
+\end{proofbox}
+
+\begin{corollary}[Cauchy's theorem for Simply Connected Domains]
+	Let $f : U \to \mathbb{C}$ be holomorphic on a simply connected domain $U$. Then for all closed curves $\gamma$ in $U$,
+	\[
+	\int_{\gamma}f = 0
+	\]
+\end{corollary}
+
+In fact, if $U \subset \mathbb{C}$ is open, then $U$ is simply connected if and only if the complement of $U$ in $\mathbb{C}_{\infty}$ is connected.
+
+\begin{exbox}
+	\begin{enumerate}
+		\item $D(a, R) \subset \mathbb{C}$ has disk complement in $C_{\infty}$, so is simply connected.
+		\item Convex and starlike sets are simply connected.
+		\item The annulus is not simply connected.
+	\end{enumerate}	
+\end{exbox}
+
+\subsection{Isolated Singularities of Holomorphic Maps}
+\label{sub:isolated_singularities_of_holomorphic_maps}
+
+\begin{definition}
+	A point $a \in \mathbb{C}$ is an \emph{isolated singularity}\index{isolated singularity} of $f : U \to \mathbb{C}$ holomorphic, if there exists $r > 0$ such that $f$ is holomorphic on $D(a, r) \setminus \{a\}$, denoted $D(a, r)^{\times}$.
+\end{definition}
+
+\begin{exbox}
+	\begin{enumerate}
+		\item Take $a = 0$ and $f(z) = \frac{\sin z}{z}$. Using the identity theorem or expansion of $e^{z}$, we get
+			\[
+				\sin z = z - \frac{z^3}{3!} + \frac{z^{5}}{5!} - \frac{z^{7}}{7!} + \cdots
+			\]
+			about $0$. So
+			\[
+			f(z) = 1 - \frac{z^2}{3!} + \frac{z^4}{5!} - \frac{z^6}{7!} + \cdots
+			\]
+			about $0$. Thus $f$ is a restriction of a holomorphic function on $\mathbb{C}$, say $f$, and $f(0) = 1$.
+		\item Take $a=  0$ and $g = \frac{1}{z^{6}}$. Then $g$ is holomorphic on $\mathbb{C}^{\times}$, and $|g(z)| \to \infty$ as $z \to 0$, so there is no continuous extension at $0$.
+		\item Recall the action $w \mapsto e^{w} = e^{\Re w} e^{i \Im w}$.
+
+			The map $h(z) = e^{1/z}$ swap any $D(0, \eps)^{\times}$ to all of $\mathbb{C}^\times$.
+	\end{enumerate}
+	
+\end{exbox}
 
 
 \newpage

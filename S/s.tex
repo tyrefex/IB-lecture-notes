@@ -682,7 +682,7 @@ We will denote the logarithm
 	.\]
 	This is also unbiased. So in this model the mle is biased as
 	\[
-		\mathbb{E}[[\hat \theta_{\rm{mle}}] = \mathbb{E}\biggl[ \frac{n+1}{n} \hat \theta \biggr] = \frac{n}{n+1} \theta
+		\mathbb{E}[[\hat \theta_{\rm{mle}}] = \mathbb{E}\biggl[ \frac{n}{n+1} \hat \theta \biggr] = \frac{n}{n+1} \theta
 	,\]
 	however it is asymptotically unbiased.
 \end{exbox}
@@ -815,7 +815,7 @@ To find a confidence interval, we can do the following:
 	.\]
 	Rearranging this, we get
 	\[
-		\mathbb{P}\biggl( \hat p - z \frac{\sqrt{\hat p (1 - \hat p)}}{\sqrt n} \leq p \hat p + z \frac{\sqrt{\hat p (1 - \hat p)}}{\sqrt n} \biggr) \approx 0.95
+		\mathbb{P}\biggl( \hat p - z \frac{\sqrt{\hat p (1 - \hat p)}}{\sqrt n} \leq p \leq \hat p + z \frac{\sqrt{\hat p (1 - \hat p)}}{\sqrt n} \biggr) \approx 0.95
 	.\]
 	Hence this is an approximate $95$\% confidence interval for $p$.
 
@@ -833,7 +833,7 @@ Suppose $X_1, X_2$ are iid $U[\theta-\frac{1}{2}, \theta+\frac{1}{2}]$. We find 
 \end{align*}
 Hence we can immediately conclude that $(\min(X_1, X_2), \max(X_1,X_2))$ is a $50$\% confidence interval for $\theta$.
 
-This does not mean for specific $X_1 = x_1$, $X_2 = x_2$ the value $\theta$ lies in $(\min(x_1,x_2), \max(x_1,x_2))$ with probability $\frac{1}{2}$: consider when $|x_1 - x_2| > \frac{1}{2}$.
+This does not mean for specific $X_1 = x_1$, $X_2 = x_2$ the value $\theta$ lies in the interval $(\min(x_1,x_2), \max(x_1,x_2))$ with probability $\frac{1}{2}$: consider when $|x_1 - x_2| > \frac{1}{2}$.
 
 In this case, we can be sure that $\theta$ is in $(\min(x_1, x_2), \max(x_1, x_2))$, as the value $\theta$ can be at most distance $\frac{1}{2}$ from $x_1$ and $x_2$.
 
@@ -846,7 +846,7 @@ However the frequentist interpretation makes sense: if we repeat the experiment 
 
 So far, we have assumed there is some true parameter $\theta$. That data $X$ has pdf (or pmf) $f_X(\cdot \mid \theta)$.
 
-Bayesian analysis is a different framework, where we treat $\theta$ as a random variable, taking values in $\Theta$.
+\emph{Bayesian analysis}\index{Bayesian analysis} is a different framework, where we treat $\theta$ as a random variable, taking values in $\Theta$.
 
 We begin by assigning to $\theta$ a \emph{prior distribution}\index{prior distribution} $\pi(\theta)$, which represents the opinions or information about $\theta$ before seeing on any data.
 
@@ -862,6 +862,515 @@ f_X(x) =
 	\sum_{\Theta} f_X(x \mid \theta) \pi(\theta) & \theta \text{ discrete}.
 \end{cases}
 \]
+
+\begin{exbox}
+	Consider a patient getting a COVID test. Then the possible values are $\theta \in \{0, 1\}$, corresponding to the patient not having COVID, and the patient having COVID, respectively.
+
+	We also have data $X \in \{0, 1\}$, corresponding to the patient getting a negative test, or positive test, respectively.
+
+	We also know the sensitivity of the test as $f_X(X = 1 \mid \theta = 1)$, and the specificity $f_X(X = 0 \mid \theta = 0)$.
+
+	To run Bayesian analysis, we can take a prior $\pi(\theta = 1) = p$, if we know the proportion $p$ of people infected. Then the chance of infection given a true test is
+	\[
+	\pi(\theta = 1 \mid X = 1) = \frac{\pi(\theta = 1) f_X(X=1\mid \theta = 1)}{\pi(\theta = 0) f_X(X = 1\mid \theta = 0) + \pi(\theta = 1) f_X(X = 1 \mid \theta = 1)}
+	.\]
+	If $\pi(\theta = 0) \gg \pi(\theta = 1)$, then this posterior can still be very small.
+\end{exbox}
+
+\begin{exbox}
+	Let $\theta \in [0,1]$ be the mortality rate for a new surgery. In the first 10 operations, there were not deaths.
+
+	If we have a model $X_i \sim \Ber(\theta)$, where $X_i = 1$ if the $i$'th operation is fatal, and $0$ otherwise, then
+	\[
+		f_X(x \mid \theta) = \theta^{x_1 + \cdots + x_{10}}(1 - \theta)^{10 - x_1 + \cdots + x_{10}}
+	.\]
+	For our prior, we are told that the surgery is performed in other hospital with a mortality rate ranging from $0.03$ to $0.2$, with an average of $0.1$. We can take $\pi(\theta) \sim \Bta(a, b)$, with $a = 3$ and $b = 27$, so that the mean of $\pi(\theta)$ is $0.1$ and $\pi(0.03 < \theta < 0.2) = 0.9$.
+
+	The posterior distribution is then
+	\begin{align*}
+		\pi(\theta \mid x) &\propto \pi(\theta) f_X(x \mid \theta) \\
+				   &\propto \theta^{a-1} (1 - \theta)^{b - 1} \theta^{x_1 + \cdots + x_{10}}(1 - \theta)^{10 - x_1 - \cdots - x_{10}} \\
+				   &= \theta^{x_1 + \cdots + x_{10} + a - 1} (1 - \theta)^{b + 10 - x_1 - \cdots - x_{10} - 1}.
+	\end{align*}
+	We can deduce that the posterior distribution is a $\Bta(\sum x_i + a, 10 - \sum x_i + b)$ distribution. In our case, since there are no deaths, the posterior distribution is $\Bta(3, 37)$.
+\end{exbox}
+
+Note that the prior and posterior distributions are in the same family of distributions. This is known as \emph{conjugacy}\index{conjugacy}.
+
+With the information gained from the posterior, we can make decisions under uncertainty. The formal process is:
+\begin{enumerate}
+	\item We must pick a decision $\delta \in D$.
+	\item The loss function\index{loss function} $L(\theta, \delta)$ is the loss incurred when we make decision $\delta$ and the true parameter has value $\theta$.
+	\item We pick the decision which minimizes the posterior expected loss:
+		\[
+		\delta^{\ast} = \underset{\delta \in D}{\mathrm{argmin}} \int_{\Theta} L(\theta, \delta) \pi(\theta \mid x) \diff \theta
+		.\]
+\end{enumerate}
+
+For point estimation, the decision is a ``best guess'' for the true parameter, so $\delta \in \Theta$.
+
+The \emph{Bayes estimator}\index{Bayes estimator} $\hat \theta^{(k)}$ minimizes
+\[
+h(\delta) = \int_{\Theta} L(\theta, \delta) \pi(\theta \mid x) \diff \theta
+.\]
+
+\begin{exbox}
+	Consider quadratic loss $L(\theta, \delta) = (\theta - \delta)^2$. Then
+	\[
+	h(\delta) = \int_{\Theta}(\theta - d)^2 \pi(\theta \mid x) \diff \theta
+	.\]
+	Now $h'(\delta) = 0$ if
+	\[
+	\int_{\Theta} (\theta - d) \pi(\theta \mid x) \diff \theta = 0
+	.\]
+	Hence
+	\[
+	\int_{\Theta}\pi(\theta \mid x) \diff \theta = \delta \int_{\Theta} \pi(\theta \mid x) \diff \theta = \delta
+	.\]
+	So the Bayes estimator is the posterior mean of $\theta$.
+\end{exbox}
+
+\begin{exbox}
+	Consider an absolute error loss $L(\theta, \delta) = |\theta - \delta|$. Then,
+	\begin{align*}
+		h(\delta) &= \int_{\Theta} |\theta - \delta| \pi(\theta \mid x) \diff \theta \\
+			  &= \int_{-\infty}^{\delta}-(\theta - \delta) \pi(\theta \mid x) \diff \theta + \int_{\delta}^{\infty}(\theta - \delta) \pi(\theta \mid x) \diff \theta \\
+			  &= - \int_{-\infty}^{\delta} \theta \pi(\theta \mid x) \diff \theta + \int_{\delta}^{\infty} \theta \pi(\theta \mid x) \diff \theta \\
+			  &\quad{} + \delta \int_{-\infty}^{\delta} \pi(\theta \mid x) \diff \theta - \delta \int_{\delta}^{\infty} \pi(\theta \mid x) \diff \theta.
+	\end{align*}
+	Taking the derivative with respect to $\delta$, by the fundamental theorem of calculus,
+	\[
+	h'(\delta) = \int_{-\infty}^{\delta} \pi(\theta \mid x) \diff \theta - \int_{\delta}^{\infty} \pi(\theta \mid x) \diff \theta
+	.\]
+	Hence $h'(\delta) = 0$ if and only if
+	\[
+	\int_{-\infty}^{\delta} \pi(\theta \mid x) \diff \theta = \int_{d}^{\infty} \pi(\theta \mid x) \diff \theta
+	.\]
+	In this case, the Bayes estimator is the median of the posterior.
+\end{exbox}
+
+\subsection{Credible Interval}
+\label{sub:credible_interval}
+
+A $100 \cdot \gamma$\% \emph{credible interval}\index{credible interval} $(A(x), B(x))$ is one which satisfies
+\[
+\pi(A(x) \leq \theta \leq B(x) \mid x) = \gamma
+.\]
+Hence,
+\[
+\int_{A(x)}^{B(x)} \pi(\theta \mid x) \diff \theta = \gamma
+.\]
+Note that we can interpret credible intervals conditionally.
+
+If $T$ is a sufficient statistic, then $\pi(\theta \mid x)$ only depends on $x$ through $T(x)$, as
+\begin{align*}
+	\pi(\theta \mid x) &\propto \pi(\theta) f_X(x \mid \theta) \\
+			   &= \pi(\theta) g(T(x), \theta) h(x) \\
+			   &\propto \pi(\theta) g(T(x), \theta).
+\end{align*}
+
+\begin{exbox}
+	Let $X_1, \ldots, X_n$ be iid $N(\mu, 1)$. We assign a prior for $\mu$ as $\pi(\mu) \sim N(0,1/\tau^2)$. Then
+	\begin{align*}
+		\pi(\mu \mid x) &\propto f_X(x\mid \mu) \cdot \pi(\mu) \\
+				&\propto \exp \Biggl[ -\frac{1}{2} \sum_{i=1}^{n} (x_i - \mu)^2 \Biggr] \exp \Biggl[ \frac{- \mu^2 \tau^2}{2} \Biggr] \\
+				&\propto \exp \Biggl[ -\frac{1}{2} (n + \tau^2) \biggl( \mu - \frac{x_1 + \cdots + x_n}{n + \tau^2} \biggr)^2 \Biggr].
+	\end{align*}
+	We recognise that this is a normal distribution, namely
+	\[
+	N \biggl( \frac{x_1 + \cdots + x_n}{n + \tau^2}, \frac{1}{n + \tau^2} \biggr)
+	.\]
+	The Bayes estimator is $\hat \mu^{(b)} = \frac{x_1 + \cdots + x_n}{n + \tau^2}$ for both the quadratic loss and absolute error loss. Contrast this to the maximum likelihood estimator $\frac{x_1 + \cdots + x_n}{n}$.
+	A $95$\% credible interval is
+	\[
+		\biggl( \hat \mu^{(b)} - \frac{1.96}{\sqrt{n + \tau^2}}, \hat \mu^{(b)} + \frac{1.96}{\sqrt{n+\tau^2}} \biggr)
+	.\]
+	This is close to a $95$\% confidence interval when $n \gg \tau^2$.
+\end{exbox}
+
+\begin{exbox}
+	Take $X_1, \ldots, X_n$ iid $\Poisson(\lambda)$. Then we take a prior for $\lambda$ as $\pi(\lambda) \sim \Exp(1)$. Hence
+	\begin{align*}
+		\pi(\lambda \mid x) &\propto f_X(x \mid \lambda) \cdot \pi(\lambda) \\
+				    &\propto e^{-n \lambda} \lambda^{x_1 + \cdots + x_n} \cdot e^{-\lambda} \\
+				    &= e^{-(n+1)\lambda} \lambda^{x_1 + \cdots + x_n}.
+	\end{align*}
+	This is a $\Gamma(x_1 + \cdots + x_n + 1, n +1)$ distribution. The Bayes estimator under quadratic loss is the posterior mean,
+	\[
+		\hat \lambda^{(b)} = \frac{x_1 + \cdots + x_n + 1}{n + 1} \overset{n \to \infty}{\to} \frac{x_1 + \cdots + x_n}{n} = \hat \lambda^{(mle)}
+	.\]
+	Under the absolute error loss, the Bayes estimator $\tilde \lambda^{(b)}$ has property
+	\[
+	\int_{0}^{\tilde \lambda^{(b)}} \frac{(n+1)^{x_1 + \cdots + x_n - 1}}{(x_1 + \cdots + x_n)!} \lambda^{x_1 + \cdots + x_n} e^{-(n+1)\lambda} \diff \lambda = \frac{1}{2}
+	.\]
+	This has no closed form solution.
+\end{exbox}
+
+\newpage
+
+\section{Simple Hypotheses}
+\label{sec:simple_hypotheses}
+
+A \emph{hypothesis}\index{hypothesis} is some assumption about the distribution of the data $X$. Scientific questions are phrased as a choice between a \emph{null hypothesis}\index{null hypothesis} $H_0$ (also known as a base case, simple model, or no effect) and an \emph{alternative hypothesis}\index{alternative hypothesis} $H_1$ (also known as a complex model, interesting case, positive or negative effect).
+
+\begin{exbox}
+	\begin{enumerate}
+	\item Let $X_1, \ldots, X_n$ be iid $\Ber(\theta)$. Consider two hypothesis, $H_0 : \theta = \frac{1}{2}$ (i.e. we have a fair coin), and $H_1 : \theta = \frac{3}{4}$.
+	\item We also may consider $H_0 : \theta = \frac{1}{2}$, $H_1 : \theta \neq \frac{1}{2}$.
+	\item Let $X_1, \ldots, X_n$ take values in $\mathbb{N}_{0}$. Then we can consider $H_0 : X_i \sim \Poisson(\lambda)$ for some $\lambda > 0$, and $H_1 : X_1 \sim f_1$ for some other mass function $f_1$.
+	\item Finally, if $X$ has probability distribution function $f(\cdot \mid \theta)$, where $\theta \in \Theta$, then we can consider $H_0 : \theta \in \Theta_0 \subset \Theta$, and $H_1 : \theta \not \in \Theta_0$. This is a goodness-of-fit test.
+	\end{enumerate}
+\end{exbox}
+
+A hypothesis is said to be \emph{simple}\index{simple hypothesis} if it fully specifies the distribution of $X$.
+
+\begin{exbox}
+	We look at the above hypotheses.
+	\begin{enumerate}
+		\item Both $H_0$ and $H_1$ are simple.
+		\item $H_0$ is simple, but $H_1$ is not, as it does not determine the value of $\theta$, hence does not determine the distribution of $X$.
+		\item Neither $H_0$ nor $H_1$ are simple.
+		\item $H_0$ is simple if and only if $\Theta_0$ contains exactly one value. Similarly $H_1$ is simple if and only if $\Theta_0^{c}$ contains exactly once value.
+	\end{enumerate}
+\end{exbox}
+
+A test of $H_0$ is defined by a \emph{critical region}\index{critical region} $C \subset \mathcal{X}$. When  $X \in C$, we ``reject'' $H_0$, and when $X \not \in C$ we say we ``fail to reject'' or ``find no evidence against'' $H_0$.
+
+To each test, we can associate two types of errors\index{errors}\index{type 1 error}\index{type 2 error}:
+\begin{itemize}
+	\item[Type 1 error:] We reject $H_0$ when $H_0$ is true.
+	\item[Type 2 error:] We fail to reject $H_0$ when $H_0$ is false.
+\end{itemize}
+
+When $H_0$ and $H_1$ are simple, we define
+\begin{align*}
+	\alpha &= \mathbb{P}_{H_0}(H_0 \text{ is rejected}) = \mathbb{P}_{H_0}(X \in C), \\
+	\beta &= \mathbb{P}_{H_1}(H_0 \text{ is not rejected}) = \mathbb{P}_{H_1}(X \not \in C).
+\end{align*}
+Here $\alpha$ is the probability of a type 1 error, and $\beta$ is the probability of a type 2 error. The \emph{size}\index{size} of a test is $\alpha$, and the \emph{power}\index{power} of the test is $1 - \beta$.
+
+There is a trade-off between minimizing size and maximizing power. Usually, we fix an acceptable size, then pick a test of size $\alpha$ which maximizes the power.
+
+\subsection{Neyman-Pearson Lemma}
+\label{sub:neyman_pearson_lemma}
+
+Let $H_0, H_1$ be simple, and let $X$ have probability distribution function $f_i$ under $H_0$, for $i = 0, 1$.
+
+The \emph{likelihood ratio statistic}\index{likelihood ratio statistic} is
+\[
+\Lambda_x (H_0, H_1) = \frac{f_1(X)}{f_0(X)}
+.\]
+A \emph{likelihood ratio test}\index{likelihood ratio test} (or LRT) rejects $H_0$ when
+\[
+	X \in C = \{x \mid \Lambda_x(H_0, H_1) > k\}
+,\]
+for some threshold or critical value $k$.
+
+\begin{theorem}[Neyman-Pearson Lemma]
+	Suppose that $f_0, f_1$ are non-zero on the same sets. Suppose there exists $k$ such that the likelihood ratio test with critical region
+	\[
+		C = \{x \mid \Lambda_x(H_0, H_1) > k\}
+	\]
+	with size $\alpha$.
+
+	Then, this is the test with the smallest $\beta$ (highest power) out of all tests of size less than or equal to $\alpha$.
+\end{theorem}
+
+\begin{remark}
+	A LRT of size $\alpha$ may not exist. Even then, there is a ``randomized LRT'' with size $\alpha$.
+\end{remark}
+
+\begin{proofbox}
+	Let $\bar{C}$ be the complement of $C$. The LRT has
+	\begin{align*}
+		\alpha &= \mathbb{P}_{H_0}(X \in C) = \int_{C} f_0(x) \diff x, \\
+		\beta &= \mathbb{P}_{H_1}(X \not \in C) = \int_{\bar{C}} f_1(x) \diff x.
+	\end{align*}
+	Let $C^{\ast}$ be the critical region of another test with size $\alpha^{\ast}$ and power $1 - \beta^{\ast}$, with $\alpha^{\ast} \leq \alpha$. Then we will prove $\beta \leq \beta^{\ast}$, or $\beta - \beta^{\ast} \leq 0$. Now,
+	\begin{align*}
+		\beta - \beta^{\ast} &= \int_{\bar C} f_1(x) \diff x - \int_{\bar{C^{\ast}}} f_1(x) \diff x \\
+				     &= \int_{\bar C \cap C^{\ast}} f_1(x) \diff x - \int_{\bar{C^{\ast}} \cap C} f_1(x) \diff x \\
+				     &= \int_{\bar C \cap C^{\ast}} \frac{f_1(x)}{f_0(x)} f_0(x) \diff x - \int_{\bar{C^{\ast}} \cap C} \frac{f_1(x)}{f_0(x)} f_0(x) \diff x \\
+				     &\leq k \Biggl[ \int_{\bar C \cap C^{\ast}} f_0(x) \diff x - \int_{\bar{C^{\ast}} \cap C}f_0(x) \diff x \Biggr] \\
+				     &= k \Biggl[ \int_{C^{\ast}} f_0(x) \diff x - \int_{C} f_0(x) \diff x \Biggr] \\
+				     &= k(\alpha^{\ast} - \alpha) \leq 0.
+	\end{align*}
+\end{proofbox}
+
+\begin{exbox}
+	Let $X_1, \ldots, X_n$ be iid $N(\mu, \sigma_0^2)$, where the variance $\sigma_0^2$ is known. We want the best size $\alpha$ test for the hypotheses $H_0 : \mu = \mu_0$, and $H_1 : \mu = \mu_1$, for some fixed $\mu_1 > \mu_0$.
+
+	The likelihood ratio statistic is
+	\begin{align*}
+		\Lambda_x(H_0,H_1) &= \frac{\exp(-\frac{1}{2\sigma_0^2}\sum(x_i - \mu_1)^2)}{\exp(-\frac{1}{2 \sigma_0^2} \sum(x_i - \mu_0^2)} \\
+				   &= \exp \biggl( \frac{\mu_1 - \mu_0}{\sigma_0^2} n \bar x + \frac{n(\mu_0^2 - \mu_1^2)}{2 \sigma_0^2} \biggr).
+	\end{align*}
+	This is monotone in $\bar x$, the sample mean. Hence, for any $k$, there is a $c$ such that
+	\[
+	\Lambda_x (H_0, H_1) > k \iff \bar x > c
+	.\]
+	Thus the likelihood critical region is $\{x \mid \bar x > c\}$ for some constant $c$.
+
+	By the same logic, the likelihood ratio test is of the form
+	\[
+		C = \biggl\{ \sqrt n \frac{(\bar x - \mu_0)}{\sigma_0} > c' \biggr\}
+	.\]
+	We want to pick $c'$ such that
+	\[
+	\mathbb{P}_{H_0} \biggl( \sqrt n \frac{(\bar x - \mu_0)}{\sigma_0} > c') = \alpha
+	.\]
+	But we know that
+	\[
+	\sqrt n \frac{(\bar x - \mu_0)}{\sigma_0} \sim N(0, 1)
+	,\]
+	so if we take $c' = \Phi^{-1}(1 - \alpha) = z_{\alpha}$, the LRT has critial region
+	\[
+		\biggl\{ x \bigm| \frac{\sqrt n (\bar x - \mu_0)}{\sigma_0} > z_{\alpha} \biggr\}
+	.\]
+	By the Neyman-Pearson lemma, this is the most powerful test of size $\alpha$.
+
+	This is called a $z$-test\index{$z$-test}, because we use a $z$ statistic to define the critical region.
+\end{exbox}
+
+\subsection{P-value}
+\label{sub:p_value}
+
+For any test with critical region of the form $\{x \mid T(x) > k\}$ for some statistic $T$, a \emph{p-value}\index{p-value} or observed significance level is
+\[
+p = \mathbb{P}_{H_0}(T(X) > T(x^{\ast}))
+,\]
+where $x^{\ast}$ is the observed data. In the above example, if we let $\mu_0 = 5$, $\mu_1 = 6$, $\sigma_0 = 1$ and $\alpha = 0.05$, and we observe
+\[
+x^{\ast} = (5.1, 5.5, 4.9, 5.3)
+,\]
+then $\bar{x^{\ast}} = 5.2$, and $z^{\ast} = 0.4$. The value $z_{\alpha} = \Phi^{-1}(1 - \alpha) = 1.645$, and so in this case we fail to reject $H_0 : \mu = 5$, with $p$-value $0.35$.
+
+\begin{proposition}
+	Under $H_0$, $p$ has $U[0, 1]$ distribution, where $p$ is a function of $x^{\ast}$, and the null distribution assumes $x^{\ast} \sim \mathbb{P}_{H_0}$.
+\end{proposition}
+
+\begin{proofbox}
+	Let $F$ be the cdf of $T$. Then,
+	\begin{align*}
+		\mathbb{P}_{H_0}(p < u) &= \mathbb{P}_{H_0}(1 - F(T) < u) = \mathbb{P}_{H_0}(F(T) > 1-u) \\
+					&= \mathbb{P}_{H_0}(T > F^{-1}(1-u)) = 1 - F(F^{-1}(1-u)) = u,
+	\end{align*}
+	for all $u \in [0, 1]$. Hence $p \sim U[0,1]$.
+\end{proofbox}
+
+\subsection{Composite Hypotheses}
+\label{sub:composite_hypotheses}
+
+Let $x \sim F_X(\cdot \mid \theta)$, for $\theta \in \Theta$. Then we can consider composite hypotheses $H_0 : \theta \in \Theta_0$, $H_1 : \theta \in \Theta_1$.
+
+The type 1 and type 2 error probabilities depend on the value of $\theta$ within $\Theta_0$ or $\Theta_1$, respectively.
+
+Let $C$ be some critical region.
+
+\begin{definition}
+	The \emph{power function}\index{power function} of the test $C$ is
+	\[
+	W(\theta) = \mathbb{P}_{\theta}(X \in C)
+	.\]
+	The \emph{size}\index{size} oof $C$ is the worst case type 1 error probability:
+	\[
+	\alpha = \sup_{\theta \in \Theta_0} W(\theta)
+	.\]
+	We say that $C$ is \emph{uniformly most powerful}\index{uniformly most powerful} (or UMP) of size $\alpha$ for $H_0$ against $H_1$ if
+	\[
+	\sup_{\theta \in \Theta_0} W(\theta) = \alpha
+	,\]
+	and for any other test $C^{\ast}$ of size $\leq \alpha$ with power function $W^{\ast}$, we have
+	\[
+	W(\theta) \geq W^{\ast}(\theta)
+	,\]
+	for all $\theta \in \Theta_1$.
+\end{definition}
+
+Note that the UMP does not need to exist. But in some simple cases, the LRT is the UMP.
+
+\begin{exbox}
+	Again let $X_1, \ldots, X_n$ be $N(\mu, \sigma_0^2)$ with $\sigma_0^2$ known, and we wish to test $H_0 : \mu \leq \mu_0$ against $H_1 : \mu > \mu_0$ for some fixed $\mu_0$.
+
+	We have studied the simple hypothesis where $H_0' : \mu = \mu_0$, $H_1': \mu = \mu_1$, with $\mu_1 > \mu_0$, and found the LRT was
+	\[
+		C = \biggl\{ x \big| z = \frac{\sqrt n (\bar x - \mu_0}{\sigma_0} > z_{\alpha} \biggr\}
+	.\]
+	Now we claim the same test $C$ is the UMP for $H_0$ against $H_1$. Indeed, the power function for $C$ is 
+	\begin{align*}
+		W(\mu) &= \mathbb{P}_\mu(X \in C) = \mathbb{P}_\mu \biggl( \frac{\sqrt n (\bar x - \mu_0)}{\sigma_0} > z_{\alpha} \biggr) \\
+		       &= \mathbb{P}_\mu \biggl( \frac{\sqrt n(\bar x - \mu)}{\sigma_0} > z_\alpha + \sqrt{n} \frac{(\mu_0 - \mu)}{\sigma_0} \biggr) \\
+		       &= 1 - \Phi \biggl( z_{\alpha} + \frac{\sqrt n(\mu_0 - \mu)}{\sigma_0} \biggr).
+	\end{align*}
+	This is monotone increasing in $\mu = (-\infty, \infty)$. Therefore the test $C$ has size $\alpha$ as
+	\[
+	\sup_{\mu \in \Theta_0} W(\mu) = \alpha
+	.\]
+	It remains to show that if $C^{\ast}$ is another test of size $\leq \alpha$ with power function $W^{\ast}$, then $W(\mu_1) \geq W^{\ast}(\mu_1)$ for all $\mu_1 > \mu_0$.
+
+	The main observation is that the critical region depends only on $\mu_0$, and $C$ is the LRT for the simple hypotheses $H_0', H_1'$. Hence any other test $C^{\ast}$ of $H_0$ versus $H_1$ of size $\leq \alpha$ also has size $\leq \alpha$ for $H_0'$ versus $H_1'$. Thus, by the Neyman-Pearson lemma, we know that $W(\mu_1) \geq W^{\ast}(\mu_1)$.
+
+	As we can apply this argument for any $\mu_1 > \mu_0$, we have
+	\[
+	W^{\ast}(\mu_1) \leq W(\mu_1)
+	,\]
+	for all $\mu_1 > \mu_0$.
+\end{exbox}
+
+\subsection{Generalized Likelihood Ratio Tests}
+\label{sub:generalized_likelihood_ratio_tests}
+
+Again, let $X \sim f_X(\cdot \mid \theta)$, and $H_0 : \theta \in \Theta_0$, $H_1 : \theta \in \Theta_1$.
+
+The \emph{generalized likelihood ratio statistic}\index{generalized likelihood ratio statistic} is
+\[
+\Lambda_x(H_0;H_1) = \frac{\sup_{\theta \in \Theta_1}f_X(x \mid \theta)}{\sup_{\theta \in \Theta_0}f_X(x \mid \theta)}.
+\]
+Large values of $\Lambda_x$ indicate a larger departure from the null $H_0$.
+\begin{exbox}
+	Let $X_1, \ldots, X_n$ be iid $N(\mu, \sigma_0^2)$ with $\sigma_0$ fixed. We wish to test
+	\[
+	H_0 : \mu = \mu_0, \qquad H_1 : \mu \neq \mu_0,
+	\]
+	for fixed $\mu_0$. Here $\Theta_0 = \{\mu_0\}$, $\Theta_1 = \mathbb{R} \setminus \{\mu_0\}$. The generalized likelihood ratio test (GLR) is
+	\[
+		\Lambda_x(H_0;H_1) = \frac{(2 \pi\sigma_0)^{-n/2} \exp( -\frac{1}{2 \sigma_0^2} \sum (x_i - \bar x)^2)}{(2 \pi \sigma_0)^{-n/2}\exp(-\frac{1}{2\sigma_0^2}\sum(x_i - \mu_0)^2)}.
+	\]
+	Taking twice the logarithm of $\Lambda_x$,
+	\[
+	2 \log \Lambda_x = \frac{n}{\sigma_0^2}(\bar x - \mu_0)^2.
+	\]
+\end{exbox}
+
+The GLR rejects when $\Lambda_x$ is large (or when $2 \log \Lambda_x$ is large), i.e. when
+\[
+\biggl| \sqrt n \frac{(\bar x - \mu_0)}{\sigma_0} \biggr|
+\]
+is large. Under $H_0$, this has a $N(0,1)$ distribution. For a test of size $\alpha$, we reject if
+\[
+\biggl| \sqrt n \frac{(\bar x - \mu_0)}{\sigma_0} \biggr| > z_{\sigma/2} = \Phi^{-1}\biggl(1 - \frac{\alpha}{2} \biggr).
+\]
+As $2 \log \Lambda_x = n \frac{(\bar x - \mu_0)}{\sigma_0^2} \sim \chi_1^2$ under $H_0$, we can also define the critical region of the GLR test as
+\[
+	\biggl\{ x \bigm| n \frac{(\bar x - \mu_0)}{\sigma_0^2} > \chi_1^2(\alpha) \biggr\}.
+\]
+In general, we can approximate the distribution of $2 \log \Lambda_x$ with a $\chi^2$ distribution when $n$ is large:
+
+\subsection{Wilk's theorem}
+\label{sub:wilks_theorem}
+
+Suppose $\theta$ is $k$-dimensional, $\theta = (\theta_1, \ldots, \theta_n)$.
+
+The \emph{dimension}\index{dimension} of a hypothesis $H_0 : \theta \in \Theta_0$ is the number of free parameters in $\Theta_0$.
+
+\begin{exbox}
+	\begin{enumerate}
+		\item If 
+		\[
+			\Theta_0 = \{ \theta \in \mathbb{R}^{k} \mid \theta_1 = \theta_2 = \cdots = \theta_p = 0\}
+		\]
+		for some $p < k$, then $\dim(\Theta_0) = k - p$.
+	\item Let $A \in \mathbb{R}^{p\times k}$, and $b \in \mathbb{R}^{p}$, with $p < k$. Let
+		\[
+			\Theta_0 = \{\theta \in \mathbb{R}^{k} \mid A \theta = b\}.
+		\]
+		Then $\dim(\Theta_0) = k - p$, if the rows of $A$ are linearly independent, and $\Theta_0$ is a hyperplane.
+	\item Let 
+		\[
+			\Theta_0 = \{\theta \in \mathbb{R}^{k} \mid \theta_0 = f_i(\phi), \phi \in \mathbb{R}^{p}\},
+		\]
+		for $p < k$. Here $\phi$ are the free parameters, and $f_i$ need not be linear. Under these conditions, $\dim(\Theta_0) = p$.
+	\end{enumerate}
+\end{exbox}
+
+\begin{theorem}[Wilk's theorem]\index{Wilk's theorem}
+	Suppose $\Theta_0 \subset \Theta_1$. Let
+	\[
+	\dim (\Theta_1) - \dim(\Theta_0) = p.
+	\]
+	If $X_1, \ldots, X_n$ are iid from $f_X(\cdot \mid \theta)$, then as $n \to \infty$, the limiting distribution of $2 \log \Lambda_x$ under $H_0$ is $\chi_p^2$.
+
+	I.e. for any $\theta \in \Theta_0$, and any $l > 0$,
+	\[
+		(2 \log \Lambda_x \leq l) \overset{n \to \infty}{\to} \mathbb{P}(\Xi \leq l),
+	\]
+	where $\Xi \sim \chi_p^2$.
+\end{theorem}
+We can use this as follows: if we reject $H_0$ when $2 \log \Lambda_x \geq \chi_p^2(\alpha)$, then when $n$ is large, the size of the test is approximately $\alpha$.
+
+\begin{exbox}
+	In the two-sided normal mean test,
+	\[
+		\Theta_0 = \{\mu_0\}, \qquad \Theta_1 = \mathbb{R} \setminus \{\mu_0\},
+	\]
+	we found $2 \log \Lambda_x \sim \chi_1^2$.
+	
+	If we take $\Theta_1 = \mathbb{R}$, the GRL statistic doesn't change, so $2 \log \Lambda_x \sim \chi_1^2$, and
+	\[
+	\dim(\Theta_1) - \dim(\Theta_0) = 1 - 0 - 1.
+	\]
+	Here, the prediction of Wilk's theorem is exact.
+\end{exbox}
+
+\subsection{Tests of Goodness-of-fit}
+\label{sub:tests_of_goodness_of_fit}
+
+Let $X_1, \ldots, X_n$ be iid samples from a distribution on $\{1, 2, \ldots, k\}$.
+
+Let $p_i = \mathbb{P}(X_1 = i)$, and let $N_i$ be the number of observations equal to $i$. Hence,
+\[
+\sum_{i = 1}^{n} p_i = 1, \qquad \sum_{i = 1}^{n} N_i = n.
+\]
+For a goodness-of-fit test, $H_0 : p = \tilde p$, for some fixed distribution $\tilde p$ on $\{1, \ldots, k\}$.
+
+Let $H_1 : p$ is any distribution with
+\[
+\sum_{i = 1}^{n} p_i = 1, \qquad p_i \geq 0.
+\]
+\begin{exbox}
+	Mendel's experiment involved crossing $n = 556$ smooth yellow peas with wrinkly green peas.
+
+	Each member of the progeny can have any combination of the two features. Let $(p_1, p_2, p_3, p_4)$ be the probabilities of each type, and $(N_1, N_2, N_3, N_4)$ the number of each progeny of each type. Then Mendel's hypothesis is
+	\[
+	H_0 : p = \biggl( \frac{9}{16}, \frac{3}{16}, \frac{3}{16}, \frac{1}{16} \biggr) = \tilde p.
+	\]
+	Then we want to see if there is any evidence in $N$ to reject $H_0$. The model can be written as
+	\[
+		(N_1, N_2, N_3, N_4) \sim \mathrm{Multinomial}(n;p_1, p_2, p_3, p_4).
+	\]
+	The likelihood is
+	\[
+	L(p) \propto p_1^{N_1} p_2^{N_2} p_3^{N_3} p_4^{N_4},
+	\]
+	hence
+	\[
+	l(p) = C + \sum_{i=1}^{4} N_i \log p_i.
+	\]
+	We can test $H_0$ against $H_1$ using a GLR test:
+	\[
+	2 \log \Lambda_x = 2 ( \sup_{p \in \Theta_1} l(p) - \sup_{p \in \Theta_0}l(p)).
+	\]
+	The latter term is $l(\tilde p)$. In the alternative, $p$ must satisfy $\sum p_i = 1$. So
+	\[
+	\sup_{p \in \Theta_1} l(p) = \sup_{\sum p_i = 1} \sum_{i = 1}^{4} N_i \log p_i.
+	\]
+	Use the Lagrangian
+	\[
+	\mathcal{L}(p, \lambda) = \sum_{i=1}^{4} N_i \log p_i = \lambda\biggl( \sum_{i = 1}^{4} p_i - 1 \biggr).
+	\]
+	We find that $\hat p_i = \frac{N_i}{n}$, the observed proportion of samples of type $i$. Hence
+	\[
+	2 \log \Lambda_x = 2 (l(\hat p) - l(\tilde p)) = 2 \sum_{i = 1}^{4} N_i \log \biggl( \frac{N_i}{n - \tilde p_i} \biggr).
+	\]
+	Wilk's theorem tells us that $2 \log \Lambda_x$ is approximately $\chi_p^2$ with
+	\[
+	p = \dim(\Theta_1) - \dim(\Theta_0) = (k-1) - 0 = k-1.
+	\]
+	So we can reject $H_0$ with size approximately $\alpha$ when
+	\[
+	2 \log \Lambda_x > \chi_{k-1}^2(\alpha).
+	\]
+\end{exbox}
 
 
 \newpage
