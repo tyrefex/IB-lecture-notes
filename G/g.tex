@@ -1,4 +1,4 @@
-%%% TO DO %%%
+% %% TO DO %%%
 
 \documentclass[12pt]{article}
 
@@ -830,7 +830,7 @@ Let $\GL^{+}(2, \mathbb{R}) \subset \GL(2, \mathbb{R})$ be the subgroup of matri
 \begin{definition}
 	An abstract smooth surface $\Sigma$ is \emph{orientable}\index{orientability} if it admits an atlas such that the transition maps are orientation preserving diffeomorphisms of open sets of $\mathbb{R}^2$.
 
-	A choice of such atlas is an \emph{orientation}of $\Sigma$, and we say that $\Sigma$ is \emph{oriented}.
+	A choice of such atlas is an \emph{orientation} of $\Sigma$, and we say that $\Sigma$ is \emph{oriented}.
 \end{definition}
 
 \begin{lemma}
@@ -1322,13 +1322,13 @@ Contrast this to the theorem from Archimedes, which says the horizontal radius p
 Let's try to measure how much $\Sigma \subset \mathbb{R}^3$ deviates from its own tangent planes. Taking $\sigma : V \to U \subset \Sigma$ and using Taylor's theorem
 \begin{align*}
 	\sigma(u+h, v+l) &= \sigma(u, v) + h \sigma_u(u, v) + l \sigma_v(u, v)  \\
-			 &\quad + \frac{1}{2} [ h^2 \sigma_uu(u,v) + 2hl \sigma_{uv}(u,v) + l^2\sigma_{vv}(u,v)] + \mathcal{O}(h^3, l^3),
+			 &\quad + \frac{1}{2} [ h^2 \sigma_{uu}(u,v) + 2hl \sigma_{uv}(u,v) + l^2\sigma_{vv}(u,v)] + \mathcal{O}(h^3, l^3),
 \end{align*}
 where $(h, l)$ are small enough so that $(u, v)$ and $(u+h, v+l) \in V$.
 
 Taking a projection in the normal direction,
 \[
-	\langle n, \sigma(u+h,v+l)-\sigma(u,v)\rangle = \frac{1}{2}[\langle n, \sigma_{uu} \rangle h^2 + 2 \langle n, \sigma_{uv} \rangle hl + \langle n, \sigma_{vv} l^2] + \mathcal{O}(h^3, l^3)
+	\langle n, \sigma(u+h,v+l)-\sigma(u,v)\rangle = \frac{1}{2}[\langle n, \sigma_{uu} \rangle h^2 + 2 \langle n, \sigma_{uv} \rangle hl + \langle n, \sigma_{vv} \rangle l^2] + \mathcal{O}(h^3, l^3)
 .\]
 \begin{definition}
 	The \emph{second fundamental form}\index{second fundamental form} of $\Sigma \subset \mathbb{R}^3$ in the parametrization $\sigma$ is the quadratic form:
@@ -1543,7 +1543,7 @@ Then the second fundamental form has an intrinsic form given by the symmetric bi
 ,\]
 given by
 \[
-	\sff_p(v, w) = \mathrm{I}_p(-Du|_p(v), w)
+	\sff_p(v, w) = \mathrm{I}_p(-Dn|_p(v), w)
 .\]
 \begin{definition}
 	Let $\Sigma \subset \mathbb{R}^3$ be a smooth surface. The \emph{Gauss curvature}\index{Gauss curvature}\index{curvature} $K : \Sigma \to \mathbb{R}$ of $\Sigma$ is the function
@@ -1780,6 +1780,269 @@ LN - M^2 = (EG-F^2)K, \implies K = \det(A) = \frac{LN-M^2}{EG - F^2}
 	for all $i \geq i_0$.
 \end{proofbox}
 
+%lecture 14
+
+The Gauss curvature is constraint by two theorems. The first is called the ``theorem egrigium'' (meaning ``remarkable theorem'').
+
+\begin{theorem}
+	The Gauss curvature of a smooth surface in $\mathbb{R}^3$ is isometry invariant, i.e. if $f: \Sigma_1 \to \Sigma_2$ is an isometry, then
+	\[
+	K_1(p) = K_2(f(p)),
+	\]
+	for all $p \in \Sigma$.
+
+	In fact $K$ can be computed exclusively in terms of $\fff_p$ even though it was defined using $\fff_p$ and $\sff_p$.
+\end{theorem}
+
+Another important theorem is the following:
+
+\begin{theorem}[Gauss-Bonnet theorem]\index{Gauss-Bonnet}
+	If $\Sigma$ is a compact smooth surface in $\mathbb{R}^3$, then
+	\[
+	\int_{\Sigma} K \diff A_{\Sigma} = 2 \pi \chi(\Sigma),
+	\]
+	where $\chi$ is the Euler-characteristic.
+\end{theorem}
+
+This provides a link between the (local) geometry of the surface, and the (global) topology of the surface.
+
+Proofs for these are found in part II differential geometry.
+
+\newpage
+
+\section{Geodesics}
+\label{sec:geodesics}
+
+Recall that if $\gamma : [a, b] \to \mathbb{R}^3$ is smooth, then
+\[
+\len(\gamma) = L(\gamma) \int_{a}^{b} |\gamma'(\theta)| \diff \theta.
+\]
+\begin{definition}
+	The \emph{energy}\index{energy} of $\gamma$ is
+	\[
+	E(\gamma) = \int_{a}^{b} |\gamma'(t)|^2 \diff t.
+	\]
+\end{definition}
+
+If we let $\Omega_{pq}$ be the set of all curves $\gamma : [a, b] \to \mathbb{R}^3$ with $\gamma(a) = p$, $\gamma(b) = q$, then the energy is a map
+\[
+E : \Omega_{pq} \to \mathbb{R}.
+\]
+In fact we really want to generalize this to surfaces $\Sigma \subset \mathbb{R}^3$ and curves $\gamma : [a, b] \to \Sigma$.
+
+\begin{definition}
+	Let $\gamma : [a, b] \to \Sigma \subset \mathbb{R}^3$ be smooth. A \emph{one-parameter variation}\index{one-parameter variation}\index{variation} (with fixed endpoints) of $\gamma$ is a smooth map $\Gamma : (-\eps, \eps) \times [a, b] \to \Sigma$ such that, if $\gamma_s = \Gamma(s, \cdot)$, then
+	\begin{enumerate}[(a)]
+		\item $\gamma_0(t) = \gamma(t)$ for all $t$.
+		\item $\gamma_s(a)$, $\gamma_s(b)$ are independent of $s$.
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}
+	A smooth curve $\gamma : [a, b] \to \Sigma$ is a \emph{geodesic}\index{geodesic} if for any variation $\gamma_s$ of $\gamma$ with fixed endpoints, we have
+	\[
+	\frac{\diff}{\diff s} E(\gamma_s) \biggr|_{s = 0} = 0,
+	\]
+	i.e. $\gamma$ is a critical point of the energy function on curves from $\gamma(a)$ to $\gamma(b)$.
+\end{definition}
+
+Suppose $\gamma$ has image contained in the image of a parametrization $\sigma$. Then we write
+\[
+\gamma_s(t) = \sigma(u(s, t), v(s, t)).
+\]
+Suppose the first fundamental form is $E \diff u^2 + 2 F \diff u \diff v + G \diff v^2$. Then we define
+\[
+R = E \dot u^2 + 2 F \dot u \dot v + G \dot v^2,
+\]
+and the energy is
+\[
+E(\gamma_s) = \int_{a}^{b} R \diff t.
+\]
+We also have
+\begin{align*}
+	\frac{\partial R}{\partial s} = &(E_u \dot u^2 + 2 F_u \dot u \dot v + G_u \dot v^2) \frac{\partial u}{\partial s} + (E_v \dot u^2 + 2 F_v \dot u \dot v + G_v \dot v^2) \frac{\partial v}{\partial s} \\
+				      &+ 2 (E \dot u + F \dot v) \frac{\partial \dot u}{\partial s} + 2 (F \dot u + G \dot v) \frac{\partial \dot v}{\partial s},
+\end{align*}
+so
+\[
+\frac{\diff}{\diff s}E(\gamma_s) = \int_{a}^{b} \frac{\partial R}{\partial s} \diff t.
+\]
+Note that
+\[
+\frac{\partial \dot u}{\partial s} = \frac{\partial^2 u}{\partial s \partial t}, \qquad \frac{\partial \dot v}{\partial s} = \frac{\partial^2 v}{\partial s \partial t},
+\]
+and so integrating by parts and noticing that $u_s, v_s$ vanish at the endpoints $a$ and $b$, we get
+\[
+	\frac{\diff}{\diff s} E(\gamma_s) \biggr|_{s = 0} = \int_{a}^{b} \biggl[ A \frac{\partial u}{\partial s} + B \frac{\partial v}{\partial s} \biggr] \diff t,
+\]
+where
+\begin{align*}
+	A &= E_u \dot u^2 + 2 F_u \dot u \dot v + G_u \dot v^2 - 2 \frac{\diff}{\diff t} (E \dot u + F \dot v), \\
+	B &= E_v \dot u ^2 + 2 F_v \dot u \dot v + G_v \dot v^2 - 2 \frac{\diff}{\diff t} (F \dot u + G \dot v).
+\end{align*}
+Note that we have absolute freedom in choosing the variational vector field
+\[
+w(t) = \biggl( \frac{\partial u}{\partial s}(0, t), \frac{\partial v}{\partial s}(0,t) \biggr).
+\]
+Hence we see that $\gamma$ is geodesic if and only if $A = B = 0$. Thus $\gamma$ is a geodesic if and only $\gamma(t) = \sigma(u(t), v(t))$ satisfies the \emph{geodesic equations}\index{geodesic equations}
+\begin{align*}
+	\frac{\diff}{\diff t} (E\dot u + F \dot v) &= \frac{1}{2} (E_u \dot u^2 + 2 F_u \dot u \dot v + G_u \dot v^2), \\
+	\frac{\diff}{\diff t}(F \dot u + G \dot v) &= \frac{1}{2} (E_v \dot u^2 + 2 F_v \dot u \dot v + G_v \dot v^2).
+\end{align*}
+\begin{remark}
+	\begin{enumerate}
+		\item[]
+		\item If $w(t)$ has $w(a) = w(b) = 0$, then
+			\[
+			\gamma_s(t) = \gamma(u(t), v(t) + s w(t))
+			\]
+			for $s$ small enough is a variation of $\gamma$ with fixed end points and variational vector field $w$.
+		\item Recall from IA Analysis example sheets that if
+			\[
+			\int_{a}^{b} f(x) g(x) \diff x = 0,
+			\]
+			for all $g : [a, b] \to \mathbb{R}$ with $g(a) = g(b) = 0$, then $f = 0$. We are using exactly this to obtain the geodesic equations.
+	\end{enumerate}
+\end{remark}
+
+%lecture 15
+
+Probably the best way to think about these is via the \emph{Euler-Lagrange} equations of the \emph{Lagrangian}:
+\[
+L(u, v, \dot u, \dot v) = \frac{1}{2}(E \dot u^2 + 2 F \dot u \dot v + G \dot v^2).
+\]
+This is the purely kinetic energy. Recall from Variational Principles that the Euler-Lagrange equations\index{Euler-Lagrange equations} are:
+\[
+\frac{\diff}{\diff t} \frac{\partial L}{\partial \dot q_i} = \frac{\partial L}{\partial q_i},
+\]
+and here $q_1 = u$, $q_2 = v$.
+
+\begin{proposition}
+	Let $\Sigma \subset \mathbb{R}^3$ be a smooth surface. A smooth curve $\gamma: [a, b] \to \Sigma$ is a geodesic if and only if $\ddot \gamma(t)$ is everywhere normal to $\Sigma$.
+\end{proposition}
+
+\begin{proofbox}
+	As the statement is purely local, we can work in a parametrization $\sigma : V \to U \subset \Sigma$, and as usual, $\gamma(t) = \sigma(u(t), v(t))$. Then,
+	\[
+	\dot \gamma(t) = \sigma_u \dot u + \sigma_v \dot v,
+	\]
+	so $\ddot \gamma(t)$ is normal to $\Sigma$ exactly when it is orthogonal to $T_{\gamma(t)}\Sigma$, which is spanned by $\{\sigma_u, \sigma_v\}$. In other words,
+	\begin{align*}
+		\biggl\langle \frac{\diff}{\diff t} (\sigma_u \dot u + \sigma_v \dot v), \sigma_u \biggr\rangle &= 0, \\
+		\biggl\langle \frac{\diff}{\diff t} (\sigma_u \dot u + \sigma_v \dot v), \sigma_v \biggr\rangle &= 0.
+	\end{align*}
+	The first statement is equivalent to
+	\[
+	\frac{\diff}{\diff t}\langle \sigma_u \dot u + \sigma_v \dot v, \sigma_u \rangle - \langle \sigma_u \dot u + \sigma_v \dot v, \frac{\diff}{\diff t} \sigma_u \rangle = 0.
+	\]
+	Noting that $E = \langle \sigma_u, \sigma_v \rangle$ and $F = \langle \sigma_u, \sigma_v\rangle$, this is exactly
+	\begin{align*}
+		\frac{\diff}{\diff t} (E \dot u + F \dot v) - \langle \sigma_u \dot u + \sigma_v \dot v, \sigma_{uu} \dot u + \sigma_{uv} \dot v \rangle = 0, \\
+		\frac{\diff}{\diff t}(E \dot u + F \dot v) - \dot u^2 \langle \sigma_u, \sigma_{uu} \rangle + \dot u \dot v (\langle \sigma_u, \sigma_{uv}\rangle + \langle \sigma_v, \sigma_{uv} \rangle) + \dot v^2 \langle\sigma_v, \sigma_{uv}\rangle.
+	\end{align*}
+	But,
+	\begin{align*}
+		E = \langle\sigma_u, \sigma_v\rangle &\implies E_u = 2 \langle\sigma_u, \sigma_{uu}\rangle, \\
+		F = \langle\sigma_u, \sigma_v \rangle &\implies F_u = \langle\sigma_u, \sigma_{uv}\rangle + \langle\sigma_v, \sigma_{uu}\rangle, \\
+		G = \langle\sigma_v, \sigma_v\rangle &\implies G_u = 2 \langle\sigma_v, \sigma_{uv}\rangle,
+	\end{align*}
+	Thus the first equation becomes
+	\[
+	\frac{\diff}{\diff t}(E \dot u + F \dot v) = \frac{1}{2} (E_u \dot u^2 + 2 F_u \dot u \dot v + G_u \dot v^2),
+	\]
+	which is the first geodesic equation. Similarly, the second equation becomes the second geodesic equation.
+\end{proofbox}
+
+\begin{corollary}
+	If $\gamma : [a, b] \to \Sigma$ is a geodesic, then $|\dot \gamma(t)|$ is constant.
+\end{corollary}
+
+\begin{proofbox}
+	We have
+	\[
+	\frac{\diff}{\diff t} \langle \dot \gamma, \dot \gamma \rangle = 2 \langle \ddot \gamma, \dot \gamma \rangle = 0,
+	\]
+	since $\ddot \gamma$ is perpendicular to $T_{\gamma(t)}\Sigma$, and $\dot \gamma(t) \in T_{\gamma(t)}\Sigma$.
+\end{proofbox}
+
+Thus geodesics are parametrized with \emph{constant speed} (i.e proportional to arc-length).
+
+\subsection{Length versus Energy}
+\label{sub:length_versus_energy}
+
+Energy is sensitive to parametrization. Given $\gamma : [a, b] \to \mathbb{R}^3$ smooth, we always have:
+\[
+	(L(\gamma))^2 \leq (b - a) E(\gamma),
+\]
+with equality if and only if $|\dot \gamma|$ is constant.
+
+Indeed, using Cauchy-Schwarz,
+\[
+\Biggl( \int_{a}^{b} | \dot \gamma(t)|\diff t \Biggr)^2 \leq \Biggl( \int_{a}^{b} |\dot \gamma(t)|^2 \diff t \Biggr) \Biggl( \int_{a}^{b} 1 \diff t \Biggr),
+\]
+with equality if and only if $|\dot \gamma|$ is constant.
+
+\begin{corollary}
+	A smooth curve $\gamma : [a, b] \to \Sigma \subset \mathbb{R}^3$ that minimizes length and has constant speed is a geodesic.
+\end{corollary}
+
+\begin{proofbox}
+	We need to prove that $\gamma$ is a critical point of $E$. Let $\tau : [a, b] \to \Sigma$ be any other curve connected $\gamma(a)$ and $\gamma(b)$. Then
+	\[
+	E(\gamma) = \frac{(L(\gamma))^2}{b - a} \leq \frac{(L(\tau))^2}{b - a} \leq E(\tau),
+	\]
+	hence $\gamma$ is critical for $E$ and hence a geodesic.
+\end{proofbox}
+
+A geodesic may not be a global minimizer, but they are always local minimizers.
+
+\begin{exbox}
+	\begin{enumerate}
+		\item The plane $\mathbb{R}^2$. Let $\sigma(u, v) = (u, v, 0)$. Then the first fundamental form is $\diff u^2 + \diff v^2$. The geodesic equations are
+			\[
+			\frac{\diff}{\diff t}(\dot u) = 0, \qquad \frac{\diff}{\diff t} (\dot v) = 0.
+			\]
+			So $u(t) = \alpha t + \beta$, $v(t) = \gamma(t) + \delta$, which is a straight line parametrized by a constant speed.
+		\item Take the unit sphere with $\sigma$ given by spherical coordinates. Then
+			\begin{align*}
+				\sigma(\phi, \theta) &= (\sin \theta \cos \phi, \sin \theta \sin \phi, \cos \theta), \\
+				\sigma_\phi &= (- \sin \theta, \sin \phi, \sin \theta \cos \phi, 0), \\
+				\sigma_{\theta} &= (\cos \theta \cos \phi, - \cos \theta \sin \phi, - \sin \theta).
+			\end{align*}
+			Then $E = \sin^2\theta$, $F = 0$ and $G = 1$, so
+			\[
+			L = \frac{1}{2} (\sin^2 \theta \dot \phi^2 + \dot \theta^2).
+			\]
+			This is the Lagrangian $L(\theta, \phi, \dot \theta, \dot \phi)$. From the Euler-Lagrange equations, we get
+			\[
+			\frac{\diff}{\diff t}(\sin^2 \dot \phi) = 0, \qquad \ddot \theta = \sin \theta \cos \theta \dot \phi^2.
+			\]
+			These equations give right away that the equator $t \to (t, \pi/2)$ is a geodesic. In fact, all great circles parametrized with constant speed are geodesics.
+
+			We can prove this by integrating the Euler-Lagrange equations, but we can see this geometrically by noticing that such curves have $\ddot \gamma$ perpendicular to $T_{\gamma(t)}S^2$.
+
+			Since geodesics solve a second order ODE, prescribing $v \in T_p\Sigma$ determines the geodesic completely. Thus great circles are all possible geodesics.
+
+			Note that the larger great circle $\gamma$ between $p$ and $q$ does not minimize the length.
+	\end{enumerate}
+\end{exbox}
+
+\begin{figure}[h]
+	\centering
+	\caption{Geodesic not minimizing length}
+	\label{fig:long_geodesic}
+	\begin{tikzpicture}
+		\draw (0,0) circle (2.5);
+		\draw[dashed, middlearrow = {<}] (2.5,0) arc(0:180:2.5 and 0.5);
+		\draw[middlearrow = {>}] (0,0) + (260:2.5 and 0.5) arc (260:180:2.5 and 0.5);
+		\draw[fill] (260:2.5 and 0.5) circle (0.06);
+		\node[below] at (260:2.5 and 0.5) {\small $p$};
+		\draw[middlearrow = {>}] (2.5,0) arc (0:-80:2.5 and 0.5);
+		\draw[fill] (280:2.5 and 0.5) circle (0.06);
+		\node[below] at (280:2.5 and 0.5) {\small $q$};
+		\draw[red, middlearrow = {>}] (260:2.5 and 0.5) arc (260:280:2.5 and 0.5);
+	\end{tikzpicture}
+\end{figure}
 
 \newpage
 

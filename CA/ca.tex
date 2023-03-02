@@ -731,13 +731,13 @@ We can use Cauchy's integral formula to obtain the following:
 \begin{proofbox}
 	If $p(z) = a_d z^{d} + a_{d-1} z^{d-1} + \cdots + a_0$ has no root in $\mathbb{C}$, then $f(z) = \frac{1}{p(z)}$ is entire.
 
-	As $p(z)$is non-constant, we have $a_d \neq 0$and $d \geq 1$. So
+	As $p(z)$ is non-constant, we have $a_d \neq 0$ and $d \geq 1$. So
 	\[
 	\frac{p(z)}{z^{d}} = a_d + a_{d-1} \cdot \frac{1}{z} + \cdots + a_n \frac{1}{z^{d}}
 	\]
 	shows that $|p(z)| \to \infty$ as $|z| \to \infty$. Hence $|f(z)| \to 0$ as $|z| \to \infty$ 
 
-	Hence there exists $R > 0$ such that for all $z \not \in D(0, R)$, $|f(z)| \leq 1$, but $M = \max_{z \in \overline{D(0,R)}} |f(z)|$. Then $|f|$ is bounded by $\max\{1, M\}$, and so by Liouville's theorem is constant. Therefore $p$ must be constant.
+	Hence there exists $R > 0$ such that for all $z \not \in D(0, R)$, $|f(z)| \leq 1$, but if $M = \max_{z \in \overline{D(0,R)}} |f(z)|$, $|f|$ is bounded by $\max\{1, M\}$, and so by Liouville's theorem is constant. Therefore $p$ must be constant.
 \end{proofbox}
 
 \begin{theorem}
@@ -1135,11 +1135,178 @@ In fact, if $U \subset \mathbb{C}$ is open, then $U$ is simply connected if and 
 		\item Take $a=  0$ and $g = \frac{1}{z^{6}}$. Then $g$ is holomorphic on $\mathbb{C}^{\times}$, and $|g(z)| \to \infty$ as $z \to 0$, so there is no continuous extension at $0$.
 		\item Recall the action $w \mapsto e^{w} = e^{\Re w} e^{i \Im w}$.
 
-			The map $h(z) = e^{1/z}$ swap any $D(0, \eps)^{\times}$ to all of $\mathbb{C}^\times$.
+			The map $h(z) = e^{1/z}$ maps any $D(0, \eps)^{\times}$ to all of $\mathbb{C}^\times$.
 	\end{enumerate}
-	
 \end{exbox}
 
+%Lecture 9
+
+\begin{theorem}[Laurent Expansion]\index{Laurent expansion}
+	Let $f$ be holomorphic on an annulus $A = \{z \in \mathbb{C} \mid r < |z - a| < R\}$, where $0 \leq r < R \leq \infty$. Then,
+	\begin{enumerate}[\normalfont(i)]
+		\item $f$ has a (unique) convergent expansion on $A$:
+			\[
+			f(z) = \sum_{n = -\infty}^{\infty} c_n(z - a)^{n},
+			\]
+			known as the ``Laurent series''\index{Laurent series}.
+		\item For any $r < \rho < R$, we have
+			\[
+			c_n = \frac{1}{2 \pi i} \int_{\partial D(a, \rho)} \frac{f(z)}{(z - a)^{n+1}} \diff z.
+			\]
+		\item If $r < \rho' \leq \rho < R$, the Laurent series converges uniformly on $\{z \in \mathbb{C} \mid \rho' \leq |z - a| \leq \rho\}$.
+	\end{enumerate}
+\end{theorem}
+
+\begin{proofbox}
+	Fix $w \in A$, and choose $r < \rho_1 < |w-a| < \rho_2 < R$.
+
+	Define two closed curves $\gamma_1, \gamma_2$ by cutting along a diameter of the sub-annulus, labelled such that $I(\gamma_1;w) = 1$ and $I(\gamma_2;w) = 0$.
+
+	Then $\gamma_1, \gamma_2$ are both homologous to zero in $A$, so by the generalized Cauchy's integral formula, we have
+	\[
+	f(w) = \frac{1}{2 \pi i} \int_{\gamma_1} \frac{f(z)}{z - w} \diff z = \frac{1}{2 \pi i} \int_{\gamma_1 + \gamma_2} \frac{f(z)}{z - w} \diff z.
+	\]
+	Travelling around $\gamma_1 + \gamma_2$ is the same as travelling $\partial D(a, \rho_2) - \partial D(a, \rho_1)$. So,
+	\[
+	f(w) = \frac{1}{2 \pi i} \int_{|z - a| = \rho_2} \frac{f(z)}{z - w} \diff z - \frac{1}{2 \pi i} \int_{|z-a|=\rho_1} \frac{f(w)}{z - w} \diff z.
+	\]
+	Label the first integral as $I_2$, and the second as $I_1$. Using the geometric series for $(1 - \frac{w-a}{z-a})^{-1}$ to compute $I_2$ as a Taylor series gives
+	\[
+	I_2 = \sum_{n = 0}^{\infty} c_n (w - a)^{n},
+	\]
+	where the coefficients are
+	\[
+	c_n = \frac{1}{2 \pi i} \int_{|z - a| = \rho_2} \frac{f(z)}{(z - a)^{n+1}} \diff z,
+	\]
+	for $n \geq 0$. For $I_1$, since $|z-a| < |w-a|$, using the expansion
+	\[
+	-\frac{1}{z - w} = \frac{\frac{1}{w-a}}{1 - \frac{z-a}{w - a}} = \sum_{m = 1}^{\infty} \frac{(z - a)^{m+1}}{(w - a)^{m}},
+	\]
+	we get that
+	\[
+	I_1 = \sum_{m = 1}^{\infty} d_m (w - a)^{-m},
+	\]
+	where
+	\[
+	d_m = \frac{1}{2 \pi i} \int_{|z-a| = \rho_1} \frac{f(z)}{(z - a)^{-m+1}} \diff z.
+	\]
+	Reindexing with $n = -m$, we obtain the Laurent expansion for $f$.
+
+	To show part (ii) and (iii), suppose that
+	\[
+	f(z) = \sum_{n = -\infty}^{\infty} c_n(z - a)^{n}
+	\]
+	on $A$, and let $r < \rho' \leq \rho < R$. The non-negative power series
+	\[
+	\sum_{n = 0}^{\infty}c_n (z - a)^{n}
+	\]
+	has radius of convergence greater than or equal to $R$, so it converges uniformly on $D(a, \rho)$. Similarly, if $u = \frac{1}{z - a}$, then the negative part of the Laurent expansion,
+	\[
+	\sum_{n = 1}^{\infty}c_{-n} u^{n},
+	\]
+	has radius of convergence greater than or equal to $r^{-1}$, so it converges uniformly on $\{|z - a| \geq \rho'\}$. So the Laurent series converges uniformly on $\rho' \leq |z - a| \leq \rho$.
+
+	So we can integrate term-by-term to get
+	\[
+	\frac{1}{2 \pi i} \int_{\partial D(a, \rho)} \frac{f(z)}{(z - a)^{m+1}} \diff z = \frac{1}{2 \pi i} \sum_{n = -\infty}^{\infty} c_n \int_{\partial D(a, \rho)} (z - a)^{n - m - 1} \diff z = c_m,
+	\]
+	since this integral is $0$ unless $n = m$, in which case it is $2 \pi i$.
+\end{proofbox}
+
+\begin{remark}
+	This shows that $f = f_1 + f_2$, where $f_1$ is holomorphic on $D(a, R)$, and $f_2$ is holomorphic on $|z-a| > r$.
+\end{remark}
+
+Applying to the case $r = 0$, we have three possibilities on a punctured disk domain, i.e. an isolated singularity at $a$.
+\begin{enumerate}
+	\item $c_n = 0$ for all $n < 0$. Then $f$ is the restriction to $D(a, R)^{\times}$ of a function holomorphic on $D(a, R)$. We say $f$ has a \emph{removable singularity}\index{removable singularity} at $a$.
+
+		An example is
+		\[
+		f(z) = \frac{\sin z}{z},
+		\]
+		at $a = 0$.
+	\item There exists $k < 0$ such that $c_k \neq 0$, but $c_n = 0$ for all $n < k$. Then $(z-a)^{-k}f(z)$ is holomorphic and non-zero at $a$. We say $f$ has a \emph{pole}\index{pole} of order $|k|$ at $a$.
+
+		An example is
+		\[
+		g(z) = \frac{1}{z^{6}},
+		\]
+		at $a = 0$, which has a pole of order $6$.
+	\item $c_n \neq 0$ for infinitely many $n < 0$. Then we say $f$ has an \emph{essential singularity}\index{essential singularity} at $a$.
+
+		An example is
+		\[
+		h(z) = \exp \biggl( \frac{1}{z} \biggr),
+		\]
+		at $a = 0$.
+\end{enumerate}
+
+We now look at the local behaviour around each of these kinds of singularities.
+
+\begin{proposition}
+	An isolated singularity at $z = a$ for $f$ is removable if and only if
+	\[
+	\lim_{z \to a} (z - a) f(z) = 0.
+	\]
+\end{proposition}
+
+\begin{proofbox}
+	If $f$ is indeed holomorphic, then $f$ is bounded as it is continuous on a neighbourhood of $a$, hence the limit approaches $0$.
+
+	If the limit converges to $0$, consider
+	\[
+	g(z) =
+	\begin{cases}
+		(z - a)^2 f(z) & z \neq a,\\
+		0 & z = a.
+	\end{cases}
+	\]
+	Then by definition,
+	\[
+	g'(a) = \lim_{z \to a}(z - a) f(z) = 0,
+	\]
+	so $g$ is holomorphic at $a$, with $g(a) = 0$. Therefore
+	\[
+	g(z) = \sum_{n = 2}^{\infty} c_n(z - a)^{n},
+	\]
+	so
+	\[
+	f(z) = \sum_{n = 0}^{\infty} c_{n+2}(z - a)^{n},
+	\]
+	proving $f$ is holomorphic at $a$.
+\end{proofbox}
+
+\begin{proposition}
+	An isolated singularity at $z = a$ for $f$ is a pole if and only if $|f(z)| \to \infty$ as $z \to a$.
+
+	Moreover, the following are equivalent:
+	\begin{enumerate}[\normalfont(i)]
+		\item $f$ has a pole of order $k$ at $z = a$.
+		\item $f(z) = (z-a)^{-k}g(z)$, where $g$ is holomorphic at non-zero at $a$.
+		\item $f(z) = \frac{1}{h(z)}$, where $h$ is holomorphic at $a$ with a zero of order $k$ at $a$.
+	\end{enumerate}
+\end{proposition}
+
+\begin{proofbox}
+	Immediately, (i) is equivalent to (ii) using the Laurent expansion, and (ii) is equivalent to (iii) as since $g$ is holomorphic at $a$ and non-zero, $\frac{1}{g}$ is holomorphic at $a$.
+
+	Now if $f$ has a pole of order $k$ at $z = a$, then $f(z) = (z - a)^{-k}g(z)$, so $|f(z)| \to \infty$ as $z \to a$.
+
+	Conversely, if $|f(z)| \to \infty$ as $z \to a$, then there exists $r > 0$ such that $f(z) \neq 0$ for all $0 < |z-a| < r$. So $\frac{1}{f}$ is holomorphic on $D(a, r)^{\times}$, and moreover $\frac{1}{f} \to 0$ as $z \to a$, so the singularity at $0$ for $\frac{1}{f}$ is removable, and hence
+	\[
+	\frac{1}{f(z)} = h(z),
+	\]
+	where $h$ is holomorphic on $D(a, r)$. Now $h$ has a zero of order $k$ for some $k \geq 1$, so $h(z) = (z - a)^{k}l(z)$ for $l$ holomorphic and non-zero at $a$, so
+	\[
+	f(z) = (z - a)^{-k}g(z),
+	\]
+	meaning $f$ has a pole of order $k$ at $z = a$.
+\end{proofbox}
+
+\begin{corollary}
+	An isolated singularity at $z = a$ is essential if and only if $|f|$ does not approach a limit in $\mathbb{R} \cup \{\infty\}$ as $z \to a$.
+\end{corollary}
 
 \newpage
 
