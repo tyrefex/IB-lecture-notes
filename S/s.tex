@@ -1743,6 +1743,178 @@ S_{xx} = \sum_{i = 1}^{n} (x_i - \bar x)^2.
 	\]
 \end{proofbox}
 
+%lecture 15
+
+Consider a linear model $Y = X \beta + \eps$, where
+\[
+	\hat \beta = \mathrm{argmin}_{\beta} \|Y = X \beta\|^2 = (X^{T}X)^{-1}X^{T}Y.
+\]
+Then $P = X(X^{T}X)^{-1}X^{T}$ is an orthogonal projection onto the column space of $X$, and also
+\[
+\hat Y = X \hat \beta = PY, \qquad Y - \hat Y = (I - P)Y.
+\]
+\begin{theorem}
+	Let $\eps \sim N(0, \sigma^2 I)$. Then,
+	\begin{enumerate}[\normalfont1.]
+		\item $P \eps \sim N(0, \sigma^2 P)$, $(I-P)\eps \sim N(0, \sigma^2(I-P))$,
+		\item $P \eps$ independent of $(I - P)\epsilon$.
+		\item We have
+			\[
+				\frac{\|P \epsilon\|^2}{\sigma^2} \sim \chi^2_{\rank(P)}.
+			\]
+	\end{enumerate}
+\end{theorem}
+
+\subsection{Normal Linear Model}
+\label{sub:normal_linear_model}
+
+Take $Y = X \beta + \eps$, where $\epsilon \sim N(0, \sigma^2 I)$. The MLE has two parameters: $\beta \in \mathbb{R}^{p}$ and $\sigma^2 \in \mathbb{R}_{+}$. The log-likelihood is
+\[
+l(\beta, \sigma^2) = c + \frac{n}{2} \log \sigma^2 - \frac{1}{2 \sigma^2} \|Y - X \beta\|^2.
+\]
+For any $\sigma^2 > 0$, we can see that $l(\sigma^2, \beta)$ is maximized as a function of $\beta$ at the minimizer of $\|Y - X \beta\|^2$, i.e. the least-squares estimator $\hat \beta$. Now we find
+\[
+\frac{\partial l}{\partial \sigma^2}(\hat \beta, \sigma^2) = - \frac{n}{2 \sigma^2} + \frac{1}{2(\sigma^2)^2} \|Y - X \hat \beta\|^2.
+\]
+As $\sigma^2 \mapsto l(\hat B, \sigma^2)$ is unique, there is a unique maximizer when the derivative is $0$, i.e.
+\[
+\hat \sigma^2 = \frac{\|Y - X \hat \beta\|^2}{n} = \frac{\|(I-P)Y\|^2}{n}.
+\]
+\begin{theorem}
+	\begin{enumerate}[\normalfont1.]
+		\item[]
+	\item $\hat \beta \sim N(\beta, \sigma^2(X^{T}X)^{-1})$,
+	\item $\frac{\hat \sigma^2}{\sigma} n \sim \chi^2_{n-p}$,
+	\item $\hat \beta, \hat \sigma^2$ are independent.
+\end{enumerate}
+\end{theorem}
+
+\begin{proofbox}
+	As $\hat \beta$ is linear in $Y$, it is a multivariate normal. We already know $\mathbb{E}[\hat \beta] = \beta$, and $\Var(\hat \beta) = \sigma^2(X^{T}X)^{-1}$, so this proves (1).
+
+	For (2), note
+	\[
+	\frac{n \hat \sigma^2}{\sigma^2} = \frac{\|(I-P)Y\|^2}{\sigma^2}= \frac{\|(I-P)(X\beta+\epsilon)\|^2}{\sigma^2} = \frac{\|(I-P)\epsilon\|^2}{\sigma^2} \sim \chi^2_{\rank(I-P)}.
+	\]
+	As $\rank(I-P) = n - p$, this proves (2).
+
+	Finally for (3), note $\hat \sigma^2$ is a function of $(I-P)\epsilon$. We will show that $\hat \beta$ is a function of $P \epsilon$, which implies they are independent. Indeed,
+	\begin{align*}
+		\hat \beta &= (X^{T}X)^{-1}X^{T}Y = (X^{T}X)^{-1}X^{T}(X\beta + \eps) = \beta + (X^{T}X)^{-1}X^{T}\eps \\
+			   &= \beta + (X^{T}X)^{-1}X^{T}P\eps,
+	\end{align*}
+	as $X^{T}P = X^{T}$
+\end{proofbox}
+
+\begin{corollary}
+	$\hat \sigma^2$ is biased:
+	\[
+	\mathbb{E}\biggl[ \frac{\hat \sigma^2 n}{\sigma^2} \biggr] = n-p \implies \mathbb{E}[\hat \sigma^2] = \biggl( \frac{n - p}{n} \biggr) \sigma^2.
+	\]
+\end{corollary}
+
+\subsubsection{Student's t-distribution}
+\label{subsub:students_t_distribution}
+
+If $U \sim N(0, 1)$, $V \sim \chi^2_{n}$ and $U, V$ independent, then we say that
+\[
+	T = \frac{U}{\sqrt{V/n}}
+\]
+has a $t_n$ distribution\index{t-distribution}.
+
+\subsubsection{The F distribution}
+\label{subsub:f_distribution}
+
+If $V \sim \chi^2_{n}$, $W \sim \chi^2_{m}$ and $V, W$ independent, then we say
+\[
+F = \frac{V/n}{W/m}
+\]
+has a $F_{n,m}$ distribution.\index{F-distribution}
+
+\subsubsection{Confidence Sets for \texorpdfstring{$\beta$}{Beta}}
+\label{subsub:confidence_sets_for_beta}
+
+Suppose we want a $100(1-\alpha)$\% confidence interval for one of the coefficients, say $\beta_1$. Note that
+\[
+	\frac{\beta_1 - \hat \beta_1}{\sqrt{\sigma^2(X^{T}X)^{-1}_{11}}} \sim N(0, 1),
+\]
+because $\hat \beta_1 = N(\beta_1, \sigma^2(X^{T}X)^{-1}_{11})$. Also,
+\[
+\frac{\hat \sigma^2}{\sigma^2} n \sim \chi^2_{n-p},
+\]
+and these two statistic are independent. Hence,
+\[
+	\frac{\frac{\hat \beta_1 - \beta_1}{\sqrt{\sigma^2 (X^{T}X)^{-1}_{11}}}}{\sqrt{\frac{\hat \sigma^2}{\sigma^2} \frac{n}{n-p}}} \sim \frac{N(0,1)}{\sqrt{\chi^2_{n-p}/(n-p)}} \sim t_{n-p},
+\]
+which depends only on $\beta_1$ and not on $\sigma^2$. Hence we can use this as a pivot:
+\[
+\mathbb{P}_{\beta, \sigma^2} \biggl( - t_{n-p}(\alpha/2) \leq \frac{\hat \beta_1 - \beta_1}{\sqrt{(X^{T}X)^{-1}_{11}}} \sqrt{\frac{n-p}{n\hat \sigma^2}} \leq t_{n-p}(\alpha/2) \biggr) = 1 - \alpha.
+\]
+We can use the fact that $t_n$ distribution is symmetric around $0$. Rearranging the inequalities, we get
+\[
+\mathbb{P}_{\beta, \sigma^2} (\hat \beta_1 - M \leq \beta_1 \leq \hat \beta_1 + M) = 1- \alpha,
+\]
+where
+\[
+	M = t_{n-p}(\alpha/2) \sqrt{\frac{(X^{T}X)^{-1}_{11} \hat \sigma^2}{(n-p)/n}}.
+\]
+We conclude that $[\hat \beta_1 \pm M]$ is a $(1 - \alpha)100$\% confidence interval for $\beta_1$.
+
+Note that this is not asymptotic.
+
+By the duality between tests of significance and confidence intervals, we can find a size $\alpha$ test for
+\begin{align*}
+	H_0 &: \beta_1 = \beta^{\ast}, \\
+	H_1 &: \beta_1 \neq \beta^{\ast}.
+\end{align*}
+We simply reject $H_0$ if $\beta^{\ast}$ is not contained in the $100(1-\alpha)$\% confidence interval for $\beta_1$.
+
+\subsection{Confidence Ellipsoids for \texorpdfstring{$\beta$}{Beta}}
+\label{sub:confidence_ellipsoids_for_beta}
+
+Note that $\hat \beta - \beta \sim N(0, \sigma^2(X^{T}X)^{-1})$. As $X$ has full rank $X^{T}X$ is positive definite. So it has eigendecomposition
+\[
+X^{T}X = U D U^{T},
+\]
+where $D$ is diagonal and $U$ is unitary. Define
+\[
+	(X^{T}X)^{\alpha} = U D^{\alpha} U^{T},
+\]
+where
+\[
+D^{\alpha} =
+\begin{pmatrix}
+	D_{11}^{\alpha} & \cdots & 0 \\
+			\vdots & \ddots & \vdots \\
+			0 & \cdots & D_{pp}^{\alpha}
+\end{pmatrix}.
+\]
+Then
+\[
+	(X^{T}X)^{1/2}(\hat \beta - \beta) \sim N(0, \sigma^2 I).
+\]
+Hence,
+\[
+\frac{\|X(\hat \beta - \beta)\|^2}{\sigma^2} = \frac{\|(X^{T}X)^{1/2}(\hat \beta - \beta)\|^2}{\sigma^2} \sim \chi^2_{p}.
+\]
+This is a function of $\hat \beta$, so is independent of
+\[
+\frac{\hat \sigma^2 n}{\sigma^2} \sim \chi^2_{n-p}.
+\]
+Hence,
+\[
+\frac{\|X(\hat \beta - \beta)\|^2/p}{\hat \sigma^2 n/(n-p)} \sim F_{p, n-p}.
+\]
+This only depends on $\beta$, and not on $\sigma^2$, so it can be used as a pivot. For all $\beta, \sigma^2$
+\[
+\mathbb{P}_{\sigma^2, \beta} \biggl( \frac{\|X(\hat \beta - \beta)\|^2/p}{\hat \sigma^2 n/(n-p)} \leq F_{p,n-p}(\alpha) \biggr) = 1 - \alpha.
+\]
+So we can say that the set
+\[
+	\biggl\{\beta \in \mathbb{R}^{p} \bigm| \frac{\|X(\hat \beta - \beta)\|^2/p}{\hat \sigma^2 n/(n-p)} \leq F_{p,n-p}(\alpha) \biggr\}
+\]
+is a $100(1 - \alpha)$\% confidence set for $\beta$. The principal axes are given by the eigenvectors of $X^{T}X$.
+
 \newpage
 
 \printindex

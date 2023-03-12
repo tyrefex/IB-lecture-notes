@@ -1063,11 +1063,11 @@ They are defined only on $\sigma$, and not $\gamma$.
 \begin{remark}
 	The first fundamental form is sometimes defined as the quadratic form in $T_p \Sigma$, given by the restriction of the standard inner product in $\mathbb{R}^3$:
 	\[
-	I_p(w) = |w|^2 = \langle w, w \rangle_{\mathbb{R}^3}
+	\fff_p(w) = |w|^2 = \langle w, w \rangle_{\mathbb{R}^3}
 	.\]
 	After picking $\sigma$ with $\sigma(0) = p$ and after writing $w = D\sigma|_0 (u', v')$, we have
 	\[
-	I_p(w) = E u'^2 + 2 F u'v' + G v'^2
+	\fff_p(w) = E u'^2 + 2 F u'v' + G v'^2
 	.\]
 	This is an example of a \emph{Riemannian metric}\index{Riemannian metric}.
 \end{remark}
@@ -1111,7 +1111,7 @@ Often we are interested in local statements.
 \begin{lemma}
 	$\Sigma, \Sigma' \subset \mathbb{R}^3$ are locally isometric near $p \in \Sigma$ and $p' \in \Sigma'$ if and only if there exist allowable parametrizations
 	\begin{align*}
-		\sigma : V &\to U \subset E, \\
+		\sigma : V &\to U \subset \Sigma, \\
 		\sigma' : V &\to U' \subset \Sigma',
 	\end{align*}
 	for which the first fundamental forms are equal in $V$.
@@ -1815,7 +1815,7 @@ Proofs for these are found in part II differential geometry.
 
 Recall that if $\gamma : [a, b] \to \mathbb{R}^3$ is smooth, then
 \[
-\len(\gamma) = L(\gamma) \int_{a}^{b} |\gamma'(\theta)| \diff \theta.
+\len(\gamma) = L(\gamma) = \int_{a}^{b} |\gamma'(t)| \diff t.
 \]
 \begin{definition}
 	The \emph{energy}\index{energy} of $\gamma$ is
@@ -2043,6 +2043,534 @@ A geodesic may not be a global minimizer, but they are always local minimizers.
 		\draw[red, middlearrow = {>}] (260:2.5 and 0.5) arc (260:280:2.5 and 0.5);
 	\end{tikzpicture}
 \end{figure}
+
+%lecture 16
+
+We now look at an important example for geodesics: a surface of revolution. We take
+\[
+\eta(u) = (f(u), 0, g(u))
+\]
+in the $xz$-plane, and rotate about the $z$-axis. Here $\eta : [a, b] \to \mathbb{R}^3$ is smooth, injective with $\eta' \neq 0$ and $f > 0$. Taking the usual parametrization
+\[
+\sigma(u, v) = (f(u) \cos v, f(u) \sin v, g(u)),
+\]
+with $a < u < b$ and $v \in (0, 2\pi)$, the FFF is
+\[
+	(f'^2 + g'^2)\diff u^2 + f^2 \diff v^2.
+\]
+We assume $\eta$ is parametrized by arc-length. So the FFF becomes
+\[
+\diff u^2 + f^2 \diff v^2.
+\]
+The Lagrangian for geodesics is
+\[
+L = \frac{1}{2} (\dot u^2 + f^2 \dot v^2).
+\]
+The Euler-Lagrange equations for $u$ give
+\[
+\frac{\partial L}{\partial u} = f f' \dot v^2, \qquad \frac{\partial L}{\partial \dot u} = \dot u \implies \ddot u = f f' \dot v^2.
+\]
+Doing the same for $v$ gives
+\[
+\frac{\diff}{\diff t}(f^2 \dot v) = 0.
+\]
+We also know that geodesics move with constant speed, so this gives
+\[
+	\dot u^2 + f^2 \dot v^2 = \text{constant}, \qquad f^2 \dot v = c.
+\]
+As an example, consider meridians: we have $v = v_0$, and if $u(t) = t + u_0$, then $t \mapsto (t + u_0, v_0)$ is a geodesic with speed 1 through $(u_0, v_0)$.
+
+We also have parallels, with $u = u_0$ and $\dot v = a/f(u_0)$. Then we see that we need $f'(u_0) = 0$ for these to be geodesics.
+
+Let's look at the conserved quantity $f^2 \dot v$ in more detail. Suppose $\gamma$ makes an angle $\theta$ with a parallel of radius $\rho = f$. Write as usual: $\gamma = \sigma(u(t), v(t))$. Then,
+\[
+\dot \gamma = \sigma_u \dot u + \sigma_v \dot v,
+\]
+and note that $\sigma_v$ is tangent to the parallel, since
+\[
+\sigma_v = (-f \sin v, f \cos v, 0).
+\]
+Thus,
+\[
+\cos \theta = \frac{\langle \sigma_v, \sigma_u \dot u + \sigma_v \dot v \rangle}{|\sigma_v||\dot \gamma|}.
+\]
+Assume $\gamma$ is parametrized by arc-length, so $|\dot \gamma| = 1$. Using $F = 0$ and $G = f^2$, we get that
+\[
+\cos \theta = \frac{f^2 \dot v}{f} = f \dot v,
+\]
+and therefore if $\gamma$ is a geodesic, then
+\[
+	\rho \cos \theta = \text{constant}.
+\]
+This is known as \emph{Clairaut's relation}\index{Clairaut's relation}. This is just another way to write the conservation law arising from $\partial L/\partial v = 0$.
+
+\begin{exbox}
+	Consider an ellipsoid of revolution, with $\rho \cos \theta = c$. Then as $c = \rho_0 \cos \theta_0 > 0$, we have $c = \rho \cos \theta \leq \rho$.
+
+	This means that $\gamma$ must move between the region bounded by the parallels of radius $c$.%see lecture for diagrams.
+\end{exbox}
+
+Recall Picard's theorem for ODE's: if $I = [t_0 - a, t_0 + a] \subset \mathbb{R}$, $B = \{x \mid \|x - x_0\| \leq b \} \subset \mathbb{R}^{n}$, and
+\[
+f : I \times B \to \mathbb{R}^{n}
+\]
+is Lipschitz in the second variable, so
+\[
+\|f(t, x_1) - f(t, x_2)\| \leq K\|x_1 - x_2\|,
+\]
+then
+\[
+\frac{\diff x(t)}{\diff t} = f(t, x(t)), \qquad x(t_0) = x_0
+\]
+has a unique solution in some interval $|t - t_0| < h$. Moreover, if $f$ is smooth, then the solution is smooth and depends smoothly on the initial condition. In our setting, we have
+\begin{align*}
+	\frac{\diff}{\diff t}(E \dot u + F \dot v) &= \frac{1}{2} (E_u \dot u^2 + 2 F_u \dot u \dot v + G_u \dot v^2), \\
+	\frac{\diff}{\diff t}(F \dot u + G \dot v) &= \frac{1}{2} (E_v \dot u^2 + 2 F_v \dot u \dot v + G_v \dot v^2), \\
+\end{align*}
+and so
+\[
+\begin{pmatrix}
+	E & F \\ F & G
+\end{pmatrix}
+\begin{pmatrix}
+	\ddot u \\ \ddot v
+\end{pmatrix}
+ = \mathcal{A}(u, v, \dot u, \dot v).
+\]
+Since the FFF is invertible, we can write the geodesic equations as
+\begin{align*}
+	\ddot u &= A(u, v, \dot u, \dot v), \\
+	\ddot v &= B(u, v, \dot u, \dot v),
+\end{align*}
+for some smooth $A$ and $B$. We can turn this into a first order system by the usual trick: let $\dot u = x$, $\dot v = y$. Then,
+\begin{align*}
+	\dot u &= x, & \dot v &= y, \\
+	\dot x &= A(u,v,x,y), & \dot y &= B(u, v, x, y).
+\end{align*}
+So Picard's theorem applies, noting that since $A$ and $B$ are smooth, and a local bound on $\|DA\|$ and $\|DB\|$ gives the Lipschitz conditions. We thus have:
+
+\begin{corollary}
+	Let $\Sigma$ be a smooth surface in $\mathbb{R}^3$. For $p \in \Sigma$ and $v \in T_p\Sigma$, there is $\eps > 0$ and a unique geodesic $\gamma : (-\eps, \eps) \to \Sigma$ with initial conditions $\gamma(0) = p$ and $\dot \gamma(0) = v$. Moreover, $\gamma$ depends smoothly on $(p, v)$.
+\end{corollary}
+
+%lecture 17
+
+The local existence of geodesics gives rise to parametrizations with very nice properties.
+
+Fix $p \in \Sigma$, and consider a geodesic arc $\gamma$ going through $p$ and parametrized by arc-length. For $t$ small enough, let $\gamma_t$ be the unique geodesic such that:
+\begin{itemize}
+	\item $\gamma_t(0) = \gamma(t)$,
+	\item $\gamma_t'(0)$ is orthogonal to $\gamma'(t)$, and has unit length.
+\end{itemize}
+Define $\sigma(u, v) = \gamma_v(u)$ for $u \in (-\eps, \eps), v \in (-\delta, \delta)$.
+
+\begin{lemma}
+	For $\epsilon$ and $\delta$ sufficiently small, $\sigma$ defines an allowable parametrization of an open set in $\Sigma$.
+\end{lemma}
+
+\begin{proofbox}
+	Smoothness follows from smoothness of geodesics with initial conditions. At $(0, 0)$, $\sigma_u$ and $\sigma_v$ are orthogonal and have norm $1$ by construction. Thus,
+	\[
+	D\sigma|_0 : \mathbb{R}^2 \to T_p\Sigma
+	\]
+	is a linear isomorphism. Now applying the inverse function theorem, we deduce that $\sigma$ is a local diffeomorphism at $(0, 0)$, and hence for $\epsilon, \delta$ small enough it is an allowable parametrization.
+\end{proofbox}
+
+\begin{proposition}
+	Any smooth surface $\Sigma$ in $\mathbb{R}^3$ admits a local parametrization for which the first fundamental form is of the form
+	\[
+	\diff u^2 + G \diff v^2,
+	\]
+	i.e. $E = 1$, $F = 0$.
+\end{proposition}
+
+\begin{proofbox}
+	Consider $\sigma(u, v) = \gamma_v(u)$, as above. If we fix $v_0$, then the curve $u \to \gamma_{v_0}(u)$ is a geodesic parametrized by arc-length. So $E = \langle \sigma_u, \sigma_u \rangle = 1$.
+
+	Also one of the geodesic equations is
+	\[
+	\frac{\diff}{\diff t}(F \dot u + G \dot v) = \frac{1}{2}(E_v \dot u^2 + F_v \dot u \dot v + G_v \dot v^2),
+	\]
+	and for $v = v_0$, $u(t) = t$,
+	\[
+	\frac{\diff}{\diff t} (F) = 0,
+	\]
+	giving $F_u = 0$. Hence $F$ is independent of $u$. But when $u = 0$, then by construction of $\gamma_v$ as orthogonal to $\gamma$ at $\gamma(0)$, we have that $F = 0$ everywhere.
+\end{proofbox}
+
+\begin{remark}
+	\begin{enumerate}
+		\item[]
+		\item These coordinates are sometimes referred to as the \emph{Fermi coordinates}\index{Fermi coordinates}.
+		\item $\gamma_t(u)$ for fixed $u$ is typically not a geodesic.
+		\item In these coordinates, we also have $G(0, v) = 1$, and $G_u(0, v) = 0$. The first holds as $\sigma_v$ has length 1 at $u = 0$. To show the second, we use that at $u = 0$, $v = t$ is a geodesic and
+			\[
+			\frac{\diff}{\diff t}(E \dot u + F \dot v) = \frac{1}{2} (E_u \dot u^2 + 2 F_u \dot u \dot v + G_u \dot v^2),
+			\]
+			which becomes $0 = \frac{1}{2}G_u (0, t)$.
+		\item One can show that if $E = 1$ and $F = 0$, then the Gauss curvature is given by
+			\[
+				K = -\frac{(\sqrt G)_{uu}}{\sqrt G}.
+			\]
+			This is theorem 8.1 in Wilson's book. The computation is not hard, but beyond the scope of the course. However, we will use this result.
+	\end{enumerate}
+\end{remark}
+
+\subsection{Constant Gaussian Curvature}
+\label{sub:constant_gaussian_curvature}
+
+First a general result. If $\Sigma \in \mathbb{R}^3$ and $f : \mathbb{R}^3 \to \mathbb{R}^3$ is a dilation by $\lambda \neq 0$, i.e.
+\[
+f(x, y, z) = \lambda(x, y, z),
+\]
+then
+\[
+K_{f(\Sigma)} = \frac{1}{\lambda^2}K_{\Sigma}.
+\]
+To check this, note that the coefficients $E, F, G$ rescale by $\lambda^2$, and $L, M, N$ scale by $\lambda$.
+
+One natural question to ask is what the constant curvature surfaces look like. By dilations, it suffices to understand surfaces of constant curvature $1, -1$ and $0$.
+
+\begin{proposition}
+	Let $\Sigma \subset \mathbb{R}^3$ be a smooth surface.
+	\begin{enumerate}[\normalfont(a)]
+		\item If $K_{\Sigma} = 0$, then $\Sigma$ is locally isometric to
+			\[
+				(\mathbb{R}^2, \diff u^2 + \diff v^2).
+			\]
+		\item If $K_{\Sigma} = 1$, then $\Sigma$ is locally isometric to
+			\[
+				(S^2, \diff u^2 + \cos^2 u \diff v^2).
+			\]
+	\end{enumerate}
+\end{proposition}
+
+\begin{proofbox}
+	We know that $\Sigma$ admits a parametrization with $E = 1$, $F = 0$ and $G(0, v) = 1$ and $G_u(0, v) = 0$. Also,
+	\[
+		K = - \frac{(\sqrt G)_{uu}}{\sqrt G}.
+	\]
+	If $K = 0$, we get $(\sqrt G)_{uu} = 0$, so
+	\[
+	\sqrt G = A(v) u + B(v).
+	\]
+	Our conditions on $G$ gives $B = 1$ and $A = 0$. Then the FFF is $\diff u^2 + \diff v^2$.
+
+	If $K = 1$, then $(\sqrt G)_{uu} + \sqrt G = 0$, so
+	\[
+	\sqrt G = A(v) \sin u + B(v) \cos u.
+	\]
+	The conditions on $G$ gives $A = 0$ and $B = 1$, so the FFF is $\diff u^2 + \cos^2 u \diff v^2$. In the parametrization,
+	\[
+	\sigma(u, v) = (\cos u \cos v, \cos u \sin v, \sin u)
+	\]
+	of $S^2$, this is the FFF.
+\end{proofbox}
+
+\begin{remark}
+	We can certainly do the same for $K = -1$, and we get the FFF is
+	\[
+	\diff u^2 + \cosh^2 u \diff v^2.
+	\]
+	A surface of revolution with FFF $\diff u^2 + \cosh^2 u \diff v^2$ is given by rotating
+	\[
+	\eta(u) = \Biggl(\cosh u, 0, \int_{0}^{u} \sqrt{1 - \sinh^2 x} \diff x \Biggr)
+	\]
+	This has $f'^2 + g'^2 = 1$ and hence
+	\[
+	K = - \frac{f''}{f} = -1.
+	\]
+	Or, we can forget about $\mathbb{R}^3$ and think in more abstract terms. The change of variables
+	\[
+		V = e^{v}\tanh u, \qquad W = e^{v} \mathrm{sech} u
+	\]
+	turns
+	\[
+		\diff u^2 + \cosh^2 u \diff v^2 \text{ into } \frac{\diff V^2 + \diff W^2}{W^2}.
+	\]
+	This is the \emph{standard presentation} of the hyperbolic plane.
+\end{remark}
+
+\newpage
+
+%lecture 18
+
+\section{Hyperbolic Surfaces}
+\label{sec:hyperbolic_surfaces}
+
+We start by discussing \emph{abstract Riemannian metrics}\index{abstract Riemannian metrics}.
+
+\begin{definition}
+	Let $V \subset \mathbb{R}^2$ be an open set. An abstract Riemannian metric on $V$ is a smooth map:
+	\begin{align*}
+		V &\to \{\text{positive definite symmetric forms}\} \subset \mathbb{R}^{4}, \\
+		p &\mapsto 
+		\begin{pmatrix}
+			E(p) & F(p) \\ F(p) & G(p)
+		\end{pmatrix}
+		= g(p),
+	\end{align*}
+	where $E > 0, G > 0$ and $EG - F^2 > 0$. If $V$ is a vector at $p \in V$, then its norm is:
+	\[
+	\|v\|^2_{g} = v^{T}
+	\begin{pmatrix}
+		E(p) & F(p) \\ F(p) & G(p)
+	\end{pmatrix}
+	v,
+	\]
+	and if $\gamma : [a, b] \to V$ is smooth, then its length is
+	\[
+	L(\gamma) = \int_{a}^{b} \|\dot \gamma(t)\|_{g} \diff t = \int_{a}^{b}(E \dot u^2 + 2 F \dot u \dot v + G \dot v^2)^{1/2} \diff t,
+	\]
+	where $\gamma(t) = (u(t), v(t))$.
+\end{definition}
+
+\begin{definition}
+	Given $(V, g)$, $(\tilde V, \tilde g)$, we say that they are \emph{isometric}\index{isometric Riemannian metrics} if there exists a diffeomorphism $f : V \to \tilde V$ such that
+	\[
+	\|Df|_p(v)\|_{\tilde g} = \|v\|_{g},
+	\]
+	for all $v \in T_pV = \mathbb{R}^2$, and $p \in V$. This is equivalent to saying that $f$ preserves the length curves.
+\end{definition}
+
+Note that $Df_p : T_p V \to T_{f(p)}\tilde V$ is a map from $\mathbb{R}^2$ to $\mathbb{R}^2$.
+
+Writing out the condition for two spaces to be isometric,
+\[
+\|Df|_p(v)\|^2_{\tilde g} = (Df|_p v)^{T} \tilde g_{f(p)}Df|_p v = v^{T}(Df|_p)^{T} \tilde g_{f(p)} Df|_p v = \|v\|_g^2 = v^{T}g v.
+\]
+This holds for all $v$ if and only if
+\[
+	(Df|_p)^{T} \tilde g_{f(p)} Df|_p = g.
+\]
+Recall this is exactly the transformation law.
+
+\begin{definition}
+	Let $\Sigma$ be an abstract smooth surface, so
+	\[
+	\Sigma = \bigcup_{i \in I} U_i,
+	\]
+	with $U_i \subset \Sigma$ open and $\phi_i : U_i \to V_i \subset \mathbb{R}^3$ homeomorphisms such that
+	\[
+	\phi_i \phi_j^{-1} : \phi_j (U_i \cap U_j) \to \phi_i(U_i \cap U_j)
+	\]
+	is smooth for all $i, j$.
+
+	A \emph{Riemannian metric}\index{Riemannian metric} on $\Sigma$, usually denoted by $g$, is a choice of Riemannian metrics $g_i$ on each $V_i$ which are compatible in the following sense: for all $i, j$, $\phi_i \phi_j^{-1}$ is an isometry between $\phi_j(U_i \cap U_j)$ and $\phi_i(U_j \cap U_j)$, i.e. if we let $f = \phi_i \phi_j^{-1}$, then
+	\[
+		(Df|_p)^{T}
+		\begin{pmatrix}
+			E_i & F_i \\ F_i & G_i
+		\end{pmatrix}_{f(p)}
+		Df|_p =
+		\begin{pmatrix}
+			E_j & F_j \\ F_j & G_j
+		\end{pmatrix}_{p}
+	\]
+	for all $p \in \phi_j(U_i \cap U_j)$.
+\end{definition}
+
+\begin{exbox}
+	\begin{enumerate}
+		\item Recall the torus: $T^2 = \mathbb{R}^2/\mathbb{Z}^2$.
+			We exhibited charts where transition functions were restrictions of translations. Equip each $V_i \subset \mathbb{R}^2$ (the image of such a chart( with the Euclidean metric $\diff u^2 + \diff v^2$, i.e.
+			\[
+			V_i \mapsto \id_{2 \times 2}.
+			\]
+			If $f$ is a translation, $Df = \id$, so
+			\[
+				(Df)^{T} I Df = I.
+			\]
+			Hence the torus inherits a global Riemannian metric, everywhere locally isometric to $\mathbb{R}^2$, hence flat.
+
+			Since geodesics are well-defined for abstract Riemannian metrics, they are also well-defined on $T^2$, and they are just projections of straight lines in $\mathbb{R}^2$.
+
+			Note that this flat metric on $T^2$ in not induced by any embedding of $T^2$ in $\mathbb{R}^3$.
+		\item The real projective plane admits a Riemannian metric with constant curvature $+1$. Indeed, we exhibited an atlas of $\mathbb{RP}^2$ with charts of the form $(U, \phi)$ where $U = q (\hat U)$, where $q : S^2 \to \mathbb{RP}^2$ is the quotient map, and $\hat U \subset S^2$ are open and small enough so that the quotient map is a homeomorphism.
+
+			The transition map for this atlas are either the identity or induced by the antipodal map. But both are isometries of the round metric in $S^2$.
+		\item The Klein bottle also has a flat Riemannian metric, induced by its presentation as a quotient of $\mathbb{R}^2$.
+	\end{enumerate}
+\end{exbox}
+
+\begin{proposition}
+	Given a Riemannian metric $g$ on a connected open set $V \subset \mathbb{R}^2$, we can define the \emph{length metric}\index{length metric}
+	\[
+	d_g(p, q) = \inf_{\gamma} L(\gamma),
+	\]
+	where $\gamma$ varies over all piecewise smooth paths in $V$ from $p$ to $q$, and $L(\gamma)$ is computed using $g$.
+
+	Then $d_g$ is a metric in $V$ (in the sense of a metric space).
+\end{proposition}
+
+\begin{remark}
+	\begin{enumerate}
+		\item[]
+		\item Given $p, q \in V$, there is always a piecewise smooth path connecting $p$ and $q$.
+		\item This implies $d_g(p, q) \geq 0$. Also it is easy to check $d_g(p, q) = d_g(q, p)$, by reversing paths.
+
+			It is also easy to see $d_g(p, r) \leq d_g(p, q) + d_g(q, r)$, from connecting paths.
+
+			The only non-trivial claim is:
+			\[
+			d_g(p, q) = 0 \iff p = q.
+			\]
+		\item All this works on any abstract smooth connected surface $(\Sigma, g)$ equipped with a Riemannian metric $g$.
+	\end{enumerate}	
+\end{remark}
+
+%lecture 19
+
+\begin{proofbox}
+	We only show that $d_g(p, q) > 0$ for $p \neq q$. Since
+	\[
+	g =
+	\begin{pmatrix}
+		E(p) & F(p) \\ F(p) & G(p)
+	\end{pmatrix}
+	\]
+	is positive definite, there is $\eps$ sufficiently small such that
+	\[
+	\begin{pmatrix}
+		E(p) - \epsilon^2 & F(p) \\ F(p) & G(p) - \epsilon^2
+	\end{pmatrix}
+	\]
+	is also positive definite. Moreover, the matrix
+	\[
+	\begin{pmatrix}
+		E(p') - \epsilon^2 & F(p') \\ F(p') & G(p') - \epsilon^2
+	\end{pmatrix}
+	\]
+	remains positive definite for all $p' \in B(p, \delta) \subset V$. Thus for any $p' \in B(p, \delta)$ and $v = (v_1, v_2) \in \mathbb{R}^2$, we have
+	\[
+	\|v\|_{p'}^2 = E(p')v_1^2 + 2F(p')v_1v_2 + G(p')v_2^2 \geq \epsilon^2 (v_1^2 + v_2^2).
+	\]
+	Hence if $\gamma$ is a curve in $B(p,\delta)$, then
+	\[
+	L_g(\delta) \geq \eps L(\gamma),
+	\]
+	with regular Euclidean distance. Hence given $p \neq q$, and $\gamma : [a, b] \to V$ any curve connecting $p$ to $q$, then if $\gamma$ is not contained in $B(p, \delta)$, there exists some $t_0 \in [a, b]$ such that $\gamma|_{[a, t_0]}$ is in $B(p, \delta)$, but $\gamma(t_0)$ is on the boundary of the ball. Thus,
+	\[
+		L_{g}(\gamma) \geq L_{g}(\gamma|_{[a, t_0]}) \geq \epsilon \delta.
+	\]
+	If however $\gamma$ is contained in the ball, then
+	\[
+	L_g(\gamma) \geq \epsilon d(p, q),
+	\]
+	with regular Euclidean distance. Taking the infimum over all such $\gamma$, we get
+	\[
+		d_g(p, q) \geq \epsilon \min\{\delta, d(p, q)\} > 0.
+	\]
+\end{proofbox}
+
+\begin{remark}
+	It follows that $d_g$ gives the same topology that $V \subset \mathbb{R}^2$ inherits from $\mathbb{R}^2$.
+\end{remark}
+
+\subsection{Hyperbolic Geometry}
+\label{sub:hyperbolic_geometry}
+
+\begin{definition}
+	We define an abstract Riemannian metric on the disc
+	\[
+		D = B(0, 1) = \{z \in \mathbb{C} \mid |z| < 1\}
+	\]
+	by
+	\[
+		g_{\mathrm{hyp}} = \frac{4 (\diff u^2 + \diff v^2)}{(1 - u^2 - v^2)^2} = \frac{4 |\diff z|^2}{(1 - |z|^2)^2}.
+	\]
+	In other words,
+	\[
+	E = G = \frac{4}{(1 - u^2 - v^2)^2}, \qquad F = 0.
+	\]
+\end{definition}
+
+Recall that the M\"{o}bius group:
+\[
+	\Mob = \biggl\{ z \mapsto \frac{az + b}{cz + d} \bigm|
+	\begin{pmatrix}
+		a & b \\ c & d
+	\end{pmatrix}
+\in \mathsf{GL}(2, \mathbb{C})\biggr\}
+\]
+acts on $\mathbb{C} \cup \{\infty\}$.`
+
+\begin{lemma}
+	\[
+		\Mob(D) = \{T \in \Mob \mid T(D) = D\} = \biggl\{ z \mapsto e^{i \theta} \frac{z - a}{1 - \overline{a} z} \bigm| |a| < 1 \biggr\}.
+	\]
+\end{lemma}
+
+\begin{proofbox}
+	First we note that
+	\begin{align*}
+		\biggl| \frac{z - a}{1 - \overline{a}z} \biggr| = 1 &\iff (z - a)(\overline{z} - \overline{a}) = (1 - \overline{a}z)(1 - a\overline{z}) \\
+								    &\iff |z|^2(1 - |a|^2) = 1 - |a|^2 \iff |z| = 1.
+	\end{align*}
+	So this map preserves $|z| = 1$ and maps $a$ to $0$, hence it belongs to $\Mob(D)$. To show they are all of this form, pick $T \in \Mob(D)$. Then if $a = f^{-1}(0)j$, and
+	\[
+	Q(z) = \frac{z - a}{1 - \overline{a}z} \in \Mob(D),
+	\]
+	then $TQ^{-1}(0) = 0$, and preserves $|z| = 1$. Hence, it must be of the form $z \mapsto e^{i\theta}z$.
+\end{proofbox}
+
+\begin{lemma}
+	The Riemannian metric $g_{\mathrm{hyp}}$ is invariant under $\Mob(D)$, i.e. it acts by hyperbolic isometries.
+\end{lemma}
+
+\begin{proofbox}
+	$\Mob(D)$ is generated by
+	\[
+		z \mapsto e^{i \theta}z \text{ and } z \mapsto \frac{z - a}{1 - \overline{a}z},
+	\]
+	so we look at these individually. The first (rotation) clearly preserves
+	\[
+		g_{\mathrm{hyp}} = \frac{4 |\!\diff z|^2}{(1 - |z|^2)^2}.
+	\]
+	For the second type, let
+	\[
+	\omega = \frac{z - a}{1 - \overline{a}z},
+	\]
+	so
+	\[
+	\diff \omega = \frac{\diff z}{1 - \overline{a}z} + \frac{(z - a)}{(1 - \overline{a}z)^2} \overline{a} \diff z = \frac{\diff z(1 - |a|^2)}{(1 - \overline{a}z)^2},
+	\]
+	giving
+	\[
+	\frac{|\!\diff \omega|}{1 - |\omega|^2} = \frac{|\!\diff z|(1 - |a|^2)}{|1 - \overline{a}z|^2 (1 - |\frac{z-a}{1 - \overline{a}z}|^2)} = \frac{|az|(1 - |a|^2)}{|1 - \overline{a}z|^2 - |z-a|^2} = \frac{|\!\diff z|}{1 - |z|^2}.
+	\]
+	For another view, we have
+	\[
+		g_{\mathrm{hyp}} = \lambda \id.
+	\]
+	Hence
+	\[
+	\lambda(z) = \frac{4}{(1 - |z|^2)^2}, \qquad f(z) = \frac{z - a}{1 - \overline{a}z}.
+	\]
+	To check isometry, we have
+	\[
+		(Df|_z)^{T}(g_{\mathrm{hyp}})_{f(z)}Df|_z = \lambda(z) \id,
+	\]
+	i.e.
+	\[
+	\lambda(f(z))(Df|_z)^{T}Df|_z = \lambda(z) \id.
+	\]
+	But the latter term is Cauchy-Riemann, so this simplifies to
+	\[
+	\lambda(f(z))|f'(z)|^2 = \lambda(z),
+	\]
+	and this is checked as previously.
+\end{proofbox}
+
+\begin{lemma}
+	\begin{enumerate}[\normalfont(i)]
+		\item[]
+		\item Every pair of points in $(D, g_{\mathrm{hyp}})$ is joined by a unique geodesic (up to reparametrization).
+		\item The geodesics are diameters of the discs and circular arcs orthogonal to $\partial D$.%nice picture in lectures
+	\end{enumerate}
+\end{lemma}
+
+The whole geodesics are called \emph{hyperbolic lines}\index{hyperbolic lines}.
 
 \newpage
 
