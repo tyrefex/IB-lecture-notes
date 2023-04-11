@@ -2477,7 +2477,7 @@ Recall this is exactly the transformation law.
 	\]
 	by
 	\[
-		g_{\mathrm{hyp}} = \frac{4 (\diff u^2 + \diff v^2)}{(1 - u^2 - v^2)^2} = \frac{4 |\diff z|^2}{(1 - |z|^2)^2}.
+		g_{\mathrm{hyp}} = \frac{4 (\diff u^2 + \diff v^2)}{(1 - u^2 - v^2)^2} = \frac{4 |\!\diff z|^2}{(1 - |z|^2)^2}.
 	\]
 	In other words,
 	\[
@@ -2570,7 +2570,525 @@ acts on $\mathbb{C} \cup \{\infty\}$.`
 	\end{enumerate}
 \end{lemma}
 
-The whole geodesics are called \emph{hyperbolic lines}\index{hyperbolic lines}.
+The whole geodesics are called \emph{hyperbolic lines}\index{hyperbolic lines}, defined on all of $\mathbb{R}$.
+
+%lecture 20
+
+\begin{proofbox}
+	Let $a \in \mathbb{R}^{+} \cap D$, and $\tau$ a smooth path from $0$ to $a$, say
+	\[
+		\tau(t) = (u(t), v(t)), \qquad t \in [0, 1].
+	\]
+	Then
+	\begin{align*}
+		L(t) &= \int_0^1 \frac{2|\dot \tau(t)|}{1 - |\tau(t)|^2}\diff t = \int_0^1 \frac{2 \sqrt{\dot u^2 + \dot v^2}}{1 - u^2 - v^2} \mathrm dt \\
+		     &\ge \int_0^1 \frac{2|\dot u(t)|}{1 - u^2}\diff t \ge \int_0^1 \frac{2 \dot u}{1 - u^2} \mathrm dt = \int_0^a \frac{2 \mathrm ds}{1-s^2} = 2 \tanh^{-1}(a),
+	\end{align*}
+	with equality if and only if $\dot v = 0$ and $\dot u \ge 0$, i.e. $v = 0$ and $u$ is monotonic. So the diameters are globally length minimizing and if parametrized by arc-length it becomes a geodesic with length
+	\[
+		d_{g_{\mathrm{hyp}}}(0, a) = 2 \tanh^{-1}(a).
+	\]
+	Now $0$ and $a \in \mathbb{R}^{+} \cap D$ are joined by a unique geodesic, and an element of $\Mob(D)$ can be used to send any $p, q \in D$ to $0, a \in \mathbb{R}^{+} \cap D$.
+
+	Since isometries map geodesics to geodesics, every $p, q \in D$ are joined by unique geodesics. As M\"{o}bius maps send circles to circles and preserve angles, geodesics must be orthogonal to $\partial D$. This implies our description of geodesics.
+\end{proofbox}
+
+\begin{corollary}
+	If $p, q \in D$, then
+	\[
+		d_{\mathrm{hyp}}(p, q) = 2 \tanh^{-1} \biggl| \frac{p-q}{1 - \bar p q} \biggr|.
+	\]
+\end{corollary}
+
+\begin{proofbox}
+	The M\"{o}bius map
+	\[
+	Q(z) = \frac{z - p}{1 - \bar pz}
+	\]
+	maps $p$ to $0$ and fixed $\partial D$. Pick $\theta$ such that $e^{i\theta}Q(q) \in \mathbb{R}^{+}\cap D$, and set $T = e^{i\theta}Q$. Then,
+	\[
+		d_\mathrm{hyp}(p, q) = d_\mathrm{hyp}(T(p),T(q)) = d_\mathrm{hyp}(0, T(q)) = 2 \tanh^{-1} \biggl| \frac{p-q}{1 - \bar p q} \biggr|.
+	\]
+\end{proofbox}
+
+\begin{definition}
+	The \emph{hyperbolic upper half-plane}\index{hyperbolic upper half-plane} (also called the Poincar\'{e} upper half half-plane) is the set
+	\[
+		\mathcal{H} = \{z \in \mathbb{C} \mid \Im(z) > 0\},
+	\]
+	with abstract Riemannian metric
+	\[
+		\frac{\diff x^2 + \diff y^2}{y^2} = \frac{|\!\diff z|^2}{(\Im(z))^2)}
+	\]
+\end{definition}
+
+\begin{lemma}
+	The Poincar\'{e} disc $(D, g_\mathrm{hyp})$ and the Poincar\'{e} upper half-plane $(\mathcal{H}, g_\mathrm{hyp})$ are isometric.
+\end{lemma}
+
+\begin{proofbox}
+	We have the maps
+	\begin{align*}
+		\mathcal{H} &\to D, & D &\to \mathcal{H}, \\
+		w &\mapsto \frac{w-i}{w+i}, & z &\mapsto i \frac{1+z}{1-z},
+	\end{align*}
+	which are inverse diffeomorphisms (an easy check). Now we check they are isometries.
+
+	If $w \in \mathcal{H}$, then $T(w) = \frac{w-i}{w+i} = z \in D$. Then $T'(w) = \frac{2i}{(w+i)^2}$, so
+	\begin{align*}
+		\frac{|\!\diff z|}{1 - |z|^2} &= \frac{|\!\diff (Tw)|}{1-|Tw|^2} = \frac{|T'(w)||\!\diff w|}{1-|Tw|^2} \\
+					      &= \frac{2|\!\diff w|}{|w+i|^2(1 - |\frac{w-i}{w+i}|^2)} = \frac{|\!\diff w|}{2\Im(w)}.
+	\end{align*}
+\end{proofbox}
+
+\begin{corollary}
+	In $(\mathcal{H}, g_\mathrm{hyp})$, every pair of points are joined by a unique geodesic, and the geodesics are vertical straight lines and semicircles centred on $\mathbb{R}$.
+\end{corollary}
+
+\begin{proofbox}
+	Our isometry $\mathcal{H} \to D$ is a M\"{o}bius map sending $\mathbb{R} \cup \infty \to \partial D$, and M\"{o}bius maps are conformal, so the geodesics are unique and perpendicular to the real line.
+\end{proofbox}
+
+\begin{remark}
+	\begin{enumerate}
+		\item[]
+		\item When we discussed surfaces in $\mathbb{R}^3$ with constant Gauss curvature, we say that if something had $\kappa = -1$ its first fundamental form in Fermi coordinates was
+			\[
+			\diff u^2 + \cosh^2 u \diff v^2,
+			\]
+			and after a change of variables we got
+			\[
+			\frac{\diff v^2 + \diff w^2}{w^2}.
+			\]
+			Thus $\mathcal{H}$ (and also $D$) has Gauss curvature $-1$.
+		\item Suppose we looked for a metric $d : D \times D \to \mathbb{R}_{\ge 0}$ on $D$ with properties:
+			\begin{enumerate}[(a)]
+				\item Invariant under $\Mob(D)$, so
+					\[
+					d(Tx, Ty) = d(x, y),
+					\]
+					for all $x, y \in D$ and $T \in \Mob(D)$.
+				\item $\mathbb{R}_+ \cap D$ is length-minimizing.
+			\end{enumerate}
+			Then $\Mob(D)$ invariance means that $d$ is completely determined by $d(0,a)$ for $a \in \mathbb{R}_+ \cap D$. Let us call this $p(a)$. If $\mathbb{R}_+ \cap D$ is length-minimizing, then if $0 < a < b < 1$,
+			\[
+			d(0, a) + d(a, b) = d(0, b) \implies p(a) + p\biggl( \frac{b-a}{1 - ab} \biggr) = p(b).
+			\]
+			If we furthermore suppose $p$ is differentiable, and differentiate with respect to $b$ and set $a b$, we get
+			\[
+			p'(a) = \frac{p'(0)}{1 - a^2} \implies p(a) = A \tanh^{-1}(a).
+			\]
+			So up to a constant, the length metric associated with $g_\mathrm{hyp}$ is the only metric with these nice properties. The scale is chosen so that $\kappa = -1$.
+	\end{enumerate}
+\end{remark}
+
+Now consider the full isometry group of $(D, g_\mathrm{hyp})$ and $(\mathcal{H}, g_\mathrm{hyp})$. In addition to the M\"{o}bius maps, we need to add reflections in hyperbolic lines. These are called \emph{inversions}\index{inversion}.
+
+\begin{definition}
+	Let $\Gamma \subset \hat{\mathbb{C}} = \mathbb{C} \cup \{\infty\}$ be a circle or a line. We say that point $z, z' \in \hat{\mathbb{C}}$ are \emph{inverse} for $\Gamma$ if every circle though $z$ and orthogonal to $\Gamma$ also passes through $z'$.
+\end{definition}
+
+\begin{lemma}
+	For every circle $\Gamma \subset \hat{\mathbb{C}}$, there is a unique inverse point with respect to $\Gamma$ and $z$.
+\end{lemma}
+
+%lecture 21
+
+\begin{proofbox}
+	We know that M\"{o}bius maps send circles to circles and preserve angles. So if $z, z'$ are inverse for $\Gamma$ and $T \in \Mob$, then $Tz$ and $Tz'$ are inverse for $T(\Gamma)$. If $\Gamma = \mathbb{R} \cup \{\infty\}$, then $J(z) = \bar z$ gives the inverse points. Note this map satisfies the requirements, and is unique as such.
+
+	Now if $\Gamma$ is any circle, then there exists $T \in \Mob$ such that $T(\mathbb{R} \cup \{\infty\}) = \Gamma$. Define the inversion in $\Gamma$ by
+	\[
+	J_\Gamma = T J T^{-1}.
+	\]
+	Then this works.
+\end{proofbox}
+
+\begin{definition}
+	The map $z \to J_\Gamma(z)$ sending $z$ to the unique inverse point $z'$ to $z$, with respect to $\Gamma$, is called the \emph{inversion} in $\Gamma$. This fixes all points in $\Gamma$, and exchanges the two complementary regions.
+\end{definition}
+
+\begin{exbox}
+	\begin{enumerate}
+		\item[] If $\Gamma$ is a straight line, then $J_\Gamma$ is a reflection in $\Gamma$.
+		\item If $S^1 = \{z \in \mathbb{C} \mid |z| = 1\}$, then
+			\[
+				J_{S^1}(z) = \frac{1}{\bar z}.
+			\]
+	\end{enumerate}
+\end{exbox}
+
+\begin{remark}
+	A composition of two inversions is a M\"{o}bius map. Let $C(z) = \bar z$ be the inversion in $\mathbb{R} \cup \{ \infty\}$. Then if $\Gamma \subset \hat{\mathbb{C}}$, the $J_\Gamma = T C T^{-1}$, where $T(\mathbb{R} \cup \{\infty\}) = \Gamma$.
+
+	Now given circles $\Gamma_1$ and $\Gamma_2$, and $T_i(\mathbb{R} \cup \{ \infty\}) = \Gamma_i$, we have
+	\[
+		J_{\Gamma_1} \circ J_{\Gamma_2} = (J_{\Gamma_1} \circ C)\circ (C \circ J_{\Gamma_2}) = (C \circ J_{\Gamma_1})^{-1} \circ (C \circ J_{\Gamma_2}),
+	\]
+	and $C \circ J_\Gamma = C \circ T \circ C \circ T^{-1}$. As $T^{-1} \in \Mob$, it suffices to prove that $C \circ T \circ C \in \Mob$. Indeed, if
+	\[
+	T(z) = \frac{az + b}{cz + d},
+	\]
+	then
+	\[
+	C \circ T \circ C(z) = \frac{\bar a z + \bar b}{\bar c z + \bar d} \in \Mob.
+	\]
+\end{remark}
+
+\begin{lemma}
+	An orientation preserving isometry of $(\mathbb{H}, g_\mathrm{hyp})$ is an element of $\Mob(\mathbb{H})$, where $\mathbb{H} = D$ or $\mathcal{H}$. The full isometry group is generated by inversion in hyperbolic lines.
+\end{lemma}
+
+\begin{proofbox}
+	It suffices to prove this in either model. In $D$, inversion in $\mathbb{R} \cap D$, i.e. conjugation, preserved $g_\mathrm{hyp}$.
+
+	Now $\Mob(D)$ acts transitively on geodesics, and it acts by isometries, so all inversion in hyperbolic lines are isometries.
+
+	Hence we just need to show these are all isometries. Suppose $\alpha \in \Aut(D, g_\mathrm{hyp})$, with $a = \alpha(0) \in D$. Then if $T(z) = \frac{z-a}{1 - \bar a z}$, then $T \circ \alpha (0) = 0$.
+
+	Now there exists a rotation $R \in \Mob(D)$ such that $R \circ T \circ \alpha$ sends $\mathbb{R}^{+} \cap D$ to itself. Composing with a conjugation $C$ if necessary, there exists $A \in \Aut(D, g_\mathrm{hyp})$ of the required form, such that $A \circ \alpha$ fixes $\mathbb{R} \cap D$ pointwise and fixed $i \mathbb{R} \cap D$ pointwise, so
+	\[
+	D(A \circ \alpha)|_0 = \id.
+	\]
+	This implies $A \circ \alpha = \id$. Hence $\alpha$ is of the required form.
+
+	We can easily show every M\"{o}bius map is a product of inversions.
+
+	Now if $\alpha$ preserves orientation and fixed $\mathbb{R} \cap D$, then it necessarily fixed $i \mathbb{R} \cap D$, so in fact $\alpha = (R \circ T)^{-1} \in \Mob$.
+\end{proofbox}
+
+\begin{remark}
+	In the $\mathcal{H}$ model,
+	\[
+		\Mob(\mathcal{H}) = \mathsf{PSL}(2, \mathbb{R}) = \biggl\{z \mapsto \frac{az + b}{cz + d} \bigm| \begin{pmatrix}a & b\\c & d\end{pmatrix} \in \mathsf{SL}(2, \mathbb{R})\biggr\},
+	\]
+	and
+	\[
+		d_\mathrm{hyp} (p, q) = 2 \tanh^{-1} \biggl| \frac{p-q}{p-\bar q}\biggr|.
+	\]
+\end{remark}
+
+\begin{definition}%nice picture in lectures
+	Let $\alpha \in \Mob(\mathbb{H})$ be orientation preserving. Suppose $\alpha \neq \id$. We say that $\alpha$ is:
+	\begin{itemize}
+		\item \emph{elliptic}\index{elliptic map} if $\alpha$ fixes $p \in \mathbb{H}$,
+		\item \emph{parabolic}\index{parabolic map} if $\alpha$ fixes a unique point of $\partial \mathbb{H}$,
+		\item \emph{hyperbolic}\index{hyperbolic map} if $\alpha$ fixes two points of $\partial \mathbb{H}$.
+	\end{itemize}
+\end{definition}
+
+We can show that all elements of $\Mob(\mathbb{H})$ fall into one of these three cases.
+
+\begin{definition}%more diagrams
+	Let $\ell, \ell'$ be hyperbolic lines. We say that $\ell, \ell'$ are:
+	\begin{itemize}
+		\item \emph{parallel}\index{parallel lines} if they meet in $\partial \mathbb{H}$ but not in $\mathbb{H}$,
+		\item \emph{ultraparallel}\index{ultraparallel lines} if they do not meed in $\mathbb{H} \cup \partial \mathbb{H}$,
+		\item \emph{intersecting}\index{intersecting lines} if they meet in $\mathbb{H}$.
+	\end{itemize}
+\end{definition}
+
+This model of geometry proves why the parallel postulate fails.
+
+\begin{definition}
+	A \emph{hyperbolic triangle}\index{hyperbolic triangle} is the region bounded by three hyperbolic lines, no two of which are ultraparallel. Vertices lying at infinity $(\partial \mathbb{H})$ are called \emph{ideal}\index{ideal vertices} vertices.
+
+	An \emph{ideal triangle}\index{ideal triangle} has all of its vertices ideal.
+\end{definition}
+
+%lecture 22
+
+\subsection{Hyperbolic Triangles}
+\label{sub:hyperbolic_triangles}
+
+We consider hyperbolic triangles with hyperbolic side lengths $A, B, C$ and opposite angles $\alpha, \beta, \gamma$. Note that
+\[
+	g_\mathrm{hyp} = \frac{4(\diff u^2 + \diff v^2)}{(1 - u^2 - v^2)^2},
+\]
+so $E = G, F = 0$, hence this is conformal to the flat metric. Therefore angles computed with respect to $g_\mathrm{hyp}$ agree with Euclidean angles.
+
+\begin{theorem}[Hyperbolic cosine formula]
+	\[
+	\cosh C = \cosh A \cosh B - \sinh A \sinh B \cos \gamma.
+	\]
+\end{theorem}
+\begin{proofbox}
+	To simplify, by an isometry, put the vertex with angle $\gamma$ at $0 \in D$, and put the vertex with angle $\beta$ on $\mathbb{R}^+ \cap D$. Then
+	\[
+		A = d_\mathrm{hyp}(0,a) = 2 \tanh^{-1}(a).
+	\]
+	Thus we get
+	\[
+	a = \tanh \frac{A}{2}.
+	\]
+	Similarly, $b = e^{i \gamma}\tanh( \frac{B}{2})$, and
+	\[
+	\biggl| \frac{b - a}{1 - \bar a b} \biggr| = \tanh \frac{C}{2}.
+	\] 
+	Recall that if $t = \tanh(\frac{\lambda}{2})$, then
+	\[
+	\cosh(\lambda) = \frac{1+t^2}{1-t^2}, \qquad \sinh(\lambda) = \frac{2t}{1 - t^2}.
+	\]
+	Hence we get
+	\begin{align*}
+		\cosh(A) &= \frac{1 + |a|^2}{1 - |a|^2}, \qquad \qquad \qquad \qquad \cosh(B) = \frac{1+|b|^2}{1-|b|^2},\\
+		\cosh(C) &= \frac{|1 - \bar a b|^2 + |b - a|^2}{|1 - \bar a b|^2 - |b - a|^2} = \frac{(1+|a|^2)(1+|b|^2) - 2(\bar a b - a \bar b)}{(1 - |a|^2)(1 - |b|^2)}.
+	\end{align*}
+	But as $a \in \mathbb{R}$, and $b + \bar b = 2 \Re(b) = 2 b \cos \gamma$, we can use the above to check that
+	\[
+	\cosh C = \cosh A \cosh B - \sinh A \sinh B \cos \gamma,
+	\]
+	as desired.
+\end{proofbox}
+
+\begin{remark}
+	\begin{enumerate}
+		\item[]
+		\item If $A, B$ and $C$ are small, then $\sinh A \approx A$ and $\cosh A \approx 1 + \frac{A^2}{2}$, so the formula reduces to
+			\[
+			C^2 = A^2 + B^2 - 2AB \cos \gamma,
+			\]
+			up to higher order terms. This is the usual Euclidean cosine formula. Recall that dilating a surface in $\mathbb{R}^3$ rescales in the curvature. Hence ``zooming in'' to any point on an abstract Riemannian metric, results in the surface looks closer and closer to being flat.
+		\item As $\cos \gamma \ge -1$, the formula gives
+			\[
+			\cosh C \le \cosh A \cosh B + \sinh A \sinh B = \cosh (A + B).
+			\]
+			Hence $C \le A + B$, which is the triangle inequality. Therefore the hyperbolic cosine formula is a refinement of the triangle inequality.
+	\end{enumerate}
+\end{remark}
+
+Let $T \subset \mathbb{H}$ be a hyperbolic triangle, with internal angles $\alpha, \beta, \gamma$. Then the area of the triangle is
+\[
+	\area_\mathrm{hyp}(T) = \pi - \alpha - \beta - \gamma.
+\]
+This is a version of Gauss-Bonnet. Moreover we allow $T$ to have ideal vertices.
+
+\begin{proofbox}%figure from lectures is important!!!!!
+	We can work in any model, so we take $\mathbb{H} = \mathcal{H}$.
+
+	First we compute the area of the triangle, assuming $\gamma = 0$, so one of the vertices is at $\infty$. Using an isometry, we can assume that the two vertices are on the unit circle. Then
+	\[
+		\area(T) = \int_{\cos(\pi-\alpha)}^{\cos \beta} \diff x \int_{\sqrt{1-x^2}}^{\infty} \frac{\diff y}{y^2} = \int_{\cos(\pi - \alpha)}^{\cos \beta} \frac{\diff x}{\sqrt{1-x^2}} = \int_{\pi - \alpha}^{\beta} - \diff \theta = \pi - \alpha - \beta.
+	\]
+	For the general case, we can always arrange for one of the sides of the triangle to be a vertical line. See the picture (that I don't have at the moment):
+	\[
+	\area(T) = \pi - \alpha - (\beta + \gamma) - \pi - (\pi - \delta - \pi + \gamma) = \pi - \alpha - \beta - \gamma.
+	\]
+\end{proofbox}
+
+\begin{corollary}
+	The area of a hyperbolic $n$-gon (with sides being arcs of hyperbolic lines) is given the formula
+	\[
+		(n-2)\pi - (\alpha_1 + \cdots + \alpha_n),
+	\]
+	where $\alpha_1, \ldots, \alpha_n$ are the internal angles.
+\end{corollary}
+
+\begin{proofbox}
+	Divide the $n$-gon into $n$ triangles. The $n$ triangles have interior angles adding up to $2 \pi + \sum \alpha_i$. Subtracting from $n\pi$ gives the required answer.
+\end{proofbox}
+
+\begin{lemma}
+	If $g \ge 2$, there is a regular $4g$-gon in $\mathbb{H}$ with internal angles $\pi/2g$.
+\end{lemma}
+
+\begin{proofbox}
+	Take an ideal $4g$-gon in $D$ with all vertices of $\partial D$ being the $4g$-roots of unity. Hence all vertices have zero angle.
+
+	Sliding in all vertices radially inwards, the area of the figure is
+	\[
+		A(r) = (4g - 2)\pi - 4g \alpha(r).
+	\]
+	As $A(r) \to 0$ as $r \to 0$, and $A(1) = (4g-2)\pi$, by the intermediate value theorem, there exists $r_0$ for which $4\pi g - 4 \pi = A(r_0)$. Hence $a(r_0) = \pi/2g$.
+\end{proofbox}
+
+We will use this lemma to construct Riemannian metric with $\kappa = -1$ on surfaces of genus greater than or equal to $2$.
+
+%lecture 23
+
+\begin{theorem}
+	For each $g \ge 2$, there exists an abstract Riemannian metric on the compact orientable surface of genus $g$ with curvature $\kappa = -1$.
+\end{theorem}
+
+Recall that the genus $g$ counts the number of holes, e.g. $S^{2}$ has genus $0$ and $T^{2}$ has genus $1$.
+
+\begin{proofbox}
+	We will only provide an outline of the key points. Recall that the two holed torus is homeomorphic to an octagon (with appropriately labelled sides).
+
+	Analogously, a $4g$-gon with sides labelled 
+	\[
+	a_1, b_1, a_1^{-1}, b_1^{-1}, a_2, b_2, a_2^{-1}, b_2^{-1}, \cdots, a_g, b_g, a_g^{-1}, b_g^{-1},
+	\]
+	gives (after gluing) an orientable surface $\Sigma_g$ of genus $g$, which we will prove.
+
+	Let us say that a \emph{flag}\index{flag} comprises:
+	\begin{enumerate}[(i)]%see picture
+		\item an orientable hyperbolic line,
+		\item a point on that line,
+		\item a choice of side to the line.
+	\end{enumerate}
+	Given two such flags, there is a hyperbolic isometry taking one to the other: we can swap sides using inversions if needed.
+
+	Now consider the regular $4g$-gon from the previous lemma with internal angles $\pi/2g$. For each paired set of two edges, there is a hyperbolic isometry taking one to the other (respecting orientation) and taking the interior of the polygon at $e_1$ to the exterior of its paired edge $e_2$.
+
+	Now we will give an atlas for $\Sigma_g$ as follows:
+	\begin{itemize}
+		\item If $p$ is in the interior of the polygon, we take a small disk contained in the interior of $P$, and include it into $D \subset \mathbb{R}^2$.
+		\item If $p$ is on an edge, but not a vertex, say $p \in e_1$ and $\hat p \in e_2$, with $\gamma \tilde p = p$. Then as $\gamma$ exchanges sides,
+			\[
+				[p] = [\hat p] \in \Sigma_g.
+			\]
+			Define $U \cup \hat U \to D$ to be the inclusion in $D$, and $\gamma$ on $\hat U$. These descend to maps on $[U], [\hat U]$, which agree on $[U \cap \hat U]$.
+		\item In our gluing pattern, all $4g$ vertices are identified to one point on $\Sigma_g$, and hence we will find a chart there. The condition that the internal angles sum to $2\pi$ means that we have a neighbourhood of $[v] \in \Sigma_g$ that defines a chart at $[v] \in \Sigma_g$.
+	\end{itemize}
+	All charts can be obtained either from inclusion into $D$ or the composition of inclusion and some hyperbolic isometry, hence we have an atlas that defines a Riemannian metric on $\Sigma_g$ that is locally isometric to $\mathbb{H}$.
+\end{proofbox}
+
+\begin{remark}
+	Really what is going is that
+	\[
+	\Sigma_g = \mathbb{H} / \Gamma,
+	\]
+	where $\Gamma = \langle \gamma_1, \ldots, \gamma_{2g} \rangle$ is the group of isometries that take one side to its paired side. Compare this to 
+	\[
+	T^2 = \mathbb{R}^2 / \mathbb{Z}^2.
+	\]
+\end{remark}
+
+Hyperbolic and right-angled hexagons are also very useful for similar constructions.
+
+\begin{lemma}
+	For each $l_\alpha, l_\beta, l_\gamma$ positive numbers, there exists a right-angled hexagon with side lengths
+	\[
+	l_\alpha, x, l_\beta, y, l_\gamma, z,
+	\]
+	in cyclic order.
+\end{lemma}
+
+\begin{proofbox}
+	Take a pair of ultraparallel lines. Then there exists a unique common perpendicular geodesic.
+
+	Given $l_\alpha$ and $l_\beta$ positive, we shoot off new geodesics $\sigma$ and $\hat \sigma$, orthogonal to the original and having travelled $l_\alpha$ and $l_\beta$ from a common perpendicular.
+
+	In fact, given $t > 0$, there exists an original ultrapallel pair of distance exactly $t$ apart.
+
+	Then there exists a threshold value $t_0$, by continuity, when the new geodesics first become parallel.
+
+	Now consider $t \in (t_0, \infty)$. Then $\sigma, \hat \sigma$ are ultrapallel so they have a unique common perpendicular. As we increase $t$, the length of the common perpendicular increases monotonically, so there exists a value of $t > t_0$ such that the new common perpendicular has length $l_\gamma$. This is our required right-angled hexagon.
+\end{proofbox}
+
+Gluing two identical right-angled hexagons gives rise to a pair of pants, as the right-angles glue nicely to form closed boundaries. Hence we can find a three-parameter family of Riemannian metrics on the pair of pants.
+
+In fact we can classify all metrics of curvature $\kappa = -1$, which forms the Teichm\"{u}ller space, which is a moduli space.
+
+%lecture 24
+
+\newpage
+
+\section{Further Topics}
+\label{sec:further_topics}
+
+\subsection{The Gauss-Bonnet theorem}
+\label{sub:the_gauss_bonnet_theorem}
+
+Recall the Gauss-Bonnet theorem:
+\begin{enumerate}[(i)]
+	\item In a spherical triangle $T$ with internal angles $\alpha, \beta, \gamma$, we saw that the area is
+		\[
+			\area_{S^2}(T) = \alpha + \beta + \gamma - \pi.
+		\]
+	\item However for a hyperbolic triangle, we have area $\pi - \alpha - \beta - \gamma$.
+	\item We also saw that for compact surfaces $\Sigma \subset \mathbb{R}^3$,
+		\[
+		\int_\sigma \kappa \diff A = 2 \pi \chi(\sigma).
+		\]
+\end{enumerate}
+
+\begin{theorem}[Local Gauss-Bonnet]
+	Let $\Sigma$ be an abstract smooth surface with Riemannian metric $g$. Take a geodesic polygon $R$ on $\Sigma$, i.e. it is homeomorphic to the disc and its boundary is decomposed into finitely many geodesic arcs. Then,
+	\[
+		\int_R \kappa \diff A =  \sum_{i=1}^n \alpha_i - (n-2)\pi,
+	\]
+	where $n$ is the number of arcs, and the $\alpha_i$ are the internal angles of the polygon.
+\end{theorem}
+
+We also have another version:
+\begin{theorem}[Global Gauss-Bonnet]
+	If $\Sigma$ is a compact smooth surface with Riemannian metric $g$, then
+	\[
+	\int_\Sigma \kappa \diff A = 2 \pi \chi(\Sigma).
+	\]
+\end{theorem}
+
+\begin{remark}
+	\begin{enumerate}
+		\item[]
+		\item $\kappa$ and $\diff A$ can be defined just using $g$.
+		\item For our hyperbolic surfaces obtained by identifying the edges of a regular $4g$-gon with angles $\pi/2g$,
+			\[
+				\int_\Sigma 1 \diff A = \area (P) = (4g - 2)\pi = \sum_{i=1}^{4g} \frac{\pi}{2g} = (4g - 4)\pi = 2(2g - 2)\pi.
+			\]
+			Hence $\chi(\Sigma_g) = 2-2g$ and $\kappa = -1$.
+		\item If $\Sigma$ is a flat surface, so $\kappa = 0$, and $\gamma$ is a closed geodesic, i.e. $\gamma : \mathbb{R} \to \Sigma$, such that there is $T > 0$ with $\gamma(t + T) = \gamma(t)$ for all $t$, then $\gamma$ cannot bound a disc on the surface.
+
+			Indeed, if we had such $\gamma$, then the interior region is a geodesic polygon with internal angles $\pi$, and the local Gauss-Bonnet gives
+			\[
+				0 = \int_R \kappa \diff A = \sum_{i=1}^n \alpha_i = (n-2)\pi = 2 \pi,
+			\]
+			which is absurd.
+	\end{enumerate}
+\end{remark}
+
+\subsection{Flat Metrics}
+\label{sub:flat_metrics}
+
+One question is whether we can understand all flat metrics on $T^2$. Indeed, the regular metric induced by a square works, but so does any metric induced by a unit parallelogram.
+
+The key to get a flat metric on $T^2$ was an atlas whose transition functions were isometries. So any parallelogram $Q \subset \mathbb{R}^2$ delivers a flat metric $g_Q$ on $T^2$:
+\[
+	(T^2, g_Q) = \mathbb{R}^2/(\mathbb{Z} V_1 \oplus \mathbb{Z} V_2).
+\]
+
+We make the observation that
+\[
+	\area_{g_Q}(T) = \area(Q).
+\]
+Since $Q_1$ and $Q_2$ can have different areas, the metrics $g_{Q_1}$ and $g_{Q_2}$ are not isometric. Now maybe its possible that the parallelograms with same area give isometric metrics. However, this is false.%include diagram
+
+Consider $Q = [0, 1]^2$ and $\hat Q = [0, 10] \times [0, 1/10]$. Then it these cannot be isometric, as in $Q$ the shortest closed geodesic has length $1$, but the shortest closed geodesic in $\hat Q$ has length $1/10$.
+
+Now instead consider flat metrics up to dilations. Under this assumption, given $Q$, we can put vertices at $0 \in \mathbb{R}^2$, $1 \in \mathbb{R}^2$ and $\tau \in \mathcal{H}$.
+
+This defines a map
+\[
+	\mathcal{H} \to \{\text{flat metrics on } T^2 \text{ up to dilation}\}.
+\]
+But diffeomorphisms act on the set of flat metrics. Given metric $g$ and $f$ a diffeomorphisms on $T^2$, we can pull-back $g$ by $f$:
+\[
+	Df|_p : T_p \Sigma \to T_{f(p)}\Sigma.
+\]
+Then $f^{*}g$ is given by
+\[
+\langle v, w\rangle_{f^{*}g} = \langle Df|_p(v), Df|_p(w)\rangle_g,
+\]
+for $v, w \in T_p \Sigma$. Hence $f$ provides an isometry between $(\Sigma, f^{*}g)$ and $(\Sigma, g)$.
+
+Now $\mathsf{SL}(2, \mathbb{Z})$ acts on $T^2$ by diffeomorphics: it acts on $\mathbb{R}^2$ and preserves the lattice $\mathbb{Z}^2$. Hence these matrices are also acting on $\mathbb{R}^2/\mathbb{Z}^2$.
+
+Hence $\mathsf{SL}(2, \mathbb{Z})$ also acts on $\mathcal{H}$ by M\"{o}bius maps (as isometries of $g_\mathrm{hyp})$.
+
+\begin{theorem}
+	The map
+	\[
+		\mathcal{H} \to \{\text{flat metrics on } T^2 \text{ up to dilation}\}
+	\]
+	descends to a map
+	\[
+		\mathcal{H} / \mathsf{SL}(2, \mathbb{Z}) \to \{\text{flat metrics on } T^2 \text{ up to dilations and diffeomorphisms}\}
+	\]
+	which is a bijection. We say that $\mathcal{H}/\mathsf{SL}(2, \mathbb{Z})$ is the \emph{moduli space of flat metrics} of $I^2$.
+\end{theorem}
+
 
 \newpage
 

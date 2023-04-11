@@ -1502,7 +1502,142 @@ From Wilk's, the asymptotic distribution of these statistic is $\chi_d^2$ with
 	d = \dim (\Theta_1) - \dim(\Theta_0) = (rc - 1) - [(r-1) + (c-1)] = (r-1)(c-1).
 \]
 
+%lecture 12
+
+\subsection{Testing Independence in Contingency Tables}
+\label{sub:testing_independence_in_contingency_tables}
+
+Recall that $N_{ij}$ is the number of samples of type $(i, j)$, and we have $(N_{ij}) \sim \mathrm{Multinomial}(n, (p_{ij}))$. We have hypotheses
+\begin{align*}
+	H_0 &: p_{ij} = p_{i+} \times p_{+j},\\
+	H_1 &: (p_{ij}) \text{ unconstrained}.
+\end{align*}
+We found that $2 \log \Lambda$ has asymptotic $\chi^2_{(r-1)(c-1)}$ distribution.
+
+There are several limitation of the $\chi^2$ independence test:
+\begin{enumerate}
+	\item The $\chi^2$ approximation can be bad when we have large tables. As a rule of thumb, we need $N_{ij} \ge 5$ for all $i, j$.
+\end{enumerate}
+
+The solution is through exact testing. Under $H_0$, the margins of $(N_{i+}), (N_{+j})$ are sufficient statistics for $p$. Hence two tables with the same margins are equally likely under $H_0$.
+
+Na exact test contrasts the test statistic observed $2 \log \Lambda(N)$, with the distribution of the set of tables with the same margins at $N$. This gives a test of exact size $\alpha$.
+
+\begin{enumerate}[resume]
+	\item $2 \log \Lambda$ can detect deviations from $H_0$ in any direction. This gives a low power test, especially when $r, c$ are large.
+\end{enumerate}
+
+Solutions to these problems are as follows:
+\begin{enumerate}
+	\item We can define a parametric alternative $H_1$ with fewer degrees of freedom.
+	\item We can lump together categories in the table.
+\end{enumerate}
+
+\subsection{Tests of Homogeneity}
+\label{sub:tests_of_homogeneity}
+
+Instead of assuming $\sum_{i,j} N_{ij}$ is fixed, we instead assume the row totals are fixed.
+
+\begin{exbox}
+	Consider 150 patients, split into groups of 50 for a placebo, half-dose and full-dose trials.
+
+	We record whether each patient improved, showed no difference, or got worse. Now in this case the row totals are fixed.
+\end{exbox}
+
+The null hypothesis in the homogeneity test is that the probability of each outcome is the same in each treatment group. Our model is
+\[
+	(N_{i1}, \ldots, N_{ic}) \sim \mathrm{Multinomial}(n_i; p_{i1},\ldots,p_{ic}),
+\]
+independent for $i = 1, \ldots, r$, and with $n_i$ fixed. Then the parameters satisfy $\sum_j p_{ij} = 1$, for all $i$. The hypotheses are now
+\begin{align*}
+	H_0 &: p_{1j} = \cdots = p_{rj} \forall j,\\
+	H_1 &: (p_{i1},\ldots, p_{ic}) \text{ is a probability distribution } \forall i.
+\end{align*}
+The likelihood is
+\[
+L(p) = \prod_{i=1}^{r}\frac{n_{i+}!}{N_{i1}!\cdots N_{ic}!} p_{i1}^{N_{i1}}\cdots p_{ic}^{N_{ic}},
+\]
+and hence
+\[
+	\ell(p) = \text{const} + \sum_{i,j} N_{ij}\log p_{ij}.
+\].
+To find $2 \log \Lambda$, we need to maximize $\ell(p)$ over $H_0, H_1$. Over $H_1$, we can use Lagrange multipliers to find the mle is $\hat p_{ij} = \frac{N_{ij}}{n_{i+}}$.
+
+For $H_0$, let $p_j = p_{1j} = \cdots = p_{rj}$. Then
+\[
+	\ell(p) = \text{const} + \sum_{j=1}^{c} N_{+j}\log p_j.
+\]
+Hence the mle is $\hat p_{j} = \frac{N_{+j}}{n_{++}}$, where $n_{++} = \sum_i n_{i+}$. Thus,
+\[
+2\log \Lambda = 2 \sum_{i,j} N_{ij} \log \biggl( \frac{N_{ij}}{n_{i+} N_{+j}/n_{++}} \biggr).
+\]
+This is exactly the same statistic as $2 \log \Lambda$ for the independence test. Let $o_{ij} = N_{ij}$, $e_{ij} = n_{i+} \hat p_{j} = n_{i+} \frac{N_{+j}}{n_{++}}$. Then
+\[
+2 \log \Lambda = 2 \sum_{i,j} o_{ij} \log \biggl( \frac{o_{ij}}{e_{ij}} \biggr) \approx \sum_{i,j} =\frac{(o_{ij} - e_{ij})^2}{e_{ij}}.
+\]
+Hence we also have the same Pearson's statistic for the independence test.
+
+Now from Wilk's, $2 \log \Lambda$ is approximately $\chi^2_d$, where
+\[
+d = \dim(\Theta_1) - \dim(\Theta_0) = (c-1)r - (c-1) = (r-1)(c-1).
+\]
+Hence the asymptotic distribution of $2 \log \Lambda$ is the same as in the independence test.
+
+Hence testing independence or homogeneity with size $\alpha$ always has the same conclusion.
+
+\subsection{Relationship between Tests and Confidence Sets}
+\label{sub:relationship_between_tests_and_confidence_sets}
+
+Define the \emph{acceptance region}\index{acceptance region} $A$ of a test to be the complement of the critical region. Let $X \sim f_x(:\mid \theta)$, for some $\theta \in \Theta$.
+
+\begin{theorem}
+	\begin{enumerate}[\normalfont1.]
+		\item[]
+		\item Suppose that for each $\theta_0 \in \Theta$, there is a test of $H_0 : \theta = \theta_0$ of size $\alpha$ with acceptance region $A(\theta_0)$. Then the set
+			\[
+				I(x) = \{ \theta \mid x \in A(\theta)\}
+			\]
+			is a $100 \cdot (1-\alpha)$\% confidence set.
+		\item Suppose $I(X)$ is a $100\cdot(1-\alpha)$\% confidence set for $\theta$. Then,
+			\[
+				A(\theta_0) = \{x \mid \theta_0 \in I(x)\}
+			\]
+			is the acceptance region of a size $\alpha$ test for $H_0 : \theta = \theta_0$.
+	\end{enumerate}
+\end{theorem}
+
+\begin{proofbox}
+	In each part,
+	\[
+	\theta_0 \in I(x) \iff x \in A(\theta_0).
+	\]
+	For part 1, we have
+	\[
+	\mathbb{P}_{\theta_0}(I(x) \ni \theta_0) = \mathbb{P}_{\theta_0}(x \in A(\theta_0)) = 1-\alpha.
+	\]
+	For part 2, we have
+	\[
+	\mathbb{P}_{\theta_0}(x \notin A(\theta_0)) = \mathbb{P}_{\theta_0} (I(x) \not\owns \theta_0) = \alpha.
+	\]
+\end{proofbox}
+
+\begin{exbox}
+	Suppose $X_1, \ldots, X_n \sim N(\mu, \sigma_0^2)$, with $\sigma_0^2$ known. Then
+	\[
+	I(x) = \biggl( \bar x \pm \frac{z_{\alpha/2}\sigma_0}{\sqrt n} \biggr)
+	\]
+	is a confidence interval for $\mu$. Hence this is the acceptance region of a size $\alpha$ test for $H_0 : \mu = \mu_0$, so the critical region is
+	\[
+	\biggl| \sqrt n \frac{(\mu_0 - \bar x)}{\sigma_0} \biggr| > z_{\alpha/2}.
+	\]
+\end{exbox}
+
 %lecture 13
+
+\newpage
+
+\section{Models}
+\label{sec:models}
 
 Recall: if $X$ is a random vector,
 \[
@@ -1743,16 +1878,208 @@ S_{xx} = \sum_{i = 1}^{n} (x_i - \bar x)^2.
 	\]
 \end{proofbox}
 
+%lecture 14
+
+\subsection{The Linear Model}
+\label{sub:the_linear_model}
+
+We look at a way of modelling and predicting `linear' relationships. We start with data, which are pairs $(x_1, Y_1), \ldots, (x_n, Y_n)$. Here,
+\begin{itemize}
+	\item $Y_i \in \mathbb{R}$ are the `responses', which are random.
+	\item $x_i \in \mathbb{R}^{p}$ are the `predictors', which are fixed.
+\end{itemize}
+
+\begin{exbox}
+	We can let:
+	\begin{itemize}
+		\item $Y_i$ be the number of insurance claims for client $i$ in 2022, and 
+		\item $x_i$ be the vector including the clients age, number of claims in 2021, number of years with a driver's license, and more predictors.
+	\end{itemize}
+\end{exbox}
+
+In a linear model, we assume that
+\[
+Y_i = \alpha + \beta_1 x_{i1} + \beta_2 x_{i2} + \cdots + \beta_p x_{ip} + \eps_i,
+\]
+where 
+\begin{itemize}
+	\item $\alpha$ is an intercept,
+	\item $\beta_1, \ldots, \beta_p$ are the coefficients,
+	\item $\eps_1, \ldots, \eps_n$ are the random noise variables.
+\end{itemize}
+
+\begin{remark}
+	\begin{enumerate}
+		\item[]
+		\item We usually remove the intercept by including a dummy predictor which is equal to $1$ for all $i$, i.e. $x_{i1} = 1$.
+		\item We can also model non-linear relationships between $Y_i$ and $x_i$ using a linear model, e.g. $x_i = (\text{age}, \text{age}^2, \log(\text{age}))$.
+		\item $\beta_j$ is the effect on $Y_i$ of increasing $x_{ij}$ by a unit, whilst keeping all other predictors constant.
+	\end{enumerate}
+\end{remark}
+
+Estimates of $\beta$ should not be interpreted causally, unless we have a randomized experiment.
+
+We also have a matrix formulation of the above idea. We can introduce matrices
+\[
+Y =
+\begin{pmatrix}
+	Y_1\\\vdots\\Y_n
+\end{pmatrix}
+,\qquad
+X=
+\begin{pmatrix}
+	x_{11}&x_{12}&\cdots&x_{1p}\\\vdots&\vdots&\ddots&\vdots\\x_{n1}&x_{n2}&\cdots&x_{np}
+\end{pmatrix}
+,
+\]
+\[
+\beta =
+\begin{pmatrix}
+	\beta_1\\\vdots\\\beta_p
+\end{pmatrix}
+,\qquad \eps=
+\begin{pmatrix}
+	\eps_1\\\vdots\\\eps_n
+\end{pmatrix}.
+\]
+Then the linear equations reduce to
+\[
+Y = X\beta + \eps.
+\]
+We have the following moment assumption on $\eps$:
+\begin{enumerate}
+	\item $\mathbb{E}[\eps] = 0$, so $\mathbb{E}[Y] = X\beta$.
+	\item $\Var \eps =\sigma^2I$, so $\Var(\eps_i) = \sigma^2$ for all $i$, and $\Cov(\eps_i, \eps_j) = 0$ for $i\neq j$.
+\end{enumerate}
+We will assume that $X \in \mathbb{R}^{n \times p}$ has full rank. In particular, $p \leq n$, so there are more samples than predictors.
+
+\subsubsection{Least Squares Estimator}
+\label{subsub:least_squares_estimator}
+
+We will take the estimator $\hat \beta$ that minimizes the residual sum of squares:
+\[
+S(\beta) = \|Y-X\beta\|^2 = \sum_{i=1}^{n}(Y_i-x_i^{T}\beta)^2.
+\]
+This is a quadratic (positive definite) polynomial in $\beta$ so $\hat \beta$ satisfies
+\[
+\nabla S(\beta)\biggl|_{\beta=\hat\beta} =0.
+\]
+This implies
+\[
+\frac{\partial S(\beta)}{\partial \beta_k}\biggr|_{\beta=\hat \beta}=-2 \sum_{i=1}^nx_{ik}\biggl(Y_i - \sum_{j=1}^{p}x_{ij}\hat\beta_j\biggr) = 0,
+\]
+for each $k = 1, \ldots, p$. In matrix form, this means
+\[
+X^{T}X\hat\beta=X^TY.
+\]
+As $X$ has rank $p$, the matrix $X^{T}X$ is invertible, so
+\[
+\hat \beta = (X^{T}X)^{-1}X^TY.
+\]
+This is linear in $Y$. Now note
+\begin{itemize}
+	\item The expectation is
+		\[
+		\mathbb{E}[\hat \beta] = \mathbb{E}[(X^{T}X)^{-1}X^{T}Y] = (X^{T}X)^{-1}X^T \mathbb{E}[Y] = (X^{T}X)^{-1}X^{T}X\beta = \beta,
+		\]
+		so $\hat\beta$ is unbiased.
+	\item The variance is
+		\begin{align*}
+			\Var(\hat\beta) &= \Var((X^{T}X)^{-1}X^{T}Y) = (X^{T}X)^{-1}X^{T}\Var(Y)X(X^{T}X)^{-1}\\
+					&=(X^{T}X)^{-1}X^{T}\sigma^2IX(X^{T}X)^{-1} = \sigma^2(X^{T}X)^{-1}.
+		\end{align*}
+\end{itemize}
+
+\begin{theorem}[Gauss-Markov]\index{Gauss-Markov theorem}
+	Let $\beta^{\ast} = CY$ be any linear estimator of $\beta$ which is unbiased. Then for any $t \in \mathbb{R}^{p}$,
+	\[
+	\Var(t^{T}\hat \beta)\le\Var(t^{T}\beta^{\ast}).
+	\]
+\end{theorem}
+
+We say $\hat \beta$ is the `best linear unbiased estimator' (BLUE).
+
+\begin{remark}
+	We can think of $ \in \mathbb{R}^{p}$ as the value of the predictors of a new sample. Then $t^{T}\hat \beta$, $t^{T}\beta^{\ast}$ are estimators of the mean response. These are both unbiased, so the mse is the variance of $t^{T}\hat \beta$, $t^{T}\beta^{\ast}$.
+
+	The theorem says that the variance is the `best' using the least squares estimator.
+\end{remark}
+
+\begin{proofbox}
+	We have
+	\[
+	\Var(t^{T}\beta^{\ast}) - \Var(t^{T}\hat \beta) = t^{T}(\Var \beta^{\ast}-\Var\hat\beta)t \ge 0,
+	\]
+	for all $t \in \mathbb{R}^{p}$, is equivalent to the matrix $\Var \beta^{\ast} - \Var \hat\beta$ being positive semi-definite. Recall that
+	\[
+	\beta^{\ast} = CY, \qquad \hat\beta = (X^{T}X)^{-1}X^{T}Y.
+	\]
+	Let $A = C-(X^{T}X)^{-1}X^{T}$. Then
+	\[
+	\mathbb{E}[AY] = \mathbb{E}[\beta^{\ast}] - \mathbb{E}[\hat\beta] = \beta - \beta = 0,
+	\]
+	so $\mathbb{E}[AY] = A \mathbb{E}[Y] = AX\beta = 0$ for all $\beta \in \mathbb{R}^{p}$, so $AX = 0$.
+
+	Then we get
+	\begin{align*}
+		\Var (\beta^{\ast}) &= \Var((A + (X^{T}X)^{-1}X^{T})Y) \\
+				  &= (A+(X^{T}X)^{-1}X^{T})\Var Y (A + (X^{T}X)^{-1}X^{T})^{T} \\
+				  &= \sigma^2(AA^{T} + (X^{T}X)^{-1} + AX(X^{T}X)^{-1} + (X^{T}X)^{-1}X^{T}A^{T}) \\
+				  &= \sigma^2 AA^{T} + \Var (\hat \beta)
+	\end{align*}
+	Hence indeed the difference is $\sigma^2 AA^{T}$, which is positive semi-definite.
+\end{proofbox}
+
+\subsubsection{Fitted Values and Residuals}
+\label{subsub:fitted_values_and_residuals}
+
+The fitted values are $\hat Y = X \hat \beta = X(X^{T}X)^{-1}X^{T}Y$. These are also linear in $Y$. The matrix $X(X^{T}X)^{-1}X^{T}$ is known as $P$, the `hat matrix'.
+
+The residuals are then $Y - \hat Y = (I-P)Y$.
+
+\begin{proposition}
+	$P$ is the orthogonal projection of $Y$ onto $\mathrm{col}(X)$.
+\end{proposition}
+
+\begin{proofbox}
+	$P$ is clearly symmetric. Also,
+	\[
+	P^2 = X(X^{T}X)^{-1}X^{T}X(X^{T}X)^{-1}X^{T} = P.
+	\]
+	Therefore $P$ is an orthogonal projection, onto $\mathrm{col}(P)$. Thus we need to show $\mathrm{col}(P) = \mathrm{col}(X)$.
+
+	Indeed, for any $a$, $Pa = X[(X^{T}X)^{-1}X^{T}a] \in \mathrm{col}(X)$. Also, if $b = Xc$ is a vector in $\mathrm{col}(X)$, then
+	\[
+		b = Xc = X(X^{T}X)^{-1}X^{T}Xc = Pb \in \mathrm{col}(P).
+	\]
+\end{proofbox}
+
+\begin{corollary}
+	The fitted values are the projection of $Y$ onto $\mathrm{col}(X)$. The residuals are the projection of $Y$ onto $\mathrm{col}(X)^{\perp}$.
+\end{corollary}
+
+\subsubsection{Normal Assumptions}
+\label{subsub:normal_assumptions}
+
+We assume in addition to $\mathbb{E}[\eps] = 0$, and $\Var \eps = \sigma^2 I$, that $\eps$ is MVN, i.e.
+\[
+\eps \sim N(0, \sigma^2 I).
+\]
+Here $\sigma^2$ is usually unknown, so the parameters of the model are $(\beta, \sigma^2)$. We will see that the mle of $\beta$ is the least squares estimator.
+
 %lecture 15
 
-Consider a linear model $Y = X \beta + \eps$, where
-\[
-	\hat \beta = \mathrm{argmin}_{\beta} \|Y = X \beta\|^2 = (X^{T}X)^{-1}X^{T}Y.
-\]
-Then $P = X(X^{T}X)^{-1}X^{T}$ is an orthogonal projection onto the column space of $X$, and also
-\[
-\hat Y = X \hat \beta = PY, \qquad Y - \hat Y = (I - P)Y.
-\]
+%Consider a linear model $Y = X \beta + \eps$, where
+%\[
+%	\hat \beta = \mathrm{argmin}_{\beta} \|Y = X \beta\|^2 = (X^{T}X)^{-1}X^{T}Y.
+%\]
+%Then $P = X(X^{T}X)^{-1}X^{T}$ is an orthogonal projection onto the column space of $X$, and also
+%\[
+%\hat Y = X \hat \beta = PY, \qquad Y - \hat Y = (I - P)Y.
+%\]
+
+Recall the following theorem:
+
 \begin{theorem}
 	Let $\eps \sim N(0, \sigma^2 I)$. Then,
 	\begin{enumerate}[\normalfont1.]

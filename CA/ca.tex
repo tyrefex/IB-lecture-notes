@@ -1308,6 +1308,797 @@ We now look at the local behaviour around each of these kinds of singularities.
 	An isolated singularity at $z = a$ is essential if and only if $|f|$ does not approach a limit in $\mathbb{R} \cup \{\infty\}$ as $z \to a$.
 \end{corollary}
 
+In fact, essential singularities are even more interesting.
+
+\begin{theorem}[Casorati-Weierstrass]
+	Consider $f : D(a, R)^{*} \to \mathbb{C}$ with an essential singularity at $z = a$. Then $f$ has a dense image on any neighbourhood of $a$. That is,
+	\[
+		\forall w \in \mathbb{C},\, \forall \eps > 0, \, \forall \delta > 0, \exists z \in D(a, \delta)^{*} \text{ with } |f(z)-w| < \eps.
+	\]
+\end{theorem}
+
+This is proven in the second example sheet. In fact, we can prove the stronger (and much more difficult) result:
+
+\begin{theorem}[Great Picard Theorem]
+	If $z = a$ is an essential singularity of $f$, then there exists $b \in \mathbb{C}$ such that for all $\eps > 0$,
+	\[
+		\mathbb{C} \setminus \{b\} \subseteq f(D(a, \eps)^{*}).
+	\]
+\end{theorem}
+
+For example, $e^{1/z}$ has an essential singularity at $0$, and takes every non-zero value in every neighbourhood of $0$.
+
+\begin{remark}
+	Using the Riemann sphere perspective, if $f : D(a, R)^{*} \to \mathbb{C}$ has a pole at $z = a$, we can view $f$ as a continuous map $f : D(a, R) \to \mathbb{C}_\infty$ with $f(a) = \infty$.
+
+	Then $f$ is holomorphic at $a$ in the $\mathbb{C}_\infty$ sense since $\frac{1}{f}$ is holomorphic on a neighbourhood of $a$, with $a$ zero of the same order as the pole of $f$.
+\end{remark}
+
+\begin{definition}
+	Suppose $D$ is a domain. A function $f$ is \emph{meromorphic}\index{meromorphic} on $D$ if $f : D \setminus S \to \mathbb{C}$ is holomorphic, where $S$ is a set of isolated singularities for $f$ which are removable or are poles.
+\end{definition}
+
+\begin{definition}
+	Let $f : D(a, R)^* \to \mathbb{C}$ be holomorphic with Laurent expansion
+	\[
+		f(z) = \sum_{n=-\infty}^\infty c_n(z-a)^n.
+	\]
+	The \emph{residue}\index{residue} of $f$ at $z = a$ is
+	\[
+		\Res_{z=a} f(z) = c_{-1} \in \mathbb{C}.
+	\]
+	The \emph{principal part}\index{principal part} of $f$ at $z = a$ is
+	\[
+		\sum_{n=-\infty}^{-1} c_n(z-a)^n.
+	\]
+\end{definition}
+
+\begin{proposition}
+	Let $\gamma$ be a closed curve in $D(a, R)^*$. Then,
+	\[
+		\int_\gamma f(z) \diff z = 2 \pi i I(\gamma; a) \Res_{z=a} f(z).
+	\]
+\end{proposition}
+
+\begin{proofbox}
+	Using the uniform convergence of the Laurent expansion of $f$, we have that
+	\begin{align*}
+		\int_\gamma f(z) \diff z &= \sum_{n=-\infty}^\infty c_n \Biggl[ \int_\gamma (z-a)^n \diff z \Biggr].
+	\end{align*}
+	Since we also have
+	\[
+	\int_\gamma (z-a)^n \diff z =
+	\begin{cases}
+		0 & n \neq -1,\\
+		2\pi i I(\gamma; a) & n = -1,
+	\end{cases}
+	\]
+	this completes the proof.
+\end{proofbox}
+
+If $f$ is meromorphic on a domain $D$, and $z = a$ is a pole of $f$ in $D$, then its principal part at $z = a$ is of the form
+\[
+	\frac{c_{-k}}{(z-a)^k} + \frac{c_{-k+1}}{(z-a)^{k-1}} + \cdots + \frac{c_{-1}}{z-a},
+\]
+a polynomial in $(z-a)^{-1}$, and hence it can be written as $p(z) (z-a)^{-k}$, for some polynomial $p$. So the principal part of $f$ at $z = a$ is holomorphic on $\mathbb{C} \setminus \{a\}$.
+
+More generally, if $f$ is meromorphic on $D$, and $\{a_1, \ldots, a_m\}$ are a subset of the poles of $f$ in $D$, with $p_i(z)$ the principal part of $f$ at $z = a_i$, then the function
+\[
+	g(z) = f(z) - \sum_{i=1}^m p_i(z)
+\]
+is meromorphic on $D$, with removable singularities at $a_1, \ldots, a_m$.
+
+\begin{theorem}[Residue theorem]\index{residue theorem}
+	Let $f$ be meromorphic on a domain $D$, and $g$ a closed curve which is homologous to zero in $D$. Suppose $\gamma$ does not contain any pole of $f$, and f has only finitely many poles in $D$ with non-zero winding number, say $\{a_1, \ldots, a_m\}$. Then,
+	\[
+		\int_\gamma f(z) \mathrm dz = 2 \pi i \sum_{i=1}^m I(\gamma; a_i) \Res_{z=a_i} f(z).
+	\]
+\end{theorem}
+
+\begin{proofbox}
+	Let $p_i$ denote the principal part of $f$ at $z = a_i$, and write $g = f - \sum p_i$.
+
+	By Cauchy's theorem, we have
+	\[
+		\int_\gamma g = 0, \implies \int_\gamma f = \sum_{i=1}^m \int_\gamma p_i.
+	\]
+	Each $p_i$ is holomorphic on $\mathbb{C} \setminus \{a_i\}$ as we have shown, so by the previous proposition we have
+	\[
+		\int_\gamma p_i = 2 \pi i I(\gamma, a_i) \Res_{z=a_i} p_i(z).
+	\]
+	By definition, $\Res_{z=a_i} p_i(z) = \Res_{z=a_i} f(z)$, so
+	\[
+		\int_\gamma f = 2 \pi i \sum_{i=1}^m I(\gamma; a_i) \Res_{z=a_i} f(z).
+	\]
+\end{proofbox}
+
+\begin{remark}
+	\begin{enumerate}
+		\item[]
+		\item If $\gamma$ is homologous to $0$ in a domain $D$, then $\{z \in \mathbb{C} : I(\gamma; z) \neq 0\}$ is closed and bounded. Note that the winding number is a continuous function on $\mathbb{C} \setminus \gamma$, taking values in a discrete set. Hence
+			\[
+				\{z \in \mathbb{C} \setminus \gamma : I(\gamma; z) = 0\}
+			\]
+			is open, so the complement is closed. Since the poles are isolated, this closed and bounded set contains only finitely many of them.
+		\item If $f$ is holomorphic on $D$, then this is simply Cauchy's theorem.
+		\item If $f(z) = \frac{g(z)}{z-a}$ for holomorphic $g$, then $\Res_{z=a} f(z) = g(a)$. Hence the residue theorem implies Cauchy's integral formula.
+		\item We say that a closed curve $\gamma$ \emph{bounds a domain} $U$ if
+			\[
+			I(\gamma;z) =
+			\begin{cases}
+				1 & z \in U,\\
+				0 & z \notin U.
+			\end{cases}
+			\]
+			If $\gamma$ is a closed curve in a domain $D$ which bounds a domain $U$, and $f$ is holomorphic on $D$, then
+			\[
+			\int_\gamma f = 0,
+			\]
+			and for all $w \in U$,
+			\[
+			\int_\gamma \frac{f(z)}{z - w} \diff z = 2 \pi i f(w).
+			\]
+			If $f$ is meromorphic on $D$ with no poles on $\gamma$, then
+			\[
+				\int_\gamma f = 2 \pi i \sum_{w \text{ a pole}} \Res_{z=w} f(z).
+			\]
+	\end{enumerate}	
+\end{remark}
+
+From II Algebraic Topology, we can prove the following:
+\begin{theorem}[Jordan Curve Theorem]
+	Every simple closed continuous curve in the plane separates $\mathbb{C}$ into two connected components, one bounded and one unbounded.
+\end{theorem}
+
+This ensures all curves we are considering are indeed `nice'.
+
+Let us see how we can compute residues.
+\begin{enumerate}[(i)]
+	\item If $f$ has a simple pole at $z = a$, then the Laurent expansion at $a$ is
+		\[
+			f(z) = \frac{c_{-1}}{z-a} + c_0 + c_1(z-a) + c_2 (z_a)^2 + \cdots
+		\]
+		Hence we can find the residue as
+		\[
+			\Res_{z=a}(f(z)) = \lim_{z \to a}(z-a) f(z).
+		\]
+	\item If $f = \frac{g(z)}{h(z)}$, where $g$ is holomorphic and non-zero at $z = a$, and $h$ is holomorphic with a simple zero at $z = a$, then
+		\[
+		g(z) = g(a) + (z-a) \tilde g(z),
+		\]
+		and
+		\[
+		h(z) = h'(a) (z-a) \tilde h(z),
+		\]
+		where $\tilde h(a) = 1$ at $z = a$ and is holomorphic at $a$. Hence
+		\[
+		\frac{g(z)}{h(z)} = \frac{g(a)}{h'(a) (z-a)\tilde h(z)} + \frac{\tilde g(z)}{h'(a)\tilde h(z)}.
+		\]
+		The latter part is holomorphic at $a$, as $z = a$ is a simple pole of $h$. Hence applying part (i) to the first part, we see that
+		\[
+			\Res_{z=a}f(z) = \frac{g(a)}{h'(a)}.
+		\]
+	\item If $f(z) = \frac{g(z)}{(z-a)^{k}}$, where $g$ is holomorphic at $a$, then $\Res_{z=a} f(z)$ is the coefficient of $(z-a)^{k-1}$ in the expansion of $g$, i.e.
+		\[
+		\frac{g^{(k-1)}(a)}{(k-1)!}.
+		\]
+\end{enumerate}
+
+\begin{exbox}
+	\begin{enumerate}
+		\item Take $f(z) = \frac{1}{1 + z^2}$ at $z = i$. Then since
+		\[
+			(z-i) f(z) = \frac{1}{z + i},
+		\]
+		we have
+		\[
+			\Res_{z=i}f(z) = \frac{1}{2i}.
+		\]
+	\item If $f(z) = \frac{e^{z}}{z^2 + 1}$, then using fact (ii) we get
+		\[
+			\Res_{z=i} f(z) = \frac{e^{i}}{2i}.
+		\]
+	\end{enumerate}
+\end{exbox}
+
+Now we look at applying this to real integrals.
+
+\begin{exbox}
+	\begin{enumerate}
+		\item Consider the integral
+			\[
+			\int_0^\infty \frac{1}{1+x^{4}}\diff x.
+			\]
+			This integral has two properties: it is even, and also as $|x| \gg 1$, $| \frac{1}{1 + x^2}| \ll 1$.
+
+			We consider the integral around the semicircle centred at the origin with radius $R$, with diameter along the real axis and going into the upper half plane.%include diagram
+
+			Notice that $1 + x^{4}$ has four simple zeroes: $e^{\pi i/4}$, $e^{3 \pi i/4}$, $e^{5 \pi i/4}$ and $e^{7 \pi i/4}$. Hence the curve $\gamma_R$ has winding number $1$ around $e^{\pi i/4}$ and $e^{3 \pi i/4}$, and $0$ around the other two poles. Now
+			\[
+				\Res_{z = e^{\pi i/4}} \frac{1}{1 + z^{4}} = \frac{1}{4 z^3} \biggr|_{z = e^{\pi i/4}} = \frac{1}{4 e^{3 \pi i/4}}.
+			\]
+			Similarly,
+			\[
+				\Res_{z = e^{3 \pi i/4}} = \frac{1}{4 e^{\pi i/4}}.
+			\]
+			The integral can be broken up into two pieces:
+			\[
+				\int_{\gamma_R} \frac{1}{1 + z^{4}}\diff z = \int_{C_R} \frac{1}{1 + z^{4}}\diff z + \int_{-R}^{R} \frac{1}{1 + z^{4}}\diff z.
+			\]
+			Here $C_R$ is the semicircular arc. For the first integral, we can parametrise $z = Re^{i \theta}$ to get
+			\[
+			|I_1| = \Biggl| \int_0^\pi \frac{1}{1 + R^{4} e^{4 i \theta}} i R e^{i \theta} \diff \theta \Biggr| \le \frac{\pi R}{R^{4} - 1} \to 0,
+			\]
+			as $R \to \infty$. Hence
+			\[
+				\int_{-R}^{R} \frac{1}{1 + z^{4}} \diff z = \int_{\gamma_R} \frac{1}{1 + z^{4}}\diff z - \int_{C_R} \frac{1}{1 + z^{4}} \diff z \to 2 \pi i \biggl[ \frac{1}{4 e^{3 \pi i/4}} + \frac{1}{4 e^{\pi i/4}}\biggr],
+			\]
+			as $R \to \infty$. Hence this integral $I_2$ tends to
+			\begin{align*}
+				I_2 &\to \frac{1}{2} \pi i \bigl(e^{-3 \pi i/4} + e^{-\pi i/4}\bigr) = \frac{1}{2} \pi i \biggl( - \frac{1}{\sqrt 2} - \frac{1}{\sqrt 2} i + \frac{1}{\sqrt 2} - \frac{1}{\sqrt 2} i \biggr) \\
+				    &= \frac{1}{2} \pi i (-\sqrt 2 i) = \frac{\pi}{\sqrt 2}.
+			\end{align*}
+			Therefore,
+			\[
+			\int_0^\infty \frac{1}{1 + x^{4}}\diff x = \frac{\pi}{2 \sqrt 2}.
+			\]
+		\item We compute the integral
+			\[
+				\int_{-\infty}^{\infty} \frac{\cos x}{1 + x + x^2}\diff x.
+			\]
+			Note that
+			\[
+			\cos z = \frac{e^{iz} + e^{-iz}}{2} = \frac{e^{ix - y} + e^{-ix + y}}{2}.
+			\]
+			This is large as $y \to \pm \infty$, hence we cannot use the semicircular arc as before. However if we instead consider the integral of
+			\[
+			\frac{e^{ix}}{1 + x + x^2},
+			\]
+			then as $e^{ix} = \cos x + i \sin x$, the real part of this integral will be what we want. Notice then that $e^{i(x+iy)} = e^{ix - y}$ will be bounded above by 1 in modules for $y \ge 0$.
+
+			Take the same semicircle $\gamma_R$ as before, with semicircular arc $C_R$. Now since the roots of $1 + x + x^2$ are $e^{2\pi i/3}$, $e^{4 \pi i/3}$, the winding number is 1 around the first, and 0 around the second. Again, we can write
+			\[
+			\int_{\gamma_R} \frac{e^{iz}}{1 + z + z^2}\diff z = \int_{C_R} \frac{e^{iz}}{1 + z + z^2} \diff z + \int_{-R}^R \frac{e^{iz}}{1 + z + z^2}\diff z.
+			\]
+			Now the first integral $I_1$ has a contribution of
+			\[
+			|I_1| \le \len(C_R) \frac{1}{R^2 - R - 1} = \frac{\pi R}{R^2 - R - 1} \to 0,
+			\]
+			as $R \to \infty$. Now we know
+			\[
+				\Res_{z = e^{2\pi i/3}} \frac{e^{iz}}{1 + z + z^2} = \frac{e^{i e^{2 \pi i/3}}}{1 + 2e^{2 \pi i/3}},
+			\]
+			hence the integral converges to
+			\[
+				I_2 \to 2 \pi i \biggl[ \frac{e^{i e^{2 \pi i/3}}}{1 + 2 e^{2 \pi i/3}} \biggr] - 0.
+			\]
+			Now as
+			\[
+			e^{2 \pi i/3} = - \frac{1}{2} + \frac{\sqrt 3}{2} i,
+			\]
+			we get $1 + 2 e^{2 \pi i/3} = \sqrt 3 i$. Hence also
+			\[
+			e^{i e^{2 \pi i/3}} = e^{i (- \frac{1}{2} + \frac{\sqrt 3}{2} i)} = e^{-i/2} e^{-\sqrt 3/2},
+			\]
+			so
+			\[
+				I_2 \to 2 \pi i \biggl[ \frac{e^{-i/2}e^{-\sqrt 3/2}}{\sqrt 3 i} \biggr] = \frac{2\pi}{\sqrt 3} e^{-\sqrt 3/2} e^{-i/2}.
+			\]
+			Hence
+			\[
+			\int_{-\infty}^{\infty} \frac{\cos x}{1 + x + x^2}\diff x = \Re \biggl( \frac{2\pi}{\sqrt 3} e^{-\sqrt 3/2} e^{-i/2} \biggr) = \frac{2\pi}{3} e^{-\sqrt 3/2}\cos \biggl( - \frac{1}{2} \biggr).
+			\]
+	\end{enumerate}
+\end{exbox}
+
+The integral around the semicircle is sufficiently useful so that we prove the following result about it.
+
+\begin{lemma}[Jordans' lemma]
+	Suppose $f(z)$ is holomorphic on $\{|z|>r\}$ for some $r > 0$, and $z f(z)$ is bounded. Then for all $\alpha > 0$, we have
+	\[
+		\int_{C_R} f(z) e^{i \alpha z} \diff z \to 0
+	\]
+	as $R \to \infty$, where $C_R : [0, \pi] \to \mathbb{C}$ is given by $C_R(t) = Re^{it}$.
+\end{lemma}
+
+\begin{proofbox}
+	We have for $z = Re^{i t}$, that
+	\[
+	|e^{i\alpha z}| = e^{-\alpha R \sin t},
+	\]
+	and so using the basic estimate $\frac{\sin t}{t} \ge \frac{2}{\pi}$, we have
+	\[
+	|e^{i\alpha z}|\le
+	\begin{cases}
+		e^{-\alpha R \frac{2 t}{\pi}}, & t \in [0, \frac{\pi}{2}],\\
+		e^{-\alpha R \frac{2t'}{\pi}}, & t' = \pi-t \in [0, \frac{\pi}{2}].
+	\end{cases}
+	\]
+	By the hypothesis, there exists $M \in \mathbb{R}$ such that $|zf(z)| \le M$. Putting these together, let $\tilde C_R$ be $C_R$ for $[0, \frac{\pi}{2}]$. Then
+	\begin{align*}
+		\Biggl| \int_{\tilde C_R} f(z) e^{i \alpha z} \diff z \Biggr| &\le \int_0^{\pi/2} M e^{-\alpha R \frac{2t}{\pi}} \diff t \\
+									      &= M \biggl( \frac{1}{- a R \frac{2}{\pi}} \biggr) e^{-aR \frac{2t}{\pi}} \biggr|_{t = 0}^{t = \pi/2} \\
+									      &= \frac{(1 - e^{-\alpha R})\pi M}{2 R \alpha} \to 0,
+	\end{align*}
+	as $R \to \infty$. Similarly, the second half of the integral goes to $0$, so the entire integral goes to $0$ as $R \to \infty$.
+\end{proofbox}
+
+Now we will see how we can use Jordan's lemma.
+
+\begin{exbox}
+	\begin{enumerate}
+		\item Consider the integral
+		\[
+			\int_{-\infty}^{\infty} \frac{\cos mx}{1 + x^2}\diff x,
+		\]
+		for $m \in \mathbb{R}$. As $\cos z$ is large for large imaginary $z$, we instead use $\cos mx = \Re(\exp(imx))$, so
+		\[
+		I = \Re \Biggl( \int_{-\infty}^{\infty} \frac{e^{imx}}{1 + x^2}\diff x \Biggr).
+		\]
+		We then use out usual contour $\gamma_R$ and $C_R$. If $m > 0$, then using Jordan's lemma,
+		\[
+		\int_{C_R} \frac{e^{imz}}{1 + z^2}\diff z \to 0.
+		\]
+		Also from the residue theorem,
+		\[
+			\int_{\gamma_R} \frac{e^{imz}}{1 + z^2} \diff z = 2 \pi i \Res_{z = i} \frac{e^{imz}}{1 + z^2} = 2 \pi i \frac{e^{im(i)}}{2i} = \pi e^{-m}.
+		\]
+		So,
+		\[
+			\pi e^{-m} = \int_{C_R} \frac{e^{imz}}{1 + z^2}\diff z + \int_{-R}^{R} \frac{e^{imz}}{1 + z^2} \diff z \implies I = \frac{\pi}{e^{m}}.
+		\]
+		If $m < 0$, then $\cos (mx) = \cos (-mx)$, so from the above
+		\[
+		I = \frac{\pi}{e^{-m}}.
+		\]
+		If $m = 0$, then we have
+		\[
+		\biggl| \int_{C_R} \frac{1}{1 + z^2}\diff z \biggr| \le \frac{\pi R}{R^2 - 1} \to 0,
+		\]
+		as $R \to \infty$, so with a similar computation
+		\[
+			\Res_{z=i}\frac{1}{z^2 + 1} = \frac{1}{2i},
+		\]
+		we get
+		\[
+		I = \frac{\pi}{e^{0}} = \pi.
+		\]
+		Hence in all cases we get
+		\[
+		I = \pi e^{-|m|}.
+		\]
+	\item Now consider the integral
+		\[
+			\int_0^{2\pi} \frac{1}{5 + 4 \cos \theta} \diff \theta.
+		\]
+		Let us use
+		\[
+			\cos \theta = \frac{1}{2} \bigl[ e^{i\theta} + e^{-i\theta}\bigr],
+		\]
+		so if $z = e^{i\theta}$, we have $\cos \theta = \frac{1}{2}(z + z^{-1})$. Hence, as $\diff z = i e^{i\theta} \diff \theta = i z\diff \theta$, we get
+		\begin{align*}
+		\int_0^{2\pi}\frac{1}{5 + 4\cos\theta} \diff \theta &= \int_{|z|=1}\frac{1}{5 + 2(z + z^{-1})} \frac{\diff z}{iz} = \frac{1}{i} \int_{|z|=1} \frac{1}{2z^2 + 5z + 2}\diff z \\
+								    &= \frac{1}{i} \int_{|z|=1} \frac{1}{(2z+1)(z+2)}\diff z.
+		\end{align*}
+		This function has poles at $z=-\frac{1}{2}, -2$ but our contour only winds around the first. Hence Cauchy's integral formula applied to $\frac{1}{2(z+2)}$ gives
+		\[
+		\frac{1}{2(-\frac{1}{2}+z)} = \frac{1}{2\pi i} \int_{|z|=1}\frac{1}{2(z+2)(z+\frac{1}{2})}\diff z,
+		\]
+		so
+		\[
+		\frac{2\pi i}{3} = \int_{|z|=1}\frac{1}{2z^2 + 5z + 2}\diff z = i \int_0^{2\pi}\frac{1}{5 + 4 \cos \theta}\diff \theta.
+		\]
+		This gives
+		\[
+		\int_0^{2\pi}\frac{1}{5 + 4\cos \theta}\diff \theta = \frac{2\pi}{3}.
+		\]
+	\item We also look at
+		\[
+		\int_0^{\infty}\frac{\sin x}{x}\diff x.
+		\]
+		Consider
+		\begin{align*}
+			\frac{1}{2i}\int_0^{\infty} \frac{e^{ix}-e^{-ix}}{x} \diff x &= \frac{1}{2i} \int_0^{\infty}\frac{e^{ix}}{x}\diff x - \frac{1}{2i} \int_0^{-\infty} \frac{e^{i t}}{-t}-\diff t \\
+										     &= \frac{1}{2i} \int_{-\infty}^{\infty} \frac{e^{ix}}{x} \diff x.
+		\end{align*}
+		Our usual contour $\gamma_R$ doesn't work, as it passes through that pole $0$. Instead, we consider the $\gamma_{R,\eps}$ contour, which also consists of a semicircular arc of radius $\eps > 0$ around $0$.%insert picture.
+
+		Then from Cauchy's theorem, we get
+		\[
+		\int_{\gamma_{R,\eps}}\frac{e^{iz}}{z}\diff z = 0.
+		\]
+		We can use Jordan's lemma to get
+		\[
+		\int_{C_R}\frac{e^{iz}}{z} \diff z \to 0,
+		\]
+		as $R \to \infty$. On $C_\eps$, we can parametrize $z = \eps e^{i\theta}$, and $\diff z = i z \diff \theta$, so
+		\[
+		\int_{C_\eps} \frac{e^{iz}}{z}\diff z = \int_0^{\pi} e^{i \eps e^{i\theta}} i \diff \theta \to i \int_0^{\pi} 1 \diff \theta = \pi i,
+		\]
+		as $\eps \to 0$. Hence
+		\[
+		\int_{\gamma_{R,\eps}} \frac{e^{iz}}{z}\diff z = \int_{C_R}\frac{e^{iz}}{z}\diff z + \int_{-R}^{-\eps} \frac{e^{iz}}{z} \diff z - \int_{C_\eps} \frac{e^{iz}}{z} \diff z + \int_{\eps}^{R} \frac{e^{iz}}{z}\diff z.
+		\]
+		As $\eps \to 0$, $R \to \infty$, we obtain
+		\[
+		0 = \int_{-\infty}^\infty \frac{e^{iz}}{z}\diff z - \pi i,
+		\]
+		so we get
+		\[
+		\int_0^{\infty} \frac{\sin x}{x} \diff x = \frac{1}{2i} \pi i = \frac{\pi}{2}.
+		\]
+	\item We also look at the integral
+		\[
+		\int_0^{\infty} \frac{x^{\alpha}}{1 + x^2}\diff x,
+		\]
+		for $\alpha \in (0, 1)$. Note that we can extend $z^{\alpha}$ holomorphically as $z^{\alpha} = \exp(\alpha \log z)$, for a suitable branch of the logarithm.
+
+		If we choose $\log z = \ln|z| + i \arg z$, for $\arg z \in (- \frac{\pi}{2}, \frac{3 \pi}{2})$, then for $x > 0$ we get $(-x)^{\alpha} = (-1)^{\alpha} x^{\alpha}$.
+
+		Indeed, $\log(-x) = \ln|x| + \pi i = \ln x + \pi i$. In particular, $\log(-1) = \pi i$. So
+		\[
+		\log x + \log (-1) = \ln x + \pi i = \log(-x).
+		\]
+		Hence we have
+		\[
+		\exp(\alpha \log x)\exp(\alpha \log(-1)) = \exp(\alpha \log(-x)).
+		\]
+		We again take the contour $\gamma_{R,\eps}$, which avoids the branch cut of the logarithm.
+
+		We can show that the integrals along $C_R$ and $C_\eps \to 0$ as $R \to \infty$ and $\eps \to 0$. As we have a pole at $z = i$, we compute
+		\[
+			\Res_{z=i} \frac{\exp(\alpha \log z)}{(z+i)(z-i)} = \frac{i^{\alpha}}{2 i}.
+		\]
+		Hence we get
+		\begin{align*}
+			2 \pi i \Res_{z = i}\frac{\exp(\alpha \log z)}{(z+i)(z-i)} &= \int_{\gamma_{R,\eps}}\frac{z^{\alpha}}{1 + z^2} \diff z \\
+										   &= \int_{C_R} \frac{z^\alpha}{1 + z^2} \diff z - \int_{C_\eps} \frac{z^{\alpha}}{1 + z^2} \diff z \\
+										   &\quad + \int_{-R}^{-\eps} \frac{z^{\alpha}}{1+z^2}\diff z + \int_\eps^R \frac{z^{\alpha}}{1+z^2}\diff z.
+		\end{align*}
+		By the substitution $t = -z$, we have
+		\[
+		\int_{-R}^{-\eps} \frac{z^{\alpha}}{1+z^2}\diff z = (-1)^{\alpha} \int_\eps^R \frac{z^{\alpha}}{1+z^2}\diff z.
+		\]
+		Hence taking $\eps \to 0$, $R \to \infty$, we have
+		\[
+			2\pi i\frac{i^{\alpha}}{2 i} = 0 - 0 + [(-1)^{\alpha} + 1] \int_0^{\infty} \frac{x^{\alpha}}{1 + x^2} \diff x,
+		\]
+		so
+		\[
+		\int_0^{\infty} \frac{x^{\alpha}}{1 + x^2} \diff x = \frac{\pi i^{\alpha}}{1 + (-1)^{\alpha}}.
+		\]
+	\item We consider
+		\[
+		\int_0^\infty \frac{x^{1/3}}{(x+2)^2}\diff x.
+		\]
+		Let's define $\log z = \ln|z| + i \arg z$, where $\arg z \in (0, 2\pi)$. Hence we cut away the positive real axis.
+
+		We then define the `keyhole contour', which is the integral around the branch cut, with two straight lines $L_1, L_2$ of $\arg z = \delta$ and $\arg z = 2\pi - \delta$ respectively, as well as connecting curves $C_1$, an arc of radius $R$, and $C_2$, an arc of radius $\eps$.
+
+		On $C_1$, we have
+		\[
+		\biggl| \int_{C_1} \frac{z^{1/3}}{(z+2)^2} \diff z \biggr| \le (2\pi - 2\delta)R \frac{R^{1/3}}{(R-2)^2} \to 0,
+		\]
+		and on $C_2$ we have
+		\[
+		\biggl| \int_{C_2} \frac{z^{1/3}}{(z+2)^2}\diff z \biggr| \le (2\pi - 2\delta)\eps \frac{\eps^{1/3}}{(2-\eps)^2} \to 0.
+		\]
+		On $L_1$, $z = te^{i\delta}$, for $t \in [\eps, R]$. Then $\diff z = e^{i\delta} \diff t$. We get that
+		\[
+		\int_\eps^R \frac{t^{1/3}e^{i\delta/3}}{(te^{i\delta}+2)^2}e^{i\delta}\diff t \to \int_\eps^R \frac{t^{1/3}}{(t+2)^2}\diff t,
+		\]
+		as $\delta \to 0$. Now on $L_2$, $z = te^{i(2\pi - \delta)}$, so the integral is
+		\[
+		\int_\eps^R \frac{t^{1/3}e^{i \frac{2\pi - \delta}{3}}}{(t e^{i(2\pi - \delta)} + 2)^2} e^{i(2\pi - \delta)}\diff t \to e^{2 \pi i/3} \int_\eps^R \frac{t^{1/3}}{(t+2)^2}\diff t.
+		\]
+
+		Hence by residue theorem,
+		\begin{align*}
+			\mathcal{O}\biggl( \frac{1}{R^{2/3}}\biggr) &- e^{2\pi i/3} \int_\eps^R \frac{t^{1/3}}{(t+2)^2}\diff t - \mathcal{O}(\eps^{4/3}) + \int_\eps^R \frac{t^{1/3}}{(t+2)^2}\diff t \\
+								    &\quad = 2\pi i\Res_{z = -2}\frac{z^{1/3}}{(z+2)^2}.
+		\end{align*}
+		We can find this residue as
+		\[
+		\frac{\diff}{\diff z}\biggr|_{z=-2} z^{1/3} = \frac{\diff}{\diff z}\biggr|_{z=-2}\exp(\log z/3) = \frac{1}{3z} \exp(\log z/3) \biggr|_{z=-2},
+		\]
+		so
+		\[
+			\Res_{z=-2} \frac{z^{1/3}}{(z+2)^2} = -\frac{1}{6} \sqrt[3]{2}e^{\pi i/3}.
+		\]
+		We can also compute
+		\[
+		\frac{e^{\pi i/3}}{(1 - e^{2 \pi i/3})} = \frac{i}{\sqrt 3},
+		\]
+		so putting this all together we get
+		\[
+			\int_0^\infty \frac{t^{1/3}}{(t+2)^2}\diff t = \frac{\pi}{3 \sqrt 3}\sqrt[3]{2}.
+		\]
+	\end{enumerate}
+\end{exbox}
+
+\begin{proposition}
+	Let $f$ have a zero (resp. pole) of order $k > 0$ at $z = a$. Then $\frac{f'(z)}{f(z)}$ has a simple pole at $z = a$, of residue $k$ (resp. $-k$).
+\end{proposition}
+
+\begin{remark}
+	By example sheet two, if $f : U \to \mathbb{C}$ is such that $f(U)$ is contained in a simply connected set which omits $0$, then there exists a homomorphic function $g(z) = \log f(z)$ on $U$, so $\frac{f'(z)}{f(z)}$ has a holomorphic antiderivative $\log f$ on $U$.
+
+Hence $\frac{f'}{f}$ is the `logarithmic derivative' of $f$.
+\end{remark}
+
+\begin{proofbox}
+	Suppose $f(z) = (z-a)^{k}g(z)$ near $a$, with $g(a) \neq 0$, then $f'(z) = k(z-a)^{k-1}g(z) + (z-a)^{k}g'(z)$, so
+	\[
+	\frac{f'(z)}{f(z)} = \frac{k}{z-a} + \frac{g'(z)}{g(z)}.
+	\]
+	Then as $g(a) \neq 0$, $\frac{g'}{g}$ is holomorphic at $a$. Hence $\Res_{z=a} \frac{f'}{f} = k$ (resp. $-k$).
+\end{proofbox}
+
+\begin{theorem}[Argument Principle]
+	Let $\gamma$ be a closed curve bounding a domain $D$, and $f$ a function meromorphic on an open neighbourhood of $D \cup \gamma$. If $f$ has no zeroes or poles on $\gamma$, then
+	\[
+		I(f \circ \gamma; 0) = \frac{1}{2\pi i} \int_\gamma \frac{f'(z)}{f(z)} \diff z = |\{\text{zeroes of } f \text{ in } D\}| - |\{\text{poles of } f \text{ in } D\}|,
+	\]
+	where zeroes and poles are counted with multiplicity.
+\end{theorem}
+
+\begin{proofbox}
+	We have
+	\[
+	I(f \circ \gamma; 0) = \frac{1}{2 \pi i} \int_{f \circ \gamma}\frac{\diff w}{w} = \frac{1}{2 \pi i} \int_\gamma \frac{f'(z)}{f(z)} \diff z,
+	\]
+	by letting $w = f(z)$. Then by residue theorem, this equals
+	\[
+		\sum_{a \text{ a pole in } D} \Res_{z = a}\frac{f'}{f}.
+	\]
+	But this exactly equals what we want, from our previous proposition.
+\end{proofbox}
+
+\begin{remark}
+	\begin{enumerate}
+		\item[]
+		\item Recall that $\gamma$ is compact, so $f \circ \gamma$ is also a closed curve (and compact).
+		\item Morally, this says that $2\pi \times \text{sum of poles})$ is the change in $\arg f(z)$ as $z$ travels $\gamma$.
+	\end{enumerate}
+\end{remark}
+
+The argument principle has important consequences for local behaviour of $f$.
+
+\begin{definition}
+	If $f$ is holomorphic and non-constant near $z = a$, then the \emph{local degree}\index{local degree} of $f(z)$ at $z = a$ is $\deg_{z=a} f(z)$, the order of the zero of $f(z) - f(a)$ at $z = a$.
+\end{definition}
+
+If $f$ is non-constant, then we can write $f(z) - f(a) = (z-a)^k g(z)$, where $g$ is holomorphic and non-zero at $a$, and the zero at $z = a$ of $f(z) - f(a)$ is isolated. Hence for $|z-a|$ sufficiently small, $f(z) - f(a) \neq 0$.
+
+Hence for small $\eps > 0$, the circle $\gamma(t) = a + \eps e^{i t}$, $t \in [0, 2\pi]$, about $a$ gives
+\begin{align*}
+	I(f \circ \gamma;f(a)) &= I(f(\gamma(t)) - f(a); 0) = \sum \text{zeroes in } D(a, \eps) \text{ of } f(z) - f(a) \\
+			       &= \deg_{z=a}f(z).
+\end{align*}
+
+Consider the local behaviour of $f(z) = z^{k}$ at $z = 0$ for $k > 0$. We have $\deg_{z = 0} f(z) = k$. Note that for all $w \in D(0, \eps)$, $w$ has $k$ preimages under $f$ in $D(0, \eps^{1/k})$. We will generalize this to all functions.
+
+\begin{theorem}[Local mapping degree]
+	Let $f : D(a, R) \to \mathbb{C}$ be holomorphic and non-constant, with local degree $k > 0$. Then for $r > 0$ sufficiently small, there exists $\eps > 0$ such that if $|w - f(a)| < \eps$, then $f(z) = w$ has exactly $k$ (simple) roots in $D(a, r)$.
+\end{theorem}
+
+\begin{proofbox}
+	Choose $r > 0$ such that $f(z) - f(a)$ and $f'(z)$ have no zeroes in $0 < |z-a|\le r$. Then $r$ exists by the identity principle. Let $\gamma$ be the circle of radius $r$ about $a$.
+
+	Then $f \circ \gamma$ doesn't contain $f(a)$, so there exists $\eps > 0$ such that $D(f(a), \eps) \cap (f \circ \gamma) = \emptyset$. For $w \in D(f(a), \eps)$, the number of zeroes of $f(z) - w$ in $D(a, r)$ is $I(f \circ \gamma, w)$. But this is exactly $I(f\circ\gamma; f(a)) = k$.
+
+	Now since $f(z) - w$ has nonzero derivative in $D(a, r)^{\times}$, the zeroes are simple. Hence there are $k$ preimages.
+\end{proofbox}
+
+Note $I(f \circ \gamma; w) = I(f \circ \gamma; f(a))$ because the winding number is constant on connected components of  $\mathbb{C} \setminus f \circ \gamma$.
+
+\begin{corollary}[Open mapping theorem]
+	A constant holomorphic function maps open sets to open sets.
+\end{corollary}
+
+\begin{proofbox}
+	We want to show that if $f : D \to \mathbb{C}$, then for all $a \in D$, and for all $r > 0$ sufficiently small, there exists $\eps > 0$ with $f(D(a, r)) \supseteq D(f(a), \eps)$.
+
+	By the previous theorem, if $r, \eps$ are sufficiently small, then for all $w \in D(f(a), \eps)$, we have the number of zeroes of $f(z) - w$ in $D(a, r)$ equals $\deg_{z=a} f(z) > 0$.
+\end{proofbox}
+
+\begin{theorem}[Rouche's theorem]
+	Suppose $\gamma$ bounds a domain $D$, and $f, g$ are holomorphic on a neighbourhood of $D \cup \gamma$. If $|f(z)| > |g(z)|$ for all $z \in \gamma$, then $f$ and $f + g$ have the same number of zeroes in $D$.
+\end{theorem}
+
+\begin{proofbox}
+	Define $h(z) = \frac{f(z) + g(z)}{f(z)} = 1 + \frac{g(z)}{f(z)}$. Then $h$ is meromorphic on a neighbourhood of $D \cup \gamma$.
+
+	Since $|f(z)| > |g(z)|$ for all $z \in \gamma$, $f + g$ and $f$ are non-zero on $\gamma$, so $h$ has no zeroes or poles on $\gamma$. By the argument principle, we have
+	\[
+		|\{\text{zeroes of } f + g \text{ on } D\}| - |\{\text{zeroes of } f \text{ on } D\}| = I(h \circ \gamma; 0).
+	\]
+	By hypothesis, $h \circ \gamma \subset D(1, 1)$. But this shows $I(h \circ \gamma; 0) = 0$, as required.
+\end{proofbox}
+
+Now we can use Rouche's.
+
+\begin{exbox}
+	\begin{enumerate}
+		\item Consider $p(z)=  z^4 + 6z + 3$. If $|z| \ge 2$, then
+			\[
+			\biggl|z^3 + 6 + \frac{3}{z} \biggr| \ge |z|^3 - 6 - \frac{3}{|z|} > 0,
+			\]
+			so $p(z) \neq 0$.
+
+			We could instead apply Rouche's with $\gamma : |z| = 2$, $f(z) = z^{4}$ and $g(z) = 6z + 3$. Now
+			\[
+			|z|^{4} = 16 > 15 = 6|z|+3 \ge |6z + 3|.
+			\]
+			By Rouche's, $p(z)$ has 4 zeroes inside $D(0, 2)$.
+
+			Now for $|z| = 1$, $|6z| = 6$ and $|z^{4} + 3| \le 4$. So using $\gamma : |z| = 1$, $f(z) = 6z$ and $g(z) = z^{4} + 3$, we see that $p(z)$ has one zero inside $D(0, 1)$.
+
+			Note that this implies $p(z)$ has a real root, since roots come in complex conjugate pairs for polynomials in $\mathbb{R}$.
+		\item We can see how Rouche's implies the open mapping theorem. If $f : D \to \mathbb{C}$ is holomorphic and nonconstant, then we can choose $r > 0$ such that $D(a, 2r)^{\times}$ has no zeroes of $f(z) - f(a)$.
+
+			Let $\gamma$ be $|z-a| = r$, and let $0 < \eps < \min_{z \in \gamma}|f(z)-f(a)|$. Then for $w \in D(f(a), \eps)$, since $f(z) - w = f(a) - w + f(z) - f(a)$, and the fact
+			\[
+			|f(a) - w| < \eps < |f(z) - f(a)|,
+			\]
+			by Rouche's the zeroes in $D(a, r)$ of $f(z) - w$ equals the number of zeroes in $D(a, r)$ of $f(z) - f(a)$, which is greater than $0$. So $f(D(a, r)) \supseteq D(f(a), \eps)$.
+	\end{enumerate}
+\end{exbox}
+
+\newpage
+
+\section{Uniform Limits of Holomorphic Functions}
+\label{sec:uniform_limits_of_holomorphic_functions}
+
+\begin{definition}
+	Let $U \subset \mathbb{C}$ be open, and $f_N : U \to \mathbb{C}$ a sequence of functions. Then $f_n \to f$ converges \emph{locally uniformly}\index{locally uniformly convergent} on $U$ if for all $a \in U$, there exists $D(a, r) \subset U$ on which $f_n \to f$ uniformly.
+\end{definition}
+
+\begin{exbox}
+	Consider $f_n(z) = z^{n}$ on $U = D(0, 1)$. As $n \to \infty$, $f_n \to 0$ pointwise. For $a \in D(0, 1)$, we can pick
+	\[
+	\overline{D\biggl(a, \frac{1-|a|}{2}\biggr)} \subset D(0,1),
+	\]
+	and $f_n \to 0$ uniformly on this disc. So $f_n \to 0$ locally uniformly on $D(0, 1)$.
+
+	However, for any $\eps > 0$,
+	\[
+	|f_n(z)| < \eps \iff |z|^{n} < \eps \iff |z| < \eps^{1/n},
+	\]
+	so no uniform bound can holds for all $|z| < 1$.
+\end{exbox}
+
+\begin{proposition}
+	$\{f_n\} : U \to \mathbb{C}$ is locally uniformly convergent on $U$ if and only if $\{f_n\}$ converges uniformly on any compact subset of $U$.
+\end{proposition}
+
+Recall that a subset in $\mathbb{C}$ is compact if and only if it is closed and bounded. However we will use the fact that every open cover has a finite subcover.
+
+\begin{proofbox}
+	If $f_n \to f$ locally uniformly on $U$, and $K \subset U$ is compact, then for all $a \in K$, there exists $r_a > 0$ such that $\{f_n\}$ converges uniformly on $D(a, r_a)$. Now notice
+	\[
+	\bigcup_{a \in K} D(a, r_a)
+	\]
+	is an open cover if $K$, so by compactness there exists $\{a_1, \ldots, a_\ell\}$ such that
+	\[
+	K \subset D(a_1, r_{a_1}) \cup \cdots \cup D(a_\ell, r_{a_\ell}).
+	\]
+	Taking the maximum of the constants of uniform convergence on these disks, $f_n \to f$ uniformly on $K$.
+
+	Now if $f_n \to f$ uniformly on compact subsets of $U$, then for $a \in U$, we can find a closed disk $\overline{D(a, r)} \subset U$. Then $f_n \to f$ converges uniformly on $D(a, r)$.
+\end{proofbox}
+
+\begin{theorem}
+	Let $\{f_n\}$ be a sequence of analytic functions on $U$, converging locally uniformly to $f$. Then $f$ is holomorphic, with $f_n' \to f'$ locally uniformly.
+\end{theorem}
+
+\begin{proofbox}
+	Fix $a \in U$ and $\overline{D(a, r)} \subset U$. For $r$ sufficiently small $f_n \to f$ uniformly on $\overline{D(a, r)}$. So
+	\begin{align*}
+		|f(z)-f(w)| &= |f(z) - f_n(z) + f_n(z) - f_n(w) + f_n(w) - f(w)|,
+	\end{align*}
+	so uniform convergence implies that $f$ is continuous on $\overline{D(a, r)}$. Given $\gamma$ a closed curve in $D(a, r)$, we have
+	\[
+		\int_\gamma = \lim_{n \to \infty}\int_\gamma f_n = 0,
+	\]
+	by Cauchy's theorem. So from Morera's theorem, $f$ is holomorphic on $D(a, r)$. By Cauchy's integral formula, we have
+	\begin{align*}
+		|f'(w) - f_n'(w)| = \frac{1}{2\pi} \biggl| \int_{|z-a| = r} \frac{f(z) - f_n(z)}{(z-w)^2} \diff z \biggr|.
+	\end{align*}
+	For $|w-a| \le \frac{r}{2}$, we have
+	\[
+	|f'(w) - f_n'(w)| \le r \frac{1}{(r/2)^2} \sup_{|z-a|=r} |f(z) - f_n(z)| \to 0,
+	\]
+	as $n \to \infty$. Hence $f_n \to f$ uniformly on $\overline{D(a, r)}$ implies $|f_n' - f'|$ converges uniformly on $D(a, \frac{r}{2})$.
+\end{proofbox}
+
+\begin{remark}
+	The assumption of locally uniform convergence is necessary. A construction with a non-holomorphic limit can be done via Runge's theorem (see Topics in Analysis).
+\end{remark}
+
+We look at some applications.
+
+\subsection{Newton's Method and Complex Dynamics}
+\label{sub:newtons_method_and_complex_dynamics}
+
+Recall that Newton's method is an iterative root-finding algorithm, that takes a polynomial $p(z)$ and an initial guess $z_0$ for a root of $p(z)$. Then we compute a sequence $z_1, z_2, \ldots, z_n = f^{n}(z_0), \ldots$, where
+\[
+f(z) = z - \frac{p(z)}{p'(z)}.
+\]
+Then in some circumstances this sequence limits to a root of $p$.
+
+\begin{exbox}
+	Take $p(z) = z^3 - 1$, then
+	\[
+	f(z) = \frac{2z^3 + 1}{3z^2}.
+	\]%see picture in lectures.
+	Then some values of $z_0$ lead to iterates which converge to the poles. However some, such as $z_0 = 0$, do not work.
+
+	This is because $f^{n}(z)$ is a sequence of meromorphic functions, so if $f^{n}(z_0)$ approaches a limit for some region $U$ of initial guesses, then $f^{n}|_U$ has a holomorphic limit.
+\end{exbox}
+
+\begin{definition}
+	A family $\mathcal{F} = \{f_i\}_{i \in I}$ of holomorphic functions on a domain $D$ is \emph{normal}\index{normal} if every sequence in $F$ has a locally uniformly convergent subsequence.
+\end{definition}
+
+This definition allows convergence to $\infty$.
+
+A deep theorem which shows normality is as follows:
+
+\begin{theorem}[Montel's theorem]
+	If there exist $a, b, c \in \mathbb{C}_{\infty}$ such that for all $f \in \mathcal{F}$, $f(D) \cap \{a, b, c\} = \emptyset$, then $\mathcal{F}$ is a normal family.
+\end{theorem}
+
+\begin{definition}
+	The \emph{Fatou set}\index{Fatou set} of a rational map $f$ is
+	\[
+		F(f) = \{z \in \mathbb{C}_\infty \mid \exists \text{ nbhd } U \text{ of } z \text{ such that } \{f^{n}|_U\} \text{ forms a normal family}\}.
+	\]
+\end{definition}
+
+Then Newton's method works if we are in the Fatou set of the map $f$. For $p(z) = z^3-1$, this works for almost all real numbers, but for, say the polynomial $z^{4} - 2z^2 + 9$ without real roots, Newton's method is guaranteed to fail.
+
+\subsection{Riemann Mapping Theorem}
+\label{sub:riemann_mapping_theorem}
+
+\begin{theorem}[Riemann Mapping theorem]
+	Let $U \subset \mathbb{C}$ be a non-empty, proper, open, simply connected subset of $\mathbb{C}$. Then there exists a conformal isomorphism $f : U \to \mathbb{D} =  D(0, 1)$.
+\end{theorem}
+
+We begin a sketch of the proof.
+
+\begin{proofbox} 
+	Fix $z_0 \in U$, and consider
+	\[
+		\mathcal{F} = \{f : U \to \mathbb{D}, f\text{ holomorphic, injective, } f(z_0) = 0\}.
+	\]
+	Then we proceed in three steps:
+	\begin{enumerate}
+		\item We show $\mathcal{F}$ is non-empty.
+		\item We show there exists $g \in \mathcal{F}$ such that $|g'(z_0)|$ is finite and maximal among the elements of $\mathcal{F}$.
+		\item Then we can prove $g$ is a conformal isomorphism.
+	\end{enumerate}
+	To construct an element of $\mathcal{F}$, first notice $U \neq \mathbb{C}$ as it is proper, and so there exists $a \in \mathbb{C} \setminus U$. Hence there exists a holomorphic branch of the logarithm $\log(z-a)$ on $U$. Hence there exists a holomorphic branch of $h(z) = \sqrt{z-a}$ on $U$.
+
+	We can show that $h$ is injective on $U$, and $h(U) \cap -h(U) = \emptyset$. By the open mapping theorem, $h(U)$ contains some $D(h(z_0), \eps)$, so $|h(z) + h(z_0)| > \eps$ for all $z \in U$. We can then check that
+	\[
+	f_0(z) = \frac{\eps}{4} \frac{|h'(z_0)|}{|h(z_0)|^2} \frac{h(z_0)}{h'(z_0)} \frac{h(z) - h(z_0)}{h(z) + h(z_0)} \in \mathcal{F}.
+	\]
+	To show there is a maximal element, let $A = \sup_{f \in \mathcal{F}}|f'(z_0)|$, and choose $\{f_n\}$ such that $f_n'(z_0) \to A$.
+
+	By Montel's, $\mathcal{F}$ is a normal family, so there exists $f_{n_k}$ converging locally uniformly to some $g$, holomorphic. We can then show $g$ is in this family (where we show injectivity using the argument principle).
+
+	Now if $g$ is not surjective, we can construct and element of $\mathcal{F}$ violating the maximality of $g$. If $c \in D(0, 1) \setminus g(U)$, then choose a holomorphic branch
+	\[
+		k(z) = \frac{\sqrt{g(z) - c}}{1-cg(z)}.
+	\]
+	Then
+	\[
+	F(z) = \frac{e^{i\theta}(k(z)-k(z_0))}{1 - k(z_0)k(z)}, \qquad \frac{k'(z_0)}{|k'(z_0)|} = e^{-i\theta}
+	\]
+	is in $\mathcal{F}$, with $|F'(z_0)| > |g'(z_0)|$.
+\end{proofbox}
+
 \newpage
 
 \printindex

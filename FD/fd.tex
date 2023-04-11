@@ -1728,14 +1728,14 @@ Assume that we have long tubes of equal areas and a short, wide junction. Then,
 \[
 \nabla \phi = \int_{L}^{R} \mathbf{u} \cdot \diff \mathbf{x} \approx 0
 \]
-along the junction, as $\diff \mathbf{x}$ is small as the junction is short, and $\mathbf{u}$ is small as the junction is wide. Hence we can take $\phi = 0$ at the base of mass tubes. By mass conservation, $u$ is uniform and equals $\dot \zeta$. Hence, on the right hand side,
+along the junction, as $\diff \mathbf{x}$ is small as the junction is short, and $\mathbf{u}$ is small as the junction is wide. Hence we can take $\phi = 0$ at the base of both tubes. By mass conservation, $u$ is uniform and equals $\dot \zeta$. Hence, on the right hand side,
 \begin{align*}
 	\phi &= uz, & \frac{\partial \phi}{\partial t} &= \dot u z, & \frac{\partial \phi}{\partial t} \biggr|_{h + \zeta} &= \ddot \zeta(h + \zeta), \\
 	\phi &= -uz, & \frac{\partial \phi}{\partial t} &= - \dot uz, &\frac{\partial \phi}{\partial t} \biggr|_{h - \zeta} &= - \ddot \zeta(h - \zeta).
 \end{align*}
 Applying unsteady Bernoulli,
 \[
-\rho \ddot \zeta (h + \zeta) = \frac{1}{2} \rho \dot \zeta^2 + p_a + \rho g(h + \zeta) = - \rho \ddot `z (h - \zeta) + \frac{1}{2} \rho \dot \zeta^2 + p)a + \rho g(h - \zeta),
+\rho \ddot \zeta (h + \zeta) + \frac{1}{2} \rho \dot \zeta^2 + p_a + \rho g(h + \zeta) = - \rho \ddot \zeta (h - \zeta) + \frac{1}{2} \rho \dot \zeta^2 + p_a + \rho g(h - \zeta),
 \]
 which simplifies to
 \[
@@ -1803,7 +1803,7 @@ The kinematic boundary conditions: at the rigid bottom,
 \]
 at $z = -h$. At the air-water interface, often called the free surface as it is free to move, we have
 \[
-\frac{\partial \zeta}{\partial t} + u \frac{\partial \zeta}{\partial u} + v \frac{\partial \zeta}{\partial y} = w,
+\frac{\partial \zeta}{\partial t} + u \frac{\partial \zeta}{\partial x} + v \frac{\partial \zeta}{\partial y} = w,
 \]
 at $z = \zeta$. Moreover the dynamic boundary condition means $p_{\mathrm{water}} = p_{\mathrm{air}}$ at the air-water interface.
 
@@ -1830,8 +1830,8 @@ For small amplitudes, $\zeta \ll h$ and $\frac{\partial \zeta}{\partial x}$, $\f
 \end{enumerate}
 The linearised problem is:
 \begin{align*}
-	\nabla^2 \partial &= 0 & &\text{in } -h < z < 0, \tag{1} \\
-	\frac{\partial \partial}{\partial z} &= 0 & &\text{at } z = -h, \tag{2} \\
+	\nabla^2 \phi &= 0 & &\text{in } -h < z < 0, \tag{1} \\
+	\frac{\partial \phi}{\partial z} &= 0 & &\text{at } z = -h, \tag{2} \\
 	\frac{\partial \zeta}{\partial t} &= \frac{\partial \phi}{\partial z} & &\text{at } z = 0, \tag{3} \\
 	\rho \frac{\partial \phi}{\partial t} + \rho g \zeta &= f(t) & &\text{independent of } x, y \text{ at } z = 0. \tag{4}
 \end{align*}
@@ -1847,7 +1847,7 @@ or, on an infinite domain, take Fourier transforms with respect to $x, y$ and $t
 \[
 \phi = e^{i(kx - \omega t)}\Phi(z), \qquad \zeta = \zeta_0 e^{i(kx - \omega t)}.
 \]
-Then from (1), $\nabla^2 \phi = 0$, $\Phi'' = k^2 \Phi = 0$. We thus have
+Then from (1), $\nabla^2 \phi = 0$, $\Phi'' = k^2 \Phi \neq 0$. We thus have
 \[
 \Phi = A \cosh (k(z+h)) + B \sinh (k(z+h)),
 \]
@@ -1937,7 +1937,7 @@ We look for linearised water waves with surface at $z = \zeta(x, y, t)$, with $|
 	\nabla^2 \phi &= 0 & &z<0, \\
 	\frac{\partial \phi}{\partial A} &= 0 & &\text{on the sides},\\
 	\nabla \phi &\to 0 & &z \to -\infty, \\
-	\frac{\partial \zeta}{\partial t} &= \frac{\partial \phi}{\partial t} & &z = 0,\\
+	\frac{\partial \zeta}{\partial t} &= \frac{\partial \phi}{\partial z} & &z = 0,\\
 	\rho \frac{\partial \phi}{\partial t} + \rho g \zeta &\text{ independent of } x, y & &z = 0.
 \end{align*}
 We try separation of variables:
@@ -1950,7 +1950,7 @@ where Laplace's equation gives
 \]
 The kinematic boundary conditions imply
 \[
-\frac{\partial \zeta}{\partial t} = \frac{\partial \phi}{\partial t} \implies \zeta = \frac{iAb}{\omega} \cos \frac{m \pi x}{a} \cos \frac{n \pi y}{b} e^{-i \omega t}.
+\frac{\partial \zeta}{\partial t} = \frac{\partial \phi}{\partial z} \implies \zeta = \frac{iAk}{\omega} \cos \frac{m \pi x}{a} \cos \frac{n \pi y}{b} e^{-i \omega t}.
 \]
 The dynamic boundary condition gives
 \[
@@ -1998,7 +1998,7 @@ Now as
 \]
 we can combine this with $\rho \mathbf{g} = - \nabla \chi$, and treat this as an effective $\mathbf{g}$ with an effective definition. This force is normal to the surface of the spheroidal Earth. Hence
 \[
-	\rho \frac{D \mathbf{u}}{d t} + 2 \rho \bm{\Omega} \times \mathbf{u} = - \nabla p + \rho \mathbf{g}.
+	\rho \frac{D \mathbf{u}}{D t} + 2 \rho \bm{\Omega} \times \mathbf{u} = - \nabla p + \rho \mathbf{g}.
 \]
 Moreover,
 \[
@@ -2037,7 +2037,7 @@ When $R_0 \ll 1$, we have $\bm{\omega} < \frac{U}{L} \ll \bm{\Omega}$, so the re
 \subsubsection{Rotating Flow in a Shallow Layer}
 \label{subsub:rotating_flow_in_a_shallow_layer}
 
-Consider flows with horizontal lengthscale $L$ such that $H \ll L \ll R$. Taje local Cartesian coordinates, where $x$ moves Eastwards, $y$ moves Northwards and $z$ moves upwards, and let $\mathbf{u} = (u, v, w)$.
+Consider flows with horizontal lengthscale $L$ such that $H \ll L \ll R$. Take local Cartesian coordinates, where $x$ moves Eastwards, $y$ moves Northwards and $z$ moves upwards, and let $\mathbf{u} = (u, v, w)$.
 
 If $\bar \theta$ is the latitude and $\bm{\Omega} = (0, \Omega \cos \bar \theta, \Omega \sin \bar \theta)$, then
 \[
@@ -2063,7 +2063,7 @@ We make three good approximations.
 Hence we can simplify to
 \begin{align*}
 	\frac{Du}{Dt} - fv &= - \frac{1}{\rho} \frac{\partial p}{\partial x}, \\
-	\frac{Dv}{Dt} + fv &= - \frac{1}{\rho} \frac{\partial p}{\partial y}, \\
+	\frac{Dv}{Dt} + fu &= - \frac{1}{\rho} \frac{\partial p}{\partial y}, \\
 	- \frac{1}{\rho} \frac{\partial p}{\partial z} - g &= 0, \\
 	\frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} + \frac{\partial w}{\partial z} &= 0.
 \end{align*}
@@ -2082,6 +2082,87 @@ Consider flow in a shallow layer of thickness $h(x, y, t)$. Then
 \frac{\partial p}{\partial z} = \rho g \implies p = p_0 + \rho g(h - z) \implies \nabla_H p = \rho g \nabla_H h
 \]
 is independent of $z$, where $\nabla_H = ( \frac{\partial}{\partial x}, \frac{\partial}{\partial y} )$.
+
+\subsubsection{Geostrophic Balance}
+\label{subsub:geostrophic_balance}
+
+If $R_0 \equiv \frac{U}{\Omega L} \ll 1$ and we have a steady flow, then the shallow water equations becomes
+\begin{align*}
+	-fv &= - \frac{1}{\rho} \frac{\partial p}{\partial x} = - g \frac{\partial L}{\partial x}, \\
+	+fu &= - \frac{1}{\rho} \frac{\partial p}{\partial y} = - g\frac{\partial L}{\partial y}.
+\end{align*}
+Henece flow is given by the two-dimensional streamfunction
+\[
+\psi = - \frac{p}{\rho f} = - \frac{gh}{f},
+\]
+i.e. the pressure and height contours are streamlines. Therefore, winds  blow parallel to isobars, and not perpendicular.
+
+The equation
+\[
+\rho (f \mathbf{e}_z) \times \mathbf{u} = - \nabla_H p
+\]
+is called \emph{geostrophic balance}\index{geostrophic balance}. Note, if given $h(x, y)$ we can calculate the steady flow, but there is no such equation for $h$ or $\partial L/\partial t$.
+
+\subsubsection{Potential Vorticity}
+\label{subsub:potential_vorticity}
+
+Recall that:
+\begin{align*}
+	\frac{D}{Dt}(\zeta + f) &= (-\zeta + f) \biggl( \frac{\partial u}{\partial x} + \frac{\partial v}{\partial y}\biggr), \\
+	\frac{D}{Dt} h &= - h \biggl( \frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} \biggr).
+\end{align*}
+Hence we get
+\[
+\frac{D}{Dt} \biggl( \frac{\zeta + f}{h} \biggr) = 0.
+\]
+The quantity $(\zeta + f)/h$ is called the \emph{potential vorticity}\index{potential vorticity}.
+
+Potential vorticity is conserved for a material cylinder; the total vorticity $\zeta + f$ is proportional to the height of a cylinder, as vertical stretching leads to a smaller radius, which leads to faster spinning.
+
+Potential vorticity is useful because, taking the curl of the momentum equation, it eliminates the largest terms $\nabla p$ and $2 \rho \bm{\Omega} \times \mathbf{u}$ of nearly geostrophic balance, and reveals how the smaller terms give the evaluation of $h$ with time.
+
+\subsubsection{Linearised Evolution}
+\label{subsub:linearised_evolution}
+
+Suppose $h = h_0 + \eta(x, y, t)$, where $|\eta| \ll h_0$ and $|\nabla \eta| \ll \frac{H}{L} \ll 1$. The linearised equations are:
+\begin{align*}
+	\frac{\partial u}{\partial t} - fv &= - g \frac{\partial \eta}{\partial x}, \\
+	\frac{\partial v}{\partial t} + fu &= - g \frac{\partial \eta}{\partial y}, \\
+	\frac{\partial \eta}{\partial t} + h_0 \biggl( \frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} \biggr) &= 0, \\
+	\frac{\partial}{\partial t} \biggl( \frac{f}{h_0} \frac{1 + \zeta/f}{1 + \eta/h_0} \biggr) &= 0,
+\end{align*}
+where the last equation implies
+\[
+	\frac{\zeta}{f} - \frac{\eta}{h_0} \text{ is constant},
+\]
+i.e. $\zeta h_0 - \eta f$ equals the initial value, $\zeta_0 h_0 - \eta_0 f$. Now taking
+\[
+	h_0 \biggl( \frac{\partial (1)}{\partial x} + \frac{\partial (2)}{\partial y} \biggr) - \frac{\partial (M)}{\partial t} \implies - \frac{\partial^2 \eta}{\partial t^2} + gh_0 \nabla^2 \eta - h_0 f \zeta = 0.
+\]
+Combining with the above equation, we get
+\[
+\frac{\partial^2 \eta}{\partial t^2} + c^2 \nabla^2 \eta + f^2 \eta = f^2 \eta_0 - h_0 f \zeta_0,
+\]
+where $c = \sqrt{gh_0}$ is the shallow-water wave speed.
+
+\begin{exbox}
+	If $\eta_0 = \eps \sgn(x)$, and $\mathbf{u}_0 = 0$, then $\zeta_0 = 0$. Without rotation, so if $f = 0$, then we just have
+	\[
+	\frac{\partial^2 \eta}{\partial t^2} = c^2 \frac{\partial^2 \eta}{\partial x^2},
+	\]
+	with d'Alembert solution.
+
+	With rotation, the final steady state solves
+	\[
+	\frac{\partial^2 \eta_\infty}{\partial x^2} - \frac{f^2}{c^2} \eta_\infty = - \frac{f^2}{c^2} \eps \sgn(x),
+	\]
+	which solves to give $\eta_\infty = \eps \sgn(x) (1 - e^{-|x|f/c})$. Hence
+	\[
+	u_\infty = - \frac{g}{f} \frac{\partial \eta_\infty}{\partial y} = 0, \qquad v_\infty = \frac{g}{f} \frac{\partial \eta_\infty}{\partial x} = \eps \frac{g}{c} e^{-|x|f/c}.
+	\]
+	Here $a = \frac{c}{f} = \frac{\sqrt{gh_0}}f$ is the Rossby radius of deformation.\index{Rossby radius}
+\end{exbox}
+
 
 \newpage
 

@@ -1017,7 +1017,7 @@ which we expect given the velocity of the particle. The error of the momentum is
 
 We see that at $t = 0$, $\Delta x \cdot \Delta p = \hbar/2$, and in fact this is minimal.
 
-The Gaussian wavepacket is a state of minimum uncertainty at $t = 0$. Other $A(k)$ may give a normalisable state, but if you compute $\Delta x \cdot \Delta p$ the value will be greater they $\frac{\hbar}{2}$.
+The Gaussian wavepacket is a state of minimum uncertainty at $t = 0$. Other $A(k)$ may give a normalisable state, but if you compute $\Delta x \cdot \Delta p$ the value will be greater than $\frac{\hbar}{2}$.
 
 For the De Broglie wave $\psi_k(x, t)$, we have $\Delta x = \infty$ and $\Delta p = 0$.
 
@@ -1291,9 +1291,9 @@ Note these two definitions are equivalent, as
 				   &= (\psi, (\hat A - \langle \hat A \rangle_{\psi} \hat I)^2 \psi) = ((\hat A - \langle \hat A \rangle_{\psi} \hat I)\psi, (\hat A - \langle \hat A \rangle_{\psi} \hat I)\psi) \\
 				   &= (\phi, \phi) \geq 0.
 	\end{align*}
-	Now we prove that $(\Delta_{\psi}A)^2 = 0 \iff \phi = 0$. Indeed, if $(\Delta_{\psi}A)^2 = 0$, then $(\phi, \phi) = 0$, so $\hat A \psi = \langle \hat A \rangle\_{psi} \psi$.
+	Now we prove that $(\Delta_{\psi}A)^2 = 0 \iff \phi = 0$. Indeed, if $(\Delta_{\psi}A)^2 = 0$, then $(\phi, \phi) = 0$, so $\hat A \psi = \langle \hat A \rangle_{\psi} \psi$.
 
-		Alternatively, is $\psi$ is an eigenfunction of $\hat A$ with real eigenvalue $a \in \mathbb{R}$, then $\langle \hat A \rangle_{\psi} = (\psi, \hat A \psi) = a (\psi, \psi) = a$, and similarly $\langle \hat A^2 \rangle_{\psi} = a^2$.
+		Alternatively, if $\psi$ is an eigenfunction of $\hat A$ with real eigenvalue $a \in \mathbb{R}$, then $\langle \hat A \rangle_{\psi} = (\psi, \hat A \psi) = a (\psi, \psi) = a$, and similarly $\langle \hat A^2 \rangle_{\psi} = a^2$.
 
 		Then $(\Delta_{\psi}A)^2 = \langle \hat A^2 \rangle_{\psi} - (\langle \hat A \rangle_{\psi})^2 = 0$.
 \end{proofbox}
@@ -1362,7 +1362,7 @@ We look at the Ehrenfest theorem, which tells us the evolution of the operators 
 \begin{theorem}[Ehrenfest theorem]\index{Ehrenfest theorem}
 	The expectation value of a Hermitian operator $\hat A$ evolves according to
 	\[
-		\frac{\diff}{\diff t} \langle \hat A \rangle_{\psi} = \frac{i}{\hbar} \langle [\hat H, \hat A ] \rangle_{\psi} + \langle \frac{\partial \hat A}{\partial t} \rangle_{\psi}
+		\frac{\diff}{\diff t} \langle \hat A \rangle_{\psi} = \frac{i}{\hbar} \langle [\hat H, \hat A ] \rangle_{\psi} + \biggl\langle \frac{\partial \hat A}{\partial t} \biggr\rangle_{\psi}
 	.\]
 \end{theorem}
 
@@ -1371,8 +1371,8 @@ We look at the Ehrenfest theorem, which tells us the evolution of the operators 
 	\begin{align*}
 		\frac{\diff}{\diff t} \langle \hat A \rangle_{\psi} &= \frac{\diff}{\diff t} \int_{-\infty}^{\infty} \psi^{\ast} \hat A \psi \diff x = \int_{-\infty}^{\infty} \frac{\partial}{\partial t} (\psi^{\ast} \hat A \psi) \diff x \\
 							   &= \int_{-\infty}^{\infty} \biggl( \frac{\partial \psi^{\ast}}{\partial t} \hat A \psi + \psi^{\ast} \frac{\partial \hat A}{\partial t} \psi + \psi^{\ast} \hat A \frac{\partial \psi}{\partial t} \biggr) \diff x \\
-							   &= \frac{i}{\hbar} \int_{-\infty}^{\infty} \psi^{\ast} (\hat H \hat A - \hat A \hat H)\psi \diff x + \langle \frac{\partial \hat A}{\partial t} \rangle_{\psi} \\
-							   &= \frac{i}{\hbar} \langle [\hat H, \hat A]\rangle_{\psi} + \langle \frac{\partial \hat A}{\partial t} \rangle_{\psi}
+							   &= \frac{i}{\hbar} \int_{-\infty}^{\infty} \psi^{\ast} (\hat H \hat A - \hat A \hat H)\psi \diff x + \biggl\langle \frac{\partial \hat A}{\partial t} \biggr\rangle_{\psi} \\
+							   &= \frac{i}{\hbar} \langle [\hat H, \hat A]\rangle_{\psi} + \biggl\langle \frac{\partial \hat A}{\partial t} \biggr\rangle_{\psi}
 	\end{align*}
 \end{proofbox}
 
@@ -1654,7 +1654,7 @@ The total angular momentum satisfies the following properties:
 		[\hat L_i, \hat x_j^2] &= [\hat L_i, \hat x_j] \hat x_j + \hat x_j [\hat L_i, \hat x_j] \\
 				       &= i \hbar \eps_{ijm}(\hat x_m \hat x_j + \hat x_j \hat x_m) = 0.
 	\end{align*}
-	This prove that $[\hat L_i, U(r)] = 0$, as $U(r)$ is simply $U(\sqrt{\hat x_1^2 + \hat x_2^2 + \hat x_3^2})$. Similarly, we can prove
+	This proves that $[\hat L_i, U(r)] = 0$, as $U(r)$ is simply $U(\sqrt{\hat x_1^2 + \hat x_2^2 + \hat x_3^2})$. Similarly, we can prove
 	\begin{align*}
 		[\hat L_i, \hat p_j] &= i \hbar \eps_{ijm} \hat p_m, \\
 		[\hat L-i, \hat p^2] &= 0, \\
@@ -1670,7 +1670,7 @@ We have the following observations:
 	\item This set of operators is \textit{maximal}\index{maximal}, meaning we cannot construct another operator (other than $\hat I$) that commutes with all three.
 \end{enumerate}
 
-To find joint eigenfunction of, say $\hat L^2$ and $\hat L_3$, we can write $\mathbf{\hat L}$ is spherical coordinates:
+To find joint eigenfunction of, say $\hat L^2$ and $\hat L_3$, we can write $\mathbf{\hat L}$ in spherical coordinates:
 \begin{align*}
 	\hat L_3 &= - i \hbar \frac{\partial}{\partial \phi}, \\
 	\hat L^2 &= - \frac{\hbar^2}{\sin^2 \theta} \bigg[ \sin \theta \frac{\partial}{\partial \theta} \biggl( \sin \theta \frac{\partial}{\partial \theta} \biggr) + \frac{\partial^2}{\partial \phi^2} \biggr].
